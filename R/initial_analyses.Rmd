@@ -10,7 +10,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-## Background
+## 1) Background
 
 One of the goals of our research is to determine whether independently evolving populations are evolving under similar trajectories. One of the more recent and thorough attempts at addressing this goal is a recent study that examined fine-scale temporal sampling of Richard Lenski's Long-term Evolution Experiment (Good et al., 2017). In Good et al. (2017) the authors propose a measure of gene multiplicity to detect evolutionary parallelism at the gene level among replicate populations. The multiplicity for each gene is 
 
@@ -51,11 +51,9 @@ $$r_{i,j}= \begin{Bmatrix}
 Using these modified population level gene enrichment scores and the publically available data presented in Good et al. (2017), we calculate the multiplicity score for each gene within each population for all genes within set $I$, generating a gene-by-population multiplicity matrix. We then used Principal Coordinates Analysis (PCoA) to reduce the dimensionality of the dataset and visualize the evolutionary trajectories of the six nonmutator populations. To determine whether or not the rate that mutations are acquired in each gene decreases, we calculated the Euclidean distance of the first three PCoA axes between timepoints for each population.
 
 
-What else? Betadisper? Other appropriate (and not too difficult ) analyses? I'd like to get feedback on this approach before carrying out much more work
+## 2) Setup work environment
 
-## Setup work environment
-
-```{r, results = 'hide', message = FALSE, warning = FALSE}
+```{r, results = 'hide', message = FALSE, warning = FALSE, echo=FALSE}
 rm(list=ls())
 getwd()
 #setwd("~/GitHub/ParEvol")
@@ -71,10 +69,10 @@ library("data.table")
 ```
 
 
-## Load and clean data
+## 3) Load and clean data
 
 
-```{r}
+```{r, echo=FALSE}
 pop_by_gene <- c("data/ltee/gene_by_pop_m_I.txt")
 df <- read.table(paste(pop_by_gene, collapse = ''), sep = "\t", 
                  header = TRUE, row.names = 1)
@@ -89,12 +87,10 @@ df.no0 <- df.noMut[apply(df.noMut[,-1], 1, function(x) !all(x==0)),]
 ```
 
 
+## 4) Make and visualize PCoA ordination
 
 
-## Make and visualize ordination
-
-
-```{r, message = FALSE, warning = FALSE}
+```{r, message = FALSE, warning = FALSE, echo=FALSE}
 df.no0.db <- vegdist(df.no0, method = "bray", upper = TRUE, diag = TRUE)
 df.pcoa <- cmdscale(df.no0.db, eig = TRUE, k = 3) 
 explainvar1 <- round(df.pcoa$eig[1] / sum(df.pcoa$eig), 3) * 100
@@ -237,11 +233,26 @@ grid.raster(img)
 ```
 
 
+So we see from the ordination that Ara+2, Ara+4, and Ara-6 have similar non-linear trends in ordination space. Likewise, Ara+1 and Ara-5 have similar trends. However, Ara+5 does not show much of a trend and there is no immediate explanation. To determine the sets of genes that contribute to each of these trajectories as well as how the variation in signatures of parallelism changes over time, we will be adapting appropriate measures presented in Good et al. (eqs. 80 - 87 in the supplement) to account for variation between populations.
 
-## Euclidean distance
+
+## 5) Quantifing Euclidean distance between timepoints
+
+A basic prediction from Fisher's geometric model (FGM) of adaptive phenotypic evolution is that the magnitude of change in phenotypic space declines over the course of the adaptive walk towards an optimum. While we are using genetic data instead of phenotypic data, it is possible that the rate of change in ordination space could exhibit a qualitatively similar trend. This prediction assumes that some form of FGM describes  phenotypic evolution in the LTEE and that the genotype-to-phenotype map is linear to the extent that qualitative similarities between the two distributions are not erased. There are other explanations for this pattern, one of which may be a variation of the global fitness-mediated epistasis model described in Good and Desai (2014). 
 
 
-```{r}
+```{r fig.align='center', fig.width=3, fig.height=3, message = FALSE, warning = FALSE,  echo=FALSE}
+# Show Plot
+img.fisher <- readPNG(paste(c("figs/fisher_geom.png"), collapse = ''))
+grid.raster(img.fisher,  just = 'centre')
+```
+
+An example of an adaptive walk towards an optimum on a 2 dimensional form of Fisher's geometric model.
+
+
+To examine the decay in the rate of change with time, we quantified the pair-wise Euclidean distance ($d()$) between sequential timepoints for the first three PCoA axes ($d(\mathbf{t_{i}}, \mathbf{t_{i+1}})$) for each population. We then plotted the second time point of the sequential pair-wise distance ($t_{i+1}$) against the Euclidean distance.
+
+```{r, message = FALSE, warning = FALSE, echo=FALSE}
 times.sorted <- as.character(sort(as.numeric(unique(times))))
 time_steps <- c()
 for (index in seq(1, length(head(times.sorted, -1)))) {
@@ -371,13 +382,152 @@ dev.off()
 # Show Plot
 img <- readPNG(paste(c("figs/euc_pcoa.png"), collapse = ''))
 grid.raster(img)
+```
 
+While we see considerable variation, a number of populations show a qualitative trend where Euclidean distance between time points decreases with time. We are working on identifying and applying appropriate statistical models to describe this trend and determine the extent that it's consistent  across populations. We are also working to identify the set of potential explanations for this trend.  
+
+
+## 6) Mean centroid distance
+
+A central question we want to answer from our own evolution experiments is whether independently evolving populations reach similar evolutionary endpoints. To examine this, we  quantified the Euclidean distance between each population and the median in ordination space of all populations sampled at a given time-point (i.e., the centroid). We then plotted the centroid distance for all populations (open circles) and the mean centroid distance (closed circles) against generations.
+
+
+```{r, message = FALSE, warning = FALSE, echo=FALSE}
+df.no0.nop5 <- df.no0[!rownames(df.no0)  %like% "p5", ]
+df.no0.nop5.db <- vegdist(df.no0.nop5, method = "bray", upper = TRUE, diag = TRUE)
+df.no0.nop5.groups <- sapply(strsplit(rownames(df.no0.nop5),"_"), `[`, 2)
+
+beta.disp <- betadisper(d = df.no0.nop5.db, group = df.no0.nop5.groups)
+
+get.euc.dist.2D <- function(beta.disp, groups, axes_number){
+  centroids <- beta.disp$centroids[,1:axes_number]
+  posistions <- beta.disp$vectors[,1:axes_number]
+  # get euclidean distancs from first three axes
+  eucs <- c()
+  pop.name <- c()
+  times <- c()
+  for(i in groups) {
+    centroid.i <- centroids[i, ]
+    positions.i <- posistions[rownames(posistions) %like% paste("_", i, sep = ""), ]
+    for(j in 1:nrow(positions.i)) {
+      position.j <- positions.i[j,]
+      sample <- rownames(positions.i)[j]
+      euc.dist.j <- dist(rbind(position.j, centroid.i))
+      eucs <- c(eucs, euc.dist.j)
+      pop.name <- c(pop.name, sample)
+      times <- c(times, i)
+    }
+  }
+  pop.euc <- cbind(pop.name, eucs, times) 
+  return(data.frame(pop.euc))
+}
+euc.mat.m <- get.euc.dist.2D(beta.disp, unique(df.no0.nop5.groups), 3)
+
+png(filename = paste(c("figs/mcd.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mar = c(5, 5, 1, 2) + 0.1)
+
+euc.mat.m$times <- as.integer(as.character(euc.mat.m$times))
+euc.mat.m$eucs <- as.numeric(as.character(euc.mat.m$eucs))
+x <- euc.mat.m$times 
+y <- euc.mat.m$eucs
+
+xy.mean <- aggregate(euc.mat.m[,2], list(euc.mat.m$times), mean )
+x.mean <- xy.mean$Group.1
+y.mean <- xy.mean$x
+plot.mean <- plot(x, y,  
+                     xlim = c(0, 60000), ylim = c(0, max(y)),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = 'Generations', 
+                  ylab ='Euclidean distance to centroid')
+points(x, y, pch = 1, cex = 1, bg = "gray",  lwd  = 1)
+points(x.mean, y.mean, pch = 16, cex = 1.5, bg = "gray", 
+       col = alpha('black', 0.8), lwd  = 3)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+box(lwd = 2)
+
+dev.off()
+# Show Plot
+img <- readPNG(paste(c("figs/mcd.png"), collapse = ''))
+grid.raster(img)
 
 ```
 
-## Beta disper
+
+The scatter of the points around the mean clearly decreases with time, suggesting that there may be a relationship between the variance in the degree of parallel evolution with time. To examine this, we plotted the standard deviation of the mean centroid distance against the number of generations.
 
 
-## References
+```{r, message = FALSE, warning = FALSE, echo=FALSE}
+# make standard deviation plot
+xy.sd <- aggregate(euc.mat.m[,2], list(euc.mat.m$times), sd )
+x.sd <- xy.sd$Group.1
+y.sd <- xy.sd$x
+
+png(filename = paste(c("figs/mcd_sd.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mar = c(5, 7, 1, 2) + 0.1)
+plot.df <- plot(x.sd, y.sd,  
+                     xlim = c(0, 60000), ylim = c(0, max(y.sd)),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = 'Generations', 
+                  ylab ='')
+points(x.sd, y.sd, pch = 16, cex = 1.5, bg = "gray", 
+       col = alpha('black', 0.8), lwd  = 3)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+mtext("Standard deviation of\neuclidean distance to centroid", side=2, line=3.5, cex=1.3, outer=FALSE)
+
+box(lwd = 2)
+dev.off()
+# Show Plot
+img <- readPNG(paste(c("figs/mcd_sd.png"), collapse = ''))
+grid.raster(img)
+```
+
+
+The standard deviation for the last approximately 10,000 generations is clearly disproportionately skewed by some outlier timepoints from population Ara+2, the reason for these unusually high Euclidean distance values in Ara+2 is unclear. If we remove these points and make the same plot, we see that the relationship between the standard deviation of Euclidean distance to the centroid and time is clearly unimodal and right-skewed.
+
+```{r,  message = FALSE, warning = FALSE, echo=FALSE}
+euc.mat.m.noP2 <-  euc.mat.m[!euc.mat.m$pop.name  %like% "p2", ]
+euc.mat.m.noP2$times <- as.integer(as.character(euc.mat.m.noP2$times))
+euc.mat.m.noP2$eucs <- as.numeric(as.character(euc.mat.m.noP2$eucs))
+xy.sd.noP2 <- aggregate(euc.mat.m.noP2$eucs, list(euc.mat.m.noP2$times), sd )
+x.noP.sd <- xy.sd.noP2$Group.1
+y.noP.sd <- xy.sd.noP2$x
+
+png(filename = paste(c("figs/mcd_sd_noP2.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mar = c(5, 7, 1, 2) + 0.1)
+plot.df <- plot(x.noP.sd, y.noP.sd,  
+                     xlim = c(0, 60000), ylim = c(0, max(y.sd)),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = 'Generations', 
+                  ylab ='')
+points(x.noP.sd, y.noP.sd, pch = 16, cex = 1.5, bg = "gray", 
+       col = alpha('black', 0.8), lwd  = 3)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+mtext("Standard deviation of\neuclidean distance to centroid", side=2, line=3.5, cex=1.3, outer=FALSE)
+
+box(lwd = 2)
+dev.off()
+# Show Plot
+img <- readPNG(paste(c("figs/mcd_sd_noP2.png"), collapse = ''))
+grid.raster(img)
+```
+
+
+We have written code to determine whether or not this result is significant by generating random gene-by-population multiplicity matrices where the probability that a mutation lands on the gene is simply the gene length ($p_{i}\propto L_{i}$) and are planning on running a permutation test on the gene-by-population multiplicity matrix.
+
+
+## 7) Replicate observed patterns via simulation
+
+We are currently working to build off of and simulate existing population genetic models to confirm our observed patterns. Right now, we're working to simulate a gene-by-population matrix for the running out of mutations model and a global epistasis model (based off of the one proposed in Good and Desai (2014)). Because we observe two different evolutionary trajectories that ultimately reach the same region of PCoA space, sign epistasis could serve as a potential explanation and we are working to include it in our ongoing simulations. 
+
+
+## 8) References
+
+Good, B. H., and M. M. Desai. 2014. The impact of macroscopic epistasis on long-term evolutionary dynamics. Genetics 114:172460 
 
 Good, B. H., M. J. McDonald, J. E. Barrick, R. E. Lenski, and M. M. Desai. 2017. The dynamics of molecular evolution over 60,000 generations. Nature 551:45–50
