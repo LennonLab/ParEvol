@@ -48,7 +48,7 @@ $$r_{i,j}= \begin{Bmatrix}
 1& \mathrm{else}.
 \end{Bmatrix}$$
 
-Using these modified population level gene enrichment scores and the publically available data presented in Good et al. (2017), we calculate the multiplicity score for each gene within each population for all genes within set $I$, generating a gene-by-population multiplicity matrix. We then used Principal Coordinates Analysis (PCoA) to reduce the dimensionality of the dataset and visualize the evolutionary trajectories of the six nonmutator populations. To determine whether or not the rate that mutations are acquired in each gene decreases, we calculated the Euclidean distance of the first three PCoA axes between timepoints for each population.
+Using these modified population level gene enrichment scores and the publically available data presented in Good et al. (2017), we calculate the multiplicity score for each gene within each population at each time point for all genes within set $I$, generating a gene-by-population multiplicity matrix. We then built a Bray-Curtis dissimilarity matrix and used Principal Coordinates Analysis (PCoA) to reduce the dimensionality of the dataset and visualize the evolutionary trajectories of the six nonmutator populations. To determine whether or not the rate that mutations are acquired in each gene decreases, we calculated the Euclidean distance of the first three PCoA axes between timepoints for each population.
 
 
 ## 2) Setup work environment
@@ -138,10 +138,6 @@ p5.cols <- get.times.cols(pcoa.p5, times)
 # make plot
 png(filename = paste(c("figs/pcoa.png"), collapse = ''),
     width = 1200, height = 900, res = 96*2)
-#layout(matrix(1:6, 2, 3))
-#par(mar = c(0.5, 2.5, 0.5, 0.5), oma = c(4, 1, 1, 1))
-#par(mar =c(0.5, 3.1, 1.1, 0.5), oma = c(2, 1, 0, 0 ), pty="s")#, mai = c(0.3, 0.2, 0.2, 0.2))
-#par(mfrow = c(2,3), mar =c(0, 3.1, 1.1, 0.5), oma = c(5, 4, 0, 0 ), pty="s")
 par(mfrow = c(2, 3),   
     oma = c(5, 4, 0, 0), # two rows of text at the outer left and bottom margin
     mar = c(1.5, 3.1, 1.1, 0.5), # space for one row of text at ticks and to separate plots
@@ -232,8 +228,107 @@ img <- readPNG(paste(c("figs/pcoa.png"), collapse = ''))
 grid.raster(img)
 ```
 
+We can make this trend clearer by plotting the first two axes as a function of time.
+
+```{r, message = FALSE, warning = FALSE, echo=FALSE}
+pcoa.first2 <- as.data.frame(df.pcoa$points[,1:2])
+colnames(pcoa.first2)[1] <- 'axis1'
+colnames(pcoa.first2)[2] <- 'axis2'
+split.rows <- do.call(rbind, strsplit(rownames(pcoa.first2), '_'))
+pcoa.first2$pop <- split.rows[,1]
+pcoa.first2$time <- split.rows[,2]
+
+get.symbol <- function(pcoa.points){
+  pop.symbols <- c()
+  for (x in rownames(pcoa.points)){
+    pop <- toString(strsplit(x, '_')[[1]][1])
+    if (grepl("m5", pop)){
+      # square
+      pop.symbol <- 0
+    } else if ( grepl("m6", pop)) {
+      pop.symbol <- 1
+      # circle
+    } else if ( grepl("p1", pop)) {
+      pop.symbol <- 2
+      # triangle
+    } else if ( grepl("p2", pop)) {
+      pop.symbol <- 3
+      # addition sign
+    } else if ( grepl("p4", pop)) {
+      pop.symbol <- 4
+      # multiplication sign
+    } else if ( grepl("p5", pop)) {
+      # diamond
+      pop.symbol <- 5
+    } 
+    pop.symbols <- c(pop.symbols, pop.symbol)
+  }
+  return(pop.symbols)
+}
+
+png(filename = paste(c("figs/time_pcoa1.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mar = c(5, 5, 1, 2) + 0.1)
+plot.pcoa1 <- plot(pcoa.first2$time, pcoa.first2$axis1, 
+                  xlim = c(0, 60000), 
+                  ylim = c(min(pcoa.first2$axis1), max(pcoa.first2$axis1)),
+                  pch = 2, cex = 2.0, type = "n", 
+                  cex.lab = 1.5, cex.axis = 1.2, 
+                  axes = FALSE, xlab = '', 
+                  ylab ='')
+points(pcoa.first2$time, pcoa.first2$axis1,cex = 1, 
+       bg = "gray",  lwd  = 1, 
+       pch = get.symbol(pcoa.first2), col = alpha("darkolivegreen4", 0.8))
+
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+mtext("Generations", side=1, line=3.5, cex=1.3, outer=FALSE)
+mtext(paste("PCoA 1 (", explainvar1, "%)", sep = ""),
+      side=2, line=3.5, cex=1.3, outer=FALSE)
+
+box(lwd = 2)
+dev.off()
+# Show Plot
+img <- readPNG(paste(c("figs/time_pcoa1.png"), collapse = ''))
+grid.raster(img)
+
+```
+
+
+```{r,  message = FALSE, warning = FALSE, echo=FALSE}
+
+png(filename = paste(c("figs/time_pcoa2.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mar = c(5, 5, 1, 2) + 0.1)
+plot.pcoa2 <- plot(pcoa.first2$time, pcoa.first2$axis2, 
+                  xlim = c(0, 60000), 
+                  ylim = c(min(pcoa.first2$axis2), max(pcoa.first2$axis2)),
+                  pch = 2, cex = 2.0, type = "n", 
+                  cex.lab = 1.5, cex.axis = 1.2, 
+                  axes = FALSE, xlab = '', 
+                  ylab ='')
+points(pcoa.first2$time, pcoa.first2$axis2,cex = 1, 
+       bg = "gray",  lwd  = 1, 
+       pch = get.symbol(pcoa.first2), col = alpha("darkolivegreen4", 0.8))
+
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+mtext("Generations", side=1, line=3.5, cex=1.3, outer=FALSE)
+mtext(paste("PCoA 2 (", explainvar2, "%)", sep = ""),
+      side=2, line=3.5, cex=1.3, outer=FALSE)
+box(lwd = 2)
+
+dev.off()
+# Show Plot
+img <- readPNG(paste(c("figs/time_pcoa2.png"), collapse = ''))
+grid.raster(img)
+```
+
+
 
 So we see from the ordination that Ara+2, Ara+4, and Ara-6 have similar non-linear trends in ordination space. Likewise, Ara+1 and Ara-5 have similar trends. However, Ara+5 does not show much of a trend and there is no immediate explanation. To determine the sets of genes that contribute to each of these trajectories as well as how the variation in signatures of parallelism changes over time, we will be adapting appropriate measures presented in Good et al. (eqs. 80 - 87 in the supplement) to account for variation between populations.
+
+We are working to apply time-series clustering techniques on the ordination results to explore how multiple populations can be grouped as a single trajectory.
 
 
 ## 5) Quantifing Euclidean distance between timepoints
@@ -241,7 +336,7 @@ So we see from the ordination that Ara+2, Ara+4, and Ara-6 have similar non-line
 A basic prediction from Fisher's geometric model (FGM) of adaptive phenotypic evolution is that the magnitude of change in phenotypic space declines over the course of the adaptive walk towards an optimum. While we are using genetic data instead of phenotypic data, it is possible that the rate of change in ordination space could exhibit a qualitatively similar trend. This prediction assumes that some form of FGM describes  phenotypic evolution in the LTEE and that the genotype-to-phenotype map is linear to the extent that qualitative similarities between the two distributions are not erased. There are other explanations for this pattern, one of which may be a variation of the global fitness-mediated epistasis model described in Good and Desai (2014). 
 
 
-```{r fig.align='center', fig.width=3, fig.height=3, message = FALSE, warning = FALSE,  echo=FALSE}
+```{r eval = FALSE, fig.align='center', fig.width=3, fig.height=3, message = FALSE, warning = FALSE,  echo=FALSE}
 # Show Plot
 img.fisher <- readPNG(paste(c("figs/fisher_geom.png"), collapse = ''))
 grid.raster(img.fisher,  just = 'centre')
