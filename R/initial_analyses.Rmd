@@ -1,10 +1,12 @@
 ---
-title: "Evolutionary trajectories in the Long-term Evolution Experiment"
+title: "Quantifying and Visualizing Parallel Evolution in Replicate Experimental Populations"
 author: "William R. Shoemaker, Jay T. Lennon"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 header-includes:
   - \usepackage{array}
-output: pdf_document
+output: 
+  pdf_document:
+    fig_caption: true
 geometry: margin=2.54cm
 editor_options: 
   chunk_output_type: console
@@ -12,7 +14,21 @@ editor_options:
 
 ## 1) Background
 
-One of the goals of our research is to determine whether independently evolving populations are evolving under similar trajectories. One of the more recent and thorough attempts at addressing this goal is a recent study that examined fine-scale temporal sampling of Richard Lenski's Long-term Evolution Experiment (Good et al., 2017). In Good et al. (2017) the authors propose a measure of gene multiplicity to detect evolutionary parallelism at the gene level among replicate populations. The multiplicity for each gene is 
+One of the goals of our research is to determine whether independently evolving populations evolve in similar ways under severe energy-limitation. We have been running our own long-term evolution experiments for several years now and want to be able to quantify the degree of parallel evolution within treatment groups, so we can determine whether different treatment groups are evolutionarily diverged. However, the degree of parallelism is often not quantified in experimental evolution, the degree of expected parallelism depends on the unit of interest (i.e., gene, trait, fitness), and the set of available statistical and visual tools is fairly limited. Recent attempts to quantify parallel evolution focused on the excess number of substitutions in a gene relative to a null model (Tenaillon et al., 2016; Good et al., 2017). This approach is innovative and can likely be applied to pooled sequencing data from any evolution experiment that has been run on a long enough time-scale that a large number of mutation origin-fixation events are likely to have occurred. It is worth noting the theoretical implications of this approach. That is, focusing on parallelism at the gene level implies that genotypic space (i.e., the set of all possible genotypic combinations) has been coarse-grained from the nucleotide to the gene level, where the value at a node is now the number of mutations observed in the set of sites within the gene rather than the presence or absence of a mutation at a single site. If the set of evolutionary paths to a fitness optimum (assuming selection is sufficiently strong, and mutation is sufficiently weak) include sites in different genes that have a negative effect on fitness in combination (site epistasis), replicate populations may be enriched for mutations in different sets of genes. 
+
+To accomplish our goal of quantifying the degree of parallel evolution and visualizing evolutionary trajectories in experimental populations, we are taking a three-step approach:
+
+**1)** Apply and developing a multivariate statistical approach to quantify and visualize evolutionary trajectories from pooled population sequence data. 
+
+**2)** Confirm the validity of our approach through simulated data of evolutionary dynamics.
+
+**3)** Test our approach on an existing high-quality dataset.
+
+In order to determine the degree that independently evolving replicate populations arrive at the same evolutionary outcome, we initially extended the G-score measure presented in Tenaillon et al. (2016) to the level of individual populations (rather than being a measure that aggregates across replicate populations) and applied it to our long-term evolution experiment using multivariate ordination techniques (Shoemaker and Lennon, 2017). 
+
+Since then, a more thorough attempt at quantifying parallel evolution was done in a recent study that examined fine-scale temporal pooled sequencing data from Richard Lenski's Long-term Evolution Experiment (Good et al., 2017). We have since worked to apply the measures and statistics presented in Good et al. to our multivariate approach (2017).
+
+As a brief review, in Good et al. (2017) the authors propose a measure of gene multiplicity to detect evolutionary parallelism at the gene level among replicate populations. The multiplicity for each gene is 
 
 $$m_{i}=n_{i}\cdot \frac{\overline{L}}{L_{i}}$$
 
@@ -48,10 +64,9 @@ $$r_{i,j}= \begin{Bmatrix}
 1& \mathrm{else}.
 \end{Bmatrix}$$
 
-Using these modified population level gene enrichment scores and the publically available data presented in Good et al. (2017), we calculate the multiplicity score for each gene within each population at each time point for all genes within set $I$, generating a gene-by-population multiplicity matrix. We then built a Bray-Curtis dissimilarity matrix and used Principal Coordinates Analysis (PCoA) to reduce the dimensionality of the dataset and visualize the evolutionary trajectories of the six nonmutator populations. To determine whether or not the rate that mutations are acquired in each gene decreases, we calculated the Euclidean distance of the first three PCoA axes between timepoints for each population.
+Using these modified population level gene enrichment scores and the publically available data presented in Good et al. (2017), we calculate the multiplicity score for each gene within each population at each time point for all genes within set $I$, generating a gene-by-population multiplicity matrix. We then built a Bray-Curtis dissimilarity matrix and used Principal Coordinates Analysis (PCoA) to reduce the dimensionality of the dataset and visualize the evolutionary trajectories of the six nonmutator populations. The code and additional analyses can be found in the [GitHub repository](https://github.com/LennonLab/ParEvol).
 
 
-## 2) Setup work environment
 
 ```{r, results = 'hide', message = FALSE, warning = FALSE, echo=FALSE}
 rm(list=ls())
@@ -66,10 +81,9 @@ require("png")
 require("grid")
 library("scales")
 library("data.table")
+library("BiodiversityR")
 ```
 
-
-## 3) Load and clean data
 
 
 ```{r, echo=FALSE}
@@ -87,10 +101,11 @@ df.no0 <- df.noMut[apply(df.noMut[,-1], 1, function(x) !all(x==0)),]
 ```
 
 
-## 4) Make and visualize PCoA ordination
+## 2) Visualizing evolutionary trajectories
 
 
-```{r, message = FALSE, warning = FALSE, echo=FALSE}
+```{r, fig.cap = "The first two axes of a PCoA on the LTEE gene-by-population multiplicity matrix. Each population is plotted as a separate figure. Lighter colored points indicate earlier timepoints while darker timepoints indicate later timepoints. The grey dot indicates the ancestor (i.e., no mutations in any gene) \\label{figurelabel}", message = FALSE, warning = FALSE, echo=FALSE, comment = NA}
+
 df.no0.db <- vegdist(df.no0, method = "bray", upper = TRUE, diag = TRUE)
 df.pcoa <- cmdscale(df.no0.db, eig = TRUE, k = 3) 
 explainvar1 <- round(df.pcoa$eig[1] / sum(df.pcoa$eig), 3) * 100
@@ -148,72 +163,79 @@ pcoa.p2.plot <- plot(pcoa.p2[ ,1], pcoa.p2[ ,2],
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7), 
                      pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara+2")
+abline(h = 0, v = 0, lty = 3)
 points(pcoa.p2[ ,1], pcoa.p2[ ,2],
        pch = 0, cex = 1.5, bg = "gray", col = alpha(m6.cols, 0.5), lwd  = 3)
+points(0, 0, pch = 16, cex = 2.5, bg = 'gray', col = 'gray', lwd = 1.5)
 # Add Axes
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-abline(h = 0, v = 0, lty = 3)
 box(lwd = 2)
 
 pcoa.p4.plot <- plot(pcoa.p4[ ,1], pcoa.p4[ ,2], 
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7),
                      pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara+4")
+abline(h = 0, v = 0, lty = 3)
 points(pcoa.p4[ ,1], pcoa.p4[ ,2],
        pch = 2, cex = 1.5, bg = "gray", col = alpha(m6.cols, 0.5), lwd  = 3)
+points(0, 0, pch = 16, cex = 2.5, bg = 'gray', col = 'gray', lwd = 1.5)
 # Add Axes
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-abline(h = 0, v = 0, lty = 3)
 box(lwd = 2)
 
 pcoa.m6.plot <- plot(pcoa.m6[ ,1], pcoa.m6[ ,2],
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7), 
                      pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara-6")
+abline(h = 0, v = 0, lty = 3)
 points(pcoa.m6[ ,1], pcoa.m6[ ,2],
        pch = 4, cex = 1.5, bg = "gray", col = alpha(m6.cols, 0.5), lwd  = 3)
+points(0, 0, pch = 16, cex = 2.5, bg = 'gray', col = 'gray', lwd = 1.5)
 # Add Axes
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-abline(h = 0, v = 0, lty = 3)
 box(lwd = 2)
 
 pcoa.p1.plot <- plot(pcoa.p1[ ,1], pcoa.p1[ ,2], 
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7),
                      pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara+1")
+abline(h = 0, v = 0, lty = 3)
 points(pcoa.p1[ ,1], pcoa.p1[ ,2],
        pch = 1, cex = 1.5, bg = "gray", col = alpha(m6.cols, 0.5), lwd  = 3)
+points(0, 0, pch = 16, cex = 2.5, bg = 'gray', col = 'gray', lwd = 1.5)
 # Add Axes
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-abline(h = 0, v = 0, lty = 3)
 box(lwd = 2)
 
 pcoa.m5.plot <- plot(pcoa.m5[ ,1], pcoa.m5[ ,2],
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7), 
                      pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara-5")
+abline(h = 0, v = 0, lty = 3)
 points(pcoa.m5[ ,1], pcoa.m5[ ,2],
        pch = 3, cex = 1.5, bg = "gray", col = alpha(m5.cols, 0.5), lwd  = 3)
+points(0, 0, pch = 16, cex = 2.5, bg = 'gray', col = 'gray', lwd = 1.5)
 # Add Axes
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-abline(h = 0, v = 0, lty = 3)
 box(lwd = 2)
 
 pcoa.p5.plot <- plot(pcoa.p5[ ,1], pcoa.p5[ ,2],
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7),  
                      pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara+5")
+abline(h = 0, v = 0, lty = 3)
 points(pcoa.p5[ ,1], pcoa.p5[ ,2],
        pch = 5, cex = 1.5, bg = "gray", col = alpha(m6.cols, 0.5), lwd  = 3)
+points(0, 0, pch = 16, cex = 2.5, bg = 'gray', col = 'gray', lwd = 1.5)
 # Add Axes
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-abline(h = 0, v = 0, lty = 3)
+
 box(lwd = 2)
 
 mtext(paste("PCoA 1 (", explainvar1, "%)", sep = ""), side=1, line=1, 
@@ -228,9 +250,11 @@ img <- readPNG(paste(c("figs/pcoa.png"), collapse = ''))
 grid.raster(img)
 ```
 
+We see from the ordination (Fig. 1) that Ara+2, Ara+4, and Ara-6 have similar non-linear trends in ordination space. Likewise, Ara+1 and Ara-5 have similar trends. However, Ara+5 shows a divergent trend and we do not have an immediate explanation. To determine the sets of genes that contribute to each of these trajectories as well as how the variation in signatures of parallelism changes over time, we will be adapting appropriate measures presented in Good et al. (eqs. 80 - 87 in the supplement) to account for variation between populations.
+
 We can make this trend clearer by plotting the first two axes as a function of time.
 
-```{r, message = FALSE, warning = FALSE, echo=FALSE}
+```{r, fig.cap = "The first axis of the PCoA axis plotted against time (generations). \\label{figurelabel}",message = FALSE, warning = FALSE, echo=FALSE, comment = NA}
 pcoa.first2 <- as.data.frame(df.pcoa$points[,1:2])
 colnames(pcoa.first2)[1] <- 'axis1'
 colnames(pcoa.first2)[2] <- 'axis2'
@@ -268,9 +292,10 @@ get.symbol <- function(pcoa.points){
 
 png(filename = paste(c("figs/time_pcoa1.png"), collapse = ''),
     width = 1200, height = 900, res = 96*2)
-par(mar = c(5, 5, 1, 2) + 0.1)
+#par(mar = c(5, 5, 1, 2) + 0.1)
+par(mar = c(5, 5, 1, 5) + 0.1, xpd=TRUE)
 plot.pcoa1 <- plot(pcoa.first2$time, pcoa.first2$axis1, 
-                  xlim = c(0, 60000), 
+                  xlim = c(0, 63000), 
                   ylim = c(min(pcoa.first2$axis1), max(pcoa.first2$axis1)),
                   pch = 2, cex = 2.0, type = "n", 
                   cex.lab = 1.5, cex.axis = 1.2, 
@@ -285,23 +310,28 @@ axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 mtext("Generations", side=1, line=3.5, cex=1.3, outer=FALSE)
 mtext(paste("PCoA 1 (", explainvar1, "%)", sep = ""),
       side=2, line=3.5, cex=1.3, outer=FALSE)
-
 box(lwd = 2)
+legend("right", inset=c(-0.22,0), 
+       legend=c("Ara+2","Ara+4", "Ara-6", "Ara+1", "Ara-5", "Ara+5"), 
+       pch=c(0,2,4,1,3,5), title="Pop.", col="darkolivegreen4")
 dev.off()
 # Show Plot
 img <- readPNG(paste(c("figs/time_pcoa1.png"), collapse = ''))
-grid.raster(img)
+grid.raster(img) 
 
 ```
 
+The trajectory of Ara+5 remains fairly constant over time. This may be because Ara+5 is not accumulating mutations in the set of genes that passed false-discovery rate correction ($I$). We will be examining this in subsequent analysis.
 
-```{r,  message = FALSE, warning = FALSE, echo=FALSE}
+We can examine the degree divergence in the five nonmutator populations (excluding Ara+5) by plotting the second PCoA axis against the number of generations.
 
+
+```{r, fig.cap = "The second axis of the PCoA axis plotted against time (generations). \\label{figurelabel}", message = FALSE, warning = FALSE, echo=FALSE}
 png(filename = paste(c("figs/time_pcoa2.png"), collapse = ''),
     width = 1200, height = 900, res = 96*2)
-par(mar = c(5, 5, 1, 2) + 0.1)
+par(mar = c(5, 5, 1, 5) + 0.1, xpd=TRUE)
 plot.pcoa2 <- plot(pcoa.first2$time, pcoa.first2$axis2, 
-                  xlim = c(0, 60000), 
+                  xlim = c(0, 63000), 
                   ylim = c(min(pcoa.first2$axis2), max(pcoa.first2$axis2)),
                   pch = 2, cex = 2.0, type = "n", 
                   cex.lab = 1.5, cex.axis = 1.2, 
@@ -317,7 +347,9 @@ mtext("Generations", side=1, line=3.5, cex=1.3, outer=FALSE)
 mtext(paste("PCoA 2 (", explainvar2, "%)", sep = ""),
       side=2, line=3.5, cex=1.3, outer=FALSE)
 box(lwd = 2)
-
+legend("right", inset=c(-0.22,0), 
+       legend=c("Ara+2","Ara+4", "Ara-6", "Ara+1", "Ara-5", "Ara+5"), 
+       pch=c(0,2,4,1,3,5), title="Pop.", col="darkolivegreen4")
 dev.off()
 # Show Plot
 img <- readPNG(paste(c("figs/time_pcoa2.png"), collapse = ''))
@@ -325,169 +357,69 @@ grid.raster(img)
 ```
 
 
-
-So we see from the ordination that Ara+2, Ara+4, and Ara-6 have similar non-linear trends in ordination space. Likewise, Ara+1 and Ara-5 have similar trends. However, Ara+5 does not show much of a trend and there is no immediate explanation. To determine the sets of genes that contribute to each of these trajectories as well as how the variation in signatures of parallelism changes over time, we will be adapting appropriate measures presented in Good et al. (eqs. 80 - 87 in the supplement) to account for variation between populations.
+We can see that on the second PCoA axis the trajectories of Ara+1, Ara-5, and Ara-6 overlap while Ara+2 and Ara+4 are fairly close. Again, the trajectory of Ara+5 remains fairly constant over time. 
 
 We are working to apply time-series clustering techniques on the ordination results to explore how multiple populations can be grouped as a single trajectory.
 
+We can identify the set of genes contributing to our observed patterns by plotting explanatory vectors (i.e., gene coordinates) in ordination space. These coordinates reflect the strength and direction that each gene has on the ordination of the different time points and allow us to identify what genes contribute o divergent trajectories in ordination space.
 
-## 5) Quantifing Euclidean distance between timepoints
+```{r, fig.cap = "The same PCoA as shown in Fig. 1, but with gene coordinates plotted in ordination space. \\label{figurelabel}", message = FALSE, warning = FALSE, echo=FALSE}
+# First we calculate the relative multiplicity score of each gene in each sample
+df.no0.rel <- df.no0
+  for(i in 1:nrow(df.no0)){
+    df.no0.rel[i, ] = df.no0[i, ] / sum(df.no0[i, ])
+  }
 
-A basic prediction from Fisher's geometric model (FGM) of adaptive phenotypic evolution is that the magnitude of change in phenotypic space declines over the course of the adaptive walk towards an optimum. While we are using genetic data instead of phenotypic data, it is possible that the rate of change in ordination space could exhibit a qualitatively similar trend. This prediction assumes that some form of FGM describes  phenotypic evolution in the LTEE and that the genotype-to-phenotype map is linear to the extent that qualitative similarities between the two distributions are not erased. There are other explanations for this pattern, one of which may be a variation of the global fitness-mediated epistasis model described in Good and Desai (2014). 
-
-
-```{r eval = FALSE, fig.align='center', fig.width=3, fig.height=3, message = FALSE, warning = FALSE,  echo=FALSE}
-# Show Plot
-img.fisher <- readPNG(paste(c("figs/fisher_geom.png"), collapse = ''))
-grid.raster(img.fisher,  just = 'centre')
-```
-
-An example of an adaptive walk towards an optimum on a 2 dimensional form of Fisher's geometric model.
-
-
-To examine the decay in the rate of change with time, we quantified the pair-wise Euclidean distance ($d()$) between sequential timepoints for the first three PCoA axes ($d(\mathbf{t_{i}}, \mathbf{t_{i+1}})$) for each population. We then plotted the second time point of the sequential pair-wise distance ($t_{i+1}$) against the Euclidean distance.
-
-```{r, message = FALSE, warning = FALSE, echo=FALSE}
-times.sorted <- as.character(sort(as.numeric(unique(times))))
-time_steps <- c()
-for (index in seq(1, length(head(times.sorted, -1)))) {
-  time_step <- paste(times.sorted[index], times.sorted[index+1], sep = "_")
-  time_steps <- c(time_steps, time_step)
-}
-
-euc.df <- as.data.frame(matrix(data=NA,nrow=length(complete_nonmutator_lines), 
-                               ncol=length(tail(times.sorted, -1))))
-rownames(euc.df) <- complete_nonmutator_lines
-colnames(euc.df) <- tail(times.sorted, -1)
-
-for (pop in complete_nonmutator_lines) {
-  for (time_step in time_steps){
-    time1 <- strsplit(time_step, '_')[[1]][1]
-    time2 <- strsplit(time_step, '_')[[1]][2]
-    pop.time1 <- paste(pop, time1, sep = "_")
-    pop.time2 <- paste(pop, time2, sep = "_")
-    if ( (pop.time1 %in% rownames(df.pcoa$points)) 
-         & (pop.time2 %in% rownames(df.pcoa$points)) ) {
-      euc.dist <- dist(rbind(df.pcoa$points[pop.time1, ], df.pcoa$points[pop.time2, ]))[1]
-      euc.df[pop, time2] <- euc.dist
-    }
-  } 
-}
-
-euc.df.p2 <- euc.df['p2',] 
-euc.df.p2.clean <- euc.df.p2[,!is.infinite(colSums(euc.df.p2)) 
-                                         &  !is.na(colSums(euc.df.p2)) 
-                                   & (log10(colSums(euc.df.p2)) > -10) ]
-euc.df.p4 <- euc.df['p4',] 
-euc.df.p4.clean <- euc.df.p4[,!is.infinite(colSums(euc.df.p4)) 
-                                         &  !is.na(colSums(euc.df.p4)) 
-                                   & (log10(colSums(euc.df.p4)) > -10) ]
-euc.df.m6 <- euc.df['m6',] 
-euc.df.m6.clean <- euc.df.m6[,!is.infinite(colSums(euc.df.m6)) 
-                                         &  !is.na(colSums(euc.df.m6)) 
-                                   & (log10(colSums(euc.df.m6)) > -10) ]
-euc.df.p1 <- euc.df['p1',] 
-euc.df.p1.clean <- euc.df.p1[,!is.infinite(colSums(euc.df.p1)) 
-                                         &  !is.na(colSums(euc.df.p1)) 
-                                   & (log10(colSums(euc.df.p1)) > -10) ]
-euc.df.m5 <- euc.df['m5',] 
-euc.df.m5.clean <- euc.df.m5[,!is.infinite(colSums(euc.df.m5)) 
-                                         & !is.na(colSums(euc.df.m5)) 
-                             & (log10(colSums(euc.df.m5)) > -10)]
-euc.df.p5 <- euc.df['p5',] 
-euc.df.p5.clean <- euc.df.p5[,!is.infinite(colSums(euc.df.p5)) 
-                                         &  !is.na(colSums(euc.df.p5)) 
-                             & (log10(colSums(euc.df.p5)) > -10) ]
-
-png(filename = paste(c("figs/euc_pcoa.png"), collapse = ''),
-    width = 1200, height = 900, res = 96*2)
-par(mfrow = c(2, 3),   
-    oma = c(5, 4, 0, 0), # two rows of text at the outer left and bottom margin
-    mar = c(1.5, 3.1, 1.1, 0.5), # space for one row of text at ticks and to separate plots
-    pty="s") # make the plots square
-
-# plots for each population
-euc.p2.plot <- plot(colnames(euc.df.p2.clean), euc.df.p2.clean, 
-                    xlim = c(0, 60000), ylim = c(0, 0.25),
-                    pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                    axes = FALSE, xlab = '', ylab ='', main = "Ara+2")
-points(colnames(euc.df.p2.clean), euc.df.p2.clean,
-       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
+png(filename = paste(c("figs/pcoa_genes.png"), collapse = ''),
+    width = 1200, height = 1200, res = 96*2)
+#par(mar = c(6.5, 6, 1.5, 2.5) + 0.1, xpd=TRUE)
+par(mar = c(5, 5, 1, 5) + 0.1, xpd=T)
+# Initiate Plot
+plot(df.pcoa$points[ ,1], df.pcoa$points[ ,2],  xlim = c(-0.7, 0.7), 
+     ylim = c(-0.7, 0.7),
+     xlab = paste("PCoA 1 (", explainvar1, "%)", sep = ""),
+     ylab = paste("PCoA 2 (", explainvar2, "%)", sep = ""),
+     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, 
+     cex.axis = 1.2, axes = FALSE)
+# Add Axes
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+clip(-0.8,0.8, -0.8,0.8)
+abline(h = 0, v = 0, lty = 3)
+
 box(lwd = 2)
+points(df.pcoa$points[ ,1], df.pcoa$points[ ,2],
+       pch = get.symbol(df.pcoa$points), cex = 1.5, bg = "gray", 
+       col = alpha(get.times.cols(df.pcoa$points, times), 0.5), lwd  = 3)
+points(0, 0, pch = 16, cex = 2.5, bg = 'gray', col = 'gray', lwd = 1.5)
+legend("right", inset=c(-0.22,0), 
+       legend=c("Ara+2","Ara+4", "Ara-6", "Ara+1", "Ara-5", "Ara+5"), 
+       pch=c(0,2,4,1,3,5), title="Pop.", col="darkolivegreen4")
 
-pcoa.p4.plot <- plot(colnames(euc.df.p4.clean), euc.df.p4.clean,  
-                     xlim = c(0, 60000), ylim = c(0, 0.25),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = '', ylab ='', main = "Ara+4")
-points(colnames(euc.df.p4.clean), euc.df.p4.clean,
-       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
-axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-box(lwd = 2)
-
-pcoa.m6.plot <- plot(colnames(euc.df.m6.clean), euc.df.m6.clean,
-                     xlim = c(0, 60000), ylim = c(0, 0.25),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = '', ylab ='', main = "Ara-6")
-points(colnames(euc.df.m6.clean), euc.df.m6.clean,
-       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
-axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-box(lwd = 2)
-
-pcoa.p1.plot <- plot(colnames(euc.df.p1.clean), euc.df.p1.clean,  
-                     xlim = c(0, 60000), ylim = c(0, 0.25),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = '', ylab ='', main = "Ara+1")
-points(colnames(euc.df.p1.clean), euc.df.p1.clean,
-       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
-axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-box(lwd = 2)
-
-pcoa.m5.plot <- plot(colnames(euc.df.m5.clean), euc.df.m5.clean,
-                     xlim = c(0, 60000), ylim = c(0, 0.25),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = '', ylab ='', main = "Ara-5")
-points(colnames(euc.df.m5.clean), euc.df.m5.clean,
-       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
-axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-box(lwd = 2)
-
-pcoa.p5.plot <- plot(colnames(euc.df.p5.clean), euc.df.p5.clean,
-                     xlim = c(0, 60000), ylim = c(0, 0.25),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = '', ylab ='', main = "Ara+5")
-points(colnames(euc.df.p5.clean), euc.df.p5.clean,
-       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
-axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-box(lwd = 2)
-
-mtext('Generations', side=1, line=1, 
-      cex=1.5, col="black", outer=TRUE)  
-mtext('Euclidean distance', side=2, line=1, 
-      cex=1.5, col="black", outer=TRUE)
-
+# Now, we use this information to calculate and add species scores
+df.pcoa.spec <- add.spec.scores(df.pcoa, df.no0.rel, method = "pcoa.scores")
+spec.no0 <- df.pcoa.spec$cproj[apply(df.pcoa.spec$cproj[,-1], 1, function(x) !all(x==0)),]
+spec.no0.clean <- spec.no0[(spec.no0[,1] > 0.05) | (spec.no0[,1] < -0.05),] 
+spec.no0.clean <- spec.no0.clean[(spec.no0.clean[,2] > 0.05) | (spec.no0.clean[,2] < -0.05),] 
+text(spec.no0.clean[ ,1], spec.no0.clean[ ,2], 
+     labels = row.names(spec.no0.clean), col = "black")
 dev.off()
-
-# Show Plot
-img <- readPNG(paste(c("figs/euc_pcoa.png"), collapse = ''))
+img <- readPNG(paste(c("figs/pcoa_genes.png"), collapse = ''))
 grid.raster(img)
 ```
 
-While we see considerable variation, a number of populations show a qualitative trend where Euclidean distance between time points decreases with time. We are working on identifying and applying appropriate statistical models to describe this trend and determine the extent that it's consistent  across populations. We are also working to identify the set of potential explanations for this trend.  
+From this visualization, we can see that the *mokC*, *hokB*, and *hokD* genes are close to the later timepoints for the Ara+2 and Ara+4. Whereas *rplF*, *mreB*, and *arcA* tend to be associated with populations Ara-6, Ara+5, and Ara+6. The genes *mokC*, *hokB*, and *hokD* all seem to be part of the type I toxin-antitoxin system, while *rplF*, *mreB*, and *arcA* appear to be part of different molecular pathways.
+
+We can confirm these visual patterns in a more quantitative way by determining the correlation coefficient of each gene along one or PCoA axes, identifying a correlation-coefficient cutoff, and conducting a permutation test.
+
+## 3) Quantifying the variation in evolutionary outcomes
+
+A central question we want to answer from our own evolution experiments is how the degree of similarity between evolving populations changes with time. We can roughly see that the populations reach similar points in Euclidean space over time, but we're only looking at a single ordination axis at a time. 
+
+To quantify the degree of similarity between populations over time across multiple ordination axes, we quantified the Euclidean distance between each population and the median for the first three axes of ordination space for all populations sampled at a given time-point (i.e., the centroid). We then plotted the centroid distance for all populations (green points) and the mean centroid distance (black closed circles) against the number of generations. We chose to exclude the population Ara+5 from this analysis since its trajectory was highly divergent from the other nonmutator populations in the first two axes.
 
 
-## 6) Mean centroid distance
-
-A central question we want to answer from our own evolution experiments is whether independently evolving populations reach similar evolutionary endpoints. To examine this, we  quantified the Euclidean distance between each population and the median in ordination space of all populations sampled at a given time-point (i.e., the centroid). We then plotted the centroid distance for all populations (open circles) and the mean centroid distance (closed circles) against generations.
-
-
-```{r, message = FALSE, warning = FALSE, echo=FALSE}
+```{r fig.cap = "The Euclidean distance to the centroid of all six nonmutator populations plotted against time. The black circles represent mean centroid distance \\label{figurelabel}", message = FALSE, warning = FALSE, echo=FALSE}
 df.no0.nop5 <- df.no0[!rownames(df.no0)  %like% "p5", ]
 df.no0.nop5.db <- vegdist(df.no0.nop5, method = "bray", upper = TRUE, diag = TRUE)
 df.no0.nop5.groups <- sapply(strsplit(rownames(df.no0.nop5),"_"), `[`, 2)
@@ -520,24 +452,29 @@ euc.mat.m <- get.euc.dist.2D(beta.disp, unique(df.no0.nop5.groups), 3)
 
 png(filename = paste(c("figs/mcd.png"), collapse = ''),
     width = 1200, height = 900, res = 96*2)
-par(mar = c(5, 5, 1, 2) + 0.1)
-
+#par(mar = c(5, 5, 1, 2) + 0.1)
+par(mar = c(5, 5, 1, 5) + 0.1, xpd=TRUE)
 euc.mat.m$times <- as.integer(as.character(euc.mat.m$times))
 euc.mat.m$eucs <- as.numeric(as.character(euc.mat.m$eucs))
+rownames(euc.mat.m) <- euc.mat.m$pop.name
+euc.mat.m.pch <- get.symbol(euc.mat.m)
 x <- euc.mat.m$times 
 y <- euc.mat.m$eucs
 
 xy.mean <- aggregate(euc.mat.m[,2], list(euc.mat.m$times), mean )
 x.mean <- xy.mean$Group.1
 y.mean <- xy.mean$x
-plot.mean <- plot(x, y,  
-                     xlim = c(0, 60000), ylim = c(0, max(y)),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = 'Generations', 
+plot.mean <- plot(x, y, xlim = c(0, 62000), ylim = c(0, max(y)),
+                  pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, 
+                  cex.axis = 1.2,  axes = FALSE, xlab = 'Generations', 
                   ylab ='Euclidean distance to centroid')
-points(x, y, pch = 1, cex = 1, bg = "gray",  lwd  = 1)
+points(x, y, pch = euc.mat.m.pch, cex = 1, bg = "gray",  
+       lwd  = 1, col="darkolivegreen4")
 points(x.mean, y.mean, pch = 16, cex = 1.5, bg = "gray", 
-       col = alpha('black', 0.8), lwd  = 3)
+       col = alpha('black', 0.6), lwd  = 3)
+legend("right", inset=c(-0.22,0), 
+       legend=c("Ara+2","Ara+4", "Ara-6", "Ara+1", "Ara-5"), 
+       pch=c(0,2,4,1,3), title="Pop.", col="darkolivegreen4")
 axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
 box(lwd = 2)
@@ -550,79 +487,41 @@ grid.raster(img)
 ```
 
 
-The scatter of the points around the mean clearly decreases with time, suggesting that there may be a relationship between the variance in the degree of parallel evolution with time. To examine this, we plotted the standard deviation of the mean centroid distance against the number of generations.
-
-
-```{r, message = FALSE, warning = FALSE, echo=FALSE}
-# make standard deviation plot
-xy.sd <- aggregate(euc.mat.m[,2], list(euc.mat.m$times), sd )
-x.sd <- xy.sd$Group.1
-y.sd <- xy.sd$x
-
-png(filename = paste(c("figs/mcd_sd.png"), collapse = ''),
-    width = 1200, height = 900, res = 96*2)
-par(mar = c(5, 7, 1, 2) + 0.1)
-plot.df <- plot(x.sd, y.sd,  
-                     xlim = c(0, 60000), ylim = c(0, max(y.sd)),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = 'Generations', 
-                  ylab ='')
-points(x.sd, y.sd, pch = 16, cex = 1.5, bg = "gray", 
-       col = alpha('black', 0.8), lwd  = 3)
-axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-mtext("Standard deviation of\neuclidean distance to centroid", side=2, line=3.5, cex=1.3, outer=FALSE)
-
-box(lwd = 2)
-dev.off()
-# Show Plot
-img <- readPNG(paste(c("figs/mcd_sd.png"), collapse = ''))
-grid.raster(img)
-```
-
-
-The standard deviation for the last approximately 10,000 generations is clearly disproportionately skewed by some outlier timepoints from population Ara+2, the reason for these unusually high Euclidean distance values in Ara+2 is unclear. If we remove these points and make the same plot, we see that the relationship between the standard deviation of Euclidean distance to the centroid and time is clearly unimodal and right-skewed.
-
-```{r,  message = FALSE, warning = FALSE, echo=FALSE}
-euc.mat.m.noP2 <-  euc.mat.m[!euc.mat.m$pop.name  %like% "p2", ]
-euc.mat.m.noP2$times <- as.integer(as.character(euc.mat.m.noP2$times))
-euc.mat.m.noP2$eucs <- as.numeric(as.character(euc.mat.m.noP2$eucs))
-xy.sd.noP2 <- aggregate(euc.mat.m.noP2$eucs, list(euc.mat.m.noP2$times), sd )
-x.noP.sd <- xy.sd.noP2$Group.1
-y.noP.sd <- xy.sd.noP2$x
-
-png(filename = paste(c("figs/mcd_sd_noP2.png"), collapse = ''),
-    width = 1200, height = 900, res = 96*2)
-par(mar = c(5, 7, 1, 2) + 0.1)
-plot.df <- plot(x.noP.sd, y.noP.sd,  
-                     xlim = c(0, 60000), ylim = c(0, max(y.sd)),
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
-                     axes = FALSE, xlab = 'Generations', 
-                  ylab ='')
-points(x.noP.sd, y.noP.sd, pch = 16, cex = 1.5, bg = "gray", 
-       col = alpha('black', 0.8), lwd  = 3)
-axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
-mtext("Standard deviation of\neuclidean distance to centroid", side=2, line=3.5, cex=1.3, outer=FALSE)
-
-box(lwd = 2)
-dev.off()
-# Show Plot
-img <- readPNG(paste(c("figs/mcd_sd_noP2.png"), collapse = ''))
-grid.raster(img)
-```
-
+The scatter of the points around the mean clearly increases for the first 20,000 generation and then continues to decreases, suggesting that the degree of variance in evolutionary outcomes may be a function of time. 
 
 We have written code to determine whether or not this result is significant by generating random gene-by-population multiplicity matrices where the probability that a mutation lands on the gene is simply the gene length ($p_{i}\propto L_{i}$) and are planning on running a permutation test on the gene-by-population multiplicity matrix.
 
 
-## 7) Replicate observed patterns via simulation
+## 4) Planned analyses
 
-We are currently working to build off of and simulate existing population genetic models to confirm our observed patterns. Right now, we're working to simulate a gene-by-population matrix for the running out of mutations model and a global epistasis model (based off of the one proposed in Good and Desai (2014)). Because we observe two different evolutionary trajectories that ultimately reach the same region of PCoA space, sign epistasis could serve as a potential explanation and we are working to include it in our ongoing simulations. 
+**1)** Extending the historical contingency analysis in Good et al. (2017) to the multivariate case.
+
+**2)** Applying temporal clustering to the PCoA ordination as a means of providing an exploratory analysis of the number of evolutionary trajectories. 
+
+**3)** Determine whether our approach amends itself to time-series analysis by applying certain principles (i.e., temporal autocorrelation) to our analysis.
+
+**4)** Determine if we get comparable results using alternative transformations and ordination techniques (i.e., Hellinger transformed distance matrix and Principal Component Analysis (PCA)).
+
+**5)** Extend our analysis to the polymorphism data, which we can treat as the temporal turnover of genetic diversity (analogous to Beta-diversity).
 
 
-## 8) References
+## 5) Replicate observed patterns via simulation
+
+We are currently working to build off of and simulate existing population genetic models to confirm our observed patterns. We are aiming to take a two-prong approach towards deriving and simulating evolutionary models of parallel evolution:
+
+**1) "Bottom-up"**: For this approach we will simulate genotypic spaces under different evolutionary scenarios (i.e., sign epistasis, historical contingency, etc.), which will then be coarse-grained into individual genes.
+
+**2) "Top-down"**: Here the degree of parallel evolution is constrained by the genetic background dependence of the distribution of fitness effects. This form of epistasis has been referred to as "macroscopic epistasis" and has been used in a previous approach towards inferring the evolutionary dynamics of the LTEE (Good and Desai, 2014). This approach has the potential advantage of providing a general constraint on the set of evolutionary outcomes based on few pieces of information, since it does not include information about the background dependence of individual mutations. 
+
+Our primary aim is to simulate data from different theoretical approaches under various evolutionary dynamics to test the limits of an ordination approach. We are also interested in analytic derivations to describe the degree that parallel outcomes can be observed by methods that coarse-grain genotypic space to the gene level (i.e., the multiplicity score) and are open to exploring the degree of parallelism under alternative regimes (i.e., clonal interference).
+
+
+## 6) References
 
 Good, B. H., and M. M. Desai. 2014. The impact of macroscopic epistasis on long-term evolutionary dynamics. Genetics 114:172460 
 
 Good, B. H., M. J. McDonald, J. E. Barrick, R. E. Lenski, and M. M. Desai. 2017. The dynamics of molecular evolution over 60,000 generations. Nature 551:45–50
+
+Shoemaker WR & Lennon JT. The contribution of dormancy to microbial evolution. Society for Molecular Biology and Evolution, Austin, Texas, USA (2017).
+
+Tenaillon, O. et al. 2016. Tempo and mode of genome evolution in a 50,000-generation experiment. Nature 536:165–170

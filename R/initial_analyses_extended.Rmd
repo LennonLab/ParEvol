@@ -1,0 +1,234 @@
+---
+title: "Untitled"
+author: "William Shoemaker and Jay T. Lennon"
+date: "4/2/2018"
+output: html_document
+---
+
+
+
+
+
+```{r eval = FALSE, fig.align='center', fig.width=3, fig.height=3, message = FALSE, warning = FALSE,  echo=FALSE}
+
+## 3) Quantifing Euclidean distance between timepoints
+
+#A basic prediction from Fisher's geometric model (FGM) of adaptive phenotypic #evolution is that the magnitude of change in phenotypic space declines over the #course of the adaptive walk towards an optimum. While we are using genetic data #instead of phenotypic data, it is possible that the rate of change in #ordination space could exhibit a qualitatively similar trend. This prediction #assumes that some form of FGM describes  phenotypic evolution in the LTEE and #that the genotype-to-phenotype map is linear to the extent that qualitative #similarities between the two distributions are not erased. There are other #explanations for this pattern, one of which may be a variation of the global #fitness-mediated epistasis model described in Good and Desai (2014). 
+
+# Show Plot
+img.fisher <- readPNG(paste(c("figs/fisher_geom.png"), collapse = ''))
+grid.raster(img.fisher,  just = 'centre')
+```
+
+
+
+```{r, eval = FALSE, message = FALSE, warning = FALSE, echo=FALSE}
+#An example of an adaptive walk towards an optimum on a 2 dimensional form of #Fisher's geometric model.
+
+#To examine the decay in the rate of change with time, we quantified the #pair-wise Euclidean distance ($d()$) between sequential timepoints for the #first three PCoA axes ($d(\mathbf{t_{i}}, \mathbf{t_{i+1}})$) for each #population. We then plotted the second time point of the sequential pair-wise #distance ($t_{i+1}$) against the Euclidean distance.
+
+
+times.sorted <- as.character(sort(as.numeric(unique(times))))
+time_steps <- c()
+for (index in seq(1, length(head(times.sorted, -1)))) {
+  time_step <- paste(times.sorted[index], times.sorted[index+1], sep = "_")
+  time_steps <- c(time_steps, time_step)
+}
+
+euc.df <- as.data.frame(matrix(data=NA,nrow=length(complete_nonmutator_lines), 
+                               ncol=length(tail(times.sorted, -1))))
+rownames(euc.df) <- complete_nonmutator_lines
+colnames(euc.df) <- tail(times.sorted, -1)
+
+for (pop in complete_nonmutator_lines) {
+  for (time_step in time_steps){
+    time1 <- strsplit(time_step, '_')[[1]][1]
+    time2 <- strsplit(time_step, '_')[[1]][2]
+    pop.time1 <- paste(pop, time1, sep = "_")
+    pop.time2 <- paste(pop, time2, sep = "_")
+    if ( (pop.time1 %in% rownames(df.pcoa$points)) 
+         & (pop.time2 %in% rownames(df.pcoa$points)) ) {
+      euc.dist <- dist(rbind(df.pcoa$points[pop.time1, ], df.pcoa$points[pop.time2, ]))[1]
+      euc.df[pop, time2] <- euc.dist
+    }
+  } 
+}
+
+euc.df.p2 <- euc.df['p2',] 
+euc.df.p2.clean <- euc.df.p2[,!is.infinite(colSums(euc.df.p2)) 
+                                         &  !is.na(colSums(euc.df.p2)) 
+                                   & (log10(colSums(euc.df.p2)) > -10) ]
+euc.df.p4 <- euc.df['p4',] 
+euc.df.p4.clean <- euc.df.p4[,!is.infinite(colSums(euc.df.p4)) 
+                                         &  !is.na(colSums(euc.df.p4)) 
+                                   & (log10(colSums(euc.df.p4)) > -10) ]
+euc.df.m6 <- euc.df['m6',] 
+euc.df.m6.clean <- euc.df.m6[,!is.infinite(colSums(euc.df.m6)) 
+                                         &  !is.na(colSums(euc.df.m6)) 
+                                   & (log10(colSums(euc.df.m6)) > -10) ]
+euc.df.p1 <- euc.df['p1',] 
+euc.df.p1.clean <- euc.df.p1[,!is.infinite(colSums(euc.df.p1)) 
+                                         &  !is.na(colSums(euc.df.p1)) 
+                                   & (log10(colSums(euc.df.p1)) > -10) ]
+euc.df.m5 <- euc.df['m5',] 
+euc.df.m5.clean <- euc.df.m5[,!is.infinite(colSums(euc.df.m5)) 
+                                         & !is.na(colSums(euc.df.m5)) 
+                             & (log10(colSums(euc.df.m5)) > -10)]
+euc.df.p5 <- euc.df['p5',] 
+euc.df.p5.clean <- euc.df.p5[,!is.infinite(colSums(euc.df.p5)) 
+                                         &  !is.na(colSums(euc.df.p5)) 
+                             & (log10(colSums(euc.df.p5)) > -10) ]
+
+png(filename = paste(c("figs/euc_pcoa.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mfrow = c(2, 3),   
+    oma = c(5, 4, 0, 0), # two rows of text at the outer left and bottom margin
+    mar = c(1.5, 3.1, 1.1, 0.5), # space for one row of text at ticks and to separate plots
+    pty="s") # make the plots square
+
+# plots for each population
+euc.p2.plot <- plot(colnames(euc.df.p2.clean), euc.df.p2.clean, 
+                    xlim = c(0, 60000), ylim = c(0, 0.25),
+                    pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                    axes = FALSE, xlab = '', ylab ='', main = "Ara+2")
+points(colnames(euc.df.p2.clean), euc.df.p2.clean,
+       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+box(lwd = 2)
+
+pcoa.p4.plot <- plot(colnames(euc.df.p4.clean), euc.df.p4.clean,  
+                     xlim = c(0, 60000), ylim = c(0, 0.25),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = '', ylab ='', main = "Ara+4")
+points(colnames(euc.df.p4.clean), euc.df.p4.clean,
+       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+box(lwd = 2)
+
+pcoa.m6.plot <- plot(colnames(euc.df.m6.clean), euc.df.m6.clean,
+                     xlim = c(0, 60000), ylim = c(0, 0.25),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = '', ylab ='', main = "Ara-6")
+points(colnames(euc.df.m6.clean), euc.df.m6.clean,
+       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+box(lwd = 2)
+
+pcoa.p1.plot <- plot(colnames(euc.df.p1.clean), euc.df.p1.clean,  
+                     xlim = c(0, 60000), ylim = c(0, 0.25),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = '', ylab ='', main = "Ara+1")
+points(colnames(euc.df.p1.clean), euc.df.p1.clean,
+       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+box(lwd = 2)
+
+pcoa.m5.plot <- plot(colnames(euc.df.m5.clean), euc.df.m5.clean,
+                     xlim = c(0, 60000), ylim = c(0, 0.25),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = '', ylab ='', main = "Ara-5")
+points(colnames(euc.df.m5.clean), euc.df.m5.clean,
+       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+box(lwd = 2)
+
+pcoa.p5.plot <- plot(colnames(euc.df.p5.clean), euc.df.p5.clean,
+                     xlim = c(0, 61000), ylim = c(0, 0.25),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = '', ylab ='', main = "Ara+5")
+points(colnames(euc.df.p5.clean), euc.df.p5.clean,
+       pch = 1, cex = 1.5, bg = "gray",  lwd  = 1)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+box(lwd = 2)
+
+mtext('Generations', side=1, line=1, 
+      cex=1.5, col="black", outer=TRUE)  
+mtext('Euclidean distance', side=2, line=1, 
+      cex=1.5, col="black", outer=TRUE)
+
+dev.off()
+
+# Show Plot
+img <- readPNG(paste(c("figs/euc_pcoa.png"), collapse = ''))
+grid.raster(img)
+
+
+#While we see considerable variation, a number of populations show a qualitative #trend where Euclidean distance between time points decreases with time. We are #working on identifying and applying appropriate statistical models to describe #this trend and determine the extent that it's consistent  across populations. #We are also working to identify the set of potential explanations for this #trend.
+```
+
+
+
+
+
+
+```{r,  eval = FALSE, message = FALSE, warning = FALSE, echo=FALSE}
+#To examine this, we plotted the standard deviation of the mean centroid #distance against the number of generations.
+
+# make standard deviation plot
+xy.sd <- aggregate(euc.mat.m[,2], list(euc.mat.m$times), sd )
+x.sd <- xy.sd$Group.1
+y.sd <- xy.sd$x
+
+png(filename = paste(c("figs/mcd_sd.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mar = c(5, 7, 1, 2) + 0.1)
+plot.df <- plot(x.sd, y.sd,  
+                     xlim = c(0, 60000), ylim = c(0, max(y.sd)),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = 'Generations', 
+                  ylab ='')
+points(x.sd, y.sd, pch = 16, cex = 1.5, bg = "gray", 
+       col = alpha('black', 0.8), lwd  = 3)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+mtext("Standard deviation of\neuclidean distance to centroid", side=2, line=3.5, cex=1.3, outer=FALSE)
+
+box(lwd = 2)
+dev.off()
+# Show Plot
+img <- readPNG(paste(c("figs/mcd_sd.png"), collapse = ''))
+grid.raster(img)
+```
+
+
+
+
+```{r,   eval = FALSE, message = FALSE, warning = FALSE, echo=FALSE}
+
+#The standard deviation for the last approximately 10,000 generations is clearly #disproportionately skewed by some outlier timepoints from population Ara+2, the #reason for these unusually high Euclidean distance values in Ara+2 is unclear. #If we remove these points and make the same plot, we see that the relationship #between the standard deviation of Euclidean distance to the centroid and time #is clearly unimodal and right-skewed.
+
+euc.mat.m.noP2 <-  euc.mat.m[!euc.mat.m$pop.name  %like% "p2", ]
+euc.mat.m.noP2$times <- as.integer(as.character(euc.mat.m.noP2$times))
+euc.mat.m.noP2$eucs <- as.numeric(as.character(euc.mat.m.noP2$eucs))
+xy.sd.noP2 <- aggregate(euc.mat.m.noP2$eucs, list(euc.mat.m.noP2$times), sd )
+x.noP.sd <- xy.sd.noP2$Group.1
+y.noP.sd <- xy.sd.noP2$x
+
+png(filename = paste(c("figs/mcd_sd_noP2.png"), collapse = ''),
+    width = 1200, height = 900, res = 96*2)
+par(mar = c(5, 7, 1, 2) + 0.1)
+plot.df <- plot(x.noP.sd, y.noP.sd,  
+                     xlim = c(0, 60000), ylim = c(0, max(y.sd)),
+                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     axes = FALSE, xlab = 'Generations', 
+                  ylab ='')
+points(x.noP.sd, y.noP.sd, pch = 16, cex = 1.5, bg = "gray", 
+       col = alpha('black', 0.8), lwd  = 3)
+axis(side = 1, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+axis(side = 2, labels = T, lwd.ticks = 2, cex.axis = 1.2, las = 1)
+mtext("Standard deviation of\neuclidean distance to centroid", side=2, line=3.5, cex=1.3, outer=FALSE)
+
+box(lwd = 2)
+dev.off()
+# Show Plot
+img <- readPNG(paste(c("figs/mcd_sd_noP2.png"), collapse = ''))
+grid.raster(img)
+```
+
+
