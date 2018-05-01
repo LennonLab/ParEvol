@@ -1,0 +1,193 @@
+clonea	popb	day	locus	n.a. changec	a.a. changed	genee	annotation
+D11_3-1	3	11	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D11_3-2	3	11	"882,240"	Del;1 bp	coding (495/759 nt)	deoR <-	deoxyribose-5-phosphate-inducible deoxyribose operon transcriptional repressor; repressor of nupG and tsx
+D11_3-2	3	11	"4,123,908"	IS1 (+) +9 bp	coding (541-549/1026 nt)	cytR <-	Anti-activator for CytR-CRP nucleoside utilization regulon
+D11_3-3	3	11	"4,186,349"	A->C	K334Q (AAA->CAA) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D11_3-4	3	11	"882,240"	Del;1 bp	coding (495/759 nt)	deoR <-	deoxyribose-5-phosphate-inducible deoxyribose operon transcriptional repressor; repressor of nupG and tsx
+D11_3-4	3	11	"4,123,908"	IS1 (+) +9 bp	coding (541-549/1026 nt)	cytR <-	Anti-activator for CytR-CRP nucleoside utilization regulon
+D11_3-5	3	11	"4,185,059"	A->C	E1272A (GAG->GCG) 	rpoB ->	"RNA polymerase, beta subunit"
+D11_3-6	3	11	"4,186,349"	A->C	K334Q (AAA->CAA) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D11_3-7	3	11	"882,240"	Del;1 bp	coding (495/759 nt)	deoR <-	deoxyribose-5-phosphate-inducible deoxyribose operon transcriptional repressor; repressor of nupG and tsx
+D11_3-7	3	11	"4,123,908"	IS1 (+) +9 bp	coding (541-549/1026 nt)	cytR <-	Anti-activator for CytR-CRP nucleoside utilization regulon
+D11_3-8	3	11	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D11_3-9	3	11	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D11_3-10	3	11	"4,186,349"	A->C	K334Q (AAA->CAA) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D64_3-1	3	64	"1,077,867"	C->A	R339L (CGC->CTC) 	putA <-	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase
+D64_3-1	3	64	"1,079,166"	G->A	intergenic (-284/-139)	putA <- / -> putP	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase/proline:sodium symporter
+D64_3-1	3	64	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D64_3-1	3	64	"1,196,209"	"Del;15,204 bp"	coding		e14 prophage
+D64_3-1	3	64	"1,915,141"	+C	coding (394/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D64_3-1	3	64	"2,897,554"	G->T	T106K (ACG->AAG) 	ygcS <-	putative transporter
+D64_3-1	3	64	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D64_3-1	3	64	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D64_3-2	3	64	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D64_3-2	3	64	"1,915,141"	+C	coding (394/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D64_3-2	3	64	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D64_3-2	3	64	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D64_3-3	3	64	"333,688"	A->G	V249A (GTC->GCC) 	yahB <-	putative DNA-bindng transcriptional regulator
+D64_3-3	3	64	"380,022"	(G)10->9	intergenic (-141/+47)	frmR <- / <- yaiO	regulator protein that represses frmRAB operon/outer membrane protein
+D64_3-3	3	64	"759,182"	C->T	A159A (GCC->GCT) 	sucA ->	"2-oxoglutarate decarboxylase, thiamine triphosphate-binding"
+D64_3-3	3	64	"1,921,832"	A->G	H18R (CAC->CGC) 	yebV ->	uncharacterized protein
+D64_3-3	3	64	"2,857,113"	Del;1 bp	coding (21/2562 nt)	mutS ->	methyl-directed mismatch repair protein
+D64_3-3	3	64	"3,102,265"	G->A	D196D (GAC->GAT) 	trmI <-	"tRNA m(7)G46 methyltransferase, SAM-dependent"
+D64_3-3	3	64	"3,239,796"	A->G	intergenic (+251/-148)	alx -> / -> sstT	putative membrane-bound redox modulator/sodium:serine/threonine symporter
+D64_3-3	3	64	"3,240,217"	A->G	T92A (ACC->GCC) 	sstT ->	sodium:serine/threonine symporter
+D64_3-3	3	64	"3,240,718"	G->A	V259M (GTG->ATG) 	sstT ->	sodium:serine/threonine symporter
+D64_3-3	3	64	"4,185,059"	A->G	E1272G (GAG->GGG) 	rpoB ->	"RNA polymerase, beta subunit"
+D64_3-3	3	64	"4,581,468"	C->T	V527V (GTG->GTA) 	hsdM <-	DNA methyltransferase M
+D64_3-4	3	64	"333,688"	A->G	V249A (GTC->GCC) 	yahB <-	putative DNA-bindng transcriptional regulator
+D64_3-4	3	64	"689,105"	C->T	intergenic (-92/+238)	insH1 <- / <- lnt	IS5 transposase and trans-activator/apolipoprotein N-acyltransferase
+D64_3-4	3	64	"1,921,832"	A->G	H18R (CAC->CGC) 	yebV ->	uncharacterized protein
+D64_3-4	3	64	"1,925,032"	G->A	intergenic (-63/-76)	yobA <- / -> holE	"CopC family protein/DNA polymerase III, theta subunit"
+D64_3-4	3	64	"2,406,154"	G->A	A163V (GCA->GTA) 	lrhA <-	"transcriptional repressor of flagellar, motility and chemotaxis genes"
+D64_3-4	3	64	"2,857,113"	Del;1 bp	coding (21/2562 nt)	mutS ->	methyl-directed mismatch repair protein
+D64_3-4	3	64	"3,102,265"	G->A	D196D (GAC->GAT) 	trmI <-	"tRNA m(7)G46 methyltransferase, SAM-dependent"
+D64_3-4	3	64	"3,240,217"	A->G	T92A (ACC->GCC) 	sstT ->	sodium:serine/threonine symporter
+D64_3-4	3	64	"4,185,059"	A->G	E1272G (GAG->GGG) 	rpoB ->	"RNA polymerase, beta subunit"
+D64_3-5	3	64	"1,914,975"	IS2 (+) +5 bp	coding (556-560/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D64_3-5	3	64	"2,942,635"	(T)7->6	intergenic (-68/+283)	gcvA <- / <- ygdI	glycine cleavage system transcriptional activator; autorepressor/DUF903 family verified lipoprotein
+D64_3-5	3	64	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D64_3-5	3	64	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D64_3-5	3	64	"4,429,737"	A->G	intergenic (+182/-127)	fklB -> / -> cycA	FKBP-type peptidyl-prolyl cis-trans isomerase (rotamase)/D-alanine/D-serine/glycine transporter
+D64_3-6	3	64	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D64_3-6	3	64	"1,301,998"	A->C	S273R (AGC->CGC) 	oppA ->	oligopeptide transporter subunit
+D64_3-6	3	64	"4,184,955"	C->G	H1237Q (CAC->CAG) 	rpoB ->	"RNA polymerase, beta subunit"
+D64_3-7	3	64	"373,336"	T->C	M139T (ATG->ACG) 	mhpF ->	"acetaldehyde-CoA dehydrogenase II, NAD-binding"
+D64_3-7	3	64	"380,022"	(G)10->9	intergenic (-141/+47)	frmR <- / <- yaiO	regulator protein that represses frmRAB operon/outer membrane protein
+D64_3-7	3	64	"1,896,443"	C->T	P92S (CCT->TCT) 	nudL ->	"putative CoA pyrophosphohydrolase, weak 3-phosphohydroxypyruvate phosphatase"
+D64_3-7	3	64	"1,913,561"	A->T	V419D (GTC->GAC) 	prc <-	carboxy-terminal protease for penicillin-binding protein 3
+D64_3-7	3	64	"2,461,190"	A->G	intergenic (-256/-116)	yfcZ <- / -> fadL	UPF0381 family protein/long-chain fatty acid outer membrane transporter
+D64_3-7	3	64	"2,857,113"	Del;1 bp	coding (21/2562 nt)	mutS ->	methyl-directed mismatch repair protein
+D64_3-7	3	64	"2,942,653"	Del;1 bp	intergenic (-86/+265)	gcvA <- / <- ygdI	glycine cleavage system transcriptional activator; autorepressor/DUF903 family verified lipoprotein
+D64_3-7	3	64	"3,102,265"	G->A	D196D (GAC->GAT) 	trmI <-	"tRNA m(7)G46 methyltransferase, SAM-dependent"
+D64_3-7	3	64	"3,379,266"	(C)7->8	coding (732/1128 nt)	yhcM <-	putative AFG1-like family P-loop ATPase
+D64_3-7	3	64	"3,473,963"	T->C	E40G (GAA->GGA) 	rpsG <-	30S ribosomal subunit protein S7
+D64_3-7	3	64	"4,185,059"	A->G	E1272G (GAG->GGG) 	rpoB ->	"RNA polymerase, beta subunit"
+D64_3-8	3	64	"1,912,832"	A->G	I662T (ATC->ACC) 	prc <-	carboxy-terminal protease for penicillin-binding protein 3
+D64_3-8	3	64	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D64_3-8	3	64	"3,707,549"	A->T	Y53N (TAT->AAT) 	dppA <-	dipeptide transporter
+D64_3-8	3	64	"3,708,730"	T->C	intergenic (-38/+54)	proK <- / <- eptB	"tRNA-Pro/KDO phosphoethanolamine transferase, Ca(2+)-inducible"
+D64_3-8	3	64	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D64_3-9	3	64	"3,214,427"	A->G	N461D (AAC->GAC) 	rpoD ->	"RNA polymerase, sigma 70 (sigma D) factor"
+D64_3-9	3	64	"3,239,866"	Del;48 bp	intergenic (+321/-31)	alx -> / -> sstT	putative membrane-bound redox modulator/sodium:serine/threonine symporter
+D64_3-9	3	64	"3,240,226"	G->A	A95T (GCT->ACT) 	sstT ->	sodium:serine/threonine symporter
+D64_3-9	3	64	"4,186,349"	A->C	K334Q (AAA->CAA) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D64_3-10	3	64	"1,912,832"	A->G	I662T (ATC->ACC) 	prc <-	carboxy-terminal protease for penicillin-binding protein 3
+D64_3-10	3	64	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D64_3-10	3	64	"3,707,549"	A->T	Y53N (TAT->AAT) 	dppA <-	dipeptide transporter
+D64_3-10	3	64	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-1	3	127	"1,125,552"	IS2 (-) +5 bp	intergenic (-226/-6)	mdtH <- / -> rimJ	multidrug resistance efflux transporter conferring overexpression resistance to norfloxacin and enoxacin/ribosomal-protein-S5-alanine N-acetyltransferase
+D127_3-1	3	127	"1,590,100"	IS2 (+) +5 bp	intergenic (-21/+230)	ydeT <- / <- yneL	"pseudogene; putative outer membrane protein/pseudogene, AraC family"
+D127_3-1	3	127	"1,910,083"	IS2 (+) +5 bp	coding (13-17/792 nt)	kdgR <-	KDG regulon transcriptional repressor
+D127_3-1	3	127	"1,912,832"	A->G	I662T (ATC->ACC) 	prc <-	carboxy-terminal protease for penicillin-binding protein 3
+D127_3-1	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-1	3	127	"3,707,549"	A->T	Y53N (TAT->AAT) 	dppA <-	dipeptide transporter
+D127_3-1	3	127	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-1	3	127	"4,366,052"	IS2 (+) +5 bp	coding (718-722/1302 nt)	dcuA <-	C4-dicarboxylate antiporter
+D127_3-2	3	127	"1,126,099"	IS2 (+) +5 bp	coding (538-542/585 nt)	rimJ ->	ribosomal-protein-S5-alanine N-acetyltransferase
+D127_3-2	3	127	"1,913,927"	C->T	G297D (GGC->GAC) 	prc <-	carboxy-terminal protease for penicillin-binding protein 3
+D127_3-2	3	127	"2,942,635"	(T)7->6	intergenic (-68/+283)	gcvA <- / <- ygdI	glycine cleavage system transcriptional activator; autorepressor/DUF903 family verified lipoprotein
+D127_3-2	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-2	3	127	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-2	3	127	"4,366,150"	IS2 (-) +5 bp	coding (620-624/1302 nt)	dcuA <-	C4-dicarboxylate antiporter
+D127_3-2	3	127	"4,429,737"	A->G	intergenic (+182/-127)	fklB -> / -> cycA	FKBP-type peptidyl-prolyl cis-trans isomerase (rotamase)/D-alanine/D-serine/glycine transporter
+D127_3-3	3	127	"333,688"	A->G	V249A (GTC->GCC) 	yahB <-	putative DNA-bindng transcriptional regulator
+D127_3-3	3	127	"380,022"	(G)10->9	intergenic (-141/+47)	frmR <- / <- yaiO	regulator protein that represses frmRAB operon/outer membrane protein
+D127_3-3	3	127	"663,450"	(T)5->4	coding (514/1212 nt)	dacA <-	D-alanyl-D-alanine carboxypeptidase (penicillin-binding protein 5)
+D127_3-3	3	127	"678,663"	C->T	R417C (CGT->TGT) 	djlB ->	"putative HscC co-chaperone, uncharacterized J domain-containing protein"
+D127_3-3	3	127	"759,182"	C->T	A159A (GCC->GCT) 	sucA ->	"2-oxoglutarate decarboxylase, thiamine triphosphate-binding"
+D127_3-3	3	127	"917,020"	C->T	A183V (GCG->GTG) 	ybjD ->	putative OLD family ATP-dependent endonuclease; DUF2813 family protein
+D127_3-3	3	127	"1,915,475"	 +A	coding (60/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-3	3	127	"1,921,832"	A->G	H18R (CAC->CGC) 	yebV ->	uncharacterized protein
+D127_3-3	3	127	"2,115,212"	C->T	G229S (GGC->AGC) 	wcaM <-	colanic acid biosynthesis protein
+D127_3-3	3	127	"2,573,562"	G->A	S248S (AGC->AGT) 	eutT <-	cobalamin adenosyltransferase involved in ethanolamine utilization
+D127_3-3	3	127	"2,857,113"	Del;1 bp	coding (21/2562 nt)	mutS ->	methyl-directed mismatch repair protein
+D127_3-3	3	127	"3,102,265"	G->A	D196D (GAC->GAT) 	trmI <-	"tRNA m(7)G46 methyltransferase, SAM-dependent"
+D127_3-3	3	127	"3,239,796"	A->G	intergenic (+251/-148)	alx -> / -> sstT	putative membrane-bound redox modulator/sodium:serine/threonine symporter
+D127_3-3	3	127	"3,240,217"	A->G	T92A (ACC->GCC) 	sstT ->	sodium:serine/threonine symporter
+D127_3-3	3	127	"3,240,801"	T->A	D286E (GAT->GAA) 	sstT ->	sodium:serine/threonine symporter
+D127_3-3	3	127	"3,534,937"	G->A	A311V (GCC->GTC) 	envZ <-	sensory histidine kinase in two-component regulatory system with OmpR
+D127_3-3	3	127	"4,185,059"	A->G	E1272G (GAG->GGG) 	rpoB ->	"RNA polymerase, beta subunit"
+D127_3-3	3	127	"4,581,468"	C->T	V527V (GTG->GTA) 	hsdM <-	DNA methyltransferase M
+D127_3-4	3	127	"687,138"	T->C	M204V (ATG->GTG) 	gltI <-	"glutamate, aspartate binding protein, periplasmic; part of GltJKLI ABC transporter"
+D127_3-4	3	127	"689,052"	A->T	intergenic (-39/+291)	insH1 <- / <- lnt	IS5 transposase and trans-activator/apolipoprotein N-acyltransferase
+D127_3-4	3	127	"764,250"	A->G	H24R (CAC->CGC) 	sucD ->	"succinyl-CoA synthetase, NAD(P)-binding, alpha subunit"
+D127_3-4	3	127	"922,847"	IS2 (-) +5 bp	intergenic (-257/-62)	cspD <- / -> clpS	"inhibitor of DNA replication, cold shock protein homolog/regulatory protein for ClpA substrate specificity"
+D127_3-4	3	127	"1,914,218"	Del;3 bp	coding (597-599/2049 nt)	prc <-	carboxy-terminal protease for penicillin-binding protein 3
+D127_3-4	3	127	"4,184,955"	C->G	H1237Q (CAC->CAG) 	rpoB ->	"RNA polymerase, beta subunit"
+D127_3-5	3	127	"925,154"	IS2 (-) +5 bp	coding (1891-1895/2277 nt)	clpA ->	"ATPase and specificity subunit of ClpA-ClpP ATP-dependent serine protease, chaperone activity"
+D127_3-5	3	127	"1,077,867"	C->A	R339L (CGC->CTC) 	putA <-	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase
+D127_3-5	3	127	"1,079,166"	G->A	intergenic (-284/-139)	putA <- / -> putP	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase/proline:sodium symporter
+D127_3-5	3	127	"1,079,918"	T->C	V205A (GTC->GCC) 	putP ->	proline:sodium symporter
+D127_3-5	3	127	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D127_3-5	3	127	"1,915,141"	+C	coding (394/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-5	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-5	3	127	"3,486,285"	G->A	E56K (GAG->AAG) 	crp ->	"cAMP-activated global transcription factor, mediator of catabolite repression"
+D127_3-5	3	127	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-6	3	127	"925,154"	IS2 (-) +5 bp	coding (1891-1895/2277 nt)	clpA ->	"ATPase and specificity subunit of ClpA-ClpP ATP-dependent serine protease, chaperone activity"
+D127_3-6	3	127	"1,077,867"	C->A	R339L (CGC->CTC) 	putA <-	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase
+D127_3-6	3	127	"1,079,166"	G->A	intergenic (-284/-139)	putA <- / -> putP	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase/proline:sodium symporter
+D127_3-6	3	127	"1,079,918"	T->C	V205A (GTC->GCC) 	putP ->	proline:sodium symporter
+D127_3-6	3	127	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D127_3-6	3	127	"1,915,141"	+C	coding (394/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-6	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-6	3	127	"3,486,285"	G->A	E56K (GAG->AAG) 	crp ->	"cAMP-activated global transcription factor, mediator of catabolite repression"
+D127_3-6	3	127	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-7	3	127	"925,154"	IS2 (-) +5 bp	coding (1891-1895/2277 nt)	clpA ->	"ATPase and specificity subunit of ClpA-ClpP ATP-dependent serine protease, chaperone activity"
+D127_3-7	3	127	"1,077,867"	C->A	R339L (CGC->CTC) 	putA <-	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase
+D127_3-7	3	127	"1,079,166"	G->A	intergenic (-284/-139)	putA <- / -> putP	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase/proline:sodium symporter
+D127_3-7	3	127	"1,079,918"	T->C	V205A (GTC->GCC) 	putP ->	proline:sodium symporter
+D127_3-7	3	127	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D127_3-7	3	127	"1,915,141"	+C	coding (394/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-7	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-7	3	127	"3,486,285"	G->A	E56K (GAG->AAG) 	crp ->	"cAMP-activated global transcription factor, mediator of catabolite repression"
+D127_3-7	3	127	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-8	3	127	"1,077,867"	C->A	R339L (CGC->CTC) 	putA <-	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase
+D127_3-8	3	127	"1,079,166"	G->A	intergenic (-284/-139)	putA <- / -> putP	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase/proline:sodium symporter
+D127_3-8	3	127	"1,079,918"	T->C	V205A (GTC->GCC) 	putP ->	proline:sodium symporter
+D127_3-8	3	127	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D127_3-8	3	127	"1,196,209"	"Del;15,204 bp"	coding		e14 prophage
+D127_3-8	3	127	"1,915,141"	+C	coding (394/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-8	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-8	3	127	"3,176,295"	A->G	L180P (CTG->CCG) 	cpdA <-	"3',5' cAMP phosphodiesterase"
+D127_3-8	3	127	"3,486,178"	A->G	H20R (CAC->CGC) 	crp ->	"cAMP-activated global transcription factor, mediator of catabolite repression"
+D127_3-8	3	127	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-9	3	127	"333,688"	A->G	V249A (GTC->GCC) 	yahB <-	putative DNA-bindng transcriptional regulator
+D127_3-9	3	127	"380,022"	(G)10->9	intergenic (-141/+47)	frmR <- / <- yaiO	regulator protein that represses frmRAB operon/outer membrane protein
+D127_3-9	3	127	"678,663"	C->T	R417C (CGT->TGT) 	djlB ->	"putative HscC co-chaperone, uncharacterized J domain-containing protein"
+D127_3-9	3	127	"759,182"	C->T	A159A (GCC->GCT) 	sucA ->	"2-oxoglutarate decarboxylase, thiamine triphosphate-binding"
+D127_3-9	3	127	"917,020"	C->T	A183V (GCG->GTG) 	ybjD ->	putative OLD family ATP-dependent endonuclease; DUF2813 family protein
+D127_3-9	3	127	"1,243,531"	(G)5->4	coding (352/612 nt)	emtA ->	lytic murein endotransglycosylase E
+D127_3-9	3	127	"1,915,475"	 +A	coding (60/699 nt)	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-9	3	127	"1,921,832"	A->G	H18R (CAC->CGC) 	yebV ->	uncharacterized protein
+D127_3-9	3	127	"2,857,113"	Del;1 bp	coding (21/2562 nt)	mutS ->	methyl-directed mismatch repair protein
+D127_3-9	3	127	"2,947,343"	(A)8->7	intergenic (-165/-44)	mltA <- / -> metZ	membrane-bound lytic murein transglycosylase A/tRNA-Met
+D127_3-9	3	127	"3,102,265"	G->A	D196D (GAC->GAT) 	trmI <-	"tRNA m(7)G46 methyltransferase, SAM-dependent"
+D127_3-9	3	127	"3,239,796"	A->G	intergenic (+251/-148)	alx -> / -> sstT	putative membrane-bound redox modulator/sodium:serine/threonine symporter
+D127_3-9	3	127	"3,240,217"	A->G	T92A (ACC->GCC) 	sstT ->	sodium:serine/threonine symporter
+D127_3-9	3	127	"3,240,801"	T->A	D286E (GAT->GAA) 	sstT ->	sodium:serine/threonine symporter
+D127_3-9	3	127	"4,185,059"	A->G	E1272G (GAG->GGG) 	rpoB ->	"RNA polymerase, beta subunit"
+D127_3-9	3	127	"4,366,798"	IS2 (-) +5 bp	intergenic (-25/+89)	dcuA <- / <- aspA	C4-dicarboxylate antiporter/aspartate ammonia-lyase
+D127_3-9	3	127	"4,567,347"	C->T	L391L (CTG->CTA) 	mdtM <-	multidrug efflux system protein
+D127_3-9	3	127	"4,581,468"	C->T	V527V (GTG->GTA) 	hsdM <-	DNA methyltransferase M
+D127_3-13	3	127	"1,125,761"	IS1 (-) +9 bp	coding (200-208/585 nt)	rimJ ->	ribosomal-protein-S5-alanine N-acetyltransferase
+D127_3-13	3	127	"1,915,078"	C->A	E153* (GAA->TAA) 	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-13	3	127	"2,942,635"	(T)7->6	intergenic (-68/+283)	gcvA <- / <- ygdI	glycine cleavage system transcriptional activator; autorepressor/DUF903 family verified lipoprotein
+D127_3-13	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-13	3	127	"3,486,410"	A->T	E97D (GAA->GAT) 	crp ->	"cAMP-activated global transcription factor, mediator of catabolite repression"
+D127_3-13	3	127	"4,186,632"	C->G	T428S (ACT->AGT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+D127_3-13	3	127	"4,429,737"	A->G	intergenic (+182/-127)	fklB -> / -> cycA	FKBP-type peptidyl-prolyl cis-trans isomerase (rotamase)/D-alanine/D-serine/glycine transporter
+D127_3-14	3	127	"1,076,997"	C->T	R629H (CGC->CAC) 	putA <-	fused DNA-binding transcriptional regulator/proline dehydrogenase/pyrroline-5-carboxylate dehydrogenase
+D127_3-14	3	127	"1,080,149"	T->A	L282Q (CTG->CAG) 	putP ->	proline:sodium symporter
+D127_3-14	3	127	"1,397,239"	"Del;27,626 bp"	IS5-mediated	ynaJ-[trkG]	"<i title=""ynaJ, uspE, fnr, ogt, abgT, abgB, abgA, abgR, smrA, ydaM, ydaN, dbpA, ttcA, intR, ydaQ, rcbA, ralR, recT, recE, racC, ydaE, kilR, sieB, ydaF, ydaG, racR, ydaS, ydaT, ydaU, ydaV, ydaW, rzpR, rzoR, [trkG]""><b>34 genes</b> <noscript>Javascript Disabled: All genes shown.<br></noscript><noscript>ynaJ, uspE, fnr, ogt, abgT, abgB, abgA, abgR, smrA, ydaM, ydaN, dbpA, ttcA, intR, ydaQ, rcbA, ralR, recT, recE, racC, ydaE, kilR, sieB, ydaF, ydaG, racR, ydaS, ydaT, ydaU, ydaV, ydaW, rzpR, rzoR, [trkG]</noscript><div id=""gene_hide_DEL_3"" class=""hidden"">ynaJ, uspE, fnr, ogt, abgT, abgB, abgA, abgR, smrA, ydaM, ydaN, dbpA, ttcA, intR, ydaQ, rcbA, ralR, recT, recE, racC, ydaE, kilR, sieB, ydaF, ydaG, racR, ydaS, ydaT, ydaU, ydaV, ydaW, rzpR, rzoR, [trkG]</div><input id=""gene_hide_DEL_3_button"" type=""button"" onclick=""hideTog('gene_hide_DEL_3');showTog('gene_hide_DEL_3_button')"" value=""Show"" />"
+D127_3-14	3	127	"1,494,485"	C->T	R196Q (CGG->CAG) 	ydcI <-	putative DNA-binding transcriptional regulator
+D127_3-14	3	127	"1,915,141"	C->A	E132* (GAA->TAA) 	proQ <-	"RNA chaperone, putative ProP translation regulator"
+D127_3-14	3	127	"3,050,808"	C->A	intergenic (-141/+307)	gcvT <- / <- ubiI	"aminomethyltransferase, tetrahydrofolate-dependent, subunit (T protein) of glycine cleavage complex/2-octaprenylphenol hydroxylase, FAD-dependent"
+D127_3-14	3	127	"3,486,285"	G->A	E56K (GAG->AAG) 	crp ->	"cAMP-activated global transcription factor, mediator of catabolite repression"
+D127_3-14	3	127	"4,186,631"	A->T	T428S (ACT->TCT) 	rpoC ->	"RNA polymerase, beta prime subunit"
+							
+a Clone name							
+b Population number							
+c Nucleic acid change							
+d Amino acid change							
+e Name and direction of the gene modified (mutations in coding region) or names and directions of the genes upstream and downstream to the mutation (intergenic mutations).							

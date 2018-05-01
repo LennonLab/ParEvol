@@ -15,6 +15,3 @@ def dfe_0_sample(s):
 
 def dfe_eq_sample(s, N):
     return dfe_0_sample(s) * ((1 + np.exp(2*N*s) ) ** -1)
-
-print(dfe_0_sample(0.001))
-print(dfe_eq_sample(0.001, 1000))

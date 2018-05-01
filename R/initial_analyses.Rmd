@@ -71,7 +71,7 @@ Using these modified population level gene enrichment scores and the publically 
 ```{r, results = 'hide', message = FALSE, warning = FALSE, echo=FALSE}
 rm(list=ls())
 getwd()
-#setwd("~/GitHub/ParEvol")
+setwd("~/GitHub/ParEvol")
 knitr::opts_knit$set(root.dir = '~/GitHub/ParEvol/')
 
 # Load dependencies
@@ -87,7 +87,7 @@ library("BiodiversityR")
 
 
 ```{r, echo=FALSE}
-pop_by_gene <- c("data/ltee/gene_by_pop_m_I.txt")
+pop_by_gene <- c("data/ltee/gene_by_pop_delta.txt")
 df <- read.table(paste(pop_by_gene, collapse = ''), sep = "\t", 
                  header = TRUE, row.names = 1)
 # only look at nonmutators (for now)
@@ -101,7 +101,7 @@ df.no0 <- df.noMut[apply(df.noMut[,-1], 1, function(x) !all(x==0)),]
 ```
 
 
-## 2) Visualizing evolutionary trajectories
+## 2) Visualizing evolutionary trajectories through coarse-grained genotypic space
 
 
 ```{r, fig.cap = "The first two axes of a PCoA on the LTEE gene-by-population multiplicity matrix. Each population is plotted as a separate figure. Lighter colored points indicate earlier timepoints while darker timepoints indicate later timepoints. The grey dot indicates the ancestor (i.e., no mutations in any gene) \\label{figurelabel}", message = FALSE, warning = FALSE, echo=FALSE, comment = NA}
@@ -158,10 +158,14 @@ par(mfrow = c(2, 3),
     mar = c(1.5, 3.1, 1.1, 0.5), # space for one row of text at ticks and to separate plots
     pty="s") # make the plots square
 
+legend("right", inset=c(-0.22,0), 
+       legend=c("Ara+2","Ara+4", "Ara-6", "Ara+1", "Ara-5", "Ara+5"), 
+       pch=c(0,2,4,1,3,5), title="Pop.", col="darkolivegreen4")
+
 # plots for each population
 pcoa.p2.plot <- plot(pcoa.p2[ ,1], pcoa.p2[ ,2],
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7), 
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     pch = 0, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara+2")
 abline(h = 0, v = 0, lty = 3)
 points(pcoa.p2[ ,1], pcoa.p2[ ,2],
@@ -187,7 +191,7 @@ box(lwd = 2)
 
 pcoa.m6.plot <- plot(pcoa.m6[ ,1], pcoa.m6[ ,2],
                      xlim = c(-0.7, 0.7), ylim = c(-0.7, 0.7), 
-                     pch = 2, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
+                     pch = 4, cex = 2.0, type = "n", cex.lab = 1.5, cex.axis = 1.2, 
                      axes = FALSE, xlab = '', ylab ='', main = "Ara-6")
 abline(h = 0, v = 0, lty = 3)
 points(pcoa.m6[ ,1], pcoa.m6[ ,2],
@@ -321,7 +325,9 @@ grid.raster(img)
 
 ```
 
-The trajectory of Ara+5 remains fairly constant over time. This may be because Ara+5 is not accumulating mutations in the set of genes that passed false-discovery rate correction ($I$). We will be examining this in subsequent analysis.
+The trajectory of Ara+5 remains fairly constant over time. This may be because Ara+5 is not accumulating mutations in the set of genes that passed false-discovery rate correction ($I$). We will be examining this in subsequent analyses and will conduct the same PCoA analyses on the gene-by-population multiplicity matrix of all protein encoding genes, rather than just the set of genes within set $I$.
+
+For the remaining five nonmutator populations, the trajectory of the major axis of the ordination over time bears a strikng resemblance to the trajectory of fitness gains. Good and Desai (2015) previously determined that a decelerating fitness trajectory by itself provides little power to distinguish between evolutionary models models. Including the mutation trajectory (i.e., the number of mutations per-clone, ($\partial_{t}\overline{M}(t)$)) provided strong constraints on the set of models that explain the fitness trajectory. Perhaps examining the mutation trajectories of individual genes (i.e., a vector of $\partial_{t}\overline{M_{i}}(t)$ for all $i$ rather than $\partial_{t}\overline{M}(t)$ ) would further constrain the set of models that explain the fitness trajectory.
 
 We can examine the degree divergence in the five nonmutator populations (excluding Ara+5) by plotting the second PCoA axis against the number of generations.
 
@@ -399,20 +405,33 @@ legend("right", inset=c(-0.22,0),
 # Now, we use this information to calculate and add species scores
 df.pcoa.spec <- add.spec.scores(df.pcoa, df.no0.rel, method = "pcoa.scores")
 spec.no0 <- df.pcoa.spec$cproj[apply(df.pcoa.spec$cproj[,-1], 1, function(x) !all(x==0)),]
-spec.no0.clean <- spec.no0[(spec.no0[,1] > 0.05) | (spec.no0[,1] < -0.05),] 
-spec.no0.clean <- spec.no0.clean[(spec.no0.clean[,2] > 0.05) | (spec.no0.clean[,2] < -0.05),] 
+spec.no0.clean <- spec.no0[(spec.no0[,1] > 0.01) | (spec.no0[,1] < -0.01),] 
+spec.no0.clean <- spec.no0.clean[(spec.no0.clean[,2] > 0.01) | (spec.no0.clean[,2] < -0.01),] 
 text(spec.no0.clean[ ,1], spec.no0.clean[ ,2], 
      labels = row.names(spec.no0.clean), col = "black")
 dev.off()
 img <- readPNG(paste(c("figs/pcoa_genes.png"), collapse = ''))
 grid.raster(img)
+
+
+
+
+
+spe.corr <- add.spec.scores(df.pcoa, df.no0.rel, method = "cor.scores")$cproj
+corrcut  <- 0.50       # user defined cutoff
+imp.spp  <- spe.corr[abs(spe.corr[, 1]) >= corrcut | abs(spe.corr[, 2]) >= corrcut, ]
+imp.spp <- imp.spp[rowSums(is.na(imp.spp))!=ncol(imp.spp), ]
+
+# Permutation Test for Species Abundances Across Axes
+fit <- envfit(df.pcoa, df.no0.rel, strata =imp.spp, perm = 999)
+
 ```
 
 From this visualization, we can see that the *mokC*, *hokB*, and *hokD* genes are close to the later timepoints for the Ara+2 and Ara+4. Whereas *rplF*, *mreB*, and *arcA* tend to be associated with populations Ara-6, Ara+5, and Ara+6. The genes *mokC*, *hokB*, and *hokD* all seem to be part of the type I toxin-antitoxin system, while *rplF*, *mreB*, and *arcA* appear to be part of different molecular pathways.
 
 We can confirm these visual patterns in a more quantitative way by determining the correlation coefficient of each gene along one or PCoA axes, identifying a correlation-coefficient cutoff, and conducting a permutation test.
 
-## 3) Quantifying the variation in evolutionary outcomes
+## 3) Quantifying variation in evolutionary outcomes
 
 A central question we want to answer from our own evolution experiments is how the degree of similarity between evolving populations changes with time. We can roughly see that the populations reach similar points in Euclidean space over time, but we're only looking at a single ordination axis at a time. 
 
@@ -509,19 +528,23 @@ We have written code to determine whether or not this result is significant by g
 
 We are currently working to build off of and simulate existing population genetic models to confirm our observed patterns. We are aiming to take a two-prong approach towards deriving and simulating evolutionary models of parallel evolution:
 
-**1) "Bottom-up"**: For this approach we will simulate genotypic spaces under different evolutionary scenarios (i.e., sign epistasis, historical contingency, etc.), which will then be coarse-grained into individual genes.
+**1) "Bottom-up"**: For this approach we will simulate genotypic spaces under different evolutionary scenarios (i.e., sign epistasis, historical contingency, etc.), which will then be coarse-grained into individual genes. We've been paying particular attention to the block model (Perelson and Macken, 1995; Schmiegelt and Krug, 2014).
 
-**2) "Top-down"**: Here the degree of parallel evolution is constrained by the genetic background dependence of the distribution of fitness effects. This form of epistasis has been referred to as "macroscopic epistasis" and has been used in a previous approach towards inferring the evolutionary dynamics of the LTEE (Good and Desai, 2014). This approach has the potential advantage of providing a general constraint on the set of evolutionary outcomes based on few pieces of information, since it does not include information about the background dependence of individual mutations. 
+**2) "Top-down"**: Here the degree of parallel evolution is constrained by the genetic background dependence of the distribution of fitness effects. This form of epistasis has been referred to as "macroscopic epistasis" and has been used in a previous approach towards inferring the evolutionary dynamics of the LTEE (Good and Desai, 2015). This approach has the potential advantage of providing a general constraint on the set of evolutionary outcomes based on few pieces of information, since it does not include information about the background dependence of individual mutations. 
 
 Our primary aim is to simulate data from different theoretical approaches under various evolutionary dynamics to test the limits of an ordination approach. We are also interested in analytic derivations to describe the degree that parallel outcomes can be observed by methods that coarse-grain genotypic space to the gene level (i.e., the multiplicity score) and are open to exploring the degree of parallelism under alternative regimes (i.e., clonal interference).
 
 
 ## 6) References
 
-Good, B. H., and M. M. Desai. 2014. The impact of macroscopic epistasis on long-term evolutionary dynamics. Genetics 114:172460 
+Good, B. H., and M. M. Desai. 2015. The impact of macroscopic epistasis on long-term evolutionary dynamics. Genetics 114:172460 
 
 Good, B. H., M. J. McDonald, J. E. Barrick, R. E. Lenski, and M. M. Desai. 2017. The dynamics of molecular evolution over 60,000 generations. Nature 551:45–50
 
-Shoemaker WR & Lennon JT. The contribution of dormancy to microbial evolution. Society for Molecular Biology and Evolution, Austin, Texas, USA (2017).
+Perelson, A.S., C. A. Macken. 1995. Protein evolution on partially correlated landscapes. Proc. Natl. Acad. Sci. USA 92:8657–9661
 
-Tenaillon, O. et al. 2016. Tempo and mode of genome evolution in a 50,000-generation experiment. Nature 536:165–170
+Schmiegelt. B., and J. Krug. 2014. Evolutionary accessibility of modular fitness landscapes. Journal of Statistical Physics 154:334–355
+
+Shoemaker, W. R., and J. T. Lennon. 2017. The contribution of dormancy to microbial evolution. Society for Molecular Biology and Evolution, Austin, Texas, USA
+
+Tenaillon, O., et al. 2016. Tempo and mode of genome evolution in a 50,000-generation experiment. Nature 536:165–170

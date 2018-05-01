@@ -1,0 +1,515 @@
+STRAIN ID	STRAIN SHORTHAND	ANCESTOR	GENOTYPE	PURPOSE IN THIS STUDY	NOTES
+DBY15108	RmRef	DBY15084	"ade2-1, CAN1, his3-11, leu2-3,112, trp1-1, ura3::ymCherry, bar1∆::ADE2, hml_∆::LEU2, GPA1WT-NatMX, ura3∆::ymCherry"	Reference strain	Described in Supp. Ref. 2
+ySAK0448	DivAncCit	DivAnc	"ade2-1, CAN1, his3-11, leu2-3,112, trp1-1, ura3::ymCherry, bar1∆::ADE2, hml_∆::LEU2, GPA1-G1406T-NatMX, his3∆::ym-CitrineM233I-HIS3"	Reference strain	
+ySAK0001	DivAnc	DBY15105/yGIL432	"ade2-1, CAN1, his3-11, leu2-3,112, trp1-1, ura3::ymCherry, bar1∆::ADE2, hml_∆::LEU2, GPA1-G1406T-NatMX"	Ancestor of the evo-lution experiment	Taken from generation 625 of the evolution experiment described in Supp. Ref. 2
+ySAK0057	L003	DivAnc	Same as DivAnc	Founder	
+ySAK0058	L013	DivAnc	Same as DivAnc	Founder	
+ySAK0059	L034	DivAnc	Same as DivAnc	Founder	
+ySAK0060	L041	DivAnc	Same as DivAnc	Founder	
+ySAK0061	L094	DivAnc	Same as DivAnc	Founder	
+ySAK0062	L048	DivAnc	Same as DivAnc	Founder	
+ySAK0064	L098	DivAnc	Same as DivAnc	Founder	
+ySAK0065	L125	DivAnc	Same as DivAnc	Founder	
+ySAK0066	S002	DivAnc	Same as DivAnc	Founder	
+ySAK0067	S028	DivAnc	Same as DivAnc	Founder	
+ySAK0068	S121	DivAnc	Same as DivAnc	Founder	
+ySAK0069	L096a	DivAnc	Same as DivAnc	Founder	
+ySAK0070	L096b	DivAnc	Same as DivAnc	Founder	
+ySAK0071	L102	DivAnc	Same as DivAnc	Founder	
+ySAK0072	L102a	DivAnc	Same as DivAnc	Founder	
+ySAK0073	L013-8-1	DivAnc	Same as DivAnc	Evolved clone	
+ySAK0074	L041-8-2	DivAnc	Same as DivAnc	Evolved clone	
+ySAK0075	L096a-4-1	DivAnc	Same as DivAnc	Evolved clone	
+ySAK0076	L096b-6-1	DivAnc	Same as DivAnc	Evolved clone	
+ySAK0002		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0003		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	Excluded
+ySAK0077		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0078		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0079		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0080		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0081		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0082		DivAnc	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0004		L003	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0083		L003	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0084		L003	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0085		L003	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0086		L003	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0087		L003	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0088		L013	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0089		L013	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0090		L013	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	Excluded
+ySAK0091		L013	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0092		L013	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0005		L041	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0093		L041	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0094		L041	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0095		L041	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0096		L041	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0097		L041	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0098		L048	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0099		L048	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0100		L048	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0101		L048	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0102		L048	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	Excluded
+ySAK0006		L094	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0103		L094	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	Excluded
+ySAK0104		L094	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0105		L094	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0106		L094	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0107		L013-8-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0108		L013-8-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0109		L013-8-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0110		L013-8-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0111		L013-8-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0112		L096a-4-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0113		L096a-4-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0114		L096b-6-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0115		L096b-6-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0116		L096b-6-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0117		L096b-6-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0118		L096b-6-1	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0119		L096a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0120		L096a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0121		L096a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0122		L096a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0123		L096b	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0124		L096b	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0125		L096b	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0126		L096b	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0127		L098	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0128		L098	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	Excluded
+ySAK0129		L098	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0130		L098	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0131		L102	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0132		L102	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0133		L102	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0134		L102	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0135		L102a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0136		L102a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0137		L102a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0138		L102a	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0139		S002	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0140		S002	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0141		S002	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0142		S002	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0143		S028	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0144		S028	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0145		S028	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0146		S028	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0147		S121	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0148		S121	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0149		S121	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0150		S121	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0151		S121	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0152		L041-8-2	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0153		L041-8-2	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0154		L041-8-2	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0155		L041-8-2	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0156		L041-8-2	Same as DivAnc and gat2∆::KanMX	gat2∆ knock-out	
+ySAK0008		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0009		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0157		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0158		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0159		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0160		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0161		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0162		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0163		DivAnc	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0164		L003	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0165		L003	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0166		L003	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0167		L003	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0168		L003	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0169		L013	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0170		L013	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0171		L013	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0172		L013	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0173		L013	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0010		L041	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0011		L041	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0174		L041	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0175		L041	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0176		L041	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0177		L041	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0178		L041	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0179		L048	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0180		L048	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0181		L048	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0182		L048	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0183		L048	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0012		L094	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0013		L094	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0184		L094	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0185		L094	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0186		L094	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0187		L094	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0188		L094	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0189		L013-8-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0190		L013-8-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0191		L013-8-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0192		L013-8-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0193		L013-8-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0194		L096a-4-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0195		L096a-4-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0196		L096a-4-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0197		L096a-4-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0198		L096b-6-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0199		L096b-6-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0200		L096b-6-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0201		L096b-6-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0202		L096b-6-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0203		L096b-6-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0204		L096b-6-1	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0205		L096a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0206		L096a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0207		L096a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0208		L096a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0209		L096b	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0210		L096b	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0211		L096b	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0212		L096b	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0213		L098	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0214		L098	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0215		L098	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0216		L098	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0217		L102	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0218		L102	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0219		L102	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0220		L102	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0221		L102a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0222		L102a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0223		L102a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0224		L102a	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0225		S002	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0226		S002	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0227		S002	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0228		S002	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0229		S028	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0230		S028	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0231		S028	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0232		S028	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0233		S121	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0234		S121	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0235		S121	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0236		S121	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0237		S121	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0238		L041-8-2	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0239		L041-8-2	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0240		L041-8-2	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0241		L041-8-2	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0242		L041-8-2	Same as DivAnc and ace2∆::KanMX	ace2∆ knock-out	Excluded
+ySAK0023		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0024		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0243		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0244		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0245		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0246		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0247		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0248		DivAnc	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0025		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0026		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0249		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0250		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0251		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0252		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0253		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0254		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0255		L003	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0256		L013	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0257		L013	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0258		L013	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0259		L013	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0260		L013	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0027		L041	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0261		L041	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0262		L041	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0263		L041	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0264		L041	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0265		L041	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0266		L048	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0267		L048	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0268		L048	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0269		L048	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0028		L094	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0029		L094	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0270		L094	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0271		L094	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0272		L094	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0273		L094	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0274		L094	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0275		L013-8-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0276		L013-8-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0277		L013-8-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0278		L013-8-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0279		L013-8-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0280		L096a-4-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0281		L096a-4-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0282		L096a-4-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0283		L096b-6-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0284		L096b-6-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0285		L096b-6-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0286		L096b-6-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0287		L096b-6-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0289		L096b-6-1	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0290		L096a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0291		L096a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0292		L096a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0293		L096a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0294		L096a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0295		L096b	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0296		L096b	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0297		L096b	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0298		L098	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0299		L098	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0300		L098	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0301		L098	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0302		L102	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0303		L102	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0304		L102	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0305		L102	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	Excluded
+ySAK0306		L102a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0307		L102a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0308		L102a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0309		L102a	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0310		S002	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0311		S002	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0312		S002	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0313		S002	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0314		S002	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0315		S028	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0316		S028	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0317		S028	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0318		S121	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0319		S121	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0320		S121	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0321		S121	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0322		L041-8-2	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0323		L041-8-2	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0324		L041-8-2	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0325		L041-8-2	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0326		L041-8-2	Same as DivAnc and whi2∆::KanMX	whi2∆ knock-out	
+ySAK0036		DivAnc	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0327		DivAnc	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0328		DivAnc	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0329		DivAnc	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0330		DivAnc	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0331		DivAnc	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0332		L003	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0333		L003	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0334		L003	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0335		L003	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0336		L003	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0337		L003	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0338		L003	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0339		L013	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0340		L013	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0341		L013	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0342		L013	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0037		L041	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0038		L041	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0343		L041	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0344		L041	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0345		L041	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0346		L041	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0347		L048	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0348		L048	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0349		L048	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0350		L048	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0039		L094	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0040		L094	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0351		L094	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0352		L094	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0353		L094	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0354		L094	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0041		L013-8-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0355		L013-8-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0356		L013-8-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0357		L013-8-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0358		L013-8-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0359		L013-8-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0360		L096a-4-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0361		L096a-4-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0362		L096a-4-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0363		L096a-4-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0364		L096b-6-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0365		L096b-6-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0366		L096b-6-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0367		L096b-6-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0368		L096b-6-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0369		L096b-6-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0370		L096b-6-1	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0371		L096a	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0372		L096a	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0373		L096a	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0374		L096a	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0375		L096b	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0376		L096b	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0377		L096b	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0378		L096b	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0379		L098	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0380		L098	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0381		L098	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0382		L102	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0383		L102	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0384		L102	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0385		L102	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0386		L102a	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0387		L102a	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0388		L102a	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0389		S002	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0390		S002	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0391		S002	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0392		S002	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0393		S028	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0394		S028	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0395		S028	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0396		S028	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0397		S121	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	Excluded
+ySAK0398		S121	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0399		S121	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0400		S121	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0401		S121	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0402		L041-8-2	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0403		L041-8-2	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0404		L041-8-2	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0405		L041-8-2	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0406		L041-8-2	Same as DivAnc and sfl1∆::KanMX	sfl1∆ knock-out	
+ySAK0052		DivAnc	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0407		DivAnc	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0053		L003	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0054		L003	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0408		L003	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	Excluded
+ySAK0409		L013	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0410		L013	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	Excluded
+ySAK0411		L041	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0412		L041	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	Excluded
+ySAK0413		L048	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0414		L048	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0415		L048	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0416		L048	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0055		L094	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0056		L094	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0417		L094	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0418		L013-8-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0419		L013-8-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0420		L013-8-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0421		L096a-4-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0422		L096b-6-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0423		L096b-6-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0424		L096b-6-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0425		L096b-6-1	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0426		L096a	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0427		L096a	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0428		L096a	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0429		L096a	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0430		L096a	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0431		L096b	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0432		L096b	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0433		L098	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0434		L098	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0435		L102	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0436		L102	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0437		L102a	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0438		L102a	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0439		S002	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0440		S002	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	Excluded
+ySAK0441		S002	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0442		S028	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0443		S028	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0444		S028	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	Excluded
+ySAK0445		S121	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0446		S121	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	
+ySAK0447		L041-8-2	Same as DivAnc and ho∆::KanMX	ho∆ knock-out	Excluded
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
