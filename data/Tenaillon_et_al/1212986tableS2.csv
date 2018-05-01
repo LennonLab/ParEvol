@@ -1,0 +1,1566 @@
+Lines,position,Type,Change,Genic,Gene_nb,Gene_Name,Effect,codon_affected,gene_length_in_codon
+,,,,Genic,Gene_nb,Gene_Name,Large_Deletion,bp_deleted_in_Gene,gene_length_bp
+,,,,Genic,Gene_nb,Gene_Name,RNA,bp_affected,gene_length_bp
+,,,,Intergenic,Previous_Gene_nb,Previous_Gene_Name(distance_bp),Effect,Next_Gene_Name(distance_bp),Intergenic_type
+,,,,Multigenic,First_Gene_nb,First_Gene_Name,Effect,Last_Gene_nb,Last_Gene_Name
+,,,,,,,,,
+,,,,,,,,,
+Line1,474099,Insertion,2_bp,Genic,458,ybaL,Frameshift,-403,558
+Line1,501158,Deletion,1_bp,Genic,482,ESCRE0483,Frameshift,20,65
+Line1,1306123,Deletion,10_bp,Genic,1325,cls,Frameshift,-39,486
+Line1,1954714,Point_Mutation,T->G,Genic,2011,motB,NonSynonymous K107T,-107,308
+Line1,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line1,3490532,Insertion,1_bp,Intergenic,3572,glpE(90),Intergenic,glpD(100),Intergenic_1_bp_Insertion
+Line1,3921407,Insertion,3_bp,Genic,3992,rho,In_Frame,39,419
+Line1,4154381,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous R151C,151,1342
+Line1,4194913,Deletion,1_bp,Genic,4263,iclR,Frameshift,-241,274
+Line1,4397130,Point_Mutation,T->A,Genic,4458,rpsR,NonSynonymous I21N,21,75
+,,,,,,,,,
+,,,,,,,,,
+Line2,1305418,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-274,486
+Line2,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line2,2108761,Point_Mutation,C->T,Genic,2171,ECB_01996,NonSynonymous G254S,-254,289
+Line2,2409185,Point_Mutation,G->A,Genic,2470,vacJ,Synonymous GGC to GGT,-91,251
+Line2,3489138,Point_Mutation,A->G,Genic,3570,glpR,NonSynonymous V26A,-26,252
+Line2,3497646,Point_Mutation,A->C,Genic,3577,glgP,NonSynonymous F133C,-133,815
+Line2,3921982,Point_Mutation,A->G,Genic,3992,rho,NonSynonymous T231A,231,419
+Line2,4195075,Large_Deletion,669_bp,Genic,4263,iclR,Large_Deletion,559,824
+,,,,,,,,,
+,,,,,,,,,
+Line3,2849,Point_Mutation,T->G,Genic,2,thrB,NonSynonymous F17C,17,310
+Line3,474447,Insertion,1_bp,Genic,458,ybaL,Frameshift,-287,558
+Line3,649601,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous I401V,-401,633
+Line3,1290311,Insertion,1_bp,Genic,1312,rssB,Frameshift,92,337
+Line3,1995676,Deletion,1_bp,Intergenic,2055,yeeN(359),Intergenic,asnW(95),Intergenic_1_bp_Deletion
+Line3,2448496,IS_Insertion,IS4,Intergenic,2503,nupC(31),Intergenic,yfeA(19),Intergenic_IS_insertion
+Line3,3028048,Point_Mutation,A->T,Genic,3085,kpsM,NonSynonymous L141*,-141,258
+Line3,3147784,Deletion,19_bp,Intergenic,3203,rpoD(8),Intergenic,ygjF(71),Intergenic_19_bp_Deletion
+Line3,3785527,Point_Mutation,G->A,Genic,3843,ECB_03523,NonSynonymous E204K,204,387
+Line3,3905220,Deletion,15_bp,Genic,3975,ilvL,In_Frame,8,32
+Line3,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+,,,,,,,,,
+,,,,,,,,,
+Line4,475293,Deletion,1_bp,Genic,458,ybaL,Frameshift,-5,558
+Line4,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line4,647808,Point_Mutation,T->G,Genic,645,mrdB,NonSynonymous K364Q,-364,370
+Line4,669080,Point_Mutation,T->A,Intergenic,669,gltI(354),Intergenic,ECB_00624(101),Intergenic_
+Line4,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line4,2105119,Deletion,2_bp,Intergenic,2168,ECB_01993(140),Intergenic,ECB_01994(72),Intergenic_2_bp_Deletion
+Line4,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line4,3905066,Insertion,1_bp,Intergenic,3974,yifB(131),Intergenic,ilvL(192),Intergenic_1_bp_Insertion
+Line4,4155645,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I572N,572,1342
+Line4,4157638,Point_Mutation,C->A,Genic,4227,rpoB,NonSynonymous N1236K,1236,1342
+,,,,,,,,,
+,,,,,,,,,
+Line5,475202,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous G35E,-35,558
+Line5,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line5,968327,IS_Insertion,IS150,Intergenic,985,pflA(38),Intergenic,pflB(154),Intergenic_IS_insertion
+Line5,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+Line5,3145821,Point_Mutation,C->T,Intergenic,3202,dnaG(51),Intergenic,rpoD(144),Intergenic_
+Line5,3249895,Point_Mutation,C->T,Genic,3311,infB,NonSynonymous M454I,-454,890
+Line5,3326569,Point_Mutation,A->T,Genic,3389,mreD,NonSynonymous I69N,-69,162
+Line5,3339330,Point_Mutation,T->C,Genic,3402,fis,NonSynonymous V54A,54,98
+Line5,3497979,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous A22V,-22,815
+Line5,3922003,Point_Mutation,C->T,Genic,3992,rho,NonSynonymous R238C,238,419
+Line5,3941197,Point_Mutation,C->T,Intergenic,4012,aslA(120),Intergenic,ESCRE3938(316),Intergenic_
+Line5,4155920,Point_Mutation,G->A,Genic,4227,rpoB,NonSynonymous G664S,664,1342
+Line5,4194995,IS_Insertion,IS150,Genic,4263,iclR,IS_insertion,-214,274
+Line5,4512141,Point_Mutation,T->G,Genic,4581,yjhA,NonSynonymous N192H,-192,238
+,,,,,,,,,
+,,,,,,,,,
+Line6,97137,Point_Mutation,C->T,Genic,90,murE,NonSynonymous R390C,390,495
+Line6,762023,Large_Deletion,70_bp,Genic,766,ESCRE0749,Large_Deletion,67,164
+Line6,854225,Point_Mutation,C->A,Genic,863,ybiW,NonSynonymous A312S,-312,810
+Line6,1017152,Point_Mutation,A->C,Genic,1023,ycbS,NonSynonymous K282N,282,866
+Line6,1305676,Deletion,1_bp,Genic,1325,cls,Frameshift,-188,486
+Line6,1400364,Point_Mutation,T->C,Genic,1425,abgB,NonSynonymous D21G,-21,481
+Line6,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line6,2100315,Large_Deletion,22124_bp,Multigenic,2161,ogrK,Multigenic,2190,ECB_02013
+Line6,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line6,2348321,Point_Mutation,C->A,Genic,2406,nuoA,Synonymous CTG to CTT,-117,147
+Line6,2874153,Deletion,2_bp,Genic,2934,lysR,Frameshift,168,311
+Line6,3497647,Point_Mutation,A->G,Genic,3577,glgP,NonSynonymous F133L,-133,815
+Line6,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line6,4172832,Point_Mutation,T->G,Intergenic,4244,yjaG(136),Intergenic,hupA(51),Intergenic_
+Line6,4195453,Point_Mutation,T->C,Genic,4263,iclR,NonSynonymous H61R,-61,274
+,,,,,,,,,
+,,,,,,,,,
+Line7,1004121,Point_Mutation,C->T,Intergenic,1012,ompF(555),Intergenic,asnS(47),Intergenic_
+Line7,1124925,IS_Insertion,IS186,Genic,1135,mdoG,IS_insertion,341,511
+Line7,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line7,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line7,3145854,Point_Mutation,A->C,Intergenic,3202,dnaG(18),Intergenic,rpoD(177),Intergenic_
+Line7,3165608,Deletion,1_bp,Genic,3217,fadH,Frameshift,373,672
+Line7,3264051,Deletion,1_bp,Intergenic,3325,greA(154),Intergenic,dacB(94),Intergenic_1_bp_Deletion
+Line7,3367994,Point_Mutation,G->A,Genic,3438,rpoA,NonSynonymous R317C,-317,329
+Line7,3893558,Insertion,1_bp,Intergenic,3960,trkD(52),Intergenic,IS150_insJ(4),Intergenic_1_bp_Insertion
+Line7,3921590,Point_Mutation,A->C,Genic,3992,rho,NonSynonymous K100T,100,419
+Line7,4156773,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I948S,948,1342
+,,,,,,,,,
+,,,,,,,,,
+Line8,474424,Point_Mutation,A->T,Genic,458,ybaL,NonSynonymous D294E,-294,558
+Line8,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line8,1305435,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-269,486
+Line8,1886191,Point_Mutation,A->G,Genic,1940,ESCRE1901,NonSynonymous T18A,18,68
+Line8,1932316,Deletion,3_bp,Genic,1992,yecP,In_Frame,33,323
+Line8,3145877,Point_Mutation,G->T,Genic,3203,rpoD,NonSynonymous E2D,2,613
+Line8,3328970,Point_Mutation,C->T,Genic,3392,mreB,NonSynonymous R6H,-6,347
+Line8,3638825,Large_Deletion,168_bp,Genic,3703,ESCRE3628,Large_Deletion,118,332
+Line8,4159567,Point_Mutation,A->C,Genic,4228,rpoC,NonSynonymous Y511S,511,1407
+Line8,4431606,Point_Mutation,T->G,Genic,4488,fbp,NonSynonymous D110A,-110,332
+,,,,,,,,,
+,,,,,,,,,
+Line9,1004183,Point_Mutation,C->T,Intergenic,1012,ompF(493),Intergenic,asnS(109),Intergenic_
+Line9,1305210,Deletion,1_bp,Genic,1325,cls,Frameshift,-344,486
+Line9,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line9,3498018,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S9L,-9,815
+Line9,3908004,Point_Mutation,C->T,Genic,3978,ilvE,NonSynonymous S215F,215,309
+Line9,3933918,Point_Mutation,T->A,Genic,4004,wzyE,NonSynonymous I148N,148,450
+Line9,4157897,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous F1323V,1323,1342
+Line9,4160533,Point_Mutation,A->C,Genic,4228,rpoC,NonSynonymous E833A,833,1407
+,,,,,,,,,
+,,,,,,,,,
+Line10,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+Line10,3327123,Point_Mutation,A->G,Genic,3391,mreC,NonSynonymous I252T,-252,367
+Line10,3489226,Point_Mutation,T->A,Intergenic,3570,glpR(5),Intergenic,glpG(12),Intergenic_
+Line10,3498027,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous T6I,-6,815
+Line10,3921959,Point_Mutation,T->G,Genic,3992,rho,NonSynonymous V223G,223,419
+Line10,4161415,Point_Mutation,A->C,Genic,4228,rpoC,NonSynonymous E1127A,1127,1407
+Line10,4195670,Point_Mutation,T->C,Intergenic,4263,iclR(164),Intergenic,metH(36),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line11,401700,Point_Mutation,T->C,Genic,387,nrdR,NonSynonymous S93P,93,149
+Line11,1305544,Deletion,1_bp,Genic,1325,cls,Frameshift,-232,486
+Line11,1812840,IS_Insertion,IS150,Genic,1861,ynjA,IS_insertion,30,182
+Line11,2164921,Point_Mutation,G->A,Genic,2238,yehU,NonSynonymous T310M,-310,561
+Line11,3318533,Insertion,2_bp,Genic,3385,tldD,Frameshift,-465,481
+Line11,3328425,Point_Mutation,G->A,Genic,3392,mreB,NonSynonymous R188C,-188,347
+Line11,3500642,Point_Mutation,T->G,Genic,3579,glgC,NonSynonymous K50T,-50,431
+Line11,3905048,Point_Mutation,C->T,Intergenic,3974,yifB(149),Intergenic,ilvL(174),Intergenic_
+Line11,3916425,Point_Mutation,T->A,Genic,3986,rep,NonSynonymous I291N,291,673
+Line11,4157664,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous A1245V,1245,1342
+Line11,4158352,Point_Mutation,A->C,Genic,4228,rpoC,NonSynonymous E106A,106,1407
+Line11,4195643,Point_Mutation,C->T,Intergenic,4263,iclR(191),Intergenic,metH(9),Intergenic_
+Line11,4205546,Deletion,1_bp,Intergenic,4270,ECB_misc_RNA_54(218),Intergenic,pgi(19),Intergenic_1_bp_Deletion
+Line11,4255821,Point_Mutation,C->A,Genic,4319,actP,NonSynonymous A364S,-364,549
+,,,,,,,,,
+,,,,,,,,,
+LIne12,101810,Point_Mutation,G->A,Genic,94,ftsW,NonSynonymous V202M,202,414
+LIne12,475060,Deletion,4_bp,Genic,458,ybaL,Frameshift,-82,558
+LIne12,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+LIne12,990170,Insertion,3_bp,Genic,1003,ycbC,In_Frame,-108,259
+LIne12,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+LIne12,1345202,Deletion,1_bp,Intergenic,1371,gmr(145),Intergenic,rnb(90),Intergenic_1_bp_Deletion
+LIne12,2295484,Point_Mutation,A->C,Genic,2353,yfaE,NonSynonymous *85C,85,84
+LIne12,3145992,Point_Mutation,A->T,Genic,3203,rpoD,NonSynonymous I41F,41,613
+LIne12,3895007,Large_Deletion,56_bp,Intergenic,3963,hsrA_fragment(510),Intergenic,yieP(-487),Intergenic_Large_Deletion_56_bp_long
+LIne12,3895063,IS_Insertion,IS150,Intergenic,3963,hsrA_fragment(454),Intergenic,yieP(-431),Intergenic_IS_insertion
+LIne12,3905066,Deletion,1_bp,Intergenic,3974,yifB(131),Intergenic,ilvL(192),Intergenic_1_bp_Deletion
+LIne12,4090001,Point_Mutation,A->G,Genic,4164,glpF,NonSynonymous L216P,-216,281
+LIne12,4159512,Point_Mutation,C->T,Genic,4228,rpoC,NonSynonymous P493S,493,1407
+LIne12,4266374,Point_Mutation,A->T,Intergenic,4328,nrfG(115),Intergenic,gltP(227),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+LIne13,16989,IS_Insertion,IS150,Intergenic,17,mokC(499),Intergenic,nhaA(31),Intergenic_IS_insertion
+LIne13,365031,Point_Mutation,C->A,Genic,348,sbmA,Synonymous GTC to GTA,249,406
+LIne13,474884,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous L141*,-141,558
+LIne13,619107,Duplication_2_fold,14141_bp,Multigenic,611,ibrA,Multigenic,628,citC
+LIne13,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+LIne13,2500871,Point_Mutation,G->A,Genic,2564,tktB,NonSynonymous A134T,134,667
+LIne13,2511677,Deletion,8_bp,Intergenic,2569,acrD(406),Intergenic,yffB(133),Intergenic_8_bp_Deletion
+LIne13,3447564,Point_Mutation,T->C,Genic,3538,aroK,NonSynonymous E64G,-64,173
+LIne13,3652563,IS_Insertion,IS150,Intergenic,3719,IS150_insK(231),Intergenic,glyS(48),Intergenic_IS_insertion
+LIne13,3921976,Point_Mutation,G->T,Genic,3992,rho,NonSynonymous A229S,229,419
+LIne13,4155545,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous T539P,539,1342
+LIne13,4195374,Insertion,2_bp,Genic,4263,iclR,Frameshift,-87,274
+LIne13,4268828,Duplication_2_fold,83960_bp,Multigenic,4330,yjcO,Multigenic,4411,frdA
+,,,,,,,,,
+,,,,,,,,,
+Line14,416124,Point_Mutation,A->G,Genic,402,ECB_00376,NonSynonymous D207G,207,311
+Line14,1305498,Point_Mutation,A->C,Genic,1325,cls,NonSynonymous F248V,-248,486
+Line14,1894127,Point_Mutation,C->A,Intergenic,1949,proQ(89),Intergenic,yebR(8),Intergenic_
+Line14,2009951,Deletion,3_bp,Intergenic,2076,yeeX(33),Intergenic,yeeA(73),Intergenic_3_bp_Deletion
+Line14,2119660,Point_Mutation,T->C,Genic,2184,ECB_02008,Synonymous ACA to ACG,-43,74
+Line14,2236102,Insertion,9_bp,Genic,2307,yejM,In_Frame,177,586
+Line14,2237517,Deletion,1_bp,Intergenic,2308,proL(69),Intergenic,yejO(34),Intergenic_1_bp_Deletion
+Line14,3499904,Point_Mutation,T->C,Genic,3579,glgC,NonSynonymous E296G,-296,431
+Line14,3921279,Point_Mutation,A->G,Intergenic,3991,rhoL(13),Intergenic,rho(72),Intergenic_
+Line14,4195438,Point_Mutation,G->A,Genic,4263,iclR,NonSynonymous T66I,-66,274
+Line14,4340746,Duplication_2_fold,8403_bp,Multigenic,4394,fxsA,Multigenic,4406,blc
+,,,,,,,,,
+,,,,,,,,,
+Line15,474632,Point_Mutation,T->C,Genic,458,ybaL,NonSynonymous E225G,-225,558
+Line15,490300,IS_Insertion,IS150,Genic,473,ybbN,IS_insertion,-50,284
+Line15,1305101,Point_Mutation,G->T,Genic,1325,cls,NonSynonymous A380D,-380,486
+Line15,3069051,Point_Mutation,G->A,Genic,3122,pitB,Synonymous AGC to AGT,-472,499
+Line15,3414560,Point_Mutation,T->G,Genic,3503,crp,NonSynonymous I176M,176,210
+Line15,3512482,Point_Mutation,C->T,Intergenic,3590,ECB_misc_RNA_47(117),Intergenic,yhhY(17),Intergenic_
+Line15,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+,,,,,,,,,
+,,,,,,,,,
+Line16,474186,Insertion,2_bp,Genic,458,ybaL,Frameshift,-374,558
+Line16,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line16,702967,Point_Mutation,A->G,Intergenic,705,ECB_00650(184),Intergenic,kdpE(32),Intergenic_
+Line16,1264346,Point_Mutation,C->T,Genic,1282,hemA,Synonymous AGC to AGT,161,418
+Line16,1886212,Point_Mutation,G->A,Genic,1940,ESCRE1901,NonSynonymous V25I,25,68
+Line16,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line16,2110904,Insertion,1_bp,Genic,2174,ECB_01999,Frameshift,93,261
+Line16,3015777,IS_Insertion,IS150,Genic,3073,kpsD,IS_insertion,397,558
+Line16,3146143,Point_Mutation,T->G,Genic,3203,rpoD,NonSynonymous I91S,91,613
+Line16,3905946,Deletion,5_bp,Genic,3976,ilvG,Frameshift,171,548
+Line16,4155545,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous T539P,539,1342
+Line16,4156809,Point_Mutation,T->C,Genic,4227,rpoB,NonSynonymous L960P,960,1342
+,,,,,,,,,
+,,,,,,,,,
+LIne17,590476,Large_Deletion,28640_bp,Multigenic,586,hokE,Multigenic,611,ibrA
+LIne17,1004254,Insertion,1_bp,Intergenic,1012,ompF(422),Intergenic,asnS(180),Intergenic_1_bp_Insertion
+LIne17,1071973,Point_Mutation,C->T,Genic,1080,torS,NonSynonymous A166T,-166,914
+LIne17,1290999,Point_Mutation,C->T,Genic,1312,rssB,NonSynonymous Q322*,322,337
+LIne17,1305548,Point_Mutation,T->C,Genic,1325,cls,NonSynonymous D231G,-231,486
+LIne17,3493603,Large_Deletion,18852_bp,Multigenic,3575,ECB_03279,Multigenic,3590,ECB_misc_RNA_47
+LIne17,3921418,Point_Mutation,G->A,Genic,3992,rho,NonSynonymous A43T,43,419
+LIne17,4156164,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous E745G,745,1342
+LIne17,4195044,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous L197F,-197,274
+,,,,,,,,,
+,,,,,,,,,
+Line18,475115,Point_Mutation,C->A,Genic,458,ybaL,NonSynonymous G64V,-64,558
+Line18,1305909,Point_Mutation,G->A,Genic,1325,cls,NonSynonymous Q111*,-111,486
+Line18,2100315,Large_Deletion,22124_bp,Multigenic,2161,ogrK,Multigenic,2190,ECB_02013
+Line18,3146006,Point_Mutation,C->T,Genic,3203,rpoD,Synonymous ATC to ATT,45,613
+Line18,3190378,Point_Mutation,A->G,Genic,3248,yhaO,NonSynonymous L204P,-204,422
+Line18,3251826,Point_Mutation,C->T,Genic,3312,nusA,NonSynonymous A315T,-315,495
+Line18,3328551,Point_Mutation,C->T,Genic,3392,mreB,NonSynonymous A146T,-146,347
+Line18,3498018,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S9L,-9,815
+Line18,3498259,Point_Mutation,G->A,Genic,3578,glgA,NonSynonymous L413F,-413,477
+Line18,4156347,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous P806L,806,1342
+,,,,,,,,,
+,,,,,,,,,
+Line20,474224,Point_Mutation,A->G,Genic,458,ybaL,NonSynonymous L361P,-361,558
+Line20,886893,Point_Mutation,C->A,Genic,899,ECB_00825,Synonymous GGC to GGA,334,804
+Line20,1157919,Point_Mutation,C->T,Genic,1170,rne,NonSynonymous G340S,-340,1061
+Line20,1305418,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-274,486
+Line20,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line20,3373777,Point_Mutation,C->T,Genic,3449,rplF,NonSynonymous G93S,-93,177
+Line20,3577724,Insertion,6_bp,Genic,3649,gor,In_Frame,243,450
+Line20,3838729,Point_Mutation,T->G,Genic,3909,gyrB,NonSynonymous Y587S,-587,804
+Line20,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line20,4195479,Insertion,1_bp,Genic,4263,iclR,Frameshift,-52,274
+,,,,,,,,,
+,,,,,,,,,
+Line21,430954,Point_Mutation,G->A,Genic,419,lon,Synonymous GAG to GAA,4,784
+Line21,475031,Point_Mutation,G->T,Genic,458,ybaL,NonSynonymous A92E,-92,558
+Line21,649985,Point_Mutation,C->G,Genic,646,mrdA,NonSynonymous V273L,-273,633
+Line21,3028178,Point_Mutation,G->A,Genic,3085,kpsM,NonSynonymous R98*,-98,258
+Line21,3339490,Deletion,1_bp,Intergenic,3402,fis(62),Intergenic,yhdJ(24),Intergenic_1_bp_Deletion
+Line21,3905061,Deletion,1_bp,Intergenic,3974,yifB(136),Intergenic,ilvL(187),Intergenic_1_bp_Deletion
+Line21,4153741,Point_Mutation,T->G,Intergenic,4226,ECB_misc_RNA_20(190),Intergenic,rpoB(64),Intergenic_
+Line21,4155053,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous P375S,375,1342
+Line21,4180495,Duplication_2_fold,26121_bp,Multigenic,4252,rrsE,Multigenic,4271,pgi
+Line21,4497712,Point_Mutation,G->A,Genic,4562,ESCRE4497,Synonymous GCG to GCA,2,51
+,,,,,,,,,
+,,,,,,,,,
+Line22,473846,Point_Mutation,A->G,Genic,458,ybaL,NonSynonymous L487P,-487,558
+Line22,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line22,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line22,3016011,Point_Mutation,G->A,Genic,3073,kpsD,NonSynonymous W475*,475,558
+Line22,3156711,Deletion,1_bp,Genic,3212,ebgA,Frameshift,418,1030
+Line22,3327549,Point_Mutation,G->A,Genic,3391,mreC,NonSynonymous S110F,-110,367
+Line22,3570917,Point_Mutation,T->A,Genic,3644,uspA,NonSynonymous I37N,37,144
+Line22,3905040,Deletion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Deletion
+Line22,4156104,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous Q725R,725,1342
+Line22,4157820,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous D1297A,1297,1342
+Line22,4266374,Point_Mutation,A->T,Intergenic,4328,nrfG(115),Intergenic,gltP(227),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line23,474437,Point_Mutation,C->A,Genic,458,ybaL,NonSynonymous G290V,-290,558
+Line23,1306021,Deletion,10_bp,Genic,1325,cls,Frameshift,-73,486
+Line23,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line23,2705611,Point_Mutation,G->A,Intergenic,2765,ygaH(26),Intergenic,mprA(65),Intergenic_
+Line23,3921334,Point_Mutation,A->T,Genic,3992,rho,NonSynonymous I15F,15,419
+Line23,4195457,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous T60P,-60,274
+Line23,4397099,Point_Mutation,T->C,Genic,4458,rpsR,NonSynonymous C11R,11,75
+,,,,,,,,,
+,,,,,,,,,
+Line24,176608,Point_Mutation,C->T,Genic,158,hemL,NonSynonymous A373T,-373,426
+Line24,798266,Deletion,1_bp,Genic,808,ECB_00739,Frameshift,-337,381
+Line24,1163310,Point_Mutation,A->C,Intergenic,1177,plsX(18),Intergenic,fabH(50),Intergenic_
+Line24,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line24,2131469,Deletion,2_bp,Intergenic,2202,gatY(180),Intergenic,fbaB(120),Intergenic_2_bp_Deletion
+Line24,3014284,Point_Mutation,G->A,Genic,3072,kpsE,NonSynonymous G286D,286,378
+Line24,3146020,Point_Mutation,A->G,Genic,3203,rpoD,NonSynonymous D50G,50,613
+Line24,3251900,Point_Mutation,G->A,Genic,3312,nusA,NonSynonymous P290L,-290,495
+Line24,3328590,Point_Mutation,C->A,Genic,3392,mreB,NonSynonymous A133S,-133,347
+Line24,3497647,Point_Mutation,A->G,Genic,3577,glgP,NonSynonymous F133L,-133,815
+Line24,3905061,Deletion,1_bp,Intergenic,3974,yifB(136),Intergenic,ilvL(187),Intergenic_1_bp_Deletion
+Line24,4156827,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I966N,966,1342
+,,,,,,,,,
+,,,,,,,,,
+Line25,183037,Point_Mutation,G->T,Genic,164,dgt,NonSynonymous R320L,320,505
+Line25,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line25,1290248,Deletion,1_bp,Genic,1312,rssB,Frameshift,71,337
+Line25,1305418,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-274,486
+Line25,2103897,Deletion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line25,3873442,Point_Mutation,T->G,Genic,3940,glmS,NonSynonymous T201P,-201,609
+Line25,3905220,Deletion,15_bp,Genic,3975,ilvL,In_Frame,8,32
+Line25,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line25,4194979,Point_Mutation,C->G,Genic,4263,iclR,NonSynonymous G219A,-219,274
+Line25,4354528,Point_Mutation,G->A,Genic,4412,poxA,NonSynonymous G34R,34,325
+,,,,,,,,,
+,,,,,,,,,
+Line26,474314,Deletion,1_bp,Genic,458,ybaL,Frameshift,-331,558
+Line26,1305464,Point_Mutation,T->A,Genic,1325,cls,NonSynonymous D259V,-259,486
+Line26,1886191,Point_Mutation,A->G,Genic,1940,ESCRE1901,NonSynonymous T18A,18,68
+Line26,2165189,Point_Mutation,C->A,Genic,2238,yehU,NonSynonymous G221C,-221,561
+Line26,3465083,Point_Mutation,G->A,Genic,3553,ompR,NonSynonymous S65L,-65,239
+Line26,3922019,Point_Mutation,C->T,Genic,3992,rho,NonSynonymous A243V,243,419
+Line26,4160743,Point_Mutation,T->C,Genic,4228,rpoC,NonSynonymous L903P,903,1407
+,,,,,,,,,
+,,,,,,,,,
+Line27,398676,Point_Mutation,T->A,Genic,382,secF,NonSynonymous I250N,250,323
+Line27,475290,Large_Deletion,2896_bp,Multigenic,458,ybaL,Multigenic,460,ushA
+Line27,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line27,648086,Point_Mutation,T->C,Genic,645,mrdB,NonSynonymous E271G,-271,370
+Line27,1004243,Point_Mutation,A->G,Intergenic,1012,ompF(433),Intergenic,asnS(169),Intergenic_
+Line27,1415090,Point_Mutation,T->C,Genic,1442,ydaE,NonSynonymous H30R,-30,56
+Line27,2842094,Large_Deletion,138_bp,Genic,2908,metW,Large_Deletion,76,76
+Line27,3028366,Point_Mutation,G->T,Genic,3085,kpsM,NonSynonymous A35E,-35,258
+Line27,3146003,Point_Mutation,C->T,Genic,3203,rpoD,Synonymous ATC to ATT,44,613
+Line27,3490427,Point_Mutation,A->T,Genic,3572,glpE,NonSynonymous D2E,-2,108
+Line27,4155644,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous I572L,572,1342
+,,,,,,,,,
+,,,,,,,,,
+Line28,787878,Large_Deletion,12076_bp,Multigenic,793,int,Multigenic,809,ESCRE0791
+Line28,1305009,Point_Mutation,C->G,Genic,1325,cls,NonSynonymous D411H,-411,486
+Line28,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line28,3512511,Point_Mutation,C->T,Intergenic,3590,ECB_misc_RNA_47(88),Intergenic,yhhY(46),Intergenic_
+Line28,3921418,Point_Mutation,G->A,Genic,3992,rho,NonSynonymous A43T,43,419
+Line28,4090422,Insertion,5_bp,Genic,4164,glpF,Frameshift,-76,281
+Line28,4101582,Point_Mutation,T->G,Intergenic,4177,metJ(272),Intergenic,metB(5),Intergenic_
+Line28,4157163,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous K1078R,1078,1342
+Line28,4195159,Deletion,2_bp,Genic,4263,iclR,Frameshift,-159,274
+,,,,,,,,,
+,,,,,,,,,
+Line31,30364,Point_Mutation,G->C,Genic,32,ispH,NonSynonymous A6P,6,316
+Line31,474377,Deletion,9_bp,Genic,458,ybaL,In_Frame,-310,558
+Line31,619107,Duplication_2_fold,7242_bp,Multigenic,611,ibrA,Multigenic,620,rna
+Line31,1305536,Point_Mutation,G->T,Genic,1325,cls,NonSynonymous A235E,-235,486
+Line31,2447007,Point_Mutation,C->T,Intergenic,2502,mntH(268),Intergenic,nupC(68),Intergenic_
+Line31,2448496,IS_Insertion,IS4,Intergenic,2503,nupC(31),Intergenic,yfeA(19),Intergenic_IS_insertion
+Line31,3252031,Point_Mutation,A->T,Genic,3312,nusA,NonSynonymous D246E,-246,495
+Line31,3465221,Point_Mutation,A->C,Genic,3553,ompR,NonSynonymous L19R,-19,239
+Line31,3498018,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S9L,-9,815
+Line31,4155588,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous T553I,553,1342
+Line31,4177134,Point_Mutation,G->T,Genic,4249,zraR,Synonymous GCG to GCT,385,441
+Line31,4187210,Point_Mutation,G->T,Genic,4257,metA,Synonymous TCG to TCT,137,309
+Line31,4187495,Point_Mutation,G->T,Genic,4257,metA,Synonymous GTG to GTT,232,309
+Line31,4187768,Deletion,1_bp,Intergenic,4257,metA(230),Intergenic,aceB(39),Intergenic_1_bp_Deletion
+Line31,4415021,Point_Mutation,T->A,Genic,4475,cysQ,NonSynonymous D66E,66,246
+,,,,,,,,,
+,,,,,,,,,
+Line32,1329,Point_Mutation,G->A,Genic,1,thrA,NonSynonymous A332T,332,820
+Line32,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line32,598333,Insertion,1_bp,Genic,593,entF,Frameshift,490,1293
+Line32,1125560,IS_Insertion,IS186,Genic,1136,mdoH,IS_insertion,43,847
+Line32,1886185,Point_Mutation,A->C,Genic,1940,ESCRE1901,NonSynonymous N16H,16,68
+Line32,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line32,3512441,Deletion,6_bp,Genic,3590,ECB_misc_RNA_47,RNA,-25,82
+Line32,3905040,Insertion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Insertion
+Line32,4156169,Point_Mutation,G->T,Genic,4227,rpoB,NonSynonymous G747C,747,1342
+,,,,,,,,,
+,,,,,,,,,
+Line33,242195,Deletion,1_bp,Genic,228,ECB_00212,Frameshift,62,123
+Line33,447351,Point_Mutation,G->A,Intergenic,432,tesB(95),Intergenic,ybaY(123),Intergenic_
+Line33,474651,Deletion,1_bp,Genic,458,ybaL,Frameshift,-219,558
+Line33,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line33,619107,Duplication_2_fold,14141_bp,Multigenic,611,ibrA,Multigenic,628,citC
+Line33,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line33,3015186,Point_Mutation,A->T,Genic,3073,kpsD,NonSynonymous D200V,200,558
+Line33,3175331,Point_Mutation,G->T,Genic,3229,uxaA,NonSynonymous N342K,-342,495
+Line33,3328587,Point_Mutation,C->A,Genic,3392,mreB,NonSynonymous G134C,-134,347
+Line33,3497889,Point_Mutation,C->T,Genic,3577,glgP,NonSynonymous R52H,-52,815
+Line33,3922030,Point_Mutation,A->G,Genic,3992,rho,NonSynonymous I247V,247,419
+Line33,4162042,Point_Mutation,C->T,Genic,4228,rpoC,NonSynonymous A1336V,1336,1407
+Line33,4225933,Point_Mutation,T->C,Intergenic,4289,ubiA(117),Intergenic,plsB(38),Intergenic_
+Line33,4497956,Deletion,1_bp,Intergenic,4562,ESCRE4497(476),Intergenic,IS1_insB(94),Intergenic_1_bp_Deletion
+,,,,,,,,,
+,,,,,,,,,
+Line34,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line34,1305418,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-274,486
+Line34,1779624,Point_Mutation,G->A,Genic,1824,thrS,Synonymous TCC to TCT,-74,642
+Line34,1995676,Deletion,1_bp,Intergenic,2055,yeeN(359),Intergenic,asnW(95),Intergenic_1_bp_Deletion
+Line34,2100315,Large_Deletion,22124_bp,Multigenic,2161,ogrK,Multigenic,2190,ECB_02013
+Line34,2213277,Point_Mutation,C->A,Genic,2285,fruK,NonSynonymous K95N,-95,312
+Line34,3250446,Point_Mutation,A->C,Genic,3311,infB,NonSynonymous S271A,-271,890
+Line34,3326668,Point_Mutation,G->A,Genic,3389,mreD,NonSynonymous P36L,-36,162
+Line34,3497992,Point_Mutation,T->G,Genic,3577,glgP,NonSynonymous K18Q,-18,815
+Line34,3905040,Insertion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Insertion
+Line34,4155596,Point_Mutation,G->A,Genic,4227,rpoB,NonSynonymous G556S,556,1342
+Line34,4195487,Point_Mutation,C->T,Genic,4263,iclR,NonSynonymous A50T,-50,274
+Line34,4316288,Duplication_2_fold,47602_bp,Multigenic,4371,melB,Multigenic,4421,glyY
+,,,,,,,,,
+,,,,,,,,,
+Line35,287335,Point_Mutation,C->T,Genic,276,ECB_00256,Synonymous AGC to AGT,933,1418
+Line35,475187,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous G40D,-40,558
+Line35,649829,Point_Mutation,C->A,Genic,646,mrdA,NonSynonymous V325F,-325,633
+Line35,1002941,Point_Mutation,G->A,Intergenic,1011,aspC(45),Intergenic,ompF(140),Intergenic_
+Line35,1332142,Insertion,1_bp,Intergenic,1356,topA(85),Intergenic,cysB(125),Intergenic_1_bp_Insertion
+Line35,1333815,Point_Mutation,T->G,Genic,1359,ECB_01252,NonSynonymous D77E,77,81
+Line35,1609176,Large_Deletion,6249_bp,Multigenic,1637,ECB_01513,Multigenic,1647,ECB_01523
+Line35,2100315,Large_Deletion,22124_bp,Multigenic,2161,ogrK,Multigenic,2190,ECB_02013
+Line35,2140934,Point_Mutation,T->G,Genic,2214,ECB_02035,NonSynonymous E107A,-107,221
+Line35,3015777,IS_Insertion,IS150,Genic,3073,kpsD,IS_insertion,397,558
+Line35,3145857,Point_Mutation,T->C,Intergenic,3202,dnaG(15),Intergenic,rpoD(180),Intergenic_
+Line35,3377576,Point_Mutation,C->A,Genic,3458,rpsC,NonSynonymous G74V,-74,233
+Line35,4155644,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous I572L,572,1342
+Line35,4431606,Point_Mutation,T->G,Genic,4488,fbp,NonSynonymous D110A,-110,332
+,,,,,,,,,
+,,,,,,,,,
+Line38,422593,Insertion,1_bp,Intergenic,409,cyoA(182),Intergenic,ampG(280),Intergenic_1_bp_Insertion
+Line38,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line38,1609338,Large_Deletion,6133_bp,Multigenic,1637,ECB_01513,Multigenic,1647,ECB_01523
+Line38,1886212,Point_Mutation,G->A,Genic,1940,ESCRE1901,NonSynonymous V25I,25,68
+Line38,3252020,Point_Mutation,G->A,Genic,3312,nusA,NonSynonymous A250V,-250,495
+Line38,3419845,Point_Mutation,G->T,Genic,3509,ppiA,NonSynonymous S122R,-122,190
+Line38,3496791,Point_Mutation,C->T,Genic,3577,glgP,NonSynonymous G418D,-418,815
+Line38,4158903,Point_Mutation,A->C,Genic,4228,rpoC,NonSynonymous I290L,290,1407
+Line38,4172940,Point_Mutation,A->C,Intergenic,4244,yjaG(28),Intergenic,hupA(159),Intergenic_
+Line38,4342404,Deletion,5_bp,Intergenic,4395,yjeH(80),Intergenic,groS(196),Intergenic_5_bp_Deletion
+Line38,4431606,Point_Mutation,T->G,Genic,4488,fbp,NonSynonymous D110A,-110,332
+,,,,,,,,,
+,,,,,,,,,
+Line39,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line39,1124061,Deletion,1_bp,Genic,1135,mdoG,Frameshift,53,511
+Line39,1332132,Point_Mutation,T->C,Intergenic,1356,topA(95),Intergenic,cysB(115),Intergenic_
+Line39,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line39,3388722,Point_Mutation,G->T,Genic,3471,gspF,NonSynonymous M331I,331,398
+Line39,3462738,Point_Mutation,G->A,Genic,3551,pck,NonSynonymous G410D,410,540
+Line39,3465194,Point_Mutation,C->T,Genic,3553,ompR,NonSynonymous G28D,-28,239
+Line39,4090341,Deletion,13_bp,Genic,4164,glpF,Frameshift,-103,281
+Line39,4141418,Large_Deletion,1798_bp,Genic,4210,rrlB,Large_Deletion,1725,2907
+Line39,4155545,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous T539P,539,1342
+Line39,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+,,,,,,,,,
+,,,,,,,,,
+Line40,410389,Point_Mutation,G->T,Genic,397,thiI,NonSynonymous R140L,140,482
+Line40,433564,Point_Mutation,C->T,Genic,420,hupB,NonSynonymous A20V,20,90
+Line40,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line40,619107,Duplication_2_fold,7242_bp,Multigenic,611,ibrA,Multigenic,620,rna
+Line40,1098752,Point_Mutation,G->A,Genic,1107,efeO,Synonymous GTG to GTA,75,375
+Line40,1609130,Point_Mutation,A->C,Genic,1636,IS3_insF,NonSynonymous K285Q,285,288
+Line40,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line40,2876468,Point_Mutation,A->C,Genic,2936,araE,NonSynonymous L115*,-115,472
+Line40,3252014,Point_Mutation,A->G,Genic,3312,nusA,NonSynonymous V252A,-252,495
+Line40,3328544,Point_Mutation,G->A,Genic,3392,mreB,NonSynonymous A148V,-148,347
+Line40,3497647,Point_Mutation,A->G,Genic,3577,glgP,NonSynonymous F133L,-133,815
+Line40,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+,,,,,,,,,
+,,,,,,,,,
+Line41,475131,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous E59K,-59,558
+Line41,649601,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous I401V,-401,633
+Line41,1306225,Point_Mutation,A->T,Genic,1325,cls,NonSynonymous Y5*,-5,486
+Line41,1689706,Insertion,1_bp,Intergenic,1731,nth(257),Intergenic,ydgR(354),Intergenic_1_bp_Insertion
+Line41,1738318,Point_Mutation,C->T,Genic,1782,sufD,NonSynonymous G250D,-250,423
+Line41,2036373,Deletion,1_bp,Genic,2104,wbbC,Frameshift,-198,370
+Line41,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line41,2616303,Deletion,1_bp,Intergenic,2665,purL(361),Intergenic,yfhD(35),Intergenic_1_bp_Deletion
+Line41,2775887,Insertion,1_bp,Intergenic,2844,IS150_insJ(200),Intergenic,cysH(49),Intergenic_1_bp_Insertion
+Line41,3145993,Point_Mutation,T->G,Genic,3203,rpoD,NonSynonymous I41S,41,613
+Line41,3414664,Point_Mutation,A->C,Genic,3503,crp,NonSynonymous *211S,211,210
+Line41,3497175,Point_Mutation,A->G,Genic,3577,glgP,NonSynonymous V290A,-290,815
+Line41,4158687,Point_Mutation,A->C,Genic,4228,rpoC,NonSynonymous T218P,218,1407
+Line41,4196241,Insertion,1_bp,Genic,4264,metH,Frameshift,136,1227
+,,,,,,,,,
+,,,,,,,,,
+Line42,433497,Deletion,5_bp,Intergenic,419,lon(9),Intergenic,hupB(200),Intergenic_5_bp_Deletion
+Line42,1183567,Deletion,1_bp,Intergenic,1198,ycfQ(100),Intergenic,ycfR(141),Intergenic_1_bp_Deletion
+Line42,1290471,Deletion,1_bp,Genic,1312,rssB,Frameshift,146,337
+Line42,2997462,Deletion,1_bp,Genic,3052,ECB_02798,Frameshift,41,300
+Line42,3029253,Deletion,1_bp,Intergenic,3085,kpsM(277),Intergenic,yghD(784),Intergenic_1_bp_Deletion
+Line42,3147784,Point_Mutation,G->A,Intergenic,3203,rpoD(8),Intergenic,ygjF(71),Intergenic_
+Line42,3326721,Insertion,3_bp,Genic,3389,mreD,In_Frame,-18,162
+Line42,3905040,Deletion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Deletion
+Line42,4156168,Deletion,3_bp,Genic,4227,rpoB,In_Frame,746,1342
+Line42,4161979,Point_Mutation,C->T,Genic,4228,rpoC,NonSynonymous A1315V,1315,1407
+,,,,,,,,,
+,,,,,,,,,
+Line43,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line43,1332142,Deletion,2_bp,Intergenic,1356,topA(85),Intergenic,cysB(125),Intergenic_2_bp_Deletion
+Line43,1670484,Deletion,9_bp,Genic,1712,uidB,In_Frame,-325,457
+Line43,2781139,Point_Mutation,T->C,Intergenic,2848,ygcM(26),Intergenic,ygcN(52),Intergenic_
+Line43,2844565,Point_Mutation,C->T,Genic,2911,argA,NonSynonymous R233W,233,443
+Line43,3014218,Insertion,8_bp,Genic,3072,kpsE,Frameshift,264,378
+Line43,3147061,Point_Mutation,G->A,Genic,3203,rpoD,NonSynonymous R397H,397,613
+Line43,3339255,Point_Mutation,A->G,Genic,3402,fis,NonSynonymous D29G,29,98
+Line43,3922447,Point_Mutation,A->G,Genic,3992,rho,NonSynonymous I386V,386,419
+Line43,4155645,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I572N,572,1342
+Line43,4431606,Point_Mutation,T->G,Genic,4488,fbp,NonSynonymous D110A,-110,332
+,,,,,,,,,
+,,,,,,,,,
+Line44,473924,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous V461G,-461,558
+Line44,798266,Insertion,1_bp,Genic,808,ECB_00739,Frameshift,-337,381
+Line44,1101027,Point_Mutation,G->T,Intergenic,1108,efeB(250),Intergenic,phoH(95),Intergenic_
+Line44,1305724,Large_Deletion,276_bp,Genic,1325,cls,Large_Deletion,276,1460
+Line44,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line44,2165564,Point_Mutation,C->T,Genic,2238,yehU,NonSynonymous G96S,-96,561
+Line44,2392359,Point_Mutation,G->T,Genic,2452,yfcN,NonSynonymous A52S,52,183
+Line44,2448496,IS_Insertion,IS4,Intergenic,2503,nupC(31),Intergenic,yfeA(19),Intergenic_IS_insertion
+Line44,3232675,Point_Mutation,T->G,Genic,3291,yraQ,NonSynonymous I236L,-236,346
+Line44,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line44,4266374,Point_Mutation,A->T,Intergenic,4328,nrfG(115),Intergenic,gltP(227),Intergenic_
+Line44,4340200,Point_Mutation,C->T,Intergenic,4393,aspA(260),Intergenic,fxsA(77),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line45,475161,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous G49S,-49,558
+Line45,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line45,1305551,Point_Mutation,A->T,Genic,1325,cls,NonSynonymous I230N,-230,486
+Line45,3488845,Point_Mutation,T->A,Genic,3570,glpR,NonSynonymous N124Y,-124,252
+Line45,3921676,Point_Mutation,A->G,Genic,3992,rho,NonSynonymous N129D,129,419
+Line45,4157658,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous M1243R,1243,1342
+Line45,4195695,Large_Deletion,580_bp,Genic,4264,metH,Large_Deletion,441,3683
+,,,,,,,,,
+,,,,,,,,,
+Line46,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line46,649601,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous I401V,-401,633
+Line46,2103897,Deletion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line46,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line46,3015186,Point_Mutation,A->T,Genic,3073,kpsD,NonSynonymous D200V,200,558
+Line46,3147785,Point_Mutation,G->T,Intergenic,3203,rpoD(7),Intergenic,ygjF(72),Intergenic_
+Line46,3339453,Point_Mutation,A->G,Genic,3402,fis,NonSynonymous Y95C,95,98
+Line46,3367993,Point_Mutation,C->T,Genic,3438,rpoA,NonSynonymous R317H,-317,329
+Line46,3497341,Point_Mutation,T->G,Genic,3577,glgP,NonSynonymous S235R,-235,815
+Line46,3905220,Deletion,15_bp,Genic,3975,ilvL,In_Frame,8,32
+Line46,4156164,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous E745A,745,1342
+,,,,,,,,,
+,,,,,,,,,
+Line47,430835,Point_Mutation,C->T,Intergenic,418,IS186_insL(108),Intergenic,lon(48),Intergenic_
+Line47,475301,Deletion,1_bp,Genic,458,ybaL,Frameshift,-2,558
+Line47,619107,Duplication_2_fold,14141_bp,Multigenic,611,ibrA,Multigenic,628,citC
+Line47,648086,Point_Mutation,T->G,Genic,645,mrdB,NonSynonymous E271A,-271,370
+Line47,1305551,Point_Mutation,A->T,Genic,1325,cls,NonSynonymous I230N,-230,486
+Line47,1886212,Point_Mutation,G->A,Genic,1940,ESCRE1901,NonSynonymous V25I,25,68
+Line47,1994864,Point_Mutation,A->C,Intergenic,2054,amn(1),Intergenic,yeeN(342),Intergenic_
+Line47,2816994,Point_Mutation,A->T,Intergenic,2880,ygdH(172),Intergenic,sdaC(385),Intergenic_
+Line47,4154220,Point_Mutation,G->T,Genic,4227,rpoB,NonSynonymous R97L,97,1342
+Line47,4156103,Point_Mutation,C->A,Genic,4227,rpoB,NonSynonymous Q725K,725,1342
+Line47,4464593,Point_Mutation,T->A,Genic,4518,yjgQ,NonSynonymous I325N,325,360
+,,,,,,,,,
+,,,,,,,,,
+Line48,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line48,649601,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous I401V,-401,633
+Line48,1266142,Point_Mutation,C->T,Genic,1283,prfA,Synonymous TAC to TAT,327,360
+Line48,1304883,Point_Mutation,A->G,Genic,1325,cls,NonSynonymous Y453H,-453,486
+Line48,1881187,Deletion,10_bp,Genic,1931,manX,Frameshift,185,323
+Line48,1886756,Point_Mutation,T->A,Intergenic,1941,ESCRE1902(91),Intergenic,yebO(299),Intergenic_
+Line48,2701221,Point_Mutation,T->G,Genic,2761,proW,NonSynonymous L151R,151,354
+Line48,3498021,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S8L,-8,815
+Line48,3895007,Insertion,1_bp,Intergenic,3963,hsrA_fragment(510),Intergenic,yieP(-487),Intergenic_1_bp_Insertion
+Line48,3953026,Point_Mutation,C->T,Genic,4027,uvrD,Synonymous GCC to GCT,44,720
+Line48,4155545,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous T539P,539,1342
+Line48,4156960,Deletion,9_bp,Genic,4227,rpoB,In_Frame,1010,1342
+Line48,4195707,Point_Mutation,T->C,Intergenic,4263,iclR(127),Intergenic,metH(73),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line51,649342,Point_Mutation,G->T,Genic,646,mrdA,NonSynonymous T487N,-487,633
+Line51,1303174,Large_Deletion,1633_bp,Multigenic,1322,oppD,Multigenic,1325,cls
+Line51,1332142,Deletion,1_bp,Intergenic,1356,topA(85),Intergenic,cysB(125),Intergenic_1_bp_Deletion
+Line51,2035632,Insertion,1_bp,Genic,2103,wbbD,Frameshift,-78,255
+Line51,2818079,Point_Mutation,C->A,Genic,2881,sdaC,NonSynonymous A305D,305,429
+Line51,3029142,Point_Mutation,T->C,Intergenic,3085,kpsM(388),Intergenic,yghD(673),Intergenic_
+Line51,3145831,Deletion,7_bp,Intergenic,3202,dnaG(41),Intergenic,rpoD(154),Intergenic_7_bp_Deletion
+Line51,3497391,Point_Mutation,T->A,Genic,3577,glgP,NonSynonymous Q218L,-218,815
+Line51,3600518,Point_Mutation,G->A,Genic,3671,treF,NonSynonymous G476E,476,549
+Line51,4101484,Point_Mutation,T->C,Genic,4177,metJ,NonSynonymous K32E,-32,105
+Line51,4160631,Point_Mutation,G->A,Genic,4228,rpoC,NonSynonymous E866K,866,1407
+Line51,4556182,Point_Mutation,G->A,Genic,4625,hsdR,Synonymous AGC to AGT,-993,1170
+Line51,4602088,IS_Insertion,IS1,Genic,4672,deoA,IS_insertion,68,440
+,,,,,,,,,
+,,,,,,,,,
+Line52,430835,Point_Mutation,C->T,Intergenic,418,IS186_insL(108),Intergenic,lon(48),Intergenic_
+Line52,474437,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous G290E,-290,558
+Line52,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line52,649520,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous N428D,-428,633
+Line52,1476356,Deletion,13_bp,Genic,1512,ydcN,Frameshift,25,178
+Line52,1610902,Point_Mutation,T->C,Intergenic,1641,cspI(322),Intergenic,ydfP(42),Intergenic_
+Line52,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line52,2298589,Insertion,3_bp,Genic,2358,glpT,In_Frame,-168,452
+Line52,2718733,Point_Mutation,A->G,Genic,2785,ygaD,NonSynonymous F161L,-161,165
+Line52,3570809,Deletion,1_bp,Genic,3644,uspA,Frameshift,1,144
+Line52,3905066,Insertion,1_bp,Intergenic,3974,yifB(131),Intergenic,ilvL(192),Intergenic_1_bp_Insertion
+Line52,4154181,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous E84G,84,1342
+Line52,4249661,Duplication_2_fold,34380_bp,Multigenic,4315,soxR,Multigenic,4341,rpiR
+,,,,,,,,,
+,,,,,,,,,
+Line53,296977,Point_Mutation,G->A,Genic,285,ykgG,NonSynonymous E191K,191,231
+Line53,475286,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous L7R,-7,558
+Line53,590476,Large_Deletion,28640_bp,Multigenic,586,hokE,Multigenic,611,ibrA
+Line53,650345,Point_Mutation,A->C,Genic,646,mrdA,NonSynonymous F153V,-153,633
+Line53,2298080,Deletion,9_bp,Genic,2358,glpT,In_Frame,-337,452
+Line53,3014068,Deletion,3_bp,Genic,3072,kpsE,In_Frame,214,378
+Line53,3228520,Large_Deletion,38_bp,Genic,3286,yraL,Large_Deletion,38,860
+Line53,3570732,IS_Insertion,IS150,Intergenic,3643,yhiO(76),Intergenic,uspA(315),Intergenic_IS_insertion
+Line53,3876082,Point_Mutation,T->C,Genic,3942,atpC,NonSynonymous D89G,-89,139
+Line53,4101731,Insertion,5_bp,Intergenic,4177,metJ(123),Intergenic,metB(154),Intergenic_5_bp_Insertion
+Line53,4159140,Point_Mutation,C->T,Genic,4228,rpoC,NonSynonymous P369S,369,1407
+,,,,,,,,,
+,,,,,,,,,
+Line54,474186,Point_Mutation,T->A,Genic,458,ybaL,NonSynonymous I374F,-374,558
+Line54,1305418,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-274,486
+Line54,1329281,Point_Mutation,C->G,Genic,1355,ESCRE1328,NonSynonymous S66*,66,70
+Line54,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line54,2360249,Point_Mutation,G->A,Genic,2415,pta,NonSynonymous V635I,635,714
+Line54,2897284,Point_Mutation,C->T,Genic,2956,yqeA,NonSynonymous Q21*,21,310
+Line54,3921334,Point_Mutation,A->T,Genic,3992,rho,NonSynonymous I15F,15,419
+Line54,4097054,Point_Mutation,T->A,Intergenic,4171,cytR(116),Intergenic,priA(40),Intergenic_
+Line54,4195171,Point_Mutation,G->A,Genic,4263,iclR,NonSynonymous P155L,-155,274
+Line54,4472724,Point_Mutation,C->T,Genic,4527,leuX,NonSynonymous S6L,6,28
+,,,,,,,,,
+,,,,,,,,,
+Line55,474603,Deletion,6_bp,Genic,458,ybaL,In_Frame,-235,558
+Line55,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line55,1886212,Point_Mutation,G->A,Genic,1940,ESCRE1901,NonSynonymous V25I,25,68
+Line55,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line55,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line55,2366607,Point_Mutation,A->G,Genic,2423,yfcI,NonSynonymous L178S,-178,296
+Line55,2967972,Point_Mutation,G->A,Genic,3019,yggG,NonSynonymous A101T,101,252
+Line55,3252020,Point_Mutation,G->A,Genic,3312,nusA,NonSynonymous A250V,-250,495
+Line55,4155545,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous T539P,539,1342
+Line55,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line55,4186759,Point_Mutation,A->G,Intergenic,4256,yjaB(41),Intergenic,metA(116),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line56,92879,Point_Mutation,C->T,Genic,86,mraZ,NonSynonymous Q148*,148,152
+Line56,433524,Point_Mutation,A->T,Genic,420,hupB,NonSynonymous I7F,7,90
+Line56,1305479,Point_Mutation,A->C,Genic,1325,cls,NonSynonymous V254G,-254,486
+Line56,3021982,Deletion,1_bp,Genic,3078,ECB_02821,Frameshift,-237,379
+Line56,3145734,Point_Mutation,G->A,Intergenic,3202,dnaG(138),Intergenic,rpoD(57),Intergenic_
+Line56,3570961,Point_Mutation,G->T,Genic,3644,uspA,NonSynonymous D52Y,52,144
+Line56,3872893,Point_Mutation,G->T,Genic,3940,glmS,NonSynonymous R384S,-384,609
+Line56,4090638,Deletion,4_bp,Genic,4164,glpF,Frameshift,-4,281
+Line56,4155644,Point_Mutation,A->T,Genic,4227,rpoB,NonSynonymous I572F,572,1342
+,,,,,,,,,
+,,,,,,,,,
+Line57,474486,Point_Mutation,T->C,Genic,458,ybaL,NonSynonymous T274A,-274,558
+Line57,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line57,980314,Point_Mutation,A->C,Genic,994,rpsA,NonSynonymous K410Q,410,557
+Line57,2563628,Insertion,4_bp,Genic,2620,yfgA,Frameshift,-15,337
+Line57,3145777,Point_Mutation,C->T,Intergenic,3202,dnaG(95),Intergenic,rpoD(100),Intergenic_
+Line57,3842759,Point_Mutation,A->C,Genic,3912,dnaA,NonSynonymous L447W,-447,467
+Line57,4155044,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous P372S,372,1342
+Line57,4195019,Deletion,1_bp,Genic,4263,iclR,Frameshift,-206,274
+Line57,4275520,Point_Mutation,C->T,Genic,4334,yjcR,NonSynonymous A163T,-163,343
+Line57,4480301,Point_Mutation,A->G,Genic,4540,yjhC,Synonymous TTA to TTG,16,372
+,,,,,,,,,
+,,,,,,,,,
+Line58,990162,Point_Mutation,T->G,Genic,1003,ycbC,NonSynonymous E111A,-111,259
+Line58,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+Line58,1893848,Point_Mutation,A->C,Genic,1949,proQ,NonSynonymous L91R,-91,232
+Line58,2103896,Deletion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line58,2105116,Deletion,1_bp,Intergenic,2168,ECB_01993(143),Intergenic,ECB_01994(69),Intergenic_1_bp_Deletion
+Line58,2114852,Deletion,1_bp,Genic,2177,ECB_02002,Frameshift,-65,121
+Line58,3270453,IS_Insertion,IS150,Intergenic,3332,sfsB(25),Intergenic,murA(23),Intergenic_IS_insertion
+Line58,3571133,Duplication_2_fold,72304_bp,Multigenic,3644,uspA,Multigenic,3708,yhjY
+Line58,3612979,Point_Mutation,T->C,Intergenic,3681,dctA(151),Intergenic,yhjK(32),Intergenic_
+Line58,3921858,Point_Mutation,G->T,Genic,3992,rho,NonSynonymous Q189H,189,419
+Line58,4093899,Point_Mutation,A->T,Genic,4168,hslU,NonSynonymous I136N,-136,443
+,,,,,,,,,
+,,,,,,,,,
+Line59,17340,Point_Mutation,T->C,Intergenic,17,mokC(148),Intergenic,nhaA(382),Intergenic_
+Line59,474805,Deletion,1_bp,Genic,458,ybaL,Frameshift,-167,558
+Line59,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line59,649991,Point_Mutation,C->T,Genic,646,mrdA,NonSynonymous A271T,-271,633
+Line59,1609130,Point_Mutation,A->C,Genic,1636,IS3_insF,NonSynonymous K285Q,285,288
+Line59,1886200,Point_Mutation,A->C,Genic,1940,ESCRE1901,NonSynonymous N21H,21,68
+Line59,2968642,Point_Mutation,G->A,Genic,3020,speB,Synonymous GGC to GGT,-305,306
+Line59,3014088,Deletion,6_bp,Genic,3072,kpsE,In_Frame,221,378
+Line59,3414333,Point_Mutation,A->C,Genic,3503,crp,NonSynonymous K101Q,101,210
+Line59,3883151,Deletion,1_bp,Intergenic,3950,atpI(281),Intergenic,gidB(336),Intergenic_1_bp_Deletion
+Line59,4154358,Point_Mutation,G->T,Genic,4227,rpoB,NonSynonymous R143L,143,1342
+Line59,4187440,Point_Mutation,C->T,Genic,4257,metA,NonSynonymous T214M,214,309
+Line59,4195678,Point_Mutation,A->G,Intergenic,4263,iclR(156),Intergenic,metH(44),Intergenic_
+Line59,4342410,Point_Mutation,T->A,Intergenic,4395,yjeH(74),Intergenic,groS(202),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line60,474837,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous E157K,-157,558
+Line60,1305418,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-274,486
+Line60,2358417,Point_Mutation,T->A,Genic,2415,pta,NonSynonymous I24N,24,714
+Line60,2665437,Deletion,1_bp,Genic,2719,yfiB,Frameshift,133,160
+Line60,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line60,4090209,Point_Mutation,G->A,Genic,4164,glpF,NonSynonymous Q147*,-147,281
+Line60,4195457,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous T60P,-60,274
+,,,,,,,,,
+,,,,,,,,,
+Line61,474455,Point_Mutation,A->G,Genic,458,ybaL,NonSynonymous L284P,-284,558
+Line61,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+Line61,2619395,Point_Mutation,C->A,Intergenic,2670,tadA(20),Intergenic,yfhB(5),Intergenic_
+Line61,2625097,Point_Mutation,G->T,Genic,2679,rnc,NonSynonymous P156Q,-156,226
+Line61,3247306,Point_Mutation,A->G,Genic,3309,truB,Synonymous GAT to GAC,-238,314
+Line61,3259215,Point_Mutation,G->A,Genic,3320,glmM,NonSynonymous A33V,-33,445
+Line61,3465155,Point_Mutation,T->A,Genic,3553,ompR,NonSynonymous D41V,-41,239
+Line61,3497979,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous A22V,-22,815
+Line61,3922022,Point_Mutation,A->G,Genic,3992,rho,NonSynonymous E244G,244,419
+Line61,4090299,Point_Mutation,G->A,Genic,4164,glpF,NonSynonymous Q117*,-117,281
+Line61,4155644,Point_Mutation,A->T,Genic,4227,rpoB,NonSynonymous I572F,572,1342
+Line61,4194883,Large_Deletion,3658_bp,Multigenic,4263,iclR,Multigenic,4264,metH
+,,,,,,,,,
+,,,,,,,,,
+Line64,124866,Point_Mutation,A->G,Intergenic,115,aroP(30),Intergenic,pdhR(511),Intergenic_
+Line64,474374,Insertion,9_bp,Genic,458,ybaL,In_Frame,-311,558
+Line64,649991,Point_Mutation,C->T,Genic,646,mrdA,NonSynonymous A271T,-271,633
+Line64,2165458,Point_Mutation,C->A,Genic,2238,yehU,NonSynonymous R131L,-131,561
+Line64,2299039,Insertion,7_bp,Genic,2358,glpT,Frameshift,-18,452
+Line64,2490671,Deletion,16_bp,Genic,2553,eutJ,Frameshift,-168,278
+Line64,2740362,Point_Mutation,G->A,Genic,2806,hycE,Synonymous GGC to GGT,-326,569
+Line64,3014067,Deletion,3_bp,Genic,3072,kpsE,In_Frame,214,378
+Line64,3145995,Point_Mutation,G->A,Genic,3203,rpoD,NonSynonymous E42K,42,613
+Line64,3279271,Point_Mutation,G->A,Genic,3345,lptB,NonSynonymous G29R,29,241
+Line64,3697083,Large_Deletion,1256_bp,Genic,3761,rhsA,Large_Deletion,1256,4133
+Line64,4156824,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous Q965P,965,1342
+,,,,,,,,,
+,,,,,,,,,
+Line65,649069,Point_Mutation,G->A,Genic,646,mrdA,NonSynonymous A578V,-578,633
+Line65,1305551,Point_Mutation,A->G,Genic,1325,cls,NonSynonymous I230T,-230,486
+Line65,1540084,Point_Mutation,A->G,Genic,1571,yddV,NonSynonymous I219T,-219,347
+Line65,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line65,3022026,Point_Mutation,C->T,Genic,3078,ECB_02821,NonSynonymous A223T,-223,379
+Line65,3145715,Point_Mutation,C->T,Intergenic,3202,dnaG(157),Intergenic,rpoD(38),Intergenic_
+Line65,3464469,Point_Mutation,T->G,Genic,3552,envZ,NonSynonymous Y31S,-31,450
+Line65,3497988,Point_Mutation,T->C,Genic,3577,glgP,NonSynonymous H19R,-19,815
+Line65,3776370,Point_Mutation,T->G,Genic,3837,ECB_03516,NonSynonymous I235M,235,394
+Line65,3905220,Deletion,15_bp,Genic,3975,ilvL,In_Frame,8,32
+Line65,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line65,4195601,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous K12Q,-12,274
+,,,,,,,,,
+,,,,,,,,,
+Line66,99763,Point_Mutation,C->A,Genic,92,mraY,NonSynonymous R320S,320,360
+Line66,433621,IS_Insertion,IS186,Genic,420,hupB,IS_insertion,39,90
+Line66,1104916,Point_Mutation,A->T,Genic,1112,pgaB,NonSynonymous D409E,-409,672
+Line66,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+Line66,1619870,IS_Insertion,IS150,Intergenic,1656,hokD(506),Intergenic,ECB_01534(107),Intergenic_IS_insertion
+Line66,1976790,IS_Insertion,IS150,Genic,2040,yedW,IS_insertion,-14,223
+Line66,3021895,Deletion,1_bp,Genic,3078,ECB_02821,Frameshift,-266,379
+Line66,3145940,Point_Mutation,C->T,Genic,3203,rpoD,Synonymous ACC to ACT,23,613
+Line66,3498012,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous T11M,-11,815
+Line66,3652563,IS_Insertion,IS150,Intergenic,3719,IS150_insK(231),Intergenic,glyS(48),Intergenic_IS_insertion
+Line66,3921908,Point_Mutation,T->C,Genic,3992,rho,NonSynonymous V206A,206,419
+Line66,4161331,Point_Mutation,A->C,Genic,4228,rpoC,NonSynonymous Y1099S,1099,1407
+Line66,4195233,Point_Mutation,A->C,Genic,4263,iclR,NonSynonymous I134M,-134,274
+,,,,,,,,,
+,,,,,,,,,
+Line67,761801,Large_Deletion,304_bp,Multigenic,763,ESCRE0748,Multigenic,766,ESCRE0749
+Line67,1290641,Point_Mutation,C->A,Genic,1312,rssB,NonSynonymous C202*,202,337
+Line67,1306133,Point_Mutation,G->T,Genic,1325,cls,NonSynonymous S36Y,-36,486
+Line67,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line67,2175234,Insertion,1_bp,Genic,2247,pbpG,Frameshift,-295,310
+Line67,3489227,Point_Mutation,G->A,Intergenic,3570,glpR(4),Intergenic,glpG(13),Intergenic_
+Line67,3497953,Point_Mutation,T->G,Genic,3577,glgP,NonSynonymous K31Q,-31,815
+Line67,3570284,Point_Mutation,T->C,Genic,3643,yhiO,NonSynonymous D45G,-45,111
+Line67,3921916,Point_Mutation,A->T,Genic,3992,rho,NonSynonymous I209F,209,419
+Line67,4156803,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous K958R,958,1342
+,,,,,,,,,
+,,,,,,,,,
+Line68,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line68,645855,Point_Mutation,A->G,Genic,643,dacA,NonSynonymous L231S,-231,403
+Line68,1305693,Point_Mutation,C->A,Genic,1325,cls,NonSynonymous G183W,-183,486
+Line68,1821490,IS_Insertion,IS150,Genic,1870,ynjI,IS_insertion,-206,346
+Line68,2100315,Large_Deletion,22124_bp,Multigenic,2161,ogrK,Multigenic,2190,ECB_02013
+Line68,2199014,Insertion,9_bp,Genic,2272,lysP,In_Frame,-255,489
+Line68,2762222,Point_Mutation,A->G,Genic,2827,rpoS,NonSynonymous Y67H,-67,330
+Line68,3351146,Duplication_2_fold,76613_bp,Multigenic,3414,ESCRE3333,Multigenic,3515,yhfL
+Line68,3881545,Point_Mutation,T->G,Genic,3948,atpE,NonSynonymous D7A,-7,79
+Line68,3905066,Insertion,1_bp,Intergenic,3974,yifB(131),Intergenic,ilvL(192),Intergenic_1_bp_Insertion
+Line68,4160509,Point_Mutation,T->C,Genic,4228,rpoC,NonSynonymous V825A,825,1407
+Line68,4180495,Duplication_2_fold,37359_bp,Multigenic,4252,rrsE,Multigenic,4282,malE
+Line68,4266374,Point_Mutation,A->T,Intergenic,4328,nrfG(115),Intergenic,gltP(227),Intergenic_
+Line68,4435078,Point_Mutation,C->A,Genic,4491,pmbA,NonSynonymous A265E,265,450
+,,,,,,,,,
+,,,,,,,,,
+Line69,473924,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous V461G,-461,558
+Line69,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line69,795315,Insertion,1_bp,Intergenic,805,ECB_00736(22),Intergenic,ECB_00737(20),Intergenic_1_bp_Insertion
+Line69,1941969,IS_Insertion,IS186,Genic,2000,flhA,IS_insertion,-620,692
+Line69,2100315,Large_Deletion,22124_bp,Multigenic,2161,ogrK,Multigenic,2190,ECB_02013
+Line69,2562723,Point_Mutation,G->A,Genic,2620,yfgA,NonSynonymous R317C,-317,337
+Line69,3015777,IS_Insertion,IS150,Genic,3073,kpsD,IS_insertion,397,558
+Line69,3339061,Deletion,5_bp,Genic,3401,dusB,Frameshift,295,321
+Line69,3488904,Point_Mutation,T->G,Genic,3570,glpR,NonSynonymous E104A,-104,252
+Line69,3905040,Deletion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Deletion
+Line69,4156164,Point_Mutation,A->T,Genic,4227,rpoB,NonSynonymous E745V,745,1342
+Line69,4157920,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I1330M,1330,1342
+Line69,4255996,Point_Mutation,C->T,Genic,4319,actP,NonSynonymous M305I,-305,549
+Line69,4268619,Point_Mutation,T->C,Genic,4330,yjcO,NonSynonymous D135G,-135,229
+,,,,,,,,,
+,,,,,,,,,
+Line70,305821,Point_Mutation,T->G,Genic,293,yahA,NonSynonymous Y268D,268,362
+Line70,475145,Deletion,13_bp,Genic,458,ybaL,Frameshift,-54,558
+Line70,1290852,Large_Deletion,92_bp,Genic,1312,rssB,Large_Deletion,92,1013
+Line70,1882915,Point_Mutation,T->G,Genic,1933,manZ,NonSynonymous L148*,148,286
+Line70,2362396,Insertion,3_bp,Genic,2417,yfcD,In_Frame,-127,180
+Line70,2478079,Point_Mutation,C->T,Genic,2540,yfeY,NonSynonymous M173I,-173,191
+Line70,2904109,Deletion,3_bp,Genic,2961,ygfK,In_Frame,763,1032
+Line70,3842816,Point_Mutation,G->A,Genic,3912,dnaA,NonSynonymous A428V,-428,467
+Line70,3921458,Point_Mutation,A->C,Genic,3992,rho,NonSynonymous E56A,56,419
+Line70,4090428,Insertion,25_bp,Genic,4164,glpF,Frameshift,-74,281
+Line70,4148028,Point_Mutation,T->A,Intergenic,4214,coaA(46),Intergenic,thrU(316),Intergenic_
+Line70,4156971,Point_Mutation,T->C,Genic,4227,rpoB,NonSynonymous L1014P,1014,1342
+,,,,,,,,,
+,,,,,,,,,
+Line71,590476,Large_Deletion,28640_bp,Multigenic,586,hokE,Multigenic,611,ibrA
+Line71,664684,Insertion,1_bp,Genic,662,gltL,Frameshift,-1,122
+Line71,1305155,Point_Mutation,A->C,Genic,1325,cls,NonSynonymous V362G,-362,486
+Line71,1690714,Insertion,2_bp,Genic,1732,ydgR,Frameshift,251,500
+Line71,1886243,Point_Mutation,C->A,Genic,1940,ESCRE1901,NonSynonymous P35Q,35,68
+Line71,2781699,Point_Mutation,A->T,Genic,2849,ygcN,NonSynonymous I179F,179,423
+Line71,3252024,Point_Mutation,C->T,Genic,3312,nusA,NonSynonymous G249S,-249,495
+Line71,3328112,Point_Mutation,A->G,Genic,3392,mreB,NonSynonymous V292A,-292,347
+Line71,3905040,Deletion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Deletion
+Line71,4090048,Point_Mutation,A->C,Genic,4164,glpF,NonSynonymous F200L,-200,281
+Line71,4156527,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous D866G,866,1342
+,,,,,,,,,
+,,,,,,,,,
+Line72,474392,Deletion,9_bp,Genic,458,ybaL,In_Frame,-305,558
+Line72,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line72,650773,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous Y10C,-10,633
+Line72,977118,Point_Mutation,T->A,Genic,991,aroA,NonSynonymous D405E,405,427
+Line72,2298776,Deletion,3_bp,Genic,2358,glpT,In_Frame,-105,452
+Line72,3015777,IS_Insertion,IS150,Genic,3073,kpsD,IS_insertion,397,558
+Line72,3499806,Point_Mutation,T->G,Genic,3579,glgC,NonSynonymous T329P,-329,431
+Line72,3613031,Point_Mutation,A->C,Intergenic,3681,dctA(99),Intergenic,yhjK(84),Intergenic_
+Line72,3905073,Point_Mutation,C->A,Intergenic,3974,yifB(124),Intergenic,ilvL(199),Intergenic_
+Line72,4154180,Point_Mutation,G->A,Genic,4227,rpoB,NonSynonymous E84K,84,1342
+,,,,,,,,,
+,,,,,,,,,
+Line73,475640,Point_Mutation,T->G,Genic,459,fsr,NonSynonymous D375A,-375,406
+Line73,1305676,Deletion,1_bp,Genic,1325,cls,Frameshift,-188,486
+Line73,1329919,Point_Mutation,C->T,Genic,1356,topA,NonSynonymous A167V,167,865
+Line73,1573659,Point_Mutation,A->C,Genic,1598,lsrG,NonSynonymous D39A,39,96
+Line73,1588754,Point_Mutation,A->C,Genic,1615,eamA,NonSynonymous F50L,-50,299
+Line73,2114852,Deletion,1_bp,Genic,2177,ECB_02002,Frameshift,-65,121
+Line73,2686835,Point_Mutation,C->T,Genic,2744,gabD,NonSynonymous A292V,292,482
+Line73,3268816,Deletion,1_bp,Intergenic,3330,rplU(136),Intergenic,ispB(123),Intergenic_1_bp_Deletion
+Line73,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line73,4127841,Deletion,4_bp,Intergenic,4195,argE(96),Intergenic,argC(58),Intergenic_4_bp_Deletion
+Line73,4195009,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous Y209S,-209,274
+Line73,4513133,Point_Mutation,T->C,Intergenic,4581,yjhA(1037),Intergenic,fimB(419),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line74,649489,Point_Mutation,C->A,Genic,646,mrdA,NonSynonymous R438L,-438,633
+Line74,1290813,Point_Mutation,C->T,Genic,1312,rssB,NonSynonymous Q260*,260,337
+Line74,1304523,Large_Deletion,367_bp,Multigenic,1324,yciU,Multigenic,1325,cls
+Line74,1444490,Point_Mutation,A->C,Genic,1479,ydbD,Synonymous AGG to CGG,5,768
+Line74,3145973,Point_Mutation,T->C,Genic,3203,rpoD,Synonymous GAT to GAC,34,613
+Line74,3351146,Duplication_2_fold,82090_bp,Multigenic,3414,ESCRE3333,Multigenic,3521,yhfS
+Line74,3401031,Deletion,1_bp,Genic,3484,fusA,Frameshift,-133,704
+Line74,3477930,Point_Mutation,A->C,Genic,3564,malQ,NonSynonymous V250G,-250,694
+Line74,3499719,Point_Mutation,A->C,Genic,3579,glgC,NonSynonymous S358A,-358,431
+Line74,3893558,Insertion,3_bp,Intergenic,3960,trkD(52),Intergenic,IS150_insJ(4),Intergenic_3_bp_Insertion
+Line74,4160533,Point_Mutation,A->G,Genic,4228,rpoC,NonSynonymous E833G,833,1407
+Line74,4180495,Duplication_2_fold,274693_bp,Multigenic,4252,rrsE,Multigenic,4511,yjgM
+Line74,4247816,Point_Mutation,T->G,Genic,4311,yjcC,NonSynonymous V113G,113,311
+Line74,4456065,Point_Mutation,T->A,Genic,4512,yjgN,NonSynonymous F76L,76,398
+,,,,,,,,,
+,,,,,,,,,
+Line75,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line75,1182792,Point_Mutation,A->G,Intergenic,1197,ycfJ(2),Intergenic,ycfQ(60),Intergenic_
+Line75,1345206,Deletion,2_bp,Intergenic,1371,gmr(141),Intergenic,rnb(94),Intergenic_2_bp_Deletion
+Line75,2610819,Point_Mutation,C->T,Genic,2663,yfhK,Synonymous CCG to CCA,-329,475
+Line75,3028244,Deletion,1_bp,Genic,3085,kpsM,Frameshift,-76,258
+Line75,3145980,Point_Mutation,G->A,Genic,3203,rpoD,NonSynonymous D37N,37,613
+Line75,3328959,Point_Mutation,A->G,Genic,3392,mreB,NonSynonymous S10P,-10,347
+Line75,3498018,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S9L,-9,815
+Line75,3905061,Deletion,1_bp,Intergenic,3974,yifB(136),Intergenic,ilvL(187),Intergenic_1_bp_Deletion
+Line75,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+,,,,,,,,,
+,,,,,,,,,
+Line76,474391,Large_Deletion,210_bp,Genic,458,ybaL,Large_Deletion,210,1676
+Line76,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line76,1305306,Large_Deletion,641_bp,Genic,1325,cls,Large_Deletion,641,1460
+Line76,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line76,3489371,Deletion,1_bp,Genic,3571,glpG,Frameshift,-231,276
+Line76,3921379,Point_Mutation,C->T,Genic,3992,rho,NonSynonymous R30C,30,419
+Line76,4195598,Insertion,2_bp,Genic,4263,iclR,Frameshift,-13,274
+,,,,,,,,,
+,,,,,,,,,
+Line77,350174,Point_Mutation,C->T,Genic,332,frmB,NonSynonymous A185T,-185,277
+Line77,474205,Deletion,1_bp,Genic,458,ybaL,Frameshift,-367,558
+Line77,1004196,Point_Mutation,T->A,Intergenic,1012,ompF(480),Intergenic,asnS(122),Intergenic_
+Line77,1305298,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-314,486
+Line77,1332142,Insertion,1_bp,Intergenic,1356,topA(85),Intergenic,cysB(125),Intergenic_1_bp_Insertion
+Line77,1949219,Point_Mutation,G->A,Genic,2006,tap,NonSynonymous Q182*,-182,533
+Line77,2141336,Deletion,1_bp,Genic,2215,ESCRE2157,Frameshift,-14,54
+Line77,2268968,Point_Mutation,T->G,Genic,2338,atoC,NonSynonymous L132R,132,461
+Line77,3145777,Point_Mutation,C->T,Intergenic,3202,dnaG(95),Intergenic,rpoD(100),Intergenic_
+Line77,3613049,Insertion,2_bp,Intergenic,3681,dctA(81),Intergenic,yhjK(102),Intergenic_2_bp_Insertion
+Line77,3633659,Point_Mutation,T->C,Genic,3699,dppD,NonSynonymous E219G,-219,327
+Line77,4094852,Point_Mutation,A->C,Intergenic,4169,hslV(86),Intergenic,ftsN(7),Intergenic_
+Line77,4155645,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I572N,572,1342
+Line77,4195079,Point_Mutation,A->G,Genic,4263,iclR,NonSynonymous Y186H,-186,274
+Line77,4210608,Duplication_2_fold,12906_bp,Multigenic,4276,yjbH,Multigenic,4287,yjbI
+,,,,,,,,,
+,,,,,,,,,
+Line78,475241,Point_Mutation,C->A,Genic,458,ybaL,NonSynonymous G22V,-22,558
+Line78,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line78,1299003,Large_Deletion,5818_bp,Multigenic,1319,oppA,Multigenic,1325,cls
+Line78,2045641,IS_Insertion,IS1,Genic,2114,rmlB,IS_insertion,-220,361
+Line78,3285892,Point_Mutation,G->A,Genic,3354,ECB_misc_RNA_7,RNA,73,108
+Line78,3570917,Point_Mutation,T->A,Genic,3644,uspA,NonSynonymous I37N,37,144
+Line78,3612972,Deletion,4_bp,Intergenic,3681,dctA(158),Intergenic,yhjK(25),Intergenic_4_bp_Deletion
+Line78,3921982,Point_Mutation,A->G,Genic,3992,rho,NonSynonymous T231A,231,419
+Line78,4162105,Point_Mutation,T->C,Genic,4228,rpoC,NonSynonymous I1357T,1357,1407
+,,,,,,,,,
+,,,,,,,,,
+Line79,450008,Point_Mutation,A->T,Genic,437,ylaB,NonSynonymous I226N,-226,516
+Line79,474706,Insertion,15_bp,Genic,458,ybaL,In_Frame,-200,558
+Line79,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line79,1289459,Large_Deletion,612_bp,Multigenic,1311,rssA,Multigenic,1312,rssB
+Line79,1305392,Point_Mutation,T->C,Genic,1325,cls,NonSynonymous E283G,-283,486
+Line79,1591144,Point_Mutation,T->C,Genic,1617,ydeH,NonSynonymous N158S,-158,296
+Line79,1606574,Duplication_2_fold,6345_bp,Multigenic,1634,ECB_01510,Multigenic,1644,ECB_01520
+Line79,2222519,Point_Mutation,C->T,Genic,2295,rtn,NonSynonymous R200C,200,518
+Line79,2520689,Deletion,1_bp,Intergenic,2579,dapA(53),Intergenic,gcvR(93),Intergenic_1_bp_Deletion
+Line79,3905039,Point_Mutation,A->T,Intergenic,3974,yifB(158),Intergenic,ilvL(165),Intergenic_
+Line79,3905040,Point_Mutation,A->T,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_
+Line79,3921291,Insertion,9_bp,Intergenic,3991,rhoL(1),Intergenic,rho(84),Intergenic_9_bp_Insertion
+Line79,4089764,Deletion,1_bp,Genic,4163,glpK,Frameshift,-6,502
+Line79,4159152,Point_Mutation,G->A,Genic,4228,rpoC,NonSynonymous A373T,373,1407
+Line79,4195613,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous K8Q,-8,274
+,,,,,,,,,
+,,,,,,,,,
+Line80,474358,Deletion,1_bp,Genic,458,ybaL,Frameshift,-316,558
+Line80,619107,Duplication_2_fold,14141_bp,Multigenic,611,ibrA,Multigenic,628,citC
+Line80,795315,Deletion,1_bp,Intergenic,805,ECB_00736(22),Intergenic,ECB_00737(20),Intergenic_1_bp_Deletion
+Line80,1305474,Deletion,1_bp,Genic,1325,cls,Frameshift,-256,486
+Line80,1451762,Point_Mutation,T->A,Genic,1484,azoR,NonSynonymous I144F,-144,201
+Line80,2359382,Point_Mutation,T->C,Genic,2415,pta,NonSynonymous F346L,346,714
+Line80,3292293,Point_Mutation,A->G,Genic,3357,gltB,NonSynonymous K807E,807,1517
+Line80,3497701,Point_Mutation,C->T,Genic,3577,glgP,NonSynonymous E115K,-115,815
+Line80,3922013,Point_Mutation,A->T,Genic,3992,rho,NonSynonymous Q241L,241,419
+Line80,4195692,Deletion,1_bp,Intergenic,4263,iclR(142),Intergenic,metH(58),Intergenic_1_bp_Deletion
+Line80,4266374,Point_Mutation,A->T,Intergenic,4328,nrfG(115),Intergenic,gltP(227),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line81,474489,Deletion,2_bp,Genic,458,ybaL,Frameshift,-273,558
+Line81,1302689,Large_Deletion,3193_bp,Multigenic,1322,oppD,Multigenic,1325,cls
+Line81,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line81,3957081,Point_Mutation,G->A,Intergenic,4029,yigE(150),Intergenic,corA(220),Intergenic_
+Line81,4090261,Deletion,2_bp,Genic,4164,glpF,Frameshift,-129,281
+Line81,4185626,Deletion,1_bp,Intergenic,4254,rrlE(162),Intergenic,rrfE(25),Intergenic_1_bp_Deletion
+Line81,4195457,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous T60P,-60,274
+,,,,,,,,,
+,,,,,,,,,
+Line82,318568,Point_Mutation,T->C,Genic,306,yahN,Synonymous CAA to CAG,-140,223
+Line82,1304826,Point_Mutation,G->A,Genic,1325,cls,NonSynonymous Q472*,-472,486
+Line82,1689706,Deletion,1_bp,Intergenic,1731,nth(257),Intergenic,ydgR(354),Intergenic_1_bp_Deletion
+Line82,2511645,Point_Mutation,A->G,Intergenic,2569,acrD(438),Intergenic,yffB(101),Intergenic_
+Line82,3531187,Point_Mutation,A->C,Genic,3610,rpoH,NonSynonymous V97G,-97,284
+Line82,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line82,4090107,Insertion,11_bp,Genic,4164,glpF,Frameshift,-181,281
+Line82,4173275,Point_Mutation,T->G,Genic,4246,yjaH,NonSynonymous V8G,8,231
+Line82,4397130,Point_Mutation,T->A,Genic,4458,rpsR,NonSynonymous I21N,21,75
+,,,,,,,,,
+,,,,,,,,,
+Line83,474210,Deletion,2_bp,Genic,458,ybaL,Frameshift,-366,558
+Line83,647840,Point_Mutation,A->G,Genic,645,mrdB,NonSynonymous F353S,-353,370
+Line83,1303071,Large_Deletion,1757_bp,Multigenic,1322,oppD,Multigenic,1325,cls
+Line83,1454614,Point_Mutation,T->G,Genic,1485,hrpA,NonSynonymous D722E,722,1281
+Line83,1920716,Point_Mutation,G->A,Genic,1978,znuA,NonSynonymous A151V,-151,310
+Line83,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line83,2336062,Point_Mutation,G->A,Genic,2395,nuoM,NonSynonymous A171V,-171,509
+Line83,2358417,Point_Mutation,T->A,Genic,2415,pta,NonSynonymous I24N,24,714
+Line83,2409848,Insertion,1_bp,Genic,2472,yfdC,Frameshift,33,310
+Line83,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line83,4195276,Deletion,1_bp,Genic,4263,iclR,Frameshift,-120,274
+,,,,,,,,,
+,,,,,,,,,
+Line84,681881,Point_Mutation,T->A,Genic,687,nagD,NonSynonymous I181F,-181,250
+Line84,1299878,Large_Deletion,6195_bp,Multigenic,1319,oppA,Multigenic,1325,cls
+Line84,1356628,Point_Mutation,C->T,Genic,1383,puuP,NonSynonymous A310T,-310,461
+Line84,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line84,3007377,Point_Mutation,A->T,Genic,3059,ECB_02804,NonSynonymous L154*,-154,303
+Line84,3252017,Point_Mutation,C->A,Genic,3312,nusA,NonSynonymous C251F,-251,495
+Line84,3512490,Insertion,6_bp,Intergenic,3590,ECB_misc_RNA_47(109),Intergenic,yhhY(25),Intergenic_6_bp_Insertion
+Line84,3555903,Point_Mutation,C->A,Genic,3634,IS5_ESec3,NonSynonymous P277Q,277,378
+Line84,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line84,4195267,Insertion,1_bp,Genic,4263,iclR,Frameshift,-123,274
+,,,,,,,,,
+,,,,,,,,,
+Line85,426675,Point_Mutation,A->C,Genic,414,tig,NonSynonymous S280R,280,432
+Line85,474233,Deletion,4_bp,Genic,458,ybaL,Frameshift,-358,558
+Line85,1306035,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-69,486
+Line85,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line85,2558232,Point_Mutation,G->A,Intergenic,2614,der(69),Intergenic,yfgL(49),Intergenic_
+Line85,3921668,Point_Mutation,A->T,Genic,3992,rho,NonSynonymous N126I,126,419
+Line85,4101570,Point_Mutation,T->G,Genic,4177,metJ,NonSynonymous E3A,-3,105
+Line85,4132063,Point_Mutation,C->T,Genic,4200,oxyR,NonSynonymous A213V,213,305
+Line85,4157172,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous P1081L,1081,1342
+,,,,,,,,,
+,,,,,,,,,
+Line86,433771,Point_Mutation,T->A,Genic,420,hupB,NonSynonymous V89E,89,90
+Line86,783391,Point_Mutation,G->A,Genic,790,ybhI,Synonymous GGG to GGA,292,477
+Line86,3013376,IS_Insertion,IS150,Intergenic,3071,kpsF(52),Intergenic,kpsE(32),Intergenic_IS_insertion
+Line86,3145830,Point_Mutation,C->A,Intergenic,3202,dnaG(42),Intergenic,rpoD(153),Intergenic_
+Line86,3328109,Point_Mutation,A->G,Genic,3392,mreB,NonSynonymous L293P,-293,347
+Line86,3346932,Point_Mutation,G->A,Intergenic,3409,ESCRE3328(117),Intergenic,aapJ(20),Intergenic_
+Line86,4157172,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous P1081L,1081,1342
+,,,,,,,,,
+,,,,,,,,,
+Line87,474100,Deletion,15_bp,Genic,458,ybaL,In_Frame,-402,558
+Line87,547700,Large_Deletion,21148_bp,Multigenic,541,ECB_00503,Multigenic,563,IS5_ISEC3
+Line87,1305482,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-253,486
+Line87,1609176,Large_Deletion,6249_bp,Multigenic,1637,ECB_01513,Multigenic,1647,ECB_01523
+Line87,1645442,Point_Mutation,G->A,Genic,1689,dgsA,Synonymous AGC to AGT,-106,406
+Line87,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line87,4195479,Point_Mutation,T->G,Genic,4263,iclR,NonSynonymous Q52H,-52,274
+Line87,4397105,Point_Mutation,T->A,Genic,4458,rpsR,NonSynonymous F13I,13,75
+,,,,,,,,,
+,,,,,,,,,
+Line89,398585,Point_Mutation,C->A,Genic,382,secF,NonSynonymous R220S,220,323
+Line89,422593,Insertion,1_bp,Intergenic,409,cyoA(182),Intergenic,ampG(280),Intergenic_1_bp_Insertion
+Line89,716026,Point_Mutation,T->C,Intergenic,717,ybfC(133),Intergenic,ECB_00662(63),Intergenic_
+Line89,3250040,Point_Mutation,G->A,Genic,3311,infB,NonSynonymous S406F,-406,890
+Line89,3489224,Point_Mutation,C->T,Intergenic,3570,glpR(7),Intergenic,glpG(10),Intergenic_
+Line89,3921511,Point_Mutation,G->A,Genic,3992,rho,NonSynonymous A74T,74,419
+Line89,4155545,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous T539P,539,1342
+Line89,4156164,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous E745A,745,1342
+Line89,4195537,Point_Mutation,A->G,Genic,4263,iclR,NonSynonymous L33S,-33,274
+,,,,,,,,,
+,,,,,,,,,
+Line91,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line91,2103896,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line91,2529508,Point_Mutation,T->C,Genic,2589,hyfG,NonSynonymous L63P,63,555
+Line91,3014088,Deletion,6_bp,Genic,3072,kpsE,In_Frame,221,378
+Line91,3328959,Point_Mutation,A->G,Genic,3392,mreB,NonSynonymous S10P,-10,347
+Line91,3905040,Deletion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Deletion
+Line91,4089433,Large_Deletion,632_bp,Multigenic,4163,glpK,Multigenic,4164,glpF
+Line91,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line91,4162105,Point_Mutation,T->A,Genic,4228,rpoC,NonSynonymous I1357N,1357,1407
+Line91,4212621,Point_Mutation,T->G,Genic,4278,yjbA,NonSynonymous I97S,97,136
+Line91,4404919,Point_Mutation,G->T,Genic,4465,ECB_04076,NonSynonymous F130L,-130,263
+Line91,4431606,Point_Mutation,T->G,Genic,4488,fbp,NonSynonymous D110A,-110,332
+,,,,,,,,,
+,,,,,,,,,
+Line92,382261,Point_Mutation,A->G,Genic,369,sbcC,NonSynonymous I639T,-639,1048
+Line92,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line92,619107,Duplication_2_fold,14141_bp,Multigenic,611,ibrA,Multigenic,628,citC
+Line92,1004196,Point_Mutation,T->A,Intergenic,1012,ompF(480),Intergenic,asnS(122),Intergenic_
+Line92,1290813,Point_Mutation,C->T,Genic,1312,rssB,NonSynonymous Q260*,260,337
+Line92,1304966,Point_Mutation,C->T,Genic,1325,cls,NonSynonymous R425Q,-425,486
+Line92,3228291,Point_Mutation,G->T,Genic,3286,yraL,NonSynonymous P96Q,-96,286
+Line92,3499837,Point_Mutation,G->T,Genic,3579,glgC,NonSynonymous F318L,-318,431
+Line92,4155644,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous I572L,572,1342
+Line92,4203313,IS_Insertion,IS186,Intergenic,4267,yjbC(52),Intergenic,yjbD(81),Intergenic_IS_insertion
+Line92,4203313,Duplication_2_fold,402905_bp,Multigenic,4268,yjbD,Multigenic,4676,lplA
+Line92,4431606,Point_Mutation,T->G,Genic,4488,fbp,NonSynonymous D110A,-110,332
+,,,,,,,,,
+,,,,,,,,,
+Line93,474424,Point_Mutation,A->T,Genic,458,ybaL,NonSynonymous D294E,-294,558
+Line93,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line93,648716,Point_Mutation,A->T,Genic,645,mrdB,NonSynonymous V61E,-61,370
+Line93,1262127,Point_Mutation,C->T,Intergenic,1279,prsA(49),Intergenic,ispE(102),Intergenic_
+Line93,1290438,Deletion,1_bp,Genic,1312,rssB,Frameshift,135,337
+Line93,1304864,Large_Deletion,223_bp,Genic,1325,cls,Large_Deletion,223,1460
+Line93,2298658,Deletion,1_bp,Genic,2358,glpT,Frameshift,-145,452
+Line93,2749037,Point_Mutation,G->A,Genic,2816,hypE,NonSynonymous V292M,292,322
+Line93,4157559,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I1210N,1210,1342
+,,,,,,,,,
+,,,,,,,,,
+Line94,649601,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous I401V,-401,633
+Line94,762045,Large_Deletion,316_bp,Multigenic,766,ESCRE0749,Multigenic,767,lysZ
+Line94,980321,Point_Mutation,G->A,Genic,994,rpsA,NonSynonymous G412D,412,557
+Line94,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line94,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line94,3251826,Point_Mutation,C->T,Genic,3312,nusA,NonSynonymous A315T,-315,495
+Line94,3414652,Point_Mutation,A->G,Genic,3503,crp,NonSynonymous Y207C,207,210
+Line94,3497259,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S262F,-262,815
+Line94,4154181,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous E84G,84,1342
+,,,,,,,,,
+,,,,,,,,,
+Line95,474270,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous E346K,-346,558
+Line95,1886212,Point_Mutation,G->A,Genic,1940,ESCRE1901,NonSynonymous V25I,25,68
+Line95,2519783,Point_Mutation,T->C,Genic,2579,dapA,NonSynonymous T272A,-272,292
+Line95,3014865,Point_Mutation,T->G,Genic,3073,kpsD,NonSynonymous L93R,93,558
+Line95,3147772,Deletion,24_bp,Genic,3204,ygjF,In_Frame,-168,169
+Line95,3480761,Duplication_2_fold,63437_bp,Multigenic,3565,malP,Multigenic,3624,acpT
+Line95,3497651,Point_Mutation,A->T,Genic,3577,glgP,Synonymous GCT to GCA,-131,815
+Line95,3873048,Point_Mutation,C->A,Genic,3940,glmS,NonSynonymous R332L,-332,609
+Line95,3992988,Point_Mutation,A->G,Genic,4066,ubiB,NonSynonymous Q406R,406,546
+Line95,4162043,Deletion,3_bp,Genic,4228,rpoC,In_Frame,1336,1407
+Line95,4448704,Point_Mutation,T->C,Genic,4502,pyrB,NonSynonymous D15G,-15,311
+,,,,,,,,,
+,,,,,,,,,
+Line96,1305999,Point_Mutation,A->G,Genic,1325,cls,NonSynonymous W81R,-81,486
+Line96,1325998,Point_Mutation,G->A,Genic,1349,rluB,NonSynonymous D259N,259,291
+Line96,1484478,Point_Mutation,C->T,Genic,1520,ydcU,Synonymous CTG to TTG,180,313
+Line96,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line96,3327363,Point_Mutation,A->C,Genic,3391,mreC,NonSynonymous L172R,-172,367
+Line96,3338901,Point_Mutation,G->A,Genic,3401,dusB,Synonymous CTG to CTA,241,321
+Line96,3498018,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S9L,-9,815
+Line96,3922453,Point_Mutation,C->T,Genic,3992,rho,NonSynonymous H388Y,388,419
+Line96,4156170,Point_Mutation,G->C,Genic,4227,rpoB,NonSynonymous G747A,747,1342
+Line96,4195006,Point_Mutation,G->A,Genic,4263,iclR,NonSynonymous S210L,-210,274
+Line96,4359265,Point_Mutation,T->C,Genic,4414,yjeP,NonSynonymous I446V,-446,1107
+,,,,,,,,,
+,,,,,,,,,
+Line97,294445,IS_Insertion,IS1,Genic,283,ykgE,IS_insertion,63,239
+Line97,465735,Point_Mutation,A->C,Genic,450,dnaX,NonSynonymous Q526P,526,643
+Line97,473924,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous V461G,-461,558
+Line97,648692,Point_Mutation,C->T,Genic,645,mrdB,NonSynonymous R69H,-69,370
+Line97,825980,Point_Mutation,G->A,Genic,836,dinG,NonSynonymous D96N,96,716
+Line97,2058087,Point_Mutation,C->A,Genic,2124,wcaI,Synonymous CCG to CCT,-291,407
+Line97,2298766,Deletion,4_bp,Genic,2358,glpT,Frameshift,-109,452
+Line97,3028381,Point_Mutation,A->T,Genic,3085,kpsM,NonSynonymous L30Q,-30,258
+Line97,3145861,Point_Mutation,G->A,Intergenic,3202,dnaG(11),Intergenic,rpoD(184),Intergenic_
+Line97,4155644,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous I572L,572,1342
+Line97,4195501,Point_Mutation,G->A,Genic,4263,iclR,NonSynonymous A45V,-45,274
+,,,,,,,,,
+,,,,,,,,,
+Line101,474629,Point_Mutation,A->G,Genic,458,ybaL,NonSynonymous L226P,-226,558
+Line101,500385,Point_Mutation,T->G,Genic,480,ylbH,NonSynonymous D90E,90,236
+Line101,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line101,649574,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous K410E,-410,633
+Line101,796328,Deletion,1_bp,Genic,806,ECB_00737,Frameshift,-1,330
+Line101,1290813,Point_Mutation,C->T,Genic,1312,rssB,NonSynonymous Q260*,260,337
+Line101,2060025,Point_Mutation,C->T,Genic,2126,fcl,NonSynonymous G127S,-127,321
+Line101,2519908,Point_Mutation,C->A,Genic,2579,dapA,NonSynonymous R230L,-230,292
+Line101,3014088,Deletion,6_bp,Genic,3072,kpsE,In_Frame,221,378
+Line101,3145758,Point_Mutation,C->T,Intergenic,3202,dnaG(114),Intergenic,rpoD(81),Intergenic_
+Line101,3285729,Point_Mutation,A->C,Intergenic,3353,elbB(91),Intergenic,ECB_misc_RNA_7(27),Intergenic_
+Line101,3341756,Point_Mutation,A->G,Intergenic,3405,envR(7),Intergenic,acrE(392),Intergenic_
+Line101,3905040,Insertion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Insertion
+Line101,4155588,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous T553I,553,1342
+,,,,,,,,,
+,,,,,,,,,
+Line105,474743,Point_Mutation,T->A,Genic,458,ybaL,NonSynonymous D188V,-188,558
+Line105,1305418,IS_Insertion,IS150,Genic,1325,cls,IS_insertion,-274,486
+Line105,1329919,Point_Mutation,C->T,Genic,1356,topA,NonSynonymous A167V,167,865
+Line105,1592630,Point_Mutation,A->T,Genic,1619,ydeJ,NonSynonymous D31V,31,172
+Line105,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line105,2195256,Deletion,1_bp,Genic,2270,frmC,Frameshift,34,278
+Line105,2540004,Point_Mutation,T->G,Genic,2599,uraA,NonSynonymous I329L,-329,429
+Line105,3512392,Point_Mutation,G->T,Genic,3590,ECB_misc_RNA_47,RNA,74,82
+Line105,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line105,4196954,Deletion,1_bp,Genic,4264,metH,Frameshift,374,1227
+,,,,,,,,,
+,,,,,,,,,
+Line106,311500,Point_Mutation,G->A,Genic,299,yahG,NonSynonymous G176D,176,472
+Line106,473924,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous V461G,-461,558
+Line106,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line106,649079,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous T575A,-575,633
+Line106,664684,Large_Deletion,1446_bp,Multigenic,662,gltL,Multigenic,665,gltL
+Line106,713039,Duplication_2_fold,4400_bp,Multigenic,714,rhsC,Multigenic,720,ECB_00664
+Line106,1886616,Point_Mutation,G->A,Intergenic,1941,ESCRE1902(231),Intergenic,yebO(159),Intergenic_
+Line106,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line106,2165188,Point_Mutation,C->T,Genic,2238,yehU,NonSynonymous G221D,-221,561
+Line106,4090527,Insertion,25_bp,Genic,4164,glpF,Frameshift,-41,281
+Line106,4148531,Point_Mutation,C->T,Intergenic,4218,thrT(99),Intergenic,tufB(16),Intergenic_
+Line106,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line106,4588368,Point_Mutation,T->A,Genic,4654,bglJ,NonSynonymous I166N,166,207
+,,,,,,,,,
+,,,,,,,,,
+Line107,398586,Point_Mutation,G->T,Genic,382,secF,NonSynonymous R220L,220,323
+Line107,433584,Deletion,16_bp,Genic,420,hupB,Frameshift,27,91
+Line107,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line107,2103895,Deletion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line107,2213068,Point_Mutation,A->T,Genic,2285,fruK,NonSynonymous I165N,-165,312
+Line107,2250832,Point_Mutation,T->C,Genic,2323,napA,NonSynonymous H640R,-640,828
+Line107,2297796,Deletion,1_bp,Genic,2358,glpT,Frameshift,-432,452
+Line107,3145994,Point_Mutation,C->G,Genic,3203,rpoD,NonSynonymous I41M,41,613
+Line107,3535525,Insertion,4_bp,Genic,3614,yhhF,Frameshift,146,198
+Line107,3905267,Point_Mutation,G->A,Genic,3975,ilvL,NonSynonymous G24E,24,32
+Line107,4090567,Insertion,2_bp,Genic,4164,glpF,Frameshift,-27,281
+Line107,4156827,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I966N,966,1342
+Line107,4497956,Deletion,1_bp,Intergenic,4562,ESCRE4497(476),Intergenic,IS1_insB(94),Intergenic_1_bp_Deletion
+,,,,,,,,,
+,,,,,,,,,
+Line108,66630,Point_Mutation,A->G,Genic,64,polB,NonSynonymous L652P,-652,783
+Line108,79128,Deletion,1_bp,Genic,74,sgrR,Frameshift,-326,551
+Line108,242195,Insertion,1_bp,Genic,228,ECB_00212,Frameshift,62,123
+Line108,283483,Point_Mutation,T->C,Intergenic,275,ykgM(1054),Intergenic,ECB_00256(526),Intergenic_
+Line108,340397,Deletion,2_bp,Genic,323,mhpR,Frameshift,-232,315
+Line108,352369,Deletion,1_bp,Intergenic,334,frmR(55),Intergenic,yaiO(131),Intergenic_1_bp_Deletion
+Line108,422593,Insertion,1_bp,Intergenic,409,cyoA(182),Intergenic,ampG(280),Intergenic_1_bp_Insertion
+Line108,539303,Point_Mutation,A->G,Genic,525,ECB_00490,NonSynonymous C97R,-97,121
+Line108,576685,Point_Mutation,T->C,Genic,571,cusC,Synonymous AAT to AAC,61,457
+Line108,649391,Point_Mutation,T->G,Genic,646,mrdA,NonSynonymous I471L,-471,633
+Line108,670789,Point_Mutation,A->G,Genic,670,ECB_00624,Synonymous GCA to GCG,452,625
+Line108,782538,Point_Mutation,A->G,Genic,790,ybhI,NonSynonymous K8R,8,477
+Line108,783336,Point_Mutation,T->A,Genic,790,ybhI,NonSynonymous L274Q,274,477
+Line108,805738,Point_Mutation,C->T,Intergenic,815,bioD(414),Intergenic,uvrB(165),Intergenic_
+Line108,837875,Insertion,1_bp,Genic,845,ybiO,Frameshift,-77,741
+Line108,852548,Point_Mutation,G->A,Genic,862,ybiV,Synonymous GAC to GAT,-11,271
+Line108,870805,Point_Mutation,C->T,Genic,877,bssR,Synonymous TTC to TTT,2,127
+Line108,939354,Insertion,1_bp,Intergenic,961,cspD(92),Intergenic,ESCRE0943(58),Intergenic_1_bp_Insertion
+Line108,1002930,Deletion,1_bp,Intergenic,1011,aspC(56),Intergenic,ompF(129),Intergenic_1_bp_Deletion
+Line108,1030403,Point_Mutation,C->T,Genic,1035,pqiB,Synonymous CCC to CCT,18,546
+Line108,1111959,Insertion,1_bp,Intergenic,1116,IS3_insE(174),Intergenic,serX(228),Intergenic_1_bp_Insertion
+Line108,1146395,Point_Mutation,C->T,Genic,1160,flgC,NonSynonymous T129I,129,134
+Line108,1160663,Point_Mutation,C->T,Genic,1173,yceF,NonSynonymous D168N,-168,194
+Line108,1183392,Deletion,1_bp,Genic,1198,ycfQ,Frameshift,-12,210
+Line108,1198004,Point_Mutation,A->G,Genic,1213,potD,NonSynonymous Y66H,-66,348
+Line108,1282843,Point_Mutation,C->T,Genic,1301,narG,NonSynonymous P944S,944,1247
+Line108,1296048,Deletion,1_bp,Genic,1316,adhE,Frameshift,-289,891
+Line108,1306022,Deletion,10_bp,Genic,1325,cls,Frameshift,-73,486
+Line108,1322724,Point_Mutation,G->A,Genic,1345,yciQ,NonSynonymous D129N,129,135
+Line108,1360063,Point_Mutation,A->G,Genic,1385,puuD,Synonymous CCA to CCG,192,254
+Line108,1440659,Point_Mutation,T->C,Intergenic,1474,feaB(24),Intergenic,tynA(35),Intergenic_
+Line108,1448469,Point_Mutation,A->G,Intergenic,1481,ynbB(3),Intergenic,ynbC(13),Intergenic_
+Line108,1480447,Point_Mutation,T->C,Genic,1517,ydcR,NonSynonymous F112S,112,468
+Line108,1489606,Point_Mutation,C->T,Genic,1528,yncB,NonSynonymous A157V,157,345
+Line108,1504870,Point_Mutation,T->C,Genic,1537,ydcD,Synonymous AGT to AGC,129,160
+Line108,1505141,Point_Mutation,A->G,Intergenic,1537,ydcD(7),Intergenic,yncI(175),Intergenic_
+Line108,1512877,Point_Mutation,T->C,Genic,1548,narY,NonSynonymous N43S,-43,514
+Line108,1602152,Point_Mutation,T->A,Intergenic,1628,pinR(53),Intergenic,ECB_01505(175),Intergenic_
+Line108,1602153,Point_Mutation,G->T,Intergenic,1628,pinR(52),Intergenic,ECB_01505(176),Intergenic_
+Line108,1691512,Deletion,1_bp,Intergenic,1732,ydgR(59),Intergenic,gst(47),Intergenic_1_bp_Deletion
+Line108,1895224,Insertion,1_bp,Genic,1951,yebS,Frameshift,128,427
+Line108,1936323,Point_Mutation,G->A,Genic,1994,torY,Synonymous GGC to GGT,-196,366
+Line108,2076617,Point_Mutation,G->A,Genic,2141,yegE,Synonymous ACG to ACA,46,1101
+Line108,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line108,2173738,Point_Mutation,G->A,Genic,2246,dld,NonSynonymous R103H,103,571
+Line108,2405403,Insertion,1_bp,Genic,2464,fadL,Frameshift,144,448
+Line108,2577222,Point_Mutation,T->C,Intergenic,2630,pepB(21),Intergenic,yfhJ(37),Intergenic_
+Line108,2708580,Point_Mutation,G->A,Genic,2768,emrB,NonSynonymous W366*,366,512
+Line108,2776295,Point_Mutation,A->G,Genic,2845,cysH,NonSynonymous V176A,-176,244
+Line108,3011228,Point_Mutation,T->C,Intergenic,3067,ECB_02811(47),Intergenic,ECB_02812(191),Intergenic_
+Line108,3142608,Point_Mutation,G->A,Genic,3200,gcp,NonSynonymous A254V,-254,337
+Line108,3145838,Point_Mutation,A->G,Intergenic,3202,dnaG(34),Intergenic,rpoD(161),Intergenic_
+Line108,3340151,Point_Mutation,G->A,Genic,3403,yhdJ,Synonymous CCG to CCA,200,294
+Line108,3489222,Point_Mutation,T->A,Intergenic,3570,glpR(9),Intergenic,glpG(8),Intergenic_
+Line108,3498018,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S9L,-9,815
+Line108,3517717,Point_Mutation,T->C,Genic,3597,yhhA,NonSynonymous Y31H,31,146
+Line108,3529514,Point_Mutation,C->T,Genic,3609,livJ,NonSynonymous A280T,-280,367
+Line108,3550013,Point_Mutation,G->A,Genic,3631,rhsB,Synonymous GGG to GGA,42,1411
+Line108,3589649,Point_Mutation,G->A,Genic,3664,mdtE,NonSynonymous E307K,307,385
+Line108,3751305,Point_Mutation,C->T,Genic,3812,dfp,NonSynonymous A71V,71,406
+Line108,3905040,Deletion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Deletion
+Line108,3905343,Deletion,1_bp,Intergenic,3975,ilvL(92),Intergenic,ilvG(48),Intergenic_1_bp_Deletion
+Line108,3937649,Point_Mutation,C->T,Genic,4010,proM,NonSynonymous P14S,14,25
+Line108,3978159,Point_Mutation,A->G,Genic,4052,ECB_03714,NonSynonymous V437A,-437,519
+Line108,4031604,Deletion,1_bp,Intergenic,4105,bipA(176),Intergenic,yihL(41),Intergenic_1_bp_Deletion
+Line108,4157172,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous P1081L,1081,1342
+Line108,4157877,Point_Mutation,A->G,Genic,4227,rpoB,NonSynonymous E1316G,1316,1342
+Line108,4271147,Point_Mutation,A->G,Genic,4331,ECB_03951,Synonymous GGT to GGC,-39,715
+Line108,4295942,Point_Mutation,A->T,Genic,4356,phnD,NonSynonymous D100E,-100,338
+Line108,4368842,Deletion,6_bp,Genic,4426,mutL,In_Frame,67,615
+Line108,4516285,Point_Mutation,C->T,Genic,4586,fimE,NonSynonymous T87I,87,198
+Line108,4589747,Insertion,1_bp,Genic,4657,leuV,Frameshift,-26,28
+Line108,4602938,Point_Mutation,T->C,Genic,4672,deoA,NonSynonymous V351A,351,440
+,,,,,,,,,
+,,,,,,,,,
+Line110,474444,Point_Mutation,A->G,Genic,458,ybaL,NonSynonymous S288P,-288,558
+Line110,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line110,1079196,Point_Mutation,C->T,Genic,1087,cbpA,Synonymous CTG to CTA,-290,306
+Line110,2164274,Point_Mutation,C->T,Genic,2238,yehU,NonSynonymous D526N,-526,561
+Line110,2268959,Point_Mutation,T->G,Genic,2338,atoC,NonSynonymous I129S,129,461
+Line110,3326732,Point_Mutation,A->G,Genic,3389,mreD,NonSynonymous S15P,-15,162
+Line110,3531058,Point_Mutation,C->T,Genic,3610,rpoH,NonSynonymous R140H,-140,284
+Line110,4155044,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous P372S,372,1342
+,,,,,,,,,
+,,,,,,,,,
+Line112,242440,Point_Mutation,A->T,Intergenic,228,ECB_00212(373),Intergenic,IS5_insISec3(58),Intergenic_
+Line112,474668,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous W213*,-213,558
+Line112,650624,Point_Mutation,T->G,Genic,646,mrdA,NonSynonymous K60Q,-60,633
+Line112,2116048,Insertion,1_bp,Genic,2179,ECB_02003,Frameshift,-118,405
+Line112,3014067,Deletion,3_bp,Genic,3072,kpsE,In_Frame,214,378
+Line112,3147770,Point_Mutation,G->A,Intergenic,3203,rpoD(22),Intergenic,ygjF(57),Intergenic_
+Line112,3498418,Point_Mutation,A->C,Genic,3578,glgA,NonSynonymous S360A,-360,477
+Line112,3755262,Insertion,1_bp,Genic,3817,yicC,Frameshift,75,287
+Line112,4155645,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I572N,572,1342
+Line112,4253827,IS_Insertion,IS1,Genic,4318,yjcF,IS_insertion,-419,430
+Line112,4253827,Duplication_2_fold,123644_bp,Multigenic,4318,yjcF,Multigenic,4434,nsrR
+Line112,4431606,Point_Mutation,T->G,Genic,4488,fbp,NonSynonymous D110A,-110,332
+,,,,,,,,,
+,,,,,,,,,
+Line114,473924,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous V461G,-461,558
+Line114,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line114,650854,Point_Mutation,T->C,Genic,647,ybeA,NonSynonymous N149S,-149,155
+Line114,1305798,IS_Insertion,IS1,Genic,1325,cls,IS_insertion,-148,486
+Line114,1372511,Point_Mutation,G->A,Genic,1399,ycjP,Synonymous GCG to GCA,18,280
+Line114,2298770,Insertion,8_bp,Genic,2358,glpT,Frameshift,-107,452
+Line114,3389164,Point_Mutation,G->A,Genic,3472,gspG,NonSynonymous V77I,77,145
+Line114,3878505,Point_Mutation,C->T,Genic,3944,atpG,NonSynonymous A46T,-46,287
+Line114,3882908,Deletion,2_bp,Intergenic,3950,atpI(524),Intergenic,gidB(93),Intergenic_2_bp_Deletion
+Line114,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line114,4266374,Point_Mutation,A->T,Intergenic,4328,nrfG(115),Intergenic,gltP(227),Intergenic_
+Line114,4338935,Point_Mutation,T->G,Genic,4393,aspA,NonSynonymous N397H,-397,478
+Line114,4555570,Point_Mutation,G->A,Intergenic,4624,hsdM(78),Intergenic,hsdR(123),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line118,475161,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous G49S,-49,558
+Line118,1004243,Point_Mutation,A->G,Intergenic,1012,ompF(433),Intergenic,asnS(169),Intergenic_
+Line118,1305968,Deletion,1_bp,Genic,1325,cls,Frameshift,-91,486
+Line118,3327334,Point_Mutation,G->A,Genic,3391,mreC,NonSynonymous P182S,-182,367
+Line118,3368845,Point_Mutation,C->T,Genic,3438,rpoA,NonSynonymous R33H,-33,329
+Line118,3489549,Point_Mutation,G->A,Genic,3571,glpG,Synonymous AGC to AGT,-171,276
+Line118,3500751,Point_Mutation,G->A,Genic,3579,glgC,NonSynonymous R14C,-14,431
+Line118,3895007,Insertion,1_bp,Intergenic,3963,hsrA_fragment(510),Intergenic,yieP(-487),Intergenic_1_bp_Insertion
+Line118,4157897,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous F1323V,1323,1342
+,,,,,,,,,
+,,,,,,,,,
+Line119,474423,IS_Insertion,IS1,Genic,458,ybaL,IS_insertion,-295,558
+Line119,547700,Large_Deletion,40793_bp,Multigenic,541,ECB_00503,Multigenic,580,ybdK
+Line119,1580357,Point_Mutation,G->A,Intergenic,1604,yneH(1),Intergenic,yneI(63),Intergenic_
+Line119,1697996,Point_Mutation,T->G,Genic,1740,slyA,NonSynonymous D8A,-8,144
+Line119,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line119,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line119,2762436,Point_Mutation,C->T,Intergenic,2827,rpoS(47),Intergenic,nlpD(16),Intergenic_
+Line119,3015132,Point_Mutation,G->A,Genic,3073,kpsD,NonSynonymous G182D,182,558
+Line119,3251826,Point_Mutation,C->T,Genic,3312,nusA,NonSynonymous A315T,-315,495
+Line119,3328659,Point_Mutation,C->T,Genic,3392,mreB,NonSynonymous V110I,-110,347
+Line119,3498018,Point_Mutation,G->A,Genic,3577,glgP,NonSynonymous S9L,-9,815
+Line119,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line119,4548113,Point_Mutation,A->G,Genic,4619,ECB_04210,NonSynonymous E715G,715,1084
+Line119,4591146,Point_Mutation,C->T,Genic,4660,rsmC,Synonymous GCG to GCA,-71,343
+,,,,,,,,,
+,,,,,,,,,
+Line120,649731,Point_Mutation,C->A,Genic,646,mrdA,NonSynonymous W357C,-357,633
+Line120,762305,Point_Mutation,C->G,Intergenic,767,lysZ(56),Intergenic,lysQ(77),Intergenic_
+Line120,1332157,Point_Mutation,A->G,Intergenic,1356,topA(70),Intergenic,cysB(140),Intergenic_
+Line120,1988489,IS_Insertion,IS150,Genic,2050,yeeJ,IS_insertion,1858,2367
+Line120,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line120,2448496,IS_Insertion,IS4,Intergenic,2503,nupC(31),Intergenic,yfeA(19),Intergenic_IS_insertion
+Line120,3015261,IS_Insertion,IS150,Genic,3073,kpsD,IS_insertion,225,558
+Line120,3103282,IS_Insertion,IS150,Genic,3156,ygiV,IS_insertion,-44,160
+Line120,3147783,Deletion,3_bp,Intergenic,3203,rpoD(9),Intergenic,ygjF(70),Intergenic_3_bp_Deletion
+Line120,3228603,Large_Deletion,555_bp,Genic,3287,yraM,Large_Deletion,516,2036
+Line120,3338863,Point_Mutation,G->A,Genic,3401,dusB,NonSynonymous G229R,229,321
+Line120,3905040,Insertion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Insertion
+Line120,4156208,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous N760H,760,1342
+Line120,4477054,Duplication_2_fold,1416_bp,Multigenic,4537,IS4_insG,Multigenic,4538,IS4_ESCRE4472
+,,,,,,,,,
+,,,,,,,,,
+Line122,649391,Point_Mutation,T->G,Genic,646,mrdA,NonSynonymous I471L,-471,633
+Line122,743241,Point_Mutation,A->G,Genic,743,sucB,NonSynonymous K310R,310,405
+Line122,931164,Point_Mutation,T->G,Genic,955,ybjE,NonSynonymous E134A,-134,299
+Line122,1014628,Insertion,1_bp,Intergenic,1020,ssuE(331),Intergenic,ycbQ(25),Intergenic_1_bp_Insertion
+Line122,1609130,Point_Mutation,A->C,Genic,1636,IS3_insF,NonSynonymous K285Q,285,288
+Line122,1822155,Deletion,1_bp,Intergenic,1870,ynjI(80),Intergenic,topB(48),Intergenic_1_bp_Deletion
+Line122,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line122,3002374,Point_Mutation,G->T,Genic,3054,ECB_02800,NonSynonymous A935S,935,948
+Line122,3014539,IS_Insertion,IS150,Genic,3072,kpsE,IS_insertion,371,378
+Line122,3136092,Point_Mutation,A->G,Intergenic,3192,cca(42),Intergenic,bacA(121),Intergenic_
+Line122,3145989,Deletion,9_bp,Genic,3203,rpoD,In_Frame,40,613
+Line122,3261869,Point_Mutation,G->A,Genic,3322,ftsH,Synonymous TTC to TTT,-103,644
+Line122,3339411,Point_Mutation,T->C,Genic,3402,fis,NonSynonymous M81T,81,98
+Line122,3464828,Point_Mutation,C->T,Genic,3553,ompR,NonSynonymous R150H,-150,239
+Line122,3843794,Large_Deletion,54_bp,Genic,3912,dnaA,Large_Deletion,54,1403
+Line122,3905061,Deletion,1_bp,Intergenic,3974,yifB(136),Intergenic,ilvL(187),Intergenic_1_bp_Deletion
+Line122,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line122,4172202,Point_Mutation,C->A,Genic,4244,yjaG,NonSynonymous N4K,4,196
+Line122,4195035,Point_Mutation,A->C,Genic,4263,iclR,NonSynonymous D200E,-200,274
+Line122,4389972,Point_Mutation,A->T,Genic,4448,ulaG,NonSynonymous I295N,-295,354
+,,,,,,,,,
+,,,,,,,,,
+Line124,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line124,1254938,Point_Mutation,C->T,Genic,1274,ycgV,NonSynonymous A389T,-389,955
+Line124,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line124,2544114,Point_Mutation,T->C,Genic,2603,ppk,NonSynonymous S82P,82,688
+Line124,2942102,Point_Mutation,C->T,Genic,2995,ygfA,NonSynonymous H35Y,35,182
+Line124,3338868,Point_Mutation,A->C,Genic,3401,dusB,NonSynonymous R230S,230,321
+Line124,3570568,Deletion,1_bp,Intergenic,3643,yhiO(240),Intergenic,uspA(151),Intergenic_1_bp_Deletion
+Line124,3843794,Large_Deletion,54_bp,Genic,3912,dnaA,Large_Deletion,54,1403
+Line124,4155626,Point_Mutation,G->A,Genic,4227,rpoB,NonSynonymous G566S,566,1342
+Line124,4157897,Point_Mutation,T->C,Genic,4227,rpoB,NonSynonymous F1323L,1323,1342
+Line124,4158703,Point_Mutation,T->A,Genic,4228,rpoC,NonSynonymous L223Q,223,1407
+Line124,4266374,Point_Mutation,A->T,Intergenic,4328,nrfG(115),Intergenic,gltP(227),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line126,474498,Point_Mutation,C->A,Genic,458,ybaL,NonSynonymous A270S,-270,558
+Line126,1305325,Large_Deletion,106_bp,Genic,1325,cls,Large_Deletion,106,1460
+Line126,2044175,Point_Mutation,A->G,Genic,2112,rmlA,NonSynonymous L28P,-28,292
+Line126,2333659,Point_Mutation,G->A,Genic,2394,nuoN,NonSynonymous S460F,-460,485
+Line126,2360314,Point_Mutation,T->A,Genic,2415,pta,NonSynonymous D656E,656,714
+Line126,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+Line126,4090499,Point_Mutation,A->T,Genic,4164,glpF,NonSynonymous L50Q,-50,281
+,,,,,,,,,
+,,,,,,,,,
+Line127,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line127,979852,Point_Mutation,T->G,Genic,994,rpsA,NonSynonymous S256A,256,557
+Line127,1498278,Point_Mutation,C->G,Genic,1535,ECB_01413,Synonymous GGC to GGG,65,708
+Line127,3015777,IS_Insertion,IS150,Genic,3073,kpsD,IS_insertion,397,558
+Line127,3252026,Point_Mutation,A->G,Genic,3312,nusA,NonSynonymous V248A,-248,495
+Line127,3327541,Point_Mutation,G->T,Genic,3391,mreC,NonSynonymous R113S,-113,367
+Line127,3367994,Point_Mutation,G->A,Genic,3438,rpoA,NonSynonymous R317C,-317,329
+Line127,3650148,Point_Mutation,A->G,Genic,3715,yiaG,NonSynonymous R69G,69,96
+Line127,4161423,Point_Mutation,G->T,Genic,4228,rpoC,NonSynonymous G1130C,1130,1407
+,,,,,,,,,
+,,,,,,,,,
+Line130,1395,Point_Mutation,T->C,Genic,1,thrA,NonSynonymous S354P,354,820
+Line130,475187,Point_Mutation,C->T,Genic,458,ybaL,NonSynonymous G40D,-40,558
+Line130,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line130,648161,Point_Mutation,A->G,Genic,645,mrdB,NonSynonymous L246P,-246,370
+Line130,761514,Large_Deletion,132_bp,Intergenic,760,lysT(133),Intergenic,valT(3),Intergenic_Large_Deletion_132_bp_long
+Line130,761722,Insertion,1_bp,Genic,761,valT,Frameshift,26,25
+Line130,1886212,Point_Mutation,G->A,Genic,1940,ESCRE1901,NonSynonymous V25I,25,68
+Line130,3147693,Point_Mutation,C->T,Genic,3203,rpoD,NonSynonymous R608C,608,613
+Line130,4155023,Point_Mutation,G->A,Genic,4227,rpoB,NonSynonymous E365K,365,1342
+,,,,,,,,,
+,,,,,,,,,
+Line131,1698011,Point_Mutation,G->A,Genic,1740,slyA,NonSynonymous S3L,-3,144
+Line131,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line131,3251813,Point_Mutation,C->G,Genic,3312,nusA,NonSynonymous G319A,-319,495
+Line131,3464798,Point_Mutation,G->A,Genic,3553,ompR,NonSynonymous P160L,-160,239
+Line131,3495564,Point_Mutation,A->C,Intergenic,3576,ECB_03278(32),Intergenic,glgP(84),Intergenic_
+Line131,3921670,Point_Mutation,G->A,Genic,3992,rho,NonSynonymous A127T,127,419
+Line131,4155645,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I572N,572,1342
+,,,,,,,,,
+,,,,,,,,,
+Line132,52039,Point_Mutation,C->T,Genic,53,kefC,NonSynonymous L26F,26,620
+Line132,475295,Deletion,1_bp,Genic,458,ybaL,Frameshift,-4,558
+Line132,627132,IS_Insertion,IS150,Intergenic,620,rna(36),Intergenic,citT(78),Intergenic_IS_insertion
+Line132,795721,Deletion,1_bp,Genic,806,ECB_00737,Frameshift,-203,330
+Line132,1297417,Large_Deletion,10213_bp,Multigenic,1317,ychE,Multigenic,1327,kch
+Line132,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line132,2815261,Point_Mutation,G->T,Genic,2880,ygdH,NonSynonymous S6I,6,454
+Line132,3145973,Insertion,3_bp,Genic,3203,rpoD,In_Frame,34,613
+Line132,3495649,Point_Mutation,T->C,Genic,3577,glgP,NonSynonymous T799A,-799,815
+Line132,3500860,Point_Mutation,A->G,Genic,3580,glgX,NonSynonymous I641T,-641,657
+Line132,3922367,Point_Mutation,A->C,Genic,3992,rho,NonSynonymous D359A,359,419
+Line132,4101435,Point_Mutation,T->C,Genic,4177,metJ,NonSynonymous N48S,-48,105
+Line132,4157678,Point_Mutation,T->C,Genic,4227,rpoB,NonSynonymous S1250P,1250,1342
+Line132,4194993,Point_Mutation,C->A,Genic,4263,iclR,NonSynonymous E214D,-214,274
+,,,,,,,,,
+,,,,,,,,,
+Line133,473924,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous V461G,-461,558
+Line133,548535,Point_Mutation,T->A,Intergenic,541,ECB_00503(332),Intergenic,essD(257),Intergenic_
+Line133,649601,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous I401V,-401,633
+Line133,1136082,Point_Mutation,T->G,Intergenic,1147,dinI(51),Intergenic,pyrC(23),Intergenic_
+Line133,1305509,Point_Mutation,T->G,Genic,1325,cls,NonSynonymous D244A,-244,486
+Line133,2103895,Deletion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line133,2164925,Point_Mutation,A->C,Genic,2238,yehU,NonSynonymous S309A,-309,561
+Line133,2762221,Point_Mutation,T->G,Genic,2827,rpoS,NonSynonymous Y67S,-67,330
+Line133,3027166,Deletion,1_bp,Genic,3084,kpsT,Frameshift,-171,219
+Line133,3489371,Deletion,1_bp,Genic,3571,glpG,Frameshift,-231,276
+Line133,3571421,Point_Mutation,G->T,Intergenic,3644,uspA(139),Intergenic,yhiP(179),Intergenic_
+Line133,3905040,Insertion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Insertion
+Line133,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line133,4195710,Point_Mutation,T->C,Intergenic,4263,iclR(124),Intergenic,metH(76),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line134,619107,Duplication_2_fold,14141_bp,Multigenic,611,ibrA,Multigenic,628,citC
+Line134,1004243,Point_Mutation,A->G,Intergenic,1012,ompF(433),Intergenic,asnS(169),Intergenic_
+Line134,1306055,Large_Deletion,1429_bp,Multigenic,1325,cls,Multigenic,1327,kch
+Line134,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line134,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line134,3920427,Insertion,1_bp,Genic,3989,rhlB,Frameshift,-27,421
+Line134,3921418,Point_Mutation,G->A,Genic,3992,rho,NonSynonymous A43T,43,419
+Line134,4195384,Point_Mutation,A->G,Genic,4263,iclR,NonSynonymous I84T,-84,274
+Line134,4363026,Point_Mutation,A->C,Genic,4417,orn,NonSynonymous T65P,65,181
+,,,,,,,,,
+,,,,,,,,,
+Line135,475158,Point_Mutation,A->G,Genic,458,ybaL,NonSynonymous F50L,-50,558
+Line135,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line135,1304913,Deletion,1_bp,Genic,1325,cls,Frameshift,-443,486
+Line135,1496226,Point_Mutation,C->A,Intergenic,1532,ansP(133),Intergenic,yncG(134),Intergenic_
+Line135,1886212,Point_Mutation,G->A,Genic,1940,ESCRE1901,NonSynonymous V25I,25,68
+Line135,3489207,Point_Mutation,T->C,Genic,3570,glpR,NonSynonymous Q3R,-3,252
+Line135,3905040,Deletion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Deletion
+Line135,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+,,,,,,,,,
+,,,,,,,,,
+Line136,16989,IS_Insertion,IS150,Intergenic,17,mokC(499),Intergenic,nhaA(31),Intergenic_IS_insertion
+Line136,649601,Point_Mutation,T->C,Genic,646,mrdA,NonSynonymous I401V,-401,633
+Line136,711401,Point_Mutation,A->G,Genic,712,ybfA,NonSynonymous D58G,58,68
+Line136,1182773,IS_Insertion,IS150,Intergenic,1197,ycfJ(21),Intergenic,ycfQ(41),Intergenic_IS_insertion
+Line136,1995679,Insertion,1_bp,Intergenic,2055,yeeN(356),Intergenic,asnW(98),Intergenic_1_bp_Insertion
+Line136,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line136,2681620,IS_Insertion,IS150,Genic,2739,ECB_02512,IS_insertion,82,298
+Line136,3015777,IS_Insertion,IS150,Genic,3073,kpsD,IS_insertion,397,558
+Line136,3145715,Point_Mutation,C->T,Intergenic,3202,dnaG(157),Intergenic,rpoD(38),Intergenic_
+Line136,3570945,IS_Insertion,IS150,Genic,3644,uspA,IS_insertion,46,144
+Line136,3613031,Point_Mutation,A->C,Intergenic,3681,dctA(99),Intergenic,yhjK(84),Intergenic_
+Line136,3905040,Insertion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Insertion
+Line136,3916438,Point_Mutation,G->A,Genic,3986,rep,Synonymous CCG to CCA,295,673
+Line136,4156830,Point_Mutation,T->C,Genic,4227,rpoB,NonSynonymous L967P,967,1342
+,,,,,,,,,
+,,,,,,,,,
+Line137,124938,Point_Mutation,A->G,Genic,116,pdhR,NonSynonymous I15V,15,254
+Line137,433525,Point_Mutation,T->A,Genic,420,hupB,NonSynonymous I7N,7,90
+Line137,475161,Point_Mutation,C->A,Genic,458,ybaL,NonSynonymous G49C,-49,558
+Line137,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line137,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line137,2164666,Point_Mutation,A->T,Genic,2238,yehU,NonSynonymous I395N,-395,561
+Line137,2213525,Point_Mutation,C->T,Genic,2285,fruK,NonSynonymous A13T,-13,312
+Line137,2655315,Point_Mutation,T->C,Genic,2707,clpB,NonSynonymous N92S,-92,857
+Line137,3014092,Insertion,6_bp,Genic,3072,kpsE,In_Frame,222,378
+Line137,3145734,Point_Mutation,G->A,Intergenic,3202,dnaG(138),Intergenic,rpoD(57),Intergenic_
+Line137,3326574,Point_Mutation,A->T,Genic,3389,mreD,NonSynonymous D67E,-67,162
+Line137,4156827,Point_Mutation,T->A,Genic,4227,rpoB,NonSynonymous I966N,966,1342
+,,,,,,,,,
+,,,,,,,,,
+Line138,664684,Large_Deletion,1446_bp,Multigenic,662,gltL,Multigenic,665,gltL
+Line138,784726,IS_Insertion,IS186,Genic,791,ybhJ,IS_insertion,199,753
+Line138,1304650,Large_Deletion,1625_bp,Multigenic,1324,yciU,Multigenic,1326,ESCRE1299
+Line138,2103895,Insertion,4_bp,Genic,2167,ECB_01992,Frameshift,52,71
+Line138,2131465,Deletion,1_bp,Intergenic,2202,gatY(184),Intergenic,fbaB(116),Intergenic_1_bp_Deletion
+Line138,3488799,Point_Mutation,A->C,Genic,3570,glpR,NonSynonymous F139C,-139,252
+Line138,3497646,Point_Mutation,A->C,Genic,3577,glgP,NonSynonymous F133C,-133,815
+Line138,3905040,Insertion,1_bp,Intergenic,3974,yifB(157),Intergenic,ilvL(166),Intergenic_1_bp_Insertion
+Line138,3934661,Point_Mutation,G->A,Genic,4004,wzyE,NonSynonymous V396M,396,450
+Line138,4101450,Point_Mutation,C->T,Genic,4177,metJ,NonSynonymous R43H,-43,105
+Line138,4156202,Point_Mutation,C->T,Genic,4227,rpoB,NonSynonymous R758C,758,1342
+,,,,,,,,,
+,,,,,,,,,
+Line139,433653,Point_Mutation,T->G,Genic,420,hupB,NonSynonymous F50V,50,90
+Line139,1081202,Deletion,1_bp,Genic,1088,yccE,Frameshift,293,419
+Line139,1126975,Point_Mutation,T->C,Genic,1136,mdoH,NonSynonymous L515P,515,847
+Line139,1609176,Large_Deletion,6249_bp,Multigenic,1637,ECB_01513,Multigenic,1647,ECB_01523
+Line139,1689706,Insertion,1_bp,Intergenic,1731,nth(257),Intergenic,ydgR(354),Intergenic_1_bp_Insertion
+Line139,1886677,IS_Insertion,IS1,Intergenic,1941,ESCRE1902(170),Intergenic,yebO(220),Intergenic_IS_insertion
+Line139,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line139,4155545,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous T539P,539,1342
+Line139,4156827,Point_Mutation,T->G,Genic,4227,rpoB,NonSynonymous I966S,966,1342
+Line139,4186769,Point_Mutation,G->T,Intergenic,4256,yjaB(31),Intergenic,metA(126),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+Line140,473895,Point_Mutation,C->A,Genic,458,ybaL,NonSynonymous E471*,-471,558
+Line140,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+Line140,547894,Deletion,1_bp,Genic,541,ECB_00503,Frameshift,-129,201
+Line140,1398888,Point_Mutation,A->C,Genic,1424,ESCRE1397,Synonymous GGT to GGG,-60,64
+Line140,1886191,Point_Mutation,A->G,Genic,1940,ESCRE1901,NonSynonymous T18A,18,68
+Line140,1891940,Point_Mutation,G->A,Genic,1948,prc,NonSynonymous R488C,-488,682
+Line140,2032562,Large_Deletion,23164_bp,Multigenic,2099,cpsG,Multigenic,2122,cpsG
+Line140,2377767,Point_Mutation,A->T,Genic,2437,dedA,NonSynonymous I192N,-192,219
+Line140,3015284,Point_Mutation,G->A,Genic,3073,kpsD,NonSynonymous G233R,233,558
+Line140,3327980,Point_Mutation,A->T,Genic,3392,mreB,NonSynonymous I336N,-336,347
+Line140,4156164,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous E745A,745,1342
+,,,,,,,,,
+,,,,,,,,,
+LIne141,475213,Deletion,30_bp,Genic,458,ybaL,In_Frame,-21,558
+LIne141,1304929,Deletion,1_bp,Genic,1325,cls,Frameshift,-437,486
+LIne141,1744551,Point_Mutation,G->A,Genic,1789,ydiJ,Synonymous TGC to TGT,-470,1018
+LIne141,2100315,Large_Deletion,22124_bp,Multigenic,2161,ogrK,Multigenic,2190,ECB_02013
+LIne141,2224008,Point_Mutation,A->C,Genic,2296,yejA,NonSynonymous Q150P,150,604
+LIne141,2976637,Point_Mutation,T->G,Genic,3028,endA,NonSynonymous Y178D,178,235
+LIne141,3566669,Point_Mutation,A->G,Intergenic,3640,yhiM(236),Intergenic,yhiN(79),Intergenic_
+LIne141,3881066,Point_Mutation,T->C,Genic,3947,atpF,Synonymous AAA to AAG,-66,156
+LIne141,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+LIne141,4126382,Point_Mutation,G->A,Intergenic,4194,ppc(250),Intergenic,argE(102),Intergenic_
+LIne141,4127868,Point_Mutation,C->T,Intergenic,4195,argE(69),Intergenic,argC(85),Intergenic_
+,,,,,,,,,
+,,,,,,,,,
+LIne142,86384,Point_Mutation,C->A,Intergenic,80,leuA(42),Intergenic,leuL(51),Intergenic_
+LIne142,433711,Point_Mutation,T->G,Genic,420,hupB,NonSynonymous I69S,69,90
+LIne142,474519,Deletion,1_bp,Genic,458,ybaL,Frameshift,-263,558
+LIne142,648276,Point_Mutation,G->A,Genic,645,mrdB,NonSynonymous R208C,-208,370
+LIne142,1080405,Point_Mutation,A->G,Genic,1088,yccE,NonSynonymous Y27C,27,419
+LIne142,1658770,Point_Mutation,T->G,Genic,1701,folM,NonSynonymous N200K,200,240
+LIne142,3027594,Point_Mutation,C->T,Genic,3084,kpsT,NonSynonymous A29T,-29,219
+LIne142,3096444,Point_Mutation,C->T,Genic,3150,sufI,NonSynonymous A136T,-136,470
+LIne142,3145831,Point_Mutation,G->A,Intergenic,3202,dnaG(41),Intergenic,rpoD(154),Intergenic_
+LIne142,3488825,Point_Mutation,C->T,Genic,3570,glpR,NonSynonymous M130I,-130,252
+LIne142,3535091,Deletion,1_bp,Genic,3614,yhhF,Frameshift,1,198
+LIne142,3619788,Deletion,3_bp,Genic,3685,bcsB,In_Frame,-774,779
+LIne142,3893558,Insertion,1_bp,Intergenic,3960,trkD(52),Intergenic,IS150_insJ(4),Intergenic_1_bp_Insertion
+LIne142,4155644,Point_Mutation,A->C,Genic,4227,rpoB,NonSynonymous I572L,572,1342
+,,,,,,,,,
+,,,,,,,,,
+LIne143,473924,Point_Mutation,A->C,Genic,458,ybaL,NonSynonymous V461G,-461,558
+LIne143,547700,Large_Deletion,71416_bp,Multigenic,541,ECB_00503,Multigenic,611,ibrA
+LIne143,1304967,Point_Mutation,G->A,Genic,1325,cls,NonSynonymous R425W,-425,486
+LIne143,1579770,Point_Mutation,C->T,Genic,1604,yneH,NonSynonymous M175I,-175,308
+LIne143,1658199,Point_Mutation,T->G,Genic,1701,folM,NonSynonymous L10*,10,240
+LIne143,3271605,Point_Mutation,G->A,Genic,3333,murA,NonSynonymous P45S,-45,419
+LIne143,3497889,Point_Mutation,C->T,Genic,3577,glgP,NonSynonymous R52H,-52,815
+LIne143,3755754,Deletion,3_bp,Genic,3817,yicC,In_Frame,239,287
+LIne143,3921335,Point_Mutation,T->A,Genic,3992,rho,NonSynonymous I15N,15,419
+LIne143,4397130,Point_Mutation,T->A,Genic,4458,rpsR,NonSynonymous I21N,21,75
