@@ -4,20 +4,19 @@ import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
 import  matplotlib.pyplot as plt
+import parevol_tools as pt
 
 mydir = os.path.expanduser("~/GitHub/ParEvol/")
 
 
-def hellinger_transform():
-    df = pd.read_csv(mydir + 'data/ltee/gene_by_pop_delta.txt', sep = '\t', header = 'infer', index_col = 0)
-    return(df.div(df.sum(axis=1), axis=0).applymap(np.sqrt))
 
 
 def get_pca():
     X = hellinger_transform()
     pca = PCA()
     X_pca = pca.fit_transform(X)
-    print(pca.explained_variance_ratio_)
+    #print(pca.explained_variance_)
+    pt.plot_eigenvalues(pca.explained_variance_ratio_)
 
 
 
@@ -28,7 +27,7 @@ def get_pca():
     plt.ylabel('pca2', fontsize = 14)
 
     fig.tight_layout()
-    fig_name = mydir + 'figs/pca.png'
+    fig_name = mydir + 'figs/pca_tenaillon.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 

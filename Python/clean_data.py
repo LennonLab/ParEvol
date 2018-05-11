@@ -244,57 +244,10 @@ class kryazhimskiy_et_al:
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
 
 
-class likelihood_matrix:
-    def __init__(self, dataset):
-        self.dataset = dataset
-
-    def get_gene_lengths(self, **keyword_parameters):
-        if self.dataset == 'Good_et_al':
-            conv_dict = self.parse_convergence_matrix(mydir + "data/Good_et_al/gene_convergence_matrix.txt")
-            length_dict = {}
-            if ('gene_list' in keyword_parameters):
-                for gene_name in keyword_parameters['gene_list']:
-                    length_dict[gene_name] = conv_dict[gene_name]['length']
-                #for gene_name, gene_data in conv_dict.items():
-            else:
-                for gene_name, gene_data in conv_dict.items():
-                    length_dict[gene_name] = conv_dict[gene_name]['length']
-            return(length_dict)
-
-        elif self.dataset == 'Tenaillon_et_al':
-            with open(mydir + 'data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
-                length_dict = pickle.loads(handle.read())
-                return(length_dict)
-
-    def get_likelihood_matrix(self):
-        df_in = mydir + 'data/' + self.dataset + '/gene_by_pop.txt'
-        df = pd.read_csv(df_in, sep = '\t', header = 'infer', index_col = 0)
-        genes = df.columns.tolist()
-        genes_lengths = self.get_gene_lengths(gene_list = genes)
-        L_mean = np.mean(list(genes_lengths.values()))
-        L_i = np.asarray(list(genes_lengths.values()))
-        N_genes = len(genes)
-        m_mean = df.sum(axis=1) / N_genes
-
-        for index, row in df.iterrows():
-            m_mean_j = m_mean[index]
-            delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
-            df.loc[index,:] = delta_j
-
-        out_name = 'data/' + self.dataset + '/gene_by_pop_delta.txt'
-
-        df_new = df.fillna(0)
-        # remove colums with all zeros
-        df_new.loc[:, (df_new != 0).any(axis=0)]
-        # replace negative values with zero
-        df_new[df_new < 0] = 0
-        df_new.to_csv(mydir + out_name, sep = '\t', index = True)
-
-
 
 
 #good_et_al().reformat_convergence_matrix()
 #good_et_al().get_likelihood_matrix()
 #likelihood_matrix('Tenaillon_et_al').get_likelihood_matrix()
 
-print(kryazhimskiy_et_al().pop_by_gene_kryazhimskiy())
+#print(kryazhimskiy_et_al().pop_by_gene_kryazhimskiy())

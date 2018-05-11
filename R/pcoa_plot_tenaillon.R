@@ -7,7 +7,7 @@ require("png")
 require("grid")
 library("scales")
 
-pop_by_gene <- c("data/Tenaillon_et_al/gene_by_pop.txt")
+pop_by_gene <- c("data/Tenaillon_et_al/gene_by_pop_delta.txt")
 df <- read.table(paste(pop_by_gene, collapse = ''), sep = "\t", 
                  header = TRUE, row.names = 1)
 
