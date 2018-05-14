@@ -4,6 +4,8 @@ import os, pickle
 import numpy as np
 import  matplotlib.pyplot as plt
 import rpy2.robjects as robjects
+#import scipy.spatial.distance as dist
+from scipy.spatial.distance import pdist, squareform
 
 
 
@@ -21,10 +23,20 @@ def get_bray_curtis(array):
             S_j = np.sum(row_j)
             BC_ij = 1 - ((2*C_ij) / (S_i + S_j))
             #print(i, j, BC_ij)
-            distance_array[i,j] = BC_ij
-            distance_array[j,i] = BC_ij
+            distance_array[i,j] = distance_array[j,i] = BC_ij
+            print(i,j)
     return distance_array
 
+def get_scipy_bray_curtis(array):
+    return squareform(pdist(array, metric = 'braycurtis'))
+
+
+def complete_nonmutator_lines():
+    return ['m5','m6','p1','p2','p4','p5']
+
+
+def complete_mutator_lines():
+    return ['m1','m4','p3']
 
 
 def cmdscale(D):
@@ -86,14 +98,17 @@ def get_pcoa(df):
     Y = Y.set_index('pops')
     return([Y, pcoa[1]])
 
-def get_mean_centroid_distance(array, k = 3):
+def get_mean_centroid_distance(array, groups = None, k = 3):
 
-    X = array[:,0:k]
-    centroid_distances = []
-    centroids = np.mean(X, axis = 0)
-    for row in X:
-        centroid_distances.append(np.linalg.norm(row-centroids))
-    return np.mean(centroid_distances)
+    if x is not None:
+    #else:
+
+        X = array[:,0:k]
+        centroid_distances = []
+        centroids = np.mean(X, axis = 0)
+        for row in X:
+            centroid_distances.append(np.linalg.norm(row-centroids))
+        return np.mean(centroid_distances)
 
 
 
@@ -135,7 +150,7 @@ def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
     fig = plt.figure()
     plt.plot(x, y_bs, marker='o', linestyle='--', color='r', label='Broken-stick',markeredgewidth=0.0, alpha = 0.6)
     plt.plot(x, y, marker='o', linestyle=':', color='k', label='Observed', markeredgewidth=0.0, alpha = 0.6)
-
+    print(y)
     plt.xlabel('PCoA axis', fontsize = 16)
     plt.ylabel('Percent vaiance explained', fontsize = 16)
 

@@ -239,15 +239,44 @@ class tenaillon_et_al:
 
 class kryazhimskiy_et_al:
 
-    def pop_by_gene_kryazhimskiy(self):
-        df_path = mydir + 'data/Kryazhimskiy_et_al/NIHMS658386-supplement-Table_S5.txt'
-        df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    def clean_table_s5(self):
+        in_path = mydir + 'data/Kryazhimskiy_et_al/NIHMS658386-supplement-Table_S5.txt'
+        df_out = open(mydir + 'data/Kryazhimskiy_et_al/table_S5_clean.txt', 'w')
+        column_headers = ['Founder', 'Pop', 'Clone', 'Notes', 'Chr', 'Pos', \
+                        'Unique_Mutation_ID', 'Ancestral_allele', 'Mutant_allele', \
+                        'Is_convergent', 'Type', 'Gene', 'AA_change', 'AA_position', \
+                        'Distance_to_gene', 'COV_IN_CLONE', 'CNT_IN_CLONE', \
+                        'FREQ_IN_CL', 'FREQ_OUT_CL', 'Posterior_Probability', 'Notes']
+        df_out.write('\t'.join(column_headers) + '\n')
+        for line in open(in_path):
+            line_split = line.split('\t')[:-11]
+            df_out.write('\t'.join(line_split) + '\n')
+        df_out.close()
+
+
+    #def pop_by_gene_kryazhimskiy(self):
+    #    df_path = mydir + 'data/Kryazhimskiy_et_al/NIHMS658386-supplement-Table_S5.txt'
+    #    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    #
+    #    print(df.columns)
+
+    def get_size_dict(self):
+        in_path = mydir + 'data/Kryazhimskiy_et_al/Saccharomyces_cerevisiae_W303_Greg_Lang/w303_ref.gff'
+        df_out = open(mydir + 'data/Kryazhimskiy_et_al/Saccharomyces_cerevisiae_W303_Greg_Lang/w303_ref_clean.gff', 'w')
+        for line in open(in_path):
+            line_split = line.split()
+            gene = [x for x in line_split[-1].split(';') if 'gene=' in x]
+            id = [x for x in line_split[-1].split(';') if 'ID=' in x]
+            parent = [x for x in line_split[-1].split(';') if 'Parent=' in x]
+            ##### need to consider gene, ID, and parent
+
+            print(gene)
 
 
 
 
 #good_et_al().reformat_convergence_matrix()
 #good_et_al().get_likelihood_matrix()
-#likelihood_matrix('Tenaillon_et_al').get_likelihood_matrix()
-
 #print(kryazhimskiy_et_al().pop_by_gene_kryazhimskiy())
+
+kryazhimskiy_et_al().get_size_dict()

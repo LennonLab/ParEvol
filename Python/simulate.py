@@ -15,3 +15,12 @@ def dfe_0_sample(s):
 
 def dfe_eq_sample(s, N):
     return dfe_0_sample(s) * ((1 + np.exp(2*N*s) ) ** -1)
+
+#def dfe_t(N, U_b, s, L_b, t):
+    #np.rand
+
+
+
+def run_sim():
+    N = 1000
+    U = 0.001
