@@ -27,8 +27,8 @@ def run_permutations(iter, dataset = 'tenaillon'):
     elif dataset == 'good':
         df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-        df_out = open(pt.get_path() + '/data/Good_et_al/permute.txt', 'w')
-        df_out.write('\t'.join(['Iteration','Time', 'MCD']) + '\n')
+        #df_out = open(pt.get_path() + '/data/Good_et_al/permute.txt', 'w')
+        #df_out.write('\t'.join(['Iteration','Time', 'MCD']) + '\n')
         # exclude p5 since it doesn't move in ordination space
         to_exclude = pt.complete_nonmutator_lines()
         to_exclude.append('p5')
@@ -48,6 +48,7 @@ def run_permutations(iter, dataset = 'tenaillon'):
                 df_tp = df_nonmut.iloc[time_points_positions[tp]]
                 #tp_minus_df = df_nonmut.iloc[time_points_positions[time_points_set[time_points_set.index(tp) - 1]]]
                 df_tp_diff = df_tp.as_matrix() - df_0_rndm
+                print(np.sum(df_tp_diff, axis =1))
                 # expected combinations of mutations at the next time point
                 df_tp_rndm = df_0_rndm + pt.random_matrix(df_tp_diff)
                 df_tp_rndm_df = pd.DataFrame(data= df_tp_rndm, index=df_tp.index, columns=df_tp.columns)
@@ -60,68 +61,10 @@ def run_permutations(iter, dataset = 'tenaillon'):
             for tp in time_points_set:
                 cmd_tp = df_0_rndm_df_delta_cmd_df[df_0_rndm_df_delta_cmd_df.index.str.contains(str(tp))]
                 cmd_tp_mcd = pt.get_mean_centroid_distance(cmd_tp.as_matrix(), k = 5)
-                df_out.write('\t'.join([str(i), str(tp), str(cmd_tp_mcd)]) + '\n')
-        #for i in range(iter):
-        #    print(i)
-        #    df_rndm = pd.DataFrame(data=pt.random_matrix(df_nonmut_array), index=df_nonmut.index, columns=df_nonmut.columns)
-        #    df_rndm_delta = pt.likelihood_matrix(df_rndm, 'Good_et_al').get_likelihood_matrix()
-        #    df_rndm_delta_bc = np.sqrt(pt.get_scipy_bray_curtis(df_rndm_delta.as_matrix()))
-        #    df_rndm_delta_cmd = pt.cmdscale(df_rndm_delta_bc)[0]
-        #    for tp in time_points_set:
-        #        tp_df_rndm_delta_cmd = df_rndm_delta_cmd[time_points_positions[tp][:, None], :]
-        #        tp_mcd = pt.get_mean_centroid_distance(tp_df_rndm_delta_cmd, k = 5)
-        #        df_out.write('\t'.join([str(i), str(tp), str(tp_mcd)]) + '\n')
-        df_out.close()
+                #df_out.write('\t'.join([str(i), str(tp), str(cmd_tp_mcd)]) + '\n')
+
+        #df_out.close()
 
 
-
-def time_series_mc():
-    df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    to_exclude = pt.complete_nonmutator_lines()
-    to_exclude.append('p5')
-    df_nonmut = df[df.index.str.contains('|'.join( to_exclude))]
-    time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
-    df_gene = df_nonmut[['hokB']]
-    total_mut_dict = {}
-    for x in time_points_set:
-        total_count = sum(df_gene[df_gene.index.str.contains('_' + str(x))].values)
-        print(x, total_count)
-        #print(x,df_gene[df_gene.index.str.contains(str(x))].values )#np.array([i for i,j in enumerate(time_points) if j == x])
-
-    #print(sum(df_gene.values))
-
-    total_mut_dict = {}
-
-def time_permute():
-    # rows = p1t1, p1t2, p2t1, p2t2
-    # columns = gene1, gene2
-    test_time_array = np.array([[0, 1], [2, 1], [0, 0], [1, 2]])
-    t1 = test_time_array[[0,2],:]
-    t2 = test_time_array[[1,3],:]
-    r_sum_1 = np.sum(test_time_array[[0,2],:], axis = 1)
-    c_sum_1 = np.sum(test_time_array[[0,2],:], axis = 0)
-    r_sum_2 = np.sum(test_time_array[[1,3],:], axis = 1)
-    c_sum_2 = np.sum(test_time_array[[1,3],:], axis = 0)
-    #print(r_sum_2 - r_sum_1)
-    print(t1)
-    print(t2)
-    print(t2 - t1)
-    print(pt.random_matrix(t2 - t1))
-    #print('row sum T1', np.sum(test_time_array[[0,2],:], axis = 1))
-    #print('column sum T1', np.sum(test_time_array[[0,2],:], axis = 0))
-    #print('row sum T2', np.sum(test_time_array[[1,3],:], axis = 1))
-    #print('column sum T2', np.sum(test_time_array[[1,3],:], axis = 0))
-
-
-# t1 row sum =
-
-
-'''
-Write new randomization procedure for time series
-Constrain row and column sum, but
-'''
-
-
-run_permutations(100, dataset = 'good')
+run_permutations(1, dataset = 'good')
 #time_permute()
