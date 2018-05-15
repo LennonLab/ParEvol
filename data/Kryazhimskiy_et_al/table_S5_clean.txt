@@ -1,0 +1,1839 @@
+Founder	Pop	Clone	Notes	Chr	Pos	Unique_Mutation_ID	Ancestral_allele	Mutant_allele	Is_convergent	Type	Gene	AA_change	AA_position	Distance_to_gene	COV_IN_CLONE	CNT_IN_CLONE	FREQ_IN_CL	FREQ_OUT_CL	Posterior_Probability	Notes
+Founder	Pop	Clone	Notes	Chr	Pos	Unique Mutation ID	Ancestral allele	Mutant allele	Is convergent?	Type	Gene	AA change	AA position	Distance to gene	COV IN CLONE	CNT IN CLONE	FREQ IN CL	FREQ OUT CL	Posterior Probability	Notes
+L013	0	0		10	592411	2	C	A	no	non	GRR1	D->Y	640		196	194	99.0%	1.52%	1.00000	
+L013	0	0		12	721913	1	G	T	no	prom	GSP1			488	150	149	99.3%	0.10%	1.00000	
+L013	0	0		14	26738	3	T	C	no	syn	EGT2	T->T	897		24	24	100.0%	3.52%	1.00000	
+L013	1	0		2	25231	4	A	T	no	non	ECM21	D->E	1023		30	30	100.0%	0.32%	1.00000	
+L013	1	0		2	525658	9	TA	T	no	complex-frame	IRA1		325		21	21	100.0%	0.08%	1.00000	
+L013	1	0		2	525659	9	A	T	no	complex-frame	IRA1	Y->*	324		4	4	100.0%	0.00%	1.00000	
+L013	1	0		8	414945	6	GT	G	no	frame	KEL1		746		25	25	100.0%	0.00%	1.00000	
+L013	1	0		9	278876	7	A	C	no	syn	TED1	R->R	151		33	33	100.0%	0.17%	1.00000	
+L013	1	0		11	375298	8	A	C	no	prom	TTI1			161	15	15	100.0%	0.11%	1.00000	
+L013	1	0		14	368483	5	G	A	no	intergenic	none				34	34	100.0%	0.17%	1.00000	
+L013	1	0		15	95012	10	C	T	no	syn	MCH4	T->T	449		31	31	100.0%	0.00%	1.00000	
+L013	1	1		4	762877	11	C	A	no	non	NUM1	D->E	2417		18	18	100.0%	0.15%	0.99997	
+L013	1	1		4	1020980	12	A	T	no	non	RRP45	I->L	79		9	9	100.0%	0.29%	0.99998	
+L013	1	2	not used	10	274845	13	G	C	no	intergenic	none				35	35	100.0%	0.13%	0.99997	
+L013	2	1		3	215277	14	G	A	no	syn	RSC6	A->A	94		19	19	100.0%	0.48%	0.99999	
+L013	2	1		5	65253	15	C	A	no	prom	TCA17			86	2	2	100.0%	0.00%	0.99922	
+L013	2	1		6	162375	16	C	T	no	prom	GCN20			112	2	2	100.0%	0.00%	0.99977	
+L013	2	1		7	805876	17	G	T	no	non	MTR3	L->I	46		24	24	100.0%	0.31%	0.99999	
+L013	2	1		12	399269	18	TG	T	no	complex-frame	DCN1		217		7	7	100.0%	0.00%	0.99999	
+L013	2	1		12	399272	18	G	A	no	complex-frame	DCN1	E->E	218		12	12	100.0%	0.14%	0.99999	
+L013	4	0		2	192731	19	G	T	no	non	FUS3	E->D	94		141	139	98.6%	0.58%	1.00000	
+L013	4	0		6	210371	20	G	T	no	prom	CDC14			304	30	21	70.0%	0.37%	0.99978	
+L013	4	0		15	84	21	AC	A	no	complex-intergenic	none				16	14	87.5%	0.16%	1.00000	
+L013	4	0		15	85	21	C	CCCACA	no	complex-intergenic	none				16	16	100.0%	0.62%	1.00000	
+L013	4	1		2	464195	23	C	A	no	complex-non	CYC8	A->A	526		22	21	95.5%	1.16%	0.99997	
+L013	4	1		2	464198	23	C	T	no	complex-non	CYC8	Q->Q	525		24	19	79.2%	2.07%	0.99997	
+L013	4	1		2	464228	23	T	A	no	complex-non	CYC8	Q->H	515		34	33	97.1%	2.03%	0.99998	
+L013	4	1		2	464243	23	A	T	no	complex-non	CYC8	A->A	510		46	45	97.8%	2.63%	0.99998	
+L013	4	1		2	464252	23	T	C	no	complex-non	CYC8	Q->Q	507		55	55	100.0%	0.95%	0.99998	
+L013	4	1		6	210375	24	G	T	no	complex-prom	CDC14			308	23	16	69.6%	0.30%	0.66665	
+L013	4	1		6	210379	24	G	T	no	complex-prom	CDC14			312	25	16	64.0%	0.58%	0.99997	
+L013	4	1		14	160730	22	G	T	no	non	SIP3	S->Y	1197		115	113	98.3%	0.12%	0.99997	
+L013	4	2	not used	5	442178	26	G	C	no	prom	YER137C			363	20	20	100.0%	0.00%	0.99997	
+L013	4	2	not used	11	644059	25	T	G	no	intergenic	none				11	10	90.9%	0.00%	0.99998	
+L013	4	2	not used	16	211889	27	C	A	no	prom	CBC2			269	2	2	100.0%	0.08%	0.62483	
+L013	5	1		2	564408	30	G	T	no	syn	TOS1	T->T	55		13	13	100.0%	0.54%	0.99999	
+L013	5	1		4	47608	28	C	G	no	non	HO	E->D	142		12	12	100.0%	0.16%	0.99999	
+L013	5	1		4	1293613	32	T	TG	no	frame	DFM1		261		17	17	100.0%	0.07%	0.99999	
+L013	5	1		6	4715	31	AC	A	no	prom	YFL063W			351	8	8	100.0%	2.53%	0.99991	
+L013	5	1		10	745684	29	G	T	no	prom	YJR162C			425	18	11	61.1%	1.83%	0.83672	
+L013	5	1		15	587327	33	G	A	466	non	SFL1	R->K	117		14	13	92.9%	1.41%	1.00000	
+L013	6	1		1	16107	37	G	A	no	intergenic	none				21	15	71.4%	0.00%	0.99999	
+L013	6	1		4	198218	35	A	T	no	prom	COP1			41	8	8	100.0%	0.64%	0.99999	
+L013	6	1		4	630670	41	CT	C	no	complex-intergenic	none				8	8	100.0%	0.22%	0.99997	
+L013	6	1		4	630672	41	G	A	no	complex-intergenic	none				6	6	100.0%	0.00%	0.99997	
+L013	6	1		4	630673	41	C	A	no	complex-intergenic	none				8	8	100.0%	0.39%	0.99997	
+L013	6	1		4	636633	34	A	G	no	prom	YDR095C			106	12	12	100.0%	0.00%	0.99999	
+L013	6	1		5	424108	38	C	T	no	non	RPS26B	S->F	54		32	32	100.0%	0.14%	0.99999	
+L013	6	1		7	138153	39	G	A	no	non	GCN1	C->Y	2210		20	20	100.0%	0.16%	0.99999	
+L013	6	1		12	1065031	40	T	G	no	intergenic	none				68	54	79.4%	1.98%	0.99999	
+L013	6	1		13	891465	36	G	T	no	non	PSE1	P->Q	254		12	12	100.0%	0.37%	0.99999	
+L013	6	1		14	715181	42	C	A	no	non	LYS9	D->Y	69		28	28	100.0%	0.00%	0.99999	
+L013	7	0		5	408345	43	A	T	no	stop	DSE1	L->*	240		21	21	100.0%	0.09%	1.00000	
+L013	7	0		14	405886	44	A	AC	no	complex-prom	DCP2			324	35	35	100.0%	0.07%	1.00000	
+L013	7	0		14	405887	44	G	GA	no	complex-prom	DCP2			325	33	33	100.0%	0.20%	1.00000	
+L013	7	1		2	703632	46	C	A	no	non	YBR241C	L->F	141		19	19	100.0%	1.55%	0.99997	
+L013	7	1		3	277324	47	C	T	no	non	MSH3	R->Q	833		25	25	100.0%	0.23%	0.99998	
+L013	7	1		4	270383	48	C	A	no	stop	PHO2	E->*	507		12	12	100.0%	0.42%	0.99997	
+L013	7	1		6	193134	49	C	T	no	syn	YFR020W (dubious)	F->F	133		12	12	100.0%	0.41%	0.99997	
+L013	7	1		9	369130	45	G	A	no	non	PAN1	A->V	260		12	12	100.0%	0.39%	0.99997	
+L013	7	1		16	205914	50	C	T	no	non	TCO89	H->Y	223		15	15	100.0%	0.33%	0.99997	
+L013	7	2	not used	4	98325	52	C	T	no	prom	MRPL11			152	15	15	100.0%	0.00%	0.99997	
+L013	7	2	not used	6	21273	51	A	G	no	syn	YFL054C	S->S	505		11	11	100.0%	0.15%	0.99998	
+L013	7	2	not used	8	106055	53	A	T	no	prom	OSH7			5	7	7	100.0%	0.00%	0.99997	
+L013	8	1		5	131073	60	GA	G	no	intergenic	none				10	10	100.0%	0.00%	0.99999	
+L013	8	1		7	927454	54	G	A	no	syn	CCH1	V->V	923		2	2	100.0%	0.00%	0.99995	
+L013	8	1		7	976772	61	T	G	no	prom	YAP1802			201	2	2	100.0%	0.00%	0.99991	
+L013	8	1		10	565749	57	C	T	no	syn	TOR1	I->I	2111		2	2	100.0%	0.10%	0.51113	
+L013	8	1		12	226471	58	G	A	no	non	RIC1	P->S	708		2	2	100.0%	0.00%	0.99993	
+L013	8	1		14	665997	59	C	A	no	non	ARE2	A->E	221		12	12	100.0%	0.07%	0.99999	
+L013	8	1		15	252659	55	T	C	no	prom	NOP12			16	2	2	100.0%	0.00%	0.99989	
+L013	8	1		15	587228	62	G	A	no	stop	SFL1	W->*	84		31	31	100.0%	1.12%	0.99999	
+L013	8	1		15	994261	56	A	G	no	non	MNE1	Y->H	198		8	8	100.0%	0.00%	0.99998	
+L013	10	1		5	530499	64	G	C	no	non	BRR2	A->G	1840		16	16	100.0%	0.18%	0.99999	
+L013	10	1		9	74540	65	T	C	no	complex-non	ATG32	T->A	412		22	22	100.0%	0.37%	0.99999	
+L013	10	1		9	74548	65	T	A	no	complex-non	ATG32	Y->F	409		21	21	100.0%	4.58%	0.99999	
+L013	10	1		11	493006	66	C	T	no	syn	BCH2	N->N	547		14	13	92.9%	0.08%	0.99999	
+L013	10	1		15	1079482	63	TA	T	no	prom	HSP33			227	6	6	100.0%	0.00%	0.99998	
+L013	10	1		16	315623	67	G	A	no	non	KAP120	V->M	746		2	2	100.0%	0.00%	0.99988	
+L013	11	1		1	97890	68	C	T	no	non	DRS2	R->K	603		6	6	100.0%	0.00%	0.99999	
+L013	11	1		1	135791	76	C	T	no	prom	SPO7			63	2	2	100.0%	0.00%	0.99989	
+L013	11	1		2	308397	73	A	G	no	intergenic	none				3	3	100.0%	0.00%	0.99998	
+L013	11	1		5	532843	74	C	G	no	non	BRR2	E->Q	1059		2	2	100.0%	0.08%	0.63130	
+L013	11	1		8	122977	71	T	A	no	stop	SOD2	K->*	207		2	2	100.0%	0.09%	0.55665	
+L013	11	1		8	326719	69	G	T	no	intergenic	none				2	2	100.0%	0.00%	0.99933	
+L013	11	1		8	414613	77	TC	T	no	frame	KEL1		857		5	5	100.0%	0.00%	0.99999	
+L013	11	1		12	239402	75	T	G	no	non	FRE8	T->P	668		2	2	100.0%	0.07%	0.65025	
+L013	11	1		14	502062	70	G	A	no	stop	SUN4	W->*	184		4	4	100.0%	0.00%	0.99999	
+L013	11	1		14	689267	78	C	A	no	non	ABZ1	Q->K	546		2	2	100.0%	0.00%	0.99996	
+L013	11	1		15	546679	72	G	T	no	prom	RTC5			175	2	2	100.0%	0.00%	0.99995	
+L013	11	1		16	431718	79	A	C	no	prom	YPL062W			177	2	2	100.0%	0.10%	0.50917	
+L013	12	1		2	331264	100	A	G	no	syn	ZTA1	T->T	83		2	2	100.0%	0.09%	0.57725	
+L013	12	1		4	544715	98	A	G	no	intergenic	none				1	1	100.0%	0.00%	0.56894	
+L013	12	1		5	220487	84	T	C	no	non	ZRG8	N->D	268		2	2	100.0%	0.00%	0.99993	
+L013	12	1		5	260819	104	G	C	no	intergenic	none				2	2	100.0%	0.00%	0.99990	
+L013	12	1		6	70443	82	T	C	no	non	RIM15	K->E	1329		2	2	100.0%	0.00%	0.99994	
+L013	12	1		6	101451	103	C	A	no	intergenic	none				2	2	100.0%	0.08%	0.63694	
+L013	12	1		7	428450	88	T	C	no	prom	YGL036W			147	2	2	100.0%	0.00%	0.99972	
+L013	12	1		7	500208	108	A	T	no	non	CUL3	E->D	27		2	2	100.0%	0.09%	0.57304	
+L013	12	1		7	585086	90	C	T	no	syn	TAM41	L->L	66		4	3	75.0%	0.00%	0.59037	
+L013	12	1		7	675824	110	G	A	no	syn	RRP46	G->G	170		2	2	100.0%	0.07%	0.64858	
+L013	12	1		7	775640	94	T	C	no	non	SKN1	L->S	153		2	2	100.0%	0.00%	0.99993	
+L013	12	1		9	98526	95	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99925	
+L013	12	1		9	409509	114	T	C	no	syn	DAL4	L->L	348		2	2	100.0%	0.05%	0.77474	
+L013	12	1		10	55735	87	C	G	no	non	ECM25	P->A	453		2	2	100.0%	0.07%	0.69160	
+L013	12	1		10	122979	107	T	C	no	prom	CIS3			32	2	2	100.0%	0.08%	0.63448	
+L013	12	1		10	704614	97	C	A	no	non	HMS2	P->T	141		2	2	100.0%	0.00%	0.99997	
+L013	12	1		11	249881	83	T	G	no	non	HSL1	I->S	320		4	4	100.0%	0.00%	0.99999	
+L013	12	1		11	269976	81	C	A	no	non	YKL091C	M->I	226		2	2	100.0%	0.09%	0.57891	
+L013	12	1		11	284147	102	A	G	no	non	TEF4	T->A	310		2	2	100.0%	0.00%	0.99997	
+L013	12	1		12	644402	92	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99979	
+L013	12	1		12	769039	112	A	G	no	non	EST2	I->V	835		2	2	100.0%	0.09%	0.56794	
+L013	12	1		13	425435	93	A	G	no	non	SEC14	H->R	96		2	2	100.0%	0.00%	0.99992	
+L013	12	1		13	558594	113	G	A	no	prom	TIF34			62	2	2	100.0%	0.07%	0.65619	
+L013	12	1		13	721401	89	G	A	no	non	MRPL44	T->I	3		2	2	100.0%	0.00%	0.99994	
+L013	12	1		13	801210	109	G	A	no	non	RSN1	A->T	897		2	2	100.0%	0.00%	0.99996	
+L013	12	1		14	426260	99	C	T	no	non	LEU4	E->K	165		2	2	100.0%	0.07%	0.67602	
+L013	12	1		15	84114	80	G	T	no	non	TRM13	C->F	95		6	6	100.0%	0.06%	0.99999	
+L013	12	1		15	92589	101	T	A	no	intron	RPS19A				2	2	100.0%	0.00%	0.99993	
+L013	12	1		15	511255	86	G	T	no	prom	NUP1			80	2	2	100.0%	0.00%	0.99995	
+L013	12	1		15	574371	106	T	C	no	syn	VPS17	A->A	400		2	2	100.0%	0.09%	0.56407	
+L013	12	1		15	676432	85	G	T	no	non	LAS17	R->M	166		2	2	100.0%	0.00%	0.99992	
+L013	12	1		15	720370	105	C	A	no	prom	YOR200W			44	2	2	100.0%	0.00%	0.99997	
+L013	12	1		16	172137	91	G	A	no	stop	YPL199C	Q->*	207		2	2	100.0%	0.09%	0.57557	
+L013	12	1		16	293119	111	C	T	no	non	GIP3	G->S	1177		6	6	100.0%	0.09%	0.99999	
+L013	12	1		16	493664	96	C	A	no	non	TRM44	T->K	41		2	2	100.0%	0.00%	0.99995	
+L048	0	0		7	227013	116	C	G	no	non	ARO2	I->M	205		29	28	96.6%	0.00%	1.00000	
+L048	0	0		8	389179	117	T	C	no	prom	DCD1			450	59	59	100.0%	0.21%	1.00000	
+L048	0	0		9	419240	115	AT	A	no	frame	MGA2		1039		57	57	100.0%	0.19%	1.00000	
+L048	0	0		10	515767	118	A	G	no	non	NUP85	Y->C	571		65	65	100.0%	0.24%	1.00000	
+L048	1	1		1	10992	120	A	C	no	intergenic	none				25	25	100.0%	0.10%	0.99999	
+L048	1	1		5	139256	121	C	G	no	non	GCN4	D->H	170		21	21	100.0%	0.37%	0.99999	
+L048	1	1		10	152706	122	A	C	no	non	YUR1	L->R	98		20	20	100.0%	0.00%	0.99999	
+L048	1	1		11	555213	119	C	A	no	non	TIF1	T->N	75		32	30	93.8%	0.12%	0.99992	
+L048	1	1		15	335926	123	T	C	no	non	DNL4	E->G	472		13	13	100.0%	0.24%	0.99998	
+L048	2	1	"likely mutator, not used"	1	40363	130	C	T	no	stop	GPB2	Q->*	369		18	18	100.0%	0.25%	0.99999	
+L048	2	1	"likely mutator, not used"	1	70406	173	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99986	
+L048	2	1	"likely mutator, not used"	2	57203	166	A	C	no	non	TEL1	I->R	727		2	2	100.0%	0.10%	0.50573	
+L048	2	1	"likely mutator, not used"	2	750277	194	A	G	no	non	CHK1	N->D	229		2	2	100.0%	0.00%	0.99995	
+L048	2	1	"likely mutator, not used"	4	21529	159	A	C	no	intergenic	none				6	6	100.0%	2.95%	0.99694	
+L048	2	1	"likely mutator, not used"	4	217194	139	G	A	no	prom	RPL35B			406	2	2	100.0%	0.00%	0.99995	
+L048	2	1	"likely mutator, not used"	4	278099	182	T	C	no	complex-non	POL3	Y->Q	410		3	3	100.0%	0.88%	0.67939	
+L048	2	1	"likely mutator, not used"	4	278101	182	T	G	no	complex-non	POL3	Y->Q	410		3	3	100.0%	1.05%	0.56235	
+L048	2	1	"likely mutator, not used"	4	500199	162	G	C	no	non	REG1	L->V	228		15	15	100.0%	0.27%	0.99999	
+L048	2	1	"likely mutator, not used"	4	849352	193	C	G	no	stop	REF2	S->*	252		2	2	100.0%	0.00%	0.99990	
+L048	2	1	"likely mutator, not used"	4	1172101	145	T	A	no	prom	YDR348C			276	2	2	100.0%	0.00%	0.99991	
+L048	2	1	"likely mutator, not used"	4	1249846	187	T	A	no	prom	YDR387C			25	2	2	100.0%	0.11%	0.54263	
+L048	2	1	"likely mutator, not used"	4	1365323	157	G	A	no	syn	TSA2	G->G	113		2	2	100.0%	0.00%	0.99996	
+L048	2	1	"likely mutator, not used"	5	118416	156	T	A	no	intergenic	none				2	2	100.0%	0.08%	0.62664	
+L048	2	1	"likely mutator, not used"	5	303353	191	G	T	no	intergenic	none				2	2	100.0%	0.10%	0.50622	
+L048	2	1	"likely mutator, not used"	5	472703	137	A	G	no	non	YER152C	F->L	428		2	2	100.0%	0.00%	0.99996	
+L048	2	1	"likely mutator, not used"	5	522743	180	T	A	no	prom	CCA1			78	4	4	100.0%	1.32%	0.97773	
+L048	2	1	"likely mutator, not used"	7	70252	133	G	A	no	syn	VID30	G->G	194		28	27	96.4%	0.73%	0.99999	
+L048	2	1	"likely mutator, not used"	7	111584	176	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99996	
+L048	2	1	"likely mutator, not used"	7	319852	154	AT	A	no	intergenic	none				8	8	100.0%	0.32%	0.99999	
+L048	2	1	"likely mutator, not used"	7	462826	190	C	G	no	non	KAP122	Q->E	389		2	2	100.0%	0.00%	0.99989	
+L048	2	1	"likely mutator, not used"	7	628678	140	T	G	no	non	ROM1	S->A	293		3	3	100.0%	0.36%	0.95935	
+L048	2	1	"likely mutator, not used"	7	689650	183	C	T	no	non	TEL2	S->L	587		2	2	100.0%	0.08%	0.59438	
+L048	2	1	"likely mutator, not used"	7	783218	126	G	A	no	non	ENP2	D->N	488		2	2	100.0%	0.00%	0.99993	
+L048	2	1	"likely mutator, not used"	7	801186	170	C	T	no	syn	PTI1	I->I	217		2	2	100.0%	0.00%	0.99988	
+L048	2	1	"likely mutator, not used"	8	92383	125	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99996	
+L048	2	1	"likely mutator, not used"	8	108944	169	C	T	no	non	LEU5	S->L	43		2	2	100.0%	0.07%	0.65619	
+L048	2	1	"likely mutator, not used"	8	242291	141	A	C	no	prom	OSH3			294	3	3	100.0%	0.84%	0.70644	
+L048	2	1	"likely mutator, not used"	8	307941	184	A	G	no	syn	TRA1	Q->Q	1726		2	2	100.0%	0.00%	0.99991	
+L048	2	1	"likely mutator, not used"	8	405543	136	C	T	no	stop	RTT107	Q->*	859		2	2	100.0%	0.00%	0.99978	
+L048	2	1	"likely mutator, not used"	8	449538	179	G	T	no	non	SPC97	A->S	401		3	3	100.0%	1.14%	0.50065	
+L048	2	1	"likely mutator, not used"	9	328774	167	C	T	no	stop	PDR11	W->*	1223		4	4	100.0%	2.09%	0.88044	
+L048	2	1	"likely mutator, not used"	10	27117	148	A	G	no	syn	HXT8	G->G	77		2	2	100.0%	0.09%	0.57808	
+L048	2	1	"likely mutator, not used"	10	103242	135	C	T	no	non	SET2	D->N	396		2	2	100.0%	0.00%	0.99992	
+L048	2	1	"likely mutator, not used"	10	146082	178	C	T	no	prom	YJL144W			276	3	3	100.0%	0.68%	0.79155	
+L048	2	1	"likely mutator, not used"	10	446937	164	C	G	no	non	APL1	D->E	338		2	2	100.0%	0.08%	0.59478	
+L048	2	1	"likely mutator, not used"	11	62036	155	T	C	no	non	TOR2	N->D	442		2	2	100.0%	0.10%	0.51744	
+L048	2	1	"likely mutator, not used"	11	137377	144	A	T	no	intergenic	none				2	2	100.0%	0.00%	0.99992	
+L048	2	1	"likely mutator, not used"	11	208011	186	G	C	no	prom	RRN3			239	3	3	100.0%	0.12%	0.99498	
+L048	2	1	"likely mutator, not used"	11	317066	177	T	A	no	complex-prom	YET1			6	2	2	100.0%	0.00%	0.99994	
+L048	2	1	"likely mutator, not used"	11	317067	177	A	G	no	complex-prom	YET1			7	2	2	100.0%	0.10%	0.50721	
+L048	2	1	"likely mutator, not used"	11	358502	134	C	A	no	syn	SPC42	R->R	9		3	3	100.0%	0.50%	0.90394	
+L048	2	1	"likely mutator, not used"	11	599920	142	A	C	no	non	PRP16	E->A	21		2	2	100.0%	0.09%	0.56407	
+L048	2	1	"likely mutator, not used"	11	646145	127	A	T	no	prom	FLO10			211	2	2	100.0%	0.08%	0.59636	
+L048	2	1	"likely mutator, not used"	11	666664	171	GT	G	no	intergenic	none				5	5	100.0%	3.86%	0.93186	
+L048	2	1	"likely mutator, not used"	12	204960	146	A	G	no	prom	RAD5			27	2	2	100.0%	0.10%	0.52081	
+L048	2	1	"likely mutator, not used"	12	287836	188	C	G	no	prom	EMP46			76	2	2	100.0%	0.00%	0.99990	
+L048	2	1	"likely mutator, not used"	12	496709	160	T	C	no	non	SEC10	E->G	444		2	2	100.0%	0.09%	0.56580	
+L048	2	1	"likely mutator, not used"	12	896217	147	G	A	no	non	VAC14	S->N	865		2	2	100.0%	0.09%	0.55044	
+L048	2	1	"likely mutator, not used"	12	1008437	189	C	T	no	non	ECM30	E->K	936		2	2	100.0%	0.10%	0.51648	
+L048	2	1	"likely mutator, not used"	13	192139	165	A	C	no	prom	RRN11			368	3	3	100.0%	0.33%	0.96266	
+L048	2	1	"likely mutator, not used"	13	498551	150	T	C	no	syn	MGR3	F->F	281		2	2	100.0%	0.00%	0.99991	
+L048	2	1	"likely mutator, not used"	13	576114	138	G	C	no	non	YMR160W	V->L	348		2	2	100.0%	0.00%	0.99994	
+L048	2	1	"likely mutator, not used"	13	626417	181	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L048	2	1	"likely mutator, not used"	13	867470	163	A	G	no	prom	ADE4			375	2	2	100.0%	0.00%	0.99990	
+L048	2	1	"likely mutator, not used"	14	135504	153	A	T	no	prom	BNI1			122	3	3	100.0%	0.27%	0.97847	
+L048	2	1	"likely mutator, not used"	14	240449	131	A	G	no	syn	YNL217W	P->P	40		2	2	100.0%	0.00%	0.99995	
+L048	2	1	"likely mutator, not used"	14	270832	174	A	C	no	non	SLZ1	I->M	113		3	3	100.0%	1.04%	0.55141	
+L048	2	1	"likely mutator, not used"	15	76826	124	C	T	no	syn	ALR1	A->A	810		2	2	100.0%	0.10%	0.52176	
+L048	2	1	"likely mutator, not used"	15	87154	168	A	G	no	prom	TRM11			400	2	2	100.0%	0.00%	0.99988	
+L048	2	1	"likely mutator, not used"	15	98397	128	A	C	no	non	RRI2	M->L	284		2	2	100.0%	0.00%	0.99995	
+L048	2	1	"likely mutator, not used"	15	209215	151	C	T	no	complex-non	CRT10	D->N	350		2	2	100.0%	0.00%	0.99997	
+L048	2	1	"likely mutator, not used"	15	209216	151	T	A	no	complex-non	CRT10	L->L	349		2	2	100.0%	0.07%	0.66833	
+L048	2	1	"likely mutator, not used"	15	498573	143	T	A	no	stop	YOR093C	K->*	1293		2	2	100.0%	0.09%	0.56103	
+L048	2	1	"likely mutator, not used"	15	568951	185	G	A	no	non	AFI1	P->L	202		2	2	100.0%	0.00%	0.99996	
+L048	2	1	"likely mutator, not used"	15	687721	129	A	G	no	non	MSB1	Y->C	653		2	2	100.0%	0.09%	0.58016	
+L048	2	1	"likely mutator, not used"	15	714920	172	G	C	no	complex-non	SLK19	R->S	686		2	2	100.0%	0.00%	0.99979	
+L048	2	1	"likely mutator, not used"	15	714922	172	T	G	no	complex-non	SLK19	I->R	687		2	2	100.0%	0.00%	0.99979	
+L048	2	1	"likely mutator, not used"	15	807561	149	A	T	no	non	OSW1	Q->H	98		4	4	100.0%	2.71%	0.73228	
+L048	2	1	"likely mutator, not used"	15	994258	161	A	T	no	complex-stop	MNE1	L->I	199		3	3	100.0%	0.60%	0.85691	
+L048	2	1	"likely mutator, not used"	15	994259	161	G	C	no	complex-stop	MNE1	Y->*	198		2	2	100.0%	0.00%	0.99994	
+L048	2	1	"likely mutator, not used"	16	70498	158	A	G	no	syn	HFI1	V->V	338		2	2	100.0%	0.00%	0.99995	
+L048	2	1	"likely mutator, not used"	16	269835	192	A	T	no	non	YPL150W	T->S	550		3	3	100.0%	0.62%	0.84333	
+L048	2	1	"likely mutator, not used"	16	408401	152	A	C	no	non	ATP4	F->C	115		3	3	100.0%	0.71%	0.77917	
+L048	2	1	"likely mutator, not used"	16	509579	132	T	A	no	syn	RAD1	T->T	961		2	2	100.0%	0.00%	0.99995	
+L048	2	1	"likely mutator, not used"	16	543210	175	A	C	no	complex-non	TFC8	S->Q	213		2	2	100.0%	0.07%	0.68053	
+L048	2	1	"likely mutator, not used"	16	543211	175	G	T	no	complex-non	TFC8	S->Q	213		2	2	100.0%	0.07%	0.68437	
+L048	2	1	"likely mutator, not used"	16	543212	175	A	G	no	complex-non	TFC8	S->Q	213		2	2	100.0%	0.07%	0.68142	
+L048	3	1		2	227576	205	T	C	no	prom	UTP20			59	2	2	100.0%	0.00%	0.99992	
+L048	3	1		2	512252	196	G	A	no	non	MEC1	D->N	2195		15	15	100.0%	0.07%	0.99999	
+L048	3	1		2	524659	213	T	A	no	non	IRA1	N->Y	658		4	4	100.0%	0.19%	0.99993	
+L048	3	1		3	288661	210	A	G	no	non	OCA4	I->T	200		2	2	100.0%	0.00%	0.99990	
+L048	3	1		5	225269	211	A	T	no	prom	ARB1			69	2	2	100.0%	0.00%	0.99987	
+L048	3	1		6	262442	207	C	T	no	intergenic	none				14	14	100.0%	0.00%	0.99999	
+L048	3	1		7	649124	217	A	G	no	complex-prom	RPL11B			223	3	3	100.0%	0.85%	0.70407	
+L048	3	1		7	649127	217	T	A	no	complex-prom	RPL11B			226	3	3	100.0%	0.75%	0.77092	
+L048	3	1		7	931996	204	T	A	no	intergenic	none				2	2	100.0%	0.09%	0.56147	
+L048	3	1		11	146295	208	C	T	no	prom	YKL162C-A			219	8	8	100.0%	0.10%	0.99999	
+L048	3	1		12	180293	202	T	A	no	non	PSR2	F->Y	3		6	6	100.0%	0.49%	0.99999	
+L048	3	1		12	404591	216	GT	G	no	complex-frame	ACE2		743		11	11	100.0%	0.09%	0.99999	
+L048	3	1		12	404594	216	T	G	no	complex-frame	ACE2	K->Q	742		14	14	100.0%	0.16%	0.99999	
+L048	3	1		13	80308	203	G	A	no	syn	YML096W	L->L	132		2	2	100.0%	0.00%	0.99997	
+L048	3	1		13	268143	195	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99965	
+L048	3	1		13	276717	212	G	A	no	non	TAF4	E->K	224		6	6	100.0%	0.00%	0.99999	
+L048	3	1		13	323883	198	A	T	no	non	CSI1	D->V	194		2	2	100.0%	0.00%	0.99963	
+L048	3	1		14	189693	209	T	C	no	syn	SLA2	I->I	548		17	17	100.0%	0.00%	0.99999	
+L048	3	1		15	203805	201	T	G	no	non	RIB2	K->Q	222		22	21	95.5%	0.11%	0.99999	
+L048	3	1		15	359090	197	T	C	no	syn	RTS1	L->L	474		2	2	100.0%	0.09%	0.54684	
+L048	3	1		15	392812	214	C	A	no	non	EXO1	R->S	570		10	10	100.0%	0.15%	0.99999	
+L048	3	1		15	679759	200	G	A	no	non	SER1	D->N	136		10	10	100.0%	0.00%	0.99999	
+L048	3	1		15	793988	199	A	T	no	intergenic	none				2	2	100.0%	0.00%	0.99989	
+L048	3	1		15	855124	215	T	C	no	intergenic	none				16	16	100.0%	0.15%	0.99999	
+L048	3	1		16	237601	206	G	A	no	syn	ATG29	E->E	88		2	2	100.0%	0.00%	0.99988	
+L048	5	1		2	197029	220	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99975	
+L048	5	1		2	763833	226	A	C	no	non	SAF1	D->E	288		21	20	95.2%	0.16%	0.99999	
+L048	5	1		7	840523	221	T	G	no	non	PSD2	M->R	1131		10	10	100.0%	1.18%	0.99999	
+L048	5	1		10	185461	222	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99931	
+L048	5	1		12	195367	219	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99963	
+L048	5	1		12	404941	225	G	T	no	non	ACE2	T->K	626		13	12	92.3%	0.07%	0.99999	
+L048	5	1		13	196171	223	G	A	no	prom	VPS71			412	15	13	86.7%	0.33%	0.99999	
+L048	5	1		15	440943	218	G	A	no	non	YOR060C	T->I	73		8	8	100.0%	0.07%	0.99999	
+L048	5	1		15	588264	224	GA	G	no	frame	SFL1		429		17	17	100.0%	0.00%	0.99999	
+L048	6	1		1	98594	240	T	C	no	syn	DRS2	G->G	368		2	2	100.0%	0.00%	0.99994	
+L048	6	1		2	28147	236	C	A	no	non	ECM21	R->S	51		20	20	100.0%	0.15%	0.99999	
+L048	6	1		3	143822	237	C	T	no	syn	YCR016W	S->S	63		2	2	100.0%	0.00%	0.99991	
+L048	6	1		4	1247956	238	A	G	no	non	MUS81	I->V	625		2	2	100.0%	0.00%	0.99991	
+L048	6	1		5	432909	239	T	C	no	intron	GLC7				6	6	100.0%	0.55%	0.99999	
+L048	6	1		6	25825	230	CA	C	no	intergenic	none				4	4	100.0%	3.23%	0.52995	
+L048	6	1		6	59591	248	T	G	no	syn	RPO41	S->S	270		2	2	100.0%	0.09%	0.53216	
+L048	6	1		7	18769	228	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99990	
+L048	6	1		7	37437	246	A	C	no	non	BRR6	I->L	169		2	2	100.0%	0.08%	0.61747	
+L048	6	1		7	531688	234	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99992	
+L048	6	1		8	410645	241	T	A	no	non	YSP1	S->R	1180		2	2	100.0%	0.00%	0.99993	
+L048	6	1		9	272313	242	G	T	no	syn	PIG2	L->L	384		2	2	100.0%	0.00%	0.99993	
+L048	6	1		11	616115	243	T	G	no	non	PTR2	L->W	129		11	11	100.0%	0.07%	0.99999	
+L048	6	1		12	711799	244	G	A	no	syn	YLR287C	T->T	85		2	2	100.0%	0.00%	0.99994	
+L048	6	1		13	61669	233	A	G	no	complex-non	MDM1	T->T	219		2	2	100.0%	0.00%	0.99991	
+L048	6	1		13	61969	233	G	T	no	complex-non	MDM1	F->L	119		2	2	100.0%	0.00%	0.99991	
+L048	6	1		13	321264	229	T	A	no	prom	MSS1			244	2	2	100.0%	0.00%	0.99991	
+L048	6	1		13	349835	247	A	G	no	prom	SUB1			310	2	2	100.0%	0.00%	0.99988	
+L048	6	1		13	781690	227	A	C	no	non	PET111	M->R	116		2	2	100.0%	0.00%	0.99995	
+L048	6	1		13	794771	245	C	A	no	prom	SAP30			153	2	2	100.0%	0.08%	0.59278	
+L048	6	1		15	294819	235	G	A	no	syn	CMK2	S->S	433		3	3	100.0%	0.11%	0.99604	
+L048	6	1		15	800890	231	C	A	no	prom	APC5			162	2	2	100.0%	0.00%	0.99988	
+L048	6	1		15	1013304	249	T	C	no	syn	PDE2	L->L	505		2	2	100.0%	0.00%	0.99990	
+L048	6	1		16	154190	232	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L048	6	1		16	405179	250	G	A	no	intron	RPS9A				2	2	100.0%	0.10%	0.50374	
+L048	7	0		4	213436	255	G	T	no	complex-stop	RGT2	A->*	29		27	27	100.0%	0.35%	1.00000	
+L048	7	0		4	213437	255	C	A	no	complex-stop	RGT2	A->*	29		27	27	100.0%	0.14%	1.00000	
+L048	7	0		4	702298	252	G	T	no	syn	ECM18	R->R	154		31	31	100.0%	0.37%	1.00000	
+L048	7	0		10	341639	253	C	A	no	stop	IRC8	S->*	618		23	23	100.0%	0.15%	1.00000	
+L048	7	0		13	183745	251	G	A	no	intergenic	none				9	9	100.0%	0.00%	1.00000	
+L048	7	0		13	397849	254	C	T	no	prom	AEP1			57	23	23	100.0%	0.12%	1.00000	
+L048	7	1		5	18440	256	T	A	no	intergenic	none				9	9	100.0%	0.14%	0.99997	
+L048	7	1		10	168294	257	A	G	no	non	URA2	L->P	1358		11	11	100.0%	0.16%	0.99997	
+L048	7	2	not used	2	674231	259	C	T	no	non	MCX1	A->T	302		10	10	100.0%	0.38%	0.99998	
+L048	7	2	not used	6	254817	260	C	G	no	non	HXK1	E->Q	78		12	12	100.0%	0.38%	0.99997	
+L048	7	2	not used	8	393768	261	T	C	no	syn	IMP3	L->L	78		2	2	100.0%	0.00%	0.99995	
+L048	7	2	not used	13	439688	262	C	G	no	non	YMR086W	P->R	159		14	14	100.0%	0.18%	0.99997	
+L048	7	2	not used	14	536218	263	T	C	no	non	SFB2	Y->C	564		12	12	100.0%	0.08%	0.99997	
+L048	7	2	not used	16	379294	258	G	T	no	syn	RLM1	T->T	619		3	3	100.0%	0.95%	0.65355	
+L048	7	2	not used	16	871685	264	A	G	no	non	MMS1	Y->C	328		11	11	100.0%	0.18%	0.99997	
+L048	9	0		4	809667	267	G	T	no	non	SUP35	G->C	449		34	34	100.0%	0.21%	1.00000	
+L048	9	0		12	180591	265	GT	G	no	frame	PSR2		102		16	14	87.5%	0.00%	0.99999	
+L048	9	0		12	625625	268	A	G	no	syn	MAP1	Y->Y	235		17	17	100.0%	0.07%	1.00000	
+L048	9	0		14	695411	266	T	C	no	prom	RSM19			87	14	9	64.3%	0.43%	0.98393	
+L048	9	0		16	900834	269	C	T	no	non	DPM1	A->V	27		20	20	100.0%	0.31%	1.00000	
+L048	9	1		10	515501	271	G	T	no	non	NUP85	W->C	482		17	11	64.7%	0.31%	0.99996	
+L048	9	1		11	468029	272	T	G	no	syn	YKR015C	T->T	213		12	12	100.0%	0.22%	0.99997	
+L048	9	1		13	758281	270	G	C	no	non	YMR244W	E->Q	343		15	13	86.7%	0.45%	0.99995	
+L048	9	1		15	175513	273	G	T	no	non	IRA2	A->S	1483		12	12	100.0%	0.32%	0.66665	
+L048	9	2	not used	9	51001	275	G	A	no	non	UBP7	D->N	971		6	5	83.3%	0.09%	0.99994	
+L048	9	2	not used	13	748040	274	C	T	no	intergenic	none				7	5	71.4%	0.24%	0.90686	
+L048	9	2	not used	15	819496	276	T	C	no	non	DSE3	Y->H	212		2	2	100.0%	0.09%	0.54185	
+L048	10	2	not used	2	55457	285	C	A	no	non	TEL1	R->M	1309		9	9	100.0%	0.07%	0.66666	
+L048	10	2	not used	6	221113	279	C	G	no	complex-non	RPL2A	G->A	53		10	10	100.0%	0.00%	0.66665	
+L048	10	2	not used	6	221115	279	G	A	no	complex-non	RPL2A	S->S	52		10	10	100.0%	0.31%	0.66665	
+L048	10	2	not used	7	436680	280	C	T	no	syn	AGA2	K->K	50		9	9	100.0%	0.15%	0.66666	
+L048	10	2	not used	10	677909	281	G	A	no	syn	TTI2	L->L	266		8	8	100.0%	0.22%	0.66666	
+L048	10	2	not used	11	362309	282	G	T	no	prom	PTM1			316	16	16	100.0%	0.25%	0.66666	
+L048	10	2	not used	12	1062992	283	C	A	no	non	PAU4	S->Y	27		17	11	64.7%	0.15%	0.66665	
+L048	10	2	not used	13	721704	284	G	T	no	non	YMR226C	A->D	233		14	14	100.0%	0.37%	0.66666	
+L048	10	2	not used	15	91748	277	G	A	no	prom	SMF1			332	9	9	100.0%	0.16%	0.66666	
+L048	10	2	not used	15	410332	286	T	A	no	intergenic	none				11	11	100.0%	0.71%	0.66666	
+L048	10	2	not used	16	662139	278	C	G	no	non	ATG11	E->D	845		12	12	100.0%	0.55%	0.66666	
+L048	11	1	"likely mutator, not used"	1	80205	289	A	G	no	non	MTW1	Q->R	163		2	2	100.0%	0.09%	0.57724	
+L048	11	1	"likely mutator, not used"	1	84143	328	T	G	no	non	PRP45	H->P	111		2	2	100.0%	0.00%	0.99997	
+L048	11	1	"likely mutator, not used"	1	118640	298	A	G	no	non	YAL018C	V->A	301		2	2	100.0%	0.08%	0.59318	
+L048	11	1	"likely mutator, not used"	1	176014	306	T	A	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L048	11	1	"likely mutator, not used"	2	45563	294	A	T	no	prom	RPL32			82	2	2	100.0%	0.00%	0.99985	
+L048	11	1	"likely mutator, not used"	2	68964	332	C	G	no	non	CDC27	G->A	161		2	2	100.0%	0.07%	0.68555	
+L048	11	1	"likely mutator, not used"	2	93088	297	A	T	no	non	PRS4	K->N	225		2	2	100.0%	0.00%	0.99995	
+L048	11	1	"likely mutator, not used"	2	126071	335	G	A	no	syn	SEC17	L->L	277		2	2	100.0%	0.00%	0.99995	
+L048	11	1	"likely mutator, not used"	2	352083	310	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99983	
+L048	11	1	"likely mutator, not used"	2	422243	301	A	G	no	syn	IST2	T->T	267		2	2	100.0%	0.10%	0.51841	
+L048	11	1	"likely mutator, not used"	2	468507	338	A	G	no	non	RAD16	K->E	420		2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	2	549201	316	C	A	no	prom	RPB5			190	2	2	100.0%	0.00%	0.99990	
+L048	11	1	"likely mutator, not used"	2	756472	321	C	A	no	stop	RIF1	E->*	212		2	2	100.0%	0.00%	0.99997	
+L048	11	1	"likely mutator, not used"	3	183491	325	T	C	no	non	BPH1	I->T	1324		2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	4	225226	319	T	C	no	non	CDC53	I->T	308		2	2	100.0%	0.00%	0.99995	
+L048	11	1	"likely mutator, not used"	4	564983	347	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99953	
+L048	11	1	"likely mutator, not used"	4	1075450	320	T	C	no	prom	YDR306C			280	2	2	100.0%	0.00%	0.99994	
+L048	11	1	"likely mutator, not used"	4	1260183	313	G	A	no	non	SHE9	V->I	95		2	2	100.0%	0.00%	0.99989	
+L048	11	1	"likely mutator, not used"	4	1435241	344	A	G	no	non	IZH1	I->V	107		5	5	100.0%	0.08%	0.99999	
+L048	11	1	"likely mutator, not used"	5	353459	307	G	A	no	intergenic	none				2	2	100.0%	0.07%	0.65749	
+L048	11	1	"likely mutator, not used"	5	455188	290	T	C	no	non	MAG1	N->S	282		2	2	100.0%	0.00%	0.99991	
+L048	11	1	"likely mutator, not used"	5	460003	329	T	C	no	non	UBP5	K->E	73		2	2	100.0%	0.07%	0.64992	
+L048	11	1	"likely mutator, not used"	6	4740	324	A	ACAC	no	prom	YFL063W			326	7	6	85.7%	3.58%	0.95941	
+L048	11	1	"likely mutator, not used"	7	1016464	292	A	G	no	syn	APL6	T->T	92		2	2	100.0%	0.00%	0.99995	
+L048	11	1	"likely mutator, not used"	7	1030208	330	A	G	no	syn	YTA7	E->E	950		2	2	100.0%	0.00%	0.99992	
+L048	11	1	"likely mutator, not used"	8	76193	303	T	C	no	non	YLF2	K->R	376		2	2	100.0%	0.00%	0.99994	
+L048	11	1	"likely mutator, not used"	8	137907	339	G	C	no	stop	YSC84	S->*	129		2	2	100.0%	0.10%	0.51357	
+L048	11	1	"likely mutator, not used"	8	284804	295	T	C	no	prom	YNG2			176	2	2	100.0%	0.00%	0.99986	
+L048	11	1	"likely mutator, not used"	8	310008	333	A	G	no	syn	TRA1	R->R	2415		2	2	100.0%	0.00%	0.99993	
+L048	11	1	"likely mutator, not used"	9	43901	299	T	C	no	non	BNR1	F->L	693		2	2	100.0%	0.00%	0.99978	
+L048	11	1	"likely mutator, not used"	9	83221	336	G	A	no	prom	CCT2			81	2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	9	154963	308	G	A	no	prom	COX5B			259	2	2	100.0%	0.00%	0.99993	
+L048	11	1	"likely mutator, not used"	9	231564	302	T	A	no	non	RPS24B	N->Y	133		2	2	100.0%	0.00%	0.99995	
+L048	11	1	"likely mutator, not used"	9	260008	296	G	T	no	prom	DFG10			151	2	2	100.0%	0.00%	0.99981	
+L048	11	1	"likely mutator, not used"	9	287507	334	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99988	
+L048	11	1	"likely mutator, not used"	9	422951	315	C	T	no	prom	IRC24			86	2	2	100.0%	0.09%	0.55267	
+L048	11	1	"likely mutator, not used"	10	240632	305	T	C	no	non	CHS6	L->P	407		2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	10	317512	341	A	G	no	non	LAS21	N->D	77		2	2	100.0%	0.07%	0.66739	
+L048	11	1	"likely mutator, not used"	10	613013	291	G	C	no	intergenic	none				2	2	100.0%	0.00%	0.99969	
+L048	11	1	"likely mutator, not used"	10	624329	288	C	T	no	non	ADO1	P->L	250		2	2	100.0%	0.06%	0.74260	
+L048	11	1	"likely mutator, not used"	10	626678	327	C	T	no	non	ECM27	S->F	614		5	5	100.0%	0.15%	0.99999	
+L048	11	1	"likely mutator, not used"	10	728390	309	T	A	no	intergenic	none				2	2	100.0%	0.07%	0.69471	
+L048	11	1	"likely mutator, not used"	11	20088	314	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99992	
+L048	11	1	"likely mutator, not used"	11	210567	345	A	G	no	prom	SSH4			29	2	2	100.0%	0.00%	0.99992	
+L048	11	1	"likely mutator, not used"	12	406436	287	C	A	no	stop	ACE2	G->*	128		2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	12	407657	326	G	T	no	non	YLR132C	T->N	165		2	2	100.0%	0.00%	0.99995	
+L048	11	1	"likely mutator, not used"	12	636958	318	A	G	no	non	YEF3	K->R	62		2	2	100.0%	0.00%	0.99997	
+L048	11	1	"likely mutator, not used"	13	436019	322	G	T	no	intergenic	none				2	2	100.0%	0.00%	0.99990	
+L048	11	1	"likely mutator, not used"	13	862630	348	G	T	no	non	PRC1	E->D	235		3	3	100.0%	0.19%	0.99283	
+L048	11	1	"likely mutator, not used"	14	155412	323	C	A	no	non	ORC5	P->Q	105		2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	14	675929	349	G	A	no	prom	CPR8			245	2	2	100.0%	0.00%	0.99992	
+L048	11	1	"likely mutator, not used"	15	316528	293	T	C	no	prom	RPB11			356	2	2	100.0%	0.00%	0.99993	
+L048	11	1	"likely mutator, not used"	15	338760	331	T	A	no	prom	TSR3			142	2	2	100.0%	0.00%	0.99989	
+L048	11	1	"likely mutator, not used"	15	520743	343	A	C	no	complex-intergenic	none				2	2	100.0%	0.09%	0.55533	
+L048	11	1	"likely mutator, not used"	15	520744	343	A	T	no	complex-intergenic	none				2	2	100.0%	0.09%	0.55267	
+L048	11	1	"likely mutator, not used"	15	520746	343	A	T	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99995	
+L048	11	1	"likely mutator, not used"	15	664414	312	T	C	no	intergenic	none				2	2	100.0%	0.10%	0.50622	
+L048	11	1	"likely mutator, not used"	15	771805	304	T	G	no	non	WTM1	S->A	337		4	4	100.0%	0.00%	0.99999	
+L048	11	1	"likely mutator, not used"	15	844851	340	G	A	no	prom	RFM1			224	2	2	100.0%	0.00%	0.99989	
+L048	11	1	"likely mutator, not used"	16	101578	300	A	T	no	intergenic	none				2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	16	142883	337	T	C	no	non	BMS1	T->A	97		2	2	100.0%	0.07%	0.66895	
+L048	11	1	"likely mutator, not used"	16	241850	311	A	G	no	prom	MLH3			353	2	2	100.0%	0.09%	0.56234	
+L048	11	1	"likely mutator, not used"	16	366996	342	A	G	no	non	PNG1	K->E	24		2	2	100.0%	0.09%	0.56407	
+L048	11	1	"likely mutator, not used"	16	699579	317	T	C	no	syn	MRL1	V->V	237		2	2	100.0%	0.00%	0.99996	
+L048	11	1	"likely mutator, not used"	16	919391	346	C	T	no	non	QCR2	A->V	4		2	2	100.0%	0.00%	0.99994	
+L048	12	1		2	124068	365	G	T	no	non	PIN4	P->Q	231		3	3	100.0%	0.48%	0.91485	
+L048	12	1		4	598265	356	T	C	no	prom	RAD55			204	2	2	100.0%	0.00%	0.99983	
+L048	12	1		4	1049942	371	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99977	
+L048	12	1		5	156291	353	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99989	
+L048	12	1		5	328303	369	T	C	no	prom	YER085C			163	2	2	100.0%	0.00%	0.99990	
+L048	12	1		6	25809	360	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99984	
+L048	12	1		7	430322	358	T	C	no	syn	YGL036W	L->L	576		2	2	100.0%	0.00%	0.99987	
+L048	12	1		7	973503	372	A	T	no	syn	PFK1	V->V	74		13	13	100.0%	0.84%	0.99999	
+L048	12	1		8	27871	361	G	T	no	non	MUP3	C->F	544		2	2	100.0%	0.00%	0.99978	
+L048	12	1		9	345359	362	C	A	no	prom	EPS1			333	2	2	100.0%	0.09%	0.53910	
+L048	12	1		10	422594	354	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L048	12	1		10	610912	370	T	A	no	prom	YJR096W			283	3	3	100.0%	0.00%	0.99999	
+L048	12	1		11	26347	355	G	T	no	intergenic	none				4	4	100.0%	2.42%	0.77863	
+L048	12	1		11	184607	352	C	A	no	intergenic	none				4	4	100.0%	3.24%	0.53485	
+L048	12	1		11	264536	368	G	A	no	prom	MBR1			256	12	12	100.0%	0.24%	0.99999	
+L048	12	1		12	405844	350	AG	A	no	frame	ACE2		325		9	9	100.0%	0.11%	0.99999	
+L048	12	1		12	440301	366	G	A	no	prom	STM1			161	2	2	100.0%	0.00%	0.99988	
+L048	12	1		13	630394	363	T	C	no	syn	YMR185W	L->L	456		2	2	100.0%	0.00%	0.99990	
+L048	12	1		14	25417	364	C	G	no	stop	EGT2	S->*	457		35	34	97.1%	0.56%	0.99999	
+L048	12	1		15	555839	351	T	C	no	non	UBP2	E->G	934		9	9	100.0%	0.08%	0.99999	
+L048	12	1		15	610787	367	A	G	no	non	SMP3	L->S	200		2	2	100.0%	0.00%	0.99987	
+L048	12	1		15	1077723	357	G	A	no	non	YOR390W	A->T	315		19	19	100.0%	0.00%	0.99999	
+L048	12	1		16	882647	359	T	G	no	intergenic	none				2	2	100.0%	0.00%	0.99990	
+L098	0	0		3	262447	374	C	A	no	non	TUP1	A->S	3		130	130	100.0%	0.38%	1.00000	
+L098	0	0		5	472428	373	AATG	A	no	prom	UBP3			8	99	99	100.0%	0.00%	1.00000	
+L098	0	0		14	580632	375	G	A	no	syn	CRZ1	T->T	352		135	135	100.0%	0.08%	1.00000	
+L098	1	1		2	503721	376	G	T	no	non	HSL7	A->D	190		27	27	100.0%	1.05%	0.99999	
+L098	2	1		1	78002	379	G	C	no	non	FUN12	V->L	526		19	19	100.0%	0.00%	0.99999	
+L098	2	1		2	643097	380	G	A	no	intergenic	none				21	21	100.0%	0.10%	0.99998	
+L098	2	1		6	253496	381	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99977	
+L098	2	1		7	250274	377	G	T	no	non	SEC27	W->L	69		24	23	95.8%	0.09%	0.99999	
+L098	2	1		7	400285	384	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99204	
+L098	2	1		10	95897	382	G	GA	no	complex-frame	KRE9		269		30	30	100.0%	0.00%	0.99999	
+L098	2	1		10	95903	382	C	G	no	complex-frame	KRE9	I->M	271		29	29	100.0%	0.15%	0.99999	
+L098	2	1		13	144281	383	G	C	no	non	ORC1	E->Q	690		26	26	100.0%	0.07%	0.99999	
+L098	2	1		14	38578	378	A	G	no	prom	YNL319W			64	2	2	100.0%	0.00%	0.99967	
+L098	2	1		16	880351	385	C	T	no	intergenic	none				15	15	100.0%	0.10%	0.99999	
+L098	4	1		2	25972	386	TA	T	no	frame	ECM21		776		7	7	100.0%	0.00%	0.99999	
+L098	4	1		2	58226	397	A	G	no	non	TEL1	L->S	386		2	2	100.0%	0.00%	0.99984	
+L098	4	1		4	76788	390	G	A	no	prom	PRR2			241	3	3	100.0%	0.79%	0.72736	
+L098	4	1		4	251130	400	T	C	no	syn	CYK3	G->G	850		24	24	100.0%	0.24%	0.99999	
+L098	4	1		4	1518636	393	G	T	no	intergenic	none				2	2	100.0%	0.08%	0.59676	
+L098	4	1		5	506482	396	C	A	no	non	CHD1	S->R	365		20	20	100.0%	0.50%	0.99999	
+L098	4	1		8	226355	395	C	T	no	non	SSZ1	A->T	264		18	18	100.0%	0.36%	0.99999	
+L098	4	1		11	163000	389	A	T	no	intergenic	none				2	2	100.0%	0.08%	0.62191	
+L098	4	1		11	225375	387	T	C	no	syn	RAD27	G->G	168		25	25	100.0%	0.00%	0.99999	
+L098	4	1		11	281661	398	A	T	no	non	RRP14	D->E	224		12	12	100.0%	0.56%	0.99999	
+L098	4	1		12	671335	391	G	A	no	syn	RED1	E->E	333		2	2	100.0%	0.00%	0.99993	
+L098	4	1		12	863475	401	A	T	no	non	ROM2	N->Y	256		2	2	100.0%	0.00%	0.99940	
+L098	4	1		13	151779	388	G	T	no	prom	OGG1			96	2	2	100.0%	0.00%	0.99991	
+L098	4	1		13	262852	399	A	G	no	prom	GLO1			164	19	19	100.0%	0.00%	0.99999	
+L098	4	1		13	545991	392	G	A	no	prom	RIM11			140	22	22	100.0%	0.00%	0.99999	
+L098	4	1		16	780414	394	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99978	
+L098	5	0		2	521067	402	G	T	no	stop	IRA1	S->*	1855		36	36	100.0%	0.15%	1.00000	
+L098	5	1		2	213199	404	GT	G	no	frame	SLA1		1056		12	12	100.0%	0.00%	0.99997	
+L098	5	1		4	263005	403	G	T	no	non	TRM3	G->V	1364		9	8	88.9%	0.66%	0.99997	
+L098	5	1		4	1145792	406	T	G	no	non	YDR336W	D->E	234		16	16	100.0%	0.31%	0.99997	
+L098	5	1		5	280144	405	A	T	no	syn	HOR2	A->A	180		9	9	100.0%	0.42%	0.99997	
+L098	5	1		7	561881	407	GT	G	no	complex-intergenic	none				12	12	100.0%	0.00%	0.99997	
+L098	5	1		7	561887	407	A	T	no	complex-intergenic	none				13	12	92.3%	0.46%	0.99997	
+L098	5	1		7	561908	407	A	G	no	complex-intergenic	none				7	6	85.7%	0.08%	0.99996	
+L098	5	1		7	561909	407	C	T	no	complex-intergenic	none				7	6	85.7%	0.16%	0.99996	
+L098	5	2	not used	1	167353	409	T	C	no	non	BUD14	S->G	507		23	23	100.0%	0.38%	0.99997	
+L098	5	2	not used	10	152955	408	G	C	no	non	YUR1	P->R	15		12	12	100.0%	0.52%	0.99997	
+L098	5	2	not used	13	403601	410	C	T	no	syn	SOV1	R->R	686		23	23	100.0%	0.09%	0.99997	
+L098	6	1		2	334248	416	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99983	
+L098	6	1		2	611073	427	G	A	no	non	MSI1	T->I	271		13	13	100.0%	0.13%	0.99999	
+L098	6	1		4	1337032	421	G	T	no	prom	GPI19			319	4	4	100.0%	0.00%	0.99998	
+L098	6	1		5	19513	413	C	A	no	prom	DSF1			76	2	2	100.0%	0.00%	0.99901	
+L098	6	1		5	84081	425	C	T	no	non	ANP1	G->S	158		26	26	100.0%	0.19%	0.99999	
+L098	6	1		5	462396	419	C	G	no	prom	LSM5			185	8	8	100.0%	0.21%	0.99999	
+L098	6	1		10	76820	418	G	T	no	non	SWE1	P->T	815		2	2	100.0%	0.09%	0.53122	
+L098	6	1		10	321462	415	C	G	no	non	NUP82	Q->E	483		11	11	100.0%	0.10%	0.99999	
+L098	6	1		10	500770	426	G	GT	no	frame	HUL4		875		5	5	100.0%	4.27%	0.90206	
+L098	6	1		11	561185	422	G	A	no	syn	LAS1	C->C	372		2	2	100.0%	0.00%	0.99976	
+L098	6	1		13	61600	417	C	T	no	non	MDM1	M->I	242		2	2	100.0%	0.00%	0.99991	
+L098	6	1		13	323867	411	G	A	no	non	CSI1	V->I	189		2	2	100.0%	0.00%	0.99974	
+L098	6	1		13	327287	423	A	T	no	stop	YMR027W	K->*	470		2	2	100.0%	0.00%	0.99985	
+L098	6	1		13	465585	414	T	C	no	complex-intergenic	none				2	2	100.0%	0.09%	0.53910	
+L098	6	1		13	465587	414	A	G	no	complex-intergenic	none				2	2	100.0%	0.10%	0.52224	
+L098	6	1		14	202330	412	C	G	no	prom	KEX2			97	15	15	100.0%	0.30%	0.99999	
+L098	6	1		14	252539	424	A	C	no	non	SSB2	K->Q	161		21	20	95.2%	0.00%	0.99998	
+L098	6	1		15	17589	420	G	T	no	non	YOL159C	P->T	70		24	24	100.0%	0.07%	0.99999	
+L098	6	1		16	910500	428	G	A	no	non	PZF1	P->S	175		10	10	100.0%	0.00%	0.99999	
+L098	8	0		5	83445	429	C	T	no	non	ANP1	A->T	370		63	60	95.2%	0.25%	1.00000	
+L098	8	0		7	1046114	430	G	C	no	non	CAB4	A->G	146		58	58	100.0%	0.00%	1.00000	
+L098	8	1		2	123848	433	G	T	no	non	PIN4	D->E	304		26	26	100.0%	0.08%	0.99997	
+L098	8	1		5	294993	435	T	A	no	complex-prom	ARG5%2C6			417	32	32	100.0%	0.23%	0.99997	
+L098	8	1		5	294994	435	A	T	no	complex-prom	ARG5%2C6			416	30	30	100.0%	0.72%	0.99997	
+L098	8	1		5	366747	431	A	C	no	prom	RTT105			55	37	37	100.0%	0.38%	0.99997	
+L098	8	1		7	927362	434	A	G	no	non	CCH1	S->G	893		30	29	96.7%	0.18%	0.99997	
+L098	8	1		13	63173	432	G	T	no	syn	NUP188	L->L	1460		25	25	100.0%	0.25%	0.99997	
+L098	8	1		14	22110	436	T	C	no	non	PEX6	D->G	175		31	31	100.0%	0.00%	0.99997	
+L098	8	2	not used	3	50320	437	A	T	no	prom	PDI1			99	7	5	71.4%	0.45%	0.74124	
+L098	8	2	not used	3	277234	443	T	A	no	non	MSH3	K->I	863		10	10	100.0%	0.00%	0.99998	
+L098	8	2	not used	4	1464249	439	T	G	no	non	GIN4	T->P	513		36	36	100.0%	0.15%	0.99997	
+L098	8	2	not used	5	343040	440	G	A	no	syn	IES5	T->T	62		18	18	100.0%	0.38%	0.99997	
+L098	8	2	not used	7	875644	441	T	A	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L098	8	2	not used	9	300441	442	G	T	no	prom	SSM4			432	2	2	100.0%	0.00%	0.99994	
+L098	8	2	not used	15	227116	444	G	T	no	complex-intergenic	none				3	3	100.0%	0.62%	0.83451	
+L098	8	2	not used	15	227119	444	A	C	no	complex-intergenic	none				3	3	100.0%	0.35%	0.95538	
+L098	8	2	not used	16	298355	438	A	C	no	intergenic	none				4	4	100.0%	2.98%	0.63038	
+L098	9	1		4	188836	448	T	C	no	syn	NOP14	K->K	584		3	3	100.0%	0.21%	0.98614	
+L098	9	1		4	242422	465	C	T	no	prom	UBP1			130	2	2	100.0%	0.00%	0.99983	
+L098	9	1		4	394490	453	T	C	no	non	DBP10	I->T	92		10	10	100.0%	0.09%	0.99999	
+L098	9	1		4	1021940	458	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99988	
+L098	9	1		4	1415877	451	T	C	no	non	PEX29	I->V	333		2	2	100.0%	0.00%	0.99994	
+L098	9	1		4	1493500	468	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99994	
+L098	9	1		5	7114	456	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99995	
+L098	9	1		5	319681	470	G	T	no	prom	AIM9			282	2	2	100.0%	0.00%	0.99971	
+L098	9	1		7	706309	450	A	G	no	non	CLB6	L->P	62		2	2	100.0%	0.00%	0.99993	
+L098	9	1		7	780263	467	A	G	no	prom	THI4			126	2	2	100.0%	0.00%	0.99980	
+L098	9	1		7	827236	447	G	A	no	prom	GTR2			306	2	2	100.0%	0.00%	0.99988	
+L098	9	1		7	857357	464	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99988	
+L098	9	1		9	150339	452	G	T	no	prom	SDP1			220	8	8	100.0%	0.34%	0.99999	
+L098	9	1		9	281759	469	G	A	no	syn	NOT3	P->P	298		21	21	100.0%	0.56%	0.99999	
+L098	9	1		10	48487	457	T	A	no	non	YJL206C	K->N	483		2	2	100.0%	0.00%	0.99995	
+L098	9	1		10	428023	471	A	C	no	non	CYR1	K->Q	956		3	3	100.0%	0.38%	0.95072	
+L098	9	1		11	432930	460	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99990	
+L098	9	1		12	579219	446	T	C	no	prom	RSA3			200	2	2	100.0%	0.00%	0.99990	
+L098	9	1		12	591589	463	T	C	no	syn	ADY4	A->A	150		2	2	100.0%	0.00%	0.99992	
+L098	9	1		12	858012	455	G	A	no	syn	MDM30	L->L	159		2	2	100.0%	0.00%	0.99995	
+L098	9	1		13	833524	445	T	C	no	non	AEP2	R->G	527		2	2	100.0%	0.00%	0.99990	
+L098	9	1		13	837772	462	T	A	no	prom	YKU70			419	2	2	100.0%	0.00%	0.99977	
+L098	9	1		14	24951	461	G	T	no	stop	EGT2	E->*	302		14	13	92.9%	0.06%	0.99999	
+L098	9	1		15	351493	454	C	T	no	syn	AUS1	A->A	606		22	22	100.0%	0.15%	0.99999	
+L098	9	1		15	524940	449	C	T	no	prom	YOR108C-A			129	2	2	100.0%	0.00%	0.99969	
+L098	9	1		15	587327	466	G	A	33	non	SFL1	R->K	117		24	24	100.0%	0.79%	1.00000	
+L098	9	1		16	462624	459	A	G	no	non	DIG1	S->P	406		22	21	95.5%	0.47%	0.99999	
+L098	10	1		4	567598	473	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99981	
+L098	10	1		4	953195	478	G	C	no	non	MNN10	G->R	133		31	30	96.8%	0.35%	0.99999	
+L098	10	1		7	169970	476	AT	A	no	frame	MPT5		660		6	6	100.0%	0.00%	0.99999	
+L098	10	1		12	965017	472	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99995	
+L098	10	1		12	1018069	477	T	C	no	prom	SEC39			378	2	2	100.0%	0.00%	0.99977	
+L098	10	1		13	324083	479	G	T	no	complex-non	CSI1	G->C	261		2	2	100.0%	0.00%	0.99971	
+L098	10	1		13	324086	479	G	C	no	complex-non	CSI1	G->R	262		2	2	100.0%	0.00%	0.99971	
+L098	10	1		13	912696	474	C	G	no	intergenic	none				3	3	100.0%	1.02%	0.52075	
+L098	10	1		14	628928	475	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99966	
+L098	10	1		15	344476	480	A	C	no	non	TIR4	N->H	49		21	21	100.0%	0.41%	0.99999	
+L098	11	1		2	9555	484	G	A	no	intergenic	none				16	16	100.0%	0.12%	0.99997	
+L098	11	1		4	818115	481	T	TC	no	frame	SDH4		56		11	10	90.9%	3.35%	0.99991	
+L098	11	1		4	946361	485	G	T	no	prom	AMD2			445	7	7	100.0%	0.80%	0.99997	
+L098	11	1		4	1395546	482	A	T	no	non	PKH3	N->Y	143		21	21	100.0%	0.16%	0.99997	
+L098	11	1		14	228308	483	C	T	no	stop	ATG4	Q->*	314		18	18	100.0%	0.14%	0.99997	
+L098	11	1		16	747473	486	G	T	no	non	DBF20	K->N	56		15	15	100.0%	0.60%	0.99998	
+L098	11	2	not used	7	397577	487	C	G	no	non	SDS23	M->I	13		10	10	100.0%	0.42%	0.99997	
+L098	11	2	not used	7	966239	490	C	T	no	syn	KEL2	E->E	813		8	8	100.0%	0.31%	0.99997	
+L098	11	2	not used	11	519630	489	C	T	no	non	UTH1	A->V	34		9	9	100.0%	1.01%	0.99997	
+L098	11	2	not used	13	876415	488	A	T	no	non	UBP15	E->D	475		17	17	100.0%	0.00%	0.99997	
+L098	11	2	not used	14	93449	491	C	A	no	non	SEC21	P->Q	486		12	12	100.0%	0.08%	0.99997	
+L098	12	1		4	503415	493	C	T	no	prom	MIC14			84	15	15	100.0%	0.51%	0.99998	
+L098	12	1		5	151882	494	T	G	no	intergenic	none				2	2	100.0%	0.00%	0.99988	
+L098	12	1		6	32389	495	G	A	no	intergenic	none				11	10	90.9%	0.36%	0.99999	
+L098	12	1		10	144314	496	C	T	no	stop	IDS2	Q->*	342		10	10	100.0%	0.10%	0.99999	
+L098	12	1		13	342302	497	TA	T	no	frame	MIH1		408		16	16	100.0%	0.28%	0.99851	
+L098	12	1		14	462141	498	G	T	no	prom	TCB2			270	2	2	100.0%	0.00%	0.99990	
+L098	12	1		15	145310	492	T	A	no	prom	SPO21			21	2	2	100.0%	0.00%	0.99974	
+L098	12	1		15	174338	499	C	A	no	non	IRA2	P->Q	1091		12	12	100.0%	0.09%	0.99999	
+L098	12	1		16	191366	500	C	T	no	complex-prom	POS5			40	2	2	100.0%	0.00%	0.99981	
+L098	12	1		16	191367	500	A	G	no	complex-prom	POS5			39	2	2	100.0%	0.00%	0.99982	
+L102	0	0		13	164983	501	G	T	no	stop	SPC2	E->*	64		30	30	100.0%	3.09%	1.00000	
+L102	0	0		13	247272	503	G	T	no	non	RAD33	Q->K	54		30	30	100.0%	4.12%	1.00000	
+L102	0	0		15	807328	502	C	T	no	stop	OSW1	R->*	21		21	21	100.0%	3.77%	1.00000	
+L102	1	0		3	224797	505	A	G	no	intergenic	none				24	22	91.7%	1.00%	1.00000	
+L102	1	0		12	406311	506	A	AT	no	frame	ACE2		169		15	15	100.0%	0.09%	1.00000	
+L102	1	0		13	717849	504	A	C	no	non	UBP8	D->A	377		11	10	90.9%	0.22%	0.99997	
+L102	1	0		16	699710	507	C	T	no	non	MRL1	S->F	281		23	23	100.0%	0.08%	1.00000	
+L102	1	1		1	32593	509	G	C	no	non	GDH3	G->R	343		13	13	100.0%	0.20%	0.99997	
+L102	1	1		15	41856	510	C	A	no	complex-non	FRE7	P->H	370		9	9	100.0%	0.33%	0.99997	
+L102	1	1		15	41857	510	A	T	no	complex-non	FRE7	P->H	370		9	9	100.0%	0.13%	0.99997	
+L102	1	1		16	35809	508	G	A	no	non	PLC1	A->T	192		8	8	100.0%	0.14%	0.99997	
+L102	1	2	not used	13	672473	511	G	T	no	syn	PFK2	G->G	766		8	8	100.0%	0.59%	0.99997	
+L102	7	1		4	805859	515	G	T	no	intergenic	none				11	11	100.0%	0.10%	0.99998	
+L102	7	1		4	1161494	512	T	C	no	prom	HXT6			174	3	3	100.0%	0.17%	0.98484	
+L102	7	1		4	1242652	522	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99995	
+L102	7	1		5	333883	517	TC	T	no	frame	DOT6		436		13	13	100.0%	0.23%	0.99999	
+L102	7	1		7	256948	518	G	A	no	non	PCL10	R->Q	429		3	3	100.0%	0.44%	0.93267	
+L102	7	1		9	249351	519	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99994	
+L102	7	1		10	644512	520	T	C	no	non	JHD2	N->S	660		11	11	100.0%	0.08%	0.99999	
+L102	7	1		11	246895	514	G	C	no	non	APE1	A->G	264		6	6	100.0%	0.38%	0.99999	
+L102	7	1		11	617039	524	G	T	no	non	PTR2	W->L	437		8	7	87.5%	0.21%	0.99999	
+L102	7	1		13	643397	521	C	A	no	non	SGS1	R->S	622		2	2	100.0%	0.08%	0.58876	
+L102	7	1		14	141632	513	C	T	no	syn	PIK1	F->F	252		4	4	100.0%	0.00%	0.99999	
+L102	7	1		14	502081	523	G	C	no	non	SUN4	W->C	190		2	2	100.0%	0.00%	0.99997	
+L102	7	1		15	157239	516	T	A	no	non	YOL087C	T->S	466		2	2	100.0%	0.00%	0.99995	
+L102	9	1		2	36036	527	C	T	no	intergenic	none				13	11	84.6%	0.13%	0.99998	
+L102	9	1		4	597302	525	G	C	no	non	PPH3	C->S	49		7	7	100.0%	0.56%	0.99999	
+L102	9	1		4	698108	530	A	C	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99992	
+L102	9	1		4	698109	530	G	T	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99992	
+L102	9	1		11	308019	528	C	A	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L102	9	1		13	146379	529	T	C	no	prom	RPS1B			107	5	5	100.0%	0.41%	0.99999	
+L102	9	1		16	200222	526	T	A	no	non	RTT10	K->I	772		9	9	100.0%	0.15%	0.99998	
+L102	9	1		16	733513	531	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99994	
+L102	10	1		1	147433	536	C	T	no	non	VPS8	H->Y	1243		2	2	100.0%	0.00%	0.99986	
+L102	10	1		2	418637	537	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99922	
+L102	10	1		3	307102	538	C	A	no	intergenic	none				8	8	100.0%	0.43%	0.99999	
+L102	10	1		4	931129	539	T	A	no	non	LYS4	M->K	1		2	2	100.0%	0.00%	0.99996	
+L102	10	1		7	884222	540	G	T	no	prom	TDH3			422	6	6	100.0%	0.00%	0.99999	
+L102	10	1		10	262204	533	C	T	no	syn	GWT1	Q->Q	116		2	2	100.0%	0.00%	0.99991	
+L102	10	1		10	326645	532	C	T	no	non	BIT61	G->D	410		4	4	100.0%	0.33%	0.99973	
+L102	10	1		10	339789	542	G	A	no	non	IRC8	M->I	1		11	11	100.0%	0.07%	0.99999	
+L102	10	1		12	99753	541	C	T	no	non	HIF1	G->D	150		3	3	100.0%	0.12%	0.99707	
+L102	10	1		13	342862	535	G	A	no	non	MIH1	S->L	221		7	7	100.0%	0.10%	0.99999	
+L102	10	1		13	786544	544	A	G	no	non	YMR259C	V->A	782		8	8	100.0%	0.16%	0.99999	
+L102	10	1		15	265816	534	G	A	no	non	OPI10	E->K	131		6	6	100.0%	0.00%	0.99999	
+L102	10	1		15	354877	543	G	T	no	intergenic	none				2	2	100.0%	0.00%	0.99953	
+L102	11	1		2	36494	546	T	A	no	intergenic	none				10	10	100.0%	0.25%	0.99999	
+L102	11	1		2	124539	558	G	A	no	non	PIN4	T->I	74		6	6	100.0%	0.21%	0.99999	
+L102	11	1		2	354339	549	AG	A	no	frame	UBP14		560		9	9	100.0%	0.00%	0.99999	
+L102	11	1		2	560471	560	G	A	no	non	CDC28	R->H	131		8	8	100.0%	0.40%	0.99999	
+L102	11	1		3	64009	554	C	A	no	non	STE50	T->K	190		10	10	100.0%	0.27%	0.99999	
+L102	11	1		7	1042508	555	G	A	no	non	TAF1	H->Y	193		3	3	100.0%	0.00%	0.99999	
+L102	11	1		8	227514	545	G	A	no	prom	SSZ1			370	3	3	100.0%	0.00%	0.99998	
+L102	11	1		8	239658	557	C	T	no	syn	ERG7	G->G	186		13	13	100.0%	0.36%	0.99999	
+L102	11	1		11	451924	556	T	A	no	non	MEH1	I->K	164		5	5	100.0%	0.00%	0.99999	
+L102	11	1		13	92262	550	G	C	no	non	UFO1	L->F	8		12	12	100.0%	0.07%	0.99999	
+L102	11	1		13	336378	561	G	T	no	non	HOF1	V->F	360		2	2	100.0%	0.00%	0.99996	
+L102	11	1		13	746234	552	A	C	no	prom	DFG5			124	5	5	100.0%	0.53%	0.99997	
+L102	11	1		14	53228	551	C	T	no	syn	STB1	G->G	189		13	13	100.0%	0.06%	0.99999	
+L102	11	1		14	300821	548	G	A	no	prom	RHO5			174	2	2	100.0%	0.00%	0.99991	
+L102	11	1		14	410464	547	A	G	no	non	YNL115C	S->P	530		4	4	100.0%	0.08%	0.99999	
+L102	11	1		14	502521	559	C	G	no	stop	SUN4	S->*	337		4	4	100.0%	0.20%	0.99995	
+L102	11	1		15	411086	553	GT	G	1227	frame	WHI2		74		10	10	100.0%	0.25%	0.99999	
+L102	11	1		16	455856	562	A	G	no	non	LEE1	Q->R	33		2	2	100.0%	0.00%	0.99990	
+L102	12	1		4	70461	565	C	T	no	prom	RRI1			140	2	2	100.0%	0.00%	0.99992	
+L102	12	1		4	474789	573	A	G	no	non	RAD61	K->R	248		2	2	100.0%	0.00%	0.99988	
+L102	12	1		5	410109	567	C	T	no	prom	RSP5			79	4	4	100.0%	0.00%	0.99998	
+L102	12	1		6	206079	568	C	A	no	stop	ULI1	E->*	60		2	2	100.0%	0.11%	0.51828	
+L102	12	1		8	274760	569	C	A	no	stop	STE12	S->*	195		2	2	100.0%	0.00%	0.99994	
+L102	12	1		9	315240	570	G	A	no	non	FAF1	D->N	50		3	3	100.0%	0.00%	0.99999	
+L102	12	1		13	192295	564	G	A	no	prom	CAT2			497	2	2	100.0%	0.07%	0.65586	
+L102	12	1		13	580949	572	G	A	no	stop	DNF3	Q->*	994		2	2	100.0%	0.10%	0.51162	
+L102	12	1		14	237484	563	GA	G	no	frame	ALG9		60		11	11	100.0%	0.13%	0.99999	
+L102	12	1		14	501724	571	AG	A	no	frame	SUN4		71		14	14	100.0%	0.07%	0.99999	
+L102	12	1		16	358421	566	G	A	no	non	FMP30	P->L	329		2	2	100.0%	0.07%	0.68112	
+L041	0	0		7	1044487	574	G	C	no	non	RNH70	A->G	328		107	107	100.0%	0.40%	1.00000	
+L041	0	0		8	415726	575	G	GT	no	frame	KEL1		486		57	57	100.0%	0.18%	1.00000	
+L041	1	1		6	27086	582	T	C	no	intergenic	none				27	27	100.0%	0.13%	0.99999	
+L041	1	1		7	638954	579	A	T	no	non	PEX8	S->T	186		19	19	100.0%	0.00%	0.99999	
+L041	1	1		8	393734	580	C	A	no	syn	IMP3	P->P	66		29	17	58.6%	0.08%	0.99989	
+L041	1	1		13	542676	581	G	T	no	non	GAT2	R->I	491		17	16	94.1%	0.10%	0.99999	
+L041	1	1		14	374967	577	A	T	no	prom	FYV6			277	13	11	84.6%	0.00%	0.99999	
+L041	1	1		14	485268	576	A	C	no	non	MKS1	E->D	572		15	15	100.0%	0.24%	0.99999	
+L041	1	1		14	502831	583	G	T	no	intergenic	none				12	12	100.0%	0.13%	0.99999	
+L041	1	1		15	179039	578	T	C	no	non	IRA2	F->S	2658		5	5	100.0%	0.00%	0.99997	
+L041	1	1		16	678601	584	G	A	no	prom	YPR063C			281	29	28	96.6%	0.44%	0.99999	
+L041	2	0		2	12617	585	A	G	no	syn	SRO77	P->P	421		48	48	100.0%	0.19%	1.00000	
+L041	2	0		2	193049	591	C	A	no	stop	FUS3	Y->*	200		23	23	100.0%	0.08%	1.00000	
+L041	2	0		8	262331	588	G	A	no	non	SAE3	S->L	47		31	31	100.0%	0.38%	1.00000	
+L041	2	0		9	101783	589	C	A	no	syn	FKH1	T->T	151		33	33	100.0%	0.34%	1.00000	
+L041	2	0		10	139185	590	A	G	no	non	DAS1	N->S	603		40	40	100.0%	0.00%	1.00000	
+L041	2	0		13	542598	586	C	CA	no	frame	GAT2		465		20	20	100.0%	0.23%	1.00000	
+L041	2	0		13	842503	592	C	T	no	syn	DSS1	V->V	949		32	32	100.0%	0.10%	1.00000	
+L041	2	0		15	594429	587	A	T	no	intergenic	none				33	33	100.0%	0.23%	1.00000	
+L041	2	0		16	314867	593	G	A	no	non	KAP120	E->K	494		28	28	100.0%	0.18%	1.00000	
+L041	2	2	not used	10	343280	594	G	A	no	non	MTR4	M->I	253		22	22	100.0%	0.37%	0.99997	
+L041	2	2	not used	16	606386	595	C	T	no	syn	YPR022C	Q->Q	309		20	20	100.0%	0.42%	0.99997	
+L041	4	1		2	524532	600	GA	G	no	frame	IRA1		700		9	9	100.0%	0.00%	0.99998	
+L041	4	1		4	1248246	596	AC	A	no	frame	YDR387C		526		16	16	100.0%	0.08%	0.99999	
+L041	4	1		4	1250879	604	T	C	no	non	RVS167	Y->H	232		22	20	90.9%	0.17%	0.99999	
+L041	4	1		7	695837	597	A	G	no	non	NOP7	N->D	144		13	13	100.0%	0.25%	0.99999	
+L041	4	1		7	769919	605	C	A	no	non	CBF2	A->E	834		25	24	96.0%	0.92%	0.99999	
+L041	4	1		8	195449	601	A	G	no	prom	YHR045W			105	15	15	100.0%	0.09%	0.99999	
+L041	4	1		9	267418	602	T	A	no	non	SYG1	Q->L	136		18	18	100.0%	0.28%	0.99999	
+L041	4	1		13	420715	599	A	G	no	intergenic	none				8	8	100.0%	0.15%	0.99998	
+L041	4	1		13	859043	607	C	A	no	prom	YMR295C			149	2	2	100.0%	0.00%	0.99968	
+L041	4	1		15	386665	603	A	G	no	prom	DFG16			157	6	6	100.0%	0.21%	0.99998	
+L041	4	1		16	463282	598	CG	C	no	frame	DIG1		186		25	25	100.0%	0.00%	0.99999	
+L041	4	1		16	675782	606	A	G	no	prom	ARO7			151	2	2	100.0%	0.00%	0.99953	
+L041	5	1		3	230287	609	C	T	no	stop	HCM1	Q->*	326		22	22	100.0%	0.08%	0.99999	
+L041	5	1		7	700723	610	G	A	no	intergenic	none				17	17	100.0%	0.11%	0.99998	
+L041	5	1		10	156993	611	C	G	no	intron	RPS21B				13	13	100.0%	0.00%	0.99999	
+L041	5	1		12	155300	608	C	A	no	non	NOC3	D->Y	345		9	9	100.0%	0.24%	0.99998	
+L041	5	1		14	408660	612	C	G	no	non	DMA2	Q->E	108		34	34	100.0%	0.06%	0.99999	
+L041	6	1		4	1000353	617	G	C	no	non	YDR266C	S->C	557		16	16	100.0%	0.10%	0.99998	
+L041	6	1		7	229613	620	C	T	no	non	RRT6	G->E	25		27	26	96.3%	0.26%	0.99999	
+L041	6	1		8	322002	621	A	G	no	non	SBE22	D->G	529		14	14	100.0%	0.00%	0.99999	
+L041	6	1		10	381378	619	G	T	no	syn	KAR2	V->V	17		21	21	100.0%	0.23%	0.99999	
+L041	6	1		11	115452	613	A	AGACAG	no	intergenic	none				1	1	100.0%	0.00%	0.86109	
+L041	6	1		11	251317	622	G	T	no	stop	HSL1	E->*	799		18	18	100.0%	1.35%	0.99999	
+L041	6	1		12	140659	615	G	C	no	prom	SPO75			115	3	3	100.0%	0.44%	0.88764	
+L041	6	1		12	532710	614	A	G	no	non	ATG26	I->T	560		16	16	100.0%	0.13%	0.99999	
+L041	6	1		12	861550	623	A	C	no	complex-intergenic	none				4	4	100.0%	1.53%	0.95602	
+L041	6	1		12	861554	623	A	T	no	complex-intergenic	none				4	4	100.0%	0.80%	0.99506	
+L041	6	1		13	623389	618	A	G	no	prom	CTL1			172	2	2	100.0%	0.00%	0.99967	
+L041	6	1		15	117686	616	C	T	no	prom	NDJ1			235	2	2	100.0%	0.00%	0.99992	
+L041	6	1		15	868050	624	T	G	no	complex-non	YOR293C-A	D->S	32		3	3	100.0%	0.74%	0.72408	
+L041	6	1		15	868051	624	C	A	no	complex-non	YOR293C-A	D->S	32		3	3	100.0%	0.18%	0.98146	
+L041	6	1		15	868052	624	A	G	no	complex-non	YOR293C-A	G->V	31		3	3	100.0%	0.74%	0.72074	
+L041	6	1		15	868053	624	C	A	no	complex-non	YOR293C-A	G->V	31		3	3	100.0%	0.18%	0.98342	
+L041	8	0		13	725985	625	G	C	no	non	RRP5	A->G	1715		39	38	97.4%	0.09%	1.00000	
+L041	8	1		1	41494	627	C	T	no	non	GPB2	H->Y	746		28	27	96.4%	0.18%	0.99998	
+L041	8	1		2	648569	628	C	A	no	non	NGR1	P->H	228		40	38	95.0%	0.23%	0.99997	
+L041	8	1		5	189356	629	T	C	no	intergenic	none				3	3	100.0%	0.95%	0.57515	
+L041	8	1		6	78369	630	C	A	no	non	CAK1	D->Y	265		23	23	100.0%	0.87%	0.99997	
+L041	8	1		10	722921	631	C	T	no	non	PGU1	L->F	37		42	41	97.6%	0.26%	0.99997	
+L041	8	1		11	130330	626	T	C	no	prom	MRPL38			306	2	2	100.0%	0.00%	0.99987	
+L041	8	1		13	327197	632	C	G	no	non	YMR027W	Q->E	440		13	12	92.3%	0.19%	0.99997	
+L041	8	2	not used	4	613304	635	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99980	
+L041	8	2	not used	7	365628	633	C	T	no	intron	RPL7A				13	13	100.0%	0.00%	0.99997	
+L041	8	2	not used	7	734791	637	A	G	no	non	YGR122W	I->M	289		15	15	100.0%	0.31%	0.99997	
+L041	8	2	not used	12	510424	636	G	T	no	prom	RFX1			197	10	9	90.0%	0.65%	0.99997	
+L041	8	2	not used	13	541565	634	C	T	no	stop	GAT2	Q->*	121		27	27	100.0%	0.00%	0.99997	
+L041	8	2	not used	14	666428	638	A	T	no	stop	ARE2	K->*	365		22	22	100.0%	0.00%	0.99997	
+L041	9	1		2	166343	643	G	A	no	non	YBL029W	A->T	71		2	2	100.0%	0.00%	0.99948	
+L041	9	1		4	527483	639	A	G	no	complex-stop	ENA5	F->F	1072		12	12	100.0%	0.15%	0.99999	
+L041	9	1		4	527493	639	T	C	no	complex-stop	ENA5	H->R	1069		13	13	100.0%	0.20%	0.99999	
+L041	9	1		4	527495	639	T	C	no	complex-stop	ENA5	K->K	1068		12	12	100.0%	0.00%	0.99999	
+L041	9	1		4	527499	639	C	T	no	complex-stop	ENA5	S->N	1067		14	14	100.0%	0.00%	0.99999	
+L041	9	1		4	527502	639	C	T	no	complex-stop	ENA5	S->N	1066		13	13	100.0%	0.19%	0.99999	
+L041	9	1		4	527504	639	T	A	no	complex-stop	ENA5	R->*	1065		13	13	100.0%	0.06%	0.99999	
+L041	9	1		4	527506	639	G	T	no	complex-stop	ENA5	R->*	1065		13	13	100.0%	1.36%	0.99999	
+L041	9	1		4	527516	639	G	A	no	complex-stop	ENA5	N->N	1061		12	12	100.0%	0.06%	0.99999	
+L041	9	1		4	527519	639	T	C	no	complex-stop	ENA5	E->E	1060		12	12	100.0%	0.40%	0.99999	
+L041	9	1		4	527524	639	A	G	no	complex-stop	ENA5	S->P	1059		13	12	92.3%	0.00%	0.99999	
+L041	9	1		4	527525	639	A	G	no	complex-stop	ENA5	N->N	1058		13	13	100.0%	0.07%	0.99999	
+L041	9	1		4	527531	639	A	C	no	complex-stop	ENA5	A->A	1056		12	11	91.7%	0.06%	0.99999	
+L041	9	1		4	527744	639	A	G	no	complex-stop	ENA5	S->S	985		3	3	100.0%	0.22%	0.98328	
+L041	9	1		4	527798	639	A	G	no	complex-stop	ENA5	S->S	967		3	3	100.0%	0.17%	0.99284	
+L041	9	1		4	527852	639	A	G	no	complex-stop	ENA5	T->T	949		3	3	100.0%	0.06%	0.99923	
+L041	9	1		11	250357	642	G	T	no	stop	HSL1	E->*	479		19	19	100.0%	0.07%	0.99999	
+L041	9	1		13	116001	640	G	T	no	non	HMG1	Q->K	968		16	16	100.0%	0.13%	0.99999	
+L041	9	1		13	703361	645	G	A	no	non	GUA1	E->K	523		2	2	100.0%	0.00%	0.99964	
+L041	9	1		15	1001630	641	C	G	no	syn	MSC6	P->P	531		17	17	100.0%	0.00%	0.99999	
+L041	10	1		2	368008	649	C	T	no	non	YBR063C	D->N	60		2	2	100.0%	0.00%	0.99989	
+L041	10	1		2	471178	660	G	A	no	syn	LYS2	D->D	917		5	4	80.0%	0.22%	0.96243	
+L041	10	1		2	600541	651	C	A	no	prom	PCH2			14	2	2	100.0%	0.10%	0.51793	
+L041	10	1		3	137590	655	A	G	no	prom	PGK1			156	5	5	100.0%	0.73%	0.99993	
+L041	10	1		4	693308	650	T	A	no	prom	TRM1			48	8	8	100.0%	0.00%	0.99999	
+L041	10	1		4	759713	659	A	G	no	complex-non	NUM1	K->E	1363		6	6	100.0%	1.27%	0.99998	
+L041	10	1		4	759715	659	G	A	no	complex-non	NUM1	K->E	1363		7	7	100.0%	0.44%	0.99999	
+L041	10	1		4	759717	659	A	C	no	complex-non	NUM1	E->A	1364		7	7	100.0%	1.26%	0.99999	
+L041	10	1		4	759764	659	T	C	no	complex-non	NUM1	L->L	1380		11	11	100.0%	0.75%	0.99999	
+L041	10	1		4	759769	659	C	T	no	complex-non	NUM1	V->V	1381		11	11	100.0%	0.08%	0.99999	
+L041	10	1		4	759770	659	A	G	no	complex-non	NUM1	K->E	1382		11	11	100.0%	0.38%	0.99999	
+L041	10	1		4	821958	647	C	T	no	non	SCC2	T->I	222		2	2	100.0%	0.00%	0.99988	
+L041	10	1		5	15187	652	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L041	10	1		5	342617	661	C	A	no	prom	YER091C-A			6	11	11	100.0%	0.00%	0.99999	
+L041	10	1		7	169027	648	C	T	no	stop	MPT5	Q->*	346		7	7	100.0%	0.11%	0.99999	
+L041	10	1		7	204700	646	T	A	no	intergenic	none				2	2	100.0%	0.00%	0.99988	
+L041	10	1		7	231351	658	A	G	no	non	TIP20	E->G	370		2	2	100.0%	0.00%	0.99988	
+L041	10	1		8	13796	656	G	A	no	non	YHL044W	A->T	78		3	3	100.0%	0.00%	0.99999	
+L041	10	1		10	265207	657	C	A	no	prom	DPB11			157	8	8	100.0%	0.23%	0.99999	
+L041	10	1		12	209628	653	C	T	no	non	RSC58	A->V	291		2	2	100.0%	0.09%	0.54002	
+L041	10	1		12	881908	662	T	C	no	syn	CTF3	V->V	730		2	2	100.0%	0.00%	0.99984	
+L041	10	1		14	132903	654	A	G	no	non	BNI1	L->P	827		2	2	100.0%	0.00%	0.99994	
+L041	10	1		15	587615	663	C	A	no	stop	SFL1	S->*	213		9	9	100.0%	0.38%	0.99999	
+L041	11	0		7	726772	665	C	G	no	prom	RPS23A			194	22	22	100.0%	0.76%	1.00000	
+L041	11	0		12	924699	666	C	A	no	prom	YLR402W			186	25	25	100.0%	0.00%	1.00000	
+L041	11	0		13	342886	664	G	T	no	stop	MIH1	S->*	213		30	30	100.0%	0.00%	1.00000	
+L041	11	0		16	378045	667	T	A	no	intron	RPS6A				21	21	100.0%	0.13%	1.00000	
+L041	11	1		11	280019	668	G	T	no	non	MDH1	K->N	298		24	24	100.0%	1.96%	0.99997	
+L041	11	2	not used	4	155314	670	T	C	no	non	GLT1	E->G	110		6	6	100.0%	0.00%	0.99997	
+L041	11	2	not used	12	150600	669	A	G	no	intergenic	none				4	4	100.0%	0.00%	0.99997	
+L041	11	2	not used	12	965461	671	T	G	no	non	RPN13	E->D	32		5	5	100.0%	0.17%	0.99997	
+L041	12	1		7	491740	678	C	T	no	syn	RPN14	A->A	71		18	18	100.0%	0.33%	0.99999	
+L041	12	1		12	92354	675	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99980	
+L041	12	1		12	442789	681	T	A	no	prom	PCD1			57	4	4	100.0%	3.02%	0.60292	
+L041	12	1		13	542042	673	C	T	no	stop	GAT2	Q->*	280		14	14	100.0%	0.00%	0.99999	
+L041	12	1		13	738677	680	GT	G	no	complex-frame	FUS2		583		5	5	100.0%	0.24%	0.99999	
+L041	12	1		13	738680	680	T	C	no	complex-frame	FUS2	F->L	584		6	5	83.3%	0.00%	0.99997	
+L041	12	1		14	473123	677	C	A	no	prom	PMS1			267	2	2	100.0%	0.00%	0.99986	
+L041	12	1		15	826387	672	T	G	no	syn	PAC1	T->T	2		17	17	100.0%	0.00%	0.99999	
+L041	12	1		15	876453	679	T	C	no	syn	MUM3	F->F	286		2	2	100.0%	0.00%	0.99977	
+L041	12	1		15	1034447	674	A	G	no	prom	GPB1			268	2	2	100.0%	0.00%	0.99987	
+L041	12	1		16	189226	676	C	G	no	non	GUP2	P->A	25		18	17	94.4%	0.09%	0.99999	
+L034	0	0	"likely diploid, not used"	15	699083	682	G	C	no	syn	THI72	V->V	494		57	32	56.1%	0.65%	0.99767	
+L034	1	1	"likely diploid, not used"	2	86012	683	G	A	no	non	SSA3	A->V	146		9	8	88.9%	2.54%	0.99996	
+L034	1	1	"likely diploid, not used"	2	192217	686	A	G	no	prom	FUS3			233	10	7	70.0%	0.16%	0.99964	
+L034	1	1	"likely diploid, not used"	4	993410	685	A	C	no	non	YDR262W	E->A	93		5	4	80.0%	0.00%	0.99827	
+L034	1	1	"likely diploid, not used"	5	211874	684	T	A	no	complex-non	MIG3	N->Y	2		14	10	71.4%	0.93%	0.99997	
+L034	1	1	"likely diploid, not used"	5	211875	684	C	T	no	complex-non	MIG3	M->I	1		14	10	71.4%	0.15%	0.99997	
+L034	1	2	"likely diploid, not used"	4	193337	687	G	C	no	non	LDB17	L->F	196		14	10	71.4%	0.16%	0.99997	
+L034	1	2	"likely diploid, not used"	16	917479	688	A	G	no	syn	RPC82	I->I	521		10	7	70.0%	0.21%	0.99963	
+L034	2	1	"likely diploid, not used"	2	680052	691	T	C	no	prom	OM14			2	2	2	100.0%	0.00%	0.99997	
+L034	2	1	"likely diploid, not used"	3	310199	692	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99993	
+L034	2	1	"likely diploid, not used"	4	1082320	693	C	T	no	non	SUM1	A->T	666		2	2	100.0%	0.00%	0.99995	
+L034	2	1	"likely diploid, not used"	5	280033	694	G	T	no	non	HOR2	N->K	217		2	2	100.0%	0.00%	0.99995	
+L034	2	1	"likely diploid, not used"	7	876063	695	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99993	
+L034	2	1	"likely diploid, not used"	8	339284	696	A	G	no	non	BZZ1	Y->C	400		3	3	100.0%	0.09%	0.99792	
+L034	2	1	"likely diploid, not used"	10	185923	697	T	C	no	syn	GCD14	E->E	252		2	2	100.0%	0.06%	0.72981	
+L034	2	1	"likely diploid, not used"	11	268645	689	T	A	no	non	BUD2	E->V	273		2	2	100.0%	0.00%	0.99993	
+L034	2	1	"likely diploid, not used"	11	439283	699	A	C	no	non	MET14	S->A	35		2	2	100.0%	0.07%	0.65847	
+L034	2	1	"likely diploid, not used"	12	1018482	698	C	T	no	non	RPS1A	A->T	141		2	2	100.0%	0.00%	0.99996	
+L034	2	1	"likely diploid, not used"	15	190349	690	G	T	no	non	YOL075C	T->K	1064		2	2	100.0%	0.00%	0.99996	
+L034	2	1	"likely diploid, not used"	15	1054162	700	C	A	no	intergenic	none				2	2	100.0%	0.00%	0.99994	
+L034	3	1	"likely diploid, not used"	2	498980	703	A	G	no	non	CCZ1	K->E	606		2	2	100.0%	0.00%	0.99991	
+L034	3	1	"likely diploid, not used"	4	114520	704	G	T	no	prom	NUS1			154	9	6	66.7%	0.18%	0.93216	
+L034	3	1	"likely diploid, not used"	7	357758	705	C	T	no	stop	YGL081W	R->*	129		2	2	100.0%	0.09%	0.56794	
+L034	3	1	"likely diploid, not used"	11	100324	701	A	T	no	prom	FAS1			347	5	4	80.0%	0.00%	0.93187	
+L034	3	1	"likely diploid, not used"	11	330585	706	A	G	no	intergenic	none				11	7	63.6%	0.00%	0.94894	
+L034	3	1	"likely diploid, not used"	12	369935	702	C	CA	no	frame	CCW12		53		7	5	71.4%	0.00%	0.99456	
+L034	3	1	"likely diploid, not used"	13	531720	707	C	A	no	non	POM152	S->Y	1304		16	10	62.5%	0.00%	0.99848	
+L034	5	1	"likely diploid, not used"	7	115779	709	T	A	no	prom	ARO8			280	18	11	61.1%	0.07%	0.99892	
+L034	5	1	"likely diploid, not used"	9	284797	710	G	A	no	non	PRM2	S->L	68		17	13	76.5%	0.27%	0.99999	
+L034	5	1	"likely diploid, not used"	12	628176	708	A	G	no	non	ERF2	E->G	354		11	11	100.0%	0.00%	0.99999	
+L034	5	1	"likely diploid, not used"	13	597577	711	G	A	no	non	CEP3	S->L	529		8	7	87.5%	0.14%	0.99998	
+L034	6	0	"likely diploid, not used"	2	678770	712	A	G	no	complex-non	ROT2	F->P	151		22	13	59.1%	1.10%	0.79550	
+L034	6	0	"likely diploid, not used"	2	678771	712	A	G	no	complex-non	ROT2	F->P	151		20	13	65.0%	0.95%	0.96712	
+L034	6	0	"likely diploid, not used"	2	678772	712	G	A	no	complex-non	ROT2	H->H	150		20	13	65.0%	0.62%	0.97362	
+L034	6	1	"likely diploid, not used"	12	369975	713	CAAG	C	no	non	CCW12	C->	40		12	8	66.7%	0.53%	0.99278	
+L034	6	2	"likely diploid, not used"	7	599440	714	C	T	no	stop	MUP1	Q->*	10		2	2	100.0%	0.00%	0.99993	
+L034	6	2	"likely diploid, not used"	16	461776	715	A	C	no	complex-non	MNN9	F->C	64		3	3	100.0%	0.84%	0.71730	
+L034	6	2	"likely diploid, not used"	16	461781	715	A	G	no	complex-non	MNN9	F->F	62		3	3	100.0%	0.00%	0.99997	
+L034	7	1	"likely diploid, not used"	2	49957	717	T	C	no	syn	AVT5	H->H	128		2	2	100.0%	0.11%	0.50246	
+L034	7	1	"likely diploid, not used"	3	175961	718	T	A	no	non	SYP1	Y->F	160		2	2	100.0%	0.00%	0.99996	
+L034	7	1	"likely diploid, not used"	4	748279	719	C	T	no	stop	TAF12	Q->*	515		2	2	100.0%	0.10%	0.50026	
+L034	7	1	"likely diploid, not used"	5	483899	720	T	C	no	non	YER156C	T->A	147		2	2	100.0%	0.07%	0.64925	
+L034	7	1	"likely diploid, not used"	7	270615	721	A	G	no	non	SOH1	F->S	54		2	2	100.0%	0.00%	0.99994	
+L034	7	1	"likely diploid, not used"	16	200265	722	A	T	no	non	RTT10	S->T	758		2	2	100.0%	0.08%	0.63659	
+L034	7	1	"likely diploid, not used"	14	683125	716	A	G	no	non	SSK2	L->P	769		2	2	100.0%	0.00%	0.99995	
+L034	7	1	"likely diploid, not used"	15	9169	723	C	T	no	prom	YOL163W			428	11	8	72.7%	0.06%	0.99999	
+L034	7	2	"likely diploid, not used"	4	174466	726	A	G	no	non	YDL157C	L->S	42		2	2	100.0%	0.08%	0.45169	
+L034	7	2	"likely diploid, not used"	7	456793	727	C	G	no	non	ALK1	I->M	671		7	6	85.7%	0.44%	0.66665	
+L034	7	2	"likely diploid, not used"	8	272305	728	A	T	no	prom	SAM35			325	5	4	80.0%	0.06%	0.66525	
+L034	7	2	"likely diploid, not used"	12	247659	724	G	A	no	non	IES3	D->N	155		2	2	100.0%	0.08%	0.45726	
+L034	7	2	"likely diploid, not used"	12	701238	729	T	C	no	non	YLR278C	N->D	928		2	2	100.0%	0.00%	0.66617	
+L034	7	2	"likely diploid, not used"	13	439605	725	T	C	no	syn	YMR086W	S->S	131		2	2	100.0%	0.10%	0.40647	
+L034	7	2	"likely diploid, not used"	16	942235	730	A	T	no	intergenic	none				2	2	100.0%	0.00%	0.66665	
+L034	9	1	"likely diploid, not used"	2	54912	732	C	G	no	non	TEL1	A->P	1491		2	2	100.0%	0.10%	0.51937	
+L034	9	1	"likely diploid, not used"	5	571734	733	T	C	no	non	YRF1-2	Y->H	87		5	4	80.0%	1.05%	0.53224	
+L034	9	1	"likely diploid, not used"	6	112545	734	G	T	no	stop	HXT10	G->*	68		2	2	100.0%	0.06%	0.75564	
+L034	9	1	"likely diploid, not used"	12	173439	731	A	G	no	syn	PPR1	P->P	514		2	2	100.0%	0.00%	0.99996	
+L034	9	1	"likely diploid, not used"	12	973828	735	C	G	no	syn	SPP382	G->G	146		7	7	100.0%	0.00%	0.99999	
+L034	10	1	"likely diploid, not used"	4	692166	736	C	T	no	syn	TRM1	P->P	365		14	9	64.3%	0.18%	0.99951	
+L034	10	1	"likely diploid, not used"	4	1479426	738	G	C	no	non	EUG1	D->H	274		20	13	65.0%	0.37%	0.99999	
+L034	10	1	"likely diploid, not used"	5	489600	737	T	C	no	non	YER158C	I->M	325		15	9	60.0%	0.07%	0.91233	
+L034	10	1	"likely diploid, not used"	16	282492	739	G	T	no	intron	RPL33A				16	12	75.0%	0.00%	0.99999	
+L094	0	0		2	796879	742	G	T	no	non	PHO89	P->Q	548		137	132	96.4%	0.26%	1.00000	
+L094	0	0		4	623308	743	T	G	no	non	YDR089W	V->G	399		96	95	99.0%	0.34%	1.00000	
+L094	0	0		11	617707	744	G	C	no	intergenic	none				82	82	100.0%	0.58%	1.00000	
+L094	0	0		12	150817	741	A	C	no	intergenic	none				109	109	100.0%	0.26%	1.00000	
+L094	0	0		13	517508	745	C	G	no	prom	STO1			37	108	106	98.1%	0.25%	1.00000	
+L094	2	1		2	193215	746	G	A	no	non	FUS3	A->T	256		17	17	100.0%	0.18%	0.99998	
+L094	2	1		2	209248	749	G	C	no	prom	YBL008W-A			160	19	19	100.0%	0.20%	0.99997	
+L094	2	1		2	516206	747	G	A	no	non	YBR139W	D->N	181		19	19	100.0%	0.08%	0.99997	
+L094	2	1		3	114501	748	A	C	no	intergenic	none				13	13	100.0%	0.00%	0.99995	
+L094	2	1		8	196443	750	CA	C	no	frame	YHR045W		297		21	21	100.0%	0.00%	0.99997	
+L094	2	2	not used	4	1154252	753	G	A	no	complex-syn	HXT7	D->D	559		4	4	100.0%	0.67%	0.99794	
+L094	2	2	not used	4	1154297	753	G	A	no	complex-syn	HXT7	S->S	544		4	4	100.0%	0.24%	0.99990	
+L094	2	2	not used	5	4192	754	A	G	no	non	YEL076C-A	L->P	215		19	11	57.9%	0.00%	0.59644	
+L094	2	2	not used	7	761221	755	C	T	no	prom	PRE9			161	14	14	100.0%	0.00%	0.99998	
+L094	2	2	not used	9	127724	756	G	T	no	intergenic	none				10	10	100.0%	0.00%	0.99998	
+L094	2	2	not used	12	25063	751	G	A	no	non	YLL058W	A->T	499		17	17	100.0%	0.21%	0.99997	
+L094	2	2	not used	12	709874	758	G	T	no	stop	CTS1	C->*	86		11	11	100.0%	0.16%	0.99997	
+L094	2	2	not used	13	591528	757	C	T	no	non	PAH1	D->N	369		10	10	100.0%	0.00%	0.99997	
+L094	2	2	not used	14	353062	752	C	T	no	non	YNL144C	C->Y	660		14	14	100.0%	0.70%	0.99997	
+L094	2	2	not used	16	87766	759	G	T	no	non	HUT1	Q->K	90		12	12	100.0%	0.22%	0.99998	
+L094	3	0		2	664972	760	G	GC	no	prom	YBR220C			294	7	6	85.7%	0.82%	0.99966	
+L094	3	0		12	41243	761	T	G	no	intergenic	none				5	5	100.0%	3.43%	0.84706	
+L094	3	1		4	804906	763	T	G	no	intergenic	none				26	24	92.3%	0.08%	0.99997	
+L094	3	1		4	1153699	766	C	A	no	prom	YDR341C			73	25	25	100.0%	0.27%	0.99997	
+L094	3	1		15	45715	764	T	C	1234	intergenic	none				3	3	100.0%	0.51%	0.67774	
+L094	3	1		15	442255	767	C	T	no	non	CKA2	P->L	242		27	26	96.3%	0.21%	0.99997	
+L094	3	1		16	232839	762	G	C	no	syn	REV3	T->T	1423		30	29	96.7%	0.00%	0.99998	
+L094	3	1		16	376648	765	G	A	no	non	GLR1	G->S	383		17	17	100.0%	0.46%	0.99998	
+L094	3	2	not used	2	525946	769	C	T	no	non	IRA1	E->K	229		17	17	100.0%	0.30%	0.99997	
+L094	3	2	not used	2	664976	777	G	C	no	prom	YBR220C			298	3	3	100.0%	0.81%	0.73107	
+L094	3	2	not used	3	82566	770	T	C	no	prom	YCL022C			481	2	2	100.0%	0.00%	0.99986	
+L094	3	2	not used	3	303800	778	A	G	no	intergenic	none				9	8	88.9%	0.00%	0.99997	
+L094	3	2	not used	4	834900	772	T	G	no	non	YDR186C	N->H	198		18	18	100.0%	0.10%	0.99997	
+L094	3	2	not used	5	523410	773	G	T	no	non	RPH1	V->F	16		16	15	93.8%	0.00%	0.99997	
+L094	3	2	not used	8	334846	774	T	G	no	non	YHR112C	D->A	274		16	16	100.0%	0.00%	0.99997	
+L094	3	2	not used	13	94705	775	C	A	no	non	AIM33	M->I	223		8	7	87.5%	0.08%	0.99997	
+L094	3	2	not used	15	109836	768	C	A	no	syn	SHR5	R->R	222		3	3	100.0%	0.90%	0.66491	
+L094	3	2	not used	15	155295	776	C	T	no	non	YOL087C	E->K	1114		2	2	100.0%	0.00%	0.99993	
+L094	3	2	not used	16	74439	771	C	G	no	non	ICY2	G->A	94		21	21	100.0%	0.15%	0.99997	
+L094	4	1		2	524580	785	G	T	no	non	IRA1	T->K	684		9	9	100.0%	0.13%	0.99999	
+L094	4	1		7	328610	781	G	A	no	intergenic	none				3	3	100.0%	0.42%	0.93322	
+L094	4	1		10	523546	782	C	G	no	non	TAH11	Q->E	500		10	10	100.0%	0.00%	0.99999	
+L094	4	1		11	215376	783	C	G	no	non	DGR2	T->S	411		5	5	100.0%	0.29%	0.99999	
+L094	4	1		12	404729	784	T	A	no	stop	ACE2	K->*	697		11	11	100.0%	0.23%	0.99999	
+L094	4	1		13	34000	779	T	C	no	prom	NAB6			246	5	5	100.0%	1.15%	0.99975	
+L094	4	1		13	881776	786	G	T	no	non	FKS3	C->F	205		6	6	100.0%	0.00%	0.99999	
+L094	4	1		14	577024	780	TTCGGTGGTTAAACAA	T	907	frame	HHF2		101		4	4	100.0%	1.74%	0.32609	
+L094	4	1		16	728508	787	G	A	no	non	YPR097W	D->N	1039		7	7	100.0%	0.00%	0.99998	
+L094	5	1		3	191294	791	C	T	no	syn	FEN1	T->T	234		5	5	100.0%	0.08%	0.99999	
+L094	5	1		3	279756	806	C	A	no	non	MSH3	K->N	22		3	3	100.0%	0.27%	0.97869	
+L094	5	1		4	836126	799	C	G	no	prom	CCT6			294	2	2	100.0%	0.00%	0.99997	
+L094	5	1		7	146287	802	G	C	no	non	CDC55	S->C	368		10	10	100.0%	0.00%	0.99999	
+L094	5	1		8	318304	800	C	A	no	non	KIC1	T->K	577		2	2	100.0%	0.00%	0.99996	
+L094	5	1		9	42609	796	T	A	no	non	BNR1	L->H	262		7	7	100.0%	0.00%	0.99999	
+L094	5	1		9	353139	809	C	A	no	non	INP51	W->L	98		2	2	100.0%	0.00%	0.99996	
+L094	5	1		10	221814	797	A	G	no	syn	IME2	L->L	142		2	2	100.0%	0.09%	0.56580	
+L094	5	1		10	380265	790	C	T	no	syn	TAD2	K->K	246		2	2	100.0%	0.00%	0.99959	
+L094	5	1		10	456210	805	T	C	no	prom	MET3			30	2	2	100.0%	0.00%	0.99978	
+L094	5	1		10	592935	793	C	T	no	non	GRR1	C->Y	465		5	5	100.0%	0.41%	0.99999	
+L094	5	1		12	703598	801	G	T	no	non	YLR278C	A->E	141		2	2	100.0%	0.09%	0.56450	
+L094	5	1		13	252239	798	G	A	no	non	ERG6	P->L	252		7	5	71.4%	0.07%	0.98853	
+L094	5	1		13	746335	810	G	T	no	prom	DFG5			23	3	3	100.0%	0.00%	0.99999	
+L094	5	1		14	262075	792	C	T	no	non	PSY2	M->I	376		2	2	100.0%	0.00%	0.99996	
+L094	5	1		14	468058	807	G	T	no	stop	MKT1	E->*	310		2	2	100.0%	0.00%	0.99995	
+L094	5	1		14	677878	788	T	A	no	non	YNR029C	H->L	203		6	6	100.0%	0.70%	0.99999	
+L094	5	1		14	705829	803	G	T	no	non	AGA1	V->F	712		4	4	100.0%	0.09%	0.99998	
+L094	5	1		15	442451	795	G	C	no	syn	CKA2	V->V	307		2	2	100.0%	0.00%	0.99994	
+L094	5	1		15	730418	808	A	G	no	syn	RET1	L->L	1013		4	4	100.0%	0.13%	0.99998	
+L094	5	1		16	363501	794	C	T	no	intergenic	none				2	2	100.0%	0.08%	0.59597	
+L094	5	1		16	558864	789	C	T	no	syn	PDH1	H->H	160		5	5	100.0%	0.00%	0.99999	
+L094	5	1		16	624728	804	G	A	no	non	APL4	A->V	747		2	2	100.0%	0.00%	0.99994	
+L094	6	1		1	102403	817	A	T	no	non	LTE1	V->D	1157		2	2	100.0%	0.08%	0.62117	
+L094	6	1		4	17413	823	C	T	no	intergenic	none				2	2	100.0%	0.10%	0.51551	
+L094	6	1		7	993970	822	C	T	no	prom	YGR250C			458	2	2	100.0%	0.00%	0.99996	
+L094	6	1		9	253524	818	G	T	no	stop	YIL055C	Y->*	134		3	3	100.0%	0.00%	0.99999	
+L094	6	1		10	613983	819	A	G	no	non	YJR098C	C->R	392		2	2	100.0%	0.00%	0.99994	
+L094	6	1		12	546099	812	C	T	no	non	NOP56	P->L	3		3	3	100.0%	0.31%	0.96759	
+L094	6	1		12	587784	825	G	A	no	non	YLR225C	A->V	377		2	2	100.0%	0.00%	0.99994	
+L094	6	1		12	712289	813	C	T	no	prom	YLR287C			236	2	2	100.0%	0.00%	0.99988	
+L094	6	1		12	992446	815	A	G	no	syn	CRN1	E->E	558		2	2	100.0%	0.00%	0.99996	
+L094	6	1		13	676579	820	C	T	no	non	YMR206W	P->L	227		2	2	100.0%	0.00%	0.99996	
+L094	6	1		14	303902	821	C	A	no	non	MRPL22	D->Y	238		2	2	100.0%	0.08%	0.62915	
+L094	6	1		16	148237	816	C	T	no	syn	CBP3	S->S	274		2	2	100.0%	0.09%	0.57347	
+L094	6	1		16	462776	814	C	T	no	stop	DIG1	W->*	355		5	5	100.0%	0.13%	0.99999	
+L094	6	1		16	741472	811	C	T	no	non	YTH1	R->K	198		2	2	100.0%	0.00%	0.99996	
+L094	6	1		16	772379	824	A	G	no	non	CLB2	I->V	243		2	2	100.0%	0.08%	0.58997	
+L094	7	0		2	241203	832	A	T	no	non	NTH2	L->H	27		24	23	95.8%	0.08%	1.00000	
+L094	7	0		4	548512	828	C	T	no	prom	RPC11			201	26	26	100.0%	1.16%	1.00000	
+L094	7	0		7	992258	829	G	C	no	non	YGR250C	H->D	419		26	26	100.0%	0.31%	1.00000	
+L094	7	0		8	415969	830	G	T	no	non	KEL1	T->K	405		51	51	100.0%	0.55%	1.00000	
+L094	7	0		10	24664	831	C	T	no	non	IMA5	A->T	475		33	33	100.0%	0.92%	1.00000	
+L094	7	0		12	569238	826	CTA	C	no	frame	FRE1		226		29	29	100.0%	0.10%	1.00000	
+L094	7	0		12	854831	833	C	G	no	prom	YLR365W			364	17	17	100.0%	0.24%	1.00000	
+L094	7	0		15	991463	827	A	C	no	non	CIN1	T->P	560		12	12	100.0%	0.20%	1.00000	
+L094	7	1		7	559246	835	A	T	no	prom	CAX4			382	13	13	100.0%	0.08%	0.99997	
+L094	7	1		11	362948	834	G	A	no	syn	PTM1	G->G	108		20	20	100.0%	0.08%	0.99997	
+L094	7	1		15	11539	836	G	A	no	intergenic	none				17	17	100.0%	2.23%	0.99997	
+L094	7	2	not used	14	19583	837	C	T	no	syn	PEX6	L->L	1017		5	5	100.0%	0.07%	0.99997	
+L094	9	1		2	519107	841	G	A	no	syn	IRA1	N->N	2508		2	2	100.0%	0.00%	0.99995	
+L094	9	1		4	404298	839	C	T	no	non	YDL027C	G->E	220		2	2	100.0%	0.00%	0.99993	
+L094	9	1		4	1268525	846	C	T	no	non	UTP5	S->L	352		6	6	100.0%	0.10%	0.99999	
+L094	9	1		6	42616	838	C	A	no	prom	FMP32			199	5	5	100.0%	0.00%	0.99993	
+L094	9	1		6	45036	845	C	T	no	stop	OTU1	W->*	175		8	8	100.0%	0.06%	0.99999	
+L094	9	1		7	379063	842	C	T	no	syn	SGF73	A->A	486		3	3	100.0%	0.22%	0.98748	
+L094	9	1		9	105373	843	T	C	no	syn	ASG1	N->N	864		1	1	100.0%	0.00%	0.52828	
+L094	9	1		11	71266	844	T	C	no	non	PEX1	E->G	867		7	7	100.0%	0.00%	0.99999	
+L094	9	1		13	178656	840	A	C	no	non	GSF2	H->P	76		9	9	100.0%	0.30%	0.99999	
+L094	9	1		14	59572	847	G	A	no	syn	YNL305C	S->S	73		9	9	100.0%	0.05%	0.99999	
+L094	10	1		4	391040	858	C	T	no	syn	GPR1	P->P	339		2	2	100.0%	0.10%	0.51502	
+L094	10	1		4	676908	874	G	A	no	non	FOB1	V->I	270		2	2	100.0%	0.09%	0.54367	
+L094	10	1		4	1166950	849	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99990	
+L094	10	1		4	1186918	867	T	C	no	non	SPC110	L->S	271		2	2	100.0%	0.00%	0.99988	
+L094	10	1		7	826449	865	G	A	no	non	TIF4631	D->N	801		2	2	100.0%	0.07%	0.70164	
+L094	10	1		10	144341	864	G	A	no	non	IDS2	D->N	351		2	2	100.0%	0.10%	0.50424	
+L094	10	1		11	219286	861	C	T	no	prom	VPH2			66	2	2	100.0%	0.00%	0.99993	
+L094	10	1		11	432697	854	C	A	no	syn	RPL14A	V->V	131		2	2	100.0%	0.00%	0.99988	
+L094	10	1		11	566313	872	A	G	no	non	CCP1	M->T	297		2	2	100.0%	0.07%	0.66989	
+L094	10	1		12	561614	857	C	T	no	syn	PNP1	P->P	38		2	2	100.0%	0.08%	0.59597	
+L094	10	1		12	795089	873	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99992	
+L094	10	1		13	524563	860	C	T	no	non	ECM16	H->Y	288		3	3	100.0%	0.93%	0.63983	
+L094	10	1		13	706047	855	G	T	no	non	TRS130	F->L	282		2	2	100.0%	0.00%	0.99992	
+L094	10	1		13	807777	851	A	C	no	prom	URA10			225	2	2	100.0%	0.07%	0.69584	
+L094	10	1		13	868879	869	C	T	no	syn	ATM1	T->T	251		9	9	100.0%	0.06%	0.99999	
+L094	10	1		14	18435	848	C	A	no	non	RPD3	G->C	290		8	8	100.0%	0.15%	0.99999	
+L094	10	1		14	35876	866	GA	G	no	frame	VNX1		394		9	9	100.0%	0.10%	0.99999	
+L094	10	1		14	222578	852	T	C	no	prom	JJJ1			148	2	2	100.0%	0.00%	0.99984	
+L094	10	1		14	297560	870	T	C	no	syn	IPI3	E->E	22		3	3	100.0%	0.29%	0.97466	
+L094	10	1		14	753823	862	C	A	no	non	YNR066C	W->C	403		2	2	100.0%	0.10%	0.51015	
+L094	10	1		15	15222	863	T	C	no	intergenic	none				2	2	100.0%	0.06%	0.70677	
+L094	10	1		15	689927	853	G	A	no	non	IES4	V->I	103		2	2	100.0%	0.09%	0.57891	
+L094	10	1		15	800129	871	G	T	no	non	APC5	N->K	200		2	2	100.0%	0.00%	0.99992	
+L094	10	1		15	981999	859	G	A	no	non	REV1	D->N	59		2	2	100.0%	0.09%	0.53634	
+L094	10	1		16	431950	850	C	A	no	intergenic	none				2	2	100.0%	0.08%	0.62664	
+L094	10	1		16	467909	868	G	T	no	non	VPS16	R->I	217		2	2	100.0%	0.00%	0.99996	
+L094	10	1		16	626927	856	C	T	no	non	APL4	G->D	14		7	7	100.0%	0.27%	0.99999	
+L094	11	1		2	289276	881	G	A	no	prom	SCO2			170	3	3	100.0%	0.00%	0.99999	
+L094	11	1		2	633448	878	C	T	no	prom	YBR204C			65	2	2	100.0%	0.10%	0.52272	
+L094	11	1		2	667759	876	C	A	no	non	PCS60	S->I	198		7	7	100.0%	0.23%	0.99999	
+L094	11	1		2	679821	886	C	T	no	non	OM14	A->T	45		4	4	100.0%	0.20%	0.99995	
+L094	11	1		3	268640	875	T	C	no	syn	FIG2	S->S	402		5	5	100.0%	1.76%	0.99878	
+L094	11	1		3	278411	885	C	G	no	non	MSH3	E->Q	471		3	3	100.0%	0.07%	0.99916	
+L094	11	1		4	1266171	879	A	C	no	prom	YDR396W			124	5	5	100.0%	0.35%	0.99998	
+L094	11	1		4	1479531	888	C	T	no	stop	EUG1	Q->*	309		7	7	100.0%	0.00%	0.99999	
+L094	11	1		7	49926	882	G	A	no	syn	CSE1	L->L	125		4	4	100.0%	0.16%	0.99997	
+L094	11	1		11	581846	883	C	A	no	prom	ECM4			438	12	12	100.0%	0.20%	0.99998	
+L094	11	1		12	836725	884	T	C	no	complex-stop	TAL1	E->*	210		3	3	100.0%	0.07%	0.99880	
+L094	11	1		12	836726	884	C	A	no	complex-stop	TAL1	E->*	210		3	3	100.0%	0.00%	0.99999	
+L094	11	1		14	148301	877	G	C	no	non	POL2	A->P	31		9	9	100.0%	0.51%	0.99999	
+L094	11	1		14	185489	887	C	T	no	non	VPS75	H->Y	11		2	2	100.0%	0.08%	0.58550	
+L094	11	1		14	477400	880	T	G	no	non	EOS1	T->P	211		8	8	100.0%	0.06%	0.99999	
+L094	12	1		1	43365	901	C	T	no	non	ACS1	G->D	553		4	4	100.0%	0.18%	0.99996	
+L094	12	1		2	235937	895	A	G	no	prom	HTA2			146	2	2	100.0%	0.00%	0.99990	
+L094	12	1		2	517397	890	T	C	no	syn	IRA1	R->R	3078		2	2	100.0%	0.00%	0.99989	
+L094	12	1		2	521671	889	T	G	no	non	IRA1	I->L	1654		5	5	100.0%	0.49%	0.99998	
+L094	12	1		2	522548	902	C	A	no	syn	IRA1	T->T	1361		2	2	100.0%	0.00%	0.99992	
+L094	12	1		2	578556	893	C	A	no	non	SEC66	S->Y	64		2	2	100.0%	0.09%	0.55133	
+L094	12	1		4	526474	896	A	T	no	non	KRS1	Q->L	345		2	2	100.0%	0.08%	0.59991	
+L094	12	1		4	1237340	891	A	G	no	intron	YRA1				2	2	100.0%	0.00%	0.99991	
+L094	12	1		4	1255766	903	T	C	no	non	UBA2	D->G	361		2	2	100.0%	0.08%	0.58469	
+L094	12	1		7	878649	898	C	G	no	prom	CRH1			467	3	3	100.0%	0.82%	0.67838	
+L094	12	1		11	399498	894	C	T	no	non	SPT23	E->K	862		2	2	100.0%	0.10%	0.51406	
+L094	12	1		11	574414	905	C	A	no	non	YKR070W	L->I	280		2	2	100.0%	0.08%	0.62227	
+L094	12	1		12	40225	899	C	T	no	intron	COF1				2	2	100.0%	0.09%	0.56493	
+L094	12	1		13	381643	900	T	C	no	non	STB2	E->G	420		2	2	100.0%	0.00%	0.99994	
+L094	12	1		14	326955	892	T	C	no	syn	RIA1	A->A	1039		2	2	100.0%	0.07%	0.64418	
+L094	12	1		14	358313	904	C	A	no	non	MEP2	T->N	288		9	9	100.0%	0.21%	0.99999	
+L094	12	1		15	873978	897	A	T	no	non	YOR296W	L->F	1260		2	2	100.0%	0.00%	0.99994	
+L096a	0	0		2	801717	909	A	C	no	non	MAL33	D->A	399		29	28	96.6%	0.23%	1.00000	
+L096a	0	0		3	122464	908	C	T	no	prom	CIT2			136	35	35	100.0%	0.35%	1.00000	
+L096a	0	0		14	499983	906	C	T	no	syn	RPL9B	N->N	102		26	26	100.0%	0.15%	1.00000	
+L096a	0	0		15	966978	910	G	A	no	syn	YOR342C	N->N	215		24	24	100.0%	0.32%	1.00000	
+L096a	0	0		14	577024	907	TTCGGTGGTTAAACAA	T	780	frame	HHF2		101		12	12	100.0%	0.59%	0.32609	
+L096a	2	0		3	84242	912	T	C	no	intergenic	none				16	14	87.5%	0.73%	1.00000	
+L096a	2	0		4	1392007	913	T	C	no	non	SPP41	V->A	1046		13	13	100.0%	0.10%	1.00000	
+L096a	2	0		6	34166	914	C	G	no	non	ALR2	W->C	561		23	23	100.0%	0.39%	1.00000	
+L096a	2	0		8	315508	915	G	T	no	non	BIG1	A->E	126		23	23	100.0%	0.06%	1.00000	
+L096a	2	0		9	90037	916	A	T	no	non	TMA108	L->M	918		17	17	100.0%	0.08%	1.00000	
+L096a	2	0		10	592115	911	C	G	no	non	GRR1	L->F	738		20	20	100.0%	0.07%	1.00000	
+L096a	2	0		12	637692	917	A	G	no	non	YEF3	R->G	307		12	12	100.0%	0.10%	1.00000	
+L096a	2	1		8	303216	918	A	G	no	syn	TRA1	T->T	151		15	15	100.0%	0.26%	0.99998	
+L096a	2	1		11	165430	919	C	T	no	non	YKL151C	M->I	168		18	18	100.0%	0.00%	0.99997	
+L096a	4	1		4	608237	921	C	A	no	non	PDC2	D->Y	616		12	12	100.0%	0.09%	0.99999	
+L096a	4	1		4	726329	928	G	A	no	non	YCF1	L->F	408		8	8	100.0%	0.21%	0.99999	
+L096a	4	1		7	553291	925	A	G	no	non	GSC2	I->V	1678		18	18	100.0%	0.74%	0.99999	
+L096a	4	1		8	201369	922	T	C	no	prom	AAP1			56	8	8	100.0%	0.00%	0.99999	
+L096a	4	1		8	374952	929	T	C	no	non	SPL2	H->R	51		13	13	100.0%	0.11%	0.99999	
+L096a	4	1		11	467267	926	A	G	no	syn	YKR015C	D->D	467		2	2	100.0%	0.00%	0.99982	
+L096a	4	1		12	406391	923	G	A	no	stop	ACE2	Q->*	143		5	5	100.0%	0.17%	0.99999	
+L096a	4	1		12	1061782	930	C	G	no	intergenic	none				9	9	100.0%	0.38%	0.99999	
+L096a	4	1		13	418913	920	A	C	no	non	PDS5	V->G	374		18	17	94.4%	0.09%	0.99999	
+L096a	4	1		13	535997	927	A	T	no	prom	REC114			216	2	2	100.0%	0.00%	0.99772	
+L096a	4	1		15	869080	924	A	G	no	prom	UAF30			125	2	2	100.0%	0.00%	0.99935	
+L096a	5	1		3	82403	933	G	A	no	prom	YCL022C			318	2	2	100.0%	0.00%	0.99937	
+L096a	5	1		5	466975	934	A	G	no	syn	PEA2	H->H	164		9	9	100.0%	0.23%	0.99999	
+L096a	5	1		6	48644	935	A	C	no	prom	YFL041W-A			90	17	17	100.0%	0.13%	0.99999	
+L096a	5	1		7	276564	931	C	G	no	non	MON1	A->P	51		15	15	100.0%	0.35%	0.99999	
+L096a	5	1		7	362016	939	C	A	no	prom	DBP3			160	2	2	100.0%	0.00%	0.99975	
+L096a	5	1		8	166697	936	G	C	no	non	DAP2	D->E	247		15	14	93.3%	0.08%	0.99999	
+L096a	5	1		10	625111	937	G	C	no	non	ECM27	D->H	92		15	15	100.0%	0.07%	0.99999	
+L096a	5	1		12	812233	938	G	T	no	non	FKS1	K->N	747		8	8	100.0%	0.26%	0.99999	
+L096a	5	1		14	194971	932	G	T	no	non	ATG2	V->L	1217		21	21	100.0%	0.00%	0.99999	
+L096a	5	1		15	1065975	940	T	C	no	intergenic	none				22	22	100.0%	0.16%	0.99999	
+L096a	7	1		4	622523	942	CA	C	no	frame	YDR089W		137		9	9	100.0%	0.12%	0.99999	
+L096a	7	1		7	709035	943	C	T	no	intergenic	none				29	26	89.7%	0.00%	0.99996	"This mutation is in the TYA transposable element, amino acid substitution R478C"
+L096a	7	1		9	425822	944	G	A	no	intergenic	none				28	28	100.0%	0.19%	0.99999	
+L096a	7	1		10	341915	945	CG	C	no	frame	IRC8		710		20	20	100.0%	0.00%	0.99999	
+L096a	7	1		11	338774	946	G	A	no	prom	DEF1			18	3	3	100.0%	0.95%	0.57939	
+L096a	7	1		14	502445	947	G	T	no	stop	SUN4	G->*	312		18	18	100.0%	0.32%	0.99999	
+L096a	7	1		16	516100	941	C	CA	no	frame	VTC3		307		9	9	100.0%	0.00%	0.99999	
+L096a	7	1		16	773461	948	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99971	
+L096a	10	1		2	776525	952	T	C	no	prom	YBR287W			45	8	8	100.0%	0.14%	0.99998	
+L096a	10	1		4	992871	953	TG	T	no	prom	YDR262W			262	13	13	100.0%	0.00%	0.99999	
+L096a	10	1		5	309015	954	C	T	no	non	PTP3	D->N	729		14	14	100.0%	0.10%	0.99999	
+L096a	10	1		7	567788	949	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99908	
+L096a	10	1		7	617313	956	C	T	no	prom	COX18			39	10	10	100.0%	0.13%	0.99998	
+L096a	10	1		10	591475	950	A	G	no	non	GRR1	F->L	952		13	13	100.0%	0.00%	0.99999	
+L096a	10	1		10	700230	957	C	A	no	non	PMT4	G->V	128		19	19	100.0%	0.19%	0.99999	
+L096a	10	1		12	537942	955	T	G	no	non	PEX13	F->V	226		12	12	100.0%	0.14%	0.99998	
+L096a	10	1		13	889791	951	C	G	no	non	PSE1	R->P	812		14	14	100.0%	0.08%	0.99999	
+L096a	10	1		16	376698	958	G	A	no	syn	GLR1	E->E	399		20	20	100.0%	0.00%	0.99999	
+L096a	12	1		3	102091	970	T	C	no	non	GBP2	Y->C	423		2	2	100.0%	0.00%	0.99969	
+L096a	12	1		4	400842	964	G	C	no	intergenic	none				2	2	100.0%	0.00%	0.99907	
+L096a	12	1		4	1504887	974	A	G	no	non	FIT1	S->P	5		2	2	100.0%	0.09%	0.55267	
+L096a	12	1		6	62862	971	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99920	
+L096a	12	1		7	91295	966	A	G	no	prom	SKI8			48	2	2	100.0%	0.00%	0.99973	
+L096a	12	1		8	289085	967	T	C	no	prom	AHT1			60	2	2	100.0%	0.00%	0.99945	
+L096a	12	1		10	660515	968	T	G	no	non	RSF2	S->R	849		11	11	100.0%	0.45%	0.99999	
+L096a	12	1		12	962894	969	C	A	no	intergenic	none				3	3	100.0%	0.22%	0.98441	
+L096a	12	1		13	78243	960	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99988	
+L096a	12	1		13	129561	973	C	G	no	prom	TCB3			190	15	13	86.7%	0.08%	0.99999	
+L096a	12	1		13	899317	963	T	C	no	intergenic	none				3	3	100.0%	0.48%	0.89194	
+L096a	12	1		14	322069	959	T	G	no	intergenic	none				2	2	100.0%	0.00%	0.99955	
+L096a	12	1		14	364767	972	C	T	no	non	THO2	D->N	317		2	2	100.0%	0.00%	0.99995	
+L096a	12	1		14	456348	961	C	T	no	prom	RHO2			216	9	9	100.0%	0.17%	0.99999	
+L096a	12	1		14	664057	962	G	A	no	prom	AIM38			210	15	15	100.0%	0.08%	0.99999	
+L096a	12	1		15	950853	965	G	A	no	non	KRE5	E->K	362		8	8	100.0%	0.10%	0.99999	
+L003	0	0		4	1495878	980	A	G	no	intergenic	none				68	67	98.5%	0.00%	1.00000	
+L003	0	0		7	382466	977	T	A	no	non	MRH4	N->I	247		104	103	99.0%	0.86%	1.00000	
+L003	0	0		11	589242	978	T	C	no	non	TRZ1	Q->R	22		124	123	99.2%	0.32%	1.00000	
+L003	0	0		12	783145	979	C	A	no	non	TMA10	D->Y	80		113	110	97.3%	0.52%	1.00000	
+L003	0	0		15	11453	975	T	C	no	intergenic	none				48	48	100.0%	0.00%	1.00000	
+L003	0	0		15	111014	981	C	T	no	intergenic	none				109	108	99.1%	0.08%	1.00000	
+L003	0	0		15	895692	976	T	C	no	syn	SNU66	T->T	231		110	35	31.8%	0.14%	1.00000	
+L003	1	1		1	41381	994	G	T	no	non	GPB2	W->L	708		57	56	98.2%	0.05%	0.99999	
+L003	1	1		3	72311	987	C	T	no	non	FUS1	P->L	170		29	29	100.0%	0.44%	0.99999	
+L003	1	1		3	263103	1004	T	G	no	complex-prom	CSM1			290	4	4	100.0%	2.06%	0.88361	
+L003	1	1		3	263105	1004	T	G	no	complex-prom	CSM1			288	4	4	100.0%	3.41%	0.51915	
+L003	1	1		4	459527	984	G	C	no	non	SOK1	N->K	574		3	3	100.0%	0.29%	0.97342	
+L003	1	1		4	521728	1001	G	A	no	prom	ARO3			89	2	2	100.0%	0.00%	0.99989	
+L003	1	1		4	715503	990	C	T	no	prom	SAC6			125	2	2	100.0%	0.00%	0.99994	
+L003	1	1		4	1057068	983	CT	C	no	frame	SUR2		173		17	17	100.0%	0.00%	0.99999	
+L003	1	1		4	1101669	1000	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99989	
+L003	1	1		4	1284755	989	T	C	no	non	TRS120	T->A	1062		3	3	100.0%	0.00%	0.99998	
+L003	1	1		5	110499	992	G	T	no	syn	YEL023C	G->G	18		3	3	100.0%	0.57%	0.85002	
+L003	1	1		5	394973	982	T	C	no	prom	SPR6			106	2	2	100.0%	0.00%	0.99993	
+L003	1	1		5	418809	999	C	T	no	non	SAK1	P->L	511		2	2	100.0%	0.00%	0.99991	
+L003	1	1		6	261701	995	G	A	no	intergenic	none				3	3	100.0%	0.12%	0.99428	
+L003	1	1		7	17411	986	A	G	no	intergenic	none				3	3	100.0%	0.79%	0.73274	
+L003	1	1		7	178486	1003	C	G	no	non	KEM1	W->S	543		3	3	100.0%	0.96%	0.60099	
+L003	1	1		7	421435	993	A	T	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+L003	1	1		10	100232	996	C	T	no	non	YJL171C	S->N	221		25	24	96.0%	0.00%	0.99999	
+L003	1	1		11	303267	997	C	G	no	intergenic	none				3	3	100.0%	0.36%	0.94886	
+L003	1	1		12	339666	988	T	G	no	prom	CHA4			198	2	2	100.0%	0.00%	0.99951	
+L003	1	1		12	560654	1005	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99977	
+L003	1	1		13	229605	998	A	T	no	intergenic	none				2	2	100.0%	0.00%	0.99987	
+L003	1	1		15	783299	1006	A	G	no	complex-prom	YOR238W			375	2	2	100.0%	0.00%	0.99325	
+L003	1	1		15	783301	1006	A	C	no	complex-prom	YOR238W			373	2	2	100.0%	0.00%	0.99294	
+L003	1	1		15	1057746	991	A	G	no	intergenic	none				3	3	100.0%	0.15%	0.98898	
+L003	1	1		16	494619	985	G	C	no	syn	TRM44	V->V	359		24	24	100.0%	0.00%	0.99999	
+L003	1	1		16	637644	1002	T	C	no	non	HTS1	E->G	459		22	20	90.9%	0.51%	0.99999	
+L003	2	1		2	560888	1010	A	T	no	non	CDC28	D->V	270		18	18	100.0%	0.12%	0.99999	
+L003	2	1		4	835990	1008	C	T	no	prom	CCT6			430	11	11	100.0%	0.08%	0.99999	
+L003	2	1		4	915182	1013	A	G	no	prom	HTA1			347	10	10	100.0%	0.39%	0.99999	
+L003	2	1		5	334234	1007	T	A	no	stop	DOT6	R->*	319		16	16	100.0%	0.18%	0.99999	
+L003	2	1		5	398173	1012	C	T	no	non	SHO1	D->N	295		13	13	100.0%	0.06%	0.99999	
+L003	2	1		6	90449	1011	G	C	no	prom	EPL1			105	25	24	96.0%	0.08%	0.99999	
+L003	2	1		10	69645	1009	C	T	no	non	CDC6	S->L	103		12	12	100.0%	0.25%	0.99999	
+L003	2	1		13	626773	1014	T	G	no	intergenic	none				2	2	100.0%	0.00%	0.99913	
+L003	4	0		2	560118	1019	A	T	no	non	CDC28	K->N	13		32	31	96.9%	0.68%	1.00000	
+L003	4	0		4	790750	1015	A	G	no	non	CDC37	I->V	142		24	24	100.0%	0.15%	1.00000	
+L003	4	0		4	791640	1020	G	C	no	non	CDC37	E->D	438		17	17	100.0%	0.13%	1.00000	
+L003	4	0		5	527027	1017	T	G	no	prom	RAD3			51	54	54	100.0%	0.13%	1.00000	
+L003	4	0		8	338410	1018	G	A	no	non	BZZ1	D->N	109		37	36	97.3%	0.00%	1.00000	
+L003	4	0		10	355253	1021	CCT	C	no	complex-intergenic	none				11	11	100.0%	0.00%	1.00000	
+L003	4	0		10	355260	1021	ATT	A	no	complex-intergenic	none				11	11	100.0%	0.00%	1.00000	
+L003	4	0		15	559427	1016	G	A	no	non	CAT5	T->I	101		21	20	95.2%	0.17%	0.99494	
+L003	4	1		5	108514	1022	T	C	no	non	YEL023C	E->G	680		16	16	100.0%	0.00%	0.99997	
+L003	4	1		15	766819	1023	G	C	no	intergenic	none				7	7	100.0%	0.00%	0.99997	
+L003	4	2	not used	10	355247	1025	A	T	no	complex-intergenic	none				2	2	100.0%	0.00%	0.66658	
+L003	4	2	not used	10	355254	1025	C	T	no	complex-intergenic	none				2	2	100.0%	0.00%	0.66661	
+L003	4	2	not used	12	406204	1026	TG	T	no	complex-frame	ACE2		205		9	9	100.0%	0.16%	0.99997	
+L003	4	2	not used	12	406206	1026	T	A	no	complex-frame	ACE2	K->N	204		10	9	90.0%	0.15%	0.99997	
+L003	4	2	not used	13	704912	1024	C	A	no	non	TRS130	V->L	661		7	7	100.0%	0.33%	0.99997	
+L003	5	1		4	1221825	1030	T	A	no	stop	VPS74	K->*	109		17	17	100.0%	0.00%	0.99999	
+L003	5	1		6	267674	1028	C	G	no	intergenic	none				38	38	100.0%	0.00%	0.99999	
+L003	5	1		10	595023	1029	C	T	no	complex-intergenic	none				4	3	75.0%	0.00%	0.61071	
+L003	5	1		10	595026	1029	C	T	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99996	
+L003	5	1		10	595027	1029	C	G	no	complex-intergenic	none				4	3	75.0%	0.00%	0.62772	
+L003	5	1		10	595035	1029	A	C	no	complex-intergenic	none				6	5	83.3%	0.08%	0.99996	
+L003	5	1		10	595036	1029	C	A	no	complex-intergenic	none				5	5	100.0%	0.25%	0.99999	
+L003	5	1		10	595039	1029	A	T	no	complex-intergenic	none				6	5	83.3%	0.17%	0.99989	
+L003	5	1		10	595041	1029	A	T	no	complex-intergenic	none				6	5	83.3%	0.00%	0.99998	
+L003	5	1		10	595042	1029	T	G	no	complex-intergenic	none				6	5	83.3%	0.00%	0.99998	
+L003	5	1		10	595044	1029	A	G	no	complex-intergenic	none				6	6	100.0%	0.00%	0.99999	
+L003	5	1		12	445337	1031	A	G	no	complex-intergenic	none				27	27	100.0%	0.29%	0.99997	
+L003	5	1		12	445356	1031	C	A	no	complex-intergenic	none				24	24	100.0%	0.00%	0.99997	
+L003	5	1		14	496505	1027	T	A	no	syn	FKH2	L->L	594		19	17	89.5%	1.45%	0.99999	
+L003	6	1		3	210989	1034	G	T	no	non	BUD23	P->T	187		18	17	94.4%	0.99%	0.99997	
+L003	6	1		4	1371078	1035	A	C	no	non	TOM1	L->F	430		29	28	96.6%	0.56%	0.99997	
+L003	6	1		5	86682	1032	G	T	no	prom	MCM3			255	33	33	100.0%	0.30%	0.99997	
+L003	6	1		5	432868	1037	T	C	no	intron	GLC7				36	36	100.0%	0.18%	0.99997	
+L003	6	1		8	225030	1036	T	G	no	non	PAN5	K->T	48		43	43	100.0%	0.15%	0.99997	
+L003	6	1		12	183513	1033	G	A	no	prom	IRC25			107	37	37	100.0%	0.29%	0.99997	
+L003	6	1		13	115829	1038	C	T	no	non	HMG1	R->K	1025		33	33	100.0%	0.72%	0.99997	
+L003	6	2	not used	3	213892	1041	T	A	no	prom	YCR050C			118	2	2	100.0%	0.00%	0.99976	
+L003	6	2	not used	4	1493207	1042	C	A	no	intergenic	none				8	8	100.0%	0.15%	0.99997	
+L003	6	2	not used	8	462976	1043	C	T	no	non	OYE2	P->S	158		6	6	100.0%	0.32%	0.99997	
+L003	6	2	not used	11	345482	1044	C	A	no	stop	YKL050C	E->*	48		15	15	100.0%	0.22%	0.99998	
+L003	6	2	not used	13	410256	1039	C	G	no	stop	MOT3	S->*	367		25	25	100.0%	0.00%	0.99997	
+L003	6	2	not used	13	515537	1047	A	C	no	non	YMR124W	N->T	359		4	3	75.0%	0.00%	0.62664	
+L003	6	2	not used	14	267079	1045	G	C	no	prom	YNL198C			264	19	19	100.0%	0.22%	0.99997	
+L003	6	2	not used	15	739905	1046	T	A	no	non	MGM1	K->N	554		8	7	87.5%	0.14%	0.99998	
+L003	6	2	not used	16	250618	1040	G	C	no	intergenic	none				3	3	100.0%	0.28%	0.93611	
+L003	6	2	not used	16	929078	1048	A	G	no	intergenic	none				4	3	75.0%	0.00%	0.61373	
+L003	7	1		1	37621	1054	G	T	no	non	CNE1	S->I	53		25	25	100.0%	0.00%	0.99999	
+L003	7	1		4	32189	1050	G	T	no	prom	PHO13			109	26	26	100.0%	0.08%	0.99999	
+L003	7	1		4	920047	1056	A	T	no	syn	SIR4	T->T	826		23	21	91.3%	0.16%	0.99999	
+L003	7	1		5	323961	1052	C	G	no	non	SER3	Q->E	426		24	24	100.0%	0.00%	0.99999	
+L003	7	1		7	806083	1053	GT	G	no	prom	MTR3			72	22	22	100.0%	0.25%	0.99838	
+L003	7	1		11	540448	1049	G	A	no	syn	DYN1	L->L	2494		21	21	100.0%	0.11%	0.99999	
+L003	7	1		11	628282	1055	C	T	no	non	YKR096W	A->V	497		21	19	90.5%	0.53%	0.99999	
+L003	7	1		12	898365	1051	G	A	no	intergenic	none				25	25	100.0%	0.08%	0.99999	
+L003	7	1		16	627454	1057	G	A	no	prom	CSR2			426	18	16	88.9%	0.74%	0.99999	
+L003	8	1		4	1057078	1058	A	T	no	stop	SUR2	R->*	177		18	18	100.0%	0.15%	0.99997	
+L003	8	1		4	1187003	1063	G	A	no	syn	SPC110	L->L	299		13	13	100.0%	0.00%	0.99997	
+L003	8	1		7	957466	1062	ATTG	A	no	syn	PHO81	N->N	245		18	18	100.0%	0.00%	0.99997	
+L003	8	1		10	514971	1061	T	A	no	complex-non	NUP85	W->Y	306		31	30	96.8%	0.15%	0.99997	
+L003	8	1		10	514972	1061	G	T	no	complex-non	NUP85	W->Y	306		29	29	100.0%	0.54%	0.99997	
+L003	8	1		12	25547	1059	G	A	no	intergenic	none				20	20	100.0%	0.00%	0.99997	
+L003	8	1		12	621248	1064	C	G	no	non	YLR241W	R->G	260		18	18	100.0%	0.08%	0.99997	
+L003	8	1		13	126273	1060	G	A	no	syn	TCB3	D->D	1033		20	20	100.0%	0.09%	0.99997	
+L003	8	2	not used	4	940576	1066	C	A	no	non	SEC26	L->F	80		6	6	100.0%	0.07%	0.99997	
+L003	8	2	not used	6	226708	1067	C	A	no	prom	YFR035C			244	4	4	100.0%	0.52%	0.99914	
+L003	8	2	not used	12	786995	1068	A	AT	no	frame	REC102		154		8	8	100.0%	0.48%	0.99997	
+L003	8	2	not used	14	481617	1069	C	T	no	syn	APJ1	L->L	77		4	4	100.0%	0.20%	0.99990	
+L003	8	2	not used	15	94474	1065	T	A	no	prom	RPL18A			75	6	6	100.0%	0.16%	0.99997	
+L003	8	2	not used	16	254963	1070	C	G	no	non	TGS1	F->L	50		7	7	100.0%	0.15%	0.99998	
+L003	10	1		2	192943	1072	C	G	no	stop	FUS3	S->*	165		23	23	100.0%	0.17%	0.99999	
+L003	10	1		2	353812	1078	C	T	no	non	UBP14	G->D	736		29	29	100.0%	0.09%	0.99999	
+L003	10	1		4	950330	1075	C	A	no	prom	PRP28			47	18	17	94.4%	0.09%	0.99999	
+L003	10	1		7	371325	1071	G	C	no	intergenic	none				15	15	100.0%	0.00%	0.99999	
+L003	10	1		7	478854	1077	C	T	no	prom	LEU1			206	28	28	100.0%	0.14%	0.99999	
+L003	10	1		10	524159	1073	C	A	no	intergenic	none				16	16	100.0%	0.08%	0.99999	
+L003	10	1		10	727982	1079	G	A	no	non	AAD10	V->I	194		16	16	100.0%	0.00%	0.99999	
+L003	10	1		12	18497	1076	C	A	no	non	MMP1	P->Q	181		18	18	100.0%	0.15%	0.99999	
+L003	10	1		14	550310	1074	C	G	no	non	COG6	G->R	559		16	16	100.0%	0.11%	0.99999	
+L003	10	1		15	170553	1080	T	A	no	intergenic	none				28	28	100.0%	0.06%	0.99999	
+L003	11	1		2	520899	1083	G	C	no	stop	IRA1	S->*	1911		6	6	100.0%	0.00%	0.99998	
+L003	11	1		2	790863	1089	G	A	no	non	SUL1	A->T	544		13	13	100.0%	0.72%	0.99999	
+L003	11	1		4	161685	1084	T	C	no	non	NRP1	N->S	491		2	2	100.0%	0.00%	0.99929	
+L003	11	1		4	1466860	1090	C	T	no	syn	GNP1	L->L	528		16	16	100.0%	0.06%	0.99999	
+L003	11	1		7	1046040	1086	G	C	no	non	CAB4	Q->E	171		23	21	91.3%	0.33%	0.99999	
+L003	11	1		10	460069	1081	T	C	no	syn	YJR012C	S->S	117		17	17	100.0%	0.05%	0.99999	
+L003	11	1		10	593076	1087	C	A	no	non	GRR1	R->L	418		14	14	100.0%	0.08%	0.99999	
+L003	11	1		12	204744	1082	C	A	no	non	YLR031W	T->K	175		2	2	100.0%	0.00%	0.99971	
+L003	11	1		12	405190	1088	CT	C	no	complex-frame	ACE2		543		20	20	100.0%	0.07%	0.99999	
+L003	11	1		12	405191	1088	T	C	no	complex-frame	ACE2	S->G	543		3	3	100.0%	0.20%	0.99177	
+L003	11	1		13	755153	1085	T	C	no	non	ZRC1	Q->R	340		15	15	100.0%	0.14%	0.99999	
+L003	12	1		2	678380	1095	A	C	no	non	ROT2	L->R	281		34	34	100.0%	0.29%	0.99999	
+L003	12	1		4	1023187	1094	G	A	no	intergenic	none				32	31	96.9%	0.15%	0.99999	
+L003	12	1		7	894068	1091	T	A	no	syn	SNG1	A->A	21		24	24	100.0%	0.24%	0.99999	
+L003	12	1		7	997664	1096	C	A	no	non	GCN5	Q->K	270		40	40	100.0%	0.08%	0.99999	
+L003	12	1		12	27755	1092	G	A	no	non	YLL056C	S->F	184		26	26	100.0%	0.00%	0.99999	
+L003	12	1		12	362699	1097	T	G	no	non	MDN1	E->D	345		23	23	100.0%	0.15%	0.99999	
+L003	12	1		14	440508	1093	ACAC	A	no	non	RAS2	V->	21		30	30	100.0%	0.19%	0.99998	
+L003	12	1		15	655371	1098	A	T	no	stop	YRM1	R->*	389		18	18	100.0%	0.00%	0.99999	
+L125	0	0	"likely diploid, not used"	4	1282239	1099	G	T	no	non	PDR15	M->I	1010		32	17	53.1%	0.11%	0.97061	
+L125	0	0	"likely diploid, not used"	16	141877	1100	T	A	no	non	BMS1	E->V	432		51	23	45.1%	0.00%	0.97068	
+L125	1	1	"likely diploid, not used"	12	140710	1101	G	A	no	prom	SPO75			166	8	7	87.5%	0.39%	0.99997	
+L125	2	1	"likely diploid, not used"	3	52584	1102	C	T	no	prom	GID7			61	19	12	63.2%	0.00%	0.99998	
+L125	2	1	"likely diploid, not used"	3	110597	1108	T	C	no	non	PGS1	F->S	498		2	2	100.0%	0.00%	0.99993	
+L125	2	1	"likely diploid, not used"	4	995518	1104	A	G	no	syn	DIN7	L->L	6		2	2	100.0%	0.10%	0.50572	
+L125	2	1	"likely diploid, not used"	9	425303	1105	A	AAT	no	intergenic	none				13	9	69.2%	0.65%	0.99969	
+L125	2	1	"likely diploid, not used"	10	130996	1106	C	T	no	prom	FBP26			354	11	7	63.6%	0.14%	0.78330	
+L125	2	1	"likely diploid, not used"	11	581840	1107	A	C	no	prom	ECM4			444	12	8	66.7%	0.52%	0.99325	
+L125	2	1	"likely diploid, not used"	13	346771	1103	T	C	no	prom	MSN2			251	13	8	61.5%	0.12%	0.77165	
+L125	2	1	"likely diploid, not used"	15	105951	1109	A	G	no	syn	SKM1	V->V	543		15	13	86.7%	0.07%	0.99999	
+L125	3	1	"likely diploid, not used"	4	979337	1110	C	A	no	prom	EXG2			129	13	8	61.5%	0.73%	0.52070	
+L125	3	1	"likely diploid, not used"	8	196059	1111	C	T	no	non	YHR045W	P->L	169		17	10	58.8%	0.07%	0.88112	
+L125	3	2	"likely diploid, not used"	5	339619	1112	C	G	no	intergenic	none				17	10	58.8%	0.00%	0.88098	
+L125	3	2	"likely diploid, not used"	8	396495	1113	A	G	no	syn	SKG6	S->S	56		15	10	66.7%	0.00%	0.99997	
+L125	5	1	"likely diploid, not used"	8	406323	1114	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99971	
+L125	5	1	"likely diploid, not used"	15	55693	1115	CT	C	no	frame	RRP40		46		13	10	76.9%	0.00%	0.99999	
+L125	6	0	"likely diploid, not used"	16	859168	1116	C	G	no	non	KRE6	P->R	529		26	17	65.4%	0.30%	0.99980	
+L125	6	1	"likely diploid, not used"	13	800029	1117	C	A	no	non	RSN1	T->K	503		6	5	83.3%	0.28%	0.99964	
+L125	6	1	"likely diploid, not used"	16	865251	1118	T	A	no	non	SGV1	Y->F	391		13	10	76.9%	0.46%	0.99995	
+L125	7	1	"likely diploid, not used"	6	227366	1120	C	G	no	prom	YFR036W-A			84	2	2	100.0%	0.00%	0.99987	
+L125	7	1	"likely diploid, not used"	7	543019	1121	C	G	no	non	MSP1	T->S	274		22	16	72.7%	0.09%	0.99999	
+L125	7	1	"likely diploid, not used"	12	864744	1119	G	A	no	non	ROM2	E->K	679		18	11	61.1%	0.39%	0.97739	
+L125	7	1	"likely diploid, not used"	14	266122	1122	GA	G	no	frame	GCR2		136		25	14	56.0%	0.00%	0.57646	
+L125	9	2	"likely diploid, not used"	2	16889	1125	C	T	no	non	PKC1	E->K	270		8	7	87.5%	0.21%	0.66666	
+L125	9	2	"likely diploid, not used"	11	198524	1124	T	A	no	syn	MYO3	L->L	549		9	7	77.8%	0.28%	0.66665	
+L125	9	2	"likely diploid, not used"	12	767209	1126	A	C	no	non	EST2	N->H	225		7	5	71.4%	0.08%	0.65927	
+L125	10	1	"likely diploid, not used"	12	796599	1127	T	C	no	prom	RPS25B			268	28	16	57.1%	0.07%	0.99385	
+L125	11	1	"likely diploid, not used"	3	158897	1129	A	G	no	non	YCR023C	S->P	493		15	10	66.7%	0.00%	0.99998	
+L125	11	1	"likely diploid, not used"	5	152027	1128	C	T	no	intergenic	none				1	1	100.0%	0.00%	0.51454	
+L125	11	1	"likely diploid, not used"	12	370091	1130	C	G	no	non	CCW12	M->I	1		14	9	64.3%	0.09%	0.99901	
+L125	12	1	"likely diploid, not used"	4	580471	1132	T	C	no	prom	RRG1			217	3	3	100.0%	0.56%	0.64888	
+L125	12	1	"likely diploid, not used"	6	253359	1131	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99909	
+L125	12	1	"likely diploid, not used"	16	646368	1133	T	C	no	prom	IRC16			468	2	2	100.0%	0.00%	0.99241	
+S121	0	0		12	989352	1134	AT	A	no	frame	MAG2		310		65	65	100.0%	0.08%	1.00000	
+S121	1	1		4	270138	1135	T	C	no	intergenic	none				13	13	100.0%	0.36%	0.99997	
+S121	1	1		4	1057262	1139	T	C	no	non	SUR2	F->S	238		16	16	100.0%	0.12%	0.99999	
+S121	1	1		7	384676	1137	T	C	no	syn	PUS2	C->C	342		21	21	100.0%	0.00%	0.99999	
+S121	1	1		10	225462	1138	GT	G	no	frame	SET4		137		8	8	100.0%	0.08%	0.99999	
+S121	1	1		11	651461	1136	C	A	no	intergenic	none				21	21	100.0%	1.87%	0.99999	
+S121	1	1		13	423496	1140	G	A	no	non	CTF18	R->C	413		16	16	100.0%	0.23%	0.99999	
+S121	2	1		2	395807	1141	G	A	no	non	RPG1	R->C	825		16	16	100.0%	0.09%	0.99999	
+S121	2	1		2	550969	1146	G	A	no	intergenic	none				8	8	100.0%	0.00%	0.99999	
+S121	2	1		7	634645	1145	A	C	no	non	UPF3	K->Q	116		8	8	100.0%	0.35%	0.99999	
+S121	2	1		11	15036	1142	G	A	no	non	COS9	R->K	184		15	15	100.0%	0.09%	0.99999	
+S121	2	1		11	440334	1147	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99946	
+S121	2	1		12	11329	1143	A	AC	no	prom	YLL065W			397	21	19	90.5%	1.25%	0.99998	
+S121	2	1		12	543041	1148	C	G	no	non	NMT1	D->H	87		29	29	100.0%	0.36%	0.99999	
+S121	2	1		13	116577	1144	C	CT	no	frame	HMG1		776		17	17	100.0%	0.00%	0.99999	
+S121	2	1		13	902826	1149	T	G	no	non	YMR315W	I->R	8		14	14	100.0%	0.39%	0.99999	
+S121	4	0		4	1051187	1151	G	C	no	syn	DPL1	S->S	347		13	13	100.0%	0.24%	1.00000	
+S121	4	0		5	71315	1152	T	G	no	non	YEL043W	S->A	280		27	26	96.3%	0.10%	1.00000	
+S121	4	0		11	478883	1153	G	T	no	prom	ALY1			352	40	40	100.0%	0.48%	1.00000	
+S121	4	0		12	405836	1154	AG	A	no	frame	ACE2		328		15	15	100.0%	0.18%	1.00000	
+S121	4	0		15	375737	1150	G	A	no	non	YOR022C	P->S	40		29	28	96.6%	0.16%	1.00000	
+S121	4	0		15	411560	1155	C	T	no	stop	WHI2	Q->*	232		13	13	100.0%	0.19%	1.00000	
+S121	4	1		2	67005	1157	A	C	no	intergenic	none				11	10	90.9%	0.00%	0.99997	
+S121	4	1		10	501929	1156	G	C	no	non	HUL4	I->M	488		20	18	90.0%	1.94%	0.99997	
+S121	4	1		15	242754	1158	G	A	no	prom	YOL047C			10	18	16	88.9%	0.00%	0.99997	
+S121	4	2	not used	9	171332	1160	G	A	no	syn	SHQ1	I->I	58		17	17	100.0%	0.09%	0.99997	
+S121	4	2	not used	10	214244	1159	C	T	no	non	UTP10	R->K	1022		8	8	100.0%	0.00%	0.99997	
+S121	4	2	not used	13	838011	1161	C	T	no	prom	YKU70			180	14	14	100.0%	0.22%	0.99997	
+S121	5	1		2	713952	1165	C	T	no	non	ENP1	R->Q	168		14	14	100.0%	0.00%	0.99999	
+S121	5	1		4	488927	1166	CT	C	no	prom	CIS1			264	11	11	100.0%	0.00%	0.99998	
+S121	5	1		7	96564	1163	A	G	no	non	MIG2	K->R	236		19	19	100.0%	0.05%	0.99999	
+S121	5	1		7	916103	1173	C	G	no	non	ZPR1	F->L	291		13	13	100.0%	0.16%	0.99999	
+S121	5	1		8	331380	1167	G	T	no	non	CTM1	M->I	356		17	17	100.0%	0.00%	0.99999	
+S121	5	1		9	74120	1168	A	G	no	intergenic	none				7	7	100.0%	0.11%	0.99999	
+S121	5	1		11	483238	1162	A	G	no	prom	NTR2			98	2	2	100.0%	0.00%	0.99995	
+S121	5	1		11	498408	1172	A	C	no	non	SET3	D->E	476		9	9	100.0%	0.39%	0.99998	
+S121	5	1		12	441420	1169	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99956	
+S121	5	1		13	748151	1170	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99775	
+S121	5	1		14	33554	1171	A	T	no	non	KRE1	S->T	228		10	10	100.0%	0.30%	0.99999	
+S121	5	1		15	996031	1164	G	A	no	stop	MEK1	Q->*	160		19	19	100.0%	0.20%	0.99999	
+S121	5	1		16	56241	1174	G	A	no	intergenic	none				8	8	100.0%	0.22%	0.99999	
+S121	6	0		12	812232	1175	A	T	no	non	FKS1	K->M	747		31	30	96.8%	0.00%	1.00000	
+S121	6	1		2	119259	1178	A	C	no	prom	YBL053W			76	3	3	100.0%	0.76%	0.75308	
+S121	6	1		2	333964	1186	T	G	no	intergenic	none				19	19	100.0%	0.50%	0.99997	
+S121	6	1		2	553719	1180	G	C	no	non	ICS2	N->K	198		4	4	100.0%	2.29%	0.83856	
+S121	6	1		5	79632	1182	T	G	no	intergenic	none				4	4	100.0%	1.04%	0.98857	
+S121	6	1		7	137281	1183	A	G	no	syn	GCN1	E->E	1919		3	3	100.0%	0.21%	0.98930	
+S121	6	1		8	522613	1184	T	G	no	intergenic	none				5	5	100.0%	2.11%	0.99663	
+S121	6	1		14	124792	1179	A	C	no	non	TOF1	E->D	637		3	3	100.0%	0.39%	0.94602	
+S121	6	1		14	279822	1176	T	G	no	non	CHS1	S->A	1108		3	3	100.0%	0.25%	0.98248	
+S121	6	1		14	343405	1185	C	A	no	intergenic	none				2	2	100.0%	0.00%	0.66660	
+S121	6	1		14	481592	1177	C	T	no	syn	APJ1	D->D	68		7	6	85.7%	0.50%	0.99996	
+S121	6	1		15	876529	1181	G	T	no	non	MUM3	A->S	312		2	2	100.0%	0.09%	0.56709	
+S121	6	1		16	283060	1187	T	C	no	prom	YPL142C			57	2	2	100.0%	0.00%	0.99901	
+S121	6	2	not used	2	653169	1195	A	G	no	prom	HPC2			187	2	2	100.0%	0.00%	0.99988	
+S121	6	2	not used	4	728030	1190	T	A	no	prom	RGP1			228	3	3	100.0%	0.11%	0.99566	
+S121	6	2	not used	4	1393835	1199	T	A	no	non	RMT2	N->Y	247		4	4	100.0%	0.85%	0.99587	
+S121	6	2	not used	6	153395	1192	G	A	no	non	RPN11	E->K	2		11	11	100.0%	0.50%	0.99997	
+S121	6	2	not used	7	794708	1193	G	T	no	non	RSR1	Q->K	259		16	14	87.5%	0.16%	0.99997	
+S121	6	2	not used	8	190302	1194	A	G	no	prom	NCP1			244	3	3	100.0%	0.37%	0.95914	
+S121	6	2	not used	12	876128	1188	T	A	no	non	SEC61	L->F	349		3	3	100.0%	0.10%	0.99724	
+S121	6	2	not used	12	1032057	1197	T	G	no	intergenic	none				2	2	100.0%	0.00%	0.99989	
+S121	6	2	not used	13	580394	1196	C	G	no	non	DNF3	E->Q	1179		9	9	100.0%	0.57%	0.99998	
+S121	6	2	not used	15	397552	1189	A	T	no	non	YOR034C-A	N->K	38		5	5	100.0%	1.82%	0.99799	
+S121	6	2	not used	15	616681	1198	T	C	no	prom	RPB2			13	3	3	100.0%	1.04%	0.56971	
+S121	6	2	not used	16	271997	1191	A	T	no	stop	ATG5	K->*	230		3	3	100.0%	0.93%	0.65868	
+S121	7	1		8	488836	1207	C	A	no	non	MDM31	D->E	59		8	8	100.0%	0.00%	0.99999	
+S121	7	1		10	592289	1206	T	G	no	non	GRR1	R->S	680		17	17	100.0%	0.07%	0.99999	
+S121	7	1		11	473426	1205	C	A	no	prom	YKR017C			76	8	8	100.0%	1.77%	0.99998	
+S121	7	1		12	492655	1203	T	G	no	non	MAS1	I->L	199		22	19	86.4%	0.00%	0.99999	
+S121	7	1		12	709760	1209	AG	A	no	complex-frame	CTS1		124		8	8	100.0%	0.00%	0.99999	
+S121	7	1		12	709767	1209	G	C	no	complex-frame	CTS1	A->G	122		13	13	100.0%	0.00%	0.99999	
+S121	7	1		12	766547	1202	T	G	no	stop	EST2	L->*	4		2	2	100.0%	0.00%	0.99946	
+S121	7	1		13	305160	1201	A	C	no	non	SOK2	V->G	146		11	11	100.0%	0.00%	0.99999	
+S121	7	1		13	335179	1200	G	A	no	prom	HOF1			122	16	16	100.0%	0.35%	0.99999	
+S121	7	1		13	342353	1208	G	A	no	stop	MIH1	Q->*	391		12	12	100.0%	0.72%	0.99999	
+S121	7	1		16	343521	1204	A	G	no	non	GDE1	S->P	407		14	14	100.0%	0.00%	0.99999	
+S121	8	1		2	46580	1211	G	A	no	syn	SCS22	G->G	171		13	12	92.3%	0.00%	0.99999	
+S121	8	1		2	360473	1220	G	GA	no	complex-prom	AKL1			285	7	7	100.0%	0.13%	0.99999	
+S121	8	1		2	360479	1220	C	T	no	complex-prom	AKL1			291	11	11	100.0%	0.45%	0.99999	
+S121	8	1		2	681009	1212	G	C	no	intergenic	none				7	7	100.0%	0.00%	0.99999	
+S121	8	1		5	407361	1214	A	C	no	non	DSE1	I->S	568		9	9	100.0%	0.26%	0.99999	
+S121	8	1		6	266752	1215	C	T	no	intergenic	none				10	10	100.0%	0.05%	0.99999	
+S121	8	1		9	50612	1210	G	A	no	non	UBP7	C->Y	841		10	10	100.0%	0.00%	0.99999	
+S121	8	1		9	355813	1219	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99911	
+S121	8	1		10	436308	1216	T	A	no	prom	AVT1			495	4	4	100.0%	0.00%	0.99997	
+S121	8	1		11	325228	1217	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99976	
+S121	8	1		12	246978	1218	A	G	no	prom	FCF2			5	9	9	100.0%	0.00%	0.99999	
+S121	8	1		13	116501	1213	C	A	no	non	HMG1	R->I	801		16	15	93.8%	0.00%	0.99999	
+S121	8	1		15	750618	1221	G	C	no	non	RFC1	A->P	441		13	12	92.3%	0.17%	0.99999	
+S121	10	0		10	237496	1224	C	G	no	non	LSB6	P->A	79		18	17	94.4%	0.16%	1.00000	
+S121	10	0		10	601834	1228	C	G	no	non	BUD4	Q->K	1034		14	14	100.0%	0.35%	1.00000	
+S121	10	0		13	464530	1225	C	T	no	syn	YMR099C	P->P	101		7	7	100.0%	0.00%	1.00000	
+S121	10	0		15	202328	1223	G	T	no	non	RTG1	A->E	63		17	17	100.0%	0.77%	0.99987	
+S121	10	0		15	411086	1227	GT	G	553	frame	WHI2		74		14	14	100.0%	0.27%	1.00000	
+S121	10	0		15	889484	1222	A	G	no	non	RRG7	K->E	156		24	24	100.0%	0.25%	1.00000	
+S121	10	0		15	1011034	1226	T	A	no	prom	VTS1			152	34	34	100.0%	1.30%	1.00000	
+S121	10	1		4	230194	1231	C	G	no	intron	RPP1B				11	10	90.9%	0.38%	0.66666	
+S121	10	1		6	242189	1232	A	C	no	non	YFR045W	K->Q	41		18	18	100.0%	0.08%	0.99997	
+S121	10	1		7	525863	1229	C	G	no	non	UGA1	F->L	213		17	17	100.0%	0.07%	0.99997	
+S121	10	1		7	914770	1233	T	A	no	prom	YGR210C			42	25	25	100.0%	0.13%	0.99997	
+S121	10	1		8	309603	1230	G	C	no	non	TRA1	K->N	2280		16	16	100.0%	0.33%	0.99997	
+S121	10	1		15	45715	1234	T	C	764	intergenic	none				1	1	100.0%	1.51%	0.67774	
+S121	10	2	not used	7	44508	1235	AAT	A	no	intergenic	none				12	12	100.0%	2.88%	0.99990	
+S121	10	2	not used	7	975874	1237	C	A	no	non	YAP1802	R->I	233		6	6	100.0%	0.91%	0.99998	
+S121	10	2	not used	13	728929	1236	T	C	no	non	RRP5	I->V	734		2	2	100.0%	0.08%	0.61373	
+S121	11	1		2	177008	1242	T	G	no	non	MCM2	D->A	173		9	9	100.0%	0.22%	0.99999	
+S121	11	1		2	398902	1239	A	T	no	non	SEC18	M->K	664		2	2	100.0%	0.09%	0.58016	
+S121	11	1		2	513696	1238	T	C	no	intergenic	none				7	7	100.0%	0.30%	0.99998	
+S121	11	1		2	558420	1249	A	G	no	prom	IFA38			267	2	2	100.0%	0.00%	0.99990	
+S121	11	1		5	360566	1243	G	A	no	non	AST2	A->V	410		2	2	100.0%	0.08%	0.58469	
+S121	11	1		7	395021	1244	C	T	no	non	GEP7	S->N	269		2	2	100.0%	0.00%	0.99992	
+S121	11	1		8	175713	1240	G	C	no	non	YHR033W	A->P	55		5	5	100.0%	0.00%	0.99999	
+S121	11	1		8	386447	1250	CTA	C	no	frame	DSE2		312		8	8	100.0%	0.24%	0.99999	
+S121	11	1		10	412862	1245	G	T	no	non	VTC4	P->Q	180		3	3	100.0%	0.71%	0.79821	
+S121	11	1		12	530581	1246	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99948	
+S121	11	1		14	471369	1247	C	T	no	prom	SAL1			8	2	2	100.0%	0.00%	0.99991	
+S121	11	1		15	722950	1248	G	T	no	non	DED1	D->Y	15		11	11	100.0%	0.21%	0.99999	
+S121	11	1		16	293414	1241	G	C	no	syn	GIP3	G->G	1078		2	2	100.0%	0.00%	0.99996	
+S121	11	1		16	649024	1251	G	T	no	syn	TIF5	T->T	107		2	2	100.0%	0.09%	0.53956	
+S121	12	1		2	474920	1255	G	A	no	non	TKL2	T->I	507		13	13	100.0%	0.00%	0.99999	
+S121	12	1		3	90975	1252	A	AT	no	prom	LEU2			349	15	11	73.3%	0.06%	0.99999	
+S121	12	1		3	254815	1257	C	G	no	non	SRB8	P->R	148		5	4	80.0%	0.41%	0.91720	
+S121	12	1		8	54638	1253	G	C	no	prom	SNF6			215	30	20	66.7%	0.32%	0.99999	
+S121	12	1		8	514842	1258	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99534	
+S121	12	1		11	214124	1256	T	C	no	prom	DGR2			21	12	12	100.0%	0.24%	0.99999	
+S121	12	1		13	609715	1254	C	T	no	syn	DDR48	S->S	341		17	17	100.0%	0.00%	0.99999	
+S121	12	1		15	940461	1259	C	A	no	syn	MIP1	L->L	974		26	26	100.0%	0.13%	0.99999	
+S002	0	0		7	977673	1261	AG	A	no	complex-frame	FMP43		116		55	55	100.0%	0.00%	1.00000	
+S002	0	0		7	977679	1261	G	A	no	complex-frame	FMP43	E->E	118		72	70	97.2%	1.34%	1.00000	
+S002	0	0		11	629567	1262	T	G	no	non	YKR096W	I->M	925		129	129	100.0%	0.53%	1.00000	
+S002	0	0		12	11572	1263	G	A	no	prom	YLL065W			154	116	115	99.1%	0.15%	1.00000	
+S002	0	0		15	162407	1260	C	G	no	non	PHM7	L->V	19		80	76	95.0%	0.23%	1.00000	
+S002	0	0		15	542183	1264	T	C	no	non	RPO31	I->V	654		88	87	98.9%	0.31%	1.00000	
+S002	1	1	"likely mutator, not used"	2	15690	1284	A	T	no	syn	PKC1	R->R	669		2	2	100.0%	0.09%	0.56880	
+S002	1	1	"likely mutator, not used"	2	122117	1315	C	T	no	prom	SAS3			243	2	2	100.0%	0.10%	0.50175	
+S002	1	1	"likely mutator, not used"	2	293043	1293	A	G	no	syn	ETR1	S->S	326		2	2	100.0%	0.00%	0.99995	
+S002	1	1	"likely mutator, not used"	2	494667	1271	T	C	no	syn	OPY1	K->K	225		2	2	100.0%	0.00%	0.99992	
+S002	1	1	"likely mutator, not used"	2	520954	1307	T	A	no	non	IRA1	I->F	1893		2	2	100.0%	0.00%	0.99992	
+S002	1	1	"likely mutator, not used"	2	619336	1285	A	G	no	syn	KTR4	R->R	142		3	3	100.0%	0.00%	0.99999	
+S002	1	1	"likely mutator, not used"	3	280202	1300	G	T	no	non	CDC39	A->S	29		2	2	100.0%	0.00%	0.99994	
+S002	1	1	"likely mutator, not used"	4	178265	1291	C	T	no	prom	MSH5			71	2	2	100.0%	0.00%	0.99994	
+S002	1	1	"likely mutator, not used"	4	329422	1270	A	G	no	non	YDL073W	Q->R	937		2	2	100.0%	0.00%	0.99993	
+S002	1	1	"likely mutator, not used"	4	348791	1306	T	A	no	non	USO1	S->T	1043		2	2	100.0%	0.00%	0.99981	
+S002	1	1	"likely mutator, not used"	4	419048	1281	C	G	no	non	OSH2	D->H	823		2	2	100.0%	0.00%	0.99994	
+S002	1	1	"likely mutator, not used"	4	999763	1269	T	C	no	non	PEX10	C->R	301		2	2	100.0%	0.00%	0.99996	
+S002	1	1	"likely mutator, not used"	4	1017495	1305	G	A	no	prom	YDR278C			178	2	2	100.0%	0.00%	0.99989	
+S002	1	1	"likely mutator, not used"	4	1187800	1282	A	G	no	non	SPC110	E->G	565		2	2	100.0%	0.00%	0.99991	
+S002	1	1	"likely mutator, not used"	4	1281841	1313	T	C	no	non	PDR15	S->P	878		2	2	100.0%	0.09%	0.52840	
+S002	1	1	"likely mutator, not used"	4	1328046	1273	C	T	no	non	CYM1	V->I	142		3	3	100.0%	0.18%	0.99120	
+S002	1	1	"likely mutator, not used"	4	1359061	1308	C	T	no	prom	UTP6			160	8	8	100.0%	0.15%	0.99999	
+S002	1	1	"likely mutator, not used"	4	1396510	1278	C	T	no	non	PKH3	S->L	464		2	2	100.0%	0.07%	0.70000	
+S002	1	1	"likely mutator, not used"	5	288446	1298	C	A	no	intergenic	none				5	5	100.0%	0.08%	0.99999	
+S002	1	1	"likely mutator, not used"	6	116948	1299	A	G	no	non	CDC4	N->D	269		2	2	100.0%	0.00%	0.99988	
+S002	1	1	"likely mutator, not used"	7	548209	1275	A	T	no	prom	GSC2			51	2	2	100.0%	0.00%	0.99990	
+S002	1	1	"likely mutator, not used"	7	591327	1267	T	C	no	syn	SCM4	A->A	6		2	2	100.0%	0.09%	0.54002	
+S002	1	1	"likely mutator, not used"	7	594668	1303	T	C	no	syn	FMP48	F->F	359		2	2	100.0%	0.00%	0.99992	
+S002	1	1	"likely mutator, not used"	8	195279	1265	G	A	no	prom	YHR045W			275	2	2	100.0%	0.00%	0.99991	
+S002	1	1	"likely mutator, not used"	8	195677	1301	C	T	no	stop	YHR045W	Q->*	42		3	3	100.0%	0.44%	0.93300	
+S002	1	1	"likely mutator, not used"	8	224023	1272	C	T	no	prom	RPP1			262	2	2	100.0%	0.00%	0.99993	
+S002	1	1	"likely mutator, not used"	8	258125	1277	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99991	
+S002	1	1	"likely mutator, not used"	8	370634	1286	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99997	
+S002	1	1	"likely mutator, not used"	8	509060	1316	T	A	no	prom	SCH9			306	2	2	100.0%	0.09%	0.52982	
+S002	1	1	"likely mutator, not used"	9	401886	1268	G	A	no	non	DAL81	A->T	704		2	2	100.0%	0.00%	0.99995	
+S002	1	1	"likely mutator, not used"	9	410126	1304	A	G	no	syn	DAL4	A->A	553		2	2	100.0%	0.00%	0.99996	
+S002	1	1	"likely mutator, not used"	10	536292	1274	C	T	no	non	YJR054W	S->F	79		2	2	100.0%	0.00%	0.99994	
+S002	1	1	"likely mutator, not used"	10	567793	1309	G	A	no	syn	RFC2	K->K	50		2	2	100.0%	0.00%	0.99995	
+S002	1	1	"likely mutator, not used"	11	17238	1295	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99994	
+S002	1	1	"likely mutator, not used"	11	494072	1319	G	T	no	prom	SAP190			187	2	2	100.0%	0.00%	0.99985	
+S002	1	1	"likely mutator, not used"	12	136987	1289	G	A	no	non	MMM1	A->T	135		2	2	100.0%	0.00%	0.99995	
+S002	1	1	"likely mutator, not used"	12	314745	1276	C	A	no	non	CSF1	K->N	327		2	2	100.0%	0.00%	0.99992	
+S002	1	1	"likely mutator, not used"	12	371762	1310	G	A	no	non	HOG1	A->T	50		2	2	100.0%	0.00%	0.99995	
+S002	1	1	"likely mutator, not used"	12	744293	1266	G	C	no	non	UBC12	R->P	5		2	2	100.0%	0.09%	0.54549	
+S002	1	1	"likely mutator, not used"	12	747213	1302	A	C	no	complex-prom	YLR307C-A			107	2	2	100.0%	0.00%	0.99989	
+S002	1	1	"likely mutator, not used"	12	747214	1302	G	T	no	complex-prom	YLR307C-A			108	2	2	100.0%	0.00%	0.99989	
+S002	1	1	"likely mutator, not used"	12	747217	1302	G	C	no	complex-prom	YLR307C-A			111	2	2	100.0%	0.00%	0.99989	
+S002	1	1	"likely mutator, not used"	12	887204	1279	G	A	no	non	SMC6	D->N	641		2	2	100.0%	0.00%	0.99993	
+S002	1	1	"likely mutator, not used"	12	970094	1311	C	T	no	non	YLR422W	A->V	1401		2	2	100.0%	0.00%	0.99992	
+S002	1	1	"likely mutator, not used"	13	364243	1288	C	G	no	non	NUP116	K->N	822		2	2	100.0%	0.00%	0.99990	
+S002	1	1	"likely mutator, not used"	13	471690	1283	C	T	no	non	YMR102C	R->Q	223		2	2	100.0%	0.00%	0.99992	
+S002	1	1	"likely mutator, not used"	13	570706	1314	T	C	no	non	TPP1	T->A	107		2	2	100.0%	0.09%	0.55621	
+S002	1	1	"likely mutator, not used"	13	766282	1294	A	T	no	non	RKR1	I->N	588		2	2	100.0%	0.00%	0.99993	
+S002	1	1	"likely mutator, not used"	14	240111	1287	C	T	no	prom	YNL217W			219	2	2	100.0%	0.10%	0.50720	
+S002	1	1	"likely mutator, not used"	14	417254	1317	G	A	no	non	CYB5	P->L	16		2	2	100.0%	0.00%	0.99990	
+S002	1	1	"likely mutator, not used"	15	113807	1297	G	A	no	intergenic	none				2	2	100.0%	0.00%	0.99971	
+S002	1	1	"likely mutator, not used"	15	666323	1292	A	G	no	non	MPC54	V->A	285		2	2	100.0%	0.00%	0.99990	
+S002	1	1	"likely mutator, not used"	15	858017	1280	C	A	no	non	SNF2	V->F	747		2	2	100.0%	0.08%	0.60030	
+S002	1	1	"likely mutator, not used"	15	942068	1312	C	T	no	non	MIP1	D->N	439		2	2	100.0%	0.00%	0.99996	
+S002	1	1	"likely mutator, not used"	16	49517	1290	C	G	no	non	YPL260W	P->R	72		17	17	100.0%	0.18%	0.99999	
+S002	1	1	"likely mutator, not used"	16	288469	1318	G	C	no	non	MKK2	S->C	189		2	2	100.0%	0.00%	0.99996	
+S002	1	1	"likely mutator, not used"	16	573723	1296	C	A	no	non	HAA1	Q->K	236		2	2	100.0%	0.00%	0.99993	
+S002	2	1		4	564962	1328	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99935	
+S002	2	1		6	65914	1327	G	T	no	non	YFL034W	M->I	146		13	13	100.0%	0.32%	0.99999	
+S002	2	1		7	343126	1325	G	T	no	prom	NBP35			87	2	2	100.0%	0.00%	0.99978	
+S002	2	1		7	1070867	1332	A	G	no	non	MAL13	T->A	196		28	28	100.0%	0.56%	0.99999	
+S002	2	1		9	290544	1320	GC	G	no	frame	BCY1		376		20	19	95.0%	0.00%	0.99999	
+S002	2	1		9	291989	1330	A	G	no	prom	BCY1			320	2	2	100.0%	0.00%	0.99993	
+S002	2	1		11	524158	1329	A	T	no	prom	YKR045C			186	2	2	100.0%	0.00%	0.99968	
+S002	2	1		12	150864	1323	A	C	no	complex-intergenic	none				2	2	100.0%	0.00%	0.98332	
+S002	2	1		12	150865	1323	A	T	no	complex-intergenic	none				2	2	100.0%	0.00%	0.98064	
+S002	2	1		12	150866	1323	A	G	no	complex-intergenic	none				2	2	100.0%	0.00%	0.98205	
+S002	2	1		12	385718	1321	A	T	no	non	SRN2	I->L	64		14	14	100.0%	0.11%	0.99999	
+S002	2	1		12	406833	1331	G	A	no	prom	ACE2			16	14	14	100.0%	0.08%	0.99999	
+S002	2	1		12	520235	1322	A	C	no	non	SWI6	E->D	767		10	10	100.0%	0.00%	0.99998	
+S002	2	1		12	762840	1324	T	A	no	non	CDC3	Q->H	431		14	14	100.0%	0.84%	0.99998	
+S002	2	1		13	672502	1326	C	G	no	non	PFK2	V->L	757		19	13	68.4%	0.06%	0.99999	
+S002	2	1		14	25771	1333	AC	A	no	frame	EGT2		575		17	17	100.0%	0.00%	0.99999	
+S002	4	1		5	102034	1342	G	C	no	non	SNU13	R->T	31		12	12	100.0%	0.16%	0.99999	
+S002	4	1		7	190606	1339	C	G	no	prom	PMR1			138	18	18	100.0%	0.39%	0.99999	
+S002	4	1		7	884168	1335	G	T	no	prom	TDH3			368	17	17	100.0%	1.47%	0.99999	
+S002	4	1		7	1033283	1345	T	C	no	syn	SLH1	L->L	502		17	17	100.0%	0.14%	0.99999	
+S002	4	1		9	403717	1343	C	T	no	non	MND2	S->L	20		7	6	85.7%	0.07%	0.99999	
+S002	4	1		10	368395	1341	C	T	no	intergenic	none				6	6	100.0%	0.00%	0.99998	
+S002	4	1		12	54177	1337	G	A	no	prom	SDH2			246	24	23	95.8%	0.15%	0.99999	
+S002	4	1		12	404822	1346	A	T	no	non	ACE2	C->S	666		8	8	100.0%	0.24%	0.99999	
+S002	4	1		13	268025	1336	T	G	no	intergenic	none				5	5	100.0%	0.44%	0.99983	
+S002	4	1		13	387124	1334	T	C	no	prom	BUB2			100	2	2	100.0%	0.00%	0.99960	
+S002	4	1		13	504470	1344	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99984	
+S002	4	1		13	809956	1338	T	C	no	non	SCS7	M->V	276		14	13	92.9%	0.08%	0.99999	
+S002	4	1		15	939422	1340	T	C	no	prom	SCD5			76	2	2	100.0%	0.00%	0.99981	
+S002	5	0		7	432566	1347	C	A	no	stop	MIG1	E->*	165		13	13	100.0%	0.09%	1.00000	
+S002	5	1		5	56796	1348	G	A	no	non	AFG1	V->I	76		14	14	100.0%	0.58%	0.99998	
+S002	5	1		5	411802	1354	C	T	no	non	RSP5	P->L	539		15	15	100.0%	0.07%	0.99997	
+S002	5	1		10	324359	1350	A	T	no	non	BNA3	Y->F	325		8	8	100.0%	0.15%	0.99997	
+S002	5	1		11	149860	1351	T	G	no	syn	KDX1	G->G	277		10	10	100.0%	0.85%	0.99997	
+S002	5	1		13	53966	1352	G	A	no	non	ZDS2	G->D	775		23	23	100.0%	0.00%	0.99997	
+S002	5	1		14	708421	1353	C	T	no	prom	FPK1			99	6	6	100.0%	0.78%	0.99997	
+S002	5	1		15	108571	1349	T	G	no	non	MDY2	E->A	108		11	11	100.0%	0.00%	0.99998	
+S002	5	1		15	915422	1355	C	A	no	prom	GNT1			331	12	12	100.0%	1.21%	0.99997	
+S002	5	2	not used	4	123305	1357	T	G	no	non	RBS1	M->R	363		9	9	100.0%	0.06%	0.99998	
+S002	5	2	not used	9	171501	1358	A	C	no	non	SHQ1	I->R	2		10	10	100.0%	0.17%	0.99998	
+S002	5	2	not used	11	22607	1359	G	A	no	non	JEN1	V->I	125		6	6	100.0%	0.17%	0.99997	
+S002	5	2	not used	13	147771	1360	T	C	no	non	MFT1	D->G	306		7	7	100.0%	0.07%	0.99998	
+S002	5	2	not used	14	194122	1356	G	A	no	non	ATG2	D->N	934		5	5	100.0%	0.19%	0.99997	
+S002	5	2	not used	16	603919	1361	C	A	no	non	YPR022C	D->Y	1132		8	8	100.0%	0.39%	0.99998	
+S002	6	0		13	116652	1362	A	T	no	non	HMG1	F->I	751		35	35	100.0%	0.00%	1.00000	
+S002	6	1		3	53909	1365	T	G	no	non	GID7	L->R	422		21	18	85.7%	0.00%	0.99997	
+S002	6	1		4	544774	1363	T	G	no	intergenic	none				4	4	100.0%	0.81%	0.94878	
+S002	6	1		4	662990	1367	G	A	no	stop	SPO71	Q->*	641		10	10	100.0%	0.62%	0.99997	
+S002	6	1		7	1014508	1366	A	G	no	syn	APL6	Y->Y	744		38	38	100.0%	0.08%	0.99997	
+S002	6	1		11	243069	1364	A	G	no	prom	YKL105C			483	3	3	100.0%	0.88%	0.56061	
+S002	6	1		16	598718	1368	G	T	no	non	MCM4	A->S	657		31	30	96.8%	0.44%	0.99997	
+S002	6	2	not used	16	106601	1369	G	T	no	non	NSL1	D->Y	144		19	19	100.0%	0.41%	0.99998	
+S002	7	1		2	238482	1377	T	C	no	intergenic	none				20	20	100.0%	0.29%	0.99999	
+S002	7	1		3	45816	1372	G	C	no	non	EMC1	Q->E	364		22	21	95.5%	0.09%	0.99998	
+S002	7	1		4	386510	1373	C	G	no	intergenic	none				14	14	100.0%	0.11%	0.99999	
+S002	7	1		7	420035	1374	C	T	no	non	HEM2	A->T	173		20	20	100.0%	0.31%	0.99999	
+S002	7	1		8	415008	1375	C	CT	no	frame	KEL1		725		12	12	100.0%	0.19%	0.99999	
+S002	7	1		10	176326	1376	T	C	no	non	TRK1	E->G	327		20	20	100.0%	0.46%	0.99999	
+S002	7	1		13	169193	1370	G	T	no	stop	YML053C	S->*	189		16	16	100.0%	0.00%	0.99999	
+S002	7	1		13	747904	1378	G	T	no	intergenic	none				15	15	100.0%	0.00%	0.99998	
+S002	7	1		16	824374	1371	A	G	no	intergenic	none				8	8	100.0%	0.00%	0.99991	
+S002	8	0		2	499160	1380	G	A	no	non	CCZ1	G->S	666		17	17	100.0%	0.00%	1.00000	
+S002	8	0		4	810151	1381	A	T	no	non	SUP35	E->V	610		12	12	100.0%	0.00%	1.00000	
+S002	8	0		7	211543	1382	T	A	no	non	AMS1	D->E	376		15	15	100.0%	0.17%	1.00000	
+S002	8	0		9	348282	1379	A	G	no	syn	BET1	D->D	31		29	29	100.0%	0.24%	1.00000	
+S002	8	0		11	617273	1383	C	A	1530	non	PTR2	S->Y	515		20	20	100.0%	1.62%	1.00000	
+S002	8	1		11	618981	1385	T	A	no	prom	RPL40B			231	13	13	100.0%	1.60%	0.99997	
+S002	8	1		12	292937	1386	T	C	no	non	SRL2	R->G	211		9	9	100.0%	0.10%	0.99998	
+S002	8	1		13	151838	1384	G	A	no	prom	OGG1			37	12	12	100.0%	0.00%	0.99997	
+S002	8	1		14	501867	1387	C	T	no	non	SUN4	S->L	119		12	12	100.0%	0.33%	0.99997	
+S002	8	2	not used	1	79277	1389	C	A	no	non	FUN12	P->T	951		7	7	100.0%	0.00%	0.99997	
+S002	8	2	not used	2	50261	1390	G	T	no	non	AVT5	V->L	230		5	5	100.0%	0.16%	0.99997	
+S002	8	2	not used	8	103339	1388	C	T	no	syn	HSE1	G->G	241		7	7	100.0%	0.07%	0.99997	
+S002	8	2	not used	11	252484	1391	C	T	no	non	HSL1	P->S	1188		3	3	100.0%	0.06%	0.99931	
+S002	10	1		3	29989	1398	A	T	no	intergenic	none				14	14	100.0%	0.27%	0.99998	
+S002	10	1		4	212784	1397	C	T	no	intergenic	none				11	11	100.0%	0.08%	0.99999	
+S002	10	1		7	431729	1395	G	A	no	stop	MIG1	Q->*	444		11	11	100.0%	0.00%	0.99999	
+S002	10	1		11	115440	1396	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99928	
+S002	10	1		14	72832	1394	A	C	no	non	MON2	M->R	1251		12	12	100.0%	0.11%	0.99999	
+S002	10	1		14	716114	1400	G	A	no	intergenic	none				20	20	100.0%	0.56%	0.99999	
+S002	10	1		15	4864	1393	T	A	no	intergenic	none				18	18	100.0%	0.64%	0.99999	
+S002	10	1		15	355074	1392	G	C	no	intergenic	none				2	2	100.0%	0.00%	0.99775	
+S002	10	1		15	633079	1399	G	A	no	non	PET123	G->R	307		3	3	100.0%	0.00%	0.99998	
+S002	10	1		16	156322	1401	A	C	no	complex-prom	SRP72			110	12	12	100.0%	0.00%	0.99999	
+S002	10	1		16	156324	1401	A	T	no	complex-prom	SRP72			112	12	12	100.0%	0.00%	0.99999	
+S002	10	1		16	156325	1401	A	T	no	complex-prom	SRP72			113	12	12	100.0%	0.32%	0.99998	
+S002	10	1		16	156326	1401	A	T	no	complex-prom	SRP72			114	12	12	100.0%	0.11%	0.99999	
+S002	10	1		16	156328	1401	G	T	no	complex-prom	SRP72			116	12	12	100.0%	0.00%	0.99999	
+S002	11	1		2	143902	1406	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99798	
+S002	11	1		2	451336	1404	T	G	no	syn	VID24	T->T	212		21	21	100.0%	0.29%	0.99999	
+S002	11	1		2	612193	1415	A	T	no	prom	MSI1			309	2	2	100.0%	0.00%	0.99964	
+S002	11	1		4	1233359	1412	G	A	no	syn	YDR379C-A	F->F	53		19	19	100.0%	0.11%	0.99999	
+S002	11	1		5	275008	1403	G	T	no	non	FCY21	Q->H	147		7	7	100.0%	1.30%	0.99999	
+S002	11	1		5	434266	1414	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99525	
+S002	11	1		7	127205	1408	C	A	no	syn	MDS3	S->S	836		17	17	100.0%	0.14%	0.99999	
+S002	11	1		7	945404	1418	G	A	no	syn	AMA1	E->E	90		19	19	100.0%	0.00%	0.99999	
+S002	11	1		10	425824	1410	G	A	no	non	CYR1	D->N	223		21	20	95.2%	0.00%	0.99999	
+S002	11	1		11	5725	1402	C	T	no	prom	YKL222C			104	11	11	100.0%	0.00%	0.99999	
+S002	11	1		11	84307	1413	A	G	no	prom	HYM1			397	17	17	100.0%	0.00%	0.99998	
+S002	11	1		12	672964	1405	A	G	no	prom	RPS28B			162	28	28	100.0%	0.11%	0.99998	
+S002	11	1		12	975166	1416	C	T	no	syn	SPP382	F->F	592		28	27	96.4%	0.06%	0.99999	
+S002	11	1		13	748149	1411	T	C	no	intergenic	none				2	2	100.0%	0.00%	0.99778	
+S002	11	1		15	406806	1407	T	G	no	prom	GLO4			255	13	13	100.0%	0.28%	0.99998	
+S002	11	1		15	951250	1417	C	T	no	non	KRE5	P->L	494		14	14	100.0%	0.30%	0.99999	
+S002	11	1		16	203829	1409	T	C	no	non	CTI6	S->P	137		10	10	100.0%	0.06%	0.99999	
+S002	12	1		2	445577	1426	C	T	no	syn	EXO84	L->L	583		17	17	100.0%	0.00%	0.99998	
+S002	12	1		4	307066	1420	C	T	no	non	RPS16B	D->N	98		14	14	100.0%	0.08%	0.99999	
+S002	12	1		4	805716	1428	T	C	no	intergenic	none				16	16	100.0%	0.22%	0.99998	
+S002	12	1		6	180639	1423	A	G	no	non	YFR016C	L->S	35		31	31	100.0%	0.09%	0.99999	
+S002	12	1		7	145350	1421	G	T	no	intergenic	none				2	2	100.0%	0.00%	0.99858	
+S002	12	1		7	967118	1429	AT	A	no	frame	KEL2		520		17	17	100.0%	0.58%	0.99999	
+S002	12	1		11	616922	1424	T	A	no	non	PTR2	I->N	398		19	19	100.0%	0.18%	0.99999	
+S002	12	1		14	671033	1425	G	A	no	non	SNF12	E->K	207		17	17	100.0%	0.10%	0.99999	
+S002	12	1		15	178577	1419	C	A	no	stop	IRA2	S->*	2504		18	18	100.0%	0.09%	0.99999	
+S002	12	1		15	390101	1427	T	A	no	non	HMS1	K->N	324		16	16	100.0%	0.32%	0.99999	
+S002	12	1		16	859627	1422	C	T	no	non	KRE6	S->L	682		19	19	100.0%	0.07%	0.99999	
+S028	0	0		2	714501	1433	C	T	no	prom	ENP1			47	125	125	100.0%	0.11%	1.00000	
+S028	0	0		3	307566	1432	G	A	no	prom	PAU3			237	99	85	85.9%	0.12%	1.00000	
+S028	0	0		4	217514	1430	G	A	no	prom	RPL35B			86	112	111	99.1%	0.19%	1.00000	
+S028	0	0		4	538199	1434	A	G	no	complex-non	ENA1	D->D	90		4	4	100.0%	0.07%	0.49964	
+S028	0	0		4	538202	1434	A	G	no	complex-non	ENA1	H->R	89		4	4	100.0%	0.15%	0.49926	
+S028	0	0		4	538203	1434	T	C	no	complex-non	ENA1	H->R	89		5	4	80.0%	0.00%	0.49902	
+S028	0	0		4	538207	1434	T	C	no	complex-non	ENA1	M->V	88		4	4	100.0%	0.30%	0.49843	
+S028	0	0		4	538208	1434	G	A	no	complex-non	ENA1	A->A	87		4	4	100.0%	0.00%	0.50000	
+S028	0	0		4	538214	1434	C	A	no	complex-non	ENA1	S->S	85		3	3	100.0%	0.30%	0.48582	
+S028	0	0		4	538244	1434	G	A	no	complex-non	ENA1	I->I	75		3	3	100.0%	0.25%	0.96582	
+S028	0	0		4	538250	1434	G	T	no	complex-non	ENA1	A->A	73		6	6	100.0%	0.77%	0.99222	
+S028	0	0		4	538280	1434	C	T	no	complex-non	ENA1	K->K	63		12	12	100.0%	0.25%	1.00000	
+S028	0	0		4	538283	1434	G	A	no	complex-non	ENA1	Y->Y	62		12	12	100.0%	0.50%	1.00000	
+S028	0	0		4	538286	1434	A	G	no	complex-non	ENA1	D->D	61		12	12	100.0%	0.17%	1.00000	
+S028	0	0		4	538295	1434	A	G	no	complex-non	ENA1	T->T	58		12	12	100.0%	0.08%	1.00000	
+S028	0	0		4	538298	1434	G	A	no	complex-non	ENA1	D->D	57		12	12	100.0%	0.33%	1.00000	
+S028	0	0		4	538319	1434	A	T	no	complex-non	ENA1	G->G	50		32	32	100.0%	0.90%	1.00000	
+S028	0	0		4	538327	1434	T	C	no	complex-non	ENA1	T->A	48		41	41	100.0%	0.22%	1.00000	
+S028	0	0		4	538333	1434	A	G	no	complex-non	ENA1	L->L	46		44	43	97.7%	0.29%	1.00000	
+S028	0	0		4	538338	1434	T	C	no	complex-non	ENA1	H->R	44		47	46	97.9%	0.00%	1.00000	
+S028	0	0		4	538342	1434	C	G	no	complex-non	ENA1	V->L	43		45	45	100.0%	0.08%	1.00000	
+S028	0	0		4	538344	1434	A	G	no	complex-non	ENA1	F->S	42		52	50	96.2%	0.15%	1.00000	
+S028	0	0		4	538355	1434	G	A	no	complex-non	ENA1	T->T	38		56	56	100.0%	0.24%	1.00000	
+S028	0	0		4	538358	1434	C	A	no	complex-non	ENA1	L->L	37		56	56	100.0%	0.65%	1.00000	
+S028	0	0		4	538360	1434	A	G	no	complex-non	ENA1	L->L	37		59	59	100.0%	0.32%	1.00000	
+S028	0	0		4	538370	1434	T	C	no	complex-non	ENA1	L->L	33		75	75	100.0%	0.31%	1.00000	
+S028	0	0		10	676887	1431	G	A	no	prom	TIM8			82	98	98	100.0%	0.83%	1.00000	
+S028	0	0		11	74626	1435	C	A	no	intergenic	none				143	142	99.3%	0.23%	1.00000	
+S028	1	1		9	417757	1440	G	C	no	non	MGA2	G->A	545		12	12	100.0%	0.00%	0.99999	
+S028	1	1		15	378238	1436	C	A	no	non	HST3	P->Q	8		17	17	100.0%	0.28%	0.99999	
+S028	1	1		15	381495	1441	C	A	no	non	STI1	P->Q	149		13	13	100.0%	0.09%	0.99998	
+S028	1	1		15	410730	1437	A	G	no	prom	WHI2			137	22	21	95.5%	0.15%	0.99998	
+S028	1	1		15	587588	1438	G	A	no	non	SFL1	R->K	204		23	23	100.0%	0.00%	0.99999	
+S028	1	1		15	769958	1442	G	C	no	intergenic	none				32	31	96.9%	0.53%	0.99998	
+S028	1	1		16	821060	1439	C	G	no	non	NOC4	V->L	122		26	26	100.0%	0.30%	0.99999	
+S028	2	1		3	155919	1445	T	A	no	intergenic	none				2	2	100.0%	0.00%	0.99930	
+S028	2	1		4	1042362	1443	C	G	no	non	HRQ1	P->R	879		16	16	100.0%	0.00%	0.99999	
+S028	2	1		4	1089144	1452	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99870	
+S028	2	1		5	553514	1446	C	T	no	non	FAU1	G->D	151		12	12	100.0%	0.05%	0.99999	
+S028	2	1		7	836855	1447	A	T	no	prom	YGR169C-A			200	6	6	100.0%	0.41%	0.99997	
+S028	2	1		10	91357	1448	G	T	no	intron	RPL17B				2	2	100.0%	0.00%	0.99973	
+S028	2	1		11	207024	1449	G	A	no	non	YPK1	E->K	439		9	9	100.0%	0.10%	0.99999	
+S028	2	1		13	427494	1450	A	C	no	non	NAM7	I->S	713		14	14	100.0%	0.22%	0.99999	
+S028	2	1		14	553040	1451	G	C	no	prom	YNL040W			337	9	9	100.0%	0.00%	0.99999	
+S028	2	1		16	105074	1444	C	A	no	non	VMA11	G->C	123		11	10	90.9%	0.77%	0.99999	
+S028	2	1		16	646048	1453	C	G	no	complex-non	YPR036W-A	D->E	33		11	11	100.0%	0.00%	0.99999	
+S028	2	1		16	646148	1453	T	C	no	complex-non	YPR036W-A	L->L	67		10	10	100.0%	0.40%	0.99999	
+S028	3	1		1	56	1454	A	C	no	prom	YAL069W			279	50	42	84.0%	2.77%	0.99997	
+S028	3	1		1	11488	1461	A	G	no	intergenic	none				66	66	100.0%	0.11%	0.99997	
+S028	3	1		2	485239	1458	T	C	no	syn	TFC1	E->E	485		66	66	100.0%	0.09%	0.99997	
+S028	3	1		4	615512	1459	G	C	no	non	AFR1	L->V	214		98	98	100.0%	0.14%	0.99997	
+S028	3	1		8	360426	1460	G	C	no	prom	ANS1			242	64	64	100.0%	0.18%	0.99997	
+S028	3	1		9	231888	1455	C	G	no	non	RPS24B	V->L	25		79	79	100.0%	0.09%	0.99997	
+S028	3	1		9	246593	1462	C	T	no	non	YIL060W	R->C	68		78	78	100.0%	0.31%	0.99997	
+S028	3	1		11	221417	1456	C	T	no	non	PRR1	R->H	496		90	90	100.0%	0.18%	0.99997	
+S028	3	1		11	340133	1463	G	C	no	non	ASK1	H->Q	139		87	87	100.0%	1.01%	0.99998	
+S028	3	1		12	196683	1457	G	A	no	prom	SED5			215	61	60	98.4%	0.00%	0.99997	
+S028	3	2	not used	10	148130	1467	T	G	no	non	YAK1	N->H	754		7	6	85.7%	0.00%	0.99997	
+S028	3	2	not used	12	184847	1464	C	A	no	non	SDO1	R->I	26		7	7	100.0%	0.08%	0.99997	
+S028	3	2	not used	12	281969	1468	C	A	no	non	BUD20	A->S	162		5	5	100.0%	0.30%	0.99997	
+S028	3	2	not used	12	590634	1465	A	C	no	non	ADY4	C->G	469		6	6	100.0%	1.02%	0.99997	
+S028	3	2	not used	12	932560	1469	C	T	no	prom	YLR406C-A			209	6	6	100.0%	0.29%	0.99997	
+S028	3	2	not used	15	589174	1466	AG	A	no	frame	SFL1		733		8	8	100.0%	0.12%	0.99997	
+S028	3	2	not used	15	976236	1470	C	G	no	intergenic	none				13	13	100.0%	0.33%	0.99997	
+S028	5	0	"likely mutator, not used"	4	83582	1472	G	T	no	intergenic	none				30	30	100.0%	0.63%	1.00000	
+S028	5	0	"likely mutator, not used"	4	1438446	1475	C	T	no	non	VPS3	D->N	902		34	31	91.2%	0.87%	1.00000	
+S028	5	0	"likely mutator, not used"	7	584561	1473	C	A	no	prom	YGR045C			269	30	26	86.7%	0.85%	1.00000	
+S028	5	0	"likely mutator, not used"	15	124806	1471	T	G	no	non	ITR2	I->S	270		20	20	100.0%	0.09%	1.00000	
+S028	5	0	"likely mutator, not used"	15	635324	1474	T	A	no	non	MTR10	Y->N	497		35	33	94.3%	0.08%	1.00000	
+S028	5	1	"likely mutator, not used"	2	105239	1485	A	C	no	prom	YBL062W			69	3	3	100.0%	0.78%	0.74909	
+S028	5	1	"likely mutator, not used"	2	171100	1518	T	C	no	prom	RRN10			381	2	2	100.0%	0.08%	0.59358	
+S028	5	1	"likely mutator, not used"	2	255708	1480	T	C	no	prom	HHF1			25	2	2	100.0%	0.00%	0.99992	
+S028	5	1	"likely mutator, not used"	2	271357	1514	A	C	no	complex-non	KAP104	I->C	783		7	6	85.7%	2.33%	0.99381	
+S028	5	1	"likely mutator, not used"	2	271358	1514	T	A	no	complex-non	KAP104	I->C	783		7	6	85.7%	2.76%	0.98623	
+S028	5	1	"likely mutator, not used"	2	506216	1495	A	C	no	non	MEC1	I->L	183		5	5	100.0%	2.19%	0.99611	
+S028	5	1	"likely mutator, not used"	2	764907	1525	G	T	no	prom	SAF1			211	3	3	100.0%	0.85%	0.68238	
+S028	5	1	"likely mutator, not used"	3	120907	1505	A	G	no	complex-intergenic	none				5	4	80.0%	0.86%	0.65770	
+S028	5	1	"likely mutator, not used"	3	120909	1505	A	C	no	complex-intergenic	none				5	4	80.0%	0.71%	0.76065	
+S028	5	1	"likely mutator, not used"	3	120911	1505	T	G	no	complex-intergenic	none				5	5	100.0%	0.90%	0.99991	
+S028	5	1	"likely mutator, not used"	4	263283	1502	T	A	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99993	
+S028	5	1	"likely mutator, not used"	4	263284	1502	T	C	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99993	
+S028	5	1	"likely mutator, not used"	4	263285	1502	G	A	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99993	
+S028	5	1	"likely mutator, not used"	4	263286	1502	T	G	no	complex-intergenic	none				2	2	100.0%	0.00%	0.99993	
+S028	5	1	"likely mutator, not used"	4	482274	1493	T	C	no	prom	KCS1			6	5	5	100.0%	3.17%	0.97350	
+S028	5	1	"likely mutator, not used"	4	571858	1479	C	A	no	syn	MAK21	T->T	403		3	3	100.0%	0.69%	0.80207	
+S028	5	1	"likely mutator, not used"	4	586903	1513	A	C	no	non	DOA4	I->S	273		4	4	100.0%	3.48%	0.50666	
+S028	5	1	"likely mutator, not used"	4	613694	1483	G	T	no	syn	TVP23	I->I	104		3	3	100.0%	0.49%	0.91435	
+S028	5	1	"likely mutator, not used"	4	795945	1497	C	T	no	intergenic	none				8	7	87.5%	0.24%	0.99997	
+S028	5	1	"likely mutator, not used"	5	223900	1506	T	G	no	non	ARB1	K->T	434		3	3	100.0%	0.44%	0.93380	
+S028	5	1	"likely mutator, not used"	6	121679	1507	T	C	no	non	SMC1	L->S	751		3	3	100.0%	0.64%	0.83674	
+S028	5	1	"likely mutator, not used"	7	206706	1500	A	T	no	prom	RCK1			327	2	2	100.0%	0.08%	0.60804	
+S028	5	1	"likely mutator, not used"	7	597427	1527	A	C	no	non	YGR054W	I->L	247		4	4	100.0%	3.26%	0.56961	
+S028	5	1	"likely mutator, not used"	7	1004722	1476	G	A	no	syn	GND2	T->T	37		5	4	80.0%	0.73%	0.70299	
+S028	5	1	"likely mutator, not used"	7	1013094	1510	T	G	no	non	TNA1	C->G	208		3	3	100.0%	0.78%	0.75633	
+S028	5	1	"likely mutator, not used"	7	1075331	1486	C	G	no	non	MAL11	G->R	158		5	5	100.0%	0.28%	0.99997	
+S028	5	1	"likely mutator, not used"	8	37884	1508	C	T	no	non	GUT1	R->H	209		2	2	100.0%	0.07%	0.65619	
+S028	5	1	"likely mutator, not used"	9	116155	1509	T	G	no	non	MET18	W->G	784		2	2	100.0%	0.00%	0.99992	
+S028	5	1	"likely mutator, not used"	10	211274	1481	T	G	no	syn	GZF3	I->I	101		3	3	100.0%	1.14%	0.51995	
+S028	5	1	"likely mutator, not used"	10	232948	1515	A	C	no	non	MEF2	E->A	550		7	5	71.4%	0.71%	0.68560	
+S028	5	1	"likely mutator, not used"	10	330148	1491	C	G	no	prom	IKS1			27	3	3	100.0%	0.53%	0.89857	
+S028	5	1	"likely mutator, not used"	11	163544	1501	A	T	no	prom	YKL153W			59	5	5	100.0%	3.54%	0.95915	
+S028	5	1	"likely mutator, not used"	11	535471	1488	T	A	no	prom	YSR3			186	2	2	100.0%	0.09%	0.54865	
+S028	5	1	"likely mutator, not used"	11	629687	1520	T	A	no	stop	YKR096W	Y->*	965		21	20	95.2%	0.05%	0.99997	
+S028	5	1	"likely mutator, not used"	12	124334	1478	A	C	no	non	PUF3	H->Q	127		5	5	100.0%	4.97%	0.81666	
+S028	5	1	"likely mutator, not used"	12	138506	1512	C	T	no	non	SPO75	G->D	680		4	4	100.0%	1.06%	0.98969	
+S028	5	1	"likely mutator, not used"	12	279022	1492	G	C	no	non	YLR072W	R->S	55		2	2	100.0%	0.00%	0.99992	
+S028	5	1	"likely mutator, not used"	12	406867	1523	T	A	no	prom	ACE2			50	3	3	100.0%	0.49%	0.91737	
+S028	5	1	"likely mutator, not used"	12	559313	1489	T	G	no	prom	SEC13			233	6	5	83.3%	1.66%	0.93711	
+S028	5	1	"likely mutator, not used"	12	666753	1521	T	C	no	complex-non	LCB5	V->A	305		6	5	83.3%	0.96%	0.99142	
+S028	5	1	"likely mutator, not used"	12	666754	1521	G	T	no	complex-non	LCB5	V->A	305		5	5	100.0%	1.15%	0.99979	
+S028	5	1	"likely mutator, not used"	12	852047	1482	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99992	
+S028	5	1	"likely mutator, not used"	12	875620	1516	T	A	no	intergenic	none				3	3	100.0%	0.65%	0.83791	
+S028	5	1	"likely mutator, not used"	13	151689	1494	T	A	no	prom	PIF1			153	3	3	100.0%	0.30%	0.96946	
+S028	5	1	"likely mutator, not used"	13	329202	1524	T	C	no	non	FAR8	N->D	345		2	2	100.0%	0.00%	0.99994	
+S028	5	1	"likely mutator, not used"	13	548288	1498	A	T	no	non	SIP5	K->I	190		3	3	100.0%	0.43%	0.92823	
+S028	5	1	"likely mutator, not used"	13	750818	1490	T	G	no	non	CUS1	Y->S	143		4	4	100.0%	1.61%	0.95428	
+S028	5	1	"likely mutator, not used"	13	862300	1522	C	G	no	syn	PRC1	V->V	125		3	3	100.0%	1.02%	0.59452	
+S028	5	1	"likely mutator, not used"	14	182007	1517	T	C	no	complex-non	RPA49	I->V	201		5	4	80.0%	0.45%	0.89164	
+S028	5	1	"likely mutator, not used"	14	182008	1517	T	A	no	complex-non	RPA49	Q->P	200		5	5	100.0%	0.54%	0.99996	
+S028	5	1	"likely mutator, not used"	14	182009	1517	T	G	no	complex-non	RPA49	Q->P	200		3	3	100.0%	0.63%	0.84008	
+S028	5	1	"likely mutator, not used"	14	244174	1484	A	C	no	prom	IES2			293	4	4	100.0%	3.39%	0.52200	
+S028	5	1	"likely mutator, not used"	14	438369	1477	A	T	no	intergenic	none				6	5	83.3%	3.26%	0.52681	
+S028	5	1	"likely mutator, not used"	14	447352	1511	C	A	no	prom	APP1			258	6	5	83.3%	1.39%	0.96099	
+S028	5	1	"likely mutator, not used"	15	3952	1504	A	C	no	prom	YOL164W-A			178	2	2	100.0%	0.00%	0.99994	
+S028	5	1	"likely mutator, not used"	15	433495	1496	A	C	no	intergenic	none				4	4	100.0%	2.73%	0.73301	
+S028	5	1	"likely mutator, not used"	15	712762	1526	T	A	no	prom	SLK19			101	3	3	100.0%	0.73%	0.75296	
+S028	5	1	"likely mutator, not used"	15	1061147	1503	G	A	no	complex-prom	FIT3			95	5	4	80.0%	1.07%	0.50120	
+S028	5	1	"likely mutator, not used"	15	1061149	1503	T	A	no	complex-prom	FIT3			97	5	5	100.0%	1.21%	0.99971	
+S028	5	1	"likely mutator, not used"	15	1061152	1503	T	G	no	complex-prom	FIT3			100	4	4	100.0%	1.57%	0.95829	
+S028	5	1	"likely mutator, not used"	16	318378	1499	A	G	no	non	RNY1	F->L	190		4	4	100.0%	2.51%	0.79192	
+S028	5	1	"likely mutator, not used"	16	581221	1487	T	C	no	prom	RPA135			25	5	4	80.0%	0.97%	0.58859	
+S028	5	1	"likely mutator, not used"	16	659002	1519	G	A	no	prom	TAH18			180	2	2	100.0%	0.00%	0.99993	
+S028	5	2	not used	2	298909	1529	T	A	no	non	RKM3	F->Y	206		26	26	100.0%	0.17%	0.66666	
+S028	5	2	not used	2	734765	1528	G	T	no	prom	RGD1			127	10	10	100.0%	0.37%	0.99997	
+S028	5	2	not used	2	744073	1532	A	G	no	non	BIT2	S->P	109		23	22	95.7%	0.39%	0.99997	
+S028	5	2	not used	7	863257	1531	T	G	no	non	UBR1	E->D	829		17	17	100.0%	0.23%	0.66666	
+S028	5	2	not used	11	617273	1530	C	A	1383	non	PTR2	S->Y	515		15	15	100.0%	2.02%	1.00000	
+S028	5	2	not used	12	410886	1533	G	A	no	non	PDC5	A->T	57		11	11	100.0%	0.08%	0.99997	
+S028	6	1		4	279616	1539	C	A	no	syn	POL3	G->G	915		13	12	92.3%	0.08%	0.99999	
+S028	6	1		6	238805	1538	T	C	no	non	KEG1	S->P	117		22	21	95.5%	0.00%	0.99999	
+S028	6	1		7	578804	1537	C	A	no	non	BUD9	S->Y	441		13	13	100.0%	0.23%	0.99999	
+S028	6	1		12	82616	1535	A	G	no	non	FRA1	R->G	386		12	12	100.0%	0.29%	0.99999	
+S028	6	1		12	499031	1534	C	T	no	syn	RPS31	I->I	30		34	32	94.1%	0.00%	0.99999	
+S028	6	1		12	800101	1540	C	T	no	syn	SGD1	S->S	764		32	32	100.0%	0.11%	0.99998	
+S028	6	1		14	343317	1536	C	G	no	non	YNL155W	N->K	268		2	2	100.0%	0.00%	0.99991	
+S028	7	1		3	261551	1543	G	C	no	non	TUP1	F->L	301		15	15	100.0%	0.00%	0.99999	
+S028	7	1		4	694747	1544	C	G	no	non	KIN1	Q->E	17		23	23	100.0%	0.07%	0.99999	
+S028	7	1		7	843382	1545	T	C	no	non	YIP1	Y->C	67		23	23	100.0%	0.54%	0.99999	
+S028	7	1		10	346791	1542	G	C	no	non	YJL049W	E->D	273		25	25	100.0%	0.46%	0.99999	
+S028	7	1		10	583124	1550	G	T	no	non	ACF4	L->I	139		18	18	100.0%	0.11%	0.99999	
+S028	7	1		11	5130	1546	C	T	no	syn	YKL222C	E->E	164		20	20	100.0%	0.00%	0.99999	
+S028	7	1		12	300808	1547	C	G	no	non	ARP6	A->P	393		23	23	100.0%	0.58%	0.99999	
+S028	7	1		13	20704	1548	T	A	no	prom	ERG13			166	25	25	100.0%	0.00%	0.99999	
+S028	7	1		14	199059	1541	G	A	no	syn	NAR1	Y->Y	306		31	31	100.0%	0.43%	0.99999	
+S028	7	1		14	361679	1549	G	A	no	non	THO2	S->L	1346		25	25	100.0%	0.12%	0.99999	
+S028	9	1		2	774038	1555	T	A	no	non	YBR285W	S->T	40		18	18	100.0%	0.11%	0.99999	
+S028	9	1		4	274318	1553	G	A	no	complex-non	QRI7	H->Y	187		3	3	100.0%	0.08%	0.99857	
+S028	9	1		4	274319	1553	A	T	no	complex-non	QRI7	D->E	186		4	4	100.0%	0.00%	0.99999	
+S028	9	1		7	979002	1554	G	T	no	non	LSC2	P->H	103		14	13	92.9%	0.78%	0.99999	
+S028	9	1		10	340151	1551	T	C	no	non	IRC8	L->P	122		13	13	100.0%	0.35%	0.99999	
+S028	9	1		10	555555	1556	G	C	no	non	RPA12	K->N	120		28	28	100.0%	0.39%	0.99999	
+S028	9	1		16	252340	1552	A	T	no	non	AIM44	D->E	657		13	13	100.0%	0.00%	0.99999	
+S028	10	1		2	519772	1566	T	A	no	stop	IRA1	K->*	2287		21	21	100.0%	0.52%	0.99999	
+S028	10	1		3	114533	1561	A	C	no	intergenic	none				2	2	100.0%	0.00%	0.99724	
+S028	10	1		4	639749	1560	C	G	no	non	GIS1	H->D	871		22	22	100.0%	0.28%	0.99999	
+S028	10	1		4	1418339	1569	C	T	no	syn	DIG2	I->I	314		23	23	100.0%	0.06%	0.99999	
+S028	10	1		5	78056	1562	G	T	no	non	UTR2	A->S	2		19	19	100.0%	0.51%	0.99997	
+S028	10	1		11	580458	1563	G	C	no	syn	YKR075C	S->S	98		22	22	100.0%	0.00%	0.99999	
+S028	10	1		12	871567	1564	G	A	no	prom	STP3			126	25	24	96.0%	0.46%	0.99999	
+S028	10	1		13	407984	1558	G	C	no	non	NAT4	K->N	91		16	16	100.0%	0.00%	0.99999	
+S028	10	1		13	713515	1568	G	T	no	non	ERG8	G->C	399		15	15	100.0%	0.68%	0.99999	
+S028	10	1		14	333592	1565	G	A	no	non	CBK1	G->D	333		25	25	100.0%	0.10%	0.99999	
+S028	10	1		16	26133	1557	A	C	no	intergenic	none				12	12	100.0%	0.34%	0.99997	
+S028	10	1		16	203694	1567	T	A	no	non	CTI6	C->S	92		36	36	100.0%	0.16%	0.99999	
+S028	10	1		16	789229	1559	G	A	no	syn	YLH47	L->L	423		21	21	100.0%	1.51%	0.99999	
+S028	11	1		4	1373620	1571	G	A	no	non	TOM1	E->K	1278		30	30	100.0%	0.31%	0.99997	
+S028	11	1		8	198153	1572	C	T	no	non	INM1	V->I	46		25	25	100.0%	1.10%	0.99997	
+S028	11	1		11	442220	1573	G	A	no	non	VPS1	S->F	168		11	11	100.0%	0.00%	0.99997	
+S028	11	1		12	687949	1570	G	T	no	intergenic	none				15	14	93.3%	0.30%	0.99997	
+S028	11	1		13	116471	1574	C	A	no	non	HMG1	G->V	811		30	29	96.7%	0.07%	0.99997	
+S028	11	2	not used	2	685951	1577	C	T	no	non	ARC40	G->S	214		10	10	100.0%	0.93%	0.99997	
+S028	11	2	not used	12	696114	1576	C	T	no	non	DBP9	E->K	238		7	7	100.0%	0.31%	0.99998	
+S028	11	2	not used	12	920596	1579	G	T	no	non	BDF1	H->N	333		5	5	100.0%	0.75%	0.99994	
+S028	11	2	not used	14	223169	1575	C	T	no	non	CNM67	E->K	434		9	9	100.0%	0.25%	0.99997	
+S028	11	2	not used	14	333963	1578	G	C	no	non	CBK1	A->P	457		6	6	100.0%	0.13%	0.99997	
+S028	12	1		2	786533	1585	T	C	no	prom	VBA2			472	26	26	100.0%	0.13%	0.99999	
+S028	12	1		4	298363	1581	A	G	no	intergenic	none				2	2	100.0%	0.00%	0.99982	
+S028	12	1		4	571821	1591	G	C	no	non	MAK21	R->T	391		2	2	100.0%	0.00%	0.99986	
+S028	12	1		5	180561	1580	C	T	no	non	PRP22	T->I	574		11	11	100.0%	1.15%	0.99999	
+S028	12	1		5	196581	1590	A	C	no	prom	RPN3			367	4	4	100.0%	0.21%	0.99971	
+S028	12	1		5	565382	1583	A	G	no	intergenic	none				3	3	100.0%	0.82%	0.67980	
+S028	12	1		7	931146	1586	T	A	no	intergenic	none				2	2	100.0%	0.00%	0.99977	
+S028	12	1		9	195441	1587	T	C	no	prom	YIL089W			158	2	2	100.0%	0.00%	0.99984	
+S028	12	1		12	579263	1588	T	G	no	prom	RSA3			244	3	3	100.0%	1.11%	0.51390	
+S028	12	1		13	127594	1582	TC	T	no	frame	TCB3		593		14	14	100.0%	0.00%	0.99999	
+S028	12	1		13	479230	1592	G	A	no	syn	YKU80	D->D	322		34	34	100.0%	0.14%	0.99999	
+S028	12	1		14	706004	1589	A	G	no	prom	PET494			132	3	3	100.0%	0.96%	0.58891	
+S028	12	1		15	290723	1584	C	T	no	intergenic	none				2	2	100.0%	0.00%	0.99974	
+S028	12	1		16	289269	1593	T	A	no	prom	MKK2			235	2	2	100.0%	0.00%	0.99993	
+L096b	0	0		1	90987	1595	C	T	no	syn	MYO4	K->K	428		20	20	100.0%	0.00%	1.00000	
+L096b	0	0		2	355118	1596	G	A	no	stop	UBP14	Q->*	301		32	31	96.9%	0.24%	0.99920	
+L096b	0	0		4	1203406	1594	T	G	no	non	CDC40	N->H	269		33	33	100.0%	0.57%	0.99972	
+L096b	0	0		7	33157	1597	T	A	no	stop	ZIP2	Y->*	20		31	30	96.8%	0.00%	0.92667	
+L096b	1	1		2	29613	1605	C	G	no	intergenic	none				13	13	100.0%	0.00%	0.99999	
+L096b	1	1		4	350773	1601	T	C	no	syn	USO1	V->V	1703		4	4	100.0%	0.30%	0.99981	
+L096b	1	1		4	684351	1599	G	C	no	non	TMA64	A->G	431		12	12	100.0%	0.00%	0.99999	
+L096b	1	1		4	809835	1610	G	T	no	non	SUP35	V->F	505		17	17	100.0%	0.60%	0.99999	
+L096b	1	1		4	1298473	1604	C	A	no	syn	SYF1	V->V	14		13	13	100.0%	0.07%	0.99999	
+L096b	1	1		5	23409	1606	T	G	no	prom	HXT13			178	8	8	100.0%	0.00%	0.99999	
+L096b	1	1		6	181074	1607	A	G	no	prom	YFR016C			332	10	10	100.0%	4.63%	0.99999	
+L096b	1	1		10	655827	1608	C	A	no	non	ENT3	G->V	46		7	7	100.0%	0.08%	0.99999	
+L096b	1	1		12	89076	1600	A	G	no	non	HSP104	R->G	152		14	13	92.9%	0.28%	0.99999	
+L096b	1	1		12	279245	1611	G	T	no	non	YLR072W	D->Y	130		8	8	100.0%	0.00%	0.99999	
+L096b	1	1		12	701229	1603	T	C	no	non	YLR278C	N->D	931		1	1	100.0%	0.00%	0.54544	
+L096b	1	1		15	178808	1602	G	T	no	non	IRA2	G->V	2581		7	6	85.7%	0.00%	0.99999	
+L096b	1	1		15	654593	1612	A	T	no	non	YRM1	R->S	129		14	14	100.0%	0.33%	0.99999	
+L096b	1	1		16	234214	1598	G	C	no	non	REV3	A->G	965		15	15	100.0%	0.00%	0.99999	
+L096b	1	1		16	290563	1609	C	T	no	syn	UME1	S->S	163		10	10	100.0%	0.10%	0.99999	
+L096b	6	0		2	80593	1614	G	T	no	non	ATG8	R->S	47		28	28	100.0%	0.91%	1.00000	
+L096b	6	0		4	461724	1615	T	C	no	prom	TRP1			119	33	33	100.0%	0.00%	1.00000	
+L096b	6	0		10	633626	1616	C	G	no	non	YMR1	I->M	4		38	38	100.0%	0.13%	1.00000	
+L096b	6	0		13	560439	1617	T	C	no	non	OSW5	S->P	23		30	30	100.0%	0.37%	1.00000	
+L096b	6	0		15	410951	1613	C	T	no	stop	WHI2	Q->*	29		24	24	100.0%	0.14%	1.00000	
+L096b	6	0		16	289155	1618	A	G	no	prom	MKK2			121	29	29	100.0%	0.00%	1.00000	
+L096b	6	1		2	137949	1620	G	T	no	intergenic	none				17	17	100.0%	0.48%	0.99997	
+L096b	6	1		4	911037	1619	C	A	no	non	YDR222W	R->S	329		20	20	100.0%	0.53%	0.99997	
+L096b	6	1		13	208862	1621	C	A	no	non	AMD1	M->I	1		14	14	100.0%	0.37%	0.99998	
+L096b	6	2	not used	11	498708	1624	A	G	no	syn	SET3	A->A	376		15	15	100.0%	0.14%	0.99997	
+L096b	6	2	not used	12	369778	1622	A	T	no	non	CCW12	S->T	106		4	4	100.0%	0.37%	0.99967	
+L096b	6	2	not used	12	699811	1625	AG	A	no	prom	YSH1			321	7	7	100.0%	0.00%	0.99997	
+L096b	6	2	not used	16	588666	1623	C	A	no	intergenic	none				9	9	100.0%	0.33%	0.99997	
+L096b	8	1		2	79892	1628	A	T	no	intergenic	none				2	2	100.0%	0.00%	0.99979	
+L096b	8	1		2	140385	1644	T	A	no	prom	FUI1			125	2	2	100.0%	0.00%	0.99993	
+L096b	8	1		4	473915	1636	G	T	no	prom	RAD61			132	2	2	100.0%	0.00%	0.99993	
+L096b	8	1		4	1337168	1626	C	T	no	prom	GPI19			183	2	2	100.0%	0.00%	0.99980	
+L096b	8	1		4	1365812	1642	C	G	no	prom	TSA2			151	2	2	100.0%	0.00%	0.99993	
+L096b	8	1		5	182560	1638	G	A	no	prom	HEM14			40	2	2	100.0%	0.00%	0.99993	
+L096b	8	1		6	60032	1633	G	C	no	non	RPO41	K->N	417		2	2	100.0%	0.00%	0.99986	
+L096b	8	1		6	218705	1649	G	A	no	syn	SMC2	V->V	467		10	10	100.0%	0.09%	0.99999	
+L096b	8	1		7	402454	1631	G	T	no	prom	PRM8			132	2	2	100.0%	0.00%	0.99995	
+L096b	8	1		7	542859	1647	G	A	no	non	MSP1	D->N	221		2	2	100.0%	0.00%	0.99996	
+L096b	8	1		8	310533	1645	T	C	no	complex-non	TRA1	P->P	2590		2	2	100.0%	0.08%	0.60108	
+L096b	8	1		8	310535	1645	A	G	no	complex-non	TRA1	Y->C	2591		2	2	100.0%	0.00%	0.99996	
+L096b	8	1		8	429205	1629	G	C	no	prom	DNA2			24	2	2	100.0%	0.08%	0.59795	
+L096b	8	1		9	437060	1639	C	T	no	intergenic	none				2	2	100.0%	0.09%	0.54909	
+L096b	8	1		10	73941	1640	G	T	no	intron	RPS14B				2	2	100.0%	0.00%	0.99996	
+L096b	8	1		11	354956	1634	G	A	no	syn	PRI2	A->A	487		3	3	100.0%	0.22%	0.98789	
+L096b	8	1		11	611056	1650	C	T	no	syn	PXL1	I->I	703		2	2	100.0%	0.00%	0.99995	
+L096b	8	1		12	645741	1641	G	C	no	intergenic	none				9	9	100.0%	0.00%	0.99999	
+L096b	8	1		13	410330	1627	C	A	no	non	MOT3	H->N	392		2	2	100.0%	0.00%	0.99990	
+L096b	8	1		13	458125	1643	A	T	no	prom	SNO1			161	2	2	100.0%	0.00%	0.99993	
+L096b	8	1		13	759141	1630	C	T	no	prom	YMR244C-A			305	2	2	100.0%	0.00%	0.99996	
+L096b	8	1		13	896551	1646	T	G	no	non	YMR310C	K->T	41		20	20	100.0%	0.23%	0.99999	
+L096b	8	1		14	320098	1632	T	C	no	syn	SKO1	V->V	420		2	2	100.0%	0.00%	0.99988	
+L096b	8	1		14	463741	1648	C	G	no	non	TCB2	T->R	444		4	4	100.0%	0.00%	0.99999	
+L096b	8	1		15	178769	1635	C	A	no	non	IRA2	P->Q	2568		13	13	100.0%	0.50%	0.99999	
+L096b	8	1		15	956807	1651	A	T	no	prom	YOR338W			88	3	3	100.0%	0.12%	0.99418	
+L096b	8	1		16	292617	1637	T	A	no	prom	SPP1			190	6	6	100.0%	0.36%	0.99916	
+L096b	11	2	not used	1	76456	1661	G	A	no	syn	FUN12	Q->Q	10		7	7	100.0%	0.08%	0.66666	
+L096b	11	2	not used	3	280483	1660	T	C	no	syn	CDC39	F->F	122		4	4	100.0%	0.00%	0.66666	
+L096b	11	2	not used	4	952990	1657	C	A	no	non	MNN10	F->L	64		5	5	100.0%	0.21%	0.66666	
+L096b	11	2	not used	4	1294846	1666	A	C	no	non	RRP17	K->Q	52		5	5	100.0%	0.08%	0.66666	
+L096b	11	2	not used	5	52799	1654	G	C	no	syn	RPL12A	G->G	140		4	4	100.0%	0.18%	0.66664	
+L096b	11	2	not used	5	149775	1663	G	A	no	syn	WBP1	I->I	80		8	8	100.0%	0.15%	0.66666	
+L096b	11	2	not used	10	706052	1659	C	A	no	non	BAT2	S->Y	104		12	12	100.0%	0.33%	0.66666	
+L096b	11	2	not used	14	236835	1655	G	A	no	syn	ALG9	F->F	276		12	12	100.0%	0.00%	0.66666	
+L096b	11	2	not used	14	452250	1664	A	T	no	prom	NST1			157	13	13	100.0%	0.09%	0.66666	
+L096b	11	2	not used	15	174399	1656	G	C	no	non	IRA2	M->I	1111		7	7	100.0%	0.44%	0.66666	
+L096b	11	2	not used	15	430892	1665	T	A	no	syn	NOB1	S->S	244		5	5	100.0%	0.00%	0.66666	
+L096b	11	2	not used	15	965956	1653	C	A	no	non	RPA190	A->E	1658		9	9	100.0%	0.84%	0.66666	
+L096b	11	2	not used	15	1010039	1662	G	A	no	prom	HAP5			119	7	7	100.0%	0.00%	0.66666	
+L096b	11	2	not used	16	311310	1658	T	A	no	syn	NAN1	S->S	367		7	7	100.0%	0.16%	0.66666	
+L102a	0	0		2	757376	1671	G	T	no	prom	RIF1			271	26	26	100.0%	0.06%	1.00000	
+L102a	0	0		4	980979	1672	C	A	no	intergenic	none				18	18	100.0%	0.17%	1.00000	
+L102a	0	0		12	445273	1670	G	A	no	intergenic	none				46	46	100.0%	0.09%	1.00000	
+L102a	0	0		13	504971	1667	T	A	no	prom	ASI1			367	30	30	100.0%	2.32%	1.00000	
+L102a	0	0		13	164983	1673	G	T	no	stop	SPC2	E->*	64		28	28	100.0%	3.30%	1.00000	
+L102a	0	0		13	247272	1668	G	T	no	non	RAD33	Q->K	54		48	48	100.0%	2.61%	1.00000	
+L102a	0	0		15	807328	1669	C	T	no	stop	OSW1	R->*	21		37	37	100.0%	2.22%	1.00000	
+L102a	2	0		14	26334	1675	TC	T	no	frame	EGT2		763		27	27	100.0%	0.32%	1.00000	
+L102a	2	0		15	292243	1674	CA	C	no	prom	TLG2			172	23	23	100.0%	4.08%	1.00000	
+L102a	2	0		16	430861	1676	C	T	no	non	TIM50	P->L	308		17	17	100.0%	0.23%	1.00000	
+L102a	2	1		2	57421	1677	A	G	no	syn	TEL1	C->C	654		11	11	100.0%	0.00%	0.99997	
+L102a	2	1		2	143998	1679	GA	G	no	frame	URA7		576		9	8	88.9%	0.00%	0.99997	
+L102a	2	1		9	54245	1678	G	T	no	non	IMP2	N->K	259		18	18	100.0%	0.25%	0.99997	
+L102a	2	2	not used	4	88758	1681	G	T	no	non	GLE1	R->L	170		3	3	100.0%	0.26%	0.98178	
+L102a	2	2	not used	15	685674	1680	C	T	no	prom	MSB1			90	3	3	100.0%	0.26%	0.98136	
+L102a	2	2	not used	15	937841	1682	T	C	no	syn	SCD5	S->S	502		6	6	100.0%	0.35%	0.99997	
+L102a	3	1		2	466522	1689	A	G	no	intergenic	none				2	2	100.0%	0.09%	0.57473	
+L102a	3	1		4	210685	1687	A	T	no	prom	RPO21			123	5	4	80.0%	0.42%	0.53841	
+L102a	3	1		4	681814	1685	G	T	no	prom	PDS1			198	11	11	100.0%	0.00%	0.99999	
+L102a	3	1		4	953714	1693	G	C	no	non	MNN10	A->P	306		15	15	100.0%	0.73%	0.99999	
+L102a	3	1		5	312015	1683	G	T	no	intergenic	none				10	10	100.0%	0.26%	0.99999	
+L102a	3	1		5	436947	1691	C	A	no	prom	YER133W-A			240	14	14	100.0%	0.21%	0.99999	
+L102a	3	1		7	179259	1684	C	A	no	non	KEM1	M->I	285		16	16	100.0%	0.23%	0.99998	
+L102a	3	1		7	438713	1692	C	T	no	prom	RPL24A			320	15	15	100.0%	1.97%	0.99999	
+L102a	3	1		10	41839	1690	C	G	no	non	LAA1	Q->H	1865		11	11	100.0%	0.00%	0.99999	
+L102a	3	1		14	131024	1686	C	A	no	non	BNI1	R->S	1453		7	7	100.0%	0.00%	0.99998	
+L102a	3	1		14	651984	1694	T	TA	no	prom	PHO91			275	5	5	100.0%	0.19%	0.99997	
+L102a	3	1		16	868433	1688	A	G	no	prom	ORC4			129	2	2	100.0%	0.00%	0.99892	
+L102a	5	1		12	669050	1701	A	C	no	prom	YPT6			162	2	2	100.0%	0.12%	0.50160	
+L102a	5	1		4	892039	1698	A	G	no	non	UPC2	S->G	764		10	10	100.0%	0.27%	0.99999	
+L102a	5	1		5	566913	1699	C	T	no	complex-intergenic	none				12	12	100.0%	0.38%	0.99999	
+L102a	5	1		6	270131	1699	T	G	no	complex-intergenic	none				10	7	70.0%	0.39%	0.99585	
+L102a	5	1		6	270133	1700	G	T	no	intergenic	none				9	7	77.8%	0.80%	0.99978	
+L102a	5	1		7	979138	1695	G	A	no	non	LSC2	P->S	58		19	19	100.0%	0.06%	0.99999	
+L102a	5	1		11	233995	1702	C	T	no	prom	SLD2			434	6	6	100.0%	0.40%	0.83552	
+L102a	5	1		11	390347	1696	T	G	no	non	PAN3	Q->P	645		21	21	100.0%	0.07%	0.99999	
+L102a	5	1		12	406514	1703	C	A	no	stop	ACE2	E->*	102		13	13	100.0%	0.36%	0.99999	
+L102a	5	1		15	670342	1697	C	G	no	prom	GAC1			104	13	13	100.0%	0.24%	0.99998	
+L102a	5	2	not used	4	1517933	1704	C	T	no	prom	IRC4			259	6	6	100.0%	0.39%	0.66666	
+L102a	6	1		1	38	1707	A	C	no	prom	YAL069W			297	8	7	87.5%	4.30%	0.99384	
+L102a	6	1		4	551404	1708	G	C	no	prom	HEM12			457	16	16	100.0%	0.00%	0.99999	
+L102a	6	1		11	240675	1705	C	T	no	non	YKL105C	D->N	638		14	14	100.0%	0.15%	0.99999	
+L102a	6	1		11	363778	1709	C	T	no	non	PTM1	A->V	385		20	20	100.0%	0.00%	0.99999	
+L102a	6	1		12	404961	1706	G	C	no	non	ACE2	N->K	619		13	13	100.0%	0.13%	0.99999	
+L102a	6	1		14	146564	1710	C	G	no	non	PDR17	E->D	17		16	15	93.8%	0.42%	0.99999	

@@ -87,8 +87,8 @@ library("BiodiversityR")
 
 
 ```{r, echo=FALSE}
-pop_by_gene <- c("data/ltee/gene_by_pop_delta.txt")
-df <- read.table(paste(pop_by_gene, collapse = ''), sep = "\t", 
+pop_by_gene <- c("data/Good_et_al/gene_by_pop_delta.txt")
+df.good <- read.table(paste(pop_by_gene, collapse = ''), sep = "\t", 
                  header = TRUE, row.names = 1)
 # only look at nonmutators (for now)
 complete_nonmutator_lines <- c('m5','m6','p1','p2','p4','p5')
@@ -96,7 +96,7 @@ complete_mutator_lines <- c('m1','m4','p3')
 to_keep <- rownames(df) %like% "m5" + rownames(df) %like% "m6" + 
   rownames(df) %like% "p1" + rownames(df) %like% "p2" + 
   rownames(df) %like% "p4" + rownames(df) %like% "p5"
-df.noMut <- df[as.logical(to_keep),]
+df.noMut <- df.good[as.logical(df.good),]
 df.no0 <- df.noMut[apply(df.noMut[,-1], 1, function(x) !all(x==0)),]
 ```
 
