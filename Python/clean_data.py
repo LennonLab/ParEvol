@@ -279,4 +279,4 @@ class kryazhimskiy_et_al:
 #good_et_al().get_likelihood_matrix()
 #print(kryazhimskiy_et_al().pop_by_gene_kryazhimskiy())
 
-kryazhimskiy_et_al().get_size_dict()
+#kryazhimskiy_et_al().get_size_dict()
