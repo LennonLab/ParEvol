@@ -34,6 +34,9 @@ def get_scipy_bray_curtis(array):
 def complete_nonmutator_lines():
     return ['m5','m6','p1','p2','p4','p5']
 
+def nonmutator_shapes():
+    return {'m5': 'o','m6':'s','p1':'^','p2':'D','p4':'P','p5':'X'}
+
 
 def complete_mutator_lines():
     return ['m1','m4','p3']

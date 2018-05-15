@@ -4,10 +4,41 @@ import pandas as pd
 import parevol_tools as pt
 import matplotlib.pyplot as plt
 from matplotlib import cm
+import matplotlib.colors as clr
 
 
 test_array = np.array([[1, 2], [3, 4], [3, 0]])
 
+
+def cmap_map(function, cmap):
+    """ Applies function (which should operate on vectors of shape 3: [r, g, b]), on colormap cmap.
+    This routine will break any discontinuous points in a colormap.
+    """
+    cdict = cmap._segmentdata
+    step_dict = {}
+    # Firt get the list of points where the segments start or end
+    for key in ('red', 'green', 'blue'):
+        step_dict[key] = list(map(lambda x: x[0], cdict[key]))
+    step_list = sum(step_dict.values(), [])
+    step_list = np.array(list(set(step_list)))
+    # Then compute the LUT, and apply the function to the LUT
+    reduced_cmap = lambda step : np.array(cmap(step)[0:3])
+    old_LUT = np.array(list(map(reduced_cmap, step_list)))
+    new_LUT = np.array(list(map(function, old_LUT)))
+    # Now try to make a minimal segment definition of the new LUT
+    cdict = {}
+    for i, key in enumerate(['red','green','blue']):
+        this_cdict = {}
+        for j, step in enumerate(step_list):
+            if step in step_dict[key]:
+                this_cdict[step] = new_LUT[j, i]
+            elif new_LUT[j,i] != old_LUT[j, i]:
+                this_cdict[step] = new_LUT[j, i]
+        colorvector = list(map(lambda x: x + (x[1], ), this_cdict.items()))
+        colorvector.sort()
+        cdict[key] = colorvector
+
+    return clr.LinearSegmentedColormap('colormap',cdict,1024)
 
 def plot_pcoa(dataset):
     if dataset == 'tenaillon':
@@ -42,27 +73,31 @@ def plot_pcoa(dataset):
         X = np.sqrt(pt.get_scipy_bray_curtis(df.as_matrix()))
         #X = pt.get_scipy_bray_curtis(df.as_matrix())
         X_cmds = pt.cmdscale(X)
-        df_cmds = pd.DataFrame(data=X_cmds, index=df.index, columns=df.columns)
+        df_cmds = pd.DataFrame(data=X_cmds[0], index=df.index)
         #pt.plot_eigenvalues(X_cmds[1], file_name = 'pcoa_good_eigen')
         percent_explained = X_cmds[1] / sum(X_cmds[1])
         times = sorted(list(set([int(x.split('_')[1]) for x in df.index.values])))
-        colors = np.linspace(0,2,len(times))
+        colors = np.linspace(min(times),max(times),len(times))
         color_dict = dict(zip(times, colors))
-        for pop in pt.complete_nonmutator_lines():
-            print(pop)
-            pop_df_cmds = df_cmds[df_cmds.index.str.contains(pop)]
-
-
-        # cs = plt.scatter(x,y,c=B,cmap=cm.Blues,vmin=0.,vmax=2.)
 
         fig = plt.figure()
         plt.axhline(y=0, color='k', linestyle=':', alpha = 0.8, zorder=1)
         plt.axvline(x=0, color='k', linestyle=':', alpha = 0.8, zorder=2)
-        plt.scatter(0, 0, marker = "o", edgecolors='none', c = 'darkgray', s = 120, zorder=3)
-        plt.scatter(X_cmds[0][:,0], X_cmds[0][:,1], marker = "o", edgecolors='none', c = 'forestgreen', alpha = 0.6, s = 80, zorder=4)
-
-        plt.xlim([-0.4,0.4])
-        plt.ylim([-0.4,0.4])
+        plt.scatter(0, 0, marker = "o", edgecolors='none', c = 'darkgray', s = 120, zorder=1)
+        for pop in pt.complete_nonmutator_lines():
+            pop_df_cmds = df_cmds[df_cmds.index.str.contains(pop)]
+            c_list = [ color_dict[int(x.split('_')[1])] for x in pop_df_cmds.index.values]
+            if  pt.nonmutator_shapes()[pop] == 'p2':
+                size == 50
+            else:
+                size = 80
+            plt.scatter(pop_df_cmds.as_matrix()[:,0], pop_df_cmds.as_matrix()[:,1], \
+            c=c_list, cmap = cm.Blues, vmin=min(times), vmax=max(times), \
+            marker = pt.nonmutator_shapes()[pop], s = size, edgecolors='#244162', linewidth = 0.6)#, edgecolors='none')
+        c = plt.colorbar()
+        c.set_label("Generations")
+        plt.xlim([-0.7,0.7])
+        plt.ylim([-0.7,0.7])
         plt.xlabel('PCoA 1 (' + str(round(percent_explained[0],3)*100) + '%)' , fontsize = 16)
         plt.ylabel('PCoA 2 (' + str(round(percent_explained[1],3)*100) + '%)' , fontsize = 16)
         fig.tight_layout()
