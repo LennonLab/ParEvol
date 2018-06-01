@@ -1,9 +1,12 @@
 from __future__ import division
+import math
 import numpy as np
 import pandas as pd
 import parevol_tools as pt
 import matplotlib.pyplot as plt
+import matplotlib.colors as cls
 from matplotlib import cm
+from sklearn.decomposition import PCA
 
 
 def plot_pcoa(dataset):
@@ -114,18 +117,32 @@ def plot_pcoa(dataset):
 
 
 
-def plot_permutation(dataset):
+def plot_permutation(dataset, analysis = 'PCA'):
     if dataset == 'tenaillon':
         df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
         df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
-        df_delta_bc = np.sqrt(pt.get_scipy_bray_curtis(df_delta.as_matrix()))
-        df_delta_cmd = pt.cmdscale(df_delta_bc)[0]
-        mcd = pt.get_mean_centroid_distance(df_delta_cmd)
+        if analysis == 'PCA':
+            X = pt.hellinger_transform(df_delta)
+            pca = PCA()
+            df_out = pca.fit_transform(X)
+        elif analysis == 'cMDS':
+            df_delta_bc = np.sqrt(pt.get_scipy_bray_curtis(df_delta.as_matrix()))
+            df_out = pt.cmdscale(df_delta_bc)[0]
 
-        mcd_perm_path = pt.get_path() + '/data/Tenaillon_et_al/permute.txt'
-        mcd_perm = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-        mcd_perm_list = mcd_perm.MCD.values
+        mcd = pt.get_mean_centroid_distance(df_out, k = 3)
+
+        mcd_perm_path = pt.get_path() + '/data/Tenaillon_et_al/permute_' + analysis + '.txt'
+        mcd_perm = pd.read_csv(mcd_perm_path, sep = '\t', header = 'infer', index_col = 0)
+        mcd_perm_list = mcd_perm.MCD.tolist()
+        iterations = len(mcd_perm_list)
+        mcd_perm_list.append(mcd)
+        relative_position = sorted(mcd_perm_list).index(mcd) / iterations
+        if relative_position > 0.5:
+            p_score = 1 - (sorted(mcd_perm_list).index(mcd) / iterations)
+        else:
+            p_score = (sorted(mcd_perm_list).index(mcd) / iterations)
+        print(p_score)
 
         fig = plt.figure()
         plt.hist(mcd_perm_list, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
@@ -133,7 +150,8 @@ def plot_permutation(dataset):
         plt.xlabel("Mean centroid distance")
         plt.ylabel("Frequency")
         fig.tight_layout()
-        fig.savefig(pt.get_path() + '/figs/permutation_hist_tenaillon.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+        plot_out = pt.get_path() + '/figs/permutation_hist_tenaillon_' + analysis + '.png'
+        fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
         plt.close()
 
     else:
@@ -177,5 +195,35 @@ def plot_mcd_pcoa_good():
     #color_dict = dict(zip(times, colors))
 
 
+#def get_mean_rbg(c1):
 
-plot_mcd_pcoa_good()
+
+def example_gene_space():
+    x = [2.5, 1, 2, 3, 4, 0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 2.5]
+    y = [0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4]
+    gt = ['0000', '0001', '0010', '0100', '1000', '0011', '0101', '1001', \
+                '0110', '1010', '1100', '0111', '1011', '1101', '1110', '1111']
+    fig = plt.figure(frameon=False)
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.axis('off')
+    for i, x_i in enumerate(x):
+        y_i = y[i]
+        gt_i = gt[i]
+        w1 = gt_i[0:2].count('1') / 3
+        w2 = gt_i[2:].count('1') / 3
+        new_color = pt.get_mean_colors('#FF3333', '#3333FF', w1, w2)
+        plt.scatter(x_i, y_i, facecolors=new_color, edgecolors='k', marker = 'o', \
+            s = 900, linewidth = 1, alpha = 0.7)
+        plt.text(x_i, y_i, gt_i, color = 'k', ha = 'center', va = 'center')
+
+
+    fig.savefig(pt.get_path() + '/figs/gene_space.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
+#plot_mcd_pcoa_good()
+#plot_pcoa('tenaillon')
+#example_gene_space()
+plot_permutation('tenaillon')

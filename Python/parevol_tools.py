@@ -1,8 +1,9 @@
 from __future__ import division
-import os, pickle
+import os, pickle, math, random
 #import pandas as pd
 import numpy as np
 import  matplotlib.pyplot as plt
+import matplotlib.colors as cls
 import rpy2.robjects as robjects
 import clean_data as cd
 #import scipy.spatial.distance as dist
@@ -25,6 +26,56 @@ def get_bray_curtis(array):
             BC_ij = 1 - ((2*C_ij) / (S_i + S_j))
             distance_array[i,j] = distance_array[j,i] = BC_ij
     return distance_array
+
+
+def get_mean_colors(c1, c2, w1, w2):
+    # c1 and c2 are in hex format
+    # w1 and w2 are the weights
+    c1_list = list(cls.to_rgba('#FF3333'))
+    c2_list = list(cls.to_rgba('#3333FF'))
+    zipped = list(zip(c1_list, c2_list))
+    new_rgba = []
+    for item in zipped:
+        new_rgba.append(math.exp((w1 * math.log(item[0])) + (w2 * math.log(item[1]))))
+    #weight_sum = w1 + w2
+    return cls.rgb2hex(tuple(new_rgba))
+
+
+'''code is from https://stackoverflow.com/questions/6284396/permutations-with-unique-values'''
+
+class unique_element:
+    def __init__(self,value,occurrences):
+        self.value = value
+        self.occurrences = occurrences
+
+def perm_unique_helper(listunique,result_list,d):
+    if d < 0:
+        yield tuple(result_list)
+    else:
+        for i in listunique:
+            if i.occurrences > 0:
+                result_list[d]=i.value
+                i.occurrences-=1
+                for g in  perm_unique_helper(listunique,result_list,d-1):
+                    yield g
+                i.occurrences+=1
+
+def perm_unique(elements):
+    eset=set(elements)
+    listunique = [unique_element(i,elements.count(i)) for i in eset]
+    u=len(elements)
+    return perm_unique_helper(listunique,[0]*u,u-1)
+
+
+
+
+def partition(lst, n):
+    # partitions a list into n lists of equal length
+    random.shuffle(lst)
+    division = len(lst) / n
+    return [lst[round(division * i):round(division * (i + 1))] for i in range(n)]
+
+
 
 def get_scipy_bray_curtis(array):
     return squareform(pdist(array, metric = 'braycurtis'))
@@ -71,6 +122,8 @@ def cmdscale(D):
     # YY^T
     B = -H.dot(D**2).dot(H)/2
 
+    print(B.T * B)
+
     # Diagonalize
     evals, evecs = np.linalg.eigh(B)
 
@@ -115,7 +168,7 @@ def get_mean_centroid_distance(array, groups = None, k = 3):
 
 
 def hellinger_transform(array):
-    return np.sqrt((e.T/e.sum(axis=1)).T )
+    return np.sqrt((array.T/array.sum(axis=1)).T )
     #df = pd.read_csv(mydir + 'data/Tenaillon_et_al/gene_by_pop_delta.txt', sep = '\t', header = 'infer', index_col = 0)
     #return(df.div(df.sum(axis=1), axis=0).applymap(np.sqrt))
 
