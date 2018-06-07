@@ -71,15 +71,14 @@ class simulate_NK:
             gene_sites = list(gene_dict[value])
             gene_sites.remove(key)
             sites_outside_gene = [x for x in sites_key if x not in gene_sites]
-            print(sites_outside_gene)
-            print(gene_sites)
-            # zip list? sort by value (left) and have gene name on right
-            # then use that to multiply by alpha
-
-            #p =
-            sites_K = np.random.choice(sites_key, size=self.K, replace=False)
+            site_dict_copy = site_dict.copy()
+            del site_dict_copy[key]
+            site_dict_copy_lst = list(site_dict_copy.items())
+            p = [ (1 / len(site_dict_copy_lst)) * self.alpha if x[1] == value else (1 / len(site_dict_copy_lst)) for x in site_dict_copy_lst ]
+            p_ = [x / sum(p) for x in p]
+            sites_K = np.random.choice(sites_key, size=self.K, replace=False, p =p_)
             interact_dict[key] = list(sites_K)
         print(interact_dict)
 
 
-simulate_NK(4, 2, 2, 0.1).get_directed_graph()
+simulate_NK(4, 2, 2, 10).get_directed_graph()
