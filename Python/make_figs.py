@@ -195,9 +195,6 @@ def plot_mcd_pcoa_good():
     #color_dict = dict(zip(times, colors))
 
 
-#def get_mean_rbg(c1):
-
-
 def example_gene_space():
     x = [2.5, 1, 2, 3, 4, 0, 1, 2, 3, 4, 5, 1, 2, 3, 4, 2.5]
     y = [0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4]
@@ -221,9 +218,15 @@ def example_gene_space():
     plt.close()
 
 
+def multiplicity_hist():
+    df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop_delta.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    to_exclude = pt.complete_nonmutator_lines()
+    df = df[df.index.str.contains('|'.join( to_exclude))]
+
 
 
 #plot_mcd_pcoa_good()
 #plot_pcoa('tenaillon')
 #example_gene_space()
-plot_permutation('tenaillon')
+#plot_permutation('tenaillon')

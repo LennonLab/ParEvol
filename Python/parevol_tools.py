@@ -28,6 +28,15 @@ def get_bray_curtis(array):
     return distance_array
 
 
+def hamming2(s1, s2):
+    """Calculate the Hamming distance between two bit strings"""
+    assert len(s1) == len(s2)
+    return sum(c1 != c2 for c1, c2 in zip(s1, s2))
+
+#def get_multiplicity_dist(m):
+
+
+
 def get_mean_colors(c1, c2, w1, w2):
     # c1 and c2 are in hex format
     # w1 and w2 are the weights
