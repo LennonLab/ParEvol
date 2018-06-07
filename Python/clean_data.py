@@ -141,32 +141,6 @@ class good_et_al:
         #df_new.to_csv(mydir + 'data/ltee/gene_by_pop_m.txt', sep = '\t', index = True)
 
 
-    #def get_likelihood_matrix(self):
-    #    df_in = mydir + 'data/ltee/gene_by_pop.txt'
-    #    df = pd.read_csv(df_in, sep = '\t', header = 'infer', index_col = 0)
-    #    genes = df.columns.tolist()
-    #    genes_lengths = self.get_gene_lengths(gene_list = genes)
-    #    L_mean = np.mean(list(genes_lengths.values()))
-    #    L_i = np.asarray(list(genes_lengths.values()))
-    #    N_genes = len(genes)
-    #    m_mean = df.sum(axis=1) / N_genes
-
-
-    #    for index, row in df.iterrows():
-    #        m_mean_j = m_mean[index]
-    #        delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
-    #        df.loc[index,:] = delta_j
-
-    #    out_name = 'data/ltee/gene_by_pop_delta.txt'
-
-    #    df_new = df.fillna(0)
-    #    # remove colums with all zeros
-    #    df_new.loc[:, (df_new != 0).any(axis=0)]
-    #    # replace negative values with zero
-    #    df_new[df_new < 0] = 0
-    #    df_new.to_csv(mydir + out_name, sep = '\t', index = True)
-
-
 class tenaillon_et_al:
 
     def clean_tenaillon_et_al(self):
@@ -263,20 +237,55 @@ class kryazhimskiy_et_al:
     def get_size_dict(self):
         in_path = mydir + 'data/Kryazhimskiy_et_al/Saccharomyces_cerevisiae_W303_Greg_Lang/w303_ref.gff'
         df_out = open(mydir + 'data/Kryazhimskiy_et_al/Saccharomyces_cerevisiae_W303_Greg_Lang/w303_ref_clean.gff', 'w')
+        df_out.write('\t'.join(['Gene', 'ID', 'Parents', 'Length']) + '\n')
         for line in open(in_path):
             line_split = line.split()
-            gene = [x for x in line_split[-1].split(';') if 'gene=' in x]
-            id = [x for x in line_split[-1].split(';') if 'ID=' in x]
-            parent = [x for x in line_split[-1].split(';') if 'Parent=' in x]
-            ##### need to consider gene, ID, and parent
+            if (len(line_split) < 3) or (line_split[2] != 'CDS'):
+                continue
+            genes = [x for x in line_split[-1].split(';') if 'gene=' in x]
+            if len(genes) == 1:
+                gene = str(genes[0].split('=')[1])
+            else:
+                gene = ''
+            ids= [x for x in line_split[-1].split(';') if 'ID=' in x]
+            if len(ids) == 1:
+                id = str(ids[0].split('=')[1])
+            else:
+                id = ''
+            parents = [x for x in line_split[-1].split(';') if 'Parent=' in x]
+            if len(parents) == 1:
+                parent = str(parents[0].split('=')[1])
+            else:
+                parent = ''
+            length = str(int(line_split[4]) - int(line_split[3]))
+            df_out.write('\t'.join([gene, id, parent, length]) + '\n')
+        df_out.close()
 
-            print(gene)
 
+class mcdonald_et_al:
 
+    def clean_S1(self):
+        in_path = mydir + 'data/McDonald_et_al/NIHMS753653-supplement-supp_data1.txt'
+        df = pd.read_csv(in_path, skiprows=[0], sep = '\t', header = 'infer', index_col = 0)
+        gene_by_pop_dict = {}
+        for index, row in df.iterrows():
+            if row['Effect'] == 'intergenic':
+                continue
+            new_pop_name = index + '_' + row['Reproduction']
+            gene = row['Gene']
+            if new_pop_name not in gene_by_pop_dict:
+                gene_by_pop_dict[new_pop_name] = {}
+            if gene not in gene_by_pop_dict[new_pop_name]:
+                gene_by_pop_dict[new_pop_name][gene] = 1
+            else:
+                gene_by_pop_dict[new_pop_name][gene] += 1
+        df = pd.DataFrame.from_dict(gene_by_pop_dict).T
+        df = df.fillna(0)
+        df_out = mydir + 'data/McDonald_et_al/gene_by_pop.txt'
+        df.to_csv(df_out, sep = '\t', index = True)
 
 
 #good_et_al().reformat_convergence_matrix()
 #good_et_al().get_likelihood_matrix()
-#print(kryazhimskiy_et_al().pop_by_gene_kryazhimskiy())
-
 #kryazhimskiy_et_al().get_size_dict()
+#mcdonald_et_al().clean_S1()

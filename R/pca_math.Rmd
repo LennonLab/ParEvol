@@ -1,0 +1,72 @@
+---
+title: "ParEvol"
+author: "William R. Shoemaker and Jay T. Lennon"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+header-includes:
+   - \usepackage{array}
+output: pdf_document
+geometry: margin=2.54cm
+---
+
+
+Figure out what $Z$ represents, go back through paper, step-by-step
+
+
+## Probability of parallel evolution
+
+$$\mathbf{E}(M_{ij})= \mathbf{E}(Z_{i}Z_{j}) -  \mathbf{E}_{k}(Z_{i}Z_{k}) -  \mathbf{E}_{k}(Z_{j}Z_{k}) +  \mathbf{E}_{kl}(Z_{k}Z_{l})$$
+
+where $Z_{i}$ represents population $i$.
+
+$\mathbf{E}(Z_{i}Z_{j})$ is the expected value of the joint probability distributions for the number of mutations in each gene. Because the two populations are independant (i.e., no cross-contamination), this reduces to $\mathbf{E}(Z_{i})\mathbf{E}(Z_{j})$.
+
+$\mathbf{E}_{k}(Z_{i}Z_{k}) = \frac{1}{n} \sum_{k=1}^{n}\mathbf{E}(Z_{i}Z_{k}) = \frac{1}{n} (\sum_{k=1}^{n}\mathbf{E}(Z_{i})\sum_{k=1}^{n}\mathbf{E}(Z_{k})) = \mathbf{E}(Z_{i}) (\frac{1}{n} \sum_{k=1}^{n}\mathbf{E}(Z_{k}))$ is the expected value for sample $i$ after averaging over all populations. Again, assuming independance. The same principle applies for sample $j$. 
+
+
+$\mathbf{E}_{kl}(Z_{k}Z_{l})$ is the expected value of the joint the probability distribution for two populations chosen at random with replacement. Again, assuming independance, we can re-write this as $\mathbf{E}_{kl}(Z_{k}Z_{l}) = \frac{1}{n^{2}} \sum_{k=1}^{n}\mathbf{E}(Z_{k}) \sum_{l=1}^{n}\mathbf{E}(Z_{l})$
+
+
+
+
+
+
+Can we say that $Z_{i}$ is the mean of the poisson process describing the rate that mutations are acquired? Or is it just proportional and the PCA procedure rescales the data?
+
+
+
+
+
+ignore this stuff....
+
+
+$$\frac{\partial\overline{M}_{b} (t)}{\partial t} = \int NU_{b} \rho_{b}(s,t)  p_{fix}(s)ds$$
+
+$$\frac{\partial\overline{M} (t)}{\partial t} =\frac{\partial\overline{M}_{b} (t)}{\partial t} + U_{n}$$
+
+assume we're in the strong-selection, weak-mutation (SSWM) limit, where $p_{fix}(s)\approx 2s$ and that each mutation has the same fitness effect $\rho_{b}(s,t) = s$, giving us the simple toy model for the rate that a gene acquires beneficial mutations 
+
+$$\frac{\partial\overline{M}_{b} (t)}{\partial t} = \int 2NU_{b} s^{2}ds$$
+
+after solving the integral, we get
+
+$$\frac{\partial\overline{M}_{b} (t)}{\partial t} = \frac{2}{3}NU_{b}s^{3} + C$$
+
+assuming $\overline{M}_{b}(0) = 0$, we solve for the constant and get
+
+
+
+
+
+
+
+
+
+Start by focusing on a scenario where the beneficial DFE evolves according to simple mean-field dynamics 
+
+$$L_{b}\frac{\partial \rho_{b}(s,t) }{\partial t} = -NU_{b}\rho_{b}(s,t)p_{fix}(s)$$
+
+$$ \rho_{b}(s,t) = p_{0}(s)e^{-2NU_{b}st/L_{b}}$$
+
+and evaluate $\frac{\partial\overline{M}_{b} (t)}{\partial t}$ by assuming that $p_{0}(s)$ is an exponential distribution with a rate parameter of 1 ($e^{-2}$) and setting $2NU_{b}t/L_{b}$ equal to $k$, we evaluate the integral
+
+
