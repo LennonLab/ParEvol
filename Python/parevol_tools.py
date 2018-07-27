@@ -28,13 +28,28 @@ def get_bray_curtis(array):
     return distance_array
 
 
+def get_adjacency_matrix(array):
+    array = np.transpose(array)
+    adjacency_array = np.zeros((array.shape[0], array.shape[0]))
+    for i, row_i in enumerate(array):
+        for j, row_j in enumerate(array):
+            if i <= j:
+                continue
+            test = [1 if ((x[0] > 0) and (x[1] > 0)) else 0 for x in list(zip(row_i, row_j))  ]
+            if sum(test) > 0:
+                adjacency_array[i,j] = adjacency_array[j,i] = 1
+            else:
+                adjacency_array[i,j] = adjacency_array[j,i] = 0
+
+    return adjacency_array
+
+
 def hamming2(s1, s2):
     """Calculate the Hamming distance between two bit strings"""
     assert len(s1) == len(s2)
     return sum(c1 != c2 for c1, c2 in zip(s1, s2))
 
 #def get_multiplicity_dist(m):
-
 
 
 def get_mean_colors(c1, c2, w1, w2):
