@@ -1,5 +1,5 @@
 from __future__ import division
-import os, pickle, math, random
+import os, pickle, math, random, itertools
 #import pandas as pd
 import numpy as np
 import  matplotlib.pyplot as plt
@@ -8,6 +8,7 @@ import rpy2.robjects as robjects
 import clean_data as cd
 #import scipy.spatial.distance as dist
 from scipy.spatial.distance import pdist, squareform
+from scipy.misc import comb
 
 
 
@@ -50,6 +51,31 @@ def hamming2(s1, s2):
     return sum(c1 != c2 for c1, c2 in zip(s1, s2))
 
 #def get_multiplicity_dist(m):
+
+def comb_n_muts_k_genes(n, gene_sizes):
+    #n = 7
+    #gene_sizes = [2, 3, 4]
+    k = len(gene_sizes)
+    def findsubsets(S,m):
+        return set(itertools.combinations(S, m))
+    B = []
+    for count in range(0, len(gene_sizes) + 1):
+        for subset in findsubsets(set(gene_sizes), count):
+            B.append(list(subset))
+    number_ways = 0
+    for S in B:
+        n_S = n + k - 1 - (sum(S) + (1 * len(S) ) )
+        if n_S < (k-1):
+            continue
+
+        number_ways +=  ((-1) ** len(S)) * comb(N = n_S, k = k-1)
+    return number_ways
+
+
+
+
+
+
 
 
 def get_mean_colors(c1, c2, w1, w2):
