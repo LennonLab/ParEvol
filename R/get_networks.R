@@ -34,18 +34,21 @@ get.time.network <- function(gene.by.pop){
     time <- strsplit(x, '_')[[1]][2]
     times <- c(times, time)
   }
-  times <- unique(times)
+  #times <- unique(times)
   #times <- tail(times, -2)
+  times <- c(6250, 6750, 7250, 750, 7750, 8250, 8750, 9250, 9750)
   for (time in times){
     time.mod <- paste('_', time, sep = "")
     to.keep <- gene.by.pop[rownames(gene.by.pop) %like% time.mod, ]
     to.keep <- to.keep[which(rowSums(to.keep) > 0), ] 
     to.keep <- to.keep[, which(colSums(to.keep) > 0)]
     to.keep.matrix.mult <- as.matrix(to.keep)
+    print(time)
     to.keep.matrix.mult.models <- PLNnetwork(to.keep.matrix.mult ~ 1)
     #StARS is better for model selection, but we'll run that on the lab mac
     #to.keep.matrix.mult.models.select <- to.keep.matrix.mult.models$getBestModel("StARS")
     #table.name <- paste("data/Good_et_al/networks_StARS/network_", time  ,".txt", sep = "")
+    
     to.keep.matrix.mult.models.select <- to.keep.matrix.mult.models$getBestModel("BIC")
     table.name <- paste("data/Good_et_al/networks_BIC/network_", time  ,".txt", sep = "")
     write.table(as.matrix(to.keep.matrix.mult.models.select$latent_network()), file = table.name, sep = "\t")
