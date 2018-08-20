@@ -1,5 +1,6 @@
 from __future__ import division
-import os, pickle, math, random
+import os, pickle, math, random, itertools
+from itertools import combinations
 #import pandas as pd
 import numpy as np
 import  matplotlib.pyplot as plt
@@ -8,7 +9,11 @@ import rpy2.robjects as robjects
 import clean_data as cd
 #import scipy.spatial.distance as dist
 from scipy.spatial.distance import pdist, squareform
+from scipy.misc import comb
+from scipy.special import binom
+from statsmodels.base.model import GenericLikelihoodModel
 
+np.random.seed(123456789)
 
 
 def get_path():
@@ -28,12 +33,48 @@ def get_bray_curtis(array):
     return distance_array
 
 
+def get_adjacency_matrix(array):
+    array = np.transpose(array)
+    adjacency_array = np.zeros((array.shape[0], array.shape[0]))
+    for i, row_i in enumerate(array):
+        for j, row_j in enumerate(array):
+            if i <= j:
+                continue
+            test = [1 if ((x[0] > 0) and (x[1] > 0)) else 0 for x in list(zip(row_i, row_j))  ]
+            if sum(test) > 0:
+                adjacency_array[i,j] = adjacency_array[j,i] = 1
+            else:
+                adjacency_array[i,j] = adjacency_array[j,i] = 0
+
+    return adjacency_array
+
+
 def hamming2(s1, s2):
     """Calculate the Hamming distance between two bit strings"""
     assert len(s1) == len(s2)
     return sum(c1 != c2 for c1, c2 in zip(s1, s2))
 
 #def get_multiplicity_dist(m):
+
+def comb_n_muts_k_genes(n, gene_sizes):
+    #n = 7
+    #gene_sizes = [2, 3, 4]
+    k = len(gene_sizes)
+    def findsubsets(S,m):
+        return set(itertools.combinations(S, m))
+    B = []
+    for count in range(0, len(gene_sizes) + 1):
+        for subset in findsubsets(set(gene_sizes), count):
+            B.append(list(subset))
+    number_ways = 0
+    for S in B:
+        n_S = n + k - 1 - (sum(S) + (1 * len(S) ) )
+        if n_S < (k-1):
+            continue
+
+        number_ways +=  ((-1) ** len(S)) * comb(N = n_S, k = k-1)
+    return number_ways
+
 
 
 
@@ -270,3 +311,71 @@ class likelihood_matrix:
         df_new[df_new < 0] = 0
         return df_new
         #df_new.to_csv(out_name, sep = '\t', index = True)
+
+
+# Power law
+def power_law(t, c0, v):
+    t = np.asarray(t)
+    return c0 * (t ** (1 / (v-1)) )
+
+
+
+class modifiedGompertz(GenericLikelihoodModel):
+    def __init__(self, endog, exog, **kwds):
+        super(modifiedGompertz, self).__init__(endog, exog, **kwds)
+        #print len(exog)
+
+    def nloglikeobs(self, params):
+        c0 = params[0]
+        v = params[1]
+        # probability density function (pdf) is the same as dnorm
+        exog_pred = m_gop(self.endog, b0 = b0, A = A, umax = umax, L = L)
+        # need to flatten the exogenous variable
+        LL = -stats.norm.logpdf(self.exog.flatten(), loc=exog_pred, scale=np.exp(z))
+        return LL
+
+    def fit(self, start_params=None, maxiter=10000, maxfun=5000, method="bfgs", **kwds):
+
+        if start_params is None:
+            b0_start = 1
+            A_start = 2
+            umax_start = 0.5
+            L_start = 0.8
+            z_start = 0.8
+
+            start_params = np.array([b0_start, A_start, umax_start, L_start, z_start])
+
+        return super(modifiedGompertz, self).fit(start_params=start_params,
+                                maxiter=maxiter, method = method, maxfun=maxfun,
+                                **kwds)
+
+def get_random_network(df):
+    # df is a numpy matrix or pandas dataframe containing network interactions
+    N = df.shape[0]
+    M = 0
+    k_list = []
+    for index, row in df.iterrows():
+        # != 0 bc there's positive and negative interactions
+        k_row = sum(i != 0 for i in row.values) - 1
+        if k_row > 0:
+            k_list.append(k_row)
+    # run following algorithm to generate random network
+    # (1) Start with N isolated nodes.
+    # (2) Select a node pair and generate a random number between 0 and 1.
+    #     If the number exceeds p, connect the selected node pair with a link,
+    #     otherwise leave them disconnected.
+    # (3) Repeat step (2) for each of the N(N-1)/2 node pairs.
+    M = sum(k_list)
+    p = M / binom(N, 2)
+    matrix = np.ones((N,N))
+    #node_pairs = list(combinations(range(int((N * (N-1)) / 2)), 2))
+    node_pairs = list(combinations(range(N), 2))
+    for node_pair in node_pairs:
+        p_node_pair = random.uniform(0, 1)
+        if p_node_pair > p:
+            continue
+        else:
+            matrix[node_pair[0], node_pair[1]] = 0
+            matrix[node_pair[1], node_pair[0]] = 0
+
+    return matrix

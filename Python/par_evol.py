@@ -5,7 +5,7 @@ import pandas as pd
 import  matplotlib.pyplot as plt
 from scipy.optimize import minimize
 from scipy.misc import factorial
-
+import parevol_tools as pt
 
 mydir = os.path.expanduser("~/GitHub/ParEvol/")
 
@@ -54,7 +54,7 @@ def plot_interactions():
 
 
 
-plot_interactions()
+#plot_interactions()
 
 # start with one gene, the NK model
 
@@ -70,19 +70,22 @@ def all_genotypes(N):
 N = 4
 K = 1
 
-genotypes = all_genotypes(N)
+#genotypes = all_genotypes(N)
 #print(genotypes)
 #print(list(map(int, bin(5)[2:])))
 
 # contribs = a dictionary of the K neighbors that each site interacts with
 
-contribs = {
-        i: sorted(np.random.choice(
-            [n for n in range(N) if n != i],
-            K,
-            replace=False
-        ).tolist() + [i])
-        for i in range(N)
-    }
+#contribs = {
+#        i: sorted(np.random.choice(
+#            [n for n in range(N) if n != i],
+#            K,
+#            replace=False
+#        ).tolist() + [i])
+#        for i in range(N)
+#    }
 
 #print(contribs)
+
+# is this right??/....//??????
+print(pt.comb_n_muts_k_genes(2, [2,2]))

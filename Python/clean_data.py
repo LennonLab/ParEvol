@@ -86,6 +86,57 @@ class good_et_al:
         df.to_csv(df_out, sep = '\t', index = True)
 
 
+    #def test_get_fixed_muts(self):
+    #    print(self.populations)
+    #    for population in self.populations:
+    #        mutations, depth_tuple = parse_file.parse_annotated_timecourse(population)
+
+        #population_avg_depth_times, population_avg_depths, clone_avg_depth_times, clone_avg_depths = depth_tuple
+
+        #dummy_times,fmajors,fminors,haplotype_trajectories = parse_file.parse_haplotype_timecourse(population)
+        #state_times, state_trajectories = parse_file.parse_well_mixed_state_timecourse(population)
+
+        #times = mutations[0][10]
+        #Ms = numpy.zeros_like(times)*1.0
+        #fixed_Ms = numpy.zeros_like(times)*1.0
+
+        #transit_times[population] = []
+
+        #for mutation_idx in xrange(0,len(mutations)):
+
+        #    location, gene_name, allele, var_type, test_statistic, pvalue, cutoff_idx, depth_fold_change, depth_change_pvalue, times, alts, depths, clone_times, clone_alts, clone_depths = mutations[mutation_idx]
+
+        #    Ls = haplotype_trajectories[mutation_idx]
+        #    state_Ls = state_trajectories[mutation_idx]
+
+        #    good_idxs, filtered_alts, filtered_depths = timecourse_utils.mask_timepoints(times, alts, depths, var_type, cutoff_idx, depth_fold_change, depth_change_pvalue)
+
+        #    freqs = timecourse_utils.estimate_frequencies(filtered_alts, filtered_depths)
+
+        #    masked_times = times[good_idxs]
+        #    masked_freqs = freqs[good_idxs]
+        #    masked_state_Ls = state_Ls[good_idxs]
+
+        #    t0,tf,transit_time = timecourse_utils.calculate_appearance_fixation_time_from_hmm(masked_times, masked_freqs, masked_state_Ls)
+        #    transit_times[population].append(transit_time)
+
+        #    interpolating_function = timecourse_utils.create_interpolation_function(masked_times, masked_freqs, tmax=100000)
+
+        #    fs = interpolating_function(times)
+        #    fs[fs<0]=0
+
+        #    # Record
+        #    Ms += fs
+        #    if masked_state_Ls[-1] in parse_file.well_mixed_fixed_states:
+        #        fixed_Ms += (times>=tf)
+
+
+        #fixed_mutation_trajectories[population] = (times, fixed_Ms)
+        #mutation_trajectories[population] = (times, Ms)
+
+
+
+
     #def get_enrichment_factors(self):
     #    df_in = mydir + 'data/ltee/gene_by_pop.txt'
     #    df = pd.read_csv(df_in, sep = '\t', header = 'infer', index_col = 0)
@@ -287,5 +338,6 @@ class mcdonald_et_al:
 
 #good_et_al().reformat_convergence_matrix()
 #good_et_al().get_likelihood_matrix()
+#good_et_al().test_get_fixed_muts()
 #kryazhimskiy_et_al().get_size_dict()
 #mcdonald_et_al().clean_S1()

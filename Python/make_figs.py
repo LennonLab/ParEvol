@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import matplotlib.colors as cls
 from matplotlib import cm
 from sklearn.decomposition import PCA
+import networkx as nx
 
 
 def plot_pcoa(dataset):
@@ -225,8 +226,74 @@ def multiplicity_hist():
     df = df[df.index.str.contains('|'.join( to_exclude))]
 
 
+def draw_graph(graph, labels=None, graph_layout='shell',
+               node_size=12, node_color='blue', node_alpha=0.2,
+               node_text_size=10,
+               edge_color='blue', edge_alpha=0.3, edge_tickness=0.5,
+               edge_text_pos=0.3,
+               text_font='sans-serif'):
+
+    # create networkx graph
+    G=nx.Graph()
+
+    # add edges
+    for edge in graph:
+        G.add_edge(edge[0], edge[1])
+
+    # these are different layouts for the network you may try
+    # shell seems to work best
+    if graph_layout == 'spring':
+        graph_pos=nx.spring_layout(G)
+    elif graph_layout == 'spectral':
+        graph_pos=nx.spectral_layout(G)
+    elif graph_layout == 'random':
+        graph_pos=nx.random_layout(G)
+    else:
+        graph_pos=nx.shell_layout(G)
+
+    # draw graph
+    nx.draw_networkx_nodes(G,graph_pos,node_size=node_size,
+                           alpha=node_alpha, node_color=node_color)
+    nx.draw_networkx_edges(G,graph_pos,width=edge_tickness,
+                           alpha=edge_alpha,edge_color=edge_color)
+    #nx.draw_networkx_labels(G, graph_pos,font_size=node_text_size,
+    #                        font_family=text_font)
+
+    if labels is None:
+        labels = range(len(graph))
+
+    edge_labels = dict(zip(graph, labels))
+    #nx.draw_networkx_edge_labels(G, graph_pos, edge_labels=edge_labels,
+    #                             label_pos=edge_text_pos)
+
+    # show graph
+    #plt.show()
+    plt.savefig(pt.get_path() + '/figs/network_tenaillon.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+
+
+def plot_network():
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
+    df_delta = df_delta.loc[:, (df_delta != float(0)).any(axis=0)]
+    adjacency_matrix = pt.get_adjacency_matrix(df_delta.as_matrix())
+    labels = df_delta.columns.values
+
+    rows, cols = np.where(adjacency_matrix == 1)
+    edges = zip(rows.tolist(), cols.tolist())
+    #gr = nx.Graph()
+    #print(list(edges))
+    #gr.add_edges_from(edges)
+    #print(list(edges))
+    print(len(list(edges)))
+    draw_graph(list(edges), labels = labels)
+
+    #nx.draw(gr, node_size=500, labels=labels, with_labels=True)
+
+
 
 #plot_mcd_pcoa_good()
 #plot_pcoa('tenaillon')
 #example_gene_space()
 #plot_permutation('tenaillon')
+plot_network()
