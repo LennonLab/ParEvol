@@ -118,7 +118,7 @@ def plot_pcoa(dataset):
 
 
 
-def plot_permutation(dataset, analysis = 'PCA'):
+def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
     if dataset == 'tenaillon':
         df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
@@ -155,16 +155,69 @@ def plot_permutation(dataset, analysis = 'PCA'):
         fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
         plt.close()
 
+    elif dataset == 'good':
+        df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
+        df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+        to_exclude = pt.complete_nonmutator_lines()
+        to_exclude.append('p5')
+        df_nonmut = df[df.index.str.contains('|'.join( to_exclude))]
+        # remove columns with all zeros
+        df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
+        df_delta = pt.likelihood_matrix(df_nonmut, 'Good_et_al').get_likelihood_matrix()
+        if analysis == 'PCA':
+            X = pt.hellinger_transform(df_delta)
+            pca = PCA()
+            df_out = pca.fit_transform(X)
+        elif analysis == 'cMDS':
+            df_delta_bc = np.sqrt(pt.get_scipy_bray_curtis(df_delta.as_matrix()))
+            df_out = pt.cmdscale(df_delta_bc)[0]
+
+        #mcd = pt.get_mean_centroid_distance(df_out, k = 3)
+        time_points = [ int(x.split('_')[1]) for x in df_nonmut.index.values]
+        time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
+
+        df_rndm_delta_out = pd.DataFrame(data=df_out, index=df_delta.index)
+        mcds = []
+        for tp in time_points_set:
+            df_rndm_delta_out_tp = df_rndm_delta_out[df_rndm_delta_out.index.str.contains('_' + str(tp))]
+            mcds.append(pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=3))
+
+        mcd_perm_path = pt.get_path() + '/data/Good_et_al/permute_' + analysis + '.txt'
+        mcd_perm = pd.read_csv(mcd_perm_path, sep = '\t', header = 'infer', index_col = 0)
+        mcd_perm_x = np.sort(list(set(mcd_perm.Generation.tolist())))
+        lower_ci = []
+        upper_ci = []
+        mean_mcds = []
+        for x in mcd_perm_x:
+            mcd_perm_y = mcd_perm.loc[mcd_perm['Generation'] == x]
+            mcd_perm_y_sort = np.sort(mcd_perm_y.MCD.tolist())
+            mean_mcd_perm_y = np.mean(mcd_perm_y_sort)
+            mean_mcds.append(mean_mcd_perm_y)
+            lower_ci.append(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * alpha)])
+            upper_ci.append(abs(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * (1 - alpha))]))
+
+        fig = plt.figure()
+
+        plt.errorbar(mcd_perm_x, mean_mcds, yerr = [lower_ci, upper_ci], fmt = 'o', alpha = 0.5, \
+            barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
+        plt.scatter(time_points_set, mcds, c='#175ac6', marker = 'o', s = 80, \
+            edgecolors='#244162', linewidth = 0.6, alpha = 0.9, zorder=2)#, edgecolors='none')
+
+        plt.xlabel("Time (generations)", fontsize = 16)
+        plt.ylabel("Mean centroid distance", fontsize = 16)
+        fig.tight_layout()
+        fig.savefig(pt.get_path() + '/figs/permutation_scatter_good.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+        plt.close()
+
     else:
-        print('finish this function')
+        print('Dataset argument not accepted')
 
 
 def plot_mcd_pcoa_good():
     df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop_delta.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    df_null_path = pt.get_path() + '/data/Good_et_al/permute.txt'
+    df_null_path = pt.get_path() + '/data/Good_et_al/permute_PCA.txt'
     df_null = pd.read_csv(df_null_path, sep = '\t', header = 'infer', index_col = 0)
-    #print(df_null)
     to_exclude = pt.complete_nonmutator_lines()
     to_exclude.append('p5')
     df = df[df.index.str.contains('|'.join( to_exclude))]
@@ -178,11 +231,13 @@ def plot_mcd_pcoa_good():
     for time in times:
         time_cmds = df_cmds[df_cmds.index.str.contains('_' + str(time))].as_matrix()
         mcds.append(pt.get_mean_centroid_distance(time_cmds, k = 5))
-        time_null_mcd = df_null.loc[df_null['Time'] == time].MCD.values
+        time_null_mcd = df_null.loc[df_null['Generation'] == time].MCD.values
         plt.scatter([int(time)]* len(time_null_mcd), time_null_mcd, c='#87CEEB', marker = 'o', s = 120, \
             edgecolors='none', linewidth = 0.6, alpha = 0.3)#, edgecolors='none')
     plt.scatter(times, mcds, c='#175ac6', marker = 'o', s = 120, \
         edgecolors='#244162', linewidth = 0.6, alpha = 0.9)#, edgecolors='none')
+
+
 
     plt.xlabel("Time (generations)", fontsize = 16)
     plt.ylabel("Mean centroid distance", fontsize = 16)
@@ -265,7 +320,6 @@ def draw_graph(graph, labels=None, graph_layout='shell',
     edge_labels = dict(zip(graph, labels))
     #nx.draw_networkx_edge_labels(G, graph_pos, edge_labels=edge_labels,
     #                             label_pos=edge_text_pos)
-
     # show graph
     #plt.show()
     plt.savefig(pt.get_path() + '/figs/network_tenaillon.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
@@ -292,8 +346,7 @@ def plot_network():
 
 
 
-#plot_mcd_pcoa_good()
 #plot_pcoa('tenaillon')
 #example_gene_space()
-#plot_permutation('tenaillon')
-plot_network()
+plot_permutation('good')
+#plot_network()

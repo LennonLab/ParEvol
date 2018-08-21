@@ -87,5 +87,5 @@ def run_permutation(iter, analysis = 'PCA', dataset = 'tenaillon'):
         df_out.close()
 
 
-run_permutation(10000, dataset = 'good')
+#run_permutation(10000, dataset = 'good')
 #time_permute()
