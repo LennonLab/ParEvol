@@ -1,11 +1,12 @@
 from __future__ import division
+import os, re
 import numpy as np
 import pandas as pd
 import parevol_tools as pt
 from sklearn.decomposition import PCA
 import functools
 
-def run_permutation(iter, analysis = 'PCA', dataset = 'tenaillon'):
+def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
     if dataset == 'tenaillon':
         df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
@@ -87,5 +88,146 @@ def run_permutation(iter, analysis = 'PCA', dataset = 'tenaillon'):
         df_out.close()
 
 
-run_permutation(10000, dataset = 'good')
-#time_permute()
+def run_sample_size_permutation(iter = 10000, analysis = 'PCA'):
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_array = df.as_matrix()
+    sample_sizes = np.linspace(2, df.shape[0], num = 20, dtype = int)
+    df_out = open(pt.get_path() + '/data/Tenaillon_et_al/sample_size_permute_' + analysis + '.txt', 'w')
+    column_headers = ['Sample_size', 'Iteration', 'MCD']
+    df_out.write('\t'.join(column_headers) + '\n')
+    for sample_size in sample_sizes:
+        #print("Sample size = "  + str(sample_size))
+        for i in range(iter):
+            print("Sample size = "  + str(sample_size) + ' Iteration = ' + str(i))
+            df_sample = df.sample(n = sample_size)
+            #df_sample = df_sample.loc[:, (df_sample != 0).any(axis=0)]
+            df_sample_delta = pt.likelihood_matrix(df_sample, 'Tenaillon_et_al').get_likelihood_matrix()
+            df_sample_delta = df_sample_delta.loc[:, (df_sample_delta != 0).any(axis=0)]
+            X = pt.hellinger_transform(df_sample_delta)
+            pca = PCA()
+            df_sample_delta_out = pca.fit_transform(X)
+            mcd = pt.get_mean_centroid_distance(df_sample_delta_out, k=3)
+            df_out.write('\t'.join([str(sample_size), str(i), str(mcd)]) + '\n')
+
+    df_out.close()
+
+
+
+
+def get_kmax_random_networks(iterations = 1000):
+    directory = pt.get_path() + '/data/Good_et_al/networks_BIC/'
+    kmax_dict = {}
+    df_out = open(pt.get_path() + '/data/Good_et_al/networks_BIC_rndm.txt', 'w')
+    df_out.write('\t'.join(['Generations', 'Iteration', 'k_max']) + '\n')
+    for filename in os.listdir(directory):
+        df = pd.read_csv(directory + filename, sep = '\t', header = 'infer', index_col = 0)
+        gens = filename.split('.')
+        time = re.split('[_.]', filename)[1]
+        iter_list = []
+        print(time)
+        for iter in range(iterations):
+            random_matrix = pt.get_random_network(df)
+            # -1 because the sum includes the node interacting with itself
+            kmax_iter = int(max(np.sum(random_matrix, axis=0)) - 1)
+            #iter_list.append(kmax_iter)
+            df_out.write('\t'.join([str(time), str(iter), str(kmax_iter)]) + '\n')
+        #kmax_dict[time] = iter_list
+    df_out.close()
+
+
+
+
+
+
+def get_clustering_coefficients(dataset = 'tenaillon'):
+    if dataset == 'tenaillon':
+        # df is a numpy matrix or pandas dataframe containing network interactions
+        df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
+        df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+        df_out = open(pt.get_path() + '/data/Tenaillon_et_al/network_CCs.txt', 'w')
+        df_out.write('\t'.join(['Gene', 'k_i', 'C_i']) + '\n')
+        for index, row in df.iterrows():
+            k_row = sum(i != 0 for i in row.values) - 1
+            if (k_row == 0) or (k_row == 1):
+                C_i = 0
+            else:
+                non_zero = row.nonzero()
+                row_non_zero = row[non_zero[0]]
+                # drop the node
+                row_non_zero = row_non_zero.drop(labels = [index])
+                L_i = 0
+                for index_gene, gene in row_non_zero.iteritems():
+                    row_non_zero_list = row_non_zero.index.tolist()
+                    row_non_zero_list.remove(index_gene)
+                    df_subset = df.loc[[index_gene]][row_non_zero_list]
+                    L_i += sum(sum(i != 0 for i in df_subset.values))
+                # we don't multiply L_i by a factor of 2 bc we're double counting edges
+                C_i =  L_i  / (k_row * (k_row-1) )
+            df_out.write('\t'.join([index, str(k_row), str(C_i)]) + '\n')
+        df_out.close()
+
+    elif dataset == 'good':
+        directory = pt.get_path() + '/data/Good_et_al/networks_BIC/'
+        df_out = open(pt.get_path() + '/data/Good_et_al/network_CCs.txt', 'w')
+        df_out.write('\t'.join(['Generations', 'Gene', 'k_i', 'C_i']) + '\n')
+        for filename in os.listdir(directory):
+            df = pd.read_csv(directory + filename, sep = '\t', header = 'infer', index_col = 0)
+            gens = filename.split('.')
+            time = re.split('[_.]', filename)[1]
+            print(time)
+            for index, row in df.iterrows():
+                k_row = sum(i != 0 for i in row.values) - 1
+                if (k_row == 0) or (k_row == 1):
+                    C_i = float(0)
+                else:
+                    non_zero = row.nonzero()
+                    row_non_zero = row[non_zero[0]]
+                    # drop the node
+                    row_non_zero = row_non_zero.drop(labels = [index])
+                    L_i = 0
+                    for index_gene, gene in row_non_zero.iteritems():
+                        row_non_zero_list = row_non_zero.index.tolist()
+                        row_non_zero_list.remove(index_gene)
+                        df_subset = df.loc[[index_gene]][row_non_zero_list]
+                        L_i += sum(sum(i != 0 for i in df_subset.values))
+                    # we don't multiply L_i by a factor of 2 bc we're double counting edges
+                    C_i =  L_i  / (k_row * (k_row-1) )
+                df_out.write('\t'.join([str(time), index, str(k_row), str(C_i)]) + '\n')
+
+        df_out.close()
+
+
+
+
+def get_good_network_features():
+    directory = pt.get_path() + '/data/Good_et_al/networks_BIC/'
+    df_out = open(pt.get_path() + '/data/Good_et_al/network_features.txt', 'w')
+    df_out_columns = ['Generations', 'N', 'k_max', 'k_mean', 'C_mean', 'C_mean_no1or2']
+    df_out.write('\t'.join(df_out_columns) + '\n')
+
+    df_clust_path = pt.get_path() + '/data/Good_et_al/network_CCs.txt'
+    df_clust = pd.read_csv(df_clust_path, sep = '\t', header = 'infer')#, index_col = 0)
+    for filename in os.listdir(directory):
+        df = pd.read_csv(directory + filename, sep = '\t', header = 'infer', index_col = 0)
+        gens = filename.split('.')
+        time = re.split('[_.]', filename)[1]
+        df_clust_time = df_clust.loc[df_clust['Generations'] == int(time)]
+        N = df.shape[0]
+        k_max = max(df_clust_time.k_i.values)
+        k_mean = np.mean(df_clust_time.k_i.values)
+        C_mean = np.mean(df_clust_time.C_i.values)
+        C_mean_no1or2 = np.mean(df_clust_time.loc[df_clust_time['k_i'] >= 2].C_i.values)
+
+        row = [str(time), str(N), str(k_max), str(k_mean), str(C_mean), str(C_mean_no1or2)]
+        df_out.write('\t'.join(row) + '\n')
+
+    df_out.close()
+
+
+
+
+
+#run_permutation(dataset = 'good')
+#run_permutation(dataset = 'tenaillon')
+run_sample_size_permutation()

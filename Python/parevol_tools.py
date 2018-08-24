@@ -379,3 +379,6 @@ def get_random_network(df):
             matrix[node_pair[1], node_pair[0]] = 0
 
     return matrix
+
+
+#def run_bfs_algorithm():
