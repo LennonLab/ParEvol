@@ -164,14 +164,21 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
         upper_ci = []
         mean_mcds = []
         std_mcds = []
+        lower_z_ci = []
+        upper_z_ci = []
         for x in mcd_perm_x:
             mcd_perm_y = mcd_perm.loc[mcd_perm['Generation'] == x]
             mcd_perm_y_sort = np.sort(mcd_perm_y.MCD.tolist())
             mean_mcd_perm_y = np.mean(mcd_perm_y_sort)
+            std_mcd_perm_y = np.std(mcd_perm_y_sort)
             mean_mcds.append(mean_mcd_perm_y)
-            std_mcds.append(np.std(mcd_perm_y_sort))
+            std_mcds.append(std_mcd_perm_y)
             lower_ci.append(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * alpha)])
             upper_ci.append(abs(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * (1 - alpha))]))
+            # z-scores
+            mcd_perm_y_sort_z = [ ((i - mean_mcd_perm_y) /  std_mcd_perm_y) for i in mcd_perm_y_sort]
+            lower_z_ci.append(abs(mcd_perm_y_sort_z[int(len(mcd_perm_y_sort_z) * alpha)]))
+            upper_z_ci.append(abs(mcd_perm_y_sort_z[int(len(mcd_perm_y_sort_z) * (1 - alpha))]))
 
         fig = plt.figure()
 
@@ -185,19 +192,19 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
         #plt.xlabel("Time (generations)", fontsize = 16)
         plt.ylabel("Mean \n centroid distance", fontsize = 14)
 
-
         plt.figure(1)
         plt.subplot(212)
+        plt.errorbar(mcd_perm_x, [0] * len(mcd_perm_x), yerr = [lower_z_ci, upper_z_ci], fmt = 'o', alpha = 0.5, \
+            barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
         # zip mean, std, and measured values to make z-scores
         zip_list = list(zip(mean_mcds, std_mcds, mcds))
         z_scores = [((i[2] - i[0]) / i[1]) for i in zip_list ]
-
         plt.scatter(time_points_set, z_scores, c='#175ac6', marker = 'o', s = 70, \
             edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
-        plt.ylim(-2.2, 0.2)
-        plt.axhline(0, color = 'k', lw = 2, ls = '-')
-        plt.axhline(-1, color = 'dimgrey', lw = 2, ls = '--')
-        plt.axhline(-2, color = 'dimgrey', lw = 2, ls = ':')
+        plt.ylim(-2.2, 2.2)
+        #plt.axhline(0, color = 'k', lw = 2, ls = '-')
+        #plt.axhline(-1, color = 'dimgrey', lw = 2, ls = '--')
+        #plt.axhline(-2, color = 'dimgrey', lw = 2, ls = ':')
         plt.xlabel("Time (generations)", fontsize = 16)
         plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
 
@@ -207,6 +214,37 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
 
     else:
         print('Dataset argument not accepted')
+
+
+def plot_permutation_sample_size():
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
+    X = pt.hellinger_transform(df_delta)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+    mcd = pt.get_mean_centroid_distance(df_out, k = 3)
+
+    df_sample_path = pt.get_path() + '/data/Tenaillon_et_al/sample_size_permute_PCA.txt'
+    df_sample = pd.read_csv(df_sample_path, sep = '\t', header = 'infer')#, index_col = 0)
+    sample_sizes = sorted(list(set(df_sample.Sample_size.tolist())))
+
+    fig = plt.figure()
+    plt.axhline(mcd, color = 'k', lw = 3, ls = '--', zorder = 1)
+    for sample_size in sample_sizes:
+        df_sample_size = df_sample.loc[df_sample['Sample_size'] == sample_size]
+        x_sample_size = df_sample_size.Sample_size.values
+        y_sample_size = df_sample_size.MCD.values
+        plt.scatter(x_sample_size, y_sample_size, c='#175ac6', marker = 'o', s = 70, \
+            edgecolors='#244162', linewidth = 0.6, alpha = 0.3, zorder=2)#, edgecolors='none')
+
+    plt.xlabel("Number of replicate populations", fontsize = 16)
+    plt.ylabel("Mean centroid distance", fontsize = 16)
+
+    fig.tight_layout()
+    fig.savefig(pt.get_path() + '/figs/plot_permutation_sample_size_tenaillon.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 
 
 
@@ -384,4 +422,5 @@ def plot_cluster():
 #example_gene_space()
 #plot_permutation('good')
 #plot_network()
-plot_kmax_over_time()
+#plot_kmax_over_time()
+plot_permutation_sample_size()
