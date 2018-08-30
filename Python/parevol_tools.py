@@ -1,7 +1,7 @@
 from __future__ import division
 import os, pickle, math, random, itertools
 from itertools import combinations
-#import pandas as pd
+import pandas as pd
 import numpy as np
 import  matplotlib.pyplot as plt
 import matplotlib.colors as cls
@@ -12,6 +12,7 @@ from scipy.spatial.distance import pdist, squareform
 from scipy.misc import comb
 from scipy.special import binom
 from statsmodels.base.model import GenericLikelihoodModel
+import networkx as nx
 
 np.random.seed(123456789)
 
@@ -381,4 +382,34 @@ def get_random_network(df):
     return matrix
 
 
-#def run_bfs_algorithm():
+
+def networkx_distance(df):
+    def get_edges(nodes):
+        edges = []
+        for i in nodes:
+            for j in nodes:
+                if i < j:
+                    pair_value = df.loc[i][j]
+                    if pair_value > 0:
+                        edges.append((i,j))
+        return(edges)
+
+    edges_full = get_edges(df.index.tolist())
+    graph = nx.Graph()
+    graph.add_edges_from(edges_full)
+
+    if nx.is_connected(graph) == True:
+        return(nx.average_shortest_path_length(graph))
+    else:
+        components = [list(x) for x in nx.connected_components(graph)]
+        component_distances = []
+        # return a grand mean if there are seperate graphs
+        for component in components:
+            component_edges = get_edges(component)
+            graph_component = nx.Graph()
+            graph_component.add_edges_from(component_edges)
+            component_distance = nx.average_shortest_path_length(graph_component)
+            component_distances.append(component_distance)
+        return( np.mean(component_distances) )
+
+        #print(components)

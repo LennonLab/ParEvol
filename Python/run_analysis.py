@@ -203,7 +203,7 @@ def get_clustering_coefficients(dataset = 'tenaillon'):
 def get_good_network_features():
     directory = pt.get_path() + '/data/Good_et_al/networks_BIC/'
     df_out = open(pt.get_path() + '/data/Good_et_al/network_features.txt', 'w')
-    df_out_columns = ['Generations', 'N', 'k_max', 'k_mean', 'C_mean', 'C_mean_no1or2']
+    df_out_columns = ['Generations', 'N', 'k_max', 'k_mean', 'C_mean', 'C_mean_no1or2', 'd_mean']
     df_out.write('\t'.join(df_out_columns) + '\n')
 
     df_clust_path = pt.get_path() + '/data/Good_et_al/network_CCs.txt'
@@ -219,7 +219,11 @@ def get_good_network_features():
         C_mean = np.mean(df_clust_time.C_i.values)
         C_mean_no1or2 = np.mean(df_clust_time.loc[df_clust_time['k_i'] >= 2].C_i.values)
 
-        row = [str(time), str(N), str(k_max), str(k_mean), str(C_mean), str(C_mean_no1or2)]
+        distance_df = pt.networkx_distance(df)
+        print(time)
+        print(distance_df)
+
+        row = [str(time), str(N), str(k_max), str(k_mean), str(C_mean), str(C_mean_no1or2), str(distance_df)]
         df_out.write('\t'.join(row) + '\n')
 
     df_out.close()
@@ -227,7 +231,7 @@ def get_good_network_features():
 
 
 
-
+#get_good_network_features()
 #run_permutation(dataset = 'good')
 #run_permutation(dataset = 'tenaillon')
-run_sample_size_permutation()
+#run_sample_size_permutation()

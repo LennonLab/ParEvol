@@ -6,9 +6,37 @@ import parevol_tools as pt
 import matplotlib.pyplot as plt
 from matplotlib import cm
 from sklearn.decomposition import PCA
+from sklearn.model_selection import GridSearchCV
+from sklearn.neighbors import KernelDensity
+
+
 import statsmodels.formula.api as smf
 from statsmodels.stats.outliers_influence import summary_table
 from collections import Counter
+
+
+def get_tenaillon_pca():
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
+    X = pt.hellinger_transform(df_delta)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+
+    fig = plt.figure()
+    plt.axhline(y=0, color='k', linestyle=':', alpha = 0.8, zorder=1)
+    plt.axvline(x=0, color='k', linestyle=':', alpha = 0.8, zorder=2)
+    plt.scatter(0, 0, marker = "o", edgecolors='none', c = 'darkgray', s = 120, zorder=3)
+    plt.scatter(df_out[:,0], df_out[:,1], marker = "o", edgecolors='#244162', c = '#175ac6', alpha = 0.6, s = 80, zorder=4)
+
+    plt.xlim([-0.8,0.8])
+    plt.ylim([-0.8,0.8])
+    plt.xlabel('PCA 1 (' + str(round(pca.explained_variance_ratio_[0],3)*100) + '%)' , fontsize = 16)
+    plt.ylabel('PCA 2 (' + str(round(pca.explained_variance_ratio_[1],3)*100) + '%)' , fontsize = 16)
+    fig.tight_layout()
+    fig.savefig(pt.get_path() + '/figs/pca_tenaillon.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 
 
 def get_good_pca():
@@ -290,6 +318,59 @@ def plot_edge_dist():
     plt.close()
 
 
+def plot_cluster_dist():
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/network_CCs.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    k_count = dict(Counter(df.C_i.values))
+    k_count = {k: v / total for total in (sum(k_count.values()),) for k, v in k_count.items()}
+    #x = np.log10(list(k_count.keys()))
+    #y = np.log10(list(k_count.values()))
+    # cluster kde
+    C_i = df.C_i.values
+    grid_ = GridSearchCV(KernelDensity(),
+                    {'bandwidth': np.linspace(0.1, 10, 50)},
+                    cv=20) # 20-fold cross-validation
+    grid_.fit(C_i[:, None])
+    x_grid_ = np.linspace(0, 2.5, 1000)
+    kde_ = grid_.best_estimator_
+    pdf_ = np.exp(kde_.score_samples(x_grid_[:, None]))
+    pdf_ = [x / sum(pdf_) for x in pdf_]
+
+    x = list(k_count.keys())
+    y = list(k_count.values())
+
+    #x_poisson = list(range(1, 100))
+    #y_poisson = [(math.exp(-k_mean) * ( (k_mean ** k)  /  math.factorial(k) )) for k in x_poisson]
+
+    fig = plt.figure()
+    #plt.scatter(x, y, marker = "o", edgecolors='none', c = 'darkgray', s = 120, zorder=3)
+    plt.plot(x_grid_, pdf_)
+    plt.ylabel("Clustering coefficient, " + r'$C_{i}$', fontsize = 16)
+    plt.xlabel("Number of edges, " + r'$k$', fontsize = 16)
+    #plt.xscale('log')
+    #plt.yscale('log')
+    #plt.ylim(0, 1)
+    fig.tight_layout()
+    fig.savefig(pt.get_path() + '/figs/C_dist.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def plot_C_vs_k_tenaillon():
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/network_CCs.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    fig = plt.figure()
+    plt.scatter(df.k_i.values, df.C_i.values, marker = "o", edgecolors='#244162', c = '#175ac6', s = 120, zorder=3)
+    plt.ylabel("Clustering coefficient, " + r'$C_{k}$', fontsize = 16)
+    #plt.xscale('log')
+    #plt.yscale('log')
+    plt.xlim(0, 20)
+    fig.tight_layout()
+    fig.savefig(pt.get_path() + '/figs/C_vs_k_tenaillon.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
 def plot_nodes_over_time():
     directory = pt.get_path() + '/data/Good_et_al/networks_BIC/'
     time_nodes = []
@@ -304,13 +385,12 @@ def plot_nodes_over_time():
     y = [i[1] for i in time_nodes_sorted]
 
     fig = plt.figure()
-    plt.scatter(x, y, marker = "o", edgecolors='none', c = '#87CEEB', s = 120, zorder=3)
+    plt.scatter(x, y, marker = "o", edgecolors='#244162', c = '#175ac6', s = 120, zorder=3)
     #plt.plot(x, y)
     plt.xlabel("Time (generations)", fontsize = 18)
     plt.ylabel('Network size, ' + r'$N$', fontsize = 18)
     plt.ylim(5, 500)
     plt.yscale('log')
-
 
     fig.tight_layout()
     fig.savefig(pt.get_path() + '/figs/good_N_vs_time.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
@@ -344,7 +424,6 @@ def plot_kmax_over_time():
     plt.scatter(x, y, c='#175ac6', marker = 'o', s = 120, \
         edgecolors='#244162', linewidth = 0.6, alpha = 0.8, zorder=3)#, edgecolors='none')
     #plt.scatter(x_rndm, y_rndm, marker = "o", edgecolors='none', c = 'blue', s = 120, alpha = 0.1)
-
     '''using some code from ken locey, will cite later'''
 
     df = pd.DataFrame({'t': list(x)})
@@ -364,13 +443,12 @@ def plot_kmax_over_time():
     pred_mean_ci_low, pred_mean_ci_upp = data[:,4:6].T
     pred_ci_low, pred_ci_upp = data[:,6:8].T
 
-
     slope_to_gamme = (1/slope) + 1
 
     plt.fill_between(x, pred_ci_low, pred_ci_upp, color='#175ac6', lw=0.5, alpha=0.2)
     #'$^\frac{1}{1 - '+str(round(slope_to_gamme,2))+'}$'
     #plt.text(2.4, 2.1, r'$k_{max}$'+ ' = '+str(round(10**intercept,2))+'*'+r'$t$'+ '$^{\frac{1}{1 - '+str(round(slope_to_gamme,2))+'}}$', fontsize=10, color='k', alpha=0.9)
-    plt.text(2.4, 2.05, r'$k_{max}$'+ ' = ' + str(round(10**intercept,2)) + '*' + r'$t^ \frac{1}{1 - ' + str(round(slope_to_gamme,2)) + '}$', fontsize=12, color='k', alpha=0.9)
+    plt.text(2.4, 2.05, r'$k_{max}$'+ ' = ' + str(round(10**intercept,2)) + '*' + r'$t^ \frac{1}{\,' + str(round(slope_to_gamme,2)) + '- 1}$', fontsize=12, color='k', alpha=0.9)
     plt.text(2.4, 1.94,  r'$r^2$' + ' = ' +str("%.2f" % R2), fontsize=12, color='0.2')
     plt.plot(X.tolist(), Y.tolist(), '--', c='k', lw=2, alpha=0.8, color='k', label='Power-law')
 
@@ -414,6 +492,32 @@ def plot_cluster():
     plt.close()
 
 
+def plot_distance():
+    df_path = pt.get_path() + '/data/Good_et_al/network_features.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer')
+
+    fig = plt.figure()
+    x = df.N.values
+    y = df.d_mean.values
+    #plt.scatter(x, y, marker = "o", edgecolors='none', c = '#87CEEB', s = 120, zorder=3)
+    plt.scatter(x, y, c='#175ac6', marker = 'o', s = 120, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.9, zorder=3)
+
+    x_range = list(range(10, max(x)))
+    barabasi_albert_range = [ (np.log(i) / np.log(np.log(i))) for i in x_range ]
+    random_range = [np.log(i) for i in x_range ]
+    plt.plot(x_range, barabasi_albert_range, c = 'r', lw = 2.5, ls = '--')
+    plt.plot(x_range, random_range, c = 'k', lw = 2.5, ls = '--')
+
+    plt.xlabel('Network size, ' + r'$N$', fontsize = 18)
+    plt.ylabel('Mean distance, ' + r'$\left \langle d \right \rangle$', fontsize = 16)
+    #plt.xscale('log')
+    #plt.ylim(0.05, 1.5)
+
+    fig.tight_layout()
+    fig.savefig(pt.get_path() + '/figs/good_N_vs_d.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 
 
 
@@ -423,4 +527,10 @@ def plot_cluster():
 #plot_permutation('good')
 #plot_network()
 #plot_kmax_over_time()
-plot_permutation_sample_size()
+#plot_permutation_sample_size()
+#plot_distance()
+#plot_cluster_dist()
+#get_tenaillon_pca()
+#plot_nodes_over_time()
+
+plot_C_vs_k_tenaillon()
