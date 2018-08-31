@@ -14,7 +14,7 @@ matrix.mult <- as.matrix(df.tenaillon)
 iter <- 10
 #sample_sizes <- c( 2,   7,  13,  19,  25,  31,  37,  43,  49,  55,  61,  67,  73,
 #                   79,  85,  91,  97, 103, 109, 115)
-sample_sizes <- c(37)
+sample_sizes <- c(43)
 
 get.network.samples <- function(){
   for (sample_size in sample_sizes){

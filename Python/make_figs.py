@@ -42,25 +42,57 @@ def fig1(k = 3):
 
 
     ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
-    ax2.hist(df_null.MCD.tolist(), bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    mcd_list = df_null.MCD.tolist()
+    #ax2.hist(mcd_list, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    ax2.hist(mcd_list,bins=30, weights=np.zeros_like(mcd_list) + 1. / len(mcd_list), alpha=0.8, color = '#175ac6')
     ax2.axvline(mcd, color = 'red', lw = 3)
     ax2.set_xlabel("Mean centroid distance, " + r'$ \left \langle \delta_{c}  \right \rangle$', fontsize = 14)
     ax2.set_ylabel("Frequency", fontsize = 16)
 
+    mcd_list.append(mcd)
+    relative_position_mcd = sorted(mcd_list).index(mcd) / (len(mcd_list) -1)
+    if relative_position_mcd > 0.5:
+        p_score_mcd = 1 - relative_position_mcd
+    else:
+        p_score_mcd = relative_position_mcd
+    print('mean centroid distance p-score = ' + str(round(p_score_mcd, 3)))
+    ax2.text(0.366, 0.088, r'$p < 0.05$', fontsize = 10)
+
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
-    ax3.hist(df_null.delta_L.tolist(), bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    delta_L_list = df_null.delta_L.tolist()
+    #ax3.hist(delta_L_list, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    ax3.hist(delta_L_list,bins=30, weights=np.zeros_like(delta_L_list) + 1. / len(delta_L_list), alpha=0.8, color = '#175ac6')
     ax3.axvline(mean_length, color = 'red', lw = 3)
     ax3.set_xlabel("Mean pairwise difference \n in magnitudes, " + r'$   \left \langle  \left | \Delta L \right |\right \rangle$', fontsize = 14)
     ax3.set_ylabel("Frequency", fontsize = 16)
 
+    delta_L_list.append(mean_length)
+    relative_position_delta_L = sorted(delta_L_list).index(mean_length) / (len(delta_L_list) -1)
+    if relative_position_delta_L > 0.5:
+        p_score_delta_L = 1 - relative_position_delta_L
+    else:
+        p_score_delta_L = relative_position_delta_L
+    print('mean difference in magnitudes p-score = ' + str(round(p_score_delta_L, 3)))
+    ax3.text(0.078, 0.115, r'$p < 0.05$', fontsize = 10)
+
     ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
     ax4_values = df_null.mean_angle.values
     ax4_values = ax4_values[np.logical_not(np.isnan(ax4_values))]
-    ax4.hist(ax4_values, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    #ax4.hist(ax4_values, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    ax4.hist(ax4_values,bins=30, weights=np.zeros_like(ax4_values) + 1. / len(ax4_values), alpha=0.8, color = '#175ac6')
     ax4.axvline(mean_angle, color = 'red', lw = 3)
-    #ax4.set_xlim([89.7,90])
     ax4.set_xlabel("Mean pairwise angle, " + r'$\left \langle \theta \right \rangle$', fontsize = 14)
     ax4.set_ylabel("Frequency", fontsize = 16)
+
+    mean_angle_list = ax4_values.tolist()
+    mean_angle_list.append(mean_angle)
+    relative_position_angle = sorted(mean_angle_list).index(mean_angle) / (len(mean_angle_list) -1)
+    if relative_position_angle > 0.5:
+        p_score_angle = 1 - relative_position_angle
+    else:
+        p_score_angle = relative_position_angle
+    print('mean pairwise angle p-score = ' + str(round(p_score_angle, 3)))
+    ax4.text(89.1, 0.09, r'$p \nless  0.05$', fontsize = 10)
 
     plt.tight_layout()
     fig_name = pt.get_path() + '/figs/fig1.png'
