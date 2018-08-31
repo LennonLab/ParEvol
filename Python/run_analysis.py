@@ -8,11 +8,12 @@ import functools
 
 def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
     if dataset == 'tenaillon':
+        k = 3
         df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
         df_array = df.as_matrix()
         df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_' + analysis + '.txt', 'w')
-        column_headers = ['Iteration', 'MCD']
+        column_headers = ['Iteration', 'MCD', 'mean_angle', 'delta_L']
         df_out.write('\t'.join(column_headers) + '\n')
         for i in range(iter):
             print(i)
@@ -28,11 +29,15 @@ def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
                 df_rndm_delta_out = pt.cmdscale(df_rndm_delta_bc)[0]
             else:
                 continue
-            df_out.write('\t'.join([str(i), str(pt.get_mean_centroid_distance(df_rndm_delta_out, k=3))]) + '\n')
+            mean_angle = pt.get_mean_angle(df_rndm_delta_out, k = k)
+            mcd = pt.get_mean_centroid_distance(df_rndm_delta_out, k=k)
+            mean_length = pt.get_euclidean_distance(df_rndm_delta_out, k=k)
+            df_out.write('\t'.join([str(i), str(mcd), str(mean_angle), str(mean_length)]) + '\n')
         df_out.close()
 
 
     elif dataset == 'good':
+        k = 5
         df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
         to_exclude = pt.complete_nonmutator_lines()
@@ -49,7 +54,8 @@ def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
         df_final = df_nonmut.iloc[time_points_positions[time_points_set[-1]]]
 
         df_out = open(pt.get_path() + '/data/Good_et_al/permute_' + analysis + '.txt', 'w')
-        column_headers = ['Iteration', 'Generation', 'MCD']
+        #column_headers = ['Iteration', 'Generation', 'MCD']
+        column_headers = ['Iteration', 'Generation', 'MCD', 'mean_angle', 'delta_L']
         df_out.write('\t'.join(column_headers) + '\n')
         for i in range(iter):
             print("Iteration " + str(i))
@@ -83,21 +89,24 @@ def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
             df_rndm_delta_out = pd.DataFrame(data=matrix_rndm_delta_out, index=df_rndm_delta.index)
             for tp in time_points_set:
                 df_rndm_delta_out_tp = df_rndm_delta_out[df_rndm_delta_out.index.str.contains('_' + str(tp))]
-                df_out.write('\t'.join([str(i), str(tp), str(pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=3))]) + '\n')
+                mean_angle = pt.get_mean_angle(df_rndm_delta_out_tp.as_matrix(), k = k)
+                mcd = pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=k)
+                mean_length = pt.get_euclidean_distance(df_rndm_delta_out_tp.as_matrix(), k=k)
+                df_out.write('\t'.join([str(i), str(tp), str(mcd), str(mean_angle), str(mean_length) ]) + '\n')
 
         df_out.close()
 
 
-def run_sample_size_permutation(iter = 10000, analysis = 'PCA'):
+def run_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
     df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_array = df.as_matrix()
     sample_sizes = np.linspace(2, df.shape[0], num = 20, dtype = int)
     df_out = open(pt.get_path() + '/data/Tenaillon_et_al/sample_size_permute_' + analysis + '.txt', 'w')
-    column_headers = ['Sample_size', 'Iteration', 'MCD']
+    column_headers = ['Sample_size', 'Iteration', 'MCD', 'mean_angle', 'delta_L']
     df_out.write('\t'.join(column_headers) + '\n')
     for sample_size in sample_sizes:
-        #print("Sample size = "  + str(sample_size))
+        print("Sample size = "  + str(sample_size))
         for i in range(iter):
             print("Sample size = "  + str(sample_size) + ' Iteration = ' + str(i))
             df_sample = df.sample(n = sample_size)
@@ -107,8 +116,11 @@ def run_sample_size_permutation(iter = 10000, analysis = 'PCA'):
             X = pt.hellinger_transform(df_sample_delta)
             pca = PCA()
             df_sample_delta_out = pca.fit_transform(X)
-            mcd = pt.get_mean_centroid_distance(df_sample_delta_out, k=3)
-            df_out.write('\t'.join([str(sample_size), str(i), str(mcd)]) + '\n')
+            mcd = pt.get_mean_centroid_distance(df_sample_delta_out, k=k)
+            mean_angle = pt.get_mean_angle(df_sample_delta_out, k = k)
+            mean_length = pt.get_euclidean_distance(df_sample_delta_out, k=k)
+
+            df_out.write('\t'.join([str(sample_size), str(i), str(mcd), str(mean_angle), str(mean_length)]) + '\n')
 
     df_out.close()
 
@@ -134,9 +146,6 @@ def get_kmax_random_networks(iterations = 1000):
             df_out.write('\t'.join([str(time), str(iter), str(kmax_iter)]) + '\n')
         #kmax_dict[time] = iter_list
     df_out.close()
-
-
-
 
 
 
@@ -235,3 +244,5 @@ def get_good_network_features():
 #run_permutation(dataset = 'good')
 #run_permutation(dataset = 'tenaillon')
 #run_sample_size_permutation()
+#run_permutation()
+#get_good_network_features()

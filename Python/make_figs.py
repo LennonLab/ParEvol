@@ -8,11 +8,66 @@ from matplotlib import cm
 from sklearn.decomposition import PCA
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KernelDensity
-
-
 import statsmodels.formula.api as smf
 from statsmodels.stats.outliers_influence import summary_table
 from collections import Counter
+
+def fig1(k = 3):
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
+    X = pt.hellinger_transform(df_delta)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+
+    df_null_path = pt.get_path() + '/data/Tenaillon_et_al/permute_PCA.txt'
+    df_null = pd.read_csv(df_null_path, sep = '\t', header = 'infer', index_col = 0)
+
+    mean_angle = pt.get_mean_angle(df_out, k = k)
+    mcd = pt.get_mean_centroid_distance(df_out, k=k)
+    mean_length = pt.get_euclidean_distance(df_out, k=k)
+
+    fig = plt.figure()
+
+    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
+    ax1.axhline(y=0, color='k', linestyle=':', alpha = 0.8, zorder=1)
+    ax1.axvline(x=0, color='k', linestyle=':', alpha = 0.8, zorder=2)
+    ax1.scatter(0, 0, marker = "o", edgecolors='none', c = 'darkgray', s = 120, zorder=3)
+    ax1.scatter(df_out[:,0], df_out[:,1], marker = "o", edgecolors='#244162', c = '#175ac6', alpha = 0.4, s = 60, zorder=4)
+
+    ax1.set_xlim([-0.75,0.75])
+    ax1.set_ylim([-0.75,0.75])
+    ax1.set_xlabel('PCA 1 (' + str(round(pca.explained_variance_ratio_[0],3)*100) + '%)' , fontsize = 14)
+    ax1.set_ylabel('PCA 2 (' + str(round(pca.explained_variance_ratio_[1],3)*100) + '%)' , fontsize = 14)
+
+
+    ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
+    ax2.hist(df_null.MCD.tolist(), bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    ax2.axvline(mcd, color = 'red', lw = 3)
+    ax2.set_xlabel("Mean centroid distance, " + r'$ \left \langle \delta_{c}  \right \rangle$', fontsize = 14)
+    ax2.set_ylabel("Frequency", fontsize = 16)
+
+    ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
+    ax3.hist(df_null.delta_L.tolist(), bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    ax3.axvline(mean_length, color = 'red', lw = 3)
+    ax3.set_xlabel("Mean pairwise difference \n in magnitudes, " + r'$   \left \langle  \left | \Delta L \right |\right \rangle$', fontsize = 14)
+    ax3.set_ylabel("Frequency", fontsize = 16)
+
+    ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
+    ax4_values = df_null.mean_angle.values
+    ax4_values = ax4_values[np.logical_not(np.isnan(ax4_values))]
+    ax4.hist(ax4_values, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    ax4.axvline(mean_angle, color = 'red', lw = 3)
+    #ax4.set_xlim([89.7,90])
+    ax4.set_xlabel("Mean pairwise angle, " + r'$\left \langle \theta \right \rangle$', fontsize = 14)
+    ax4.set_ylabel("Frequency", fontsize = 16)
+
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/fig1.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
 
 
 def get_tenaillon_pca():
@@ -36,6 +91,8 @@ def get_tenaillon_pca():
     fig.tight_layout()
     fig.savefig(pt.get_path() + '/figs/pca_tenaillon.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
+
+
 
 
 
@@ -533,4 +590,6 @@ def plot_distance():
 #get_tenaillon_pca()
 #plot_nodes_over_time()
 
-plot_C_vs_k_tenaillon()
+#plot_C_vs_k_tenaillon()
+
+fig1()

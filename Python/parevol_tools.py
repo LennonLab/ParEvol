@@ -205,16 +205,49 @@ def get_pcoa(df):
     return([Y, pcoa[1]])
 
 def get_mean_centroid_distance(array, groups = None, k = 3):
-
-    #if x is not None:
-    #else:
-
     X = array[:,0:k]
     centroid_distances = []
     centroids = np.mean(X, axis = 0)
     for row in X:
         centroid_distances.append(np.linalg.norm(row-centroids))
     return np.mean(centroid_distances)
+
+def get_euclidean_distance(array, k = 3):
+    X = array[:,0:k]
+    rows = list(range(array.shape[0]))
+    angle_pairs = []
+    for i in rows:
+        for j in rows:
+            if i < j:
+                row_i = X[i,:]
+                row_j = X[j,:]
+                # difference in magnitude
+                angle_pairs.append( abs(np.linalg.norm(row_i) - np.linalg.norm(row_j)) )
+
+    return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
+
+
+
+def get_mean_angle(array, k = 3):
+    def angle_between(v1, v2):
+        radians = np.arccos(np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2)))
+        return radians * 180 / math.pi
+
+    X = array[:,0:k]
+    rows = list(range(array.shape[0]))
+    angle_pairs = []
+    for i in rows:
+        for j in rows:
+            if i < j:
+                row_i = X[i,:]
+                row_j = X[j,:]
+                angle_pairs.append( angle_between(row_i, row_j) )
+
+    return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
+
+
+
+
 
 
 
@@ -386,12 +419,12 @@ def get_random_network(df):
 def networkx_distance(df):
     def get_edges(nodes):
         edges = []
-        for i in nodes:
-            for j in nodes:
+        for i, node_i in enumerate(nodes):
+            for j, node_j in enumerate(nodes):
                 if i < j:
-                    pair_value = df.loc[i][j]
+                    pair_value = df.loc[node_i][node_j]
                     if pair_value > 0:
-                        edges.append((i,j))
+                        edges.append((node_i,node_j))
         return(edges)
 
     edges_full = get_edges(df.index.tolist())
