@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import parevol_tools as pt
 import matplotlib.pyplot as plt
-from matplotlib import cm
+from matplotlib import cm, rc_context
 from sklearn.decomposition import PCA
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KernelDensity
@@ -99,6 +99,56 @@ def fig1(k = 3):
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
+
+def fig2(alpha = 0.05, k = 3):
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
+    X = pt.hellinger_transform(df_delta)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+    mcd = pt.get_mean_centroid_distance(df_out, k = k)
+    mean_angle = pt.get_mean_angle(df_out, k = k)
+    mean_length = pt.get_euclidean_distance(df_out, k=k)
+
+    df_sample_path = pt.get_path() + '/data/Tenaillon_et_al/sample_size_permute_PCA.txt'
+    df_sample = pd.read_csv(df_sample_path, sep = '\t', header = 'infer')#, index_col = 0)
+    sample_sizes = sorted(list(set(df_sample.Sample_size.tolist())))
+
+    fig = plt.figure()
+    ax1 = plt.subplot2grid((6, 1), (0, 0), rowspan=2)
+    ax2 = plt.subplot2grid((6, 1), (2, 0), rowspan=2)
+    ax3 = plt.subplot2grid((6, 1), (4, 0), rowspan=2)
+    ax1.axhline(mcd, color = 'darkgray', lw = 3, ls = '--', zorder = 1)
+    ax2.axhline(mean_angle, color = 'darkgray', lw = 3, ls = '--', zorder = 1)
+    ax3.axhline(mean_length, color = 'darkgray', lw = 3, ls = '--', zorder = 1)
+    for sample_size in sample_sizes:
+        df_sample_size = df_sample.loc[df_sample['Sample_size'] == sample_size]
+        x_sample_size = df_sample_size.Sample_size.values
+        y_sample_size_mcd = np.sort(df_sample_size.MCD.values)
+        y_sample_size_mean_angle = np.sort(df_sample_size.mean_angle.values)
+        y_sample_size_delta_L = np.sort(df_sample_size.delta_L.values)
+
+        lower_ci_mcd = np.mean(y_sample_size_mcd) -    y_sample_size_mcd[int(len(y_sample_size_mcd) * alpha)]
+        upper_ci_mcd = abs(np.mean(y_sample_size_mcd) -    y_sample_size_mcd[int(len(y_sample_size_mcd) * (1 - alpha) )])
+
+        lower_ci_angle = np.mean(y_sample_size_mean_angle) -    y_sample_size_mean_angle[int(len(y_sample_size_mean_angle) * alpha)]
+        upper_ci_angle = abs(np.mean(y_sample_size_mean_angle) -    y_sample_size_mean_angle[int(len(y_sample_size_mean_angle) * (1 - alpha) )])
+
+        lower_ci_delta_L = np.mean(y_sample_size_delta_L) -    y_sample_size_delta_L[int(len(y_sample_size_delta_L) * alpha)]
+        upper_ci_delta_L = abs(np.mean(y_sample_size_delta_L) -    y_sample_size_delta_L[int(len(y_sample_size_delta_L) * (1 - alpha) )])
+        with rc_context(rc={'errorbar.capsize': 3}):
+            ax1.errorbar(sample_size, np.mean(y_sample_size_mcd), yerr = [np.asarray([lower_ci_mcd]), np.asarray([upper_ci_mcd])], c = 'k', fmt='-o') #, xerr=0.2, yerr=0.4)
+            ax2.errorbar(sample_size, np.mean(y_sample_size_mean_angle), yerr = [np.asarray([lower_ci_angle]), np.asarray([upper_ci_angle])], c = 'k', fmt='-o')
+            ax3.errorbar(sample_size, np.mean(y_sample_size_delta_L), yerr = [np.asarray([lower_ci_delta_L]), np.asarray([upper_ci_delta_L])], c = 'k', fmt='-o')
+
+    ax3.set_xlabel("Number of replicate populations", fontsize = 16)
+    ax1.set_ylabel(r'$\left \langle \delta_{c}  \right \rangle$', fontsize = 14)
+    ax2.set_ylabel(r'$\left \langle \theta \right \rangle$', fontsize = 14)
+    ax3.set_ylabel(r'$\left \langle  \left | \Delta L \right |\right \rangle$', fontsize = 14)
+    fig.tight_layout()
+    fig.savefig(pt.get_path() + '/figs/fig2.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
 
 
 
@@ -624,4 +674,4 @@ def plot_distance():
 
 #plot_C_vs_k_tenaillon()
 
-fig1()
+fig2()
