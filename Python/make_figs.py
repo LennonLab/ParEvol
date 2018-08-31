@@ -151,6 +151,21 @@ def fig2(alpha = 0.05, k = 3):
     plt.close()
 
 
+#def fig3():
+#    # good et al data
+
+#def table1():
+#    table of features of tenaillon Dataset
+
+#def fig4():
+# distribution
+
+# def fig5():
+# effect of sample size on featyres
+
+def fig6():
+    # temporal trends
+    print("dfd")
 
 def get_tenaillon_pca():
     df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'

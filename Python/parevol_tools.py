@@ -14,7 +14,7 @@ from scipy.special import binom
 from statsmodels.base.model import GenericLikelihoodModel
 import networkx as nx
 
-np.random.seed(123456789)
+#np.random.seed(123456789)
 
 
 def get_path():
@@ -383,7 +383,7 @@ class modifiedGompertz(GenericLikelihoodModel):
                                 maxiter=maxiter, method = method, maxfun=maxfun,
                                 **kwds)
 
-def get_random_network(df):
+def get_random_network_probability(df):
     # df is a numpy matrix or pandas dataframe containing network interactions
     N = df.shape[0]
     M = 0
@@ -414,6 +414,34 @@ def get_random_network(df):
 
     return matrix
 
+def get_random_network_edges(df):
+    nodes = df.index.tolist()
+    edges = []
+    for i, node_i in enumerate(nodes):
+        for j, node_j in enumerate(nodes):
+            if i < j:
+                edges.append(node_i + '-' + node_j)
+    L = 0
+    for index, row in df.iterrows():
+        #k_row = sum(float(k) != float(0) for k in row.values) - 1
+        k_row = len([i for i in row.values if i != 0]) - 1
+        L += k_row
+
+    new_edges = np.random.choice(np.asarray(edges), size=int(L/2), replace=False)
+    new_edges_split = [x.split('-') for x in new_edges]
+    matrix = pd.DataFrame(0, index= nodes, columns=nodes)
+    for node in nodes:
+        matrix.loc[node, node] = 1
+    for new_edge in new_edges_split:
+        matrix.loc[new_edge[0], new_edge[1]] = 1
+        matrix.loc[new_edge[1], new_edge[0]] = 1
+
+    L_test = 0
+    for index_m, row_m in matrix.iterrows():
+        k_row_m = len([i for i in row_m.values if i != 0]) - 1
+        L_test += k_row_m
+
+    return matrix
 
 
 def networkx_distance(df):
