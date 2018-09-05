@@ -237,9 +237,158 @@ def fig4():
 # def fig5():
 # effect of sample size on featyres
 
-#def fig6():
-    # temporal trends
-#    print("dfd")
+
+
+
+def fig6():
+    network_dir = pt.get_path() + '/data/Good_et_al/networks_BIC/'
+    time_nodes = []
+    time_kmax = []
+    for filename in os.listdir(network_dir):
+        df = pd.read_csv(network_dir + filename, sep = '\t', header = 'infer', index_col = 0)
+        gens = filename.split('.')
+        time = re.split('[_.]', filename)[1]
+        time_nodes.append((int(time), df.shape[0]))
+        time_kmax.append((int(time), max(df.astype(bool).sum(axis=0).values)))
+
+    fig = plt.figure()
+
+    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
+    time_nodes_sorted = sorted(time_nodes, key=lambda tup: tup[0])
+    x_nodes = [i[0] for i in time_nodes_sorted]
+    y_nodes = [i[1] for i in time_nodes_sorted]
+    ax1.scatter(x_nodes, y_nodes, marker = "o", edgecolors='#244162', \
+        c = '#175ac6', s = 80, zorder=3, alpha = 0.6)
+    ax1.set_xlabel("Time (generations)", fontsize = 14)
+    ax1.set_ylabel('Network size, ' + r'$N$', fontsize = 14)
+    ax1.set_ylim(5, 500)
+    ax1.set_yscale('log')
+
+
+    ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
+    time_kmax_sorted = sorted(time_kmax, key=lambda tup: tup[0])
+    x_kmax = [i[0] for i in time_kmax_sorted]
+    y_kmax = [i[1] for i in time_kmax_sorted]
+    x_kmax = np.log10(x_kmax)
+    y_kmax = np.log10(y_kmax)
+    ax2.scatter(x_kmax, y_kmax, c='#175ac6', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.6, zorder=1)#, edgecolors='none')
+
+    '''The below regression code is from the GitHub repository
+    ScalingMicroBiodiversity and is licensed under a
+    GNU General Public License v3.0.
+
+    https://github.com/klocey/ScalingMicroBiodiversity
+    '''
+    df_regression = pd.DataFrame({'t': list(x_kmax)})
+    df_regression['kmax'] = list(y_kmax)
+    f = smf.ols('kmax ~ t', df_regression).fit()
+
+    R2 = f.rsquared
+    pval = f.pvalues
+    intercept = f.params[0]
+    slope = f.params[1]
+    X = np.linspace(min(x_kmax), max(x_kmax), 1000)
+    Y = f.predict(exog=dict(t=X))
+    print(min(x_kmax), max(y_kmax))
+
+    st, data, ss2 = summary_table(f, alpha=0.05)
+    fittedvalues = data[:,2]
+    pred_mean_se = data[:,3]
+    pred_mean_ci_low, pred_mean_ci_upp = data[:,4:6].T
+    pred_ci_low, pred_ci_upp = data[:,6:8].T
+
+    slope_to_gamme = (1/slope) + 1
+
+    ax2.fill_between(x_kmax, pred_ci_low, pred_ci_upp, color='#175ac6', lw=0.5, alpha=0.2, zorder=2)
+    ax2.text(2.35, 2.03, r'$k_{max}$'+ ' = ' + str(round(10**intercept,2)) + '*' + r'$t^ \frac{1}{\,' + str(round(slope_to_gamme,2)) + '- 1}$', fontsize=9, color='k', alpha=0.9)
+    ax2.text(2.35, 1.83,  r'$r^2$' + ' = ' +str("%.2f" % R2), fontsize=9, color='0.2')
+    ax2.plot(X.tolist(), Y.tolist(), '--', c='k', lw=2, alpha=0.8, color='k', label='Power-law', zorder=2)
+    ax2.set_xlabel("Time (generations), " + r'$\mathrm{log}_{10}$', fontsize = 14)
+    ax2.set_ylabel(r'$k_{max}, \;  \mathrm{log}_{10}$', fontsize = 14)
+
+
+    ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
+
+    df_net_feats_path = pt.get_path() + '/data/Good_et_al/network_features.txt'
+    df_net_feats = pd.read_csv(df_net_feats_path, sep = '\t', header = 'infer')
+    x_C = df_net_feats.N.values
+    y_C = df_net_feats.C_mean.values
+
+    ax3.scatter(x_C, y_C, c='#175ac6', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.6, zorder=1)
+    x_C_range = list(range(10, max(x_C)))
+    barabasi_albert_range_C = [  ((np.log(i) ** 2) / i) for i in x_C_range ]
+    random_range_c = [ (1/i) for i in x_C_range ]
+
+    x_C_sort = list(set(x_C.tolist()))
+    x_C_sort.sort()
+    model = pt.clusterBarabasiAlbert(x_C, y_C)
+    b0_start = [0.01, 0.1, 1, 10]
+    z_start = [-2,-0.5]
+    results = []
+    for b0 in b0_start:
+        for z in z_start:
+            start_params = [b0, z]
+            result = model.fit(start_params = start_params)
+            results.append(result)
+    AICs = [result.aic for result in results]
+    best = results[AICs.index(min(AICs))]
+    best_CI_FIC = pt.CI_FIC(best)
+    best_CI = best.conf_int()
+    best_params = best.params
+
+    barabasi_albert_range_C_ll = pt.cluster_BA(np.sort(x_C), best_params[0])
+
+    ax3.plot(np.sort(x_C), barabasi_albert_range_C_ll, c = 'k', lw = 2.5,
+        ls = '--', zorder=2)
+    #plt.plot(x_C_range, random_range_c, c = 'r', lw = 2.5, ls = '--')
+    ax3.set_xlabel('Network size, ' + r'$N$', fontsize = 14)
+    ax3.set_ylabel('Mean clustering \ncoefficient, ' + r'$\left \langle C \right \rangle$', fontsize = 14)
+    ax3.set_xscale('log')
+    ax3.set_yscale('log')
+    ax3.set_ylim(0.05, 1.5)
+
+
+    ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
+    x_d = df_net_feats.N.values
+    y_d = df_net_feats.d_mean.values
+    ax4.scatter(x_d, y_d, c='#175ac6', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.6, zorder=1)
+    #x_d_range = list(range(10, max(x_d)))
+    #barabasi_albert_range_d = [ (np.log(i) / np.log(np.log(i))) for i in x_d_range ]
+    x_d_sort = list(set(x_d.tolist()))
+    x_d_sort.sort()
+    model_d = pt.distanceBarabasiAlbert(x_d, y_d)
+    results_d = []
+    for b0 in b0_start:
+        for z in z_start:
+            start_params_d = [b0, z]
+            result_d = model_d.fit(start_params = start_params_d)
+            results_d.append(result_d)
+    AICs_d = [result_d.aic for result_d in results_d]
+    best_d = results_d[AICs_d.index(min(AICs_d))]
+    best_CI_FIC_d = pt.CI_FIC(best_d)
+    best_CI_d = best_d.conf_int()
+    best_d_params = best_d.params
+
+
+
+    barabasi_albert_range_d_ll = pt.distance_BA(np.sort(x_d), best_d_params[0])
+
+
+    ax4.plot(np.sort(x_C), barabasi_albert_range_d_ll, c = 'k', lw = 2.5,
+        ls = '--', zorder = 2)
+    #random_range = [ np.log(i) for i in x_d_range ]
+    #ax4.plot(x_d_range, random_range, c = 'r', lw = 2.5, ls = '--')
+    ax4.set_xlabel('Network size, ' + r'$N$', fontsize = 14)
+    ax4.set_ylabel('Mean distance, ' + r'$\left \langle d \right \rangle$', fontsize = 14)
+
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/fig6.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 
 
 
@@ -474,15 +623,19 @@ def plot_nodes_over_time():
         df = pd.read_csv(directory + filename, sep = '\t', header = 'infer', index_col = 0)
         gens = filename.split('.')
         time = re.split('[_.]', filename)[1]
-        #print(time)
         time_nodes.append((int(time), df.shape[0]))
     time_nodes_sorted = sorted(time_nodes, key=lambda tup: tup[0])
     x = [i[0] for i in time_nodes_sorted]
     y = [i[1] for i in time_nodes_sorted]
 
+    x_pred = list(set(x))
+    x_pred.sort()
+    y_pred = [min(y) + x_pred_i + 1 for x_pred_i in list(range(len(x_pred) ))]
+
+
     fig = plt.figure()
     plt.scatter(x, y, marker = "o", edgecolors='#244162', c = '#175ac6', s = 120, zorder=3)
-    #plt.plot(x, y)
+    plt.plot(x_pred, y_pred)
     plt.xlabel("Time (generations)", fontsize = 18)
     plt.ylabel('Network size, ' + r'$N$', fontsize = 18)
     plt.ylim(5, 500)
@@ -635,4 +788,7 @@ def plot_distance():
 #fig2()
 
 #plot_kmax_over_time()
-fig4()
+#fig4()
+#plot_nodes_over_time()
+
+fig6()
