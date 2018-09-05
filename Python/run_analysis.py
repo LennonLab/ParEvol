@@ -187,7 +187,7 @@ def get_network_clustering_coefficients(dataset = 'tenaillon'):
         df_out.close()
 
 
-def run_network_permutation(iter = 10000):
+def run_network_permutation(iter = 1000):
     df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_network.txt', 'w')
@@ -282,4 +282,4 @@ def get_good_network_features():
     df_out.close()
 
 
-run_network_permutation()
+#run_network_permutation()
