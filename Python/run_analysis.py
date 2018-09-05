@@ -6,13 +6,16 @@ import parevol_tools as pt
 from sklearn.decomposition import PCA
 import functools
 
-def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
+'''PCA code'''
+
+def run_pca_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
     if dataset == 'tenaillon':
+        k = 3
         df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
         df_array = df.as_matrix()
         df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_' + analysis + '.txt', 'w')
-        column_headers = ['Iteration', 'MCD']
+        column_headers = ['Iteration', 'MCD', 'mean_angle', 'delta_L']
         df_out.write('\t'.join(column_headers) + '\n')
         for i in range(iter):
             print(i)
@@ -28,11 +31,15 @@ def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
                 df_rndm_delta_out = pt.cmdscale(df_rndm_delta_bc)[0]
             else:
                 continue
-            df_out.write('\t'.join([str(i), str(pt.get_mean_centroid_distance(df_rndm_delta_out, k=3))]) + '\n')
+            mean_angle = pt.get_mean_angle(df_rndm_delta_out, k = k)
+            mcd = pt.get_mean_centroid_distance(df_rndm_delta_out, k=k)
+            mean_length = pt.get_euclidean_distance(df_rndm_delta_out, k=k)
+            df_out.write('\t'.join([str(i), str(mcd), str(mean_angle), str(mean_length)]) + '\n')
         df_out.close()
 
 
     elif dataset == 'good':
+        k = 5
         df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
         to_exclude = pt.complete_nonmutator_lines()
@@ -49,7 +56,8 @@ def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
         df_final = df_nonmut.iloc[time_points_positions[time_points_set[-1]]]
 
         df_out = open(pt.get_path() + '/data/Good_et_al/permute_' + analysis + '.txt', 'w')
-        column_headers = ['Iteration', 'Generation', 'MCD']
+        #column_headers = ['Iteration', 'Generation', 'MCD']
+        column_headers = ['Iteration', 'Generation', 'MCD', 'mean_angle', 'delta_L']
         df_out.write('\t'.join(column_headers) + '\n')
         for i in range(iter):
             print("Iteration " + str(i))
@@ -83,21 +91,24 @@ def run_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
             df_rndm_delta_out = pd.DataFrame(data=matrix_rndm_delta_out, index=df_rndm_delta.index)
             for tp in time_points_set:
                 df_rndm_delta_out_tp = df_rndm_delta_out[df_rndm_delta_out.index.str.contains('_' + str(tp))]
-                df_out.write('\t'.join([str(i), str(tp), str(pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=3))]) + '\n')
+                mean_angle = pt.get_mean_angle(df_rndm_delta_out_tp.as_matrix(), k = k)
+                mcd = pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=k)
+                mean_length = pt.get_euclidean_distance(df_rndm_delta_out_tp.as_matrix(), k=k)
+                df_out.write('\t'.join([str(i), str(tp), str(mcd), str(mean_angle), str(mean_length) ]) + '\n')
 
         df_out.close()
 
 
-def run_sample_size_permutation(iter = 10000, analysis = 'PCA'):
+def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
     df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_array = df.as_matrix()
     sample_sizes = np.linspace(2, df.shape[0], num = 20, dtype = int)
     df_out = open(pt.get_path() + '/data/Tenaillon_et_al/sample_size_permute_' + analysis + '.txt', 'w')
-    column_headers = ['Sample_size', 'Iteration', 'MCD']
+    column_headers = ['Sample_size', 'Iteration', 'MCD', 'mean_angle', 'delta_L']
     df_out.write('\t'.join(column_headers) + '\n')
     for sample_size in sample_sizes:
-        #print("Sample size = "  + str(sample_size))
+        print("Sample size = "  + str(sample_size))
         for i in range(iter):
             print("Sample size = "  + str(sample_size) + ' Iteration = ' + str(i))
             df_sample = df.sample(n = sample_size)
@@ -107,40 +118,18 @@ def run_sample_size_permutation(iter = 10000, analysis = 'PCA'):
             X = pt.hellinger_transform(df_sample_delta)
             pca = PCA()
             df_sample_delta_out = pca.fit_transform(X)
-            mcd = pt.get_mean_centroid_distance(df_sample_delta_out, k=3)
-            df_out.write('\t'.join([str(sample_size), str(i), str(mcd)]) + '\n')
+            mcd = pt.get_mean_centroid_distance(df_sample_delta_out, k=k)
+            mean_angle = pt.get_mean_angle(df_sample_delta_out, k = k)
+            mean_length = pt.get_euclidean_distance(df_sample_delta_out, k=k)
+
+            df_out.write('\t'.join([str(sample_size), str(i), str(mcd), str(mean_angle), str(mean_length)]) + '\n')
 
     df_out.close()
 
 
+'''Network code'''
 
-
-def get_kmax_random_networks(iterations = 1000):
-    directory = pt.get_path() + '/data/Good_et_al/networks_BIC/'
-    kmax_dict = {}
-    df_out = open(pt.get_path() + '/data/Good_et_al/networks_BIC_rndm.txt', 'w')
-    df_out.write('\t'.join(['Generations', 'Iteration', 'k_max']) + '\n')
-    for filename in os.listdir(directory):
-        df = pd.read_csv(directory + filename, sep = '\t', header = 'infer', index_col = 0)
-        gens = filename.split('.')
-        time = re.split('[_.]', filename)[1]
-        iter_list = []
-        print(time)
-        for iter in range(iterations):
-            random_matrix = pt.get_random_network(df)
-            # -1 because the sum includes the node interacting with itself
-            kmax_iter = int(max(np.sum(random_matrix, axis=0)) - 1)
-            #iter_list.append(kmax_iter)
-            df_out.write('\t'.join([str(time), str(iter), str(kmax_iter)]) + '\n')
-        #kmax_dict[time] = iter_list
-    df_out.close()
-
-
-
-
-
-
-def get_clustering_coefficients(dataset = 'tenaillon'):
+def get_network_clustering_coefficients(dataset = 'tenaillon'):
     if dataset == 'tenaillon':
         # df is a numpy matrix or pandas dataframe containing network interactions
         df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
@@ -198,6 +187,70 @@ def get_clustering_coefficients(dataset = 'tenaillon'):
         df_out.close()
 
 
+def run_network_permutation(iter = 1000):
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_network.txt', 'w')
+    df_out.write('\t'.join(['Iteration', 'k_max', 'k_mean', 'C_mean', 'C_mean_no1or2', 'd_mean']) + '\n')
+    for i in range(iter):
+        print("Iteration " + str(i))
+        df_rndm = pt.get_random_network_edges(df)
+        k_i_rndm = []
+        C_i_rndm_list = []
+
+        for index, row in df_rndm.iterrows():
+            k_row = sum(i != 0 for i in row.values) - 1
+            k_i_rndm.append(k_row)
+            if (k_row == 0) or (k_row == 1):
+                C_i_rndm_list.append(float(0))
+            else:
+                non_zero = row.nonzero()
+                row_non_zero = row[non_zero[0]]
+                # drop the node
+                row_non_zero = row_non_zero.drop(labels = [index])
+                L_i = 0
+                for index_gene, gene in row_non_zero.iteritems():
+                    row_non_zero_list = row_non_zero.index.tolist()
+                    row_non_zero_list.remove(index_gene)
+                    df_subset = df.loc[[index_gene]][row_non_zero_list]
+                    L_i += sum(sum(i != 0 for i in df_subset.values))
+                # we don't multiply L_i by a factor of 2 bc we're double counting edges
+                C_i =  L_i  / (k_row * (k_row-1) )
+                C_i_rndm_list.append(C_i)
+
+        k_max = max(k_i_rndm)
+        k_mean = np.mean(k_i_rndm)
+        C_mean = np.mean(C_i_rndm_list)
+        C_mean_no1or2 = np.mean([l for l in C_i_rndm_list if l > 0])
+        distance_df = pt.networkx_distance(df_rndm)
+
+        df_out.write('\t'.join([str(i), str(k_max), str(k_mean), str(C_mean), str(C_mean_no1or2), str(distance_df)]) + '\n')
+
+    df_out.close()
+
+
+#def get_features_random_networks_tenaillon(iterations = 1000):
+    #directory = pt.get_path() + '/data/Good_et_al/networks_BIC/'
+    #kmax_dict = {}
+    #df_out = open(pt.get_path() + '/data/Good_et_al/networks_BIC_rndm.txt', 'w')
+    #df_out.write('\t'.join(['Generations', 'Iteration', 'k_max']) + '\n')
+    #for filename in os.listdir(directory):
+    #    df = pd.read_csv(directory + filename, sep = '\t', header = 'infer', index_col = 0)
+    #    gens = filename.split('.')
+    #    time = re.split('[_.]', filename)[1]
+    #    iter_list = []
+    #    print(time)
+    #    for iter in range(iterations):
+    #        random_matrix = pt.get_random_network(df)
+    #        # -1 because the sum includes the node interacting with itself
+    #        kmax_iter = int(max(np.sum(random_matrix, axis=0)) - 1)
+    #        #iter_list.append(kmax_iter)
+    #        df_out.write('\t'.join([str(time), str(iter), str(kmax_iter)]) + '\n')
+    #    #kmax_dict[time] = iter_list
+    #df_out.close()
+
+
+
 
 
 def get_good_network_features():
@@ -229,9 +282,4 @@ def get_good_network_features():
     df_out.close()
 
 
-
-
-#get_good_network_features()
-#run_permutation(dataset = 'good')
-#run_permutation(dataset = 'tenaillon')
-#run_sample_size_permutation()
+#run_network_permutation()
