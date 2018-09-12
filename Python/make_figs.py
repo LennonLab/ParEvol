@@ -11,6 +11,8 @@ from sklearn.neighbors import KernelDensity
 import statsmodels.formula.api as smf
 from statsmodels.stats.outliers_influence import summary_table
 from collections import Counter
+#import scipy.stats
+from scipy.stats import binom
 
 def fig1(k = 3):
     df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
@@ -151,20 +153,123 @@ def fig2(alpha = 0.05, k = 3):
     plt.close()
 
 
-#def fig3():
-#
+
+def fig3(alpha = 0.05, k = 5):
+    df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    to_exclude = pt.complete_nonmutator_lines()
+    to_exclude.append('p5')
+    df_nonmut = df[df.index.str.contains('|'.join( to_exclude))]
+    # remove columns with all zeros
+    df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
+    df_delta = pt.likelihood_matrix(df_nonmut, 'Good_et_al').get_likelihood_matrix()
+    X = pt.hellinger_transform(df_delta)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+
+    time_points = [ int(x.split('_')[1]) for x in df_nonmut.index.values]
+    time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
+
+    df_rndm_delta_out = pd.DataFrame(data=df_out, index=df_delta.index)
+    mcds = []
+    angles = []
+    Ls = []
+    for tp in time_points_set:
+        df_rndm_delta_out_tp = df_rndm_delta_out[df_rndm_delta_out.index.str.contains('_' + str(tp))]
+        mcds.append(pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=k))
+        angles.append(pt.get_mean_angle(df_rndm_delta_out_tp.as_matrix(), k=k))
+        Ls.append(pt.get_euclidean_distance(df_rndm_delta_out_tp.as_matrix(), k=k))
+
+    perm_path = pt.get_path() + '/data/Good_et_al/permute_PCA.txt'
+    perm = pd.read_csv(perm_path, sep = '\t', header = 'infer', index_col = 0)
+    perm_gens = np.sort(list(set(perm.Generation.tolist())))
+    lower_ci_mcd = []
+    upper_ci_mcd = []
+    lower_ci_angle = []
+    upper_ci_angle = []
+    lower_ci_L = []
+    upper_ci_L = []
+    mean_mcd = []
+    mean_angle = []
+    mean_L = []
+    for x in perm_gens:
+        perm_x = perm.loc[perm['Generation'] == x]
+        mcd_perm_x = np.sort(perm_x.MCD.tolist())
+        angle_perm_x = np.sort(perm_x.mean_angle.tolist())
+        L_perm_x = np.sort(perm_x.delta_L.tolist())
+
+        mean_mcd_perm_x = np.mean(mcd_perm_x)
+        mean_mcd.append(mean_mcd_perm_x)
+        mean_angle_perm_x = np.mean(angle_perm_x)
+        mean_angle.append(mean_angle_perm_x)
+        mean_L_perm_x = np.mean(L_perm_x)
+        mean_L.append(mean_L_perm_x)
+
+        lower_ci_mcd.append(mean_mcd_perm_x - mcd_perm_x[int(len(mcd_perm_x) * alpha)])
+        upper_ci_mcd.append(abs(mean_mcd_perm_x - mcd_perm_x[int(len(mcd_perm_x) * (1 - alpha))]))
+
+        lower_ci_angle.append(mean_angle_perm_x - angle_perm_x[int(len(angle_perm_x) * alpha)])
+        upper_ci_angle.append(abs(mean_angle_perm_x - angle_perm_x[int(len(angle_perm_x) * (1 - alpha))]))
+
+        lower_ci_L.append(mean_L_perm_x - L_perm_x[int(len(L_perm_x) * alpha)])
+        upper_ci_L.append(abs(mean_L_perm_x - L_perm_x[int(len(L_perm_x) * (1 - alpha))]))
+
+    fig = plt.figure()
+
+    plt.figure(1)
+    plt.subplot(311)
+    plt.errorbar(perm_gens, mean_mcd, yerr = [lower_ci_mcd, upper_ci_mcd], fmt = 'o', alpha = 0.5, \
+        barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
+    plt.scatter(time_points_set, mcds, c='#175ac6', marker = 'o', s = 70, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
+
+    #plt.ylabel("Mean \n centroid distance", fontsize = 10)
+    plt.ylabel(r'$\left \langle \delta_{c}  \right \rangle$', fontsize = 12)
+
+    plt.figure(1)
+    plt.subplot(312)
+    plt.errorbar(perm_gens, mean_angle, yerr = [lower_ci_angle, upper_ci_angle], fmt = 'o', alpha = 0.5, \
+        barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
+    plt.scatter(time_points_set, angles, c='#175ac6', marker = 'o', s = 70, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
+
+    #plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
+    plt.ylabel(r'$\left \langle \theta \right \rangle$', fontsize = 12)
+
+    plt.figure(1)
+    plt.subplot(313)
+    plt.errorbar(perm_gens, mean_L, yerr = [lower_ci_L, upper_ci_L], fmt = 'o', alpha = 0.5, \
+        barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
+    plt.scatter(time_points_set, Ls, c='#175ac6', marker = 'o', s = 70, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
+
+    plt.xlabel("Time (generations)", fontsize = 16)
+    #plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
+    plt.ylabel(r'$\left \langle  \left | \Delta L \right |\right \rangle$', fontsize = 12)
+
+    fig.tight_layout()
+    fig.savefig(pt.get_path() + '/figs/fig3.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 
 
 def fig4():
     df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    dist_df = pt.networkx_distance(df)
-    df_C_path = pt.get_path() + '/data/Tenaillon_et_al/network_CCs.txt'
+
+    #df_C_path = pt.get_path() + '/data/Tenaillon_et_al/network_CCs.txt'
+    df_C_path = pt.get_path() + '/data/Tenaillon_et_al/network_CCs_no_kmax.txt'
     df_C = pd.read_csv(df_C_path, sep = '\t', header = 'infer', index_col = 0)
     kmax_df = max(df_C.k_i.values)
     mean_C_df = np.mean(df_C.loc[df_C['k_i'] >= 2].C_i.values)
     df_null_path = pt.get_path() + '/data/Tenaillon_et_al/permute_network.txt'
     df_null = pd.read_csv(df_null_path, sep = '\t', header = 'infer', index_col = 0)
+
+    df_no_max = df.copy()
+    df_no_max = df_no_max.drop('kpsD', axis=0)
+    df_no_max = df_no_max.drop('kpsD', axis=1)
+    #dist_df = pt.networkx_distance(df)
+    dist_df = pt.networkx_distance(df_no_max)
 
     C_mean_null = df_null.C_mean_no1or2.tolist()
     C_mean_null = [x for x in C_mean_null if str(x) != 'nan']
@@ -172,19 +277,64 @@ def fig4():
     k_max_null = df_null.k_max.tolist()
 
     fig = plt.figure()
-
     ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
-    # this is a  placeholder. I need to figure out how to plot a network.....
-    ax1.scatter(k_max_null, d_mean_null, marker = "o", edgecolors='#244162', c = '#175ac6', alpha = 0.4, s = 60, zorder=4)
-    #ax1.set_xlim([-0.75,0.75])
-    #ax1.set_ylim([-0.75,0.75])
+    k_list = []
+    for index, row in df.iterrows():
+        k_row = sum(i != 0 for i in row.values) - 1
+        if k_row > 0:
+            k_list.append(k_row)
+
+    count_k_list = Counter(k_list)
+    count_k_list_sum = sum(count_k_list.values())
+    count_k_list_x = list(count_k_list.keys())
+    count_k_list_y = [(i / count_k_list_sum) for i in count_k_list.values()]
+
+    k_list_no_max = []
+    for index, row in df_no_max.iterrows():
+        k_row = sum(i != 0 for i in row.values) - 1
+        if k_row > 0:
+            k_list_no_max.append(k_row)
+
+    count_k_list_no_max = Counter(k_list_no_max)
+    count_k_list_sum_no_max = sum(count_k_list_no_max.values())
+    count_k_list_x_no_max = list(count_k_list_no_max.keys())
+    count_k_list_y_no_max = [(i / count_k_list_sum_no_max) for i in count_k_list_no_max.values()]
+
+    ax1.scatter(count_k_list_x, count_k_list_y, marker = "o", edgecolors='#244162', c = '#175ac6', alpha = 0.4, s = 60, zorder=4)
+    # red colors
+    # edge #C92525
+    # c #FF4343
+    #ax1.scatter(count_k_list_x_no_max, count_k_list_y_no_max, marker = "o", edgecolors='#C92525', c = '#FF4343', alpha = 0.4, s = 60, zorder=4)
+
+    count_k_list_x.sort()
+    #m = 0.56086623
+    #pred_y = [ ((2 * m * (m+1)) / (j * (j+1) * (j+2) )) for j in count_k_list_x ]
+    #ax1.plot(count_k_list_x, pred_y, c = 'k', lw = 2.5,
+    #    ls = '--', zorder=2)
+    p = sum(k_list) / (((df.shape[0]) * (df.shape[0]-1)) / 2)
+    p_no_max = sum([i for i in k_list if i != 181])  /  (((df.shape[0]-1) * (df.shape[0]-2)) / 2)
+
+    binom_x = np.arange(0, max(k_list))
+    binom_y = binom.pmf(binom_x, df.shape[0] - 1, p)
+    binom_y_noMax = binom.pmf(binom_x, df.shape[0] - 2, p_no_max)
+
+    ax1.plot(binom_x, binom_y_noMax, c = 'k', lw = 2.5, ls = '--', zorder=2)
+    ax1.set_xlim([0.5, 400])
+    ax1.set_ylim([0.001, 1])
+    ax1.set_xscale('log')
+    ax1.set_yscale('log')
+    ax1.set_xlabel(r'$k_{max}$', fontsize = 14)
+    ax1.set_ylabel("Frequency", fontsize = 14)
 
 
     ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
     ax2.hist(k_max_null,bins=30, weights=np.zeros_like(k_max_null) + 1. / len(k_max_null), alpha=0.8, color = '#175ac6')
-    ax2.axvline(kmax_df, color = 'red', lw = 3)
-    ax2.set_xlabel("kmax", fontsize = 14)
-    ax2.set_ylabel("Frequency", fontsize = 16)
+    #ax2.axvline(max(k_list_no_max), color = 'red', lw = 2, ls = ':')
+    ax2.axvline(max(k_list_no_max), color = 'red', lw = 2, ls = '--')
+    #ax2.axvline(kmax_df, color = 'red', lw = 2, ls = '--')
+    #ax2.set_xscale('log')
+    ax2.set_xlabel(r'$k_{max}$', fontsize = 14)
+    ax2.set_ylabel("Frequency", fontsize = 14)
 
     k_max_null.append(kmax_df)
     relative_position_k_max = sorted(k_max_null).index(kmax_df) / (len(k_max_null) -1)
@@ -198,9 +348,10 @@ def fig4():
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
     #print(C_mean_null)
     ax3.hist(C_mean_null,bins=30, weights=np.zeros_like(C_mean_null) + 1. / len(C_mean_null), alpha=0.8, color = '#175ac6')
-    ax3.axvline(mean_C_df, color = 'red', lw = 3)
-    ax3.set_xlabel("Mean clustering coefficient", fontsize = 14)
-    ax3.set_ylabel("Frequency", fontsize = 16)
+    ax3.axvline(mean_C_df, color = 'red', lw = 2, ls = '--')
+    #ax3.set_xlabel("Mean clustering coefficient", fontsize = 14)
+    ax3.set_xlabel('Mean clustering coefficient, ' + r'$\left \langle C \right \rangle$', fontsize = 14)
+    ax3.set_ylabel("Frequency", fontsize = 14)
 
     C_mean_null.append(mean_C_df)
     relative_position_mean_C = sorted(C_mean_null).index(mean_C_df) / (len(C_mean_null) -1)
@@ -214,9 +365,10 @@ def fig4():
 
     ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
     ax4.hist(d_mean_null,bins=30, weights=np.zeros_like(d_mean_null) + 1. / len(d_mean_null), alpha=0.8, color = '#175ac6')
-    ax4.axvline(dist_df, color = 'red', lw = 3)
-    ax4.set_xlabel("Mean distance", fontsize = 14)
-    ax4.set_ylabel("Frequency", fontsize = 16)
+    ax4.axvline(dist_df, color = 'red', lw = 2, ls = '--')
+    #ax4.set_xlabel("Mean distance", fontsize = 14)
+    ax4.set_xlabel('Mean distance, ' + r'$\left \langle d \right \rangle$', fontsize = 14)
+    ax4.set_ylabel("Frequency", fontsize = 14)
 
     d_mean_null.append(dist_df)
     relative_position_d_mean = sorted(d_mean_null).index(dist_df) / (len(d_mean_null) -1)
@@ -224,7 +376,7 @@ def fig4():
         p_score_d_mean = 1 - relative_position_d_mean
     else:
         p_score_d_mean = relative_position_d_mean
-    print('mean pairwise angle p-score = ' + str(round(p_score_d_mean, 3)))
+    print('mean pairwise distance p-score = ' + str(round(p_score_d_mean, 3)))
     #ax4.text(89.1, 0.09, r'$p \nless  0.05$', fontsize = 10)
 
     plt.tight_layout()
@@ -262,7 +414,7 @@ def fig6():
     ax1.set_xlabel("Time (generations)", fontsize = 14)
     ax1.set_ylabel('Network size, ' + r'$N$', fontsize = 14)
     ax1.set_ylim(5, 500)
-    ax1.set_yscale('log')
+    #ax1.set_yscale('log')
 
 
     ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
@@ -271,8 +423,6 @@ def fig6():
     y_kmax = [i[1] for i in time_kmax_sorted]
     x_kmax = np.log10(x_kmax)
     y_kmax = np.log10(y_kmax)
-    ax2.scatter(x_kmax, y_kmax, c='#175ac6', marker = 'o', s = 80, \
-        edgecolors='#244162', linewidth = 0.6, alpha = 0.6, zorder=1)#, edgecolors='none')
 
     '''The below regression code is from the GitHub repository
     ScalingMicroBiodiversity and is licensed under a
@@ -300,12 +450,16 @@ def fig6():
 
     slope_to_gamme = (1/slope) + 1
 
-    ax2.fill_between(x_kmax, pred_ci_low, pred_ci_upp, color='#175ac6', lw=0.5, alpha=0.2, zorder=2)
-    ax2.text(2.35, 2.03, r'$k_{max}$'+ ' = ' + str(round(10**intercept,2)) + '*' + r'$t^ \frac{1}{\,' + str(round(slope_to_gamme,2)) + '- 1}$', fontsize=9, color='k', alpha=0.9)
-    ax2.text(2.35, 1.83,  r'$r^2$' + ' = ' +str("%.2f" % R2), fontsize=9, color='0.2')
-    ax2.plot(X.tolist(), Y.tolist(), '--', c='k', lw=2, alpha=0.8, color='k', label='Power-law', zorder=2)
-    ax2.set_xlabel("Time (generations), " + r'$\mathrm{log}_{10}$', fontsize = 14)
-    ax2.set_ylabel(r'$k_{max}, \;  \mathrm{log}_{10}$', fontsize = 14)
+    ax2.scatter([10**i for i in x_kmax], [10**i for i in y_kmax], c='#175ac6', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.6, zorder=1)#, edgecolors='none')
+    ax2.fill_between([10**i for i in x_kmax], [10**i for i in pred_ci_low], [10**i for i in pred_ci_upp], color='#175ac6', lw=0.5, alpha=0.2, zorder=2)
+    ax2.text(250, 100, r'$k_{max}$'+ ' = ' + str(round(10**intercept,2)) + '*' + r'$t^ \frac{1}{\,' + str(round(slope_to_gamme,2)) + '- 1}$', fontsize=9, color='k', alpha=0.9)
+    ax2.text(250, 60,  r'$r^2$' + ' = ' +str("%.2f" % R2), fontsize=9, color='0.2')
+    ax2.plot([10**i for i in X.tolist()], [10**i for i in Y.tolist()], '--', c='k', lw=2, alpha=0.8, color='k', label='Power-law', zorder=2)
+    ax2.set_xlabel("Time (generations)", fontsize = 14)
+    ax2.set_ylabel(r'$k_{max}$', fontsize = 14)
+    ax2.set_xscale('log')
+    ax2.set_yscale('log')
 
 
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
@@ -345,7 +499,7 @@ def fig6():
     #plt.plot(x_C_range, random_range_c, c = 'r', lw = 2.5, ls = '--')
     ax3.set_xlabel('Network size, ' + r'$N$', fontsize = 14)
     ax3.set_ylabel('Mean clustering \ncoefficient, ' + r'$\left \langle C \right \rangle$', fontsize = 14)
-    ax3.set_xscale('log')
+    #ax3.set_xscale('log')
     ax3.set_yscale('log')
     ax3.set_ylim(0.05, 1.5)
 
@@ -372,17 +526,14 @@ def fig6():
     best_CI_d = best_d.conf_int()
     best_d_params = best_d.params
 
-
-
     barabasi_albert_range_d_ll = pt.distance_BA(np.sort(x_d), best_d_params[0])
-
-
     ax4.plot(np.sort(x_C), barabasi_albert_range_d_ll, c = 'k', lw = 2.5,
         ls = '--', zorder = 2)
     #random_range = [ np.log(i) for i in x_d_range ]
     #ax4.plot(x_d_range, random_range, c = 'r', lw = 2.5, ls = '--')
     ax4.set_xlabel('Network size, ' + r'$N$', fontsize = 14)
     ax4.set_ylabel('Mean distance, ' + r'$\left \langle d \right \rangle$', fontsize = 14)
+    #ax4.set_xscale('log')
 
     plt.tight_layout()
     fig_name = pt.get_path() + '/figs/fig6.png'
@@ -772,23 +923,12 @@ def plot_distance():
 
 
 
-#plot_pcoa('tenaillon')
-#example_gene_space()
-#plot_permutation('good')
-#plot_network()
-#plot_kmax_over_time()
-#plot_permutation_sample_size()
-#plot_distance()
-#plot_cluster_dist()
-#get_tenaillon_pca()
-#plot_nodes_over_time()
 
 #plot_C_vs_k_tenaillon()
 
 #fig2()
 
 #plot_kmax_over_time()
-#fig4()
-#plot_nodes_over_time()
+fig4()
 
-fig6()
+#fig6()

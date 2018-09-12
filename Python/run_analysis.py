@@ -1,5 +1,6 @@
 from __future__ import division
 import os, re
+from collections import Counter
 import numpy as np
 import pandas as pd
 import parevol_tools as pt
@@ -129,12 +130,17 @@ def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
 
 '''Network code'''
 
-def get_network_clustering_coefficients(dataset = 'tenaillon'):
+def get_network_clustering_coefficients(dataset = 'tenaillon', kmax = True):
     if dataset == 'tenaillon':
         # df is a numpy matrix or pandas dataframe containing network interactions
         df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-        df_out = open(pt.get_path() + '/data/Tenaillon_et_al/network_CCs.txt', 'w')
+        if kmax == False:
+            df = df.drop('kpsD', axis=0)
+            df = df.drop('kpsD', axis=1)
+            df_out = open(pt.get_path() + '/data/Tenaillon_et_al/network_CCs_no_kmax.txt', 'w')
+        else:
+            df_out = open(pt.get_path() + '/data/Tenaillon_et_al/network_CCs.txt', 'w')
         df_out.write('\t'.join(['Gene', 'k_i', 'C_i']) + '\n')
         for index, row in df.iterrows():
             k_row = sum(i != 0 for i in row.values) - 1
@@ -187,11 +193,15 @@ def get_network_clustering_coefficients(dataset = 'tenaillon'):
         df_out.close()
 
 
-def run_network_permutation(iter = 1000):
+def run_network_permutation_rndm(iter = 1000, include_kmax = True):
     df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_network.txt', 'w')
+    df = df.drop('kpsD', axis=0)
+    df = df.drop('kpsD', axis=1)
+    df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_network_rndm_nokmax.txt', 'w')
     df_out.write('\t'.join(['Iteration', 'k_max', 'k_mean', 'C_mean', 'C_mean_no1or2', 'd_mean']) + '\n')
+
+    # get m using likelihood
     for i in range(iter):
         print("Iteration " + str(i))
         df_rndm = pt.get_random_network_edges(df)
@@ -227,6 +237,56 @@ def run_network_permutation(iter = 1000):
         df_out.write('\t'.join([str(i), str(k_max), str(k_mean), str(C_mean), str(C_mean_no1or2), str(distance_df)]) + '\n')
 
     df_out.close()
+
+
+def run_network_permutation_ba():
+    df_path = pt.get_path() + '/data/Tenaillon_et_al/network.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_network_ba.txt', 'w')
+    df_out.write('\t'.join(['Iteration', 'k_max', 'k_mean', 'C_mean', 'C_mean_no1or2', 'd_mean']) + '\n')
+
+    k_list = []
+    for index, row in df.iterrows():
+        k_row = sum(i != 0 for i in row.values) - 1
+        if k_row > 0:
+            k_list.append(k_row)
+    count_k_list = Counter(k_list)
+    count_k_list_sum = sum(count_k_list.values())
+    x = count_k_list.keys()
+    y = [(i / count_k_list_sum) for i in count_k_list.values()]
+    count_k_list.pop(max(x), None)
+    x_no_max = list(count_k_list.keys())
+    y_no_max = [(i / (count_k_list_sum-1)) for i in count_k_list.values()]
+
+
+    model_no_max = pt.continuumBarabasiAlbert(x_no_max, y_no_max)
+    m_start = [1, 2, 3, 4]
+    z_start = [-2,-0.5]
+    results = []
+    for m in m_start:
+        for z in z_start:
+            start_params = [m, z]
+            result = model_no_max.fit(start_params = start_params)
+            results.append(result)
+    AICs = [result.aic for result in results]
+    best = results[AICs.index(min(AICs))]
+    best_CI_FIC = pt.CI_FIC(best)
+    best_CI = best.conf_int()
+    best_params = best.params
+    print(best_params)
+
+    #barabasi_albert_range_C_ll = pt.cluster_BA(np.sort(x_C), best_params[0])
+
+
+
+    df_out.close()
+
+
+
+
+
+
+
 
 
 #def get_features_random_networks_tenaillon(iterations = 1000):
@@ -282,4 +342,6 @@ def get_good_network_features():
     df_out.close()
 
 
-#run_network_permutation()
+
+#run_network_permutation_rndm()
+get_network_clustering_coefficients(kmax = False)
