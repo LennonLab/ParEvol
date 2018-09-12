@@ -13,6 +13,8 @@ from scipy.misc import comb
 from scipy.special import binom
 from statsmodels.base.model import GenericLikelihoodModel
 import networkx as nx
+import scipy.stats as stats
+
 
 #np.random.seed(123456789)
 
@@ -347,23 +349,36 @@ class likelihood_matrix:
         #df_new.to_csv(out_name, sep = '\t', index = True)
 
 
-# Power law
-def power_law(t, c0, v):
-    t = np.asarray(t)
-    return c0 * (t ** (1 / (v-1)) )
+# function to generate confidence intervals based on Fisher Information criteria
+def CI_FIC(results):
+    # standard errors = square root of the diagnol of a variance-covariance matrix
+    ses = np.sqrt(np.absolute(np.diagonal(results.cov_params())))
+    cfs = results.params
+    lw = cfs - (1.96*ses)
+    up = cfs +(1.96*ses)
+    return (lw, up)
 
 
 
-class modifiedGompertz(GenericLikelihoodModel):
+def cluster_BA(N, b0):
+    #N = np.sort(N)
+    return b0 * ((np.log(N) ** 2) / N)
+
+def distance_BA(N, b0):
+    return b0 * (np.log(N) /  np.log( np.log(N) )   )
+
+
+
+
+class clusterBarabasiAlbert(GenericLikelihoodModel):
     def __init__(self, endog, exog, **kwds):
-        super(modifiedGompertz, self).__init__(endog, exog, **kwds)
-        #print len(exog)
+        super(clusterBarabasiAlbert, self).__init__(endog, exog, **kwds)
 
     def nloglikeobs(self, params):
-        c0 = params[0]
-        v = params[1]
+        b0 = params[0]
+        z = params[1]
         # probability density function (pdf) is the same as dnorm
-        exog_pred = m_gop(self.endog, b0 = b0, A = A, umax = umax, L = L)
+        exog_pred = cluster_BA(self.endog, b0 = b0)
         # need to flatten the exogenous variable
         LL = -stats.norm.logpdf(self.exog.flatten(), loc=exog_pred, scale=np.exp(z))
         return LL
@@ -372,16 +387,75 @@ class modifiedGompertz(GenericLikelihoodModel):
 
         if start_params is None:
             b0_start = 1
-            A_start = 2
-            umax_start = 0.5
-            L_start = 0.8
             z_start = 0.8
 
-            start_params = np.array([b0_start, A_start, umax_start, L_start, z_start])
+            start_params = np.asarray([b0_start, z_start])
 
-        return super(modifiedGompertz, self).fit(start_params=start_params,
+        return super(clusterBarabasiAlbert, self).fit(start_params=start_params,
                                 maxiter=maxiter, method = method, maxfun=maxfun,
                                 **kwds)
+
+
+
+class distanceBarabasiAlbert(GenericLikelihoodModel):
+    def __init__(self, endog, exog, **kwds):
+        super(distanceBarabasiAlbert, self).__init__(endog, exog, **kwds)
+
+    def nloglikeobs(self, params):
+        b0 = params[0]
+        z = params[1]
+        # probability density function (pdf) is the same as dnorm
+        exog_pred = distance_BA(self.endog, b0 = b0)
+        # need to flatten the exogenous variable
+        LL = -stats.norm.logpdf(self.exog.flatten(), loc=exog_pred, scale=np.exp(z))
+        return LL
+
+    def fit(self, start_params=None, maxiter=10000, maxfun=5000, method="bfgs", **kwds):
+
+        if start_params is None:
+            b0_start = 1
+            z_start = 0.8
+
+            start_params = np.asarray([b0_start, z_start])
+
+        return super(distanceBarabasiAlbert, self).fit(start_params=start_params,
+                                maxiter=maxiter, method = method, maxfun=maxfun,
+                                **kwds)
+
+
+def continuum_BA(k, m):
+    # large k limit
+    #return 2 * (m**2) *  (1 / (k**3))
+    # exact equation
+    return (2 * m * (m+1)) / (k * (k+1) * (k+2) )
+
+
+class continuumBarabasiAlbert(GenericLikelihoodModel):
+    def __init__(self, endog, exog, **kwds):
+        super(continuumBarabasiAlbert, self).__init__(endog, exog, **kwds)
+
+    def nloglikeobs(self, params):
+        m = params[0]
+        z = params[1]
+        # probability density function (pdf) is the same as dnorm
+        exog_pred = continuum_BA(self.endog, m = m)
+        # need to flatten the exogenous variable
+        LL = -stats.norm.logpdf(self.exog.flatten(), loc=exog_pred, scale=np.exp(z))
+        return LL
+
+    def fit(self, start_params=None, maxiter=10000, maxfun=5000, method="bfgs", **kwds):
+
+        if start_params is None:
+            m_start = 1
+            z_start = 0.8
+
+            start_params = np.asarray([m_start, z_start])
+
+        return super(continuumBarabasiAlbert, self).fit(start_params=start_params,
+                                maxiter=maxiter, method = method, maxfun=maxfun,
+                                **kwds)
+
+
 
 def get_random_network_probability(df):
     # df is a numpy matrix or pandas dataframe containing network interactions
