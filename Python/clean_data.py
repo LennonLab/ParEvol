@@ -45,7 +45,7 @@ class good_et_al:
         return convergence_matrix
 
 
-    def reformat_convergence_matrix(self):
+    def reformat_convergence_matrix(self, mut_type = 'F'):
         conv_dict = self.parse_convergence_matrix(mydir + "data/Good_et_al/gene_convergence_matrix.txt")
         time_points = []
         new_dict = {}
@@ -65,15 +65,27 @@ class good_et_al:
                 mutations.sort(key=lambda tup: tup[0])
                 # keep only fixed mutations
                 #{'A':0,'E':1,'F':2,'P':3}
-                mutations = [x for x in mutations if int(x[1]) == 2]
+                if mut_type == 'F':
+                    mutations = [x for x in mutations if int(x[1]) == 2]
+                elif mut_type == 'P':
+                    mutations = [x for x in mutations if (int(x[1]) == 3) ]#or (int(x[1]) == 0)]
+                else:
+                    print("Argument mut_type not recognized")
+
                 if len(mutations) == 0:
                     continue
                 for mutation in mutations:
-                    time = mutation[0]
-                    remaining_time_points = time_points[time_points.index(time):]
-                    #print(time, remaining_time_points)
-                    for time_point in remaining_time_points:
-                        pop_time = pop_name +'_' + str(int(time_point))
+                    if mut_type == 'F':
+                        time = mutation[0]
+                        remaining_time_points = time_points[time_points.index(time):]
+                        for time_point in remaining_time_points:
+                            pop_time = pop_name +'_' + str(int(time_point))
+                            if pop_time not in new_dict[gene_name]:
+                                new_dict[gene_name][pop_time] = 1
+                            else:
+                                new_dict[gene_name][pop_time] += 1
+                    elif mut_type == 'P':
+                        pop_time = pop_name +'_' + str(int(mutation[0]))
                         if pop_time not in new_dict[gene_name]:
                             new_dict[gene_name][pop_time] = 1
                         else:
@@ -82,114 +94,17 @@ class good_et_al:
         df = pd.DataFrame.from_dict(new_dict)
         df = df.fillna(0)
         df = df.loc[:, (df != 0).any(axis=0)]
-        df_out = mydir + 'data/Good_et_al/gene_by_pop.txt'
+        if mut_type == 'F':
+            df_out = mydir + 'data/Good_et_al/gene_by_pop.txt'
+            #df_delta_out = mydir + 'data/Good_et_al/gene_by_pop_delta.txt'
+        elif mut_type == 'P':
+            df_out = mydir + 'data/Good_et_al/gene_by_pop_poly.txt'
+            #df_delta_out = mydir + 'data/Good_et_al/gene_by_pop_poly_delta.txt'
+        else:
+            print("Argument mut_type not recognized")
         df.to_csv(df_out, sep = '\t', index = True)
 
 
-    #def test_get_fixed_muts(self):
-    #    print(self.populations)
-    #    for population in self.populations:
-    #        mutations, depth_tuple = parse_file.parse_annotated_timecourse(population)
-
-        #population_avg_depth_times, population_avg_depths, clone_avg_depth_times, clone_avg_depths = depth_tuple
-
-        #dummy_times,fmajors,fminors,haplotype_trajectories = parse_file.parse_haplotype_timecourse(population)
-        #state_times, state_trajectories = parse_file.parse_well_mixed_state_timecourse(population)
-
-        #times = mutations[0][10]
-        #Ms = numpy.zeros_like(times)*1.0
-        #fixed_Ms = numpy.zeros_like(times)*1.0
-
-        #transit_times[population] = []
-
-        #for mutation_idx in xrange(0,len(mutations)):
-
-        #    location, gene_name, allele, var_type, test_statistic, pvalue, cutoff_idx, depth_fold_change, depth_change_pvalue, times, alts, depths, clone_times, clone_alts, clone_depths = mutations[mutation_idx]
-
-        #    Ls = haplotype_trajectories[mutation_idx]
-        #    state_Ls = state_trajectories[mutation_idx]
-
-        #    good_idxs, filtered_alts, filtered_depths = timecourse_utils.mask_timepoints(times, alts, depths, var_type, cutoff_idx, depth_fold_change, depth_change_pvalue)
-
-        #    freqs = timecourse_utils.estimate_frequencies(filtered_alts, filtered_depths)
-
-        #    masked_times = times[good_idxs]
-        #    masked_freqs = freqs[good_idxs]
-        #    masked_state_Ls = state_Ls[good_idxs]
-
-        #    t0,tf,transit_time = timecourse_utils.calculate_appearance_fixation_time_from_hmm(masked_times, masked_freqs, masked_state_Ls)
-        #    transit_times[population].append(transit_time)
-
-        #    interpolating_function = timecourse_utils.create_interpolation_function(masked_times, masked_freqs, tmax=100000)
-
-        #    fs = interpolating_function(times)
-        #    fs[fs<0]=0
-
-        #    # Record
-        #    Ms += fs
-        #    if masked_state_Ls[-1] in parse_file.well_mixed_fixed_states:
-        #        fixed_Ms += (times>=tf)
-
-
-        #fixed_mutation_trajectories[population] = (times, fixed_Ms)
-        #mutation_trajectories[population] = (times, Ms)
-
-
-
-
-    #def get_enrichment_factors(self):
-    #    df_in = mydir + 'data/ltee/gene_by_pop.txt'
-    #    df = pd.read_csv(df_in, sep = '\t', header = 'infer', index_col = 0)
-    #    # get genes that are significanty enriched for all populations
-    #    enriched_df = pd.read_csv(mydir + 'data/ltee/nature24287-s5.csv', sep = ',', header = 'infer')
-    #    genes = df.columns.tolist()
-    #    enriched_genes_names = enriched_df.Gene.tolist()
-    #    genes_I = list(set(genes) & set(enriched_genes_names))
-    #
-    #    genes_lengths = self.get_gene_lengths(gene_list = genes)
-    #    gene_I_lengths = self.get_gene_lengths(gene_list = genes_I)
-    #
-    #    L_mean = np.mean(list(genes_lengths.values()))
-    #    L_i = np.asarray(list(genes_lengths.values()))
-    #    N_genes = len(genes)
-    #    m_mean = df.sum(axis=1) / N_genes
-    #
-    #    df_I_n_i = df[genes_I].sum(axis=1)
-    #    df_n_i = df.sum(axis=1)
-    #
-    #    for index, row in df.iterrows():
-    #        m_mean_j = m_mean[index]
-    #        r_j = (row * (L_mean / L_i)) / m_mean_j
-    #        df.loc[index,:] = r_j
-    #
-    #    df_I = df[genes_I]
-    #    L_I_sum = sum(list(gene_I_lengths.values()))
-    #    for index, row in df_I.iterrows():
-    #        r_j_I = row * ((1 - (L_I_sum / (L_mean * N_genes))) / (1 - ( df_I_n_i[index] / df_n_i[index])))
-    #        df_I.loc[index,:] = r_j_I
-    #    df_I = df_I.fillna(0)
-    #    df_I = df_I.replace([np.inf, -np.inf], 0)
-    #    #df_I = df_I.fillna(1)
-    #    #df_I = df_I.replace([np.inf, -np.inf], 1)
-    #    #df_I.apply(lambda s: s[np.isfinite(s)].dropna())
-    #    df_I.loc[:, (df_I != 0).any(axis=0)]
-    #
-    #    df_I.to_csv(mydir + 'data/ltee/gene_by_pop_m_I.txt', sep = '\t', index = True)
-
-        #df_new_gene_lengths = get_gene_lengths(gene_list = genes_union)
-        #n_genes = len(genes_union)
-        #L_mean = np.mean(list(df_new_gene_lengths.values()))
-        #L_i = np.asarray(list(df_new_gene_lengths.values()))
-        #L_sum = L_i
-        #m_mean = df_new.sum(axis=1) / n_genes
-        #for index, row in df_new.iterrows():
-        #    m_mean_j = m_mean[index]
-        #    m_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
-        #    df_new.loc[index,:] = m_j
-
-        #df_new = df_new.fillna(0)
-        #df_new.loc[:, (df_new != 0).any(axis=0)]
-        #df_new.to_csv(mydir + 'data/ltee/gene_by_pop_m.txt', sep = '\t', index = True)
 
 
 class tenaillon_et_al:
@@ -336,8 +251,8 @@ class mcdonald_et_al:
         df.to_csv(df_out, sep = '\t', index = True)
 
 
-#good_et_al().reformat_convergence_matrix()
-#good_et_al().get_likelihood_matrix()
-#good_et_al().test_get_fixed_muts()
+good_et_al().reformat_convergence_matrix(mut_type = 'P')
+#good_et_al().reformat_convergence_matrix(mut_type = 'F')
+
 #kryazhimskiy_et_al().get_size_dict()
 #mcdonald_et_al().clean_S1()
