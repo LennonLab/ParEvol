@@ -1,1 +1,0 @@
-Iteration	k_max	k_mean	C_mean	C_mean_no1or2	d_mean

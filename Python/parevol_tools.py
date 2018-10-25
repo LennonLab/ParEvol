@@ -6,14 +6,15 @@ import numpy as np
 import  matplotlib.pyplot as plt
 import matplotlib.colors as cls
 import rpy2.robjects as robjects
+from rpy2.robjects.packages import importr
+from rpy2.robjects.vectors import StrVector
+from rpy2.robjects import numpy2ri
+#import rpy2.rinterface
 import clean_data as cd
 #import scipy.spatial.distance as dist
 from scipy.spatial.distance import pdist, squareform
-from scipy.misc import comb
-from scipy.special import binom
-from statsmodels.base.model import GenericLikelihoodModel
-import networkx as nx
-import scipy.stats as stats
+#from scipy.stats import chi2
+from shapely.geometry.polygon import LinearRing
 
 
 #np.random.seed(123456789)
@@ -214,6 +215,7 @@ def get_mean_centroid_distance(array, groups = None, k = 3):
         centroid_distances.append(np.linalg.norm(row-centroids))
     return np.mean(centroid_distances)
 
+
 def get_euclidean_distance(array, k = 3):
     X = array[:,0:k]
     rows = list(range(array.shape[0]))
@@ -267,6 +269,99 @@ def random_matrix(array):
     column_sum = array.sum(axis=0)
     sample = r2dtable(1, robjects.IntVector(row_sum), robjects.IntVector(column_sum))
     return np.asarray(sample[0])
+
+
+#def get_cov_ellipse(cov, center, scale, npoints = 100):
+#    theta = [x * 2 * math.pi/npoints for x in range(npoints) ]
+#    Circle = np.array( [np.cos(theta), np.sin(theta)]  ).T
+#    ## scale, center and cov must be calculated separately
+#    # pivot matrix first
+#    Q = np.linalg.cholesky(cov)
+#    print(Q)
+#    print(cov)
+#    #pivot_table = np.zeros((len(rows), len(cols)), dtype=cov.dtype)
+
+def get_theta_from_cov(C):
+    eVa, eVe = np.linalg.eig(C)
+    var_1 = C[0,0]
+    var_2 = C[1,1]
+    if C[0,1] > 0.0:
+        if abs(round(math.degrees(math.acos(eVe[0,0])), 3)) > 90:
+            theta = (180 - abs(round(math.degrees(math.acos(eVe[0,0])), 3)))
+        else:
+            theta = abs(round(math.degrees(math.acos(eVe[0,0])), 3))
+
+    elif C[0,1] < 0.0:
+        if abs(round(math.degrees(math.acos(eVe[0,0])), 3)) > 90:
+            theta = -(180 - abs(round(math.degrees(math.acos(eVe[0,0])), 3)))
+        else:
+            theta = -abs(round(math.degrees(math.acos(eVe[0,0])), 3))
+    else:
+        theta = 0
+    major_axis_length = 2 * math.sqrt(5.991 * eVa[0])
+    minor_axis_length = 2 * math.sqrt(5.991 * eVa[1])
+    return major_axis_length, minor_axis_length, theta
+
+
+def ellipse_polyline(ellipses, n=100):
+    t = np.linspace(0, 2*np.pi, n, endpoint=False)
+    st = np.sin(t)
+    ct = np.cos(t)
+    result = []
+    for x0, y0, a, b, angle in ellipses:
+        angle = np.deg2rad(angle)
+        sa = np.sin(angle)
+        ca = np.cos(angle)
+        p = np.empty((n, 2))
+        p[:, 0] = x0 + a * ca * ct - b * sa * st
+        p[:, 1] = y0 + a * sa * ct + b * ca * st
+        result.append(p)
+    return result
+
+
+def intersections(a, b):
+    ea = LinearRing(a)
+    eb = LinearRing(b)
+    mp = ea.intersection(eb)
+
+    x = [p.x for p in mp]
+    y = [p.y for p in mp]
+    return x, y
+
+
+def get_ordiellipse(ord, groups, conf = 0.95):
+    # install vegan in R using the following command
+    #install.packages("vegan", "/Users/WRShoemaker/anaconda/envs/ParEvol/lib/R/library")
+    vegan = importr('vegan')
+    numpy2ri.activate()
+    nr,nc = ord.shape
+    ord_r = robjects.r.matrix(ord, nrow=nr, ncol=nc)
+    robjects.r.assign("ord", ord_r)
+    ordiellipse = vegan.ordiellipse(ord_r, robjects.StrVector(groups), kind = 'sd', conf = conf, draw = "none")
+    numpy2ri.deactivate()
+
+    cov1 = np.array(ordiellipse[0][0])
+    center1 = np.array(ordiellipse[0][1])
+    major_length1, minor_length1, theta1 = get_theta_from_cov(cov1)
+    cov2 = np.array(ordiellipse[1][0])
+    center2 = np.array(ordiellipse[1][1])
+    major_length2, minor_length2, theta2 = get_theta_from_cov(cov2)
+    # 2 b/c we're working on 2-D data
+    #t = np.sqrt(chi2.ppf(conf, 2))
+    # format (x0, y0, a, b, angle)
+    ellipses = [(center1[0], center1[1], major_length1, minor_length1, theta1),
+                (center2[0], center2[1], major_length2, minor_length2, theta2)]
+    a, b = ellipse_polyline(ellipses)
+    x, y = intersections(a, b)
+    if len(x) != 0:
+        separate_ellipses = False
+    else:
+        separate_ellipses = True
+
+    return separate_ellipses
+
+
+
 
 
 
@@ -357,194 +452,3 @@ def CI_FIC(results):
     lw = cfs - (1.96*ses)
     up = cfs +(1.96*ses)
     return (lw, up)
-
-
-
-def cluster_BA(N, b0):
-    #N = np.sort(N)
-    return b0 * ((np.log(N) ** 2) / N)
-
-def distance_BA(N, b0):
-    return b0 * (np.log(N) /  np.log( np.log(N) )   )
-
-
-
-
-class clusterBarabasiAlbert(GenericLikelihoodModel):
-    def __init__(self, endog, exog, **kwds):
-        super(clusterBarabasiAlbert, self).__init__(endog, exog, **kwds)
-
-    def nloglikeobs(self, params):
-        b0 = params[0]
-        z = params[1]
-        # probability density function (pdf) is the same as dnorm
-        exog_pred = cluster_BA(self.endog, b0 = b0)
-        # need to flatten the exogenous variable
-        LL = -stats.norm.logpdf(self.exog.flatten(), loc=exog_pred, scale=np.exp(z))
-        return LL
-
-    def fit(self, start_params=None, maxiter=10000, maxfun=5000, method="bfgs", **kwds):
-
-        if start_params is None:
-            b0_start = 1
-            z_start = 0.8
-
-            start_params = np.asarray([b0_start, z_start])
-
-        return super(clusterBarabasiAlbert, self).fit(start_params=start_params,
-                                maxiter=maxiter, method = method, maxfun=maxfun,
-                                **kwds)
-
-
-
-class distanceBarabasiAlbert(GenericLikelihoodModel):
-    def __init__(self, endog, exog, **kwds):
-        super(distanceBarabasiAlbert, self).__init__(endog, exog, **kwds)
-
-    def nloglikeobs(self, params):
-        b0 = params[0]
-        z = params[1]
-        # probability density function (pdf) is the same as dnorm
-        exog_pred = distance_BA(self.endog, b0 = b0)
-        # need to flatten the exogenous variable
-        LL = -stats.norm.logpdf(self.exog.flatten(), loc=exog_pred, scale=np.exp(z))
-        return LL
-
-    def fit(self, start_params=None, maxiter=10000, maxfun=5000, method="bfgs", **kwds):
-
-        if start_params is None:
-            b0_start = 1
-            z_start = 0.8
-
-            start_params = np.asarray([b0_start, z_start])
-
-        return super(distanceBarabasiAlbert, self).fit(start_params=start_params,
-                                maxiter=maxiter, method = method, maxfun=maxfun,
-                                **kwds)
-
-
-def continuum_BA(k, m):
-    # large k limit
-    #return 2 * (m**2) *  (1 / (k**3))
-    # exact equation
-    return (2 * m * (m+1)) / (k * (k+1) * (k+2) )
-
-
-class continuumBarabasiAlbert(GenericLikelihoodModel):
-    def __init__(self, endog, exog, **kwds):
-        super(continuumBarabasiAlbert, self).__init__(endog, exog, **kwds)
-
-    def nloglikeobs(self, params):
-        m = params[0]
-        z = params[1]
-        # probability density function (pdf) is the same as dnorm
-        exog_pred = continuum_BA(self.endog, m = m)
-        # need to flatten the exogenous variable
-        LL = -stats.norm.logpdf(self.exog.flatten(), loc=exog_pred, scale=np.exp(z))
-        return LL
-
-    def fit(self, start_params=None, maxiter=10000, maxfun=5000, method="bfgs", **kwds):
-
-        if start_params is None:
-            m_start = 1
-            z_start = 0.8
-
-            start_params = np.asarray([m_start, z_start])
-
-        return super(continuumBarabasiAlbert, self).fit(start_params=start_params,
-                                maxiter=maxiter, method = method, maxfun=maxfun,
-                                **kwds)
-
-
-
-def get_random_network_probability(df):
-    # df is a numpy matrix or pandas dataframe containing network interactions
-    N = df.shape[0]
-    M = 0
-    k_list = []
-    for index, row in df.iterrows():
-        # != 0 bc there's positive and negative interactions
-        k_row = sum(i != 0 for i in row.values) - 1
-        if k_row > 0:
-            k_list.append(k_row)
-    # run following algorithm to generate random network
-    # (1) Start with N isolated nodes.
-    # (2) Select a node pair and generate a random number between 0 and 1.
-    #     If the number exceeds p, connect the selected node pair with a link,
-    #     otherwise leave them disconnected.
-    # (3) Repeat step (2) for each of the N(N-1)/2 node pairs.
-    M = sum(k_list)
-    p = M / binom(N, 2)
-    matrix = np.ones((N,N))
-    #node_pairs = list(combinations(range(int((N * (N-1)) / 2)), 2))
-    node_pairs = list(combinations(range(N), 2))
-    for node_pair in node_pairs:
-        p_node_pair = random.uniform(0, 1)
-        if p_node_pair > p:
-            continue
-        else:
-            matrix[node_pair[0], node_pair[1]] = 0
-            matrix[node_pair[1], node_pair[0]] = 0
-
-    return matrix
-
-def get_random_network_edges(df):
-    nodes = df.index.tolist()
-    edges = []
-    for i, node_i in enumerate(nodes):
-        for j, node_j in enumerate(nodes):
-            if i < j:
-                edges.append(node_i + '-' + node_j)
-    L = 0
-    for index, row in df.iterrows():
-        #k_row = sum(float(k) != float(0) for k in row.values) - 1
-        k_row = len([i for i in row.values if i != 0]) - 1
-        L += k_row
-
-    new_edges = np.random.choice(np.asarray(edges), size=int(L/2), replace=False)
-    new_edges_split = [x.split('-') for x in new_edges]
-    matrix = pd.DataFrame(0, index= nodes, columns=nodes)
-    for node in nodes:
-        matrix.loc[node, node] = 1
-    for new_edge in new_edges_split:
-        matrix.loc[new_edge[0], new_edge[1]] = 1
-        matrix.loc[new_edge[1], new_edge[0]] = 1
-
-    L_test = 0
-    for index_m, row_m in matrix.iterrows():
-        k_row_m = len([i for i in row_m.values if i != 0]) - 1
-        L_test += k_row_m
-
-    return matrix
-
-
-def networkx_distance(df):
-    def get_edges(nodes):
-        edges = []
-        for i, node_i in enumerate(nodes):
-            for j, node_j in enumerate(nodes):
-                if i < j:
-                    pair_value = df.loc[node_i][node_j]
-                    if pair_value > 0:
-                        edges.append((node_i,node_j))
-        return(edges)
-
-    edges_full = get_edges(df.index.tolist())
-    graph = nx.Graph()
-    graph.add_edges_from(edges_full)
-
-    if nx.is_connected(graph) == True:
-        return(nx.average_shortest_path_length(graph))
-    else:
-        components = [list(x) for x in nx.connected_components(graph)]
-        component_distances = []
-        # return a grand mean if there are seperate graphs
-        for component in components:
-            component_edges = get_edges(component)
-            graph_component = nx.Graph()
-            graph_component.add_edges_from(component_edges)
-            component_distance = nx.average_shortest_path_length(graph_component)
-            component_distances.append(component_distance)
-        return( np.mean(component_distances) )
-
-        #print(components)
