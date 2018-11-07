@@ -32,7 +32,7 @@ def run_pca_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
         df_array = df.as_matrix()
         df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_' + analysis + '.txt', 'w')
-        column_headers = ['Iteration', 'MCD', 'mean_angle', 'delta_L']
+        column_headers = ['Iteration', 'MCD', 'mean_angle', 'mean_dist', 'delta_L']
         df_out.write('\t'.join(column_headers) + '\n')
         for i in range(iter):
             print(i)
@@ -50,8 +50,9 @@ def run_pca_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
                 continue
             mean_angle = pt.get_mean_angle(df_rndm_delta_out, k = k)
             mcd = pt.get_mean_centroid_distance(df_rndm_delta_out, k=k)
-            mean_length = pt.get_euclidean_distance(df_rndm_delta_out, k=k)
-            df_out.write('\t'.join([str(i), str(mcd), str(mean_angle), str(mean_length)]) + '\n')
+            mean_length = pt.get_euc_magnitude_diff(df_rndm_delta_out, k=k)
+            mean_dist = pt.get_mean_pairwise_euc_distance(df_rndm_delta_out, k=k)
+            df_out.write('\t'.join([str(i), str(mcd), str(mean_angle), str(mean_dist), str(mean_length)]) + '\n')
         df_out.close()
 
 
@@ -145,4 +146,5 @@ def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
 
 
 
-get_likelihood_matrices()
+#get_likelihood_matrices()
+#run_pca_permutation()

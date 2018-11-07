@@ -20,7 +20,8 @@ def fig1(k = 3):
 
     mean_angle = pt.get_mean_angle(df_out, k = k)
     mcd = pt.get_mean_centroid_distance(df_out, k=k)
-    mean_length = pt.get_euclidean_distance(df_out, k=k)
+    #mean_length = pt.get_euclidean_distance(df_out, k=k)
+    mean_dist = pt.get_mean_pairwise_euc_distance(df_out, k=k)
 
     fig = plt.figure()
 
@@ -54,21 +55,24 @@ def fig1(k = 3):
     ax2.text(0.366, 0.088, r'$p < 0.05$', fontsize = 10)
 
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
-    delta_L_list = df_null.delta_L.tolist()
+    delta_L_list = df_null.mean_dist.tolist()
     #ax3.hist(delta_L_list, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
     ax3.hist(delta_L_list,bins=30, weights=np.zeros_like(delta_L_list) + 1. / len(delta_L_list), alpha=0.8, color = '#175ac6')
-    ax3.axvline(mean_length, color = 'red', lw = 3)
-    ax3.set_xlabel("Mean pairwise difference \n in magnitudes, " + r'$   \left \langle  \left | \Delta L \right |\right \rangle$', fontsize = 14)
+    ax3.axvline(mean_dist, color = 'red', lw = 3)
+    ax3.set_xlabel("Mean pair-wise \n Euclidean distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
     ax3.set_ylabel("Frequency", fontsize = 16)
 
-    delta_L_list.append(mean_length)
-    relative_position_delta_L = sorted(delta_L_list).index(mean_length) / (len(delta_L_list) -1)
+    delta_L_list.append(mean_dist)
+    relative_position_delta_L = sorted(delta_L_list).index(mean_dist) / (len(delta_L_list) -1)
     if relative_position_delta_L > 0.5:
         p_score_delta_L = 1 - relative_position_delta_L
     else:
         p_score_delta_L = relative_position_delta_L
-    print('mean difference in magnitudes p-score = ' + str(round(p_score_delta_L, 3)))
-    ax3.text(0.078, 0.115, r'$p < 0.05$', fontsize = 10)
+    print('mean difference in distances p-score = ' + str(round(p_score_delta_L, 3)))
+    ax3.text(0.50, 0.09, r'$p < 0.05$', fontsize = 10)
+
+
+
 
     ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
     ax4_values = df_null.mean_angle.values
@@ -370,3 +374,5 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
 
     else:
         print('Dataset argument not accepted')
+
+fig1()

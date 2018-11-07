@@ -56,3 +56,8 @@ plt.tight_layout()
 fig_name = pt.get_path() + '/figs/count_hist.png'
 fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
 plt.close()
+
+
+
+
+#### do the same for tenaillon et al

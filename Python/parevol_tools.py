@@ -216,7 +216,7 @@ def get_mean_centroid_distance(array, groups = None, k = 3):
     return np.mean(centroid_distances)
 
 
-def get_euclidean_distance(array, k = 3):
+def get_euc_magnitude_diff(array, k = 3):
     X = array[:,0:k]
     rows = list(range(array.shape[0]))
     angle_pairs = []
@@ -229,6 +229,22 @@ def get_euclidean_distance(array, k = 3):
                 angle_pairs.append( abs(np.linalg.norm(row_i) - np.linalg.norm(row_j)) )
 
     return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
+
+
+
+def get_mean_pairwise_euc_distance(array, k = 3):
+    X = array[:,0:k]
+    rows = list(range(array.shape[0]))
+    angle_pairs = []
+    for i in rows:
+        for j in rows:
+            if i < j:
+                row_i = X[i,:]
+                row_j = X[j,:]
+                angle_pairs.append( abs(np.linalg.norm(row_i - row_j)) )
+
+    return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
+
 
 
 
