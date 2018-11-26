@@ -251,9 +251,6 @@ def fig3(alpha = 0.05, k = 5):
 
 
 
-
-
-
 def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
     if dataset == 'tenaillon':
         df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
@@ -315,7 +312,7 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
         mcds = []
         for tp in time_points_set:
             df_rndm_delta_out_tp = df_rndm_delta_out[df_rndm_delta_out.index.str.contains('_' + str(tp))]
-            mcds.append(pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=3))
+            mcds.append(pt.get_mean_pairwise_euc_distance(df_rndm_delta_out_tp.as_matrix(), k=3))
 
         mcd_perm_path = pt.get_path() + '/data/Good_et_al/permute_' + analysis + '.txt'
         mcd_perm = pd.read_csv(mcd_perm_path, sep = '\t', header = 'infer', index_col = 0)
@@ -328,7 +325,7 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
         upper_z_ci = []
         for x in mcd_perm_x:
             mcd_perm_y = mcd_perm.loc[mcd_perm['Generation'] == x]
-            mcd_perm_y_sort = np.sort(mcd_perm_y.MCD.tolist())
+            mcd_perm_y_sort = np.sort(mcd_perm_y.mean_dist.tolist())
             mean_mcd_perm_y = np.mean(mcd_perm_y_sort)
             std_mcd_perm_y = np.std(mcd_perm_y_sort)
             mean_mcds.append(mean_mcd_perm_y)
@@ -350,7 +347,9 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
             edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
 
         #plt.xlabel("Time (generations)", fontsize = 16)
-        plt.ylabel("Mean \n centroid distance", fontsize = 14)
+        #plt.ylabel("Mean \n Euclidean distance", fontsize = 14)
+        plt.ylabel("Mean pair-wise \n Euclidean \n distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
+
 
         plt.figure(1)
         plt.subplot(212)
@@ -366,7 +365,9 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
         #plt.axhline(-1, color = 'dimgrey', lw = 2, ls = '--')
         #plt.axhline(-2, color = 'dimgrey', lw = 2, ls = ':')
         plt.xlabel("Time (generations)", fontsize = 16)
-        plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
+
+        plt.ylabel("Standardized mean \n pair-wise Euclidean \n distance, " + r'$   z_{\left \langle   d \right  \rangle}$', fontsize = 14)
+        #plt.ylabel("Standardized mean \n Euclidean distance", fontsize = 14)
 
         fig.tight_layout()
         fig.savefig(pt.get_path() + '/figs/permutation_scatter_good.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
@@ -375,4 +376,8 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
     else:
         print('Dataset argument not accepted')
 
-fig1()
+
+#def mean_euc_dist_fig():
+plot_permutation(dataset='good')
+
+#fig1()
