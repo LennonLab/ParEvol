@@ -130,9 +130,9 @@ run_simulation(n_genes=n_genes,
                iter=iter)
 
 
-n_pops_array3 <-  c(50)
-n_muts_array3 <- seq(4, 50, by=2)
-file_name3 <- "rda_muts_pop50_overlap"
+n_pops_array4 <-  c(50)
+n_muts_array4 <- seq(4, 50, by=2)
+file_name4 <- "rda_muts_pop50_overlap"
 run_simulation(n_genes=n_genes, 
                n_muts_array=n_muts_array4, 
                n_pops_array=n_pops_array4,

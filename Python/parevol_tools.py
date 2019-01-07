@@ -13,6 +13,7 @@ from rpy2.robjects import numpy2ri
 import clean_data as cd
 #import scipy.spatial.distance as dist
 from scipy.spatial.distance import pdist, squareform
+from scipy.special import comb
 #from scipy.stats import chi2
 from shapely.geometry.polygon import LinearRing
 
@@ -58,27 +59,26 @@ def hamming2(s1, s2):
     assert len(s1) == len(s2)
     return sum(c1 != c2 for c1, c2 in zip(s1, s2))
 
-#def get_multiplicity_dist(m):
 
-def comb_n_muts_k_genes(n, gene_sizes):
-    #n = 7
-    #gene_sizes = [2, 3, 4]
-    k = len(gene_sizes)
-    def findsubsets(S,m):
-        return set(itertools.combinations(S, m))
-    B = []
-    for count in range(0, len(gene_sizes) + 1):
-        for subset in findsubsets(set(gene_sizes), count):
-            B.append(list(subset))
-    number_ways = 0
-    for S in B:
-        n_S = n + k - 1 - (sum(S) + (1 * len(S) ) )
-        if n_S < (k-1):
-            continue
 
-        number_ways +=  ((-1) ** len(S)) * comb(N = n_S, k = k-1)
-    return number_ways
+def comb_n_muts_k_genes(k, gene_sizes):
+    G = len(gene_sizes)
+    gene_sizes = list(gene_sizes)
+    number_states = 0
+    for i in range(0, len(gene_sizes) + 1):
+        comb_sum = 0
+        for j in list(itertools.combinations(gene_sizes, i)):
+            if (len(j) > 0): #and (len(j) < G):
+                s_i_j = sum( j ) + (len(j)*1)
+            else:
+                s_i_j = sum( j )
 
+            comb_s_i_j = comb(N = G+k-1-s_i_j, k = G-1)
+            comb_sum += comb_s_i_j
+
+        number_states += ((-1) ** i) * comb_sum
+
+    return number_states
 
 
 
@@ -266,6 +266,28 @@ def get_mean_angle(array, k = 3):
     return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
 
 
+def get_x_stat(e_values):
+
+    def get_n_prime(e_values):
+        # moments estimator from Patterson et al 2006
+        m = len(e_values) + 1
+        sq_sum_ev = sum(e_values) ** 2
+        sum_sq_ev = sum( e **2 for e in  e_values )
+        return ((m+1) * sq_sum_ev) /  (( (m-1)  * sum_sq_ev ) -  sq_sum_ev )
+
+    def get_mu(m, n):
+        return ((np.sqrt(n-1) + np.sqrt(m)) ** 2) / n
+
+    def get_sigma(m, n):
+        return ((np.sqrt(n-1) + np.sqrt(m)) / n) * np.cbrt((1/np.sqrt(n-1)) + (1/np.sqrt(m)))
+
+    def get_l(e_values):
+        return (len(e_values) * max(e_values)) / sum(e_values)
+
+    n = get_n_prime(e_values)
+    m = len(e_values) + 1
+
+    return (get_l(e_values) - get_mu(m, n)) / get_sigma(m, n)
 
 
 

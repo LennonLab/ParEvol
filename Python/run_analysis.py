@@ -32,7 +32,7 @@ def run_pca_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
         df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
         df_array = df.as_matrix()
         df_out = open(pt.get_path() + '/data/Tenaillon_et_al/permute_' + analysis + '.txt', 'w')
-        column_headers = ['Iteration', 'MCD', 'mean_angle', 'mean_dist', 'delta_L']
+        column_headers = ['Iteration', 'MCD', 'mean_angle', 'mean_dist', 'delta_L', 'x_stat']
         df_out.write('\t'.join(column_headers) + '\n')
         for i in range(iter):
             print(i)
@@ -43,16 +43,12 @@ def run_pca_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
                 pca = PCA()
                 df_rndm_delta_out = pca.fit_transform(X)
                 #df_pca = pd.DataFrame(data=X_pca, index=df.index)
-            elif analysis == 'cMDS':
-                df_rndm_delta_bc = np.sqrt(pt.get_bray_curtis(df_rndm_delta.as_matrix()))
-                df_rndm_delta_out = pt.cmdscale(df_rndm_delta_bc)[0]
-            else:
-                continue
             mean_angle = pt.get_mean_angle(df_rndm_delta_out, k = k)
             mcd = pt.get_mean_centroid_distance(df_rndm_delta_out, k=k)
             mean_length = pt.get_euc_magnitude_diff(df_rndm_delta_out, k=k)
             mean_dist = pt.get_mean_pairwise_euc_distance(df_rndm_delta_out, k=k)
-            df_out.write('\t'.join([str(i), str(mcd), str(mean_angle), str(mean_dist), str(mean_length)]) + '\n')
+            x_stat = pt.get_x_stat(pca.explained_variance_[:-1])
+            df_out.write('\t'.join([str(i), str(mcd), str(mean_angle), str(mean_dist), str(mean_length), str(x_stat)]) + '\n')
         df_out.close()
 
 
@@ -147,6 +143,6 @@ def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
     df_out.close()
 
 
-
+#run_pca_permutation()
 #get_likelihood_matrices()
-#run_pca_permutation(dataset='good', iter =10000)
+#run_pca_permutation(dataset='tenaillon', iter =10000)
