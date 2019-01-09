@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 from matplotlib import cm, rc_context
 import matplotlib.patches as mpatches
 from scipy.special import comb
+from scipy import stats
+
 from sklearn.decomposition import PCA
 
 
@@ -414,6 +416,9 @@ def hist_tenaillon(k = 3):
     ax4_values = ax4_values[np.logical_not(np.isnan(ax4_values))]
     #ax4.hist(ax4_values, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
     ax4.hist(ax4_values, bins=30, weights=np.zeros_like(ax4_values) + 1. / len(ax4_values), alpha=0.8, color = '#175ac6')
+    print(np.mean(ax4_values))
+    print(stats.mode(ax4_values))
+
     ax4.axvline(x_stat, color = 'red', lw = 3)
     ax4.set_xlabel(r'$F_{1}$', fontsize = 14)
     ax4.set_ylabel("Frequency", fontsize = 16)
@@ -717,4 +722,5 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
 #def mean_euc_dist_fig():
 #plot_permutation(dataset='good')
 
-fig1()
+#fig1()
+hist_tenaillon()

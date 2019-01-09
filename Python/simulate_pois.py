@@ -92,16 +92,16 @@ def get_block_cov(n_genes, var=1, pos_cov = 0.9, neg_cov= -0.9):
 
 
 def run_block_cov_sims():
-    df_out=open(pt.get_path() + '/data/simulations/cov_block_euc.txt', 'w')
+    df_out=open(pt.get_path() + '/data/simulations/cov_block_euc_pos_only.txt', 'w')
     n_pops=20
     n_genes=50
     lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
     df_out.write('\t'.join(['Cov', 'Iteration', 'z_score']) + '\n')
-    covs = [0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9]
+    #covs = [0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9]
+    covs = [0.9]
     for cov in covs:
-        C = get_block_cov(n_genes, pos_cov = cov, neg_cov = -1*cov)
-        for i in range(1000):
-            print(str(cov) , ' ', str(i))
+        C = get_block_cov(n_genes, pos_cov = cov, neg_cov = cov)
+        for i in range(100):
             test_cov = np.stack( [get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
             X = pt.hellinger_transform(test_cov)
             pca = PCA()
@@ -113,6 +113,7 @@ def run_block_cov_sims():
                 pca_fit_j = pca.fit_transform(X_j)
                 sim_eucs.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
             z_score = (euc_dist - np.mean(sim_eucs)) / np.std(sim_eucs)
+            print(str(cov) , ' ', str(i), ' ', str(z_score))
             df_out.write('\t'.join([str(cov), str(i), str(z_score)]) + '\n')
 
     df_out.close()
@@ -126,7 +127,7 @@ def run_all_sims():
     covs = [0.5, 0, -0.5]
     df_out.write('\t'.join(['Covariance', 'Iteration', 'z_score']) + '\n')
     for cov in covs:
-        for i in range(1000):
+        for i in range(100):
             print(str(cov) + ' '  + str(i))
             test_cov = np.stack( [get_count_pop(lambda_genes, cov= cov) for x in range(n_pops)] , axis=0 )
             X = pt.hellinger_transform(test_cov)
@@ -149,7 +150,7 @@ def run_all_sims():
 
 
 def get_fig():
-    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_block_euc.txt', sep='\t')
+    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_block_euc_pos_only.txt', sep='\t')
     x = df.Cov.values
     y = df.z_score.values
 
@@ -171,5 +172,5 @@ def get_fig():
     plt.close()
 
 
-#run_block_cov_sims()
-get_fig()
+run_block_cov_sims()
+#get_fig()
