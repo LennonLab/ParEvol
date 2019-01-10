@@ -9,10 +9,10 @@ import matplotlib.pyplot as plt
 # generate maximally correlated networks with a predefined degree sequence
 def get_correlated_rndm_ntwrk(assortative = True):
     assort_ = []
-    graph = nx.barabasi_albert_graph(100, 5)
+    graph = nx.barabasi_albert_graph(10, 5)
     graph_np = nx.to_numpy_matrix(graph)
     np.savetxt(pt.get_path() + '/data/disassoc_network_n0.txt', graph_np.astype(int), delimiter="\t")
-    iter = 500
+    iter = 100
     count = 0
     while count < iter:
         def get_two_edges(graph_array):

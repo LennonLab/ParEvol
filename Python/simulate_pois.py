@@ -6,6 +6,7 @@ import scipy.stats as stats
 import parevol_tools as pt
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+import networkx as nx
 
 def get_ring_cov_matrix(n_rows, cov, var = 1):
     row_list = []
@@ -51,6 +52,35 @@ def get_line_cov_matrix(n_rows, cov, var=1,alternate_cov_sign=False):
         row_list.append(list_i)
     print(row_list)
     return np.asarray(row_list)
+
+def get_network_cov(cov = 0.3, var = 1):
+    #df = pd.read_csv(pt.get_path() + '/data/disassoc_network_eq.txt', sep='\t',  header=None)
+    #df = df.astype(int)
+    ntwrk = np.loadtxt(pt.get_path() + '/data/disassoc_network_eq.txt', delimiter='\t')#, dtype='int')
+    ntwrk = ntwrk * cov
+    np.fill_diagonal(ntwrk, var)
+    #print(ntwrk)
+    #print(np.linalg.eigvals(ntwrk))
+    #print(np.all(np.linalg.eigvals(ntwrk) > 0))
+    #np.set_printoptions(threshold=np.nan)
+
+    #print(ntwrk)
+
+    # Gershgorin circle theorem sets limit on covariance
+    # https://math.stackexchange.com/questions/2378428/how-to-create-a-positive-definite-covariance-matrix-from-an-adjacency-matrix
+    graph = nx.barabasi_albert_graph(5, 2)
+    graph_np = nx.to_numpy_matrix(graph)
+    print( np.sum(graph_np, axis=1)  )
+    graph_np = graph_np * 0.49
+    np.fill_diagonal(graph_np, 1)
+    print(graph_np)
+    print(np.linalg.eigvals(graph_np))
+    print(np.all(np.linalg.eigvals(graph_np) > 0))
+
+    #C_block = get_block_cov(100, var=1, pos_cov = 0.2, neg_cov = 0.2)
+    #print(C_block)
+    #print(np.linalg.eigvals(C_block))
+    #print(np.all(np.linalg.eigvals(C_block) > 0))
 
 
 def get_pois_sample(lambda_, u):
@@ -172,5 +202,7 @@ def get_fig():
     plt.close()
 
 
-run_block_cov_sims()
+#run_block_cov_sims()
 #get_fig()
+
+get_network_cov()
