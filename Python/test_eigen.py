@@ -21,19 +21,13 @@ df_out = pca.fit_transform(X)
 #    print(np.dot(eigenvector.T, np.dot(cov_matrix, eigenvector)))
 #    print(eigenvalue)
 
-def get_n_prime(e_values):
-    # moments estimator from Patterson et al 2006
-    m = len(e_values) + 1
-    sq_sum_ev = sum(e_values) ** 2
-    sum_sq_ev = sum( e **2 for e in  e_values )
-    return ((m+1) * sq_sum_ev) /  (( (m-1)  * sum_sq_ev ) -  sq_sum_ev )
-
 
 
 def get_x_stat(e_values):
 
     def get_n_prime(e_values):
         # moments estimator from Patterson et al 2006
+        # equation 10
         m = len(e_values) + 1
         sq_sum_ev = sum(e_values) ** 2
         sum_sq_ev = sum( e **2 for e in  e_values )
@@ -56,6 +50,6 @@ def get_x_stat(e_values):
 
 
 e_values = pca.explained_variance_[:-1]
-
+print(e_values)
 print(get_x_stat(e_values))
 #print( get_n_prime(e_values) )

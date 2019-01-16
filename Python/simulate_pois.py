@@ -8,22 +8,6 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 import networkx as nx
 
-def get_ring_cov_matrix(n_rows, cov, var = 1):
-    row_list = []
-    for i in range(n_rows):
-        list_i = [0] * n_rows
-        list_i[i] = var
-        if i == 0:
-            list_i[i+1] = cov
-            list_i[n_rows-1] = cov
-        elif 0 < i < (n_rows-1):
-            list_i[i-1] = cov
-            list_i[i+1] = cov
-        else:
-            list_i[0] = cov
-            list_i[i-1] = cov
-        row_list.append(list_i)
-    return np.asarray(row_list)
 
 
 def get_line_cov_matrix(n_rows, cov, var=1,alternate_cov_sign=False):
@@ -53,34 +37,33 @@ def get_line_cov_matrix(n_rows, cov, var=1,alternate_cov_sign=False):
     print(row_list)
     return np.asarray(row_list)
 
-def get_network_cov(cov = 0.3, var = 1):
+def get_network_cov(cov = 1/9, var = 1):
     #df = pd.read_csv(pt.get_path() + '/data/disassoc_network_eq.txt', sep='\t',  header=None)
     #df = df.astype(int)
     ntwrk = np.loadtxt(pt.get_path() + '/data/disassoc_network_eq.txt', delimiter='\t')#, dtype='int')
+    #print(np.mean(np.sum(ntwrk, axis =1)))
     ntwrk = ntwrk * cov
     np.fill_diagonal(ntwrk, var)
-    #print(ntwrk)
-    #print(np.linalg.eigvals(ntwrk))
-    #print(np.all(np.linalg.eigvals(ntwrk) > 0))
-    #np.set_printoptions(threshold=np.nan)
-
-    #print(ntwrk)
 
     # Gershgorin circle theorem sets limit on covariance
     # https://math.stackexchange.com/questions/2378428/how-to-create-a-positive-definite-covariance-matrix-from-an-adjacency-matrix
-    graph = nx.barabasi_albert_graph(5, 2)
+    graph = nx.barabasi_albert_graph(50, 5)
     graph_np = nx.to_numpy_matrix(graph)
-    print( np.sum(graph_np, axis=1)  )
-    graph_np = graph_np * 0.49
-    np.fill_diagonal(graph_np, 1)
-    print(graph_np)
-    print(np.linalg.eigvals(graph_np))
-    print(np.all(np.linalg.eigvals(graph_np) > 0))
+    #print(np.sum(graph_np, axis =1))
 
-    #C_block = get_block_cov(100, var=1, pos_cov = 0.2, neg_cov = 0.2)
-    #print(C_block)
-    #print(np.linalg.eigvals(C_block))
-    #print(np.all(np.linalg.eigvals(C_block) > 0))
+    graph_np = graph_np * cov
+    np.fill_diagonal(graph_np, 1)
+
+    #print(np.linalg.eigvals(graph_np))
+    #print(np.all(np.linalg.eigvals(graph_np) > 0))
+    #graph_np = graph_np * 0.49
+    #np.fill_diagonal(graph_np, 1)
+
+    #print(ntwrk)
+    print(np.linalg.eigvals(ntwrk))
+    print(np.all(np.linalg.eigvals(ntwrk) > 0))
+
+
 
 
 def get_pois_sample(lambda_, u):
@@ -96,7 +79,6 @@ def get_pois_sample(lambda_, u):
 
 
 def get_count_pop(lambdas, cov):
-    #C = get_line_cov_matrix(len(lambdas), cov, alternate_cov_sign=False)
     C =cov
     mult_norm = np.random.multivariate_normal(np.asarray([0]* len(lambdas)), C)#, tol=1e-6)
     mult_norm_cdf = stats.norm.cdf(mult_norm)
@@ -128,9 +110,11 @@ def run_block_cov_sims():
     lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
     df_out.write('\t'.join(['Cov', 'Iteration', 'z_score']) + '\n')
     #covs = [0.1, 0.3, 0.4, 0.5, 0.6, 0.7, 0.9]
-    covs = [0.9]
+    covs = [-0.9]
     for cov in covs:
         C = get_block_cov(n_genes, pos_cov = cov, neg_cov = cov)
+        print(np.all(np.linalg.eigvals(C) > 0))
+        print(C)
         for i in range(100):
             test_cov = np.stack( [get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
             X = pt.hellinger_transform(test_cov)
@@ -147,6 +131,82 @@ def run_block_cov_sims():
             df_out.write('\t'.join([str(cov), str(i), str(z_score)]) + '\n')
 
     df_out.close()
+
+
+def run_ntwrk_cov_sims(var = 1, cov = 0.25):
+    df_out=open(pt.get_path() + '/data/simulations/cov_ntwrk_euc_pos_only_010.txt', 'w')
+    n_pops=20
+    n_genes=250
+    lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
+    df_out.write('\t'.join(['Cov', 'Iteration', 'z_score']) + '\n')
+    C = np.loadtxt(pt.get_path() + '/data/modular_ntwrk_mu_010.txt', delimiter='\t')#, dtype='int')
+    #print(np.mean(np.sum(ntwrk, axis =1)))
+    C = C * cov
+    np.fill_diagonal(C, var)
+    for i in range(100):
+        test_cov = np.stack( [get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
+        X = pt.hellinger_transform(test_cov)
+        pca = PCA()
+        pca_fit = pca.fit_transform(X)
+        euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
+        sim_eucs = []
+        for j in range(1000):
+            X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
+            pca_fit_j = pca.fit_transform(X_j)
+            sim_eucs.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
+        z_score = (euc_dist - np.mean(sim_eucs)) / np.std(sim_eucs)
+        print(str(cov) , ' ', str(i), ' ', str(z_score))
+        df_out.write('\t'.join([str(cov), str(i), str(z_score)]) + '\n')
+
+    df_out.close()
+
+
+def run_ba_ntwk_cov_sims():
+    df_out=open(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', 'w')
+    n_pops=100
+    n_genes=50
+    ntwk = nx.barabasi_albert_graph(n_genes, 2)
+    ntwk_np = nx.to_numpy_matrix(ntwk)
+    lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
+    df_out.write('\t'.join(['Cov', 'Iteration', 'euc_z_score', 'euc_percent', 'eig_percent']) + '\n')
+    covs = [0.05, 0.1, 0.15, 0.2]
+    #covs = [0.2, 0.7]
+    for cov in covs:
+        C = ntwk_np * cov
+        np.fill_diagonal(C, 1)
+        z_scores = []
+        eig_percents = []
+        euc_percents = []
+        for i in range(100):
+            test_cov = np.stack( [get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
+            X = pt.hellinger_transform(test_cov)
+            pca = PCA()
+            pca_fit = pca.fit_transform(X)
+            euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
+            euc_dists = []
+            eig = pt.get_x_stat(pca.explained_variance_[:-1])
+            eigs = []
+            for j in range(1000):
+                X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
+                #pca_j = PCA()
+                #pca_fit_j = pca_j.fit_transform(X_j)
+                pca_fit_j = pca.fit_transform(X_j)
+                euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
+                eigs.append( pt.get_x_stat(pca.explained_variance_[:-1]) )
+                #eigs.append( pt.get_x_stat(pca_j.explained_variance_[:-1]) )
+            z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
+            euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
+            eig_percent = len( [k for k in eigs if k < eig] ) / len(eigs)
+            eig_percents.append(eig_percent)
+            euc_percents.append(euc_percent)
+            z_scores.append(z_score)
+            print(cov, i, z_score, euc_percent, eig_percent)
+            df_out.write('\t'.join([str(cov), str(i), str(z_score), str(euc_percent), str(eig_percent)]) + '\n')
+
+        #print(cov, np.all(np.linalg.eigvals(C) > 0), np.mean(z_scores))
+
+    df_out.close()
+
 
 
 def run_all_sims():
@@ -180,9 +240,10 @@ def run_all_sims():
 
 
 def get_fig():
-    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_block_euc_pos_only.txt', sep='\t')
+    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
     x = df.Cov.values
-    y = df.z_score.values
+    y = df.E_value.values
+    #print(np.mean(y))
 
     fig = plt.figure()
     slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
@@ -197,12 +258,20 @@ def get_fig():
     plt.ylabel('Z-score')
 
     plt.tight_layout()
-    fig_name = pt.get_path() + '/figs/z_score_block_regress.png'
+    fig_name = pt.get_path() + '/figs/cov_ba_ntwrk_ev.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
 
-#run_block_cov_sims()
+#run_ntwrk_cov_sims()
 #get_fig()
+#df1 = pd.read_csv(pt.get_path() + '/data/simulations/cov_ntwrk_euc_pos_only_025.txt', sep='\t')
+#print(np.mean(df1.z_score.values))
+#df2 = pd.read_csv(pt.get_path() + '/data/simulations/cov_ntwrk_euc_pos_only_015.txt', sep='\t')
+#print(np.mean(df2.z_score.values))
+#df3 = pd.read_csv(pt.get_path() + '/data/simulations/cov_ntwrk_euc_pos_only_010.txt', sep='\t')
+#print(np.mean(df3.z_score.values))
+#run_block_cov_sims()
 
-get_network_cov()
+
+run_ba_ntwk_cov_sims()

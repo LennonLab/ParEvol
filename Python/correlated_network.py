@@ -7,14 +7,21 @@ import matplotlib.pyplot as plt
 
 #  Xalvi-Brunet and Sokolov
 # generate maximally correlated networks with a predefined degree sequence
-def get_correlated_rndm_ntwrk(assortative = True):
+def get_correlated_rndm_ntwrk(assortative = True, rho=0.5):
+    if assortative == True:
+        rho = abs(rho)
+    else:
+        rho = abs(rho) * -1
     assort_ = []
-    graph = nx.barabasi_albert_graph(10, 5)
+    graph = nx.barabasi_albert_graph(50, 5)
     graph_np = nx.to_numpy_matrix(graph)
     np.savetxt(pt.get_path() + '/data/disassoc_network_n0.txt', graph_np.astype(int), delimiter="\t")
-    iter = 100
+    #iter = 100
     count = 0
-    while count < iter:
+    current_rho = 0
+    #while count < iter:
+    rejected_counts = 0
+    while abs(current_rho) < abs(rho):
         def get_two_edges(graph_array):
             #d = nx.to_dict_of_dicts(graph_array, edge_data=1)
             d = nx.to_dict_of_dicts(nx.from_numpy_matrix(graph_array), edge_data=1)
@@ -41,8 +48,6 @@ def get_correlated_rndm_ntwrk(assortative = True):
             return node_edge_counts
 
         edges = get_two_edges(graph_np)
-        #edges_copy = edges.copy()
-        #edges_copy.sort(key=operator.itemgetter(1))
         graph_np_sums = np.sum(graph_np, axis=1)
         #if edges == edges_copy:
         #    continue
@@ -55,7 +60,6 @@ def get_correlated_rndm_ntwrk(assortative = True):
 
         disc = (edges[0][1] - edges[2][1]) * \
                 (edges[3][1] - edges[1][1])
-
         if (assortative == True and disc > 0) or (assortative == False and disc < 0):
             graph_np[edges[0][0],edges[1][0]] = 0
             graph_np[edges[1][0],edges[0][0]] = 0
@@ -69,7 +73,13 @@ def get_correlated_rndm_ntwrk(assortative = True):
 
             assort_.append(nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np)))
             count += 1
-            print(count, disc, nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np)))
+            current_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+
+            print(current_rho, rejected_counts)
+
+        else:
+            rejected_counts += 1
+            #print(count, disc, nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np)))
 
     graph_np.astype(int)
     if assortative == True:
@@ -78,26 +88,34 @@ def get_correlated_rndm_ntwrk(assortative = True):
         txt_name = 'disassoc_network_eq'
     np.savetxt(pt.get_path() + '/data/'+txt_name+'.txt', graph_np.astype(int), delimiter="\t")
 
-    fig = plt.figure()
-    plt.scatter(list(range(iter)), assort_, c='#175ac6', marker = 'o', s = 70, \
-        edgecolors='#244162', linewidth = 0.6, alpha = 0.5)#, edgecolors='none')
-    plt.xlabel ('Iteration', fontsize=18)
-    plt.ylabel ('Degree of network (Dis)assortativity, ' + r'$r$', fontsize=14)
-    plt.title('Xulvi-Brunet - Sokolov algorithm, ' + r'$p=1$', fontsize=14)
-    fig.tight_layout()
-    if assortative == True:
-        file_name = 'test_cor_net_a'
-    else:
-        file_name = 'test_cor_net_d'
-    fig.savefig(pt.get_path() + '/figs/' + file_name + '.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
 
+def modular_ntwrk():
+    G_025 = nx.algorithms.community.LFR_benchmark_graph(n=250, tau1 = 3, tau2 = 1.5, mu = 0.25, average_degree=5, min_community=20, seed=10)
+    np.savetxt(pt.get_path() + '/data/modular_ntwrk_mu_025.txt', nx.to_numpy_matrix(G_025), delimiter="\t")
 
-get_correlated_rndm_ntwrk(assortative = True)
-get_correlated_rndm_ntwrk(assortative = False)
+    G_015 = nx.algorithms.community.LFR_benchmark_graph(n=250, tau1 = 3, tau2 = 1.5, mu = 0.15, average_degree=5, min_community=20, seed=10)
+    np.savetxt(pt.get_path() + '/data/modular_ntwrk_mu_015.txt', nx.to_numpy_matrix(G_015), delimiter="\t")
 
-#eq_ = np.loadtxt(pt.get_path() + '/data/disassoc_network_eq.txt', dtype='float', delimiter='\t')
-#n0_ = np.loadtxt(pt.get_path() + '/data/disassoc_network_n0.txt', dtype='float', delimiter='\t')
+    G_010 = nx.algorithms.community.LFR_benchmark_graph(n=250, tau1 = 3, tau2 = 1.5, mu = 0.01, average_degree=5, min_community=20, seed=10)
+    np.savetxt(pt.get_path() + '/data/modular_ntwrk_mu_010.txt', nx.to_numpy_matrix(G_010), delimiter="\t")
+    communities = {frozenset(G_010.nodes[v]['community']) for v in G_010}
+    #print(communities)
 
-#print(sum(np.sum(eq_, axis=1)))
-#print(sum(np.sum(n0_, axis=1)))
+    #nx.draw(G_025)
+    #plt.savefig(pt.get_path() + '/figs/modular_ntwrk_025.png', format="PNG")
+    #nx.draw(G_015)
+    #plt.savefig(pt.get_path() + '/figs/modular_ntwrk_015.png', format="PNG")
+    #nx.draw(G_010)
+    #plt.savefig(pt.get_path() + '/figs/modular_ntwrk_010.png', format="PNG")
+
+#modular_ntwrk()
+
+#get_correlated_rndm_ntwrk(assortative = True)
+#get_correlated_rndm_ntwrk(assortative = False, rho = -0.7)
+
+ntwrk = np.loadtxt(pt.get_path() + '/data/modular_ntwrk_mu_010.txt', delimiter='\t')#, dtype='int')
+cov=0.05
+var=1
+ntwrk = ntwrk * cov
+np.fill_diagonal(ntwrk, var)
+print(np.all(np.linalg.eigvals(ntwrk) > 0))

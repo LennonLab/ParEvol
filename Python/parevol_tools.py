@@ -13,6 +13,7 @@ from rpy2.robjects import numpy2ri
 import clean_data as cd
 #import scipy.spatial.distance as dist
 from scipy.spatial.distance import pdist, squareform
+from sklearn.metrics.pairwise import euclidean_distances
 from scipy.special import comb
 #from scipy.stats import chi2
 from shapely.geometry.polygon import LinearRing
@@ -58,7 +59,6 @@ def hamming2(s1, s2):
     """Calculate the Hamming distance between two bit strings"""
     assert len(s1) == len(s2)
     return sum(c1 != c2 for c1, c2 in zip(s1, s2))
-
 
 
 def comb_n_muts_k_genes(k, gene_sizes):
@@ -232,20 +232,23 @@ def get_euc_magnitude_diff(array, k = 3):
 
 
 
+#def get_mean_pairwise_euc_distance(array, k = 3):
+#    X = array[:,0:k]
+#    rows = list(range(array.shape[0]))
+#    angle_pairs = []
+#    for i in rows:
+#        for j in rows:
+#            if i < j:
+#                row_i = X[i,:]
+#                row_j = X[j,:]
+#                angle_pairs.append( abs(np.linalg.norm(row_i - row_j)) )
+#
+#    return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
+
 def get_mean_pairwise_euc_distance(array, k = 3):
     X = array[:,0:k]
-    rows = list(range(array.shape[0]))
-    angle_pairs = []
-    for i in rows:
-        for j in rows:
-            if i < j:
-                row_i = X[i,:]
-                row_j = X[j,:]
-                angle_pairs.append( abs(np.linalg.norm(row_i - row_j)) )
-
-    return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
-
-
+    row_sum = np.sum( euclidean_distances(X, X), axis =1)
+    return sum(row_sum) / ( len(row_sum) * (len(row_sum) -1)  )
 
 
 def get_mean_angle(array, k = 3):
@@ -398,6 +401,31 @@ def get_ordiellipse(ord, groups, conf = 0.95):
 
     return separate_ellipses
 
+
+
+def get_x_stat(e_values):
+
+    def get_n_prime(e_values):
+        # moments estimator from Patterson et al 2006
+        # equation 10
+        m = len(e_values) + 1
+        sq_sum_ev = sum(e_values) ** 2
+        sum_sq_ev = sum( e **2 for e in  e_values )
+        return ((m+1) * sq_sum_ev) /  (( (m-1)  * sum_sq_ev ) -  sq_sum_ev )
+
+    def get_mu(m, n):
+        return ((np.sqrt(n-1) + np.sqrt(m)) ** 2) / n
+
+    def get_sigma(m, n):
+        return ((np.sqrt(n-1) + np.sqrt(m)) / n) * np.cbrt((1/np.sqrt(n-1)) + (1/np.sqrt(m)))
+
+    def get_l(e_values):
+        return (len(e_values) * max(e_values)) / sum(e_values)
+
+    n = get_n_prime(e_values)
+    m = len(e_values) + 1
+
+    return (get_l(e_values) - get_mu(m, n)) / get_sigma(m, n)
 
 
 

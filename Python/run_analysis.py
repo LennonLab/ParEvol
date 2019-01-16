@@ -1,5 +1,6 @@
 from __future__ import division
 import os, re
+from random import shuffle
 from collections import Counter
 import numpy as np
 import pandas as pd
@@ -142,6 +143,38 @@ def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
 
     df_out.close()
 
+
+def two_treats_sim(iter1 = 1, iter2 = 100):
+    genes = 10
+    pops1 = pops2 =  10
+    shape = 1
+    scale = 1
+    muts1 = muts2 = 10
+    to_reshuffle = 5
+    rates = np.random.gamma(shape, scale=scale, size=genes)
+    rates1 = rates.copy()
+    # permute rates
+    shuffle(rates[:to_reshuffle])
+    rates2 = rates.copy()
+    list_dicts1 = [Counter(np.random.choice(genes, size = muts1, replace = True, p = rates1 / sum(rates1))) for i in range(pops1) ]
+    list_dicts2 = [Counter(np.random.choice(genes, size = muts2, replace = True, p = rates2 / sum(rates2))) for i in range(pops2) ]
+    df1 = pd.DataFrame(list_dicts1)
+    df2 = pd.DataFrame(list_dicts2)
+    df = pd.concat([df1, df2])
+    df = df.fillna(0)
+
+    print(df.values)
+    print(pt.random_matrix(df.values))
+
+    # write function to get w/in vs beween euc distances
+
+    #for i in range(iter1):
+    #    for j in range(iter2):
+
+
+
+
+two_treats_sim()
 
 #run_pca_permutation()
 #get_likelihood_matrices()
