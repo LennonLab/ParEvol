@@ -6,17 +6,11 @@ import numpy as np
 import  matplotlib.pyplot as plt
 import matplotlib.colors as cls
 import rpy2.robjects as robjects
-from rpy2.robjects.packages import importr
-from rpy2.robjects.vectors import StrVector
-from rpy2.robjects import numpy2ri
-#import rpy2.rinterface
 import clean_data as cd
-#import scipy.spatial.distance as dist
 from scipy.spatial.distance import pdist, squareform
 from sklearn.metrics.pairwise import euclidean_distances
 from scipy.special import comb
-#from scipy.stats import chi2
-from shapely.geometry.polygon import LinearRing
+import scipy.stats as stats
 
 
 #np.random.seed(123456789)
@@ -25,18 +19,26 @@ from shapely.geometry.polygon import LinearRing
 def get_path():
     return os.path.expanduser("~/GitHub/ParEvol")
 
-def get_bray_curtis(array):
-    distance_array = np.zeros((array.shape[0], array.shape[0]))
-    for i, row_i in enumerate(array):
-        for j, row_j in enumerate(array):
-            if i <= j:
-                continue
-            C_ij =  sum([min(x) for x in list(zip(row_i, row_j))])
-            S_i = np.sum(row_i)
-            S_j = np.sum(row_j)
-            BC_ij = 1 - ((2*C_ij) / (S_i + S_j))
-            distance_array[i,j] = distance_array[j,i] = BC_ij
-    return distance_array
+
+def get_pois_sample(lambda_, u):
+    x = 0
+    p = math.exp(-lambda_)
+    s = p
+    #u = np.random.uniform(low=0.0, high=1.0)
+    while u > s:
+         x = x + 1
+         p  = p * lambda_ / x
+         s = s + p
+    return x
+
+
+def get_count_pop(lambdas, cov):
+    C =cov
+    mult_norm = np.random.multivariate_normal(np.asarray([0]* len(lambdas)), C)#, tol=1e-6)
+    mult_norm_cdf = stats.norm.cdf(mult_norm)
+    counts = [ get_pois_sample(lambdas[i], mult_norm_cdf[i]) for i in range(len(lambdas))  ]
+
+    return np.asarray(counts)
 
 
 def get_adjacency_matrix(array):
@@ -53,12 +55,6 @@ def get_adjacency_matrix(array):
                 adjacency_array[i,j] = adjacency_array[j,i] = 0
 
     return adjacency_array
-
-
-def hamming2(s1, s2):
-    """Calculate the Hamming distance between two bit strings"""
-    assert len(s1) == len(s2)
-    return sum(c1 != c2 for c1, c2 in zip(s1, s2))
 
 
 def comb_n_muts_k_genes(k, gene_sizes):
@@ -194,6 +190,7 @@ def cmdscale(D):
 
     return Y, evals
 
+
 def get_pcoa(df):
     # remove columns containing only zeros
     df_no0 = df.loc[:, (df != 0).any(axis=0)]
@@ -207,13 +204,15 @@ def get_pcoa(df):
     Y = Y.set_index('pops')
     return([Y, pcoa[1]])
 
-def get_mean_centroid_distance(array, groups = None, k = 3):
+
+def get_mean_centroid_distance(array, k = 3):
     X = array[:,0:k]
-    centroid_distances = []
-    centroids = np.mean(X, axis = 0)
-    for row in X:
-        centroid_distances.append(np.linalg.norm(row-centroids))
-    return np.mean(centroid_distances)
+    #centroids = np.mean(X, axis = 0)
+    return np.mean(np.sqrt(np.sum(np.square(X - np.mean(X, axis = 0)), axis=1)))
+
+    #for row in X:
+    #    centroid_distances.append(np.linalg.norm(row-centroids))
+    #return np.mean(centroid_distances)
 
 
 def get_euc_magnitude_diff(array, k = 3):
@@ -232,18 +231,7 @@ def get_euc_magnitude_diff(array, k = 3):
 
 
 
-#def get_mean_pairwise_euc_distance(array, k = 3):
-#    X = array[:,0:k]
-#    rows = list(range(array.shape[0]))
-#    angle_pairs = []
-#    for i in rows:
-#        for j in rows:
-#            if i < j:
-#                row_i = X[i,:]
-#                row_j = X[j,:]
-#                angle_pairs.append( abs(np.linalg.norm(row_i - row_j)) )
-#
-#    return (sum(angle_pairs) * 2) / (len(rows) * (len(rows)-1))
+
 
 def get_mean_pairwise_euc_distance(array, k = 3):
     X = array[:,0:k]
@@ -312,15 +300,10 @@ def random_matrix(array):
     return np.asarray(sample[0])
 
 
-#def get_cov_ellipse(cov, center, scale, npoints = 100):
-#    theta = [x * 2 * math.pi/npoints for x in range(npoints) ]
-#    Circle = np.array( [np.cos(theta), np.sin(theta)]  ).T
-#    ## scale, center and cov must be calculated separately
-#    # pivot matrix first
-#    Q = np.linalg.cholesky(cov)
-#    print(Q)
-#    print(cov)
-#    #pivot_table = np.zeros((len(rows), len(cols)), dtype=cov.dtype)
+def number_matrices(array):
+    print("what")
+
+
 
 def get_theta_from_cov(C):
     eVa, eVe = np.linalg.eig(C)
@@ -359,47 +342,6 @@ def ellipse_polyline(ellipses, n=100):
         result.append(p)
     return result
 
-
-def intersections(a, b):
-    ea = LinearRing(a)
-    eb = LinearRing(b)
-    mp = ea.intersection(eb)
-
-    x = [p.x for p in mp]
-    y = [p.y for p in mp]
-    return x, y
-
-
-def get_ordiellipse(ord, groups, conf = 0.95):
-    # install vegan in R using the following command
-    #install.packages("vegan", "/Users/WRShoemaker/anaconda/envs/ParEvol/lib/R/library")
-    vegan = importr('vegan')
-    numpy2ri.activate()
-    nr,nc = ord.shape
-    ord_r = robjects.r.matrix(ord, nrow=nr, ncol=nc)
-    robjects.r.assign("ord", ord_r)
-    ordiellipse = vegan.ordiellipse(ord_r, robjects.StrVector(groups), kind = 'sd', conf = conf, draw = "none")
-    numpy2ri.deactivate()
-
-    cov1 = np.array(ordiellipse[0][0])
-    center1 = np.array(ordiellipse[0][1])
-    major_length1, minor_length1, theta1 = get_theta_from_cov(cov1)
-    cov2 = np.array(ordiellipse[1][0])
-    center2 = np.array(ordiellipse[1][1])
-    major_length2, minor_length2, theta2 = get_theta_from_cov(cov2)
-    # 2 b/c we're working on 2-D data
-    #t = np.sqrt(chi2.ppf(conf, 2))
-    # format (x0, y0, a, b, angle)
-    ellipses = [(center1[0], center1[1], major_length1, minor_length1, theta1),
-                (center2[0], center2[1], major_length2, minor_length2, theta2)]
-    a, b = ellipse_polyline(ellipses)
-    x, y = intersections(a, b)
-    if len(x) != 0:
-        separate_ellipses = False
-    else:
-        separate_ellipses = True
-
-    return separate_ellipses
 
 
 
@@ -463,7 +405,7 @@ def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
 
 class likelihood_matrix:
     def __init__(self, df, dataset):
-        self.df = df
+        self.df = df.copy()
         self.dataset = dataset
 
     def get_gene_lengths(self, **keyword_parameters):
@@ -482,11 +424,13 @@ class likelihood_matrix:
         elif self.dataset == 'Tenaillon_et_al':
             with open(get_path() + '/data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
                 length_dict = pickle.loads(handle.read())
-                return(length_dict)
+                if ('gene_list' in keyword_parameters):
+                    return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }
+                    #for gene_name in keyword_parameters['gene_list']:
+                else:
+                    return(length_dict)
 
     def get_likelihood_matrix(self):
-        #df_in = get_path() + '/data/' + self.dataset + '/gene_by_pop.txt'
-        #df = pd.read_csv(df_in, sep = '\t', header = 'infer', index_col = 0)
         genes = self.df.columns.tolist()
         genes_lengths = self.get_gene_lengths(gene_list = genes)
         L_mean = np.mean(list(genes_lengths.values()))
@@ -496,10 +440,9 @@ class likelihood_matrix:
 
         for index, row in self.df.iterrows():
             m_mean_j = m_mean[index]
+            np.seterr(divide='ignore')
             delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
             self.df.loc[index,:] = delta_j
-
-        #out_name = get_path() + '/data/' + self.dataset + '/gene_by_pop_delta.txt'
 
         df_new = self.df.fillna(0)
         # remove colums with all zeros
@@ -507,7 +450,68 @@ class likelihood_matrix:
         # replace negative values with zero
         df_new[df_new < 0] = 0
         return df_new
-        #df_new.to_csv(out_name, sep = '\t', index = True)
+
+
+
+class likelihood_matrix_array:
+    def __init__(self, array, gene_list, dataset):
+        self.array = np.copy(array)
+        self.gene_list = gene_list
+        self.dataset = dataset
+
+    def get_gene_lengths(self, **keyword_parameters):
+        if self.dataset == 'Good_et_al':
+            conv_dict = cd.good_et_al().parse_convergence_matrix(get_path() + "/data/Good_et_al/gene_convergence_matrix.txt")
+            length_dict = {}
+            if ('gene_list' in keyword_parameters):
+                for gene_name in keyword_parameters['gene_list']:
+                    length_dict[gene_name] = conv_dict[gene_name]['length']
+                #for gene_name, gene_data in conv_dict.items():
+            else:
+                for gene_name, gene_data in conv_dict.items():
+                    length_dict[gene_name] = conv_dict[gene_name]['length']
+            return(length_dict)
+
+        elif self.dataset == 'Tenaillon_et_al':
+            with open(get_path() + '/data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
+                length_dict = pickle.loads(handle.read())
+                if ('gene_list' in keyword_parameters):
+                    return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }
+                else:
+                    return(length_dict)
+
+    def get_likelihood_matrix(self):
+        genes_lengths = self.get_gene_lengths(gene_list = self.gene_list)
+        L_mean = np.mean(list(genes_lengths.values()))
+        L_i = np.asarray(list(genes_lengths.values()))
+        N_genes = len(self.gene_list)
+        #m_mean = self.df.sum(axis=1) / N_genes
+        m_mean = np.sum(self.array, axis=0) / N_genes
+
+        #for index, row in self.df.iterrows():
+        #    m_mean_j = m_mean[index]
+        #    np.seterr(divide='ignore')
+        #    delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
+        #    self.df.loc[index,:] = delta_j
+
+        # just use matrix operations
+        np.seterr(divide='ignore')
+        df_new = self.array * np.log((self.array * (L_mean / L_i)) / m_mean)
+        np.seterr(divide='ignore')
+        #df_new = self.df_new.fillna(0)
+        df_new[np.isnan(df_new)] = 0
+        # remove colums with all zeros
+        #df_new.loc[:, (df_new != 0).any(axis=0)]
+        df_new = df_new[:,~np.all(df_new == 0, axis=0)]
+
+        # replace negative values with zero
+        #if (df_new<0).any() ==True:
+        #    print('Negative #!!!')
+
+        df_new[df_new < 0] = 0
+        return df_new
+
+
 
 
 # function to generate confidence intervals based on Fisher Information criteria

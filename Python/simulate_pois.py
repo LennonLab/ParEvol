@@ -37,6 +37,7 @@ def get_line_cov_matrix(n_rows, cov, var=1,alternate_cov_sign=False):
     print(row_list)
     return np.asarray(row_list)
 
+
 def get_network_cov(cov = 1/9, var = 1):
     #df = pd.read_csv(pt.get_path() + '/data/disassoc_network_eq.txt', sep='\t',  header=None)
     #df = df.astype(int)
@@ -168,16 +169,18 @@ def run_ba_ntwk_cov_sims():
     ntwk = nx.barabasi_albert_graph(n_genes, 2)
     ntwk_np = nx.to_numpy_matrix(ntwk)
     lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
-    df_out.write('\t'.join(['Cov', 'Iteration', 'euc_z_score', 'euc_percent', 'eig_percent']) + '\n')
+    df_out.write('\t'.join(['Cov', 'Iteration', 'euc_z_score', 'euc_percent', 'eig_percent', 'mcd_percent_k1', 'mcd_percent_k3']) + '\n')
     covs = [0.05, 0.1, 0.15, 0.2]
     #covs = [0.2, 0.7]
     for cov in covs:
         C = ntwk_np * cov
         np.fill_diagonal(C, 1)
-        z_scores = []
-        eig_percents = []
-        euc_percents = []
-        for i in range(100):
+        #z_scores = []
+        #eig_percents = []
+        #euc_percents = []
+        #centroid_percents_k1 = []
+        #centroid_percents_k3 = []
+        for i in range(1000):
             test_cov = np.stack( [get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
             X = pt.hellinger_transform(test_cov)
             pca = PCA()
@@ -185,23 +188,31 @@ def run_ba_ntwk_cov_sims():
             euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
             euc_dists = []
             eig = pt.get_x_stat(pca.explained_variance_[:-1])
+            mcd_k1 = pt.get_mean_centroid_distance(pca_fit, k = 1)
+            mcd_k3 = pt.get_mean_centroid_distance(pca_fit, k = 3)
             eigs = []
+            centroid_dists_k1 = []
+            centroid_dists_k3 = []
             for j in range(1000):
                 X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
                 #pca_j = PCA()
                 #pca_fit_j = pca_j.fit_transform(X_j)
                 pca_fit_j = pca.fit_transform(X_j)
                 euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
+                centroid_dists_k1.append(pt.get_mean_centroid_distance(pca_fit_j, k = 1))
+                centroid_dists_k3.append(pt.get_mean_centroid_distance(pca_fit_j, k = 3))
                 eigs.append( pt.get_x_stat(pca.explained_variance_[:-1]) )
                 #eigs.append( pt.get_x_stat(pca_j.explained_variance_[:-1]) )
             z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
             euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
             eig_percent = len( [k for k in eigs if k < eig] ) / len(eigs)
-            eig_percents.append(eig_percent)
-            euc_percents.append(euc_percent)
-            z_scores.append(z_score)
+            centroid_percent_k1 = len( [k for k in centroid_dists_k1 if k < mcd_k1] ) / len(centroid_dists_k1)
+            centroid_percent_k3 = len( [k for k in centroid_dists_k3 if k < mcd_k3] ) / len(centroid_dists_k3)
+            #eig_percents.append(eig_percent)
+            #euc_percents.append(euc_percent)
+            #z_scores.append(z_score)
             print(cov, i, z_score, euc_percent, eig_percent)
-            df_out.write('\t'.join([str(cov), str(i), str(z_score), str(euc_percent), str(eig_percent)]) + '\n')
+            df_out.write('\t'.join([str(cov), str(i), str(z_score), str(euc_percent), str(eig_percent), str(centroid_percent_k1), str(centroid_percent_k3)]) + '\n')
 
         #print(cov, np.all(np.linalg.eigvals(C) > 0), np.mean(z_scores))
 
@@ -242,7 +253,7 @@ def run_all_sims():
 def get_fig():
     df = pd.read_csv(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
     x = df.Cov.values
-    y = df.E_value.values
+    y = df.euc_z_score.values
     #print(np.mean(y))
 
     fig = plt.figure()
@@ -263,6 +274,39 @@ def get_fig():
     plt.close()
 
 
+
+def power_figs(alpha = 0.05):
+    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
+    fig = plt.figure()
+    covs = [0.05,0.1,0.15,0.2]
+    measures = ['euc_percent', 'eig_percent', 'mcd_percent_k1', 'mcd_percent_k3']
+    colors = ['powderblue', 'skyblue', 'royalblue', 'blue', 'navy']
+    labels = ['euclidean distance', 'eigenanalysis', 'mcd 1', 'mcd 1-3']
+
+    for i, measure in enumerate(measures):
+        #df_i = df[ (df['Cov'] == cov) &  (df['Cov'] == cov)]
+        powers = []
+        for j, cov in enumerate(covs):
+            df_cov = df[ df['Cov'] == cov ]
+            p = df_cov[measure].values
+            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
+            p_sig = [p_i for p_i in p if p_i >= (1-  alpha)]
+            powers.append(len(p_sig) / len(p))
+        print(powers)
+        plt.plot(np.asarray(covs), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=labels[i])
+    #plt.title('Covariance', fontsize = 18)
+    plt.legend(loc='lower right')
+    plt.xlabel('Covariance', fontsize = 16)
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    #plt.xlim(-0.02, 1.02)
+    #plt.ylim(-0.02, 1.02)
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/power_method.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+power_figs()
 #run_ntwrk_cov_sims()
 #get_fig()
 #df1 = pd.read_csv(pt.get_path() + '/data/simulations/cov_ntwrk_euc_pos_only_025.txt', sep='\t')
@@ -274,4 +318,4 @@ def get_fig():
 #run_block_cov_sims()
 
 
-run_ba_ntwk_cov_sims()
+#run_ba_ntwk_cov_sims()
