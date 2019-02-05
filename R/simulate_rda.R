@@ -5,12 +5,12 @@ setwd("~/GitHub/ParEvol")
 library(vegan)
 library(plyr)
 
+set.seed(123456)
+
 get_pop_matrix <- function(n_pops, n_genes, n_muts, probs, env){
   out.df <- as.data.frame(matrix(NA, nrow=0, ncol=n_genes))
   colnames(out.df) <- seq(1, n_genes, by=1)
   for (i in 1:n_pops){
-    #print(length(probs))
-    #print(n_genes)
     sample_i <- sample(n_genes, size=n_muts, replace=TRUE, prob = probs)
     sample_i.df <- as.data.frame(t(as.matrix(table(sample_i))))
     #out.matrix <- rbind(out.matrix, sample_i.matrix)
@@ -24,18 +24,18 @@ get_pop_matrix <- function(n_pops, n_genes, n_muts, probs, env){
 }
 
 
-run_simulation <- function(n_genes, n_muts_array, n_pops_array, gamma_shapes, gamma_scales, iter, perm.num=10000){
-  sink("./data/test.txt")
+run_simulation <- function(n_genes, n_muts_array, n_pops_array, gamma_shapes, gamma_scales, iter, file_name, perm.num=10000){
+  sink( paste("./data/rda_sims/" , file_name, ".txt", sep=""))
   out.header <- paste("N_genes", "N_genes_sample", "N_muts", "N_pops", "Gamme_shape", "Gamma_scale", "Iteration", "F_null", "p", sep="\t")
   cat(out.header)
   cat("\n")
-  gene_sample_sizes <- seq(2, n_genes, by=5)
+  gene_sample_sizes <- seq(2, n_genes, by=2)
   #gene_sample_size <- gene_sample_sizes[3]
   #gene_sample_size <- 1
   for (gene_sample_size in gene_sample_sizes){
-    #print(gene_sample_size)
     for (n_muts_i in n_muts_array){
       for (n_pops_i in n_pops_array){
+        #print(gene_sample_size, n_muts_i, n_pops_i)
         for (gamma_shape_i in gamma_shapes){
           for (gamma_scale_i in gamma_scales){
             for (i in 1:iter){
@@ -88,18 +88,58 @@ run_simulation <- function(n_genes, n_muts_array, n_pops_array, gamma_shapes, ga
 }
 
 n_genes <- 50
-n_muts_array <- c(10, 50, 100, 150, 200)
-n_pops_array <- c(5, 10, 15, 20, 25)
 gamma_shapes <- c(1)
 gamma_scales <- c(3)
 iter <- 1000
 
+# start with 5 and 50 for muts, then5 and 50 for N
+n_pops_array1 <- seq(4, 50, by=2)
+n_muts_array1 <-c(5)
+file_name1 <- "rda_pops_mut5_overlap"
 # include iteration code, loop through number of genes
 run_simulation(n_genes=n_genes, 
-               n_muts_array=n_muts_array, 
-               n_pops_array=n_pops_array,
+               n_muts_array=n_muts_array1, 
+               n_pops_array=n_pops_array1,
                gamma_shapes=gamma_shapes, 
                gamma_scales=gamma_scales,
+               file_name=file_name1,
                iter=iter)
+
+
+n_pops_array2 <-seq(4, 50, by=2)
+n_muts_array2 <- c(50) 
+file_name2 <- "rda_pops_mut50_overlap"
+run_simulation(n_genes=n_genes, 
+               n_muts_array=n_muts_array2, 
+               n_pops_array=n_pops_array2,
+               gamma_shapes=gamma_shapes, 
+               gamma_scales=gamma_scales,
+               file_name=file_name2,
+               iter=iter)
+
+
+n_pops_array3 <-  c(5)
+n_muts_array3 <- seq(4, 50, by=2)
+file_name3 <- "rda_muts_pop5_overlap"
+run_simulation(n_genes=n_genes, 
+               n_muts_array=n_muts_array3, 
+               n_pops_array=n_pops_array3,
+               gamma_shapes=gamma_shapes, 
+               gamma_scales=gamma_scales,
+               file_name=file_name3,
+               iter=iter)
+
+
+n_pops_array4 <-  c(50)
+n_muts_array4 <- seq(4, 50, by=2)
+file_name4 <- "rda_muts_pop50_overlap"
+run_simulation(n_genes=n_genes, 
+               n_muts_array=n_muts_array4, 
+               n_pops_array=n_pops_array4,
+               gamma_shapes=gamma_shapes, 
+               gamma_scales=gamma_scales,
+               file_name=file_name4,
+               iter=iter)
+
 
 

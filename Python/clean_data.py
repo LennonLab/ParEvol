@@ -168,6 +168,8 @@ class tenaillon_et_al:
 
         df = pd.DataFrame.from_dict(pop_by_gene_dict)
         df = df.fillna(0)
+        # original data has "LIne" instead of "Line"
+        df.index = df.index.str.replace('LIne', 'Line', regex=True)
         # remove rows and columns with all zeros
         #df = df.loc[(df.sum(axis=1) != 0), (df.sum(axis=0) != 0)]
         df_out = mydir + 'data/Tenaillon_et_al/gene_by_pop.txt'
@@ -251,8 +253,8 @@ class mcdonald_et_al:
         df.to_csv(df_out, sep = '\t', index = True)
 
 
-good_et_al().reformat_convergence_matrix(mut_type = 'P')
+#good_et_al().reformat_convergence_matrix(mut_type = 'P')
 #good_et_al().reformat_convergence_matrix(mut_type = 'F')
-
+tenaillon_et_al().pop_by_gene_tenaillon()
 #kryazhimskiy_et_al().get_size_dict()
 #mcdonald_et_al().clean_S1()
