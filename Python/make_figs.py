@@ -12,13 +12,49 @@ from scipy import stats
 from sklearn.decomposition import PCA
 
 
+def gene_space_fig():
+    fig = plt.figure()
+
+    L=20
+    c1 = [5,5,5,5]
+    c2 = [11,5,3,1]
+    c3 = [17,1,1,1]
+    omega_0 = []
+    omega_1_1 = []
+    omega_1_2 = []
+    omega_1_3 = []
+    ks = list(range(L+1))
+    for k in ks:
+        omega_0.append(int(comb(L, k)))
+        omega_1_1.append(pt.comb_n_muts_k_genes(k, c1 ))
+        omega_1_2.append(pt.comb_n_muts_k_genes(k, c2 ))
+        omega_1_3.append(pt.comb_n_muts_k_genes(k, c3 ))
+
+    plt.plot(ks, np.asarray(omega_1_1), linestyle='--', lw =2.2, color='#87CEEB', alpha = 0.7, label = r'$\mathcal{L} =  \left \{  5,5,5,5 \right \}$')
+    plt.plot(ks, np.asarray(omega_1_2), linestyle='--', lw =2.2, color='#FFA500', alpha = 0.7, label = r'$\mathcal{L} =  \left \{  11,5,3,1 \right \}$')
+    plt.plot(ks, np.asarray(omega_1_3), linestyle='--', lw =2.2, color='#FF6347', alpha = 0.7, label = r'$\mathcal{L} =  \left \{  17,1,1,1 \right \}$')
+
+
+
+    plt.xlabel('Substitutions, ' + r'$k$', fontsize = 20)
+    plt.ylabel(r'$\left | \mathcal{G}_{1}\left ( k \right )  \right | $', fontsize = 22)
+
+    plt.legend(loc='upper left', fontsize=14)
+    #plt.yscale("log")
+
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/gene_space.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
 def intro_fig():
     #https://github.com/miloharper/visualise-neural-network
     fig = plt.figure()
 
     ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
     f1=7
-    omega_font=8
+    omega_font=10
 
     #plt.gca().add_patch(circle)
     ax1.set_xlim([0,1])
@@ -89,11 +125,17 @@ def intro_fig():
     ax1.plot([0.625,0.5], [0.75, 1], 'k-')
     ax1.plot([0.875,0.5], [0.75, 1], 'k-')
 
-    ax1.text(-0.24, -0.01, r'$\Omega_{0}\left ( 0 \right )=1$', fontsize = omega_font)
-    ax1.text(-0.24, 0.24, r'$\Omega_{0}\left ( 1 \right )=4$', fontsize = omega_font)
-    ax1.text(-0.24, 0.49, r'$\Omega_{0}\left ( 2 \right )=6$', fontsize = omega_font)
-    ax1.text(-0.24, 0.74, r'$\Omega_{0}\left ( 3 \right )=4$', fontsize = omega_font)
-    ax1.text(-0.24, 0.99, r'$\Omega_{0}\left ( 4 \right )=1$', fontsize = omega_font)
+    #ax1.text(-0.24, -0.01, r'$\Omega_{0}\left ( 0 \right )=1$', fontsize = omega_font)
+    #ax1.text(-0.24, 0.24, r'$\Omega_{0}\left ( 1 \right )=4$', fontsize = omega_font)
+    #ax1.text(-0.24, 0.49, r'$\Omega_{0}\left ( 2 \right )=6$', fontsize = omega_font)
+    #ax1.text(-0.24, 0.74, r'$\Omega_{0}\left ( 3 \right )=4$', fontsize = omega_font)
+    #ax1.text(-0.24, 0.99, r'$\Omega_{0}\left ( 4 \right )=1$', fontsize = omega_font)
+
+    ax1.text(-0.36, -0.01, r'$\left | \mathcal{G}_{0}\left ( 0 \right )  \right | =1$', fontsize = omega_font)
+    ax1.text(-0.36, 0.24, r'$\left | \mathcal{G}_{0}\left ( 1 \right )  \right | =4$', fontsize = omega_font)
+    ax1.text(-0.36, 0.49, r'$\left | \mathcal{G}_{0}\left ( 2 \right )  \right | =6$', fontsize = omega_font)
+    ax1.text(-0.36, 0.74, r'$\left | \mathcal{G}_{0}\left ( 3 \right )  \right | =4$', fontsize = omega_font)
+    ax1.text(-0.36, 0.99, r'$\left | \mathcal{G}_{0}\left ( 4 \right )  \right | =1$', fontsize = omega_font)
 
     ax1.axis('off')
 
@@ -267,11 +309,21 @@ def intro_fig():
     ax2.plot([0.25,0.5], [0.75, 1], 'k-')
     ax2.plot([0.75,0.5], [0.75, 1], 'k-')
 
-    ax2.text(-0.16, -0.01, r'$\Omega_{1}\left ( 0 \right )=1$', fontsize = omega_font)
-    ax2.text(-0.16, 0.24, r'$\Omega_{1}\left ( 1 \right )=2$', fontsize = omega_font)
-    ax2.text(-0.16, 0.49, r'$\Omega_{1}\left ( 2 \right )=3$', fontsize = omega_font)
-    ax2.text(-0.16, 0.74, r'$\Omega_{1}\left ( 3 \right )=2$', fontsize = omega_font)
-    ax2.text(-0.16, 0.99, r'$\Omega_{1}\left ( 4 \right )=1$', fontsize = omega_font)
+    #ax2.text(-0.16, -0.01, r'$\mathcal{G}\left ( 0 \right )=1$', fontsize = omega_font)
+    #ax2.text(-0.16, 0.24, r'$\Omega_{1}\left ( 1 \right )=2$', fontsize = omega_font)
+    #ax2.text(-0.16, 0.49, r'$\Omega_{1}\left ( 2 \right )=3$', fontsize = omega_font)
+    #ax2.text(-0.16, 0.74, r'$\Omega_{1}\left ( 3 \right )=2$', fontsize = omega_font)
+    #ax2.text(-0.16, 0.99, r'$\Omega_{1}\left ( 4 \right )=1$', fontsize = omega_font)
+
+    ax2.text(-0.28, -0.01, r'$\left | \mathcal{G}_{1}\left ( 0 \right )  \right | =1$', fontsize = omega_font)
+    ax2.text(-0.28, 0.24, r'$\left | \mathcal{G}_{1}\left ( 1 \right )  \right | =2$', fontsize = omega_font)
+    ax2.text(-0.28, 0.49, r'$\left | \mathcal{G}_{1}\left ( 2 \right )  \right | =3$', fontsize = omega_font)
+    ax2.text(-0.28, 0.74, r'$\left | \mathcal{G}_{1}\left ( 3 \right )  \right | =2$', fontsize = omega_font)
+    ax2.text(-0.28, 0.99, r'$\left | \mathcal{G}_{1}\left ( 4 \right )  \right | =1$', fontsize = omega_font)
+
+
+    #ax1.text(-0.26, 0.99, r'$\left | \mathcal{G}_{0}\left ( 4 \right )  \right | =1$', fontsize = omega_font)
+
 
     ax2.axis('off')
 
@@ -298,7 +350,10 @@ def intro_fig():
 
 
     ax3.set_xlabel('Substitutions, ' + r'$k$', fontsize = 16)
-    ax3.set_ylabel(r'$\mathrm{log}_{10}   \left (    \Omega_{1} / \Omega_{0} \right )$', fontsize = 15)
+    #ax3.set_ylabel(r'$\mathrm{log}_{10}   \left (    \Omega_{1} / \Omega_{0} \right )$', fontsize = 15)
+    #ax3.set_ylabel(r'$\frac{\left | \mathcal{G}_{1}\left ( k \right )  \right | }{\left | \mathcal{G}_{0}\left ( k \right )  \right | }, \, \mathrm{log}_{10}$', fontsize = 15)
+    ax3.set_ylabel(r'$\mathrm{log}_{10}   \left (   \frac{\left | \mathcal{G}_{1}\left ( k \right )  \right | }{\left | \mathcal{G}_{0}\left ( k \right )  \right | }\right )$', fontsize = 15)
+
     ax3.legend(loc='upper center', fontsize=7)
     ax3.set_yscale("log")
 
@@ -322,15 +377,15 @@ def intro_fig():
 
         omega_1_0_ax4.append(pt.comb_n_muts_k_genes(k, c0_ax4 ))
 
-    print(omega_1_0_ax4)
-    print(omega_1_1_ax4)
 
     plt.plot(ks, np.asarray(omega_1_1_ax4)/ np.asarray(omega_0), linestyle='--', lw =2.2, color='#FF6347', alpha = 0.7, label=r'$G=2$')
     plt.plot(ks, np.asarray(omega_1_2_ax4)/ np.asarray(omega_0), linestyle='--', lw =2.2, color='#FFA500', alpha = 0.7, label=r'$G=4$')
     plt.plot(ks, np.asarray(omega_1_3_ax4)/ np.asarray(omega_0), linestyle='--', lw =2.2, color='#87CEEB', alpha = 0.7, label=r'$G=10$')
 
-    ax4.set_xlabel('Substitutions, ' + r'$k$', fontsize = 14)
-    ax4.set_ylabel(r'$ \mathrm{log}_{10}   \left (    \Omega_{1} / \Omega_{0} \right )$', fontsize = 15)
+    ax4.set_xlabel('Substitutions, ' + r'$k$', fontsize = 16)
+    #ax4.set_ylabel(r'$ \mathrm{log}_{10}   \left (    \Omega_{1} / \Omega_{0} \right )$', fontsize = 15)
+    ax4.set_ylabel(r'$\mathrm{log}_{10}   \left (   \frac{\left | \mathcal{G}_{1}\left ( k \right )  \right | }{\left | \mathcal{G}_{0}\left ( k \right )  \right | }\right )$', fontsize = 15)
+
     ax4.legend(loc='lower left', fontsize=7)
     ax4.set_yscale("log")
 
@@ -719,8 +774,101 @@ def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
         print('Dataset argument not accepted')
 
 
+
+def tenaillon_fitness_hist():
+    gene_by_pop_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    gene_by_pop = pd.read_csv(gene_by_pop_path, sep = '\t', header = 'infer', index_col = 0)
+    fitness_path = pt.get_path() + '/data/Tenaillon_et_al/fitness.csv'
+    fitness = pd.read_csv(fitness_path, sep = ',', header = 'infer', index_col = 0)
+    # select fitness values from lines that were sequenced
+    fitness_subset = fitness.ix[gene_by_pop.index.values]
+    fitness_np = fitness_subset['W (avg)'].values
+    fitness_np = fitness_np[np.logical_not(np.isnan(fitness_np))]
+
+    kde = pt.get_kde(fitness_np)
+
+    fig = plt.figure()
+    plt.plot(kde[0], kde[1])
+    plt.xlabel("Fitness", fontsize = 18)
+    plt.ylabel("Frequency", fontsize = 18)
+    fig.tight_layout()
+    plot_path = pt.get_path() + '/figs/tenaillon_fitness.png'
+    fig.savefig(plot_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def test_pca_regression():
+    gene_by_pop_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    gene_by_pop = pd.read_csv(gene_by_pop_path, sep = '\t', header = 'infer', index_col = 0)
+    fitness_path = pt.get_path() + '/data/Tenaillon_et_al/fitness.csv'
+    fitness = pd.read_csv(fitness_path, sep = ',', header = 'infer', index_col = 0)
+    # select fitness values from lines that were sequenced
+    # this also orders the observations
+    fitness_subset = fitness.ix[gene_by_pop.index.values]
+    fitness_np = fitness_subset['W (avg)'].values
+    gene_by_pop_delta = pt.likelihood_matrix(gene_by_pop, 'Tenaillon_et_al').get_likelihood_matrix()
+    X = pt.hellinger_transform(gene_by_pop_delta)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+    pca1 = df_out[:,0]
+
+    clean_zip = [i for i in list(zip(pca1, fitness_np)) if (math.isnan(i[0])==False ) and (math.isnan(i[1])==False )]
+    x = np.asarray([i[0] for i in clean_zip])
+    y = np.asarray([i[1] for i in clean_zip])
+
+    slope, intercept, r_value, p_value, std_err = stats.linregress(x,y)
+    print("slope is " + str(slope))
+    print("r2-value is " + str(r_value **2))
+    print("p-value is " + str(p_value))
+
+    predict_y = intercept + (slope * x)
+    pred_error = y - predict_y
+    degrees_of_freedom = len(x) - 2
+    residual_std_error = np.sqrt(np.sum(pred_error**2) / degrees_of_freedom)
+
+    fig = plt.figure()
+    plt.scatter(x, y, c='#175ac6', marker = 'o', s = 70, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
+    plt.plot(x, predict_y, 'k-')
+    plt.xlabel("PCA 1", fontsize = 18)
+    plt.ylabel("Fitness", fontsize = 18)
+    fig.tight_layout()
+    plot_path = pt.get_path() + '/figs/tenaillon_pcr.png'
+    fig.savefig(plot_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def regress_muts_fit():
+
+    gene_by_pop_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    gene_by_pop = pd.read_csv(gene_by_pop_path, sep = '\t', header = 'infer', index_col = 0)
+    fitness_path = pt.get_path() + '/data/Tenaillon_et_al/fitness.csv'
+    fitness = pd.read_csv(fitness_path, sep = ',', header = 'infer', index_col = 0)
+    # select fitness values from lines that were sequenced
+    # this also orders the observations
+    fitness_subset = fitness.ix[gene_by_pop.index.values]
+    fitness_np = fitness_subset['W (avg)'].values
+    mut_counts = gene_by_pop.sum(axis=1).values
+    #print(len(mut_counts))
+
+    fig = plt.figure()
+    plt.scatter(mut_counts, fitness_np, c='#175ac6', marker = 'o', s = 70, \
+        edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
+    plt.xlabel("Mutations", fontsize = 18)
+    plt.ylabel("Fitness", fontsize = 18)
+    fig.tight_layout()
+    plot_path = pt.get_path() + '/figs/regress_muts_fit.png'
+    fig.savefig(plot_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 #def mean_euc_dist_fig():
 #plot_permutation(dataset='good')
 
 #fig1()
-hist_tenaillon()
+#hist_tenaillon()
+#tenaillon_fitness_hist()
+
+#test_pca_regression()
+
+#intro_fig()
+test_pca_regression()

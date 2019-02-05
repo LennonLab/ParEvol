@@ -45,8 +45,8 @@ count_list = list(filter((float(0)).__ne__, count_list))
 
 fig = plt.figure()
 plt.hist(count_list,bins=50, weights=np.zeros_like(count_list) + 1. / len(count_list), alpha=0.8, color = '#175ac6')
-plt.xlabel('Number of mutations')
-plt.ylabel('Frequency')
+plt.xlabel('Number of mutations in a gene', fontsize = 24)
+plt.ylabel('Frequency', fontsize = 24)
 print("mean = " + str(np.mean(count_list)))
 print("mean = " + str(np.var(count_list)))
 

@@ -9,6 +9,8 @@ from sklearn.decomposition import PCA
 import networkx as nx
 
 
+# z = 1.645 for one sided test with alpha=0.05
+
 
 def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000):
     df_out=open(pt.get_path() + '/data/simulations/cov_ntwrk_pop.txt', 'w')
@@ -51,7 +53,7 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
     n_rows = df_np.shape[0]
     df_out=open(pt.get_path() + '/data/Tenaillon_et_al/sample_size_sim.txt', 'w')
     df_out.write('\t'.join(['N', 'G', 'Iteration', 'euc_percent', 'z_score']) + '\n')
-    Ns = [5]#list(range(2, n_rows))
+    Ns = list(range(2, n_rows))
     for N in Ns:
         for i in range(1000):
             #df_np_i = df_np[np.random.choice(n_rows, N, replace=False), :]
@@ -83,7 +85,7 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
             G = df_np_i.shape[1]
             euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
             z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
-            print(str(N), str(G), str(i), str(euc_percent), str(z_score))
+            print(str(N), str(i), str(G), str(euc_percent), str(z_score))
             df_out.write('\t'.join([str(N), str(G), str(i), str(euc_percent), str(z_score)]) + '\n')
 
     df_out.close()
