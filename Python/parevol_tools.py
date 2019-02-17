@@ -13,12 +13,26 @@ from scipy.special import comb
 import scipy.stats as stats
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KernelDensity
+import networkx as nx
 
 #np.random.seed(123456789)
 
 
 def get_path():
     return os.path.expanduser("~/GitHub/ParEvol")
+
+
+def get_ba_cov_matrix(n_genes, cov, m=2, get_node_edge_sum=False):
+    while True:
+        ntwk = nx.barabasi_albert_graph(n_genes, m)
+        ntwk_np = nx.to_numpy_matrix(ntwk)
+        C = ntwk_np * cov
+        np.fill_diagonal(C, 1)
+        if np.all(np.linalg.eigvals(C) > 0) == True:
+            if get_node_edge_sum==False:
+                return C
+            else:
+                return C, ntwk_np.sum(axis=0)
 
 
 def get_pois_sample(lambda_, u):
@@ -33,8 +47,7 @@ def get_pois_sample(lambda_, u):
     return x
 
 
-def get_count_pop(lambdas, cov):
-    C =cov
+def get_count_pop(lambdas, C):
     mult_norm = np.random.multivariate_normal(np.asarray([0]* len(lambdas)), C)#, tol=1e-6)
     mult_norm_cdf = stats.norm.cdf(mult_norm)
     counts = [ get_pois_sample(lambdas[i], mult_norm_cdf[i]) for i in range(len(lambdas))  ]
@@ -496,9 +509,9 @@ class likelihood_matrix_array:
         #    self.df.loc[index,:] = delta_j
 
         # just use matrix operations
-        np.seterr(divide='ignore')
+        np.seterr(divide='ignore', invalid='ignore')
         df_new = self.array * np.log((self.array * (L_mean / L_i)) / m_mean)
-        np.seterr(divide='ignore')
+        np.seterr(divide='ignore', invalid='ignore')
         #df_new = self.df_new.fillna(0)
         df_new[np.isnan(df_new)] = 0
         # remove colums with all zeros

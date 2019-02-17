@@ -258,7 +258,7 @@ def two_treats_sim(iter1 = 1000, iter2 = 1000, alpha = 0.05):
 
 
 
-two_treats_sim()
+#two_treats_sim()
 #test_stats()
 #run_pca_permutation()
 #get_likelihood_matrices()

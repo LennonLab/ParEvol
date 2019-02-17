@@ -396,6 +396,68 @@ def intro_fig():
 
 
 
+def euc_dist_hist():
+    G = 50
+    N = 50
+    iter = 1000
+    cov1 = 0.05
+    cov2 = 0.25
+    C1 = pt.get_ba_cov_matrix(G, cov1)
+    C2 = pt.get_ba_cov_matrix(G, cov2)
+    lambda_genes = np.random.gamma(shape=1, scale=1, size=G)
+    test_cov1 = np.stack( [pt.get_count_pop(lambda_genes, cov= C1) for x in range(N)] , axis=0 )
+    test_cov2 = np.stack( [pt.get_count_pop(lambda_genes, cov= C2) for x in range(N)] , axis=0 )
+    pca = PCA()
+
+    X1 = pt.hellinger_transform(test_cov1)
+    pca_fit1 = pca.fit_transform(X1)
+    euc_dist1 = pt.get_mean_pairwise_euc_distance(pca_fit1)
+    euc_dists1 = []
+    for j in range(iter):
+        X_j = pt.hellinger_transform(pt.random_matrix(test_cov1))
+        pca_fit_j = pca.fit_transform(X_j)
+        euc_dists1.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
+
+    X2 = pt.hellinger_transform(test_cov2)
+    pca_fit2 = pca.fit_transform(X2)
+    euc_dist2 = pt.get_mean_pairwise_euc_distance(pca_fit2)
+    euc_dists2 = []
+    for j in range(iter):
+        X_j = pt.hellinger_transform(pt.random_matrix(test_cov2))
+        pca_fit_j = pca.fit_transform(X_j)
+        euc_dists2.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
+
+    fig = plt.figure()
+    plt.hist(euc_dists1, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    plt.axvline(np.mean(euc_dists1)+ (0.5*np.std(euc_dists1)), color = 'red', ls = '--', lw = 3)
+    plt.xlabel("Mean pair-wise \n Euclidean distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
+    plt.ylabel("Frequency", fontsize = 18)
+    plt.text(min(euc_dists1) + 0.002, 45, r'$\mathrm{Cov}=0.05$', fontsize=16)
+    fig.tight_layout()
+    plot_out = pt.get_path() + '/figs/cov_hist_low.png'
+    fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+    fig = plt.figure()
+    plt.hist(euc_dists2, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    plt.axvline(np.mean(euc_dists2) + (2*np.std(euc_dists2)), color = 'red', ls = '--', lw = 3)
+    plt.xlabel("Mean pair-wise \n Euclidean distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
+    plt.ylabel("Frequency", fontsize = 18)
+    plt.text(min(euc_dists1) + 0.002, 45, r'$\mathrm{Cov}=0.25$', fontsize=16)
+    fig.tight_layout()
+    plot_out = pt.get_path() + '/figs/cov_hist_high.png'
+    fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
+
+
+
+
+
+
 
 
 def hist_tenaillon(k = 3):
@@ -861,6 +923,38 @@ def regress_muts_fit():
     fig.savefig(plot_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
+
+
+def power_figs(alpha = 0.05):
+    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
+    fig = plt.figure()
+    covs = [0.05,0.1,0.15,0.2]
+    measures = ['euc_percent', 'eig_percent', 'mcd_percent_k1', 'mcd_percent_k3']
+    colors = ['powderblue', 'skyblue', 'royalblue', 'blue', 'navy']
+    labels = ['euclidean distance', 'eigenanalysis', 'mcd 1', 'mcd 1-3']
+
+    for i, measure in enumerate(measures):
+        #df_i = df[ (df['Cov'] == cov) &  (df['Cov'] == cov)]
+        powers = []
+        for j, cov in enumerate(covs):
+            df_cov = df[ df['Cov'] == cov ]
+            p = df_cov[measure].values
+            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
+            p_sig = [p_i for p_i in p if p_i >= (1-  alpha)]
+            powers.append(len(p_sig) / len(p))
+        print(powers)
+        plt.plot(np.asarray(covs), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=labels[i])
+    #plt.title('Covariance', fontsize = 18)
+    plt.legend(loc='lower right')
+    plt.xlabel('Covariance', fontsize = 16)
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    #plt.xlim(-0.02, 1.02)
+    #plt.ylim(-0.02, 1.02)
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/power_method.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 #def mean_euc_dist_fig():
 #plot_permutation(dataset='good')
 
@@ -871,4 +965,6 @@ def regress_muts_fit():
 #test_pca_regression()
 
 #intro_fig()
-test_pca_regression()
+#test_pca_regression()
+
+euc_dist_hist()
