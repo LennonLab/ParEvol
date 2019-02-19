@@ -44,7 +44,7 @@ def run_ba_cov_sims(gene_list, pop_list, out_name, iter1=1000, iter2=1000):
 def run_ba_cov_neutral_sims(shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=1000):
     df_out=open(pt.get_path() + '/data/simulations/ba_cov_neutral_sims.txt', 'w')
     df_out.write('\t'.join(['N', 'G', 'lamba_mean', 'lambda_neutral', 'Cov', 'Iteration', 'dist_percent']) + '\n')
-    covs = [0.1, 0.15, 0.2]
+    covs = [0.2]
     mean_gamma = shape * scale
     neutral_range = np.logspace(-2, 1, num=20, endpoint=True, base=10.0)
     neutral_range = neutral_range[::-1]
@@ -70,7 +70,7 @@ def run_ba_cov_neutral_sims(shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=
                     euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
                 euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
                 print(neutral_, cov, i, euc_percent)
-                df_out.write('\t'.join([str(N), str(G), str(mean_gamma), str(neutral_range), str(cov), str(i), str(euc_percent)]) + '\n')
+                df_out.write('\t'.join([str(N), str(G), str(mean_gamma), str(neutral_), str(cov), str(i), str(euc_percent)]) + '\n')
     df_out.close()
 
 
@@ -150,6 +150,7 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
             df_out.write('\t'.join([str(N), str(G), str(i), str(euc_percent), str(z_score)]) + '\n')
 
     df_out.close()
+
 
 
 

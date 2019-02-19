@@ -37,7 +37,7 @@ def gene_space_fig():
 
 
     plt.xlabel('Substitutions, ' + r'$k$', fontsize = 20)
-    plt.ylabel(r'$\left | \mathcal{G}_{1}\left ( k \right )  \right | $', fontsize = 22)
+    plt.ylabel('Number of evolutionary\noutcomes, ' + r'$\left | \mathcal{G}_{1}\left ( k \right )  \right | $', fontsize = 18)
 
     plt.legend(loc='upper left', fontsize=14)
     #plt.yscale("log")
@@ -955,6 +955,122 @@ def power_figs(alpha = 0.05):
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
+
+
+def tenaillon_p_N(alpha = 0.05, bootstraps=10000, bootstrap_sample = 100):
+    fig = plt.figure()
+    df = pd.read_csv(pt.get_path() + '/data/Tenaillon_et_al/sample_size_sim.txt', sep='\t')
+    Ns = list(set(df.N.values))
+    for N in Ns:
+        print(N)
+        N_dist = df.loc[df['N'] == N].dist_percent.values
+        bootstrap_power = []
+        for bootstrap in range(bootstraps):
+            p_sig = [p_i for p_i in np.random.choice(N_dist, size = bootstrap_sample) if p_i >= (1-alpha)]
+            bootstrap_power.append(len(p_sig) / bootstrap_sample)
+        bootstrap_power = np.sort(bootstrap_power)
+        N_power = len([p_i for p_i in N_dist if p_i >= (1- alpha)]) / len(N_dist)
+        lower_ci = bootstrap_power[int(len(bootstrap_power) * 0.05)]
+        upper_ci = bootstrap_power[  len(bootstrap_power) -  int(len(bootstrap_power) * 0.05)]
+        plt.errorbar(N, N_power, yerr = [np.asarray([N_power-upper_ci]), np.asarray([lower_ci - N_power])], fmt = 'o', alpha = 0.5, \
+            barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
+        plt.scatter(N, N_power, c='#175ac6', marker = 'o', s = 70, \
+            edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)
+    plt.xlabel('Number of replicate populations', fontsize = 16)
+    plt.ylabel('Empirical power', fontsize = 16)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/tenaillon_N.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def poisson_power_N(alpha = 0.05):
+    fig = plt.figure()
+    df = pd.read_csv(pt.get_path() + '/data/simulations/ba_cov_N_sims.txt', sep='\t')
+    covs = np.sort(list(set(df.Cov.values)))
+    Ns = np.sort(list(set(df.N.values)))
+    colors = ['powderblue',  'royalblue', 'navy']
+    for i, cov in enumerate(covs):
+        powers = []
+        for j, N in enumerate(Ns):
+            df_cov = df[ (df['Cov'] == cov) & (df['N'] == N) ]
+            p = df_cov['dist_percent'].values
+            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
+            p_sig = [p_i for p_i in p if p_i >= (1-alpha)]
+            powers.append(len(p_sig) / len(p))
+        plt.plot(np.asarray(Ns), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=r'$\mathrm{cov}=$' + str(cov))
+
+    plt.tight_layout()
+    plt.legend(loc='upper left', fontsize=14)
+    plt.xlabel('Number of replicate populations, '+ r'$\mathrm{log}_{2}$', fontsize = 16)
+    plt.xscale('log', basex=2)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    fig_name = pt.get_path() + '/figs/poisson_power_N.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def poisson_power_G(alpha = 0.05):
+    fig = plt.figure()
+    df = pd.read_csv(pt.get_path() + '/data/simulations/ba_cov_G_sims.txt', sep='\t')
+    covs = np.sort(list(set(df.Cov.values)))
+    Ns = np.sort(list(set(df.G.values)))
+    colors = ['powderblue',  'royalblue', 'navy']
+    for i, cov in enumerate(covs):
+        powers = []
+        for j, N in enumerate(Ns):
+            df_cov = df[ (df['Cov'] == cov) & (df['G'] == N) ]
+            p = df_cov['dist_percent'].values
+            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
+            p_sig = [p_i for p_i in p if p_i >= (1-alpha)]
+            powers.append(len(p_sig) / len(p))
+        plt.plot(np.asarray(Ns), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=r'$\mathrm{cov}=$' + str(cov))
+
+    plt.tight_layout()
+    plt.legend(loc='upper left', fontsize=14)
+    plt.xlabel('Number of genes, '+ r'$\mathrm{log}_{2}$', fontsize = 16)
+    plt.xscale('log', basex=2)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    fig_name = pt.get_path() + '/figs/poisson_power_G.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+def poisson_neutral_fig(alpha = 0.05):
+    df = pd.read_csv(pt.get_path() + '/data/simulations/ba_cov_neutral_sims.txt', sep='\t')
+    neuts = np.sort(list(set(df.lambda_neutral.values)))
+    cov = 0.2
+    powers = []
+    for neut in neuts:
+        df_neut = df[ (df['lambda_neutral'] == neut)  ]
+        p = df_neut.dist_percent.values
+        p_sig = [p_i for p_i in p if p_i >= (1-alpha)]
+        powers.append(len(p_sig) / len(p))
+    fig = plt.figure()
+    plt.plot(np.asarray(1 / neuts), np.asarray(powers), linestyle='--', marker='o', color='royalblue', label=r'$\mathrm{cov}=$' + str(cov))
+
+    plt.tight_layout()
+    plt.legend(loc='upper left', fontsize=14)
+    plt.xscale('log', basex=10)
+
+    plt.xlabel("Adaptive vs. non-adaptive substitution rate, " + r'$\frac{ \left \langle \lambda \right \rangle }{\lambda_{0}}$', fontsize = 16)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    fig_name = pt.get_path() + '/figs/poisson_power_neutral.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+poisson_neutral_fig()
+
+#tenaillon_p_N()
+#poisson_power_G()
+#poisson_power_N()
+#tenaillon_p_N()
 #def mean_euc_dist_fig():
 #plot_permutation(dataset='good')
 
@@ -966,5 +1082,5 @@ def power_figs(alpha = 0.05):
 
 #intro_fig()
 #test_pca_regression()
-
-euc_dist_hist()
+#gene_space_fig()
+#euc_dist_hist()
