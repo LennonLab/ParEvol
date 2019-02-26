@@ -9,22 +9,6 @@ from sklearn.decomposition import PCA
 import functools
 from sklearn.metrics.pairwise import euclidean_distances
 
-'''PCA code'''
-
-
-def get_likelihood_matrices():
-    df_good_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
-    df_good =  pd.read_csv(df_good_path, sep = '\t', header = 'infer', index_col = 0)
-    df_good_delta = pt.likelihood_matrix(df_good, 'Good_et_al').get_likelihood_matrix()
-    df_good_delta_out = pt.get_path() + '/data/Good_et_al/gene_by_pop_delta.txt'
-    df_good_delta.to_csv(df_good_delta_out, sep = '\t', index = True)
-
-    df_good_poly_path = pt.get_path() + '/data/Good_et_al/gene_by_pop_poly.txt'
-    df_good_poly =  pd.read_csv(df_good_poly_path, sep = '\t', header = 'infer', index_col = 0)
-    df_good_poly_delta = pt.likelihood_matrix(df_good_poly, 'Good_et_al').get_likelihood_matrix()
-    df_good_poly_delta_out = pt.get_path() + '/data/Good_et_al/gene_by_pop_poly_delta.txt'
-    df_good_poly_delta.to_csv(df_good_poly_delta_out, sep = '\t', index = True)
-
 
 
 def run_pca_permutation(iter = 10000, analysis = 'PCA', dataset = 'tenaillon'):
