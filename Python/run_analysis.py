@@ -8,7 +8,6 @@ import parevol_tools as pt
 from sklearn.decomposition import PCA
 import functools
 from sklearn.metrics.pairwise import euclidean_distances
-import matplotlib.pyplot as plt
 
 '''PCA code'''
 

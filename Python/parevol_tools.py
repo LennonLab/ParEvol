@@ -3,17 +3,14 @@ import os, pickle, math, random, itertools
 from itertools import combinations
 import pandas as pd
 import numpy as np
-import  matplotlib.pyplot as plt
-import matplotlib.colors as cls
-import rpy2.robjects as robjects
+#import rpy2.robjects as robjects
 import clean_data as cd
 from scipy.spatial.distance import pdist, squareform
 from sklearn.metrics.pairwise import euclidean_distances
 from scipy.special import comb
 import scipy.stats as stats
-from sklearn.model_selection import GridSearchCV
-from sklearn.neighbors import KernelDensity
 import networkx as nx
+from asa159 import rcont2
 
 #np.random.seed(123456789)
 
@@ -28,11 +25,20 @@ def get_ba_cov_matrix(n_genes, cov, m=2, get_node_edge_sum=False):
         ntwk_np = nx.to_numpy_matrix(ntwk)
         C = ntwk_np * cov
         np.fill_diagonal(C, 1)
+        # Based off of Gershgorin circle theorem,
+        # we can expect that the matrix will eventually
+        # produce mostly matrices that aren't positive
+        # definite as the covariance value increases and/or
+        # more edges added to incidence matrix
         if np.all(np.linalg.eigvals(C) > 0) == True:
             if get_node_edge_sum==False:
                 return C
             else:
                 return C, ntwk_np.sum(axis=0)
+
+
+def get_mean_center(array):
+    return array - np.mean(array, axis=0)
 
 
 def get_pois_sample(lambda_, u):
@@ -92,17 +98,7 @@ def comb_n_muts_k_genes(k, gene_sizes):
 
 
 
-def get_mean_colors(c1, c2, w1, w2):
-    # c1 and c2 are in hex format
-    # w1 and w2 are the weights
-    c1_list = list(cls.to_rgba('#FF3333'))
-    c2_list = list(cls.to_rgba('#3333FF'))
-    zipped = list(zip(c1_list, c2_list))
-    new_rgba = []
-    for item in zipped:
-        new_rgba.append(math.exp((w1 * math.log(item[0])) + (w2 * math.log(item[1]))))
-    #weight_sum = w1 + w2
-    return cls.rgb2hex(tuple(new_rgba))
+
 
 
 '''code is from https://stackoverflow.com/questions/6284396/permutations-with-unique-values'''
@@ -245,8 +241,6 @@ def get_euc_magnitude_diff(array, k = 3):
 
 
 
-
-
 def get_mean_pairwise_euc_distance(array, k = 3):
     X = array[:,0:k]
     row_sum = np.sum( euclidean_distances(X, X), axis =1)
@@ -296,26 +290,85 @@ def get_x_stat(e_values):
 
 
 
-
-
 def hellinger_transform(array):
     return np.sqrt((array.T/array.sum(axis=1)).T )
     #df = pd.read_csv(mydir + 'data/Tenaillon_et_al/gene_by_pop_delta.txt', sep = '\t', header = 'infer', index_col = 0)
     #return(df.div(df.sum(axis=1), axis=0).applymap(np.sqrt))
 
 
-def random_matrix(array):
-    ### use
-    ###  switch to ASA159 algorithm
-    r2dtable = robjects.r['r2dtable']
-    row_sum = array.sum(axis=1)
-    column_sum = array.sum(axis=0)
-    sample = r2dtable(1, robjects.IntVector(row_sum), robjects.IntVector(column_sum))
-    return np.asarray(sample[0])
+#def random_matrix(array):
+#    ### use
+#    ###  switch to ASA159 algorithm
+#    r2dtable = robjects.r['r2dtable']
+#    row_sum = array.sum(axis=1)
+#    column_sum = array.sum(axis=0)
+#    sample = r2dtable(1, robjects.IntVector(row_sum), robjects.IntVector(column_sum))
+#    return np.asarray(sample[0])
 
 
-def number_matrices(array):
-    print("what")
+def get_random_matrix(c):
+    #```GNU Lesser General Public License v3.0 code from https://github.com/maclandrol/FisherExact```
+    # f2py -c -m asa159 asa159.f90
+    #c = array
+    key = np.array([False], dtype=bool)
+    ierror = np.array([0], dtype=np.int32)
+    sr, sc = c.sum(axis=1).astype(np.int32), c.sum(axis=0).astype(np.int32)
+    nr, nc = len(sr), len(sc)
+    n = np.sum(sr)
+    replicate=1000
+    results = np.zeros(replicate)
+
+    seed=None
+    wkslimit=5000
+    DFAULT_MAX_TOT = 5000
+    # set default maxtot to wkslimit
+    if wkslimit < DFAULT_MAX_TOT:
+        wkslimit = 5000
+    if seed is None:
+        try:
+            seed = random.SystemRandom().randint(1, 100000)
+            seed = np.array([seed], dtype=np.int32)
+        except:
+            try:
+                import time
+                seed = int(time.time())
+                seed = np.array([seed], dtype=np.int32)
+            except:
+                seed = 12345
+                seed = np.array([seed], dtype=np.int32)
+
+    if n < wkslimit:
+        # we can just set the limit  to the table sum
+        wkslimit = n
+        pass
+    else:
+        # throw error immediately
+        raise ValueError(
+            "Limit of %d on the table sum exceded (%d), please increase workspace !" % (DFAULT_MAX_TOT, n))
+
+    maxtot = np.array([wkslimit], dtype=np.int32)
+    fact = np.zeros(wkslimit + 1, dtype=np.float, order='F')
+    observed = np.zeros((nr, nc), dtype=np.int32, order='F')
+
+    rcont2(nrow=nr, ncol=nc, nrowt=sr, ncolt=sc, maxtot=maxtot,
+           key=key, seed=seed, fact=fact, matrix=observed, ierror=ierror)
+
+    # if we do not have an error, make spcial action
+    #ans = 0.
+    tmp_observed = observed.ravel()
+    if ierror[0] in [1, 2]:
+        raise ValueError(
+            "Error in rcont2 (fortran) : row or column input size is less than 2!")
+    elif ierror[0] in [3, 4]:
+        raise ValueError(
+            "Error in rcont2 (fortran) : Negative values in table !")
+    elif ierror[0] == 6:
+        # this shouldn't happen with the previous check
+        raise ValueError(
+            "Error in rcont2 (fortran) : Limit on the table sum (%d) exceded, please increase workspace !" % DFAULT_MAX_TOT)
+    else:
+        return np.reshape(tmp_observed, (nr,nc))
+
 
 
 
@@ -397,24 +450,6 @@ def get_broken_stick(array):
     return np.asarray(out_list) * (1 / len(array))
 
 
-def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
-    x = range(1, len(explained_variance_ratio_) + 1)
-    if sum(explained_variance_ratio_) != 1:
-        y = explained_variance_ratio_ / sum(explained_variance_ratio_)
-    else:
-        y = explained_variance_ratio_
-    y_bs = get_broken_stick(explained_variance_ratio_)
-
-    fig = plt.figure()
-    plt.plot(x, y_bs, marker='o', linestyle='--', color='r', label='Broken-stick',markeredgewidth=0.0, alpha = 0.6)
-    plt.plot(x, y, marker='o', linestyle=':', color='k', label='Observed', markeredgewidth=0.0, alpha = 0.6)
-    plt.xlabel('PCoA axis', fontsize = 16)
-    plt.ylabel('Percent vaiance explained', fontsize = 16)
-
-    fig.tight_layout()
-    out_path = get_path() + '/figs/' + file_name + '.png'
-    fig.savefig(out_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
 
 
 class likelihood_matrix:
@@ -524,19 +559,6 @@ class likelihood_matrix_array:
 
         df_new[df_new < 0] = 0
         return df_new
-
-
-def get_kde(array):
-    grid_ = GridSearchCV(KernelDensity(),
-                    {'bandwidth': np.linspace(0.1, 10, 50)},
-                    cv=20) # 20-fold cross-validation
-    grid_.fit(array[:, None])
-    x_grid_ = np.linspace(0, 2.5, 1000)
-    kde_ = grid_.best_estimator_
-    pdf_ = np.exp(kde_.score_samples(x_grid_[:, None]))
-    pdf_ = [x / sum(pdf_) for x in pdf_]
-
-    return [x_grid_, pdf_, kde_.bandwidth]
 
 
 

@@ -32,7 +32,8 @@ def run_ba_cov_sims(gene_list, pop_list, out_name, iter1=1000, iter2=1000):
                     euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
                     euc_dists = []
                     for j in range(iter2):
-                        X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
+                        X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
+                        #X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
                         pca_fit_j = pca.fit_transform(X_j)
                         euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
                     euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
@@ -65,7 +66,8 @@ def run_ba_cov_neutral_sims(shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=
                 euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
                 euc_dists = []
                 for j in range(iter2):
-                    X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
+                    #X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
+                    X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
                     pca_fit_j = pca.fit_transform(X_j)
                     euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
                 euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
@@ -134,7 +136,8 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
             euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
             euc_dists = []
             for j in range(iter2):
-                df_np_i_j = pt.random_matrix(df_np_i)
+                #df_np_i_j = pt.random_matrix(df_np_i)
+                df_np_i_j = pt.get_random_matrix(df_np_i)
                 np.seterr(divide='ignore')
                 df_np_i_j_delta = pt.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
                 #df_i_j = pd.DataFrame(data=pt.random_matrix(df_np_i_j), index=df_i.index, columns=df_i.columns)

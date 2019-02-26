@@ -6,6 +6,8 @@ import parevol_tools as pt
 import matplotlib.pyplot as plt
 from matplotlib import cm, rc_context
 import matplotlib.patches as mpatches
+import matplotlib.colors as cls
+
 from scipy.special import comb
 from scipy import stats
 
@@ -1063,6 +1065,42 @@ def poisson_neutral_fig(alpha = 0.05):
     fig_name = pt.get_path() + '/figs/poisson_power_neutral.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
+
+
+
+def get_mean_colors(c1, c2, w1, w2):
+    # c1 and c2 are in hex format
+    # w1 and w2 are the weights
+    c1_list = list(cls.to_rgba('#FF3333'))
+    c2_list = list(cls.to_rgba('#3333FF'))
+    zipped = list(zip(c1_list, c2_list))
+    new_rgba = []
+    for item in zipped:
+        new_rgba.append(math.exp((w1 * math.log(item[0])) + (w2 * math.log(item[1]))))
+    #weight_sum = w1 + w2
+    return cls.rgb2hex(tuple(new_rgba))
+
+
+
+def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
+    x = range(1, len(explained_variance_ratio_) + 1)
+    if sum(explained_variance_ratio_) != 1:
+        y = explained_variance_ratio_ / sum(explained_variance_ratio_)
+    else:
+        y = explained_variance_ratio_
+    y_bs = get_broken_stick(explained_variance_ratio_)
+
+    fig = plt.figure()
+    plt.plot(x, y_bs, marker='o', linestyle='--', color='r', label='Broken-stick',markeredgewidth=0.0, alpha = 0.6)
+    plt.plot(x, y, marker='o', linestyle=':', color='k', label='Observed', markeredgewidth=0.0, alpha = 0.6)
+    plt.xlabel('PCoA axis', fontsize = 16)
+    plt.ylabel('Percent vaiance explained', fontsize = 16)
+
+    fig.tight_layout()
+    out_path = get_path() + '/figs/' + file_name + '.png'
+    fig.savefig(out_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
 
 
 poisson_neutral_fig()
