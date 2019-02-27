@@ -15,7 +15,7 @@ def get_correlated_rndm_ntwrk(assortative = True, rho=0.5):
     assort_ = []
     graph = nx.barabasi_albert_graph(50, 5)
     graph_np = nx.to_numpy_matrix(graph)
-    np.savetxt(pt.get_path() + '/data/disassoc_network_n0.txt', graph_np.astype(int), delimiter="\t")
+    #np.savetxt(pt.get_path() + '/data/disassoc_network_n0.txt', graph_np.astype(int), delimiter="\t")
     #iter = 100
     count = 0
     current_rho = 0

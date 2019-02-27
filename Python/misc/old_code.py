@@ -1,3 +1,17 @@
+from sklearn.model_selection import GridSearchCV
+from sklearn.neighbors import KernelDensity
+
+def get_kde(array):
+    grid_ = GridSearchCV(KernelDensity(),
+                    {'bandwidth': np.linspace(0.1, 10, 50)},
+                    cv=20) # 20-fold cross-validation
+    grid_.fit(array[:, None])
+    x_grid_ = np.linspace(0, 2.5, 1000)
+    kde_ = grid_.best_estimator_
+    pdf_ = np.exp(kde_.score_samples(x_grid_[:, None]))
+    pdf_ = [x / sum(pdf_) for x in pdf_]
+
+    return [x_grid_, pdf_, kde_.bandwidth]
 
 def plot_pcoa(dataset):
     if dataset == 'tenaillon':

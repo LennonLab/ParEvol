@@ -6,6 +6,8 @@ import parevol_tools as pt
 import matplotlib.pyplot as plt
 from matplotlib import cm, rc_context
 import matplotlib.patches as mpatches
+import matplotlib.colors as cls
+
 from scipy.special import comb
 from scipy import stats
 
@@ -37,7 +39,7 @@ def gene_space_fig():
 
 
     plt.xlabel('Substitutions, ' + r'$k$', fontsize = 20)
-    plt.ylabel(r'$\left | \mathcal{G}_{1}\left ( k \right )  \right | $', fontsize = 22)
+    plt.ylabel('Number of evolutionary\noutcomes, ' + r'$\left | \mathcal{G}_{1}\left ( k \right )  \right | $', fontsize = 18)
 
     plt.legend(loc='upper left', fontsize=14)
     #plt.yscale("log")
@@ -393,6 +395,68 @@ def intro_fig():
     fig_name = pt.get_path() + '/figs/test_network.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
+
+
+
+def euc_dist_hist():
+    G = 50
+    N = 50
+    iter = 1000
+    cov1 = 0.05
+    cov2 = 0.25
+    C1 = pt.get_ba_cov_matrix(G, cov1)
+    C2 = pt.get_ba_cov_matrix(G, cov2)
+    lambda_genes = np.random.gamma(shape=1, scale=1, size=G)
+    test_cov1 = np.stack( [pt.get_count_pop(lambda_genes, cov= C1) for x in range(N)] , axis=0 )
+    test_cov2 = np.stack( [pt.get_count_pop(lambda_genes, cov= C2) for x in range(N)] , axis=0 )
+    pca = PCA()
+
+    X1 = pt.hellinger_transform(test_cov1)
+    pca_fit1 = pca.fit_transform(X1)
+    euc_dist1 = pt.get_mean_pairwise_euc_distance(pca_fit1)
+    euc_dists1 = []
+    for j in range(iter):
+        X_j = pt.hellinger_transform(pt.random_matrix(test_cov1))
+        pca_fit_j = pca.fit_transform(X_j)
+        euc_dists1.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
+
+    X2 = pt.hellinger_transform(test_cov2)
+    pca_fit2 = pca.fit_transform(X2)
+    euc_dist2 = pt.get_mean_pairwise_euc_distance(pca_fit2)
+    euc_dists2 = []
+    for j in range(iter):
+        X_j = pt.hellinger_transform(pt.random_matrix(test_cov2))
+        pca_fit_j = pca.fit_transform(X_j)
+        euc_dists2.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
+
+    fig = plt.figure()
+    plt.hist(euc_dists1, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    plt.axvline(np.mean(euc_dists1)+ (0.5*np.std(euc_dists1)), color = 'red', ls = '--', lw = 3)
+    plt.xlabel("Mean pair-wise \n Euclidean distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
+    plt.ylabel("Frequency", fontsize = 18)
+    plt.text(min(euc_dists1) + 0.002, 45, r'$\mathrm{Cov}=0.05$', fontsize=16)
+    fig.tight_layout()
+    plot_out = pt.get_path() + '/figs/cov_hist_low.png'
+    fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+    fig = plt.figure()
+    plt.hist(euc_dists2, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
+    plt.axvline(np.mean(euc_dists2) + (2*np.std(euc_dists2)), color = 'red', ls = '--', lw = 3)
+    plt.xlabel("Mean pair-wise \n Euclidean distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
+    plt.ylabel("Frequency", fontsize = 18)
+    plt.text(min(euc_dists1) + 0.002, 45, r'$\mathrm{Cov}=0.25$', fontsize=16)
+    fig.tight_layout()
+    plot_out = pt.get_path() + '/figs/cov_hist_high.png'
+    fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
+
+
+
 
 
 
@@ -861,6 +925,190 @@ def regress_muts_fit():
     fig.savefig(plot_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
+
+
+def power_figs(alpha = 0.05):
+    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
+    fig = plt.figure()
+    covs = [0.05,0.1,0.15,0.2]
+    measures = ['euc_percent', 'eig_percent', 'mcd_percent_k1', 'mcd_percent_k3']
+    colors = ['powderblue', 'skyblue', 'royalblue', 'blue', 'navy']
+    labels = ['euclidean distance', 'eigenanalysis', 'mcd 1', 'mcd 1-3']
+
+    for i, measure in enumerate(measures):
+        #df_i = df[ (df['Cov'] == cov) &  (df['Cov'] == cov)]
+        powers = []
+        for j, cov in enumerate(covs):
+            df_cov = df[ df['Cov'] == cov ]
+            p = df_cov[measure].values
+            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
+            p_sig = [p_i for p_i in p if p_i >= (1-  alpha)]
+            powers.append(len(p_sig) / len(p))
+        print(powers)
+        plt.plot(np.asarray(covs), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=labels[i])
+    #plt.title('Covariance', fontsize = 18)
+    plt.legend(loc='lower right')
+    plt.xlabel('Covariance', fontsize = 16)
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    #plt.xlim(-0.02, 1.02)
+    #plt.ylim(-0.02, 1.02)
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/power_method.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+def tenaillon_p_N(alpha = 0.05, bootstraps=10000, bootstrap_sample = 100):
+    fig = plt.figure()
+    df = pd.read_csv(pt.get_path() + '/data/Tenaillon_et_al/sample_size_sim.txt', sep='\t')
+    Ns = list(set(df.N.values))
+    for N in Ns:
+        print(N)
+        N_dist = df.loc[df['N'] == N].dist_percent.values
+        bootstrap_power = []
+        for bootstrap in range(bootstraps):
+            p_sig = [p_i for p_i in np.random.choice(N_dist, size = bootstrap_sample) if p_i >= (1-alpha)]
+            bootstrap_power.append(len(p_sig) / bootstrap_sample)
+        bootstrap_power = np.sort(bootstrap_power)
+        N_power = len([p_i for p_i in N_dist if p_i >= (1- alpha)]) / len(N_dist)
+        lower_ci = bootstrap_power[int(len(bootstrap_power) * 0.05)]
+        upper_ci = bootstrap_power[  len(bootstrap_power) -  int(len(bootstrap_power) * 0.05)]
+        plt.errorbar(N, N_power, yerr = [np.asarray([N_power-upper_ci]), np.asarray([lower_ci - N_power])], fmt = 'o', alpha = 0.5, \
+            barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
+        plt.scatter(N, N_power, c='#175ac6', marker = 'o', s = 70, \
+            edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)
+    plt.xlabel('Number of replicate populations', fontsize = 16)
+    plt.ylabel('Empirical power', fontsize = 16)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.tight_layout()
+    fig_name = pt.get_path() + '/figs/tenaillon_N.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def poisson_power_N(alpha = 0.05):
+    fig = plt.figure()
+    df = pd.read_csv(pt.get_path() + '/data/simulations/ba_cov_N_sims.txt', sep='\t')
+    covs = np.sort(list(set(df.Cov.values)))
+    Ns = np.sort(list(set(df.N.values)))
+    colors = ['powderblue',  'royalblue', 'navy']
+    for i, cov in enumerate(covs):
+        powers = []
+        for j, N in enumerate(Ns):
+            df_cov = df[ (df['Cov'] == cov) & (df['N'] == N) ]
+            p = df_cov['dist_percent'].values
+            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
+            p_sig = [p_i for p_i in p if p_i >= (1-alpha)]
+            powers.append(len(p_sig) / len(p))
+        plt.plot(np.asarray(Ns), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=r'$\mathrm{cov}=$' + str(cov))
+
+    plt.tight_layout()
+    plt.legend(loc='upper left', fontsize=14)
+    plt.xlabel('Number of replicate populations, '+ r'$\mathrm{log}_{2}$', fontsize = 16)
+    plt.xscale('log', basex=2)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    fig_name = pt.get_path() + '/figs/poisson_power_N.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def poisson_power_G(alpha = 0.05):
+    fig = plt.figure()
+    df = pd.read_csv(pt.get_path() + '/data/simulations/ba_cov_G_sims.txt', sep='\t')
+    covs = np.sort(list(set(df.Cov.values)))
+    Ns = np.sort(list(set(df.G.values)))
+    colors = ['powderblue',  'royalblue', 'navy']
+    for i, cov in enumerate(covs):
+        powers = []
+        for j, N in enumerate(Ns):
+            df_cov = df[ (df['Cov'] == cov) & (df['G'] == N) ]
+            p = df_cov['dist_percent'].values
+            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
+            p_sig = [p_i for p_i in p if p_i >= (1-alpha)]
+            powers.append(len(p_sig) / len(p))
+        plt.plot(np.asarray(Ns), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=r'$\mathrm{cov}=$' + str(cov))
+
+    plt.tight_layout()
+    plt.legend(loc='upper left', fontsize=14)
+    plt.xlabel('Number of genes, '+ r'$\mathrm{log}_{2}$', fontsize = 16)
+    plt.xscale('log', basex=2)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    fig_name = pt.get_path() + '/figs/poisson_power_G.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+def poisson_neutral_fig(alpha = 0.05):
+    df = pd.read_csv(pt.get_path() + '/data/simulations/ba_cov_neutral_sims.txt', sep='\t')
+    neuts = np.sort(list(set(df.lambda_neutral.values)))
+    cov = 0.2
+    powers = []
+    for neut in neuts:
+        df_neut = df[ (df['lambda_neutral'] == neut)  ]
+        p = df_neut.dist_percent.values
+        p_sig = [p_i for p_i in p if p_i >= (1-alpha)]
+        powers.append(len(p_sig) / len(p))
+    fig = plt.figure()
+    plt.plot(np.asarray(1 / neuts), np.asarray(powers), linestyle='--', marker='o', color='royalblue', label=r'$\mathrm{cov}=$' + str(cov))
+
+    plt.tight_layout()
+    plt.legend(loc='upper left', fontsize=14)
+    plt.xscale('log', basex=10)
+
+    plt.xlabel("Adaptive vs. non-adaptive substitution rate, " + r'$\frac{ \left \langle \lambda \right \rangle }{\lambda_{0}}$', fontsize = 16)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
+    fig_name = pt.get_path() + '/figs/poisson_power_neutral.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+def get_mean_colors(c1, c2, w1, w2):
+    # c1 and c2 are in hex format
+    # w1 and w2 are the weights
+    c1_list = list(cls.to_rgba('#FF3333'))
+    c2_list = list(cls.to_rgba('#3333FF'))
+    zipped = list(zip(c1_list, c2_list))
+    new_rgba = []
+    for item in zipped:
+        new_rgba.append(math.exp((w1 * math.log(item[0])) + (w2 * math.log(item[1]))))
+    #weight_sum = w1 + w2
+    return cls.rgb2hex(tuple(new_rgba))
+
+
+
+def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
+    x = range(1, len(explained_variance_ratio_) + 1)
+    if sum(explained_variance_ratio_) != 1:
+        y = explained_variance_ratio_ / sum(explained_variance_ratio_)
+    else:
+        y = explained_variance_ratio_
+    y_bs = get_broken_stick(explained_variance_ratio_)
+
+    fig = plt.figure()
+    plt.plot(x, y_bs, marker='o', linestyle='--', color='r', label='Broken-stick',markeredgewidth=0.0, alpha = 0.6)
+    plt.plot(x, y, marker='o', linestyle=':', color='k', label='Observed', markeredgewidth=0.0, alpha = 0.6)
+    plt.xlabel('PCoA axis', fontsize = 16)
+    plt.ylabel('Percent vaiance explained', fontsize = 16)
+
+    fig.tight_layout()
+    out_path = get_path() + '/figs/' + file_name + '.png'
+    fig.savefig(out_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+poisson_neutral_fig()
+
+#tenaillon_p_N()
+#poisson_power_G()
+#poisson_power_N()
+#tenaillon_p_N()
 #def mean_euc_dist_fig():
 #plot_permutation(dataset='good')
 
@@ -871,4 +1119,6 @@ def regress_muts_fit():
 #test_pca_regression()
 
 #intro_fig()
-test_pca_regression()
+#test_pca_regression()
+#gene_space_fig()
+#euc_dist_hist()

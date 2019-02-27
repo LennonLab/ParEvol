@@ -253,8 +253,70 @@ class mcdonald_et_al:
         df.to_csv(df_out, sep = '\t', index = True)
 
 
+
+
+class likelihood_matrix_array:
+    def __init__(self, array, gene_list, dataset):
+        self.array = np.copy(array)
+        self.gene_list = gene_list
+        self.dataset = dataset
+
+    def get_gene_lengths(self, **keyword_parameters):
+        if self.dataset == 'Good_et_al':
+            conv_dict = cd.good_et_al().parse_convergence_matrix(get_path() + "/data/Good_et_al/gene_convergence_matrix.txt")
+            length_dict = {}
+            if ('gene_list' in keyword_parameters):
+                for gene_name in keyword_parameters['gene_list']:
+                    length_dict[gene_name] = conv_dict[gene_name]['length']
+                #for gene_name, gene_data in conv_dict.items():
+            else:
+                for gene_name, gene_data in conv_dict.items():
+                    length_dict[gene_name] = conv_dict[gene_name]['length']
+            return(length_dict)
+
+        elif self.dataset == 'Tenaillon_et_al':
+            with open(get_path() + '/data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
+                length_dict = pickle.loads(handle.read())
+                if ('gene_list' in keyword_parameters):
+                    return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }
+                else:
+                    return(length_dict)
+
+    def get_likelihood_matrix(self):
+        genes_lengths = self.get_gene_lengths(gene_list = self.gene_list)
+        L_mean = np.mean(list(genes_lengths.values()))
+        L_i = np.asarray(list(genes_lengths.values()))
+        N_genes = len(self.gene_list)
+        #m_mean = self.df.sum(axis=1) / N_genes
+        m_mean = np.sum(self.array, axis=0) / N_genes
+
+        #for index, row in self.df.iterrows():
+        #    m_mean_j = m_mean[index]
+        #    np.seterr(divide='ignore')
+        #    delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
+        #    self.df.loc[index,:] = delta_j
+
+        # just use matrix operations
+        np.seterr(divide='ignore', invalid='ignore')
+        df_new = self.array * np.log((self.array * (L_mean / L_i)) / m_mean)
+        np.seterr(divide='ignore', invalid='ignore')
+        #df_new = self.df_new.fillna(0)
+        df_new[np.isnan(df_new)] = 0
+        # remove colums with all zeros
+        #df_new.loc[:, (df_new != 0).any(axis=0)]
+        df_new = df_new[:,~np.all(df_new == 0, axis=0)]
+
+        # replace negative values with zero
+        #if (df_new<0).any() ==True:
+        #    print('Negative #!!!')
+
+        df_new[df_new < 0] = 0
+        return df_new
+
+
+
 #good_et_al().reformat_convergence_matrix(mut_type = 'P')
 #good_et_al().reformat_convergence_matrix(mut_type = 'F')
-tenaillon_et_al().pop_by_gene_tenaillon()
+#tenaillon_et_al().pop_by_gene_tenaillon()
 #kryazhimskiy_et_al().get_size_dict()
 #mcdonald_et_al().clean_S1()

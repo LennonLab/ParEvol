@@ -78,21 +78,6 @@ def number_matrices(matrix_array):
 
         #print()
         print(str(M)[0] + '.' + str(M)[1:3] + '*10**' + str(len(str(M))-1) )
-        #len(str(M))
-
-
-
-
-
-
-
-
-
-
-
-
-    #return array_permutations([4], 2)
-
 
 
 
