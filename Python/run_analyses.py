@@ -20,13 +20,24 @@ if __name__ == '__main__':
     else:
         out_path = os.path.expanduser("~/GitHub/ParEvol")
 
+    iter1=iter2=10000
+
     if analysis == True:
         run_ba_cov_sims_N_out = out_path + '/data/simulations/' + 'ba_cov_N_sims' + '.txt'
         rs.run_ba_cov_sims(gene_list=[50], pop_list=[2, 4, 8, 16, 32, 64],
-                out_name = run_ba_cov_sims_N_out, iter1=10000, iter2=10000)
+                out_name = run_ba_cov_sims_N_out, covs = [0.1, 0.15, 0.2], iter1=iter1, iter2=iter2)
+
         #run_ba_cov_sims_G_out = out_path + '/data/simulations/' + 'ba_cov_G_sims' + '.txt'
         #run_ba_cov_sims(gene_list=[8, 16, 32, 64, 128], pop_list=[50],
-        #        out_name = run_ba_cov_sims_G_out, iter1=10000, iter2=10000)
+        #        out_name = run_ba_cov_sims_G_out, covs = [0.1, 0.15, 0.2], iter1=iter1, iter2=iter2)
+
         #run_ba_cov_neutral_sims_out = out_path + '/data/simulations/' + 'ba_cov_neutral_sims' + '.txt'
-        #run_ba_cov_neutral_sims(run_ba_cov_neutral_sims_out, shape=1, scale=1,
-        #    G = 50, N = 50, iter1=10000, iter2=10000)
+        #run_ba_cov_neutral_sims(run_ba_cov_neutral_sims_out, covs = [0.1, 0.15, 0.2],
+        #    shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
+
+        #run_ba_cov_neutral_sims_out = out_path + '/data/simulations/' + 'ba_cov_prop_sims' + '.txt'
+        #props = np.linspace(0, 1, num = 20)
+        #run_ba_cov_prop_sims(run_ba_cov_neutral_sims_out, covs = [0.1, 0.15, 0.2],
+        #    props=props, shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
+
+        # rho vs power

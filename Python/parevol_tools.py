@@ -32,7 +32,7 @@ def get_F_stat_pairwise(pca_array, groups, k=3):
 
 
 
-def get_ba_cov_matrix(n_genes, cov, m=2, get_node_edge_sum=False):
+def get_ba_cov_matrix(n_genes, cov, prop=1, m=2, get_node_edge_sum=False):
     '''Based off of Gershgorin circle theorem, we can expect
     that the code will eventually produce mostly matrices
     that aren't positive definite as the covariance value
@@ -42,6 +42,11 @@ def get_ba_cov_matrix(n_genes, cov, m=2, get_node_edge_sum=False):
         ntwk_np = nx.to_numpy_matrix(ntwk)
         C = ntwk_np * cov
         np.fill_diagonal(C, 1)
+        if prop < 1:
+            diag_C = np.tril(C, k =-1)
+            i,j = np.nonzero(diag_C)
+            ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
+            C[np.concatenate((i[ix],j[ix]), axis=None), np.concatenate((j[ix],i[ix]), axis=None)] = -1*cov
         if np.all(np.linalg.eigvals(C) > 0) == True:
             if get_node_edge_sum==False:
                 return C
