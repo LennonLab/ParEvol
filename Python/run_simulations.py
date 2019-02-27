@@ -118,6 +118,7 @@ def run_ba_cov_prop_sims(out_name, covs = [0.1, 0.15, 0.2], props=[0.5], shape=1
 
 
 #def run_ba_cov_rho_sims():
+    
 
 
 

@@ -1,10 +1,11 @@
 #!/bin/sh
 #PBS -k o
-#PBS -l nodes=1:ppn=8,vmem=100gb,walltime=24:00:00
+#PBS -l nodes=1:ppn=8,vmem=10gb,walltime=48:00:00
 #PBS -M wrshoema@iu.edu
 #PBS -m abe
 #PBS -m n
-#PBS -j oe
+# the -j flag isn't acceptd on carbonate any more I think
+#    PBS -j oe
 
 # the location of the conda environment
 # ~/.conda/envs/ParEvol/bin/python
