@@ -9,6 +9,7 @@ import parevol_tools as pt
 from sklearn.decomposition import PCA
 
 
+
 # Figure 1 code
 # z = 1.645 for one sided test with alpha=0.05
 def run_ba_cov_sims(gene_list, pop_list, out_name, covs = [0.1, 0.15, 0.2], iter1=1000, iter2=1000):
@@ -26,20 +27,7 @@ def run_ba_cov_sims(gene_list, pop_list, out_name, covs = [0.1, 0.15, 0.2], iter
                             break
                     # check and remove empty columns
                     test_cov = test_cov[:, ~np.all(test_cov == 0, axis=0)]
-                    # try without hellinger transform
-                    #X = pt.hellinger_transform(test_cov)
-                    X = pt.get_mean_center(test_cov)
-                    pca = PCA()
-                    pca_fit = pca.fit_transform(X)
-                    euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
-                    euc_dists = []
-                    for j in range(iter2):
-                        #X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
-                        X_j = pt.get_mean_center(pt.get_random_matrix(test_cov))
-                        pca_fit_j = pca.fit_transform(X_j)
-                        euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
-                    euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
-                    z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
+                    euc_percent, z_score = pt.matrix_vs_null_one_treat(test_cov, iter2)
                     df_out.write('\t'.join([str(N), str(G), str(cov), str(i), str(euc_percent), str(z_score)]) + '\n')
                 print(N, G, cov)
     df_out.close()
@@ -67,19 +55,7 @@ def run_ba_cov_neutral_sims(out_name, covs = [0.1, 0.15, 0.2], shape=1, scale=1,
                         break
                 # check and remove empty columns
                 test_cov = test_cov[:, ~np.all(test_cov == 0, axis=0)]
-                #X = pt.hellinger_transform(test_cov)
-                X = pt.get_mean_center(test_cov)
-                pca = PCA()
-                pca_fit = pca.fit_transform(X)
-                euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
-                euc_dists = []
-                for j in range(iter2):
-                    #X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
-                    X_j = pt.get_mean_center(pt.get_random_matrix(test_cov))
-                    pca_fit_j = pca.fit_transform(X_j)
-                    euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
-                euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
-                z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
+                euc_percent, z_score = pt.matrix_vs_null_one_treat(test_cov, iter2)
                 df_out.write('\t'.join([str(N), str(G), str(mean_gamma), str(neutral_), str(cov), str(i), str(euc_percent), str(z_score)]) + '\n')
             print(neutral_, cov)
     df_out.close()
@@ -100,26 +76,41 @@ def run_ba_cov_prop_sims(out_name, covs = [0.1, 0.15, 0.2], props=[0.5], shape=1
                         break
                 # check and remove empty columns
                 test_cov = test_cov[:, ~np.all(test_cov == 0, axis=0)]
-                X = pt.get_mean_center(test_cov)
-                pca = PCA()
-                pca_fit = pca.fit_transform(X)
-                euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
-                euc_dists = []
-                for j in range(iter2):
-                    X_j = pt.get_mean_center(pt.get_random_matrix(test_cov))
-                    pca_fit_j = pca.fit_transform(X_j)
-                    euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
-                euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
-                z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
+                euc_percent, z_score = pt.matrix_vs_null_one_treat(test_cov, iter2)
                 df_out.write('\t'.join([str(N), str(G), str(cov), str(prop), str(i), str(euc_percent), str(z_score)]) + '\n')
             print(N, G, cov)
     df_out.close()
 
 
 
-#def run_ba_cov_rho_sims():
+def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[0.2], shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=1000):
+    df_out=open(out_name, 'w')
+    df_out.write('\t'.join(['N', 'G', 'Cov', 'Rho_goal', 'Rho_estimated', 'Iteration', 'dist_percent', 'z_score']) + '\n')
+    for rho in rhos:
+        for cov in covs:
+            for i in range(iter1):
+                C, rho_estimated = pt.get_ba_cov_matrix(n_genes=G, cov=cov, rho=rho)
+                while True:
+                    lambda_genes = np.random.gamma(shape=1, scale=1, size=G)
+                    test_cov = np.stack( [pt.get_count_pop(lambda_genes, C= C) for x in range(N)] , axis=0 )
+                    if (np.any(test_cov.sum(axis=1) == 0 )) == False:
+                        break
+                # check and remove empty columns
+                test_cov = test_cov[:, ~np.all(test_cov == 0, axis=0)]
+                euc_percent, z_score = pt.matrix_vs_null_one_treat(test_cov, iter2)
+                df_out.write('\t'.join([str(N), str(G), str(cov), str(rho), str(rho_estimated), str(i), str(euc_percent), str(z_score)]) + '\n')
+            print(N, G, cov)
+    df_out.close()
 
 
+
+
+
+
+
+
+
+####### two treatments sims #####
 
 
 
@@ -216,32 +207,32 @@ def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
 
 
 
-def run_ba_cor_sub_sims(shape=1, scale=1, G = 50, N = 50):
-    cov = 0.1
-    lambda_genes = np.random.gamma(shape=shape, scale=scale, size=G)
-    lambda_genes.sort()
-    C, edge_count = pt.get_ba_cov_matrix(G, cov, get_node_edge_sum=True)
-    zipped = list(zip( list(range(G)) , edge_count.tolist()[0] ))
-    zipped.sort(key = lambda t: t[1])
-    # figure out how to sort covariance matrix
-    total_inversions = 30
-    inversion_count = 0
-    while inversion_count < total_inversions:
-        pair = np.random.choice(list(range(G)), size = 2, replace=False)
-        pair.sort()
-        if lambda_genes[pair[0]] < lambda_genes[pair[1]]:
-            lambda_0 =lambda_genes[pair[0]].copy()
-            lambda_1 =lambda_genes[pair[1]].copy()
-            lambda_genes[pair[0]] = lambda_1
-            lambda_genes[pair[1]] = lambda_0
-            inversion_count += 1
-    unzipped = list(zip(*zipped))
-    rezipped = list( zip( unzipped[0], unzipped[1],  lambda_genes) )
-    rezipped.sort(key = lambda t: t[0])
-    unrezipped = list(zip(*rezipped))
-    lambda_genes_sorted = list(unrezipped[2])
+#def run_ba_cor_sub_sims(shape=1, scale=1, G = 50, N = 50):
+#    cov = 0.1
+#    lambda_genes = np.random.gamma(shape=shape, scale=scale, size=G)
+#    lambda_genes.sort()
+#    C, edge_count = pt.get_ba_cov_matrix(G, cov, get_node_edge_sum=True)
+#    zipped = list(zip( list(range(G)) , edge_count.tolist()[0] ))
+#    zipped.sort(key = lambda t: t[1])
+#    # figure out how to sort covariance matrix
+#    total_inversions = 30
+#    inversion_count = 0
+#    while inversion_count < total_inversions:
+#        pair = np.random.choice(list(range(G)), size = 2, replace=False)
+#        pair.sort()
+#        if lambda_genes[pair[0]] < lambda_genes[pair[1]]:
+#            lambda_0 =lambda_genes[pair[0]].copy()
+#            lambda_1 =lambda_genes[pair[1]].copy()
+#            lambda_genes[pair[0]] = lambda_1
+#            lambda_genes[pair[1]] = lambda_0
+#            inversion_count += 1
+#    unzipped = list(zip(*zipped))
+#    rezipped = list( zip( unzipped[0], unzipped[1],  lambda_genes) )
+#    rezipped.sort(key = lambda t: t[0])
+#    unrezipped = list(zip(*rezipped))
+#    lambda_genes_sorted = list(unrezipped[2])
 
-    print(lambda_genes_sorted)
+#    print(lambda_genes_sorted)
 
 
 

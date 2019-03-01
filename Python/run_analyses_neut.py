@@ -1,6 +1,5 @@
 import argparse, os
 import run_simulations as rs
-import numpy as np
 
 ### This file will contain all the commands to automatically rerun all analyses.
 if __name__ == '__main__':
@@ -32,15 +31,13 @@ if __name__ == '__main__':
         #run_ba_cov_sims(gene_list=[8, 16, 32, 64, 128], pop_list=[50],
         #        out_name = run_ba_cov_sims_G_out, covs = [0.1, 0.15, 0.2], iter1=iter1, iter2=iter2)
 
-        #run_ba_cov_neutral_sims_out = out_path + '/data/simulations/' + 'ba_cov_neutral_sims' + '.txt'
-        #run_ba_cov_neutral_sims(run_ba_cov_neutral_sims_out, covs = [0.1, 0.15, 0.2],
-        #    shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
+        run_ba_cov_neutral_sims_out = out_path + '/data/simulations/' + 'ba_cov_neutral_sims' + '.txt'
+        rs.run_ba_cov_neutral_sims(run_ba_cov_neutral_sims_out, covs = [0.1, 0.15, 0.2],
+            shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
 
-        #run_ba_cov_neutral_sims_out = out_path + '/data/simulations/' + 'ba_cov_prop_sims' + '.txt'
+        #run_ba_cov_prop_sims_out = out_path + '/data/simulations/' + 'ba_cov_prop_sims' + '.txt'
         #props = np.linspace(0, 1, num = 20)
-        #run_ba_cov_prop_sims(run_ba_cov_neutral_sims_out, covs = [0.1, 0.15, 0.2],
+        #run_ba_cov_prop_sims(run_ba_cov_prop_sims_out, covs = [0.1, 0.15, 0.2],
         #    props=props, shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
 
         # rho vs power
-        run_ba_cov_rho_sims_out = out_path + '/data/simulations/' + 'ba_cov_rho_sims' + '.txt'
-        #rs.run_ba_cov_sims_sims()
