@@ -2,7 +2,7 @@
 #PBS -k o
 #PBS -l nodes=1:ppn=8,vmem=10gb,walltime=48:00:00
 #PBS -M wrshoema@iu.edu
-#PBS -m abe
+#PBS -m e
 #PBS -m n
 # the -j flag isn't acceptd on carbonate any more I think
 #    PBS -j oe
