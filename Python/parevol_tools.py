@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.decomposition import PCA
-
+from scipy.linalg import block_diag
 from scipy.special import comb
 import scipy.stats as stats
 import networkx as nx
@@ -13,8 +13,8 @@ from asa159 import rcont2
 
 #np.random.seed(123456789)
 
-
-
+def get_alpha():
+    return 0.05
 
 
 def get_F_stat_pairwise(pca_array, groups, k=3):
@@ -39,7 +39,7 @@ def get_F_stat_pairwise(pca_array, groups, k=3):
 
 
 
-def get_ba_cov_matrix(n_genes, cov, prop=1, m=2, get_node_edge_sum=False, rho=None):
+def get_ba_cov_matrix(n_genes, cov, prop=False, m=2, get_node_edge_sum=False, rho=None):
     '''Based off of Gershgorin circle theorem, we can expect
     that the code will eventually produce mostly matrices
     that aren't positive definite as the covariance value
@@ -52,7 +52,7 @@ def get_ba_cov_matrix(n_genes, cov, prop=1, m=2, get_node_edge_sum=False, rho=No
             ntwk_np, rho_estimate = get_correlated_rndm_ntwrk(n_genes, m=m, rho=rho, count_threshold = 10000)
         C = ntwk_np * cov
         np.fill_diagonal(C, 1)
-        if prop < 1:
+        if prop == True:
             diag_C = np.tril(C, k =-1)
             i,j = np.nonzero(diag_C)
             ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
@@ -333,11 +333,9 @@ def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, count_threshold = 10000):
     return iter_graph, iter_rh0
 
 
-
-
-
 def get_mean_center(array):
     return array - np.mean(array, axis=0)
+
 
 def matrix_vs_null_one_treat(count_matrix, iter):
     X = get_mean_center(count_matrix)
@@ -355,50 +353,51 @@ def matrix_vs_null_one_treat(count_matrix, iter):
     return euc_percent, z_score
 
 
-#class likelihood_matrix:
-#    def __init__(self, df, dataset):
-#        self.df = df.copy()
-#        self.dataset = dataset
-#
-#    def get_gene_lengths(self, **keyword_parameters):
-#        if self.dataset == 'Good_et_al':
-#            conv_dict = cd.good_et_al().parse_convergence_matrix(get_path() + "/data/Good_et_al/gene_convergence_matrix.txt")
-#            length_dict = {}
-#            if ('gene_list' in keyword_parameters):
-#                for gene_name in keyword_parameters['gene_list']:
-#                    length_dict[gene_name] = conv_dict[gene_name]['length']
-#                #for gene_name, gene_data in conv_dict.items():
-#            else:
-#                for gene_name, gene_data in conv_dict.items():
-#                    length_dict[gene_name] = conv_dict[gene_name]['length']
-#            return(length_dict)
-#
-#        elif self.dataset == 'Tenaillon_et_al':
-#            with open(get_path() + '/data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
-#                length_dict = pickle.loads(handle.read())
-#                if ('gene_list' in keyword_parameters):
-#                    return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }
-#                    #for gene_name in keyword_parameters['gene_list']:
-#                else:
-#                    return(length_dict)
+def get_F_2(count_matrix, N1, N2):
+    '''
+    Modified F-statistic from Anderson et al., 2017 doi: 10.1111/anzs.12176
+    Function assumes that the rows of the count matrix are sorted by group
+    i.e., group one is first N1 rows, rest of the N2 rows are group two
+    '''
+    N = N1+N2
+    X = get_mean_center(count_matrix)
+    pca = PCA()
+    pca_fit = pca.fit_transform(X)
+    dist_matrix = euclidean_distances(X, X)
+    A = -(1/2) * (dist_matrix ** 2)
+    I = np.identity(N)
+    J_N = np.full((N, N), 1)
+    G = (I - ((1/N) * J_N )) @ A @ (I - ((1/N) * J_N ))
+    n1 = (1/N1) * np.full((N1, N1), 1)
+    n2 = (1/N2) * np.full((N2, N2), 1)
+    H = block_diag(n1, n2) - ((1/N) * J_N )
+    # indicator matrices
+    U_1 = np.diag( (N1*[1]) + (N2*[0]))
+    U_2 = np.diag( (N1*[0]) + (N2*[1]))
 
-#    def get_likelihood_matrix(self):
-#        genes = self.df.columns.tolist()
-#        genes_lengths = self.get_gene_lengths(gene_list = genes)
-#        L_mean = np.mean(list(genes_lengths.values()))
-#        L_i = np.asarray(list(genes_lengths.values()))
-#        N_genes = len(genes)
-#        m_mean = self.df.sum(axis=1) / N_genes
+    V_1 = np.trace(((I - H) @ U_1 @ (I - H)) @ G ) / (N1-1)
+    V_2 = np.trace(((I - H) @ U_2 @ (I - H)) @ G ) / (N2-1)
 
-#        for index, row in self.df.iterrows():
-#            m_mean_j = m_mean[index]
-#            np.seterr(divide='ignore')
-#            delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
-#            self.df.loc[index,:] = delta_j
+    F_2 = np.trace(H @ G) / (((1- (N1/N)) * V_1) + ((1- (N2/N)) * V_2))
 
-#        df_new = self.df.fillna(0)
-#        # remove colums with all zeros
-#        df_new.loc[:, (df_new != 0).any(axis=0)]
-#        # replace negative values with zero
-#        df_new[df_new < 0] = 0
-#        return df_new
+    return F_2, V_1, V_2
+
+
+def matrix_vs_null_one_treat(count_matrix,  N1, N2, iter=1000):
+    F_2, V_1, V_2 = get_F_2(count_matrix, N1, N2)
+    F_2_list = []
+    V_1_list = []
+    V_2_list = []
+    for j in range(iter):
+        F_2_j, V_1_j, V_2_j = get_F_2(get_random_matrix(count_matrix), N1, N2)
+        F_2_list.append(F_2_j)
+        V_1_list.append(V_1_j)
+        V_2_list.append(V_2_j)
+    F_2_percent = len( [k for k in F_2_list if k < F_2] ) / iter
+    F_2_z_score = (F_2 - np.mean(F_2_list)) / np.std(F_2_list)
+    V_1_percent = len( [k for k in V_1_list if k < V_1] ) / iter
+    V_1_z_score = (V_1 - np.mean(V_1_list)) / np.std(V_1_list)
+    V_2_percent = len( [k for k in V_2_list if k < V_2] ) / iter
+    V_2_z_score = (V_2 - np.mean(V_2_list)) / np.std(V_2_list)
+
+    return F_2_percent, F_2_z_score, V_1_percent, V_1_z_score, V_2_percent, V_2_z_score

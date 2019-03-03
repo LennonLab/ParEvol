@@ -21,7 +21,7 @@ if __name__ == '__main__':
     else:
         out_path = os.path.expanduser("~/GitHub/ParEvol")
 
-    iter1=iter2=10000
+    iter1=iter2=1000
 
     if analysis == True:
         #run_ba_cov_sims_N_out = out_path + '/data/simulations/' + 'ba_cov_N_sims' + '.txt'

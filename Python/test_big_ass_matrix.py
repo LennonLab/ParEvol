@@ -1,6 +1,7 @@
 import parevol_tools as pt
 import numpy as np
 import run_simulations as rs
+import scipy.stats as stats
 
 G = 50
 N = 50
@@ -23,6 +24,16 @@ cov=0.2
 #out_name = '/Users/WRShoemaker/GitHub/ParEvol/data/simulations/text_rho.txt'
 #rs.run_ba_cov_rho_sims(out_name, covs = [0.2], rhos=[0.2], shape=1, scale=1, G = 50, N = 50, iter1=10, iter2=10)
 
-run_ba_cov_sims_N_out = '/Users/WRShoemaker/GitHub/ParEvol/data/simulations/' + 'ba_cov_N_sims_test' + '.txt'
-rs.run_ba_cov_sims(gene_list=[50], pop_list=[8],
-        out_name = run_ba_cov_sims_N_out, covs = [0.2], iter1=10, iter2=100)
+#run_ba_cov_sims_N_out = '/Users/WRShoemaker/GitHub/ParEvol/data/simulations/' + 'ba_cov_N_sims_test' + '.txt'
+#rs.run_ba_cov_sims(gene_list=[50], pop_list=[8],
+#        out_name = run_ba_cov_sims_N_out, covs = [0.2], iter1=10, iter2=100)
+
+x = [1,2,3,4]
+y = [10,12,20,19]
+
+rho,p_value = stats.spearmanr(x,y)
+#print(rho,p_value)
+
+#print(rs.run_ba_cov_lampbda_edge_sims("file_path", 4))
+
+rs.two_treats_sim()

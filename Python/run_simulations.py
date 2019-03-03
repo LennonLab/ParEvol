@@ -7,9 +7,8 @@ import numpy as np
 import pandas as pd
 import parevol_tools as pt
 from sklearn.decomposition import PCA
-
-
-
+import scipy.stats as ss
+from sklearn.metrics.pairwise import euclidean_distances
 # Figure 1 code
 # z = 1.645 for one sided test with alpha=0.05
 def run_ba_cov_sims(gene_list, pop_list, out_name, covs = [0.1, 0.15, 0.2], iter1=1000, iter2=1000):
@@ -104,6 +103,45 @@ def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[0.2], shape=1, 
 
 
 
+def run_ba_cov_lampbda_edge_sims(out_name, num_permute, G=50,shape=1, scale=1):
+    rates = np.random.gamma(shape, scale=scale, size=G)
+    cov=0.2
+    C = pt.get_ba_cov_matrix(10, cov)
+    print(C)
+    counts = np.count_nonzero(C,axis=1).flatten()
+    counts = np.asarray(counts.tolist()[0])
+    print(len(counts))
+    #order_C = np.asarray(np.count_nonzero(C,axis=1).tolist()[0])
+    #print(order_C)
+
+    #print(np.linalg.norm(C,axis=1))
+    #print(np.argsort(np.linalg.norm(C,axis=1)))
+
+    #corrs = C.sum(axis=0)
+    #corr_order = corrs.argsort()[::-1]
+    #print(np.count_nonzero(C,axis=1))
+
+    #ndim = C.shape[0]
+    #inds_orig = list(range(ndim))
+    #inds = []
+    #for _ in range(ndim):
+    #    inds.append(inds_orig[(len(inds_orig)-1)//2])
+    #    del inds_orig[(len(inds_orig)-1)//2]
+    #inds = np.array(inds)
+    #res = np.empty_like(C)
+    #corr_order_flatten = np.asarray(corr_order.tolist()[0])
+    #res[np.ix_(inds,inds)] = C[np.ix_(corr_order_flatten,corr_order_flatten)]
+
+    #print(np.count_nonzero(res,axis=1))
+
+    #print(np.count_nonzero(C, axis=1))
+    #ranked = ss.rankdata(np.count_nonzero(C, axis=1))
+    #print(ranked)
+    #diag_C = np.tril(C, k =-1)
+    #i,j = np.nonzero(diag_C)
+    # remove redundant pairs
+    #ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
+
 
 
 
@@ -113,62 +151,54 @@ def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[0.2], shape=1, 
 ####### two treatments sims #####
 
 
+def two_treats_sim(
+    to_reshuffle = [2],
+    N1=10,
+    N2=10,
+    covs=[0],
+    G=100,
+    shape = 1,
+    scale = 1,
+    iter1=1000,
+    iter2=1000):
 
-def two_treats_sim(iter1 = 1000, iter2 = 1000, alpha = 0.05):
-    genes = 10
-    pops1 = pops2 = 10
-    shape = 1
-    scale = 1
-    muts1 = muts2 = 20
-    to_reshuffle = [0, 5, 10, 15, 20]
+    N = N1+N2
 
     for reshuf in to_reshuffle:
-        p_vales = []
-        for i in range(iter1):
-            #print(i)
-            rates = np.random.gamma(shape, scale=scale, size=genes)
-            rates1 = rates.copy()
-            # permute rates
-            shuffle(rates[:reshuf])
-            rates2 = rates.copy()
-            list_dicts1 = [Counter(np.random.choice(genes, size = muts1, replace = True, p = rates1 / sum(rates1))) for i in range(pops1) ]
-            list_dicts2 = [Counter(np.random.choice(genes, size = muts2, replace = True, p = rates2 / sum(rates2))) for i in range(pops2) ]
+        for cov in covs:
+            for i in range(iter1):
+                C = pt.get_ba_cov_matrix(G, cov)
+                while True:
+                    rates = np.random.gamma(shape, scale=scale, size=G)
+                    # fix this so you're not resampling the same pairs
+                    rates1 = rates.copy()
+                    shuffle(rates[:reshuf])
+                    rates2 = rates.copy()
+                    counts1 = np.stack( [pt.get_count_pop(rates1, C= C) for x in range(N1)], axis=0)
+                    counts2 = np.stack( [pt.get_count_pop(rates2, C= C) for x in range(N2)], axis=0)
+                    if (np.any(counts1.sum(axis=1) == 0 ) == False) or (np.any(counts2.sum(axis=1) == 0 ) == False):
+                        break
+                #D_KL = ss.entropy(rates1, rates2)
+                euc_dist = np.linalg.norm(rates1-rates2)
+                print(rates1-rates2)
+                count_matrix = np.concatenate((counts1, counts2), axis=0)
+                # check and remove empty columns
+                count_matrix = count_matrix[:, ~np.all(count_matrix == 0, axis=0)]
+                F_2_percent, F_2_z_score, V_1_percent, \
+                    V_1_z_score, V_2_percent, V_2_z_score = \
+                    pt.matrix_vs_null_one_treat(count_matrix,  N1, N2, iter=iter2)
 
-            df1 = pd.DataFrame(list_dicts1)
-            df2 = pd.DataFrame(list_dicts2)
-            df = pd.concat([df1, df2])
-            df = df.fillna(0)
-            count_matrix = df.values
-            groups = [ np.asarray(list(range(0, pops1))), np.asarray(list(range(pops1, pops1+pops2))) ]
-            pca = PCA()
-            X = pt.hellinger_transform(count_matrix)
-            pca_fit = pca.fit_transform(X)
-            F = get_F_stat_pairwise(pca_fit, groups)
-            F_list = []
-            for j in range(iter2):
-                count_matrix_n0 = pt.random_matrix(count_matrix)
-                X_n0 = pt.hellinger_transform(count_matrix_n0)
-                pca_fit_n0 = pca.fit_transform(X_n0)
-                F_list.append(get_F_stat_pairwise(pca_fit_n0, groups))
-
-            p_vales.append((len([x for x in F_list if x > F]) +1)  / (iter2+1))
-
-        power = (len([k for k in p_vales if k < alpha]) +1)  / (iter1+1)
-        print('Reshuffle = ' + str(reshuf) + ', Power ' +  str(power))
-
-
-    #fig = plt.figure()
-    #plt.hist(F_list, bins=50,  alpha=0.8, color = '#175ac6')
-    #plt.axvline(F, color = 'red', lw = 3, ls = '--')
-    #plt.tight_layout()
-    #fig_name = pt.get_path() + '/figs/test_F.png'
-    #fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    #plt.close()
+                print(F_2_percent, F_2_z_score,euc_dist)
+                #F_2, V_1, V_2 = pt.get_F_2(count_matrix=count_matrix, N1=N1, N2=N2)
 
 
 
 
-    #print(np.mean(F_list))
+
+
+
+
+
 
 
 
