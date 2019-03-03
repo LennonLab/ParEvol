@@ -383,7 +383,7 @@ def get_F_2(count_matrix, N1, N2):
     return F_2, V_1, V_2
 
 
-def matrix_vs_null_one_treat(count_matrix,  N1, N2, iter=1000):
+def matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=1000):
     F_2, V_1, V_2 = get_F_2(count_matrix, N1, N2)
     F_2_list = []
     V_1_list = []

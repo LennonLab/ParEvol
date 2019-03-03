@@ -6,9 +6,10 @@ from collections import Counter
 import numpy as np
 import pandas as pd
 import parevol_tools as pt
+import clean_data as cd
 from sklearn.decomposition import PCA
 import scipy.stats as ss
-from sklearn.metrics.pairwise import euclidean_distances
+
 # Figure 1 code
 # z = 1.645 for one sided test with alpha=0.05
 def run_ba_cov_sims(gene_list, pop_list, out_name, covs = [0.1, 0.15, 0.2], iter1=1000, iter2=1000):
@@ -148,24 +149,25 @@ def run_ba_cov_lampbda_edge_sims(out_name, num_permute, G=50,shape=1, scale=1):
 
 
 
-####### two treatments sims #####
+'''
+two treatments sims
+'''
 
 
 def two_treats_sim(
-    to_reshuffle = [0, 2, 4, 6, 8, 10],
+    to_reshuffle = [10],
     N1=10,
     N2=10,
-    covs=[0.05, 0.1, 0.15, 0.2],
+    covs=[0.05],
     G=100,
     shape = 1,
     scale = 1,
-    iter1=1000,
+    iter1=100,
     iter2=1000):
-
-    N = N1+N2
 
     for reshuf in to_reshuffle:
         for cov in covs:
+            F_2_list = [ ]
             for i in range(iter1):
                 C = pt.get_ba_cov_matrix(G, cov)
                 while True:
@@ -173,8 +175,8 @@ def two_treats_sim(
                     rates1 = rates.copy()
                     rates2 = rates.copy()
                     # fix this so you're not resampling the same pairs
-                    for i in range(reshuf)[0::2]:
-                        rates2[i], rates2[i+1] = rates2[i+1], rates2[i]
+                    for j in range(reshuf)[0::2]:
+                        rates2[j], rates2[j+1] = rates2[j+1], rates2[j]
                     #shuffle(rates)#[:reshuf])
                     counts1 = np.stack( [pt.get_count_pop(rates1, C= C) for x in range(N1)], axis=0)
                     counts2 = np.stack( [pt.get_count_pop(rates2, C= C) for x in range(N2)], axis=0)
@@ -187,10 +189,13 @@ def two_treats_sim(
                 count_matrix = count_matrix[:, ~np.all(count_matrix == 0, axis=0)]
                 F_2_percent, F_2_z_score, V_1_percent, \
                     V_1_z_score, V_2_percent, V_2_z_score = \
-                    pt.matrix_vs_null_one_treat(count_matrix,  N1, N2, iter=iter2)
+                    pt.matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=iter2)
 
-                print(F_2_percent, F_2_z_score, euc_dist)
-                #F_2, V_1, V_2 = pt.get_F_2(count_matrix=count_matrix, N1=N1, N2=N2)
+                print(i, F_2_percent, F_2_z_score, euc_dist)
+                F_2_list.append(F_2_percent)
+
+            p_sig = [p_i for p_i in F_2_list if p_i >= (1-0.05)]
+            print(len(p_sig) / len(F_2_list))
 
 
 
@@ -265,10 +270,9 @@ def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
 
 #    print(lambda_genes_sorted)
 
-
-
     #list[min(lambda_genes[pair[0]],j)] < list[max(i,j)]
     #print()
+
 
 def rndm_sample_tenaillon(iter1=1000, iter2=1000):
     df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
@@ -281,30 +285,24 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
     Ns = list(range(2, 40, 2))
     for N in Ns:
         for i in range(iter1):
-            #df_np_i = df_np[np.random.choice(n_rows, N, replace=False), :]
-            #df_np_i = df_np_i[: , ~np.all(df_np_i == 0, axis=0)]
-            #df_i = df.sample(N)
             df_np_i = df_np[np.random.randint(n_rows, size=N), :]
             gene_bool = np.all(df_np_i == 0, axis=0)
             # flip around to select gene_size
             gene_names_i = list(compress(gene_names, list(map(operator.not_, gene_bool))))
             df_np_i = df_np_i[:,~np.all(df_np_i == 0, axis=0)]
-            #df_i = df_i.loc[:, (df_i != 0).any(axis=0)]
             np.seterr(divide='ignore')
-            df_np_i_delta = pt.likelihood_matrix_array(df_np_i, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
-            X = pt.hellinger_transform(df_np_i_delta)
+            df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
+            #X = pt.hellinger_transform(df_np_i_delta)
+            X = pt.get_mean_center(count_matrix)
             pca = PCA()
             pca_fit = pca.fit_transform(X)
             euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
             euc_dists = []
             for j in range(iter2):
-                #df_np_i_j = pt.random_matrix(df_np_i)
                 df_np_i_j = pt.get_random_matrix(df_np_i)
                 np.seterr(divide='ignore')
-                df_np_i_j_delta = pt.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
-                #df_i_j = pd.DataFrame(data=pt.random_matrix(df_np_i_j), index=df_i.index, columns=df_i.columns)
-                #df_i_j_delta = pt.likelihood_matrix(df_i_j, 'Tenaillon_et_al').get_likelihood_matrix()
-                X_j = pt.hellinger_transform(df_np_i_j_delta)
+                df_np_i_j_delta = cd.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
+                X_j = pt.get_mean_center(df_np_i_j_delta)
                 pca_fit_j = pca.fit_transform(X_j)
                 euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
 
@@ -317,9 +315,9 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
     df_out.close()
 
 
+#def gene_svd_tenaillon():
 
 
-#rndm_sample_tenaillon()
 
 # write code to re-shuffle proportion of positive/negative correlations
 
