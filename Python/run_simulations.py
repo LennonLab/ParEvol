@@ -152,10 +152,10 @@ def run_ba_cov_lampbda_edge_sims(out_name, num_permute, G=50,shape=1, scale=1):
 
 
 def two_treats_sim(
-    to_reshuffle = [2],
+    to_reshuffle = [0, 2, 4, 6, 8, 10],
     N1=10,
     N2=10,
-    covs=[0],
+    covs=[0.05, 0.1, 0.15, 0.2],
     G=100,
     shape = 1,
     scale = 1,
@@ -170,17 +170,18 @@ def two_treats_sim(
                 C = pt.get_ba_cov_matrix(G, cov)
                 while True:
                     rates = np.random.gamma(shape, scale=scale, size=G)
-                    # fix this so you're not resampling the same pairs
                     rates1 = rates.copy()
-                    shuffle(rates[:reshuf])
                     rates2 = rates.copy()
+                    # fix this so you're not resampling the same pairs
+                    for i in range(reshuf)[0::2]:
+                        rates2[i], rates2[i+1] = rates2[i+1], rates2[i]
+                    #shuffle(rates)#[:reshuf])
                     counts1 = np.stack( [pt.get_count_pop(rates1, C= C) for x in range(N1)], axis=0)
                     counts2 = np.stack( [pt.get_count_pop(rates2, C= C) for x in range(N2)], axis=0)
                     if (np.any(counts1.sum(axis=1) == 0 ) == False) or (np.any(counts2.sum(axis=1) == 0 ) == False):
                         break
                 #D_KL = ss.entropy(rates1, rates2)
                 euc_dist = np.linalg.norm(rates1-rates2)
-                print(rates1-rates2)
                 count_matrix = np.concatenate((counts1, counts2), axis=0)
                 # check and remove empty columns
                 count_matrix = count_matrix[:, ~np.all(count_matrix == 0, axis=0)]
@@ -188,7 +189,7 @@ def two_treats_sim(
                     V_1_z_score, V_2_percent, V_2_z_score = \
                     pt.matrix_vs_null_one_treat(count_matrix,  N1, N2, iter=iter2)
 
-                print(F_2_percent, F_2_z_score,euc_dist)
+                print(F_2_percent, F_2_z_score, euc_dist)
                 #F_2, V_1, V_2 = pt.get_F_2(count_matrix=count_matrix, N1=N1, N2=N2)
 
 
