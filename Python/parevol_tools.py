@@ -4,12 +4,13 @@ from itertools import combinations
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.decomposition import PCA
+from sklearn.decomposition import PCA, SparsePCA
 from scipy.linalg import block_diag
 from scipy.special import comb
 import scipy.stats as stats
 import networkx as nx
 from asa159 import rcont2
+
 
 #np.random.seed(123456789)
 
@@ -338,14 +339,19 @@ def get_mean_center(array):
 
 
 def matrix_vs_null_one_treat(count_matrix, iter):
+    count_matrix = count_matrix/count_matrix.sum(axis=1)[:,None]
     X = get_mean_center(count_matrix)
-    pca = PCA()
+    #pca = PCA()
+    pca = SparsePCA(normalize_components=True)
+
     pca_fit = pca.fit_transform(X)
     euc_dist = get_mean_pairwise_euc_distance(pca_fit)
     euc_dists = []
     for j in range(iter):
         #X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
-        X_j = get_mean_center(get_random_matrix(count_matrix))
+        count_matrix_j = get_random_matrix(count_matrix)
+        count_matrix_j = count_matrix_j/count_matrix_j.sum(axis=1)[:,None]
+        X_j = get_mean_center(count_matrix_j)
         pca_fit_j = pca.fit_transform(X_j)
         euc_dists.append( get_mean_pairwise_euc_distance(pca_fit_j) )
     euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)

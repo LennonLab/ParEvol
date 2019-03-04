@@ -7,11 +7,11 @@ import matplotlib.pyplot as plt
 from matplotlib import cm, rc_context
 import matplotlib.patches as mpatches
 import matplotlib.colors as cls
-
+import clean_data as cd
 from scipy.special import comb
 from scipy import stats
 
-from sklearn.decomposition import PCA
+from sklearn.decomposition import PCA, SparsePCA
 
 
 def gene_space_fig():
@@ -455,14 +455,42 @@ def euc_dist_hist():
 
 
 
+def hist_tenaillon(iter2 = 10000, k = 3):
+    df_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_np = df.values
+    gene_names = df.columns.values
+    df_np_delta = cd.likelihood_matrix_array(df_np, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+    X = pt.get_mean_center(df_np_delta)
+    pca = PCA()
+    pca_fit = pca.fit_transform(X)
+    euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
+    euc_dists = []
+    for i in range(iter2):
+        if i %1000 ==0:
+            print(i)
+        df_np_i = pt.get_random_matrix(df_np)
+        np.seterr(divide='ignore')
+        df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+        X_i = pt.get_mean_center(df_np_i_delta)
+        pca_fit_i = pca.fit_transform(X_i)
+        euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_i) )
+
+    fig = plt.figure()
+
+    plt.hist(euc_dists,bins=30, weights=np.zeros_like(euc_dists) + 1. / len(euc_dists), alpha=0.8, color = '#175ac6')
+    plt.axvline(euc_dist, color = 'red', lw = 3)
+    plt.xlabel("Euclidean distance", fontsize = 16)
+    #plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
+    plt.ylabel("Frequency", fontsize = 12)
+
+    fig.tight_layout()
+    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/test_hist.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
 
 
 
-
-
-
-
-def hist_tenaillon(k = 3):
+def hist_tenaillon_multi(k = 3):
     df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
@@ -526,7 +554,6 @@ def hist_tenaillon(k = 3):
         p_score_delta_L = relative_position_delta_L
     print('mean difference in distances p-score = ' + str(round(p_score_delta_L, 3)))
     ax3.text(0.50, 0.09, r'$p < 0.05$', fontsize = 10)
-
 
 
 
@@ -1103,8 +1130,8 @@ def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
 
 
 
-poisson_neutral_fig()
-
+#poisson_neutral_fig()
+hist_tenaillon()
 #tenaillon_p_N()
 #poisson_power_G()
 #poisson_power_N()
