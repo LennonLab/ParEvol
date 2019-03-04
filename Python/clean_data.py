@@ -7,7 +7,6 @@ import pandas as pd
 
 mydir = os.path.expanduser("~/GitHub/ParEvol/")
 
-
 class good_et_al:
 
     def __init__(self):
@@ -263,7 +262,7 @@ class likelihood_matrix_array:
 
     def get_gene_lengths(self, **keyword_parameters):
         if self.dataset == 'Good_et_al':
-            conv_dict = cd.good_et_al().parse_convergence_matrix(get_path() + "/data/Good_et_al/gene_convergence_matrix.txt")
+            conv_dict = cd.good_et_al().parse_convergence_matrix(mydir + "/data/Good_et_al/gene_convergence_matrix.txt")
             length_dict = {}
             if ('gene_list' in keyword_parameters):
                 for gene_name in keyword_parameters['gene_list']:
@@ -275,7 +274,7 @@ class likelihood_matrix_array:
             return(length_dict)
 
         elif self.dataset == 'Tenaillon_et_al':
-            with open(get_path() + '/data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
+            with open(mydir + '/data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
                 length_dict = pickle.loads(handle.read())
                 if ('gene_list' in keyword_parameters):
                     return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }

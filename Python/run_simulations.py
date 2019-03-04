@@ -9,6 +9,7 @@ import parevol_tools as pt
 import clean_data as cd
 from sklearn.decomposition import PCA
 import scipy.stats as ss
+from scipy.sparse.linalg import svds
 
 # Figure 1 code
 # z = 1.645 for one sided test with alpha=0.05
@@ -203,46 +204,6 @@ def two_treats_sim(
 
 
 
-
-
-
-
-
-def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
-    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    df_array = df.as_matrix()
-    sample_sizes = np.linspace(2, df.shape[0], num = 20, dtype = int)
-    df_out = open(pt.get_path() + '/data/Tenaillon_et_al/sample_size_permute_' + analysis + '.txt', 'w')
-    column_headers = ['Sample_size', 'Iteration', 'MCD', 'mean_angle', 'delta_L']
-    df_out.write('\t'.join(column_headers) + '\n')
-    for sample_size in sample_sizes:
-        print("Sample size = "  + str(sample_size))
-        for i in range(iter):
-            print("Sample size = "  + str(sample_size) + ' Iteration = ' + str(i))
-            df_sample = df.sample(n = sample_size)
-            #df_sample = df_sample.loc[:, (df_sample != 0).any(axis=0)]
-            df_sample_delta = pt.likelihood_matrix(df_sample, 'Tenaillon_et_al').get_likelihood_matrix()
-            df_sample_delta = df_sample_delta.loc[:, (df_sample_delta != 0).any(axis=0)]
-            X = pt.hellinger_transform(df_sample_delta)
-            pca = PCA()
-            df_sample_delta_out = pca.fit_transform(X)
-            mcd = pt.get_mean_centroid_distance(df_sample_delta_out, k=k)
-            mean_angle = pt.get_mean_angle(df_sample_delta_out, k = k)
-            mean_length = pt.get_euclidean_distance(df_sample_delta_out, k=k)
-
-            df_out.write('\t'.join([str(sample_size), str(i), str(mcd), str(mean_angle), str(mean_length)]) + '\n')
-
-    df_out.close()
-
-
-
-
-
-
-
-
-
 #def run_ba_cor_sub_sims(shape=1, scale=1, G = 50, N = 50):
 #    cov = 0.1
 #    lambda_genes = np.random.gamma(shape=shape, scale=scale, size=G)
@@ -274,26 +235,27 @@ def run_pca_sample_size_permutation(iter = 10000, analysis = 'PCA', k =3):
     #print()
 
 
-def rndm_sample_tenaillon(iter1=1000, iter2=1000):
-    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+def rndm_sample_tenaillon(iter1=1000, iter2=10000):
+    df_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_np = df.values
     gene_names = df.columns.values
-    n_rows = df_np.shape[0]
-    df_out=open(pt.get_path() + '/data/Tenaillon_et_al/sample_size_sim.txt', 'w')
+    #n_rows = df_np.shape[0]
+    n_rows = list(range(df_np.shape[0]))
+    df_out=open(os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/dist_sample_size.txt', 'w')
     df_out.write('\t'.join(['N', 'G', 'Iteration', 'dist_percent', 'z_score']) + '\n')
-    Ns = list(range(2, 40, 2))
+    Ns = list(range(4, 40, 2))
     for N in Ns:
         for i in range(iter1):
-            df_np_i = df_np[np.random.randint(n_rows, size=N), :]
+            #df_np_i = df_np[np.random.randint(n_rows, size=N), :]
+            df_np_i = df_np[np.random.choice(n_rows, size=N, replace=False, p=None), :]
             gene_bool = np.all(df_np_i == 0, axis=0)
             # flip around to select gene_size
             gene_names_i = list(compress(gene_names, list(map(operator.not_, gene_bool))))
             df_np_i = df_np_i[:,~np.all(df_np_i == 0, axis=0)]
             np.seterr(divide='ignore')
-            df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
-            #X = pt.hellinger_transform(df_np_i_delta)
-            X = pt.get_mean_center(count_matrix)
+            #df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
+            X = pt.get_mean_center(df_np_i)
             pca = PCA()
             pca_fit = pca.fit_transform(X)
             euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
@@ -301,8 +263,8 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
             for j in range(iter2):
                 df_np_i_j = pt.get_random_matrix(df_np_i)
                 np.seterr(divide='ignore')
-                df_np_i_j_delta = cd.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
-                X_j = pt.get_mean_center(df_np_i_j_delta)
+                #df_np_i_j_delta = cd.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
+                X_j = pt.get_mean_center(df_np_i_j)
                 pca_fit_j = pca.fit_transform(X_j)
                 euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
 
@@ -315,9 +277,102 @@ def rndm_sample_tenaillon(iter1=1000, iter2=1000):
     df_out.close()
 
 
-#def gene_svd_tenaillon():
+def gene_svd_tenaillon(iter=10000):
+    df_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_np = df.values
+    X = pt.get_mean_center(df_np)
+    # scipy's svd returns the V matrix in transposed form
+    U, s, V_T = svds(X, k=3)
+    # apply another transposition to calculate basis matrix
+    F = (V_T.T @ np.diag(s)) / np.sqrt(  X.shape[0] - 1 )
+    vars = np.linalg.norm(F, axis=1) ** 2
+    gene_names = df.columns.tolist()
+    vars_null_list = []
+    for i in range(iter):
+        if i % 1000 ==0:
+            print("Iteration " + str(i))
+        df_np_i = pt.get_random_matrix(df_np)
+        np.seterr(divide='ignore')
+        #df_np_i_j_delta = cd.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
+        X_j = pt.get_mean_center(df_np_i)
+        U_i, s_i, V_i_T = svds(X_j, k=3)
+        F_i = (V_i_T.T @ np.diag(s_i)) / np.sqrt(  X_j.shape[0] - 1 )
+        vars_null_list.append(np.linalg.norm(F_i, axis=1) ** 2)
+
+    vars_null = np.stack(vars_null_list)
+    vars_null_mean = np.mean(vars_null, axis=0)
+    vars_null_std = np.std(vars_null, axis=0)
+    z_scores = (vars - vars_null_mean) / vars_null_std
+    label_z_scores = list(zip(gene_names, z_scores))
+    #label_sig_z_scores = [x for x in label_z_scores if abs(x[1]) > 1.96]
+    df_out=open(os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_z_scores.txt', 'w')
+    df_out.write('\t'.join(['Gene', 'z_score']) + '\n')
+    for label_z_score in label_z_scores:
+        df_out.write('\t'.join([str(label_z_score[0]), str(label_z_score[1])]) + '\n')
+    df_out.close()
 
 
+
+
+def gene_svd_tenaillon_sample_size(iter1 = 1000, iter2=10000, k =3):
+    df_path =os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_np = df.values
+    gene_names = df.columns.values
+    n_rows = list(range(df_np.shape[0]))
+    df_out=open(os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_z_scores_sample_size.txt', 'w')
+    df_out.write('\t'.join(['N', 'G', 'Iteration', 'set_percent']) + '\n')
+    Ns = list(range(4, 40, 2))
+    # get genes with an absolute z-score greater than 1.96
+    df_gene_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_z_scores.txt'
+    df_genes = pd.read_csv(df_gene_path, sep = '\t', header = 'infer')
+    df_genes_sig = df_genes.loc[(df_genes['z_score'] > 1.96) | (df_genes['z_score'] < -1.96)]
+    genes = df_genes_sig.Gene.tolist()
+    for N in Ns:
+        for i in range(iter1):
+            df_np_i = df_np[np.random.choice(n_rows, size=N, replace=False, p=None), :]
+            testtt = np.random.choice(n_rows, size=N, replace=False, p=None)
+            gene_bool = np.all(df_np_i == 0, axis=0)
+            # flip around to select gene_size
+            gene_names_i = list(compress(gene_names, list(map(operator.not_, gene_bool))))
+            df_np_i = df_np_i[:,~np.all(df_np_i == 0, axis=0)]
+            np.seterr(divide='ignore')
+            #df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
+            X = pt.get_mean_center(df_np_i)
+            U, s, V_T = svds(X, k=k)
+            # apply another transposition to calculate basis matrix
+            F = (V_T.T @ np.diag(s)) / np.sqrt(  X.shape[0] - 1 )
+            vars = np.linalg.norm(F, axis=1) ** 2
+            vars_null_list = []
+            for j in range(iter2):
+                df_np_i_j = pt.get_random_matrix(df_np_i)
+                np.seterr(divide='ignore')
+                #df_np_i_j_delta = cd.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
+                X_j = pt.get_mean_center(df_np_i_j)
+                U_j, s_j, V_j_T = svds(X_j, k=3)
+                F_j = (V_j_T.T @ np.diag(s_j)) / np.sqrt(  X_j.shape[0] - 1 )
+                vars_null_list.append(np.linalg.norm(F_j, axis=1) ** 2)
+
+            vars_null_i = np.stack(vars_null_list)
+            vars_null_i_mean = np.mean(vars_null_i, axis=0)
+            vars_null_i_std = np.std(vars_null_i, axis=0)
+            z_scores = (vars - vars_null_i_mean) / vars_null_i_std
+            label_z_scores = list(zip(gene_names_i, z_scores))
+            label_sig_z_scores = [x for x in label_z_scores if abs(x[1]) > 1.96]
+            label_sig_z_scores_label = [x[0] for x in label_sig_z_scores]
+            gene_inter = set(label_sig_z_scores_label) & set(genes)
+            union_fract = len(gene_inter) / len(genes)
+            print(N, i, union_fract)
+            G = df_np_i.shape[1]
+            df_out.write('\t'.join([str(N), str(G), str(i), str(union_fract)]) + '\n')
+
+    df_out.close()
+
+
+rndm_sample_tenaillon()
+#gene_svd_tenaillon()
+#gene_svd_tenaillon_sample_size()
 
 # write code to re-shuffle proportion of positive/negative correlations
 
