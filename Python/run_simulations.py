@@ -304,12 +304,21 @@ def gene_svd_tenaillon(iter=10000):
     vars_null_mean = np.mean(vars_null, axis=0)
     vars_null_std = np.std(vars_null, axis=0)
     z_scores = (vars - vars_null_mean) / vars_null_std
-    label_z_scores = list(zip(gene_names, z_scores))
-    #label_sig_z_scores = [x for x in label_z_scores if abs(x[1]) > 1.96]
+    p_values = []
+    # calculate p values
+    for k, column in enumerate(vars_null.T):
+        column_greater = [x for x in column if x > vars[k]]
+        p_values.append(len(column_greater) / iter)
+        #print(k, vars[k], len(column_greater) / iter)
+
+    label_z_scores = list(zip(gene_names, z_scores, p_values))
+    label_sig_z_scores = [x for x in label_z_scores if x[2] < 0.05]
+    print(label_sig_z_scores)
+
     df_out=open(os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_z_scores.txt', 'w')
-    df_out.write('\t'.join(['Gene', 'z_score']) + '\n')
+    df_out.write('\t'.join(['Gene', 'z_score', 'p_score']) + '\n')
     for label_z_score in label_z_scores:
-        df_out.write('\t'.join([str(label_z_score[0]), str(label_z_score[1])]) + '\n')
+        df_out.write('\t'.join([str(label_z_score[0]), str(label_z_score[1]), str(label_z_score[2])]) + '\n')
     df_out.close()
 
 
@@ -370,7 +379,7 @@ def gene_svd_tenaillon_sample_size(iter1 = 1000, iter2=10000, k =3):
     df_out.close()
 
 
-rndm_sample_tenaillon()
+#rndm_sample_tenaillon()
 #gene_svd_tenaillon()
 #gene_svd_tenaillon_sample_size()
 

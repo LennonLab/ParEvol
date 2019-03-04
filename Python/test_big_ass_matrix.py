@@ -5,17 +5,20 @@ import scipy.stats as stats
 
 G = 50
 N = 50
-neutral_ = 11
-lambda_genes_null = np.asarray([neutral_] * G)
+lambda_genes_null = np.asarray([1] * G)
 test_cov_neutral = np.stack( [pt.get_count_pop(lambda_genes_null, C= np.identity(G)) for x in range(N)] , axis=0 )
 
 
 rndm = pt.get_random_matrix(test_cov_neutral)
 
-#print(test_cov_neutral.sum(axis=0))
+print(test_cov_neutral)
+print(rndm)
+
+print(test_cov_neutral.sum(axis=1))
+print(rndm.sum(axis=1))
 
 #print(rndm.sum(axis=0))
-cov=0.2
+#cov=0.2
 #test_assoc, rho = pt.get_correlated_rndm_ntwrk(n_genes=50, cov =cov)
 #C = test_assoc * cov
 #np.fill_diagonal(C, 1)
@@ -36,4 +39,4 @@ rho,p_value = stats.spearmanr(x,y)
 
 #print(rs.run_ba_cov_lampbda_edge_sims("file_path", 4))
 
-rs.two_treats_sim()
+#rs.two_treats_sim()
