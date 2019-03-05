@@ -84,11 +84,11 @@ def run_ba_cov_prop_sims(out_name, covs = [0.1, 0.15, 0.2], props=[0.5], shape=1
 
 
 
-def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[0.2], shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=1000):
+def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[-0.2, 0, 0.2], shape=1, scale=1, G = 50, N = 50, iter1=10, iter2=1000):
     df_out=open(out_name, 'w')
     df_out.write('\t'.join(['N', 'G', 'Cov', 'Rho_goal', 'Rho_estimated', 'Iteration', 'dist_percent', 'z_score']) + '\n')
-    for rho in rhos:
-        for cov in covs:
+    for cov in covs:
+        for rho in rhos:
             for i in range(iter1):
                 C, rho_estimated = pt.get_ba_cov_matrix(n_genes=G, cov=cov, rho=rho)
                 while True:
@@ -100,58 +100,15 @@ def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[0.2], shape=1, 
                 test_cov = test_cov[:, ~np.all(test_cov == 0, axis=0)]
                 euc_percent, z_score = pt.matrix_vs_null_one_treat(test_cov, iter2)
                 df_out.write('\t'.join([str(N), str(G), str(cov), str(rho), str(rho_estimated), str(i), str(euc_percent), str(z_score)]) + '\n')
-            print(N, G, cov)
+                print(N, G, cov, rho, rho_estimated, i)
     df_out.close()
-
-
-
-def run_ba_cov_lampbda_edge_sims(out_name, num_permute, G=50,shape=1, scale=1):
-    rates = np.random.gamma(shape, scale=scale, size=G)
-    cov=0.2
-    C = pt.get_ba_cov_matrix(10, cov)
-    print(C)
-    counts = np.count_nonzero(C,axis=1).flatten()
-    counts = np.asarray(counts.tolist()[0])
-    print(len(counts))
-    #order_C = np.asarray(np.count_nonzero(C,axis=1).tolist()[0])
-    #print(order_C)
-
-    #print(np.linalg.norm(C,axis=1))
-    #print(np.argsort(np.linalg.norm(C,axis=1)))
-
-    #corrs = C.sum(axis=0)
-    #corr_order = corrs.argsort()[::-1]
-    #print(np.count_nonzero(C,axis=1))
-
-    #ndim = C.shape[0]
-    #inds_orig = list(range(ndim))
-    #inds = []
-    #for _ in range(ndim):
-    #    inds.append(inds_orig[(len(inds_orig)-1)//2])
-    #    del inds_orig[(len(inds_orig)-1)//2]
-    #inds = np.array(inds)
-    #res = np.empty_like(C)
-    #corr_order_flatten = np.asarray(corr_order.tolist()[0])
-    #res[np.ix_(inds,inds)] = C[np.ix_(corr_order_flatten,corr_order_flatten)]
-
-    #print(np.count_nonzero(res,axis=1))
-
-    #print(np.count_nonzero(C, axis=1))
-    #ranked = ss.rankdata(np.count_nonzero(C, axis=1))
-    #print(ranked)
-    #diag_C = np.tril(C, k =-1)
-    #i,j = np.nonzero(diag_C)
-    # remove redundant pairs
-    #ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
-
-
 
 
 
 
 
 '''
-two treatments sims
+Two treatments sims
 '''
 
 
@@ -382,7 +339,3 @@ def gene_svd_tenaillon_sample_size(iter1 = 1000, iter2=10000, k =3):
 #rndm_sample_tenaillon()
 #gene_svd_tenaillon()
 #gene_svd_tenaillon_sample_size()
-
-# write code to re-shuffle proportion of positive/negative correlations
-
-#run_ba_cor_sub_sims()

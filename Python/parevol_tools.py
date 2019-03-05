@@ -256,7 +256,91 @@ def get_x_stat(e_values):
 
 
 
-def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, count_threshold = 10000):
+def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, count_threshold = 10000, rho_error = 0.01):
+    #  Xalvi-Brunet and Sokolov
+    # generate maximally correlated networks with a predefined degree sequence
+
+    if rho > 0:
+        assortative = True
+    elif rho <= 0:
+        assortative = False
+    #else:
+    #    print("rho can't be zero")
+
+    def get_two_edges(graph_array):
+        d = nx.to_dict_of_dicts(nx.from_numpy_matrix(graph_array), edge_data=1)
+        l0_n0 = random.sample(list(d), 1)[0]
+        l0_list = list(d[l0_n0])
+        l0_n1 = random.sample(l0_list, 1)[0]
+
+        def get_second_edge(d, l0_n0, l0_n1):
+            l1_list = [i for i in list(d) if i not in [l0_n0, l0_n1] ]
+            l1 = []
+            while len(l1) != 2:
+                l1_n0 = random.sample(list(l1_list), 1)[0]
+                l1_n1_list = d[l1_n0]
+                l1_n1_list = [i for i in l1_n1_list if i not in [l0_n0, l0_n1] ]
+                if len(l1_n1_list) > 0:
+                    l1_n1 = random.sample(list(l1_n1_list), 1)[0]
+                    l1.extend([l1_n0, l1_n1])
+            return l1
+        # get two links, make sure all four nodes are unique
+        link1 = get_second_edge(d, l0_n0, l0_n1 )
+        row_sums = np.asarray(np.sum(graph_array, axis =0))[0]
+        node_edge_counts = [(l0_n0, row_sums[l0_n0]), (l0_n1, row_sums[l0_n1]),
+                            (link1[0], row_sums[link1[0]]), (link1[1], row_sums[link1[1]])]
+        return node_edge_counts
+
+    if rho == 0:
+        iter_rh0 = 2*rho_error
+    else:
+        iter_rh0 = 0
+    iter_graph = None
+    #while (assortative == True and iter_rh0 < rho) or (assortative == False and iter_rh0 > rho):
+    while (iter_rh0 > rho + rho_error) or (iter_rh0 < rho - rho_error):
+        count = 0
+        current_rho = 0
+        accepted_counts = 0
+        graph = nx.barabasi_albert_graph(n_genes, m)
+        graph_np = nx.to_numpy_matrix(graph)
+        while ((assortative == True and current_rho < rho) or (assortative == False and current_rho > rho)) and ((count-accepted_counts) < count_threshold):
+        #while (abs(current_rho) < abs(rho)) and ((count-accepted_counts) < count_threshold) : #<r (rejected_counts < count_threshold):
+            count += 1
+            edges = get_two_edges(graph_np)
+            graph_np_sums = np.sum(graph_np, axis=1)
+            # check whether new edges already exist
+            if graph_np[edges[0][0],edges[3][0]] == 1 or \
+                graph_np[edges[3][0],edges[0][0]] == 1 or \
+                graph_np[edges[2][0],edges[1][0]] == 1 or \
+                graph_np[edges[1][0],edges[2][0]] == 1:
+                continue
+
+            disc = (edges[0][1] - edges[2][1]) * \
+                    (edges[3][1] - edges[1][1])
+            #if (rho > 0 and disc > 0) or (rho < 0 and disc < 0):
+            if (assortative == True and disc > 0) or (assortative == False and disc < 0):
+                graph_np[edges[0][0],edges[1][0]] = 0
+                graph_np[edges[1][0],edges[0][0]] = 0
+                graph_np[edges[2][0],edges[3][0]] = 0
+                graph_np[edges[3][0],edges[2][0]] = 0
+
+                graph_np[edges[0][0],edges[3][0]] = 1
+                graph_np[edges[3][0],edges[0][0]] = 1
+                graph_np[edges[2][0],edges[1][0]] = 1
+                graph_np[edges[1][0],edges[2][0]] = 1
+
+                accepted_counts += 1
+                current_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+                #print(current_rho, count, accepted_counts)
+
+        iter_rh0 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+        iter_graph = graph_np
+
+    return iter_graph, iter_rh0
+
+
+
+def get_correlated_rndm_ntwrk_old(n_genes, m=2, rho=0.3, count_threshold = 10000):
     #  Xalvi-Brunet and Sokolov
     # generate maximally correlated networks with a predefined degree sequence
     if rho > 0:
@@ -339,19 +423,18 @@ def get_mean_center(array):
 
 
 def matrix_vs_null_one_treat(count_matrix, iter):
-    count_matrix = count_matrix/count_matrix.sum(axis=1)[:,None]
-    X = get_mean_center(count_matrix)
-    #pca = PCA()
-    pca = SparsePCA(normalize_components=True)
-
+    count_matrix_rel = count_matrix/count_matrix.sum(axis=1)[:,None]
+    X = get_mean_center(count_matrix_rel)
+    pca = PCA()
+    #pca = SparsePCA(normalize_components=True)
     pca_fit = pca.fit_transform(X)
     euc_dist = get_mean_pairwise_euc_distance(pca_fit)
     euc_dists = []
     for j in range(iter):
         #X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
         count_matrix_j = get_random_matrix(count_matrix)
-        count_matrix_j = count_matrix_j/count_matrix_j.sum(axis=1)[:,None]
-        X_j = get_mean_center(count_matrix_j)
+        count_matrix_rel_j = count_matrix_j/count_matrix_j.sum(axis=1)[:,None]
+        X_j = get_mean_center(count_matrix_rel_j)
         pca_fit_j = pca.fit_transform(X_j)
         euc_dists.append( get_mean_pairwise_euc_distance(pca_fit_j) )
     euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
