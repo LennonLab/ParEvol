@@ -21,26 +21,34 @@ if __name__ == '__main__':
     else:
         out_path = os.path.expanduser("~/GitHub/ParEvol")
 
-    iter1=iter2=10000
+    iter1=1000
+    iter2=1000
 
     if analysis == True:
-        #run_ba_cov_sims_N_out = out_path + '/data/simulations/' + 'ba_cov_N_sims' + '.txt'
+        #N_out = out_path + '/data/simulations/' + 'ba_cov_N_sims' + '.txt'
         #rs.run_ba_cov_sims(gene_list=[50], pop_list=[2, 4, 8, 16, 32, 64],
-        #        out_name = run_ba_cov_sims_N_out, covs = [0.1, 0.15, 0.2], iter1=iter1, iter2=iter2)
+        #        out_name = N_out, covs = [0.1, 0.15, 0.2], iter1=iter1, iter2=iter2)
 
-        #run_ba_cov_sims_G_out = out_path + '/data/simulations/' + 'ba_cov_G_sims' + '.txt'
+        #G_out = out_path + '/data/simulations/' + 'ba_cov_G_sims' + '.txt'
         #run_ba_cov_sims(gene_list=[8, 16, 32, 64, 128], pop_list=[50],
-        #        out_name = run_ba_cov_sims_G_out, covs = [0.1, 0.15, 0.2], iter1=iter1, iter2=iter2)
+        #        out_name = G_out, covs = [0.1, 0.15, 0.2], iter1=iter1, iter2=iter2)
 
-        #run_ba_cov_neutral_sims_out = out_path + '/data/simulations/' + 'ba_cov_neutral_sims' + '.txt'
-        #run_ba_cov_neutral_sims(run_ba_cov_neutral_sims_out, covs = [0.1, 0.15, 0.2],
+        #neuts_out = out_path + '/data/simulations/' + 'ba_cov_neutral_sims' + '.txt'
+        #rs.run_ba_cov_neutral_sims(neuts_out, covs = [0.1, 0.15, 0.2],
         #    shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
 
-        #run_ba_cov_neutral_sims_out = out_path + '/data/simulations/' + 'ba_cov_prop_sims' + '.txt'
+        #props_out = out_path + '/data/simulations/' + 'ba_cov_prop_sims' + '.txt'
         #props = np.linspace(0, 1, num = 20)
-        #run_ba_cov_prop_sims(run_ba_cov_neutral_sims_out, covs = [0.1, 0.15, 0.2],
+        #rs.run_ba_cov_prop_sims(props_out, covs = [0.1, 0.15, 0.2],
         #    props=props, shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
 
         # rho vs power
-        run_ba_cov_rho_sims_out = out_path + '/data/simulations/' + 'ba_cov_rho_sims' + '.txt'
-        #rs.run_ba_cov_sims_sims()
+        #rhos_out = out_path + '/data/simulations/' + 'ba_cov_rho_sims.txt'
+        #rs.run_ba_cov_rho_sims(rhos_out, covs = [0.2, 0.15, 0.1], rhos=[-0.3, -0.15, 0, 0.15, 0.3],
+        #    shape=1, scale=1, G = 50, N = 50, iter1=iter1, iter2=iter2)
+
+        '''two treatment sims'''
+        # distance vs. power
+        dist_out = out_path + '/data/simulations/' + 'ba_cov_dist_sims' + '.txt'
+        rs.run_cov_dist_sims(dist_out, to_reshuffle =[1,2,3,4,5], N1=20, N2=20, G=100,
+            covs = [0.1, 0.15, 0.2], shape = 1, scale = 1, iter1=10, iter2=1000))

@@ -4,42 +4,22 @@ from itertools import combinations
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.decomposition import PCA
-
+from sklearn.decomposition import PCA, SparsePCA
+from scipy.linalg import block_diag
 from scipy.special import comb
 import scipy.stats as stats
 import networkx as nx
 from asa159 import rcont2
+from copy import copy
 
 #np.random.seed(123456789)
 
+def get_alpha():
+    return 0.05
 
 
 
-
-def get_F_stat_pairwise(pca_array, groups, k=3):
-    # assuming only two groups
-    # groups is a nested list, each list containing row integers for a given group
-    X = pca_array[:,0:k]
-    between_var = 0
-    within_var = 0
-    K = len(groups)
-    N = np.shape(X)[0]
-    euc_sq_dists = np.square(euclidean_distances(X, X))
-    SS_T = sum( np.sum(euc_sq_dists, axis =1)) /  (N*2)
-    euc_sq_dists_group1 = euc_sq_dists[groups[0][:, None], groups[0]]
-    SS_W = sum( np.sum(euc_sq_dists_group1, axis =1)) /  (len(groups[0])*2)
-    # between groups sum-of-squares
-    SS_A = SS_T - SS_W
-
-
-    return (SS_A / (K-1)) / (SS_W / (N-K) )
-
-
-
-
-
-def get_ba_cov_matrix(n_genes, cov, prop=1, m=2, get_node_edge_sum=False, rho=None):
+def get_ba_cov_matrix(n_genes, cov, cov2 = None, prop=False, m=2, get_node_edge_sum=False, rho=None, rho2=None):
     '''Based off of Gershgorin circle theorem, we can expect
     that the code will eventually produce mostly matrices
     that aren't positive definite as the covariance value
@@ -50,22 +30,33 @@ def get_ba_cov_matrix(n_genes, cov, prop=1, m=2, get_node_edge_sum=False, rho=No
             ntwk_np = nx.to_numpy_matrix(ntwk)
         else:
             ntwk_np, rho_estimate = get_correlated_rndm_ntwrk(n_genes, m=m, rho=rho, count_threshold = 10000)
-        C = ntwk_np * cov
+
+        if cov2 == None:
+            C = ntwk_np * cov
+        else:
+            C = ntwk_np * cov
+            C2 = ntwk_np * cov2
+            np.fill_diagonal(C2, 1)
+
         np.fill_diagonal(C, 1)
-        if prop < 1:
+
+        if prop == True and cov2 == None:
             diag_C = np.tril(C, k =-1)
             i,j = np.nonzero(diag_C)
             ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
             C[np.concatenate((i[ix],j[ix]), axis=None), np.concatenate((j[ix],i[ix]), axis=None)] = -1*cov
-        if np.all(np.linalg.eigvals(C) > 0) == True:
-            if rho == None:
-                return C
-            else:
-                return C, rho_estimate
-            #if get_node_edge_sum==False:
-            #    return C
-            #else:
-            #    return C, ntwk_np.sum(axis=0)
+
+        if cov2 == None:
+            if np.all(np.linalg.eigvals(C) > 0) == True:
+                if rho == None:
+                    return C
+                else:
+                    return C, rho_estimate
+
+        else:
+            if (np.all(np.linalg.eigvals(C) > 0) == True) and (np.all(np.linalg.eigvals(C2) > 0) == True):
+                return C, C2
+
 
 
 
@@ -255,15 +246,19 @@ def get_x_stat(e_values):
 
 
 
-def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, count_threshold = 10000):
+def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, rho2=None, count_threshold = 10000, rho_error = 0.01):
     #  Xalvi-Brunet and Sokolov
     # generate maximally correlated networks with a predefined degree sequence
     if rho > 0:
         assortative = True
-    elif rho < 0:
+    elif rho <= 0:
         assortative = False
-    else:
-        print("rho can't be zero")
+
+    if rho2 != None:
+        if rho2 > 0:
+            assortative2 = True
+        elif rho2 <= 0:
+            assortative2 = False
 
     def get_two_edges(graph_array):
         d = nx.to_dict_of_dicts(nx.from_numpy_matrix(graph_array), edge_data=1)
@@ -282,16 +277,178 @@ def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, count_threshold = 10000):
                     l1_n1 = random.sample(list(l1_n1_list), 1)[0]
                     l1.extend([l1_n0, l1_n1])
             return l1
+
         # get two links, make sure all four nodes are unique
         link1 = get_second_edge(d, l0_n0, l0_n1 )
-        row_sums = np.asarray(np.sum(graph_array, axis =0))[0]
+        row_sums = np.asarray(np.sum(graph_array, axis =0)).tolist()
+        row_sums = [item for sublist in row_sums for item in sublist]
+        #row_sums = np.asarray(np.sum(graph_array, axis =0))[0]
         node_edge_counts = [(l0_n0, row_sums[l0_n0]), (l0_n1, row_sums[l0_n1]),
                             (link1[0], row_sums[link1[0]]), (link1[1], row_sums[link1[1]])]
         return node_edge_counts
 
-    iter_rh0 = 0
+    def rewire(graph_np_, assortative_):
+        edges = get_two_edges(graph_np_)
+        graph_np_sums = np.sum(graph_np_, axis=1)
+        # check whether new edges already exist
+        if graph_np_[edges[0][0],edges[3][0]] == 1 or \
+            graph_np_[edges[3][0],edges[0][0]] == 1 or \
+            graph_np_[edges[2][0],edges[1][0]] == 1 or \
+            graph_np_[edges[1][0],edges[2][0]] == 1:
+            return graph_np_, False
+
+        disc = (edges[0][1] - edges[2][1]) * \
+                (edges[3][1] - edges[1][1])
+        if (assortative_ == True and disc > 0) or (assortative_ == False and disc < 0):
+            graph_np_[edges[0][0],edges[1][0]] = 0
+            graph_np_[edges[1][0],edges[0][0]] = 0
+            graph_np_[edges[2][0],edges[3][0]] = 0
+            graph_np_[edges[3][0],edges[2][0]] = 0
+
+            graph_np_[edges[0][0],edges[3][0]] = 1
+            graph_np_[edges[3][0],edges[0][0]] = 1
+            graph_np_[edges[2][0],edges[1][0]] = 1
+            graph_np_[edges[1][0],edges[2][0]] = 1
+            return graph_np_, True
+
+        else:
+            return graph_np_, False
+
+    if rho == 0:
+        iter_rho = 2*rho_error
+    else:
+        iter_rho = 0
     iter_graph = None
-    while (assortative == True and iter_rh0 < rho) or (assortative == False and iter_rh0 > rho):
+    if rho2 == None:
+        #while (assortative == True and iter_rho < rho) or (assortative == False and iter_rho > rho):
+        while (iter_rho > rho + rho_error) or (iter_rho < rho - rho_error):
+            count = 0
+            current_rho = 0
+            accepted_counts = 0
+            graph = nx.barabasi_albert_graph(n_genes, m)
+            graph_np = nx.to_numpy_matrix(graph)
+            # make a copy of the array
+            graph_np_2 = np.copy(graph_np)
+            while ((assortative == True and current_rho < rho) or (assortative == False and current_rho > rho)) and ((count-accepted_counts) < count_threshold):
+            #while (abs(current_rho) < abs(rho)) and ((count-accepted_counts) < count_threshold) : #<r (rejected_counts < count_threshold):
+                count += 1
+                rewire_out = rewire(graph_np, assortative)
+                if rewire_out[1] == True:
+                    graph_np = rewire_out[0]
+                    accepted_counts += 1
+                    current_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+
+            iter_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+            iter_graph = graph_np
+
+            return iter_graph, iter_rho
+
+    else:
+        if rho2 == 0:
+            iter_rho2 = 2*rho_error
+        else:
+            iter_rho2 = 0
+        iter_graph2 = None
+        while ((iter_rho > rho + rho_error) or (iter_rho < rho - rho_error)) and ((iter_rho2 > rho2 + rho_error) or (iter_rho2 < rho2 - rho_error)):
+            count = 0
+            count2 = 0
+            current_rho = 0
+            current_rho2 = 0
+            accepted_counts = 0
+            accepted_counts2 = 0
+            graph = nx.barabasi_albert_graph(n_genes, m)
+            graph_np = nx.to_numpy_matrix(graph)
+            # make a copy of the array
+            graph_np_2 = np.copy(graph_np)
+
+            while ((assortative == True and current_rho < rho) or (assortative == False and current_rho > rho)) and ((count-accepted_counts) < count_threshold):
+            #while (abs(current_rho) < abs(rho)) and ((count-accepted_counts) < count_threshold) : #<r (rejected_counts < count_threshold):
+                count += 1
+                rewire_out = rewire(graph_np, assortative)
+                if rewire_out[1] == True:
+                    graph_np = rewire_out[0]
+                    accepted_counts += 1
+                    current_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+
+            iter_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+            iter_graph = graph_np
+
+
+            while ((assortative2 == True and current_rho2 < rho2) or (assortative2 == False and current_rho2 > rho2)) and ((count2-accepted_counts2) < count_threshold):
+            #while (abs(current_rho) < abs(rho)) and ((count-accepted_counts) < count_threshold) : #<r (rejected_counts < count_threshold):
+                count2 += 1
+                rewire_out2 = rewire(graph_np_2, assortative2)
+                if rewire_out2[1] == True:
+                    graph_np_2 = rewire_out2[0]
+                    accepted_counts2 += 1
+                    current_rho2 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np_2))
+
+            iter_rho2 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np_2))
+            iter_graph2 = graph_np_2
+
+            return iter_graph, iter_rho, iter_graph2, iter_rho2
+
+
+
+
+
+
+
+def get_correlated_rndm_ntwrk_test_version(n_genes, m=2, rho=0.3, rho2=None, count_threshold = 10000, rho_error = 0.01):
+    #  Xalvi-Brunet and Sokolov
+    # generate maximally correlated networks with a predefined degree sequence
+    # assumes that abs(rho) > abs(rho2)
+    if rho > 0:
+        assortative = True
+    elif rho <= 0:
+        assortative = False
+
+    if rho2 != None:
+        if rho2 > rho:
+            assortative2 = True
+        elif rho2 <= rho:
+            assortative2 = False
+
+    def get_two_edges(graph_array):
+        d = nx.to_dict_of_dicts(nx.from_numpy_matrix(graph_array), edge_data=1)
+        l0_n0 = random.sample(list(d), 1)[0]
+        l0_list = list(d[l0_n0])
+        l0_n1 = random.sample(l0_list, 1)[0]
+
+        def get_second_edge(d, l0_n0, l0_n1):
+            l1_list = [i for i in list(d) if i not in [l0_n0, l0_n1] ]
+            l1 = []
+            while len(l1) != 2:
+                l1_n0 = random.sample(list(l1_list), 1)[0]
+                l1_n1_list = d[l1_n0]
+                l1_n1_list = [i for i in l1_n1_list if i not in [l0_n0, l0_n1] ]
+                if len(l1_n1_list) > 0:
+                    l1_n1 = random.sample(list(l1_n1_list), 1)[0]
+                    l1.extend([l1_n0, l1_n1])
+            return l1
+
+        # get two links, make sure all four nodes are unique
+        link1 = get_second_edge(d, l0_n0, l0_n1 )
+        # for some reason sometimes np.sum() returns a nested list?
+        # check for that
+        #row_sums = np.asarray(np.sum(graph_array, axis =0))[0]
+        row_sums = np.asarray(np.sum(graph_array, axis =0)).tolist()
+        if any(isinstance(i, list) for i in row_sums) == True:
+            row_sums = [item for sublist in row_sums for item in sublist]
+        else:
+            row_sums = row_sums
+        node_edge_counts = [(l0_n0, row_sums[l0_n0]), (l0_n1, row_sums[l0_n1]),
+                            (link1[0], row_sums[link1[0]]), (link1[1], row_sums[link1[1]])]
+        return node_edge_counts
+
+    if rho == 0:
+        iter_rho = 2*rho_error
+    else:
+        iter_rho = 0
+    iter_graph = None
+
+    #while (assortative == True and iter_rho < rho) or (assortative == False and iter_rho > rho):
+    while (iter_rho > rho + rho_error) or (iter_rho < rho - rho_error):
         count = 0
         current_rho = 0
         accepted_counts = 0
@@ -327,10 +484,144 @@ def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, count_threshold = 10000):
                 current_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
                 #print(current_rho, count, accepted_counts)
 
-        iter_rh0 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+        iter_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
         iter_graph = graph_np
 
-    return iter_graph, iter_rh0
+
+    if rho2 == None:
+        return iter_graph, iter_rho
+
+    else:
+        iter_rho2 = copy(iter_rho)
+        graph_np_2 = np.copy(graph_np)
+        current_rho2 = copy(iter_rho)
+        accepted_counts2 = 0
+        count2 = 0
+
+        while ((assortative2 == True and current_rho2 < rho2) or (assortative2 == False and current_rho2 > rho2)) and ((count2-accepted_counts2) < count_threshold):
+            count2 += 1
+            edges = get_two_edges(graph_np_2)
+            graph_np_sums2 = np.sum(graph_np_2, axis=1)
+            # check whether new edges already exist
+            if graph_np_2[edges[0][0],edges[3][0]] == 1 or \
+                graph_np_2[edges[3][0],edges[0][0]] == 1 or \
+                graph_np_2[edges[2][0],edges[1][0]] == 1 or \
+                graph_np_2[edges[1][0],edges[2][0]] == 1:
+                continue
+
+            disc = (edges[0][1] - edges[2][1]) * \
+                    (edges[3][1] - edges[1][1])
+            if (assortative2 == True and disc > 0) or (assortative2 == False and disc < 0):
+                graph_np_2[edges[0][0],edges[1][0]] = 0
+                graph_np_2[edges[1][0],edges[0][0]] = 0
+                graph_np_2[edges[2][0],edges[3][0]] = 0
+                graph_np_2[edges[3][0],edges[2][0]] = 0
+
+                graph_np_2[edges[0][0],edges[3][0]] = 1
+                graph_np_2[edges[3][0],edges[0][0]] = 1
+                graph_np_2[edges[2][0],edges[1][0]] = 1
+                graph_np_2[edges[1][0],edges[2][0]] = 1
+
+                accepted_counts2 += 1
+                current_rho2 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np_2))
+
+        iter_rho2 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np_2))
+        iter_graph2 = graph_np_2
+
+        return iter_graph, iter_rho, iter_graph2, iter_rho2
+
+
+
+
+
+
+
+
+
+
+
+def get_correlated_rndm_ntwrk_old(n_genes, m=2, rho=0.3, count_threshold = 10000, rho_error = 0.01):
+    #  Xalvi-Brunet and Sokolov
+    # generate maximally correlated networks with a predefined degree sequence
+
+    if rho > 0:
+        assortative = True
+    elif rho <= 0:
+        assortative = False
+
+
+    def get_two_edges(graph_array):
+        d = nx.to_dict_of_dicts(nx.from_numpy_matrix(graph_array), edge_data=1)
+        l0_n0 = random.sample(list(d), 1)[0]
+        l0_list = list(d[l0_n0])
+        l0_n1 = random.sample(l0_list, 1)[0]
+
+        def get_second_edge(d, l0_n0, l0_n1):
+            l1_list = [i for i in list(d) if i not in [l0_n0, l0_n1] ]
+            l1 = []
+            while len(l1) != 2:
+                l1_n0 = random.sample(list(l1_list), 1)[0]
+                l1_n1_list = d[l1_n0]
+                l1_n1_list = [i for i in l1_n1_list if i not in [l0_n0, l0_n1] ]
+                if len(l1_n1_list) > 0:
+                    l1_n1 = random.sample(list(l1_n1_list), 1)[0]
+                    l1.extend([l1_n0, l1_n1])
+            return l1
+
+        # get two links, make sure all four nodes are unique
+        link1 = get_second_edge(d, l0_n0, l0_n1 )
+        row_sums = np.asarray(np.sum(graph_array, axis =0))[0]
+        node_edge_counts = [(l0_n0, row_sums[l0_n0]), (l0_n1, row_sums[l0_n1]),
+                            (link1[0], row_sums[link1[0]]), (link1[1], row_sums[link1[1]])]
+        return node_edge_counts
+
+    if rho == 0:
+        iter_rho = 2*rho_error
+    else:
+        iter_rho = 0
+    iter_graph = None
+
+    #while (assortative == True and iter_rho < rho) or (assortative == False and iter_rho > rho):
+    while (iter_rho > rho + rho_error) or (iter_rho < rho - rho_error):
+        count = 0
+        current_rho = 0
+        accepted_counts = 0
+        graph = nx.barabasi_albert_graph(n_genes, m)
+        graph_np = nx.to_numpy_matrix(graph)
+        while ((assortative == True and current_rho < rho) or (assortative == False and current_rho > rho)) and ((count-accepted_counts) < count_threshold):
+        #while (abs(current_rho) < abs(rho)) and ((count-accepted_counts) < count_threshold) : #<r (rejected_counts < count_threshold):
+            count += 1
+            edges = get_two_edges(graph_np)
+            graph_np_sums = np.sum(graph_np, axis=1)
+            # check whether new edges already exist
+            if graph_np[edges[0][0],edges[3][0]] == 1 or \
+                graph_np[edges[3][0],edges[0][0]] == 1 or \
+                graph_np[edges[2][0],edges[1][0]] == 1 or \
+                graph_np[edges[1][0],edges[2][0]] == 1:
+                continue
+
+            disc = (edges[0][1] - edges[2][1]) * \
+                    (edges[3][1] - edges[1][1])
+            #if (rho > 0 and disc > 0) or (rho < 0 and disc < 0):
+            if (assortative == True and disc > 0) or (assortative == False and disc < 0):
+                graph_np[edges[0][0],edges[1][0]] = 0
+                graph_np[edges[1][0],edges[0][0]] = 0
+                graph_np[edges[2][0],edges[3][0]] = 0
+                graph_np[edges[3][0],edges[2][0]] = 0
+
+                graph_np[edges[0][0],edges[3][0]] = 1
+                graph_np[edges[3][0],edges[0][0]] = 1
+                graph_np[edges[2][0],edges[1][0]] = 1
+                graph_np[edges[1][0],edges[2][0]] = 1
+
+                accepted_counts += 1
+                current_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+                #print(current_rho, count, accepted_counts)
+
+        iter_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
+        iter_graph = graph_np
+
+    return iter_graph, iter_rho
 
 
 
@@ -339,15 +630,20 @@ def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, count_threshold = 10000):
 def get_mean_center(array):
     return array - np.mean(array, axis=0)
 
+
 def matrix_vs_null_one_treat(count_matrix, iter):
-    X = get_mean_center(count_matrix)
+    count_matrix_rel = count_matrix/count_matrix.sum(axis=1)[:,None]
+    X = get_mean_center(count_matrix_rel)
     pca = PCA()
+    #pca = SparsePCA(normalize_components=True)
     pca_fit = pca.fit_transform(X)
     euc_dist = get_mean_pairwise_euc_distance(pca_fit)
     euc_dists = []
     for j in range(iter):
         #X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
-        X_j = get_mean_center(get_random_matrix(count_matrix))
+        count_matrix_j = get_random_matrix(count_matrix)
+        count_matrix_rel_j = count_matrix_j/count_matrix_j.sum(axis=1)[:,None]
+        X_j = get_mean_center(count_matrix_rel_j)
         pca_fit_j = pca.fit_transform(X_j)
         euc_dists.append( get_mean_pairwise_euc_distance(pca_fit_j) )
     euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
@@ -355,50 +651,52 @@ def matrix_vs_null_one_treat(count_matrix, iter):
     return euc_percent, z_score
 
 
-#class likelihood_matrix:
-#    def __init__(self, df, dataset):
-#        self.df = df.copy()
-#        self.dataset = dataset
-#
-#    def get_gene_lengths(self, **keyword_parameters):
-#        if self.dataset == 'Good_et_al':
-#            conv_dict = cd.good_et_al().parse_convergence_matrix(get_path() + "/data/Good_et_al/gene_convergence_matrix.txt")
-#            length_dict = {}
-#            if ('gene_list' in keyword_parameters):
-#                for gene_name in keyword_parameters['gene_list']:
-#                    length_dict[gene_name] = conv_dict[gene_name]['length']
-#                #for gene_name, gene_data in conv_dict.items():
-#            else:
-#                for gene_name, gene_data in conv_dict.items():
-#                    length_dict[gene_name] = conv_dict[gene_name]['length']
-#            return(length_dict)
-#
-#        elif self.dataset == 'Tenaillon_et_al':
-#            with open(get_path() + '/data/Tenaillon_et_al/gene_size_dict.txt', 'rb') as handle:
-#                length_dict = pickle.loads(handle.read())
-#                if ('gene_list' in keyword_parameters):
-#                    return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }
-#                    #for gene_name in keyword_parameters['gene_list']:
-#                else:
-#                    return(length_dict)
+def get_F_2(count_matrix, N1, N2):
+    '''
+    Modified F-statistic from Anderson et al., 2017 doi: 10.1111/anzs.12176
+    Function assumes that the rows of the count matrix are sorted by group
+    i.e., group one is first N1 rows, rest of the N2 rows are group two
+    '''
+    N = N1+N2
+    count_matrix_rel = count_matrix/count_matrix.sum(axis=1)[:,None]
+    X = get_mean_center(count_matrix_rel)
+    pca = PCA()
+    pca_fit = pca.fit_transform(X)
+    dist_matrix = euclidean_distances(X, X)
+    A = -(1/2) * (dist_matrix ** 2)
+    I = np.identity(N)
+    J_N = np.full((N, N), 1)
+    G = (I - ((1/N) * J_N )) @ A @ (I - ((1/N) * J_N ))
+    n1 = (1/N1) * np.full((N1, N1), 1)
+    n2 = (1/N2) * np.full((N2, N2), 1)
+    H = block_diag(n1, n2) - ((1/N) * J_N )
+    # indicator matrices
+    U_1 = np.diag( (N1*[1]) + (N2*[0]))
+    U_2 = np.diag( (N1*[0]) + (N2*[1]))
 
-#    def get_likelihood_matrix(self):
-#        genes = self.df.columns.tolist()
-#        genes_lengths = self.get_gene_lengths(gene_list = genes)
-#        L_mean = np.mean(list(genes_lengths.values()))
-#        L_i = np.asarray(list(genes_lengths.values()))
-#        N_genes = len(genes)
-#        m_mean = self.df.sum(axis=1) / N_genes
+    V_1 = np.trace(((I - H) @ U_1 @ (I - H)) @ G ) / (N1-1)
+    V_2 = np.trace(((I - H) @ U_2 @ (I - H)) @ G ) / (N2-1)
 
-#        for index, row in self.df.iterrows():
-#            m_mean_j = m_mean[index]
-#            np.seterr(divide='ignore')
-#            delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
-#            self.df.loc[index,:] = delta_j
+    F_2 = np.trace(H @ G) / (((1- (N1/N)) * V_1) + ((1- (N2/N)) * V_2))
 
-#        df_new = self.df.fillna(0)
-#        # remove colums with all zeros
-#        df_new.loc[:, (df_new != 0).any(axis=0)]
-#        # replace negative values with zero
-#        df_new[df_new < 0] = 0
-#        return df_new
+    return F_2, V_1, V_2
+
+
+def matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=1000):
+    F_2, V_1, V_2 = get_F_2(count_matrix, N1, N2)
+    F_2_list = []
+    V_1_list = []
+    V_2_list = []
+    for j in range(iter):
+        F_2_j, V_1_j, V_2_j = get_F_2(get_random_matrix(count_matrix), N1, N2)
+        F_2_list.append(F_2_j)
+        V_1_list.append(V_1_j)
+        V_2_list.append(V_2_j)
+    F_2_percent = len( [k for k in F_2_list if k < F_2] ) / iter
+    F_2_z_score = (F_2 - np.mean(F_2_list)) / np.std(F_2_list)
+    V_1_percent = len( [k for k in V_1_list if k < V_1] ) / iter
+    V_1_z_score = (V_1 - np.mean(V_1_list)) / np.std(V_1_list)
+    V_2_percent = len( [k for k in V_2_list if k < V_2] ) / iter
+    V_2_z_score = (V_2 - np.mean(V_2_list)) / np.std(V_2_list)
+
+    return F_2_percent, F_2_z_score, V_1_percent, V_1_z_score, V_2_percent, V_2_z_score
