@@ -13,7 +13,7 @@ from scipy.sparse.linalg import svds
 
 # Figure 1 code
 # z = 1.645 for one sided test with alpha=0.05
-def run_ba_cov_sims(gene_list, pop_list, out_name, covs = [0.1, 0.15, 0.2], iter1=1000, iter2=1000):
+def run_cov_sims(gene_list, pop_list, out_name, covs = [0.1, 0.15, 0.2], iter1=1000, iter2=1000):
     df_out=open(out_name, 'w')
     df_out.write('\t'.join(['N', 'G', 'Cov', 'Iteration', 'dist_percent', 'z_score']) + '\n')
     for G in gene_list:
@@ -35,7 +35,7 @@ def run_ba_cov_sims(gene_list, pop_list, out_name, covs = [0.1, 0.15, 0.2], iter
 
 
 
-def run_ba_cov_neutral_sims(out_name, covs = [0.1, 0.15, 0.2], shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=1000):
+def run_cov_neutral_sims(out_name, covs = [0.1, 0.15, 0.2], shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=1000):
     df_out=open(out_name, 'w')
     df_out.write('\t'.join(['N', 'G', 'lamba_mean', 'lambda_neutral', 'Cov', 'Iteration', 'dist_percent', 'z_score']) + '\n')
     mean_gamma = shape * scale
@@ -63,7 +63,7 @@ def run_ba_cov_neutral_sims(out_name, covs = [0.1, 0.15, 0.2], shape=1, scale=1,
 
 
 
-def run_ba_cov_prop_sims(out_name, covs = [0.1, 0.15, 0.2], props=[0.5], shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=1000):
+def run_cov_prop_sims(out_name, covs = [0.1, 0.15, 0.2], props=[0.5], shape=1, scale=1, G = 50, N = 50, iter1=1000, iter2=1000):
     df_out=open(out_name, 'w')
     df_out.write('\t'.join(['N', 'G', 'Cov', 'Proportion', 'Iteration', 'dist_percent', 'z_score']) + '\n')
     for prop in props:
@@ -84,7 +84,7 @@ def run_ba_cov_prop_sims(out_name, covs = [0.1, 0.15, 0.2], props=[0.5], shape=1
 
 
 
-def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[-0.2, 0, 0.2], shape=1, scale=1, G = 50, N = 50, iter1=10, iter2=1000):
+def run_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[-0.2, 0, 0.2], shape=1, scale=1, G = 50, N = 50, iter1=10, iter2=1000):
     df_out=open(out_name, 'w')
     df_out.write('\t'.join(['N', 'G', 'Cov', 'Rho_goal', 'Rho_estimated', 'Iteration', 'dist_percent', 'z_score']) + '\n')
     for cov in covs:
@@ -111,21 +111,22 @@ def run_ba_cov_rho_sims(out_name, covs = [0.1, 0.15, 0.2], rhos=[-0.2, 0, 0.2], 
 Two treatments sims
 '''
 
-
-def two_treats_sim(
-    to_reshuffle = [10],
-    N1=10,
-    N2=10,
+def run_cov_dist_sims(
+    out_name,
+    to_reshuffle = [5],
+    N1=20,
+    N2=20,
     covs=[0.05],
     G=100,
     shape = 1,
     scale = 1,
-    iter1=100,
+    iter1=10,
     iter2=1000):
-
+    df_out=open(out_name, 'w')
+    df_out.write('\t'.join(['N1', 'N2', 'G', 'Reshuf', 'Cov', 'Iteration', 'Euc_dist', 'F_2_percent', 'F_2_z_score', 'V_1_percent', 'V_1_z_score', 'V_2_percent', 'V_2_z_score']) + '\n')
     for reshuf in to_reshuffle:
         for cov in covs:
-            F_2_list = [ ]
+            reshuf_list = []
             for i in range(iter1):
                 C = pt.get_ba_cov_matrix(G, cov)
                 while True:
@@ -140,56 +141,73 @@ def two_treats_sim(
                     counts2 = np.stack( [pt.get_count_pop(rates2, C= C) for x in range(N2)], axis=0)
                     if (np.any(counts1.sum(axis=1) == 0 ) == False) or (np.any(counts2.sum(axis=1) == 0 ) == False):
                         break
-                #D_KL = ss.entropy(rates1, rates2)
                 euc_dist = np.linalg.norm(rates1-rates2)
                 count_matrix = np.concatenate((counts1, counts2), axis=0)
                 # check and remove empty columns
                 count_matrix = count_matrix[:, ~np.all(count_matrix == 0, axis=0)]
-                F_2_percent, F_2_z_score, V_1_percent, \
-                    V_1_z_score, V_2_percent, V_2_z_score = \
+                F_2_percent, F_2_z_score, \
+                    V_1_percent, V_1_z_score, \
+                    V_2_percent, V_2_z_score = \
                     pt.matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=iter2)
-
-                print(i, F_2_percent, F_2_z_score, euc_dist)
-                F_2_list.append(F_2_percent)
-
-            p_sig = [p_i for p_i in F_2_list if p_i >= (1-0.05)]
-            print(len(p_sig) / len(F_2_list))
-
+                reshuf_list.append(euc_dist)
+                print(reshuf, cov, i, F_2_percent, F_2_z_score, euc_dist, V_1_percent, V_2_percent)
+                df_out.write('\t'.join([str(N1), str(N2), str(G), str(reshuf), str(cov), str(i), str(euc_dist), str(F_2_percent), str(F_2_z_score), str(V_1_percent), str(V_1_z_score), str(V_2_percent), str(V_2_z_score)]) + '\n')
+            print(cov, np.mean(reshuf_list))
+    df_out.close()
 
 
 
+def run_cov_dist_sims_unequal(
+    out_name,
+    to_reshuffle = [5],
+    N1=20,
+    N2=20,
+    covs_12=[0.05],
+    G=100,
+    shape = 1,
+    scale = 1,
+    iter1=10,
+    iter2=1000):
+    df_out=open(out_name, 'w')
+    df_out.write('\t'.join(['N1', 'N2', 'G', 'Reshuf', 'Cov', 'Iteration', 'Euc_dist', 'F_2_percent', 'F_2_z_score', 'V_1_percent', 'V_1_z_score', 'V_2_percent', 'V_2_z_score']) + '\n')
+
+    # re write code for covariance matrix to get
+    for reshuf in to_reshuffle:
+        for cov in covs:
+            reshuf_list = []
+            for i in range(iter1):
+                C = pt.get_ba_cov_matrix(G, cov)
+                while True:
+                    rates = np.random.gamma(shape, scale=scale, size=G)
+                    rates1 = rates.copy()
+                    rates2 = rates.copy()
+                    # fix this so you're not resampling the same pairs
+                    for j in range(reshuf)[0::2]:
+                        rates2[j], rates2[j+1] = rates2[j+1], rates2[j]
+                    #shuffle(rates)#[:reshuf])
+                    counts1 = np.stack( [pt.get_count_pop(rates1, C= C) for x in range(N1)], axis=0)
+                    counts2 = np.stack( [pt.get_count_pop(rates2, C= C) for x in range(N2)], axis=0)
+                    if (np.any(counts1.sum(axis=1) == 0 ) == False) or (np.any(counts2.sum(axis=1) == 0 ) == False):
+                        break
+                euc_dist = np.linalg.norm(rates1-rates2)
+                count_matrix = np.concatenate((counts1, counts2), axis=0)
+                # check and remove empty columns
+                count_matrix = count_matrix[:, ~np.all(count_matrix == 0, axis=0)]
+                F_2_percent, F_2_z_score, \
+                    V_1_percent, V_1_z_score, \
+                    V_2_percent, V_2_z_score = \
+                    pt.matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=iter2)
+                reshuf_list.append(euc_dist)
+                print(reshuf, cov, i, F_2_percent, F_2_z_score, euc_dist, V_1_percent, V_2_percent)
+                df_out.write('\t'.join([str(N1), str(N2), str(G), str(reshuf), str(cov), str(i), str(euc_dist), str(F_2_percent), str(F_2_z_score), str(V_1_percent), str(V_1_z_score), str(V_2_percent), str(V_2_z_score)]) + '\n')
+            print(cov, np.mean(reshuf_list))
+    df_out.close()
 
 
 
-#def run_ba_cor_sub_sims(shape=1, scale=1, G = 50, N = 50):
-#    cov = 0.1
-#    lambda_genes = np.random.gamma(shape=shape, scale=scale, size=G)
-#    lambda_genes.sort()
-#    C, edge_count = pt.get_ba_cov_matrix(G, cov, get_node_edge_sum=True)
-#    zipped = list(zip( list(range(G)) , edge_count.tolist()[0] ))
-#    zipped.sort(key = lambda t: t[1])
-#    # figure out how to sort covariance matrix
-#    total_inversions = 30
-#    inversion_count = 0
-#    while inversion_count < total_inversions:
-#        pair = np.random.choice(list(range(G)), size = 2, replace=False)
-#        pair.sort()
-#        if lambda_genes[pair[0]] < lambda_genes[pair[1]]:
-#            lambda_0 =lambda_genes[pair[0]].copy()
-#            lambda_1 =lambda_genes[pair[1]].copy()
-#            lambda_genes[pair[0]] = lambda_1
-#            lambda_genes[pair[1]] = lambda_0
-#            inversion_count += 1
-#    unzipped = list(zip(*zipped))
-#    rezipped = list( zip( unzipped[0], unzipped[1],  lambda_genes) )
-#    rezipped.sort(key = lambda t: t[0])
-#    unrezipped = list(zip(*rezipped))
-#    lambda_genes_sorted = list(unrezipped[2])
 
-#    print(lambda_genes_sorted)
 
-    #list[min(lambda_genes[pair[0]],j)] < list[max(i,j)]
-    #print()
+
 
 
 def rndm_sample_tenaillon(iter1=1000, iter2=10000):
