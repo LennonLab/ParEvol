@@ -32,8 +32,6 @@ y = [10,12,20,19]
 #for x in range(10):
 #    print(pt.get_correlated_rndm_ntwrk_old(50, m=2, rho=0.3)[1])
 #print("new")
-#for x in range(10):
-#    print(pt.get_correlated_rndm_ntwrk(50, m=2, rho=0.3)[1])
-
-_1, _2,_3,_4 = pt.get_correlated_rndm_ntwrk_test_version(50, m=2, rho=0.2, rho2=0)
-print(_2, _4)
+for x in range(1000):
+    _1, _2,_3,_4 = pt.get_correlated_rndm_ntwrk(50, m=2, rho=0.2, rho2=0)
+    print(_2, _4)

@@ -252,25 +252,27 @@ def rndm_sample_tenaillon(iter1=1000, iter2=10000):
     df_out.close()
 
 
+
 def gene_svd_tenaillon(iter=10000):
     df_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    gene_names = df.columns.tolist()
     df_np = df.values
-    X = pt.get_mean_center(df_np)
+    df_np_delta = cd.likelihood_matrix_array(df_np, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+    X = pt.get_mean_center(df_np_delta)
     # scipy's svd returns the V matrix in transposed form
     U, s, V_T = svds(X, k=3)
     # apply another transposition to calculate basis matrix
     F = (V_T.T @ np.diag(s)) / np.sqrt(  X.shape[0] - 1 )
     vars = np.linalg.norm(F, axis=1) ** 2
-    gene_names = df.columns.tolist()
     vars_null_list = []
     for i in range(iter):
         if i % 1000 ==0:
             print("Iteration " + str(i))
         df_np_i = pt.get_random_matrix(df_np)
         np.seterr(divide='ignore')
-        #df_np_i_j_delta = cd.likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
-        X_j = pt.get_mean_center(df_np_i)
+        df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+        X_j = pt.get_mean_center(df_np_i_delta)
         U_i, s_i, V_i_T = svds(X_j, k=3)
         F_i = (V_i_T.T @ np.diag(s_i)) / np.sqrt(  X_j.shape[0] - 1 )
         vars_null_list.append(np.linalg.norm(F_i, axis=1) ** 2)
@@ -354,6 +356,7 @@ def gene_svd_tenaillon_sample_size(iter1 = 1000, iter2=10000, k =3):
     df_out.close()
 
 
+#gene_svd_tenaillon()
 #rndm_sample_tenaillon()
 #gene_svd_tenaillon()
 #gene_svd_tenaillon_sample_size()

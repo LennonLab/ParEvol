@@ -51,4 +51,4 @@ if __name__ == '__main__':
         # distance vs. power
         dist_out = out_path + '/data/simulations/' + 'ba_cov_dist_sims' + '.txt'
         rs.run_cov_dist_sims(dist_out, to_reshuffle =[1,2,3,4,5], N1=20, N2=20, G=100,
-            covs = [0.1, 0.15, 0.2], shape = 1, scale = 1, iter1=10, iter2=1000))
+            covs = [0.1, 0.15, 0.2], shape = 1, scale = 1, iter1=10, iter2=1000)

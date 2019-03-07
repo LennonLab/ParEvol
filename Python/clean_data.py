@@ -108,7 +108,7 @@ class good_et_al:
 
 class tenaillon_et_al:
 
-    def clean_tenaillon_et_al(self):
+    def clean_data(self):
         df_in = mydir + 'data/Tenaillon_et_al/1212986tableS2.csv'
         df_out = open(mydir + 'data/Tenaillon_et_al/1212986tableS2_clean.csv', 'w')
         category_dict = {}
@@ -253,6 +253,61 @@ class mcdonald_et_al:
 
 
 
+class wannier_et_al:
+
+    def __init__(self, path):
+        self.path = path
+
+    def clean_data(self):
+        #treats = ['C321', 'C321.deltaA', 'C321.deltaA.earlyfix', 'ECNR2.1']
+        treats = ['C321.deltaA']
+        table = str.maketrans(dict.fromkeys('""'))
+        gene_treat_dict = {}
+        #genes_
+
+        for treat in treats:
+            lengths = []
+            treat_path = self.path + '/data/Wannier_et_al/' + treat + '_mutation_table.txt'
+            for i, line in enumerate(open(treat_path, 'r')):
+
+                line = line.strip('\n')
+                items = line.split("\t")
+                items = [item.translate(table) for item in items]
+                if i == 0:
+                    #print(list(map(str.strip, items)))
+
+                    samples = [x.split('>')[1][:-3] for x in items[5:]]
+                    samples = [x.replace(' ', '-') for x in samples]
+                    if (treat == 'C321.deltaA') or (treat == 'C321.deltaA.earlyfix'):
+                        samples_list = [list(x) for x in samples]
+                        #samples_list = [x[2] =4 for x in samples]
+                        for x in samples_list:
+                            x[5] = 'delta'
+                        samples = [''.join(x) for x in samples_list]
+                    for sample in samples:
+                        gene_treat_dict[sample] = {}
+
+                    # track code with header??
+
+
+
+                if ('noncoding' in items[4]) or ('pseudogene' in items[4]) or ('intergenic' in items[4]):
+                    continue
+
+                #print(items[3])
+                print(items[5:])
+                lengths.append(len(items))
+            print(set(lengths))
+
+        #print(gene_treat_dict)
+
+
+
+
+    #def get_gene_sizes(self):
+
+
+
 
 class likelihood_matrix_array:
     def __init__(self, array, gene_list, dataset):
@@ -323,7 +378,7 @@ class likelihood_matrix_array:
         return df_new
 
 
-
+wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).clean_data()
 #good_et_al().reformat_convergence_matrix(mut_type = 'P')
 #good_et_al().reformat_convergence_matrix(mut_type = 'F')
 #tenaillon_et_al().pop_by_gene_tenaillon()

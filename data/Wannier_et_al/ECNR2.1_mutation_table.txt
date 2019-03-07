@@ -1,0 +1,897 @@
+Position	Mutation Type	Sequence Change	Gene	Details	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/0-0-1-1/output/"">ECNR2.1 A0 F0 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/1-1-1-1/output/"">ECNR2.1 A1 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/1-1-2-1/output/"">ECNR2.1 A1 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/2-1-1-1/output/"">ECNR2.1 A2 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/2-1-2-1/output/"">ECNR2.1 A2 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/3-1-1-1/output/"">ECNR2.1 A3 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/3-1-2-1/output/"">ECNR2.1 A3 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/4-1-1-1/output/"">ECNR2.1 A4 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/4-1-2-1/output/"">ECNR2.1 A4 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/5-1-1-1/output/"">ECNR2.1 A5 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/5-1-2-1/output/"">ECNR2.1 A5 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/6-1-1-1/output/"">ECNR2.1 A6 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/6-1-2-1/output/"">ECNR2.1 A6 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/7-1-1-1/output/"">ECNR2.1 A7 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/7-1-2-1/output/"">ECNR2.1 A7 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/8-1-1-1/output/"">ECNR2.1 A8 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/8-1-2-1/output/"">ECNR2.1 A8 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/9-1-1-1/output/"">ECNR2.1 A9 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/9-1-2-1/output/"">ECNR2.1 A9 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/10-1-1-1/output/"">ECNR2.1 A10 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/10-1-2-1/output/"">ECNR2.1 A10 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/11-1-1-1/output/"">ECNR2.1 A11 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/11-1-2-1/output/"">ECNR2.1 A11 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/12-1-1-1/output/"">ECNR2.1 A12 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/12-1-2-1/output/"">ECNR2.1 A12 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/13-1-1-1/output/"">ECNR2.1 A13 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/13-1-2-1/output/"">ECNR2.1 A13 F1 I2 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/14-1-1-1/output/"">ECNR2.1 A14 F1 I1 R1</a>"	"<a href=""http://aledb.org/aledata/ECNR2_1/breseq/14-1-2-1/output/"">ECNR2.1 A14 F1 I2 R1</a>"
+310	DEL	(T)9→8	"thrL, thrA"	intergenic (+55/‑27)				1	1																								
+"6,903"	SNP	T→C	yaaJ	T353A (ACC→GCC)														1															
+"7,686"	SNP	C→T	yaaJ	V92I (GTC→ATC)																										1	1		
+"21,581"	SNP	C→T	ribF	P59S (CCA→TCA)																								1					
+"28,072"	SNP	C→T	rihC	G260G (GGC→GGT)		1	1																										
+"30,615"	SNP	C→T	carA	P322L (CCT→CTT)									1																				
+"34,120"	DEL	(T)9→8	"carB, caiF"	intergenic (+82/‑180)												1	1																
+"40,651"	SNP	A→G	caiT	S427S (TCT→TCC)		1	1																										
+"40,676"	SNP	G→A	caiT	T419I (ACC→ATC)																		1	1										
+"59,177"	INS	(C)7→8	yabP	pseudogene (126/228 nt)											1																		
+"60,422"	SNP	T→C	rapA	E948G (GAA→GGA)			1																										
+"60,432"	SNP	G→A	rapA	Q945* (CAG→TAG)																					1								
+"61,437"	SNP	C→T	rapA	V610M (GTG→ATG)				1	1																								
+"66,205"	SNP	T→C	araD	T116A (ACC→GCC)																												1	
+"71,929"	SNP	G→A	yabI	W193* (TGG→TGA)																	1												
+"73,762"	SNP	A→G	thiP	C254R (TGC→CGC)																					1								
+"87,468"	SNP	A→G	ilvH	T38A (ACC→GCC)																						1							
+"92,846"	SNP	C→T	ftsI	G478G (GGC→GGT)				1																									
+"93,429"	SNP	C→T	murE	S88S (AGC→AGT)																						1							
+"95,633"	SNP	G→A	murF	L328L (CTG→CTA)																							1						
+"105,107"	SNP	T→C	ftsA	Y376H (TAT→CAT)																										1	1		
+"113,831"	SNP	G→A	guaC	V130M (GTG→ATG)																			1										
+"126,432"	SNP	T→C	aceF	A246A (GCT→GCC)																						1							
+"147,824"	SNP	C→T	yadD	A286V (GCA→GTA)																						1							
+"156,412"	SNP	T→G	yadN	T158P (ACA→CCA)																								1					
+"164,205"	SNP	A→G	hrpB	S701G (AGT→GGT)																		1	1										
+"190,778"	INS	(G)5→6	"rpsB, tsf"	intergenic (+179/‑79)																				1									
+"199,121"	SNP	C→T	bamA	V398V (GTC→GTT)																								1	1				
+"199,912"	SNP	G→A	bamA	G662D (GGC→GAC)																												1	1
+"201,558"	SNP	A→G	lpxD	P196P (CCA→CCG)																			1										
+"219,650"	SNP	G→A	rcsF	P116S (CCA→TCA)																1													
+"231,586"	SNP	A→G	yafD	I155M (ATA→ATG)					1																								
+"238,929"	SNP	T→C	yafU	pseudogene (174/357 nt)																					1								
+"245,803"	SNP	C→T	yafK	M1M (ATG→ATA) †													1																
+"251,799"	SNP	A→G	dinB	E301G (GAG→GGG)																				1									
+"254,408"	SNP	A→G	pepD	F437L (TTC→CTC)															1														
+"257,908"	DEL	Δ776 bp	crl		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"261,052"	SNP	A→G	proB	D222G (GAC→GGC)								1	1																				
+"265,137"	SNP	C→T	yafX	V24I (GTC→ATC)								1	1																				
+"276,574"	SNP	T→C	mmuP	V417A (GTG→GCG)		1	1																										
+"279,931"	DEL	"Δ11,471 bp"	"insI1, insX, yagB, yagA, yagE, yagF, yagG, yagH, yagI, argF, ykgS, insB1, insA"	between IS1																	1												
+"280,453"	SNP	T→C	yagB	pseudogene (283/309 nt)																							1						
+"281,050"	INS	(G)5→6	yagA	coding (934/1155 nt)				1	1																								
+"287,971"	SNP	A→G	yagH	T395A (ACG→GCG)																1													
+"289,772"	SNP	C→T	argF	A178A (GCG→GCA)											1																		
+"290,698"	SNP	T→A	insB1	Q152L (CAG→CTG)											1																		
+"293,780"	DEL	(A)7→6	yagL	coding (139/699 nt)																		1	1										
+"304,952"	INS	(G)6→7	ecpE	coding (254/711 nt)					1																								
+"315,061"	SNP	G→T	eaeH	pseudogene (705/872 nt)																									1				
+"319,348"	SNP	G→A	rclA	L218L (CTC→CTT)																										1			
+"322,098"	SNP	C→T	ykgE	T164I (ACC→ATC)																		1	1										
+"322,417"	SNP	T→A	ykgF	V27E (GTG→GAG)																1													
+"323,702"	SNP	T→C	ykgF	A455A (GCT→GCC)																							1						
+"324,641"	SNP	C→T	"ykgG, ykgH"	intergenic (+188/+55)																				1									
+"337,217"	SNP	T→C	yahF	V147A (GTC→GCC)				1	1													1	1										
+"350,431"	SNP	G→A	prpC	L140L (CTG→CTA)												1	1																
+"352,986"	SNP	A→G	prpE	N94S (AAC→AGC)																				1	1								
+"365,380"	SNP	A→G	lacZ	L309P (CTC→CCC)																				1									
+"367,852"	DEL	(GC)6→5	mhpR	coding (568‑569/834 nt)						1	1		1																				
+"371,588"	INS	(G)6→7	mhpC	coding (350/867 nt)															1						1								
+"375,067"	SNP	A→G	"mhpE, mhpT"	intergenic (+186/‑392)										1																			
+"375,075"	SNP	G→A	"mhpE, mhpT"	intergenic (+194/‑384)										1																			
+"380,021"	DEL	(G)10→8	"frmR, yaiO"	intergenic (‑140/+47)										1	1																		
+"380,022"	DEL	(G)10→9	"frmR, yaiO"	intergenic (‑141/+47)	1							1							1														
+"380,022"	INS	(G)10→11	"frmR, yaiO"	intergenic (‑141/+47)																											1		1
+"398,108"	SNP	G→A	yaiW	V79V (GTG→GTA)				1																									
+"404,123"	DEL	(C)5→4	yaiC	coding (421/1116 nt)										1	1																		
+"410,683"	SNP	A→G	mak	K180K (AAA→AAG)																												1	
+"420,175"	SNP	G→A	brnQ	L195L (CTG→CTA)						1	1																						
+"424,284"	SNP	C→T	malZ	D589D (GAC→GAT)																											1		
+"427,630"	DEL	(T)5→4	"yajC, secD"	intergenic (+11/‑17)																											1		
+"445,781"	SNP	A→G	yajR	W296R (TGG→CGG)																										1			
+"449,399"	SNP	A→G	cyoB	F415L (TTC→CTC)																					1								
+"451,410"	SNP	C→T	cyoA	W67* (TGG→TGA)														1															
+"456,497"	DEL	(T)8→7	"tig, clpP"	intergenic (+66/‑180)																									1				
+"459,628"	SNP	G→A	lon	A247A (GCG→GCA)						1	1																						
+"467,458"	SNP	C→T	cof	P16L (CCC→CTC)										1	1																		
+"468,662"	SNP	C→T	ybaO	L94L (CTG→TTG)																										1			
+"505,757"	SNP	G→A	ushA	G282S (GGC→AGC)															1														
+"506,758"	INS	(T)6→7	ybaK	coding (325/480 nt)		1	1																										
+"509,678"	SNP	T→A	copA	I568F (ATC→TTC)																							1						
+"516,003"	DEL	(T)5→4	fetA	coding (85/678 nt)			1																										
+"521,055"	SNP	T→C	ybbP	L214L (TTA→CTA)			1																										
+"528,998"	DEL	(A)7→6	ybbD	pseudogene (359/491 nt)					1																								
+"529,055"	DEL	(T)8→7	ybbD	pseudogene (416/491 nt)																										1	1		
+"536,135"	SNP	T→C	hyi	I142I (ATT→ATC)															1														
+"543,768"	SNP	A→G	allE	T93T (ACT→ACC)										1	1																		
+"573,440"	SNP	C→T	rusA	R24C (CGC→TGC)				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"575,786"	DEL	"Δ31,596 bp"	"nmpC, essD, rrrD, rzpD, rzoD, borD, ybcV, ybcW, ylcI, nohD, aaaD, tfaD, ybcY, ybcY, tfaX, appY, ompT, pauD, envY, ybcH, nfrA, nfrB, cusS, cusR, cusC, cusF, cusB, cusA, pheP, ybdG, nfsB, ybdF, ybdJ, "">ybdK"	IS5‑mediated																			1										
+"580,905"	SNP	A→G	nohD	E24E (GAA→GAG)																	1												
+"584,639"	SNP	C→T	"appY, ompT"	intergenic (+209/+41)						1	1																						
+"585,217"	SNP	C→T	ompT	W139* (TGG→TGA)														1	1											1	1		
+"585,317"	SNP	C→T	ompT	W106* (TGG→TAG)										1	1																		
+"585,420"	DEL	Δ1 bp	ompT	coding (214/954 nt)		1	1																										
+"585,480"	MOB	IS5 (+) +4 bp	ompT	coding (151‑154/954 nt)																							1						
+"593,467"	SNP	T→G	cusS	D435A (GAC→GCC)										1	1																		
+"600,470"	SNP	C→T	cusA	A586V (GCG→GTG)										1	1																		
+"602,603"	SNP	G→A	pheP	L215L (CTG→CTA)						1																							
+"606,927"	SNP	C→T	ybdK	G153S (GGC→AGC)								1																					
+"630,819"	SNP	C→T	cstA	A309V (GCG→GTG)																								1	1				
+"631,934"	SNP	A→G	cstA	T681A (ACG→GCG)															1														
+"632,923"	SNP	A→G	ybdH	A185A (GCT→GCC)																										1	1		
+"635,896"	SNP	A→G	ybdN	L225P (CTC→CCC)								1																					
+"638,399"	SNP	A→G	dsbG	Y59H (TAC→CAC)																				1									
+"638,619"	SNP	A→G	"dsbG, ahpC"	intergenic (‑46/‑326)																				1									
+"640,165"	SNP	C→T	ahpF	A138V (GCG→GTG)																							1						
+"640,862"	SNP	G→A	ahpF	A370A (GCG→GCA)		1	1																										
+"647,740"	INS	#NAME?	citX	coding (296/552 nt)													1																
+"662,907"	SNP	G→A	dacA	Q353* (CAA→TAA)																							1						
+"663,640"	SNP	A→G	dacA	G108G (GGT→GGC)				1																									
+"671,531"	SNP	A→G	holA	G25G (GGT→GGC)																										1	1		
+"678,376"	SNP	C→T	djlB	P321L (CCG→CTG)																		1											
+"683,121"	SNP	C→T	hscC	A91A (GCG→GCA)																		1	1										
+"685,425"	SNP	T→C	gltK	T169A (ACC→GCC)																										1	1		
+"698,107"	SNP	A→G	asnB	G357G (GGT→GGC)						1																							
+"700,790"	SNP	C→T	nagC	A269T (GCT→ACT)		1	1																										
+"701,461"	INS	(G)5→6	nagC	coding (134/1221 nt)		1	1																										
+"703,866"	SNP	A→G	"nagB, nagE"	intergenic (‑255/‑78)																						1							
+"705,972"	DEL	(T)9→8	"nagE, glnS"	intergenic (+82/‑121)		1	1																										
+"709,223"	SNP	C→T	chiP	T297I (ACC→ATC)																						1							
+"713,788"	SNP	C→T	pgm	I77I (ATC→ATT)													1																
+"723,528"	DEL	(T)8→7	kdpD	coding (887/2685 nt)								1	1																				
+"731,913"	SNP	A→G	rhsC	A777A (GCA→GCG)							1																						
+"731,919"	SNP	A→G	rhsC	G779G (GGA→GGG)						1	1																						
+"738,087"	SNP	A→G	"ybfL, ybfD"	intergenic (+126/‑5)										1	1																		
+"738,241"	SNP	T→C	ybfD	F50F (TTT→TTC)																1	1												
+"742,336"	SNP	C→T	dtpD	G74D (GGC→GAC)																		1	1										
+"746,063"	SNP	A→G	nei	Q43Q (CAA→CAG)										1	1																		
+"746,842"	SNP	T→C	abrB	S310G (AGC→GGC)																				1									
+"749,989"	SNP	A→G	ybgQ	G727G (GGT→GGC)								1	1																				
+"751,737"	INS	(G)6→7	ybgQ	coding (433/2448 nt)																					1								
+"752,248"	SNP	T→C	ybgD	Y183C (TAC→TGC)																										1			
+"752,402"	DEL	(T)5→4	ybgD	coding (394/567 nt)						1	1																						
+"759,829"	SNP	C→T	sucA	A375V (GCG→GTG)																	1												
+"764,978"	SNP	G→A	sucD	E267K (GAA→AAA)																1													
+"773,987"	SNP	C→T	cydB	P316S (CCG→TCG)																							1						
+"776,722"	SNP	C→T	tolA	A127A (GCC→GCT)				1																									
+"783,566"	DEL	(T)5→4	pnuC	coding (401/720 nt)																								1					
+"783,866"	SNP	C→T	pnuC	S234L (TCA→TTA)																				1	1								
+"786,791"	SNP	C→T	"aroG, gpmA"	intergenic (+106/+52)																1													
+"791,349"	SNP	A→G	galE	V236A (GTA→GCA)																				1									
+"792,525"	SNP	A→G	modF	L422L (TTG→CTG)															1														
+"806,505"	SNP	G→A	ybhC	S259S (AGC→AGT)															1														
+"807,343"	SNP	C→G	"ybhC, ybhB"	intergenic (‑62/+90)										1																			
+"821,500"	INS	(T)7→8	ybhM	coding (708/714 nt)						1																							
+"839,332"	SNP	C→T	fiu	V734I (GTC→ATC)												1																	
+"852,261"	SNP	A→G	opgE	Y113H (TAC→CAC)														1	1														
+"856,434"	SNP	C→T	ybiT	P158S (CCT→TCT)														1															
+"857,298"	SNP	C→T	ybiT	R446W (CGG→TGG)										1	1																		
+"865,008"	SNP	C→T	moeB	G41D (GGC→GAC)																	1												
+"865,423"	SNP	A→G	moeA	P314P (CCT→CCC)																										1	1		
+"867,319"	SNP	A→G	iaaA	Y251C (TAC→TGC)										1	1																		
+"884,506"	SNP	G→A	mdfA	L278L (CTG→CTA)																												1	1
+"895,545"	SNP	T→C	potG	R185R (CGT→CGC)																			1										
+"902,473"	SNP	G→A	artI	F172F (TTC→TTT)															1														
+"917,894"	SNP	A→G	ybjD	E474E (GAA→GAG)																					1								
+"924,093"	SNP	A→G	clpA	D277G (GAC→GGC)				1	1													1	1										
+"925,899"	INS	(G)7→8	serW	noncoding (73/88 nt)												1																	
+"935,542"	SNP	G→A	ftsK	A773A (GCG→GCA)																										1			
+"936,202"	SNP	C→T	ftsK	T993T (ACC→ACT)										1	1																		
+"942,993"	SNP	A→G	dmsA	T679A (ACG→GCG)		1																											
+"986,267"	SNP	C→T	ompF	G239D (GGT→GAT)				1	1																								
+"989,319"	INS	(G)5→6	pncB	coding (1038/1203 nt)										1																			
+"989,708"	SNP	T→C	pncB	T217A (ACA→GCA)								1	1																				
+"989,969"	SNP	T→C	pncB	S130G (AGT→GGT)					1																								
+"992,344"	SNP	T→C	pepN	Y575H (TAC→CAC)																											1		
+"1,002,224"	INS	(G)7→8	elfG	coding (418/1071 nt)								1	1																				
+"1,021,908"	SNP	C→A	yccS	R659L (CGC→CTC)		1	1																										
+"1,022,508"	SNP	A→G	yccS	V459A (GTG→GCG)																												1	1
+"1,026,864"	SNP	A→G	mgsA	L51S (TTA→TCA)	1																												
+"1,028,652"	SNP	C→T	hspQ	V24M (GTG→ATG)	1																												
+"1,029,739"	DEL	(A)8→7	rlmI	coding (231/1191 nt)								1																					
+"1,030,407"	SNP	A→G	tusE	F88L (TTT→CTT)															1														
+"1,036,083"	SNP	C→T	hyaD	A105V (GCG→GTG)										1	1																		
+"1,037,227"	SNP	C→T	hyaF	P160L (CCC→CTC)															1														
+"1,037,464"	SNP	A→G	hyaF	D239G (GAC→GGC)																1													
+"1,042,246"	SNP	A→G	etk	S655S (AGT→AGC)																								1	1				
+"1,043,741"	SNP	A→G	etk	V157A (GTT→GCT)														1	1														
+"1,044,364"	SNP	T→C	etp	T105A (ACA→GCA)														1	1														
+"1,044,785"	SNP	A→G	gfcE	V340A (GTT→GCT)																													1
+"1,053,704"	SNP	G→A	torS	I825I (ATC→ATT)																						1							
+"1,061,836"	SNP	A→G	torD	Y13C (TAC→TGC)									1																				
+"1,065,209"	SNP	C→T	yccE	P392S (CCT→TCT)																1	1												
+"1,077,868"	SNP	G→A	putA	R339C (CGC→TGC)										1																			
+"1,086,260"	SNP	G→A	pgaD	A87V (GCC→GTC)																								1					
+"1,089,446"	SNP	C→G	pgaB	A138P (GCC→CCC)																						1							
+"1,097,144"	INS	(C)6→7	"ycdU, serX"	intergenic (+315/+421)				1	1																								
+"1,097,218"	INS	(G)7→8	"ycdU, serX"	intergenic (+389/+347)																1	1												
+"1,104,949"	SNP	C→T	"csgA, csgC"	intergenic (+47/‑12)																1	1												
+"1,105,536"	SNP	A→G	ymdA	A41A (GCA→GCG)													1																
+"1,112,317"	SNP	A→G	opgH	K485K (AAA→AAG)														1															
+"1,116,482"	SNP	T→C	lpxL	Y34C (TAC→TGC)																												1	
+"1,118,516"	SNP	G→A	yceJ	R177R (CGC→CGT)																				1									
+"1,121,680"	SNP	C→T	pyrC	D310N (GAC→AAC)								1	1																				
+"1,121,934"	SNP	A→G	pyrC	I225T (ATC→ACC)				1	1													1	1	1	1					1	1		
+"1,136,783"	SNP	T→C	flgI	V170V (GTT→GTC)														1	1														
+"1,151,929"	SNP	G→A	"acpP, fabF"	intergenic (+78/‑10)												1	1																
+"1,170,493"	INS	(G)5→6	"ldtC, mfd"	intergenic (‑119/+25)							1																						
+"1,170,674"	SNP	C→T	mfd	P1097P (CCG→CCA)																	1												
+"1,176,078"	SNP	A→G	lolC	N218D (AAT→GAT)																1													
+"1,181,782"	SNP	A→G	"ymfA, potD"	intergenic (‑57/+1)																											1		
+"1,190,061"	INS	(G)6→7	phoP	coding (387/672 nt)				1	1												1												
+"1,190,202"	SNP	T→C	phoP	E82E (GAA→GAG)																										1			
+"1,190,263"	SNP	A→G	phoP	L62P (CTG→CCG)																				1	1								
+"1,198,498"	DEL	(AATGATGA)6→5	"ymfE, lit"	intergenic (‑261/‑190)										1	1																		
+"1,201,128"	SNP	T→C	"xisE, ymfI"	intergenic (‑96/‑369)																		1	1										
+"1,209,412"	SNP	T→C	stfE	pseudogene (208/501 nt)																											1		
+"1,209,825"	INS	(A)6→7	pinE	coding (141/555 nt)		1	1																										
+"1,212,012"	SNP	T→C	"iraM, ycgX"	intergenic (‑9/+691)																	1												
+"1,212,088"	INS	(C)8→9	"iraM, ycgX"	intergenic (‑85/+615)			1	1	1																								
+"1,225,697"	SNP	T→C	minC	I128M (ATA→ATG)																				1									
+"1,228,320"	SNP	T→C	ycgM	L81P (CTG→CCG)	1																												
+"1,235,563"	SNP	A→G	fadR	Y209C (TAC→TGC)																										1			
+"1,240,435"	SNP	T→C	cvrA	Q546R (CAG→CGG)																								1	1				
+"1,241,732"	SNP	G→A	cvrA	L114L (CTG→TTG)																	1												
+"1,245,903"	DEL	(T)5→4	treA	coding (1474/1698 nt)																									1				
+"1,249,389"	SNP	G→A	dhaL	A123A (GCC→GCT)														1	1														
+"1,258,991"	SNP	A→G	ychH	E67E (GAA→GAG)																													1
+"1,259,697"	SNP	C→T	dauA	P369P (CCG→CCA)																	1												
+"1,276,337"	SNP	G→A	narX	R428C (CGC→TGC)										1	1																		
+"1,276,719"	SNP	A→G	narX	F300F (TTT→TTC)														1	1														
+"1,277,435"	SNP	C→T	narX	A62T (GCG→ACG)		1																											
+"1,278,189"	SNP	C→T	narK	T78I (ACT→ATT)																	1												
+"1,278,990"	SNP	G→A	narK	G345D (GGC→GAC)																	1												
+"1,285,372"	SNP	A→G	narJ	E78E (GAA→GAG)														1	1														
+"1,287,826"	SNP	C→T	purU	A267T (GCA→ACA)				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"1,293,196"	MOB	IS5 (+) +4 bp	"hns, tdk"	intergenic (‑274/‑328)																		1	1										
+"1,299,499"	DEL	"Δ1,199 bp"	"ychE, oppA"	intergenic (+254/‑485)	1	1	1	1	1			1	1		1	1	1			1			1	1	1			1		1			
+"1,316,440"	SNP	C→T	trpA	P261P (CCG→CCA)																												1	
+"1,318,967"	SNP	G→A	trpC	D274D (GAC→GAT)														1	1														
+"1,334,893"	SNP	A→G	"cysB, ymiA"	intergenic (+64/‑231)																										1	1		
+"1,339,927"	SNP	A→G	pgpB	S200G (AGC→GGC)																									1				
+"1,350,817"	SNP	A→G	fabI	F75L (TTC→CTC)																									1				
+"1,351,196"	SNP	G→A	"fabI, ycjD"	intergenic (‑157/+211)		1																											
+"1,351,196"	INS	#NAME?	"fabI, ycjD"	intergenic (‑157/+211)			1																										
+"1,351,196"	INS	(G)7→8	"fabI, ycjD"	intergenic (‑157/+211)					1					1				1					1									1	
+"1,351,693"	SNP	A→G	ycjD	L23P (CTC→CCC)																											1		
+"1,353,247"	SNP	G→A	sapD	R128C (CGT→TGT)																													1
+"1,361,052"	INS	(A)6→7	"puuA, puuD"	intergenic (‑144/‑68)																		1	1										
+"1,364,513"	SNP	T→C	puuB	R94R (CGT→CGC)																												1	1
+"1,372,620"	SNP	A→G	ycjN	T238A (ACT→GCT)								1	1																				
+"1,377,088"	SNP	A→G	ycjS	Y86C (TAC→TGC)																											1		
+"1,385,656"	SNP	A→G	ycjF	E49G (GAG→GGG)																					1								
+"1,390,113"	SNP	A→G	mpaA	C162C (TGT→TGC)					1																								
+"1,393,315"	SNP	T→C	mppA	V30A (GTA→GCA)								1				1																	
+"1,398,875"	SNP	A→G	fnr	F218L (TTC→CTC)			1																										
+"1,399,120"	SNP	A→G	fnr	M136T (ATG→ACG)														1															
+"1,399,985"	INS	(C)7→8	ogt	coding (252/516 nt)																			1										
+"1,407,462"	SNP	T→C	ydaM	T112A (ACG→GCG)																		1	1										
+"1,412,027"	SNP	T→C	intR	I403M (ATA→ATG)																				1									
+"1,414,019"	SNP	C→T	recT	G259R (GGG→AGG)																1	1												
+"1,416,279"	SNP	A→G	recE	S370P (TCC→CCC)								1	1			1	1	1	1														
+"1,417,546"	DEL	(T)8→7	racC	coding (218/276 nt)																								1					
+"1,419,721"	INS	(G)7→8	"ydaG, racR"	intergenic (‑265/+44)															1														
+"1,421,650"	INS	(C)7→8	ydaU	coding (532/858 nt)										1	1																		
+"1,423,484"	SNP	T→A	rzpR;rzoR	pseudogene (284/444 nt)C29S (TGC→AGC)																							1						
+"1,426,252"	SNP	A→G	"ydaY, tmpR"	intergenic (+170/‑202)																								1	1				
+"1,428,109"	SNP	C→T	insH1	L206L (CTG→CTA)																												1	1
+"1,428,875"	SNP	T→C	lomR	pseudogene (80/189 nt)										1	1																		
+"1,432,289"	SNP	G→A	stfR	G1081S (GGT→AGT)																			1										
+"1,437,127"	SNP	T→C	micC	noncoding (7/109 nt)						1																							
+"1,437,231"	DEL	(T)9→8	"micC, pfo"	intergenic (+2/+29)						1	1																		1				
+"1,443,966"	SNP	C→T	ydbH	Q306* (CAA→TAA)																						1							
+"1,449,947"	SNP	T→C	tynA	Y468C (TAT→TGT)																						1							
+"1,458,573"	SNP	T→C	paaG	C104R (TGT→CGT)															1														
+"1,458,617"	SNP	A→G	paaG	A118A (GCA→GCG)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"1,458,625"	INS	(G)6→7	paaG	coding (362/789 nt)																										1			
+"1,460,048"	SNP	C→T	paaH	A332V (GCG→GTG)																				1									
+"1,461,176"	SNP	A→G	paaJ	D95G (GAC→GGC)		1	1																										
+"1,467,061"	SNP	C→T	ydbA	pseudogene (1670/2513 nt)																								1	1				
+"1,474,310"	SNP	C→T	ydbC	G30G (GGC→GGT)														1															
+"1,475,008"	SNP	A→G	ydbC	E263G (GAG→GGG)					1																								
+"1,481,041"	SNP	A→G	ynbD	T45A (ACG→GCG)						1	1																						
+"1,488,515"	INS	(G)5→6	aldA	coding (284/1440 nt)		1	1																										
+"1,491,119"	MOB	IS5 (+) +4 bp	cybB	coding (218‑221/531 nt)																					1								
+"1,503,221"	SNP	A→G	insP	pseudogene (429/432 nt)																				1									
+"1,504,515"	SNP	C→T	insQ	R267C (CGC→TGC)										1	1																		
+"1,511,099"	SNP	G→A	ydcR	R366H (CGC→CAC)																							1						
+"1,520,008"	SNP	C→T	curA	L328L (CTG→TTG)								1	1																				
+"1,554,117"	SNP	A→G	maeA	V518A (GTC→GCC)																													1
+"1,564,585"	SNP	A→G	dosP	G383G (GGT→GGC)								1	1																				
+"1,571,850"	SNP	T→C	gadB	T66A (ACC→GCC)							1																						
+"1,572,786"	SNP	A→G	pqqL	V806A (GTT→GCT)						1																							
+"1,581,323"	SNP	G→A	ydeN	T401I (ACA→ATA)																				1	1								
+"1,585,424"	SNP	A→G	ydeP	Y355H (TAT→CAT)																											1		
+"1,594,132"	DEL	(C)8→7	yneO	pseudogene (3856/3861 nt)								1														1							
+"1,594,132"	INS	(C)8→10	yneO	pseudogene (3856/3861 nt)																1													
+"1,594,132"	INS	(C)8→9	yneO	pseudogene (3856/3861 nt)																	1				1					1			
+"1,594,256"	INS	(C)8→9	yneO	pseudogene (3732/3861 nt)						1	1															1					1		
+"1,595,427"	SNP	A→G	yneO	pseudogene (2561/3861 nt)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"1,601,769"	SNP	G→A	lsrA	E94K (GAA→AAA)																	1												
+"1,610,596"	SNP	C→T	uxaB	A29T (GCC→ACC)														1	1														
+"1,613,082"	SNP	T→C	glsB	D57G (GAC→GGC)		1	1																										
+"1,616,355"	SNP	T→C	yneK	V198A (GTC→GCC)																													1
+"1,621,054"	SNP	A→G	eamA	H28H (CAT→CAC)																					1								
+"1,625,476"	SNP	T→C	dcp	L635L (TTA→TTG)																												1	1
+"1,629,489"	SNP	G→A	ydfI	G475G (GGC→GGT)																								1	1				
+"1,629,649"	SNP	A→G	ydfI	L422P (CTG→CCG)																				1									
+"1,629,913"	SNP	G→A	ydfI	P334L (CCG→CTG)						1	1																						
+"1,632,151"	SNP	T→C	ydfJ	pseudogene (135/1284 nt)																												1	
+"1,635,023"	SNP	T→C	stfQ	A275A (GCA→GCG)																									1				
+"1,635,026"	SNP	A→G	stfQ	H274H (CAT→CAC)																									1				
+"1,635,029"	SNP	C→T	stfQ	A273A (GCG→GCA)																									1				
+"1,635,032"	SNP	G→A	stfQ	G272G (GGC→GGT)																									1				
+"1,635,059"	SNP	C→T	stfQ	S263S (TCG→TCA)																									1				
+"1,644,142"	SNP	G→A	ydfU	Q55* (CAG→TAG)																										1	1		
+"1,656,658"	SNP	G→A	speG	A159T (GCC→ACC)				1	1																								
+"1,657,767"	SNP	G→A	ynfD	C68Y (TGC→TAC)																										1	1		
+"1,661,308"	SNP	T→C	ynfF	R251R (CGT→CGC)				1																									
+"1,667,344"	SNP	T→C	mlc	*407* (TAA→TAG)																				1									
+"1,670,695"	SNP	A→G	ynfM	M333V (ATG→GTG)												1																	
+"1,675,350"	SNP	A→G	pntB	G337G (GGT→GGC)																												1	1
+"1,677,937"	SNP	T→C	"pntA, ydgH"	intergenic (‑34/‑490)														1	1														
+"1,684,038"	SNP	G→A	rstB	G386D (GGC→GAC)																										1			
+"1,684,175"	SNP	T→C	rstB	S432P (TCT→CCT)												1	1																
+"1,685,542"	INS	(C)6→7	fumC	coding (1047/1404 nt)																							1						
+"1,688,142"	SNP	G→A	fumA	A79V (GCC→GTC)								1	1																				
+"1,691,529"	INS	(A)6→7	"ydgA, uidC"	intergenic (+169/+57)																						1							
+"1,699,194"	SNP	T→C	"malI, malX"	intergenic (‑14/‑161)					1																								
+"1,702,700"	SNP	T→C	add	F156F (TTT→TTC)										1	1																		
+"1,708,192"	SNP	T→C	rsxC	V425A (GTT→GCT)																												1	
+"1,714,326"	DEL	(T)9→8	"dtpA, gstA"	intergenic (+55/‑51)												1																	
+"1,715,061"	SNP	T→C	pdxY	K277E (AAA→GAA)												1																	
+"1,718,641"	SNP	G→A	anmK	A321V (GCC→GTC)												1																	
+"1,719,281"	SNP	C→T	anmK	V108M (GTG→ATG)																										1	1		
+"1,722,854"	SNP	T→C	ydhK	L245P (CTC→CCC)										1																			
+"1,735,897"	SNP	T→C	sodB	Y174H (TAT→CAT)						1	1																						
+"1,738,343"	SNP	A→G	purR	Y167C (TAC→TGC)														1	1														
+"1,751,030"	SNP	G→A	"ydhX, ydhW"	intergenic (‑17/+47)																											1		
+"1,756,208"	SNP	G→A	pykF	A171T (GCT→ACT)																						1							
+"1,756,216"	DEL	(A)5→4	pykF	coding (519/1413 nt)																								1	1				
+"1,756,359"	SNP	T→C	pykF	I221T (ATC→ACC)								1	1																				
+"1,756,374"	SNP	G→A	pykF	G226D (GGC→GAC)												1																	
+"1,756,464"	SNP	T→C	pykF	V256A (GTT→GCT)																1					1								
+"1,756,495"	DEL	(A)5→4	pykF	coding (798/1413 nt)																												1	1
+"1,756,910"	DEL	(A)6→5	pykF	coding (1213/1413 nt)						1	1																						
+"1,757,108"	SNP	T→C	pykF	*471Q (TAA→CAA)				1	1																								
+"1,762,338"	SNP	T→C	sufC	T59A (ACG→GCG)																							1						
+"1,766,416"	SNP	A→G	ydiJ	V757A (GTC→GCC)																	1												
+"1,769,899"	SNP	A→G	ydiK	T276A (ACC→GCC)											1																		
+"1,792,702"	SNP	T→C	nlpC	A10A (GCA→GCG)																1													
+"1,806,042"	INS	(C)6→7	ydiY	coding (42/759 nt)																												1	1
+"1,806,491"	SNP	G→A	pfkB	G41D (GGC→GAC)								1																					
+"1,806,541"	SNP	A→T	pfkB	I58F (ATC→TTC)																				1									
+"1,812,173"	SNP	T→C	ydjN	L414L (TTA→CTA)																				1									
+"1,814,166"	SNP	T→C	katE	R100R (CGT→CGC)													1																
+"1,818,420"	SNP	A→G	chbF	R27R (CGT→CGC)															1														
+"1,818,550"	INS	(C)7→8	"chbF, chbR"	intergenic (‑50/+55)																								1	1				
+"1,820,136"	SNP	G→A	chbC	P360L (CCG→CTG)																										1			
+"1,825,480"	SNP	T→C	spy	D49G (GAC→GGC)																										1	1		
+"1,827,934"	SNP	G→A	astB	A109V (GCC→GTC)																								1	1				
+"1,830,359"	SNP	T→C	astA	N136S (AAC→AGC)																	1												
+"1,836,204"	SNP	C→T	ynjB	T44T (ACC→ACT)																				1									
+"1,840,240"	SNP	G→A	ynjE	W258* (TGG→TGA)		1																											
+"1,846,908"	SNP	A→G	topB	V18A (GTC→GCC)																			1										
+"1,857,841"	SNP	T→C	ydjJ	S331S (TCA→TCG)																	1												
+"1,866,995"	SNP	C→T	yeaG	Q30* (CAA→TAA)																							1						
+"1,869,266"	SNP	G→A	yeaH	Q104Q (CAG→CAA)																												1	
+"1,873,602"	SNP	C→T	yeaK	T10M (ACG→ATG)										1	1																		
+"1,893,102"	SNP	G→A	yoaA	A45V (GCA→GTA)														1	1														
+"1,897,952"	SNP	G→A	sdaA	G341S (GGC→AGC)																										1			
+"1,904,586"	SNP	T→C	manZ	V231A (GTC→GCC)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"1,904,621"	SNP	G→A	manZ	V243I (GTA→ATA)														1															
+"1,905,787"	SNP	T→C	mntP	S34P (TCT→CCT)																										1	1		
+"1,907,417"	SNP	G→A	cspC	Q7* (CAG→TAG)																1	1												
+"1,907,539"	SNP	T→C	yobF	Y18C (TAC→TGC)															1														
+"1,907,616"	SNP	C→T	"yobF, yebO"	intergenic (‑25/+645)		1	1																										
+"1,907,713"	INS	(T)7→8	"yobF, yebO"	intergenic (‑122/+548)																1	1												
+"1,910,043"	SNP	A→C	kdgR	V19V (GTT→GTG)		1																											
+"1,927,241"	INS	(C)6→7	ptrB	coding (1599/2061 nt)								1								1			1										
+"1,934,968"	SNP	T→C	zwf	V449V (GTA→GTG)				1																									
+"1,939,718"	SNP	G→A	lpxM	A159V (GCG→GTG)																1													
+"1,941,430"	SNP	G→A	mepM	P69L (CCG→CTG)																									1				
+"1,960,496"	SNP	T→C	argS	T145T (ACT→ACC)																								1					
+"1,967,135"	INS	(C)5→6	cheY	coding (303/390 nt)				1																									
+"1,968,408"	SNP	C→T	cheB	V32M (GTG→ATG)																1													
+"1,971,962"	SNP	G→A	tar	R244C (CGC→TGC)																1													
+"1,973,169"	SNP	G→A	cheW	G57G (GGC→GGT)																								1					
+"1,977,418"	SNP	T→C	flhC	N143D (AAT→GAT)																	1												
+"1,978,503"	DEL	Δ776 bp	"insB1, insA"		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"1,981,182"	SNP	C→T	otsA	R144Q (CGG→CAG)																							1						
+"1,988,106"	INS	(C)6→7	"azuC, yecR"	intergenic (‑147/‑116)																											1		
+"1,994,960"	SNP	C→T	uvrY	A134T (GCG→ACG)																						1							
+"1,995,320"	SNP	G→A	uvrY	R14C (CGC→TGC)										1	1																		
+"1,995,769"	SNP	T→C	"uvrY, yecF"	intergenic (‑410/‑49)																										1	1		
+"2,000,873"	SNP	C→T	fliZ	R51H (CGC→CAC)								1	1																				
+"2,013,640"	SNP	T→C	fliF	S138P (TCT→CCT)															1														
+"2,024,017"	SNP	C→T	rcsA	T17I (ACC→ATC)		1	1																										
+"2,027,398"	SNP	C→T	yedQ	W207* (TGG→TAG)							1																						
+"2,035,112"	SNP	T→C	yedS	pseudogene (400/531 nt)		1																											
+"2,036,909"	SNP	T→C	yedV	Q415R (CAG→CGG)																								1	1				
+"2,040,142"	SNP	T→C	yedY	V222A (GTA→GCA)																								1					
+"2,052,156"	SNP	C→T	"yeeJ, yeeL"	intergenic (+142/+120)																								1	1				
+"2,057,676"	INS	(C)7→8	"yeeN, asnW"	intergenic (+102/+351)																	1												
+"2,061,729"	SNP	G→A	nac	R69W (CGG→TGG)												1																	
+"2,071,304"	SNP	A→G	"yeeP, isrC"	intergenic (+93/‑13)						1	1					1	1																
+"2,071,308"	SNP	G→T	"yeeP, isrC"	intergenic (+97/‑9)																							1						
+"2,071,480"	SNP	C→T	isrC	noncoding (164/195 nt)													1																
+"2,071,500"	SNP	A→G	isrC	noncoding (184/195 nt)								1																					
+"2,072,659"	SNP	G→A	flu	G374D (GGC→GAC)																1	1												
+"2,072,728"	SNP	G→A	flu	G397D (GGT→GAT)																										1	1		
+"2,073,079"	SNP	T→C	flu	L514P (CTG→CCG)																1	1												
+"2,073,094"	SNP	T→C	flu	L519P (CTG→CCG)		1	1	1	1					1	1							1	1	1	1								
+"2,073,151"	SNP	T→C	flu	L538P (CTG→CCG)								1	1			1	1	1	1														
+"2,073,225"	SNP	T→C	flu	W563R (TGG→CGG)																							1			1	1	1	1
+"2,073,282"	SNP	G→A	flu	G582R (GGA→AGA)						1	1																						
+"2,073,616"	SNP	A→G	flu	D693G (GAC→GGC)																						1							
+"2,087,919"	SNP	C→T	yeeY	A114T (GCT→ACT)									1																				
+"2,092,066"	SNP	G→A	hisD	G324S (GGC→AGC)												1	1																
+"2,102,890"	SNP	T→C	insH1	R8G (AGA→GGA)																									1				
+"2,107,866"	SNP	T→C	glf	Q155R (CAG→CGG)					1																								
+"2,126,422"	SNP	C→T	wcaG	A257T (GCG→ACG)	1																												
+"2,127,360"	SNP	T→C	gmd	T319A (ACG→GCG)															1														
+"2,135,962"	SNP	T→A	wzb	D46V (GAT→GTT)																			1										
+"2,141,143"	SNP	A→G	asmA	L157P (CTG→CCG)																		1	1										
+"2,143,783"	SNP	T→C	yegE	L173P (CTG→CCG)																		1	1										
+"2,144,279"	SNP	T→C	yegE	S338S (AGT→AGC)																							1						
+"2,149,300"	SNP	C→T	yegI	Q562Q (CAG→CAA)																											1		
+"2,165,366"	DEL	(A)7→6	yegP	coding (178/333 nt)																					1								
+"2,166,540"	SNP	T→C	yegQ	R291R (CGT→CGC)										1	1																		
+"2,173,363"	DEL	Δ2 bp	"gatC, gatC"	intergenic (‑1/+1)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"2,173,883"	SNP	G→A	gatC	pseudogene (396/914 nt)											1																		
+"2,184,452"	SNP	G→A	thiD	A22V (GCC→GTC)						1	1									1	1					1							
+"2,185,875"	DEL	(G)7→6	"rcnR, rcnA"	intergenic (‑79/‑42)										1	1																		
+"2,189,791"	SNP	A→G	yehB	Y374H (TAT→CAT)																				1									
+"2,193,417"	SNP	T→C	mrp	D251G (GAC→GGC)																										1			
+"2,198,006"	SNP	T→G	yehH	pseudogene (1533/2847 nt)															1														
+"2,203,362"	SNP	A→G	yehI	I1028M (ATA→ATG)																										1	1		
+"2,210,779"	SNP	G→A	yehQ	pseudogene (1680/2001 nt)																	1												
+"2,215,997"	SNP	A→G	yehW	R160R (CGT→CGC)																		1	1										
+"2,223,735"	SNP	G→A	dld	L517L (CTG→CTA)																	1												
+"2,227,340"	INS	(C)6→7	mdtQ	pseudogene (1270/1287 nt)																		1											
+"2,228,728"	SNP	C→T	mdtQ	pseudogene (31/150 nt)																										1	1		
+"2,230,208"	SNP	G→A	dusC	P60S (CCA→TCA)								1																					
+"2,233,485"	INS	(T)6→7	sanA	coding (608/720 nt)																										1			
+"2,237,322"	SNP	G→A	mglC	I144I (ATC→ATT)											1																		
+"2,238,421"	SNP	T→C	mglA	E290G (GAG→GGG)										1																			
+"2,240,094"	SNP	T→C	mglB	A85A (GCA→GCG)																												1	1
+"2,244,769"	SNP	A→G	"yeiG, cirA"	intergenic (+23/+9)						1																							
+"2,248,780"	SNP	C→T	yeiE	R280Q (CGG→CAG)				1	1	1	1	1	1			1	1	1	1	1	1	1	1	1	1	1				1	1		
+"2,250,031"	SNP	C→T	yeiH	I105I (ATC→ATT)												1																	
+"2,250,649"	SNP	C→T	yeiH	H311H (CAC→CAT)																								1	1				
+"2,253,271"	SNP	G→A	nupX	A292V (GCC→GTC)																		1	1										
+"2,258,486"	SNP	G→A	psuK	P271S (CCG→TCG)															1														
+"2,262,371"	SNP	G→A	fruB	G375G (GGC→GGT)														1															
+"2,268,372"	SNP	G→A	yeiR	E182K (GAG→AAG)																						1							
+"2,277,291"	SNP	C→T	yejF	A331V (GCG→GTG)										1	1																		
+"2,284,097"	SNP	T→C	"yejK, yejL"	intergenic (‑150/‑32)																		1	1										
+"2,288,554"	SNP	G→C	yejO	pseudogene (361/2525 nt)														1	1							1							
+"2,288,561"	INS	(C)7→8	yejO	pseudogene (354/2525 nt)									1																				
+"2,288,561"	DEL	(C)7→6	yejO	pseudogene (354/2525 nt)				1																									
+"2,297,084"	SNP	C→T	ccmA	Q187Q (CAG→CAA)																							1						
+"2,298,294"	SNP	G→A	napB	T142I (ACC→ATC)																										1	1		
+"2,300,364"	SNP	G→A	napA	A797V (GCC→GTC)								1																					
+"2,305,466"	SNP	T→C	mqo	E430G (GAG→GGG)																	1												
+"2,306,934"	SNP	A→G	"mqo, yojI"	intergenic (‑180/+38)				1	1																								
+"2,311,756"	SNP	A→G	ompC	S332P (TCC→CCC)																				1	1								
+"2,313,434"	SNP	T→C	"micF, rcsD"	intergenic (+258/‑54)																		1	1										
+"2,313,622"	SNP	G→A	rcsD	W45* (TGG→TGA)													1																
+"2,314,922"	SNP	T→C	rcsD	S479P (TCC→CCC)										1	1																		
+"2,314,992"	SNP	T→C	rcsD	L502P (CTG→CCG)																										1	1		
+"2,318,281"	SNP	T→C	rcsC	E532E (GAA→GAG)																					1								
+"2,319,725"	SNP	T→C	rcsC	E51G (GAA→GGA)																				1	1								
+"2,335,018"	SNP	G→A	yfaA	L543L (CTG→TTG)						1	1									1	1												
+"2,340,022"	SNP	C→T	ubiG	G152G (GGC→GGT)																										1	1		
+"2,346,057"	SNP	T→C	nrdA	L398P (CTG→CCG)														1	1														
+"2,366,245"	SNP	G→A	arnB	T106T (ACG→ACA)																1													
+"2,366,415"	SNP	A→G	arnB	Y163C (TAC→TGC)																													1
+"2,367,989"	INS	(C)5→6	arnC	coding (919/969 nt)																					1								
+"2,380,360"	INS	(C)5→6	menF	coding (284/1296 nt)																	1												
+"2,380,852"	SNP	T→C	elaB	D59G (GAC→GGC)										1	1																		
+"2,388,713"	SNP	T→C	yfbO	L27L (TTA→CTA)																											1		
+"2,391,193"	SNP	A→G	nuoN	F105L (TTC→CTC)												1																	
+"2,393,110"	SNP	T→C	"nuoM, nuoL"	intergenic (‑69/+95)															1														
+"2,401,103"	SNP	G→A	nuoF	T151T (ACC→ACT)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"2,406,097"	INS	(T)5→6	lrhA	coding (545/939 nt)									1																				
+"2,408,553"	SNP	G→A	alaA	A331A (GCG→GCA)								1	1																				
+"2,414,597"	SNP	T→C	ackA	G376G (GGT→GGC)																												1	
+"2,421,553"	SNP	G→A	folX	E77K (GAA→AAA)																												1	
+"2,426,492"	SNP	A→G	hisJ	R99R (CGT→CGC)														1	1														
+"2,426,751"	SNP	G→A	hisJ	A13V (GCC→GTC)																	1												
+"2,435,114"	SNP	A→G	truA	W175R (TGG→CGG)																									1				
+"2,445,253"	SNP	T→C	yfcA	Y103C (TAC→TGC)																													1
+"2,457,127"	SNP	A→T	fadJ	M678K (ATG→AAG)		1	1																										
+"2,459,283"	SNP	G→A	fadI	A396V (GCG→GTG)																									1				
+"2,464,156"	SNP	T→C	"yfdF, mlaA"	intergenic (+86/+96)																							1						
+"2,465,279"	SNP	T→C	"mlaA, yfdC"	intergenic (‑272/‑22)														1															
+"2,471,819"	SNP	A→G	yfdL	pseudogene (304/579 nt)																					1								
+"2,472,769"	SNP	T→C	yfdN	Q38R (CAG→CGG)																					1								
+"2,474,356"	SNP	G→A	yfdQ	A109T (GCC→ACC)															1														
+"2,481,904"	INS	(A)8→9	emrY	coding (273/1539 nt)																1													
+"2,482,862"	SNP	A→G	emrK	L160L (TTA→CTA)				1	1																								
+"2,484,916"	SNP	A→G	evgS	Q181Q (CAA→CAG)																1	1												
+"2,489,435"	SNP	G→A	yfdV	A251V (GCA→GTA)																											1		
+"2,489,477"	SNP	T→C	yfdV	K237R (AAG→AGG)																	1												
+"2,493,127"	SNP	T→C	frc	D43G (GAC→GGC)													1																
+"2,504,660"	SNP	G→A	ypdE	P296P (CCC→CCT)												1	1																
+"2,505,003"	SNP	T→C	ypdE	H182R (CAC→CGC)												1	1																
+"2,509,025"	SNP	A→G	glk	G134G (GGT→GGC)																								1					
+"2,512,258"	INS	(T)5→6	mntH	coding (449/1239 nt)																		1	1										
+"2,513,564"	SNP	T→C	nupC	S175P (TCC→CCC)																							1						
+"2,523,413"	SNP	T→C	xapB	T191T (ACA→ACG)																				1	1								
+"2,531,596"	INS	(G)6→7	cysZ	coding (134/762 nt)																												1	
+"2,542,393"	SNP	G→A	cysU	A40A (GCC→GCT)												1																	
+"2,546,932"	SNP	C→T	murP	P87L (CCG→CTG)																									1				
+"2,547,591"	SNP	T→C	murP	F307L (TTC→CTC)														1															
+"2,562,984"	SNP	G→A	yffP	G154D (GGC→GAC)																1													
+"2,563,520"	SNP	G→T	"yffP, yffQ"	intergenic (+403/‑72)																										1	1		
+"2,567,794"	SNP	C→T	eutH	G105D (GGC→GAC)		1																											
+"2,597,778"	SNP	A→G	"purC, bamC"	intergenic (‑160/+53)				1	1																								
+"2,602,017"	INS	(C)7→10	hyfB	coding (200/2019 nt)																	1												
+"2,602,017"	INS	(C)7→8	hyfB	coding (200/2019 nt)																					1								
+"2,602,161"	DEL	Δ1 bp	hyfB	coding (344/2019 nt)																				1									
+"2,607,273"	SNP	C→T	hyfF	F119F (TTC→TTT)								1																					
+"2,619,314"	SNP	T→C	uraA	T283A (ACG→GCG)								1																					
+"2,620,907"	INS	(A)8→9	"upp, purM"	intergenic (‑35/‑290)												1	1																
+"2,620,907"	DEL	(A)8→7	"upp, purM"	intergenic (‑35/‑290)								1																					
+"2,624,129"	SNP	C→T	ppk	F362F (TTC→TTT)		1	1																										
+"2,629,726"	SNP	A→G	"yfgG, yfgH"	intergenic (+245/‑66)																	1												
+"2,631,531"	SNP	G→A	guaA	G335G (GGC→GGT)										1	1																		
+"2,634,449"	SNP	G→A	xseA	R73H (CGC→CAC)				1																									
+"2,635,578"	SNP	A→G	xseA	K449K (AAA→AAG)																						1							
+"2,639,156"	SNP	T→C	yfgM	N43S (AAC→AGC)														1															
+"2,646,583"	INS	(G)6→7	pbpC	coding (743/2313 nt)									1																				
+"2,649,905"	SNP	G→A	yfhM	P795S (CCG→TCG)						1	1																						
+"2,650,996"	SNP	C→T	yfhM	G431E (GGG→GAG)																												1	
+"2,653,260"	SNP	T→C	sseA	V256A (GTG→GCG)																								1					
+"2,657,358"	SNP	G→A	hscA	A526A (GCC→GCT)																					1								
+"2,657,874"	SNP	A→G	hscA	R354R (CGT→CGC)									1																				
+"2,672,123"	SNP	G→A	hcaD	G26E (GGG→GAG)				1	1													1	1										
+"2,682,157"	INS	(C)7→8	yphG	coding (589/3282 nt)																				1									
+"2,689,476"	SNP	G→A	yfhG	R11* (CGA→TGA)			1																										
+"2,691,927"	SNP	G→A	purL	A1206V (GCG→GTG)																1	1												
+"2,697,352"	SNP	A→G	mltF	N518D (AAT→GAT)							1																						
+"2,704,009"	SNP	G→A	rnc	H19Y (CAT→TAT)																			1										
+"2,706,066"	SNP	T→C	lepA	E353E (GAA→GAG)												1	1																
+"2,720,122"	SNP	T→C	pka	V57A (GTG→GCG)																									1				
+"2,724,058"	SNP	C→T	pssA	D444D (GAC→GAT)																	1												
+"2,733,223"	SNP	G→A	clpB	D317D (GAC→GAT)												1	1																
+"2,734,535"	SNP	T→C	yfiH	E167G (GAG→GGG)																				1									
+"2,734,543"	INS	(C)8→9	yfiH	coding (492/732 nt)				1	1													1	1									1	1
+"2,736,687"	SNP	T→C	bamD	V181A (GTG→GCG)																													1
+"2,744,303"	SNP	A→G	rplS	T76T (ACT→ACC)												1	1																
+"2,759,929"	SNP	T→C	yfjI	H315H (CAT→CAC)												1	1																
+"2,763,869"	INS	(T)7→8	yfjL	coding (1285/1617 nt)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"2,765,666"	SNP	T→C	yfjM	T37T (ACA→ACG)						1	1																						
+"2,765,794"	DEL	(C)7→6	"yfjM, rnlA"	intergenic (‑18/‑124)		1																											
+"2,765,794"	INS	(C)7→8	"yfjM, rnlA"	intergenic (‑18/‑124)																1	1												
+"2,767,445"	INS	(C)7→8	"rnlB, yfjP"	intergenic (+90/‑265)																	1												
+"2,767,500"	SNP	T→C	"rnlB, yfjP"	intergenic (+145/‑210)														1	1														
+"2,768,876"	SNP	G→A	yfjQ	R71Q (CGG→CAG)																					1								
+"2,771,806"	SNP	A→T	"yfjT, yfjU"	intergenic (+191/+196)										1	1																		
+"2,772,200"	SNP	G→A	yfjV	pseudogene (867/900 nt)																												1	1
+"2,774,632"	INS	(A)7→8	yfjW	coding (1315/1704 nt)																											1		
+"2,786,768"	SNP	C→T	ygaQ	pseudogene (372/2253 nt)																					1								
+"2,807,360"	SNP	G→A	proX	G77S (GGC→AGC)																												1	
+"2,811,279"	SNP	G→A	mprA	V170V (GTG→GTA)																	1												
+"2,817,899"	SNP	T→C	"argQ, argZ"	intergenic (‑39/+160)																1													
+"2,821,424"	SNP	G→C	alaS	G196G (GGC→GGG)																												1	1
+"2,823,930"	SNP	G→A	pncC	S139S (AGC→AGT)		1	1																										
+"2,827,065"	SNP	T→C	srlE	L225P (CTG→CCG)		1																											
+"2,829,493"	SNP	G→A	srlR	S149S (TCG→TCA)										1	1																		
+"2,830,088"	SNP	G→A	srlQ	V92V (GTG→GTA)																		1											
+"2,834,077"	SNP	G→A	norW	A56T (GCC→ACC)										1	1																		
+"2,842,591"	SNP	T→C	hycI	L151L (TTA→TTG)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"2,845,226"	SNP	G→A	hycE	P416S (CCA→TCA)																													1
+"2,846,715"	SNP	T→C	hycD	Q233R (CAG→CGG)							1																						
+"2,852,122"	SNP	G→A	hypC	G87S (GGC→AGC)								1																					
+"2,863,165"	SNP	T→C	ygbK	R277R (CGT→CGC)																		1	1										
+"2,863,567"	INS	(T)7→8	"ygbK, ygbL"	intergenic (+66/‑26)								1																					
+"2,867,926"	INS	(C)6→7	nlpD	coding (828/1140 nt)														1	1														
+"2,871,308"	SNP	G→A	ispF	T158I (ACA→ATA)													1																
+"2,873,023"	SNP	T→C	ygbE	L105L (CTA→CTG)		1	1																										
+"2,874,741"	SNP	T→C	cysN	T227A (ACA→GCA)												1	1																
+"2,876,388"	SNP	C→T	"cysD, iap"	intergenic (‑59/‑193)																	1												
+"2,889,269"	SNP	C→T	cysI	L277L (CTG→CTA)											1																		
+"2,895,747"	SNP	C→T	ygcQ	E11E (GAG→GAA)																		1	1										
+"2,899,230"	SNP	T→C	ygcU	V63V (GTA→GTG)				1	1																								
+"2,910,133"	SNP	C→T	mazG	V185I (GTC→ATC)														1	1														
+"2,911,083"	SNP	G→A	mazF	S3S (AGC→AGT)									1																				
+"2,913,461"	SNP	T→C	relA	E64G (GAG→GGG)																1													
+"2,916,189"	SNP	T→C	barA	L378P (CTG→CCG)				1	1																								
+"2,920,310"	SNP	A→G	gudX	V146A (GTC→GCC)																								1	1				
+"2,931,839"	SNP	T→C	"ygdG, fucO"	intergenic (+29/+26)				1																									
+"2,933,613"	SNP	T→C	fucA	T26A (ACA→GCA)																										1	1		
+"2,937,802"	SNP	A→G	fucK	D112G (GAC→GGC)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"2,946,757"	SNP	T→C	mltA	Y141C (TAC→TGC)																											1		
+"2,947,466"	DEL	Δ1 bp	"metZ, metW"	intergenic (+3/‑31)												1																	
+"2,960,862"	SNP	T→C	recC	T523A (ACC→GCC)		1	1																										
+"2,963,498"	SNP	G→A	ppdB	T73T (ACC→ACT)	1																												
+"2,965,748"	SNP	T→C	lgt	D97G (GAC→GGC)																									1				
+"2,966,732"	SNP	G→A	ptsP	A568V (GCA→GTA)														1															
+"2,968,260"	DEL	(T)6→5	ptsP	coding (175/2247 nt)																								1	1				
+"2,968,916"	SNP	T→C	rppH	Q21R (CAG→CGG)										1																			
+"2,972,909"	INS	(C)6→7	lplT	coding (954/1194 nt)								1	1							1													
+"2,977,182"	DEL	Δ1 bp	galR	coding (584/1032 nt)																				1									
+"2,980,232"	SNP	C→T	ygeA	R135H (CGC→CAC)												1	1																
+"2,984,271"	SNP	A→G	"kduI, yqeF"	intergenic (‑147/+140)							1																						
+"2,984,452"	DEL	(C)5→4	yqeF	coding (1141/1182 nt)																1													
+"3,001,154"	SNP	T→C	xdhA	C270C (TGT→TGC)																												1	
+"3,001,304"	INS	(G)7→8	xdhA	coding (960/2259 nt)																				1			1						
+"3,005,344"	SNP	A→G	ygeV	L148P (CTT→CCT)																												1	
+"3,007,295"	SNP	T→C	ygeW	V345A (GTG→GCG)																										1	1		
+"3,017,777"	INS	#NAME?	ygfK	coding (1718/3099 nt)																						1							
+"3,026,239"	SNP	T→C	guaD	H158H (CAT→CAC)																												1	1
+"3,032,253"	SNP	G→A	uacT	R296H (CGT→CAT)												1	1																
+"3,035,437"	SNP	T→C	prfB	K282R (AAG→AGG)																												1	1
+"3,043,412"	SNP	G→A	yqfB	A71V (GCA→GTA)														1	1														
+"3,051,507"	SNP	G→A	ubiI	L271L (CTG→TTG)																				1									
+"3,055,285"	SNP	T→C	ygfB	T54A (ACG→GCG)																1													
+"3,066,288"	SNP	T→C	ygfI	T296A (ACG→GCG)										1	1																		
+"3,067,677"	SNP	G→A	yggE	A135V (GCG→GTG)																								1	1				
+"3,068,541"	SNP	T→C	argO	T90A (ACA→GCA)				1	1																								
+"3,073,237"	SNP	T→C	epd	N152S (AAC→AGC)																1	1												
+"3,081,402"	SNP	G→A	tktA	T78T (ACC→ACT)				1	1																								
+"3,081,469"	SNP	T→C	tktA	D56G (GAC→GGC)																								1					
+"3,084,730"	SNP	C→T	speA	A394A (GCG→GCA)																												1	
+"3,097,854"	SNP	G→A	yggW	L196L (CTG→CTA)				1																									
+"3,099,504"	SNP	G→A	yggM	A21V (GCA→GTA)							1																						
+"3,120,324"	SNP	A→G	glcA	V319A (GTG→GCG)																								1					
+"3,120,810"	SNP	G→A	glcA	A157V (GCG→GTG)																	1												
+"3,123,022"	SNP	C→T	glcB	E262K (GAA→AAA)									1																				
+"3,124,562"	INS	(T)5→6	glcF	coding (898/1224 nt)		1																											
+"3,128,620"	SNP	A→G	glcC	T117A (ACG→GCG)																1													
+"3,129,594"	SNP	G→A	yghO	pseudogene (550/1101 nt)																													1
+"3,138,483"	SNP	T→C	gss	T14A (ACA→GCA)																											1		
+"3,139,583"	SNP	G→A	yghU	R286H (CGT→CAT)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,142,833"	SNP	C→T	hybC	A53T (GCA→ACA)																											1		
+"3,159,844"	SNP	G→A	ygiQ	P435S (CCA→TCA)																					1								
+"3,160,077"	SNP	T→C	ygiQ	Y357C (TAC→TGC)											1																		
+"3,161,267"	SNP	G→A	ftsP	P468L (CCG→CTG)																						1							
+"3,172,259"	SNP	G→A	"ygiZ, mdaB"	intergenic (‑48/‑271)																				1									
+"3,173,808"	SNP	T→A	parE	D530V (GAT→GTT)													1																
+"3,177,274"	SNP	G→A	yqiB	R3C (CGT→TGT)										1																			
+"3,189,993"	SNP	A→G	yqiH	E38G (GAG→GGG)				1	1																								
+"3,194,362"	INS	(G)6→7	yqiK	coding (1499/1662 nt)										1	1																		
+"3,204,189"	SNP	G→A	"bacA, folB"	intergenic (‑58/+32)																							1						
+"3,207,686"	SNP	G→A	ttdB	G106R (GGG→AGG)																										1			
+"3,211,078"	SNP	C→T	"rpsU, dnaG"	intergenic (+82/‑29)																													1
+"3,214,968"	INS	(T)6→7	mug	coding (506/507 nt)																												1	
+"3,216,464"	SNP	G→A	yqjH	R10C (CGC→TGC)																				1	1								
+"3,216,824"	SNP	C→T	yqjI	R16C (CGC→TGC)				1																									
+"3,218,665"	SNP	T→C	aer	T138A (ACC→GCC)																		1	1										
+"3,222,930"	SNP	G→A	ebgA	D100N (GAT→AAT)														1	1														
+"3,226,690"	SNP	A→G	ygjI	T153A (ACC→GCC)																										1			
+"3,232,207"	SNP	T→C	fadH	S181S (AGT→AGC)																						1							
+"3,238,707"	SNP	C→T	alx	A43V (GCC→GTC)		1																											
+"3,241,074"	SNP	C→T	sstT	G377G (GGC→GGT)																	1												
+"3,245,522"	SNP	G→A	exuT	G100D (GGC→GAC)																				1									
+"3,256,048"	SNP	G→A	yhaM	R202C (CGC→TGC)				1	1																								
+"3,256,941"	SNP	G→A	yhaO	A357V (GCC→GTC)		1	1																										
+"3,258,242"	INS	(A)8→9	"yhaO, tdcG"	intergenic (‑232/+43)																								1					
+"3,259,479"	SNP	G→A	tdcG	G57G (GGC→GGT)																													1
+"3,263,580"	SNP	A→G	tdcD	C27C (TGT→TGC)														1	1														
+"3,269,600"	SNP	T→C	yhaC	*396Q (TAG→CAG)																								1					
+"3,271,600"	INS	(C)5→7	garK	coding (171/1146 nt)										1																			
+"3,271,600"	INS	(C)5→6	garK	coding (171/1146 nt)	1		1	1	1	1	1	1	1		1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,274,204"	SNP	G→A	garP	A235V (GCA→GTA)					1																								
+"3,276,481"	SNP	G→A	garD	S400S (TCG→TCA)																												1	
+"3,280,946"	SNP	G→A	agaW	pseudogene (246/375 nt)															1														
+"3,284,931"	SNP	A→G	agaC	T83A (ACC→GCC)																								1	1				
+"3,286,815"	SNP	T→C	agaI	H182H (CAT→CAC)																1	1												
+"3,304,813"	INS	(C)7→10	mtr	coding (1005/1245 nt)																										1			
+"3,304,813"	INS	(C)7→8	mtr	coding (1005/1245 nt)				1	1											1	1												
+"3,304,827"	SNP	C→T	mtr	A331T (GCC→ACC)																					1								
+"3,304,862"	SNP	G→A	mtr	A319V (GCT→GTT)				1	1																								
+"3,306,716"	SNP	C→T	deaD	R382H (CGC→CAC)												1																	
+"3,315,163"	SNP	G→A	infB	G284G (GGC→GGT)		1	1																										
+"3,328,816"	INS	(A)7→8	"greA, dacB"	intergenic (‑101/‑147)			1																										
+"3,342,683"	SNP	T→C	kdsC	G137G (GGT→GGC)																		1	1										
+"3,344,045"	SNP	G→A	lptB	L34L (CTG→CTA)				1																									
+"3,346,060"	SNP	A→G	rpoN	E448E (GAA→GAG)																				1									
+"3,347,929"	SNP	T→C	yhbJ	V272A (GTC→GCC)				1	1																								
+"3,349,840"	SNP	T→C	elbB	K207R (AAG→AGG)												1	1																
+"3,350,184"	INS	(C)7→8	elbB	coding (276/654 nt)																							1						
+"3,350,675"	DEL	Δ1 bp	arcZ	noncoding (99/121 nt)								1	1																				
+"3,353,731"	SNP	T→C	yhcC	Q107R (CAG→CGG)					1																								
+"3,366,953"	SNP	G→A	yhcF	G10R (GGA→AGA)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,379,266"	INS	(C)7→8	zapE	coding (732/1128 nt)															1														
+"3,386,276"	SNP	A→G	aaeB	V638A (GTA→GCA)														1	1														
+"3,388,394"	SNP	T→C	aaeA	M245V (ATG→GTG)															1														
+"3,400,093"	SNP	G→A	mreB	A332V (GCG→GTG)																						1							
+"3,411,139"	SNP	T→C	dusB	L287P (CTC→CCC)																													1
+"3,414,083"	SNP	A→T	acrE	I74F (ATC→TTC)														1															
+"3,418,135"	SNP	T→C	acrF	*1035Q (TAA→CAA)																													1
+"3,428,954"	SNP	G→A	"rrsD, yrdA"	intergenic (‑192/‑282)																		1	1										
+"3,440,113"	SNP	A→G	rpoA	V306A (GTG→GCG)														1	1														
+"3,440,918"	SNP	T→C	rpoA	T38A (ACT→GCT)				1	1																								
+"3,447,579"	SNP	G→A	rplX	A63A (GCC→GCT)																											1		
+"3,450,125"	SNP	T→C	rplV	T37A (ACC→GCC)														1	1														
+"3,450,674"	SNP	G→A	rplB	P231S (CCA→TCA)				1	1																								
+"3,451,938"	SNP	G→A	rplD	R117C (CGT→TGT)																		1	1										
+"3,456,838"	SNP	T→C	gspD	G154G (GGT→GGC)				1	1																								
+"3,457,094"	SNP	A→G	gspD	I240V (ATC→GTC)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,459,354"	SNP	T→C	gspE	V339A (GTA→GCA)																						1							
+"3,464,087"	SNP	A→T	gspL	I56F (ATC→TTC)																							1						
+"3,469,498"	SNP	T→C	chiA	Q119R (CAG→CGG)															1														
+"3,478,883"	SNP	G→A	kefB	A575A (GCC→GCT)																											1		
+"3,485,541"	SNP	C→T	yhfA	G93D (GGT→GAT)				1	1																								
+"3,486,736"	SNP	T→C	crp	V206A (GTT→GCT)																	1												
+"3,490,191"	SNP	C→T	"argD, pabA"	intergenic (‑11/+75)																							1						
+"3,495,153"	SNP	T→C	nirB	G381G (GGT→GGC)																				1									
+"3,505,331"	SNP	T→C	yhfS	A230A (GCA→GCG)																												1	
+"3,516,213"	SNP	G→A	damX	A365V (GCG→GTG)																													1
+"3,517,023"	SNP	G→A	damX	A95V (GCC→GTC)																	1												
+"3,530,091"	SNP	G→A	hslO	T106T (ACG→ACA)								1	1																				
+"3,532,523"	INS	(A)7→8	"yhgE, pck"	intergenic (‑84/‑295)																												1	1
+"3,534,920"	SNP	G→A	envZ	R317W (CGG→TGG)																						1							
+"3,535,392"	SNP	C→T	envZ	P159P (CCG→CCA)																							1						
+"3,541,927"	SNP	T→C	feoB	R507R (CGT→CGC)															1														
+"3,551,631"	SNP	T→C	malP	V281V (GTA→GTG)															1														
+"3,560,455"	INS	#NAME?	"glpR, glpR"	intergenic (‑2/+1)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,561,426"	INS	(G)5→6	glpG	coding (27/831 nt)																							1						
+"3,580,930"	DEL	(A)9→8	ryhB	noncoding (87/90 nt)																	1												
+"3,591,739"	SNP	A→T	ugpB	I196N (ATC→AAC)																										1			
+"3,607,418"	SNP	C→T	zntA	A323V (GCC→GTC)				1	1																								
+"3,624,198"	SNP	T→C	yrhC	pseudogene (312/351 nt)																										1	1		
+"3,634,940"	SNP	A→G	yhiM	S34G (AGC→GGC)																										1	1		
+"3,638,618"	SNP	T→C	pitA	V326A (GTG→GCG)										1																			
+"3,640,548"	SNP	T→C	"uspA, dtpB"	intergenic (+3/‑314)	1																												
+"3,648,024"	SNP	T→C	"dinQ, agrA"	intergenic (‑236/‑39)																			1										
+"3,653,231"	DEL	"Δ2,028 bp"	"yhiS, slp, dctR, yhiD"	IS5‑mediated														1	1														
+"3,655,564"	SNP	G→A	yhiD	S113S (AGC→AGT)																										1			
+"3,664,360"	SNP	G→A	gadW	P87S (CCC→TCC)								1																					
+"3,668,544"	INS	(C)6→7	yhjA	coding (645/1398 nt)																						1							
+"3,702,561"	SNP	A→T	dppF	I103N (ATC→AAC)																							1						
+"3,709,561"	INS	(C)6→7	eptB	coding (915/1692 nt)										1	1											1							
+"3,720,202"	SNP	T→C	cspA	S52P (TCC→CCC)										1	1																		
+"3,728,118"	DEL	(C)8→7	xylB	coding (1254/1455 nt)					1																								
+"3,728,118"	INS	(C)8→9	xylB	coding (1254/1455 nt)										1	1																		
+"3,736,663"	DEL	(TTG)4→3	bax	coding (513‑515/825 nt)														1															
+"3,748,181"	SNP	G→A	lyxK	A366A (GCG→GCA)																				1	1								
+"3,748,385"	SNP	G→A	lyxK	A434A (GCG→GCA)														1															
+"3,769,260"	DEL	(A)6→5	"yibW, yibV"	intergenic (+4/‑85)								1																					
+"3,785,021"	INS	(G)6→7	"yibN, gpmM"	intergenic (‑6/‑239)																				1									
+"3,790,538"	SNP	A→G	tdh	S270P (TCT→CCT)										1	1																		
+"3,791,004"	SNP	A→G	tdh	G114G (GGT→GGC)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,798,803"	SNP	T→C	waaU	T170T (ACA→ACG)																			1										
+"3,802,147"	SNP	G→T	waaO	N304K (AAC→AAA)																													1
+"3,815,808"	SNP	A→G	"pyrE, rph"	intergenic (‑40/+26)																												1	1
+"3,815,808"	DEL	(A)8→7	"pyrE, rph"	intergenic (‑40/+26)												1	1	1	1	1	1			1	1		1	1	1	1	1		
+"3,815,811"	DEL	Δ1 bp	"pyrE, rph"	intergenic (‑43/+23)		1	1																										
+"3,815,811"	SNP	C→T	"pyrE, rph"	intergenic (‑43/+23)				1	1	1	1	1	1									1	1										
+"3,815,813"	SNP	A→G	"pyrE, rph"	intergenic (‑45/+21)										1	1																		
+"3,815,949"	SNP	G→A	rph	pseudogene (601/669 nt)																						1							
+"3,815,986"	SNP	G→A	rph	pseudogene (564/669 nt)																						1							
+"3,823,249"	SNP	T→C	spoT	Y284H (TAC→CAC)																						1							
+"3,823,683"	SNP	C→T	spoT	R428R (CGC→CGT)																	1												
+"3,830,989"	SNP	T→C	yicH	V178A (GTT→GCT)																		1	1										
+"3,831,457"	DEL	(G)5→4	yicH	coding (1001/1710 nt)															1														
+"3,844,805"	SNP	T→C	adeD	L281P (CTC→CCC)																										1	1		
+"3,849,229"	SNP	C→T	uhpB	S303N (AGC→AAC)								1																					
+"3,858,248"	SNP	T→C	yidJ	T53A (ACG→GCG)																							1						
+"3,865,112"	DEL	Δ1 bp	yidE	coding (1162/1662 nt)																										1	1		
+"3,867,575"	DEL	(T)8→7	"ibpA, yidQ"	intergenic (‑153/‑153)																												1	
+"3,868,399"	SNP	C→T	yidR	C304Y (TGT→TAT)																								1	1				
+"3,873,863"	SNP	A→G	dgoK	L204L (CTT→CTC)									1																				
+"3,880,017"	SNP	C→T	gyrB	G35S (GGT→AGT)																1	1												
+"3,894,654"	SNP	G→A	chrR	M1M (ATG→ATA) †																			1										
+"3,897,086"	SNP	T→C	yieH	C105R (TGT→CGT)																										1	1		
+"3,901,765"	SNP	G→A	bglH	G152G (GGC→GGT)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,901,992"	SNP	C→T	bglH	A77T (GCC→ACC)				1	1																								
+"3,902,316"	DEL	(T)8→7	bglB	coding (1386/1413 nt)							1																						
+"3,918,745"	SNP	A→G	atpA	G371G (GGT→GGC)				1																									
+"3,920,872"	SNP	G→A	atpF	T6I (ACA→ATA)										1																			
+"3,926,801"	SNP	A→G	asnC	V68A (GTA→GCA)																										1			
+"3,928,356"	SNP	C→T	viaA	A416A (GCG→GCA)														1	1														
+"3,932,121"	SNP	A→G	kup	N269S (AAC→AGC)										1																			
+"3,936,381"	SNP	C→T	rbsB	T35M (ACG→ATG)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"3,938,533"	SNP	C→T	rbsR	R103W (CGG→TGG)						1	1																						
+"3,946,742"	SNP	C→T	rrfC	noncoding (43/120 nt)		1	1																										
+"3,950,468"	DEL	(G)5→4	"ilvL, ilvX"	intergenic (+48/‑39)								1	1																				
+"3,950,476"	INS	(T)8→9	"ilvL, ilvX"	intergenic (+56/‑31)																	1												
+"3,950,476"	DEL	(T)8→7	"ilvL, ilvX"	intergenic (+56/‑31)																								1	1				
+"3,959,758"	SNP	A→G	ppiC	L19P (CTG→CCG)										1	1																		
+"3,969,883"	SNP	A→T	wzzE	N285Y (AAT→TAT)		1																											
+"3,970,427"	DEL	(ACG)4→3	wecB	coding (295‑297/1131 nt)									1																			1	1
+"3,971,307"	SNP	G→A	wecC	L16L (CTG→CTA)												1	1																
+"3,975,924"	SNP	T→C	wecE	L260P (CTG→CCG)																									1				
+"3,993,464"	DEL	Δ1 bp	cyaA	coding (2312/2547 nt)													1																
+"4,060,280"	DEL	(T)9→8	"typA, yihL"	intergenic (+50/‑167)																							1						
+"4,077,129"	SNP	G→A	dtd	E39K (GAA→AAA)								1																					
+"4,078,169"	SNP	C→T	yiiD	R241C (CGT→TGT)		1	1																										
+"4,079,101"	SNP	A→G	"yiiD, yiiE"	intergenic (+663/‑196)																			1										
+"4,090,709"	SNP	C→T	frvX	D73N (GAC→AAC)																											1		
+"4,095,367"	SNP	C→T	rhaA	A206T (GCA→ACA)																											1		
+"4,110,959"	SNP	T→C	tpiA	A183A (GCA→GCG)																	1												
+"4,125,041"	SNP	T→C	priA	K590K (AAA→AAG)																						1							
+"4,131,253"	SNP	G→A	metL	W473* (TGG→TGA)																					1								
+"4,136,603"	INS	(G)6→7	yijE	coding (496/906 nt)									1																				
+"4,136,860"	SNP	A→G	yijE	T251T (ACA→ACG)																				1									
+"4,142,011"	SNP	C→T	frwA	A71T (GCC→ACC)														1															
+"4,151,642"	SNP	A→G	ppc	V486A (GTC→GCC)						1																							
+"4,153,408"	SNP	A→G	"ppc, argE"	intergenic (‑310/+288)																													1
+"4,160,278"	SNP	G→A	sthA	S171S (AGC→AGT)		1	1																										
+"4,182,791"	SNP	A→G	rpoB	D516G (GAC→GGC)						1	1													1	1	1						1	1
+"4,182,817"	SNP	A→G	rpoB	T525A (ACG→GCG)												1	1																
+"4,182,907"	SNP	T→C	rpoB	Y555H (TAC→CAC)												1	1																
+"4,183,238"	SNP	C→T	rpoB	A665V (GCG→GTG)										1	1																		
+"4,185,540"	SNP	C→T	rpoC	P64L (CCG→CTG)														1	1									1	1	1	1		
+"4,186,292"	SNP	G→A	rpoC	A315T (GCG→ACG)				1	1																								
+"4,186,296"	SNP	T→A	rpoC	I316N (ATC→AAC)																				1									
+"4,187,838"	SNP	A→G	rpoC	D830G (GAC→GGC)								1	1									1	1										
+"4,188,171"	SNP	C→T	rpoC	A941V (GCA→GTA)																1	1												
+"4,188,572"	SNP	C→T	rpoC	R1075C (CGT→TGT)																1	1						1						
+"4,199,332"	SNP	C→T	nfi	S181S (AGC→AGT)															1														
+"4,202,604"	SNP	C→T	zraS	R227C (CGC→TGC)																1	1												
+"4,207,900"	SNP	C→T	"purH, rrsE"	intergenic (‑368/‑247)														1															
+"4,219,119"	SNP	A→G	aceK	Y175C (TAC→TGC)																												1	
+"4,225,294"	SNP	A→G	metH	G489G (GGA→GGG)															1														
+"4,229,765"	SNP	A→G	pepE	A126A (GCT→GCC)														1	1														
+"4,231,599"	SNP	C→T	yjbD	M11I (ATG→ATA)																1	1												
+"4,242,259"	SNP	A→G	"xylE, malG"	intergenic (‑5/+367)															1														
+"4,251,860"	DEL	(T)7→6	yjbI	pseudogene (900/1323 nt)				1																									
+"4,266,510"	SNP	C→T	alr	A243A (GCC→GCT)				1	1																								
+"4,280,409"	INS	(A)7→8	yjcE	coding (430/1650 nt)																						1							
+"4,281,472"	SNP	A→G	yjcE	E498G (GAG→GGG)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"4,283,098"	SNP	G→T	"yjcF, actP"	intergenic (‑23/+155)								1	1																				
+"4,285,518"	SNP	A→G	acs	I618I (ATT→ATC)														1	1														
+"4,291,336"	SNP	C→T	nrfD	G287G (GGC→GGT)																			1										
+"4,293,106"	INS	(G)7→8	nrfE	coding (1595/1659 nt)																	1												
+"4,293,898"	SNP	A→G	nrfG	Y119C (TAC→TGC)																		1	1										
+"4,296,381"	INS	#NAME?	"gltP, yjcO"	intergenic (+587/+55)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"4,304,888"	SNP	A→G	yjcS	N570N (AAT→AAC)										1	1																		
+"4,305,268"	SNP	A→G	yjcS	Y444H (TAT→CAT)																	1												
+"4,312,566"	SNP	T→C	alsR	R142R (AGA→AGG)																										1	1		
+"4,318,211"	SNP	A→G	phnK	L185P (CTC→CCC)														1															
+"4,328,811"	SNP	A→G	crfC	Q559Q (CAA→CAG)																													1
+"4,340,898"	SNP	C→T	melR	R244H (CGC→CAC)																										1	1		
+"4,341,750"	SNP	G→A	"melR, melA"	intergenic (‑122/‑161)															1														
+"4,345,727"	SNP	A→G	fumB	F534L (TTC→CTC)																						1							
+"4,347,002"	SNP	C→T	fumB	G109S (GGC→AGC)																	1												
+"4,351,093"	SNP	G→A	dcuS	G190G (GGC→GGT)				1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1				1	1	1	1
+"4,361,357"	SNP	A→G	cadC	L193S (TTG→TCG)				1	1																								
+"4,366,113"	SNP	A→G	dcuA	S221P (TCC→CCC)																													1
+"4,384,052"	SNP	T→C	yjeM	Y72H (TAT→CAT)																											1		
+"4,384,861"	SNP	G→A	yjeM	Q341Q (CAG→CAA)													1																
+"4,385,643"	SNP	T→C	yjeN	L84S (TTA→TCA)																				1									
+"4,385,906"	SNP	T→C	yjeO	L68P (CTC→CCC)		1	1																										
+"4,392,496"	SNP	C→T	glyX	noncoding (25/76 nt)														1															
+"4,400,278"	SNP	A→G	"miaA, hfq"	intergenic (+76/‑10)																						1							
+"4,401,304"	SNP	T→C	hflX	S211S (TCT→TCC)									1																				
+"4,403,556"	SNP	A→G	hflC	D86G (GAC→GGC)																											1		
+"4,409,911"	SNP	T→C	rlmB	L213L (TTG→CTG)																	1												
+"4,410,053"	DEL	(T)9→8	"rlmB, yjfI"	intergenic (+47/‑80)			1													1													
+"4,415,887"	INS	(G)6→7	aidB	coding (1613/1626 nt)		1	1																										
+"4,429,264"	SNP	C→T	fklB	N110N (AAC→AAT)													1																
+"4,431,613"	SNP	T→C	ytfE	E124G (GAA→GGA)																											1		
+"4,442,061"	SNP	A→G	msrA	V39A (GTA→GCA)		1	1																										
+"4,457,798"	SNP	T→C	yjgA	E23G (GAA→GGA)																				1									
+"4,459,820"	SNP	A→G	cybC	pseudogene (331/366 nt)																							1						
+"4,476,575"	SNP	T→C	yjgL	V380A (GTA→GCA)													1																
+"4,479,980"	INS	(T)7→8	yjgN	coding (251/1197 nt)																	1												
+"4,487,041"	SNP	C→T	lptF	T275I (ACC→ATC)												1	1																
+"4,488,579"	INS	(C)7→8	yjgR	coding (1485/1503 nt)																				1									
+"4,489,696"	SNP	A→G	yjgR	L123P (CTG→CCG)																							1						
+"4,490,935"	SNP	A→G	idnR	L69L (TTG→CTG)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"4,491,277"	SNP	T→C	idnT	T417A (ACG→GCG)																1	1												
+"4,493,661"	SNP	A→G	idnD	V249A (GTG→GCG)																					1								
+"4,513,332"	SNP	C→T	fecC	L26L (CTG→CTA)																											1		
+"4,533,223"	SNP	A→G	"yjhP, yjhQ"	intergenic (‑40/+16)																				1									
+"4,533,530"	SNP	C→T	yjhQ	L85L (CTG→CTA)																									1				
+"4,538,491"	SNP	C→T	nanM	G92D (GGC→GAC)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"4,544,191"	SNP	A→G	fimI	K155R (AAA→AGA)																										1	1		
+"4,544,910"	SNP	G→A	fimC	V203M (GTG→ATG)														1	1														
+"4,548,789"	SNP	A→G	"fimG, fimH"	intergenic (+1/‑19)																1													
+"4,553,049"	SNP	A→G	uxuB	D50G (GAC→GGC)																					1								
+"4,554,430"	INS	(T)7→8	"uxuB, uxuR"	intergenic (+69/‑146)																								1					
+"4,556,610"	SNP	T→C	"yjiC, iraD"	intergenic (‑290/‑383)																												1	1
+"4,565,986"	SNP	A→G	yjiN	F421L (TTC→CTC)														1															
+"4,567,574"	SNP	T→C	mdtM	T316A (ACC→GCC)												1	1																
+"4,568,417"	SNP	C→T	mdtM	G35R (GGG→AGG)																												1	1
+"4,574,101"	SNP	T→C	yjiV	pseudogene (183/2937 nt)														1	1														
+"4,574,259"	SNP	A→G	yjiV	pseudogene (341/2937 nt)	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1	1
+"4,575,425"	SNP	A→G	yjiV	pseudogene (1507/2937 nt)				1																									
+"4,585,984"	SNP	C→T	hsdR	A260T (GCC→ACC)																											1		
+"4,586,393"	SNP	A→G	hsdR	T123T (ACT→ACC)								1	1																				
+"4,595,843"	SNP	A→G	lgoR	R3R (CGT→CGC)			1																										
+"4,606,094"	INS	(G)8→9	leuV	noncoding (72/87 nt)						1																			1				
+"4,606,094"	INS	(G)8→11	leuV	noncoding (72/87 nt)																								1					
+"4,606,094"	DEL	(G)8→7	leuV	noncoding (72/87 nt)																		1	1							1	1		
+"4,606,215"	INS	(G)8→10	leuP	noncoding (72/87 nt)								1																					
+"4,606,215"	INS	(G)8→9	leuP	noncoding (72/87 nt)									1	1	1																		1
+"4,606,330"	INS	(G)8→9	leuQ	noncoding (72/87 nt)					1																								
+"4,606,330"	DEL	(G)8→7	leuQ	noncoding (72/87 nt)																1													
+"4,607,066"	SNP	A→G	rsmC	V212A (GTT→GCT)																												1	
+"4,614,343"	SNP	G→A	"yjjV, yjjW"	intergenic (+83/+337)																1													
+"4,614,346"	SNP	T→C	"yjjV, yjjW"	intergenic (+86/+334)																1													
+"4,614,422"	SUB	2 bp→AA	"yjjV, yjjW"	intergenic (+162/+257)																1													
+"4,621,471"	SNP	G→A	deoD	A197T (GCC→ACC)						1	1																						
+"4,627,489"	SNP	T→C	nadR	F59L (TTT→CTT)																								1	1				
+"4,628,576"	SNP	A→G	"nadR, ettA"	intergenic (+29/+279)																										1			
+"4,635,299"	SNP	G→A	rob	A4A (GCC→GCT)																	1												
+"4,635,400"	DEL	(T)7→6	"rob, creA"	intergenic (‑90/‑121)																								1	1				
+"4,636,673"	SNP	G→A	creB	G223R (GGA→AGA)																1	1												
+"4,637,373"	SNP	T→C	creC	V226V (GTT→GTC)																												1	1
