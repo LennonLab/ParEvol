@@ -35,8 +35,28 @@ If you only want to generate the figure using the data that has already been gen
 ## Dependencies
 
 
+## Publicaly available data
+
+Mutation data from Wannier et al. (2018) was downloaded in a CSV format from the following links on the [Adaptive Laboratory Evolution database](https://aledb.org/) (Phaneuf et. al., 2018). 
+
+- [C321](https://aledb.org/stats?ale_experiment_id=76)
+
+- [C321.∆A](https://aledb.org/stats?ale_experiment_id=77)
+
+- [C321.∆A-v2	](https://aledb.org/stats?ale_experiment_id=78)
+
+- [ECNR2.1](https://aledb.org/stats?ale_experiment_id=79)
+
+
+
+
+
 ## Attributes
 
+
+## References
+
+Phaneuf PV, Gosting D, Palsson BO, Feist AM. ALEdb 1.0: a database of mutations from adaptive laboratory evolution experimentation. Nucleic Acids Res. 2018; doi:10.1093/nar/gky983
 
 
 

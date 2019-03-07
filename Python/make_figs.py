@@ -1131,7 +1131,7 @@ def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
 
 
 #poisson_neutral_fig()
-hist_tenaillon()
+#hist_tenaillon()
 #tenaillon_p_N()
 #poisson_power_G()
 #poisson_power_N()
@@ -1140,7 +1140,6 @@ hist_tenaillon()
 #plot_permutation(dataset='good')
 
 #fig1()
-#hist_tenaillon()
 #tenaillon_fitness_hist()
 
 #test_pca_regression()
