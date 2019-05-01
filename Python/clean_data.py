@@ -1,5 +1,5 @@
 from __future__ import division
-import os, pickle
+import os, pickle, collections
 from itertools import groupby
 from operator import itemgetter
 import numpy as np
@@ -258,43 +258,75 @@ class wannier_et_al:
     def __init__(self, path):
         self.path = path
 
-    def clean_data(self):
-        #treats = ['C321', 'C321.deltaA', 'C321.deltaA.earlyfix', 'ECNR2.1']
-        treats = ['C321.deltaA']
-        table = str.maketrans(dict.fromkeys('""'))
-        gene_treat_dict = {}
-        #genes_
 
+    def get_gene_lengths():
+        print('fuck this')
+        # use mutation site data to figure out the name of the genes you use
+        # CP025268.1.txt
+
+    def clean_data(self):
+        # ALEdb setup
+        # A = ALE
+        # F = Flask
+        # I = isolate number
+        # R = Technical replicate
+        treats = ['C321', 'C321.deltaA', 'C321.deltaA.earlyfix', 'ECNR2.1']
+        #treats = ['C321.deltaA.earlyfix']
+        table = str.maketrans(dict.fromkeys('""'))
         for treat in treats:
+            gene_treat_dict = {}
+            pop_position_dict = {}
             lengths = []
             treat_path = self.path + '/data/Wannier_et_al/' + treat + '_mutation_table.txt'
             for i, line in enumerate(open(treat_path, 'r')):
-
                 line = line.strip('\n')
                 items = line.split("\t")
                 items = [item.translate(table) for item in items]
                 if i == 0:
-                    #print(list(map(str.strip, items)))
-
                     samples = [x.split('>')[1][:-3] for x in items[5:]]
                     samples = [x.replace(' ', '-') for x in samples]
                     if (treat == 'C321.deltaA') or (treat == 'C321.deltaA.earlyfix'):
                         samples_list = [list(x) for x in samples]
-                        #samples_list = [x[2] =4 for x in samples]
                         for x in samples_list:
                             x[5] = 'delta'
                         samples = [''.join(x) for x in samples_list]
-                    for sample in samples:
-                        gene_treat_dict[sample] = {}
+                    samples_no_FIR = [s.rsplit('-', 3)[0] for s in samples]
+                    for sample_no_FIR in list(set(samples_no_FIR)):
+                        gene_treat_dict[sample_no_FIR] = {}
+                    for j, sample_no_FIR in enumerate(samples_no_FIR):
+                        pop_position_dict[j] = sample_no_FIR
+                    print(samples)
 
-                    # track code with header??
-
-
-
-                if ('noncoding' in items[4]) or ('pseudogene' in items[4]) or ('intergenic' in items[4]):
+                # remove noncoding and mutations in overlaping genes
+                if ('noncoding' in items[4]) or ('pseudogene' in items[4]) \
+                        or ('intergenic' in items[4]) or (';' in items[3]) \
+                        or (len(set(items[5:])) == 1):
                     continue
 
-                lengths.append(len(items))
+                just_muts = items[5:]
+                gene = items[3]
+                # merge reps
+                site_dict = {}
+                for m, mut_m in enumerate(just_muts):
+                    if mut_m == '1':
+                        site_dict[pop_position_dict[m]] = 1
+
+                #if len(site_dict) == len(set(samples_no_FIR)):
+                #    continue
+                if len(site_dict) > 3:
+                    continue
+                for key, value in site_dict.items():
+                    if gene in gene_treat_dict[key]:
+                        gene_treat_dict[key][gene] += 1
+                    else:
+                        gene_treat_dict[key][gene] = 1
+
+            df = pd.DataFrame.from_dict(gene_treat_dict).T
+            df = df.fillna(0)
+            df_out = self.path + '/data/Wannier_et_al/' + treat + '_mutation_table_clean.txt'
+            df.to_csv(df_out, sep = '\t', index = True)
+
+
 
 
 
