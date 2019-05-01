@@ -294,17 +294,7 @@ class wannier_et_al:
                 if ('noncoding' in items[4]) or ('pseudogene' in items[4]) or ('intergenic' in items[4]):
                     continue
 
-                #print(items[3])
-                print(items[5:])
                 lengths.append(len(items))
-            print(set(lengths))
-
-        #print(gene_treat_dict)
-
-
-
-
-    #def get_gene_sizes(self):
 
 
 
@@ -338,44 +328,23 @@ class likelihood_matrix_array:
 
     def get_likelihood_matrix(self):
         genes_lengths = self.get_gene_lengths(gene_list = self.gene_list)
-        L_mean = np.mean(list(genes_lengths.values()))
+        #L_mean = np.mean(list(genes_lengths.values()))
         L_i = np.asarray(list(genes_lengths.values()))
-        N_genes = len(self.gene_list)
-        #rel_gene_size = (L_mean / L_i)
-        #m_mean = self.df.sum(axis=1) / N_genes
+        #N_genes = len(self.gene_list)
+        n_genes = np.count_nonzero(self.array, axis=1)
+        n_tot = np.sum(self.array, axis=1)
+        m_mean = np.true_divide(n_tot, n_genes)
+        array_bin = (self.array > 0).astype(int)
+        length_matrix = L_i*array_bin
+        rel_length_matrix = length_matrix /np.true_divide(length_matrix.sum(1),(length_matrix!=0).sum(1))[:, np.newaxis]
+        # length divided by mean length, so take the inverse
+        rel_length_matrix = (1 / rel_length_matrix)
+        rel_length_matrix[rel_length_matrix == np.inf] = 0
 
-        #m_mean = np.sum(self.array, axis=0) / N_genes#np.count_nonzero(np.asarray([1,0,2]))
+        m_matrix = self.array * rel_length_matrix
+        r_matrix = (m_matrix / m_mean[:,None])
 
-        #for index, row in self.array.iterrows():
-        #    print(row)
-            #m_mean_j = m_mean[index]
-        #    np.seterr(divide='ignore')
-        #    delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
-        #    self.df.loc[index,:] = delta_j
-
-        # just use matrix operations
-        np.seterr(divide='ignore', invalid='ignore')
-        # m_i
-        df_new = self.array * (L_mean / L_i)
-        # r_i
-        df_new = df_new.T / (np.sum(self.array, axis=1) / np.count_nonzero(self.array, axis=1))
-        df_new = df_new.T
-        # relative contribution
-        df_new = df_new/df_new.sum(axis=1)[:,None]
-
-        #df_new = (self.array *  (L_mean / L_i)) /  m_mean
-        # likelihood
-        #df_new = self.array * np.log((self.array * (L_mean / L_i)) / m_mean)
-        np.seterr(divide='ignore', invalid='ignore')
-        #df_new = self.df_new.fillna(0)
-        #df_new[np.isnan(df_new)] = 0
-        # remove colums with all zeros
-        #df_new.loc[:, (df_new != 0).any(axis=0)]
-        #df_new = df_new[:,~np.all(df_new == 0, axis=0)]
-
-
-        #df_new[df_new < 0] = 0
-        return df_new
+        return r_matrix
 
 
 wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).clean_data()

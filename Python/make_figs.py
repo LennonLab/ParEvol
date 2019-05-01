@@ -461,31 +461,36 @@ def hist_tenaillon(iter2 = 10000, k = 3):
     df_np = df.values
     gene_names = df.columns.values
     df_np_delta = cd.likelihood_matrix_array(df_np, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+    #rank_mean = df_np_delta.stack().groupby(df_np_delta.rank(method='first').stack().astype(float)).mean()
+    #df_np_delta_q_norm = df_np_delta.rank(method='min').stack().astype(float).map(rank_mean).unstack()
+    df_np_delta = df_np_delta/df_np_delta.sum(axis=1)[:,None]
     X = pt.get_mean_center(df_np_delta)
+    #X = (df_np_delta - np.mean(df_np_delta)) / np.std(df_np_delta)
     pca = PCA()
     pca_fit = pca.fit_transform(X)
-    euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
+    euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit, k =2)
     euc_dists = []
+
     for i in range(iter2):
         if i %1000 ==0:
             print(i)
         df_np_i = pt.get_random_matrix(df_np)
         np.seterr(divide='ignore')
         df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+        df_np_i_delta = df_np_i_delta/df_np_i_delta.sum(axis=1)[:,None]
         X_i = pt.get_mean_center(df_np_i_delta)
+        #X_i = (df_np_i_delta - np.mean(df_np_i_delta)) / np.std(df_np_i_delta)
         pca_fit_i = pca.fit_transform(X_i)
-        euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_i) )
+        euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_i, k =2) )
 
     fig = plt.figure()
-
     plt.hist(euc_dists,bins=30, weights=np.zeros_like(euc_dists) + 1. / len(euc_dists), alpha=0.8, color = '#175ac6')
     plt.axvline(euc_dist, color = 'red', lw = 3)
     plt.xlabel("Euclidean distance", fontsize = 16)
-    #plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
+    plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
     plt.ylabel("Frequency", fontsize = 12)
-
     fig.tight_layout()
-    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/test_hist.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/test_hist_mc.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
 
@@ -1131,7 +1136,8 @@ def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
 
 
 #poisson_neutral_fig()
-#hist_tenaillon()
+
+hist_tenaillon()
 #tenaillon_p_N()
 #poisson_power_G()
 #poisson_power_N()
