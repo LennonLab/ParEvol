@@ -6,7 +6,6 @@ import parevol_tools as pt
 import matplotlib.pyplot as plt
 from matplotlib import cm, rc_context
 import matplotlib.patches as mpatches
-import matplotlib.colors as cls
 import clean_data as cd
 from scipy.special import comb
 from scipy import stats
@@ -323,10 +322,7 @@ def intro_fig():
     ax2.text(-0.28, 0.74, r'$\left | \mathcal{G}_{1}\left ( 3 \right )  \right | =2$', fontsize = omega_font)
     ax2.text(-0.28, 0.99, r'$\left | \mathcal{G}_{1}\left ( 4 \right )  \right | =1$', fontsize = omega_font)
 
-
     #ax1.text(-0.26, 0.99, r'$\left | \mathcal{G}_{0}\left ( 4 \right )  \right | =1$', fontsize = omega_font)
-
-
     ax2.axis('off')
 
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)#, aspect='equal')
@@ -379,7 +375,6 @@ def intro_fig():
 
         omega_1_0_ax4.append(pt.comb_n_muts_k_genes(k, c0_ax4 ))
 
-
     plt.plot(ks, np.asarray(omega_1_1_ax4)/ np.asarray(omega_0), linestyle='--', lw =2.2, color='#FF6347', alpha = 0.7, label=r'$G=2$')
     plt.plot(ks, np.asarray(omega_1_2_ax4)/ np.asarray(omega_0), linestyle='--', lw =2.2, color='#FFA500', alpha = 0.7, label=r'$G=4$')
     plt.plot(ks, np.asarray(omega_1_3_ax4)/ np.asarray(omega_0), linestyle='--', lw =2.2, color='#87CEEB', alpha = 0.7, label=r'$G=10$')
@@ -387,68 +382,11 @@ def intro_fig():
     ax4.set_xlabel('Substitutions, ' + r'$k$', fontsize = 16)
     #ax4.set_ylabel(r'$ \mathrm{log}_{10}   \left (    \Omega_{1} / \Omega_{0} \right )$', fontsize = 15)
     ax4.set_ylabel(r'$\mathrm{log}_{10}   \left (   \frac{\left | \mathcal{G}_{1}\left ( k \right )  \right | }{\left | \mathcal{G}_{0}\left ( k \right )  \right | }\right )$', fontsize = 15)
-
     ax4.legend(loc='lower left', fontsize=7)
     ax4.set_yscale("log")
-
     plt.tight_layout()
     fig_name = pt.get_path() + '/figs/test_network.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
-
-
-
-def euc_dist_hist():
-    G = 50
-    N = 50
-    iter = 1000
-    cov1 = 0.05
-    cov2 = 0.25
-    C1 = pt.get_ba_cov_matrix(G, cov1)
-    C2 = pt.get_ba_cov_matrix(G, cov2)
-    lambda_genes = np.random.gamma(shape=1, scale=1, size=G)
-    test_cov1 = np.stack( [pt.get_count_pop(lambda_genes, cov= C1) for x in range(N)] , axis=0 )
-    test_cov2 = np.stack( [pt.get_count_pop(lambda_genes, cov= C2) for x in range(N)] , axis=0 )
-    pca = PCA()
-
-    X1 = pt.hellinger_transform(test_cov1)
-    pca_fit1 = pca.fit_transform(X1)
-    euc_dist1 = pt.get_mean_pairwise_euc_distance(pca_fit1)
-    euc_dists1 = []
-    for j in range(iter):
-        X_j = pt.hellinger_transform(pt.random_matrix(test_cov1))
-        pca_fit_j = pca.fit_transform(X_j)
-        euc_dists1.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
-
-    X2 = pt.hellinger_transform(test_cov2)
-    pca_fit2 = pca.fit_transform(X2)
-    euc_dist2 = pt.get_mean_pairwise_euc_distance(pca_fit2)
-    euc_dists2 = []
-    for j in range(iter):
-        X_j = pt.hellinger_transform(pt.random_matrix(test_cov2))
-        pca_fit_j = pca.fit_transform(X_j)
-        euc_dists2.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
-
-    fig = plt.figure()
-    plt.hist(euc_dists1, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
-    plt.axvline(np.mean(euc_dists1)+ (0.5*np.std(euc_dists1)), color = 'red', ls = '--', lw = 3)
-    plt.xlabel("Mean pair-wise \n Euclidean distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
-    plt.ylabel("Frequency", fontsize = 18)
-    plt.text(min(euc_dists1) + 0.002, 45, r'$\mathrm{Cov}=0.05$', fontsize=16)
-    fig.tight_layout()
-    plot_out = pt.get_path() + '/figs/cov_hist_low.png'
-    fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
-
-    fig = plt.figure()
-    plt.hist(euc_dists2, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
-    plt.axvline(np.mean(euc_dists2) + (2*np.std(euc_dists2)), color = 'red', ls = '--', lw = 3)
-    plt.xlabel("Mean pair-wise \n Euclidean distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
-    plt.ylabel("Frequency", fontsize = 18)
-    plt.text(min(euc_dists1) + 0.002, 45, r'$\mathrm{Cov}=0.25$', fontsize=16)
-    fig.tight_layout()
-    plot_out = pt.get_path() + '/figs/cov_hist_high.png'
-    fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
 
@@ -644,7 +582,77 @@ def fig2(alpha = 0.05, k = 3):
 
 
 
-def fig3(alpha = 0.05, k = 5):
+def ltee_convergence(alpha = 0.05, k = 5):
+    df_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Good_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    to_keep = pt.complete_nonmutator_lines()
+    #to_keep.append('p5')
+    to_keep.remove('p5')
+    df_nonmut = df[df.index.str.contains('|'.join( to_keep))]
+    # remove columns with all zeros
+    df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
+    gene_names = df_nonmut.columns.tolist()
+    sample_names = df_nonmut.index.tolist()
+    df_delta = cd.likelihood_matrix_array(df_nonmut, gene_names, 'Good_et_al').get_likelihood_matrix()
+    df_delta = df_delta/df_delta.sum(axis=1)[:,None]
+    X = pt.get_mean_center(df_delta)
+
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+
+    time_points = [ int(x.split('_')[1]) for x in df_nonmut.index.values]
+    time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
+    colors = np.linspace(min(time_points_set),max(time_points_set),len(time_points_set))
+    color_dict = dict(zip(time_points_set, colors))
+
+    df_pca = pd.DataFrame(data=df_out, index=sample_names)
+    mean_dist = []
+    for tp in time_points_set:
+        df_pca_tp = df_pca[df_pca.index.str.contains('_' + str(tp))]
+        mean_dist.append(pt.get_mean_pairwise_euc_distance(df_pca_tp.values, k = k))
+
+    # get null distribution
+
+
+    #fig = plt.figure()
+    #plt.scatter(time_points_set, mean_dist, marker = "o", edgecolors='#244162', c = '#175ac6', alpha = 0.4, s = 60, zorder=4)
+
+    #plt.xlabel("Time", fontsize = 14)
+    #plt.ylabel("Mean euclidean distance", fontsize = 12)
+
+    #plt.figure(1)
+    #plt.subplot(313)
+    #plt.errorbar(perm_gens, mean_L, yerr = [lower_ci_L, upper_ci_L], fmt = 'o', alpha = 0.5, \
+    #    barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
+    #plt.scatter(time_points_set, Ls, c='#175ac6', marker = 'o', s = 70, \
+    #    edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
+
+    #for pop in to_keep:
+    #    pop_df_pca = df_pca[df_pca.index.str.contains(pop)]
+    #    c_list = [ color_dict[int(x.split('_')[1])] for x in pop_df_pca.index.values]
+    #    if  pt.nonmutator_shapes()[pop] == 'p2':
+    #        size == 50
+    #    else:
+    #        size = 80
+    #    plt.scatter(pop_df_pca.values[:,0], pop_df_pca.values[:,1], \
+    #        c=c_list, cmap = cm.Blues, vmin=min(time_points_set), vmax=max(time_points_set), \
+    #        marker = pt.nonmutator_shapes()[pop], s = size, edgecolors='#244162', \
+    #        linewidth = 0.6,  zorder=4, alpha=0.7)#, edgecolors='none')
+
+    #c = plt.colorbar()
+    #c.set_label("Generations", size=18)
+    #plt.xlabel('PCA 1 (' + str(round(pca.explained_variance_ratio_[0],3)*100) + '%)' , fontsize = 16)
+    #plt.ylabel('PCA 2 (' + str(round(pca.explained_variance_ratio_[1],3)*100) + '%)' , fontsize = 16)
+    #plt.xlim([-0.4,0.4])
+    #plt.ylim([-0.4,0.4])
+    fig.tight_layout()
+    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/ltee_convergence.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
+def plot_permutation(dataset = 'good', analysis = 'PCA', alpha = 0.05):
     df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     to_exclude = pt.complete_nonmutator_lines()
@@ -653,221 +661,82 @@ def fig3(alpha = 0.05, k = 5):
     # remove columns with all zeros
     df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
     df_delta = pt.likelihood_matrix(df_nonmut, 'Good_et_al').get_likelihood_matrix()
-    X = pt.hellinger_transform(df_delta)
-    pca = PCA()
-    df_out = pca.fit_transform(X)
+    if analysis == 'PCA':
+        X = pt.hellinger_transform(df_delta)
+        pca = PCA()
+        df_out = pca.fit_transform(X)
+    elif analysis == 'cMDS':
+        df_delta_bc = np.sqrt(pt.get_scipy_bray_curtis(df_delta.as_matrix()))
+        df_out = pt.cmdscale(df_delta_bc)[0]
 
     time_points = [ int(x.split('_')[1]) for x in df_nonmut.index.values]
     time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
 
     df_rndm_delta_out = pd.DataFrame(data=df_out, index=df_delta.index)
     mcds = []
-    angles = []
-    Ls = []
     for tp in time_points_set:
         df_rndm_delta_out_tp = df_rndm_delta_out[df_rndm_delta_out.index.str.contains('_' + str(tp))]
-        mcds.append(pt.get_mean_centroid_distance(df_rndm_delta_out_tp.as_matrix(), k=k))
-        angles.append(pt.get_mean_angle(df_rndm_delta_out_tp.as_matrix(), k=k))
-        Ls.append(pt.get_euclidean_distance(df_rndm_delta_out_tp.as_matrix(), k=k))
+        mcds.append(pt.get_mean_pairwise_euc_distance(df_rndm_delta_out_tp.as_matrix(), k=3))
 
-    perm_path = pt.get_path() + '/data/Good_et_al/permute_PCA.txt'
-    perm = pd.read_csv(perm_path, sep = '\t', header = 'infer', index_col = 0)
-    perm_gens = np.sort(list(set(perm.Generation.tolist())))
-    lower_ci_mcd = []
-    upper_ci_mcd = []
-    lower_ci_angle = []
-    upper_ci_angle = []
-    lower_ci_L = []
-    upper_ci_L = []
-    mean_mcd = []
-    mean_angle = []
-    mean_L = []
-    for x in perm_gens:
-        perm_x = perm.loc[perm['Generation'] == x]
-        mcd_perm_x = np.sort(perm_x.MCD.tolist())
-        angle_perm_x = np.sort(perm_x.mean_angle.tolist())
-        L_perm_x = np.sort(perm_x.delta_L.tolist())
-
-        mean_mcd_perm_x = np.mean(mcd_perm_x)
-        mean_mcd.append(mean_mcd_perm_x)
-        mean_angle_perm_x = np.mean(angle_perm_x)
-        mean_angle.append(mean_angle_perm_x)
-        mean_L_perm_x = np.mean(L_perm_x)
-        mean_L.append(mean_L_perm_x)
-
-        lower_ci_mcd.append(mean_mcd_perm_x - mcd_perm_x[int(len(mcd_perm_x) * alpha)])
-        upper_ci_mcd.append(abs(mean_mcd_perm_x - mcd_perm_x[int(len(mcd_perm_x) * (1 - alpha))]))
-
-        lower_ci_angle.append(mean_angle_perm_x - angle_perm_x[int(len(angle_perm_x) * alpha)])
-        upper_ci_angle.append(abs(mean_angle_perm_x - angle_perm_x[int(len(angle_perm_x) * (1 - alpha))]))
-
-        lower_ci_L.append(mean_L_perm_x - L_perm_x[int(len(L_perm_x) * alpha)])
-        upper_ci_L.append(abs(mean_L_perm_x - L_perm_x[int(len(L_perm_x) * (1 - alpha))]))
+    mcd_perm_path = pt.get_path() + '/data/Good_et_al/permute_' + analysis + '.txt'
+    mcd_perm = pd.read_csv(mcd_perm_path, sep = '\t', header = 'infer', index_col = 0)
+    mcd_perm_x = np.sort(list(set(mcd_perm.Generation.tolist())))
+    lower_ci = []
+    upper_ci = []
+    mean_mcds = []
+    std_mcds = []
+    lower_z_ci = []
+    upper_z_ci = []
+    for x in mcd_perm_x:
+        mcd_perm_y = mcd_perm.loc[mcd_perm['Generation'] == x]
+        mcd_perm_y_sort = np.sort(mcd_perm_y.mean_dist.tolist())
+        mean_mcd_perm_y = np.mean(mcd_perm_y_sort)
+        std_mcd_perm_y = np.std(mcd_perm_y_sort)
+        mean_mcds.append(mean_mcd_perm_y)
+        std_mcds.append(std_mcd_perm_y)
+        lower_ci.append(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * alpha)])
+        upper_ci.append(abs(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * (1 - alpha))]))
+        # z-scores
+        mcd_perm_y_sort_z = [ ((i - mean_mcd_perm_y) /  std_mcd_perm_y) for i in mcd_perm_y_sort]
+        lower_z_ci.append(abs(mcd_perm_y_sort_z[int(len(mcd_perm_y_sort_z) * alpha)]))
+        upper_z_ci.append(abs(mcd_perm_y_sort_z[int(len(mcd_perm_y_sort_z) * (1 - alpha))]))
 
     fig = plt.figure()
 
     plt.figure(1)
-    plt.subplot(311)
-    plt.errorbar(perm_gens, mean_mcd, yerr = [lower_ci_mcd, upper_ci_mcd], fmt = 'o', alpha = 0.5, \
+    plt.subplot(211)
+    plt.errorbar(mcd_perm_x, mean_mcds, yerr = [lower_ci, upper_ci], fmt = 'o', alpha = 0.5, \
         barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
     plt.scatter(time_points_set, mcds, c='#175ac6', marker = 'o', s = 70, \
         edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
 
-    #plt.ylabel("Mean \n centroid distance", fontsize = 10)
-    plt.ylabel(r'$\left \langle \delta_{c}  \right \rangle$', fontsize = 12)
+    #plt.xlabel("Time (generations)", fontsize = 16)
+    #plt.ylabel("Mean \n Euclidean distance", fontsize = 14)
+    plt.ylabel("Mean pair-wise \n Euclidean \n distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
+
 
     plt.figure(1)
-    plt.subplot(312)
-    plt.errorbar(perm_gens, mean_angle, yerr = [lower_ci_angle, upper_ci_angle], fmt = 'o', alpha = 0.5, \
+    plt.subplot(212)
+    plt.errorbar(mcd_perm_x, [0] * len(mcd_perm_x), yerr = [lower_z_ci, upper_z_ci], fmt = 'o', alpha = 0.5, \
         barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
-    plt.scatter(time_points_set, angles, c='#175ac6', marker = 'o', s = 70, \
+    # zip mean, std, and measured values to make z-scores
+    zip_list = list(zip(mean_mcds, std_mcds, mcds))
+    z_scores = [((i[2] - i[0]) / i[1]) for i in zip_list ]
+    plt.scatter(time_points_set, z_scores, c='#175ac6', marker = 'o', s = 70, \
         edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
-
-    #plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
-    plt.ylabel(r'$\left \langle \theta \right \rangle$', fontsize = 12)
-
-    plt.figure(1)
-    plt.subplot(313)
-    plt.errorbar(perm_gens, mean_L, yerr = [lower_ci_L, upper_ci_L], fmt = 'o', alpha = 0.5, \
-        barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
-    plt.scatter(time_points_set, Ls, c='#175ac6', marker = 'o', s = 70, \
-        edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
-
+    plt.ylim(-2.2, 2.2)
+    #plt.axhline(0, color = 'k', lw = 2, ls = '-')
+    #plt.axhline(-1, color = 'dimgrey', lw = 2, ls = '--')
+    #plt.axhline(-2, color = 'dimgrey', lw = 2, ls = ':')
     plt.xlabel("Time (generations)", fontsize = 16)
-    #plt.ylabel("Standardized mean \n centroid distance", fontsize = 14)
-    plt.ylabel(r'$\left \langle  \left | \Delta L \right |\right \rangle$', fontsize = 12)
+
+    plt.ylabel("Standardized mean \n pair-wise Euclidean \n distance, " + r'$   z_{\left \langle   d \right  \rangle}$', fontsize = 14)
+    #plt.ylabel("Standardized mean \n Euclidean distance", fontsize = 14)
 
     fig.tight_layout()
-    fig.savefig(pt.get_path() + '/figs/fig3.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    fig.savefig(pt.get_path() + '/figs/permutation_scatter_good.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
-
-
-
-def plot_permutation(dataset, analysis = 'PCA', alpha = 0.05):
-    if dataset == 'tenaillon':
-        df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
-        df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-        df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
-        if analysis == 'PCA':
-            X = pt.hellinger_transform(df_delta)
-            pca = PCA()
-            df_out = pca.fit_transform(X)
-        elif analysis == 'cMDS':
-            df_delta_bc = np.sqrt(pt.get_scipy_bray_curtis(df_delta.as_matrix()))
-            df_out = pt.cmdscale(df_delta_bc)[0]
-
-        mcd = pt.get_mean_centroid_distance(df_out, k = 3)
-
-        mcd_perm_path = pt.get_path() + '/data/Tenaillon_et_al/permute_' + analysis + '.txt'
-        mcd_perm = pd.read_csv(mcd_perm_path, sep = '\t', header = 'infer', index_col = 0)
-        mcd_perm_list = mcd_perm.MCD.tolist()
-        iterations = len(mcd_perm_list)
-        mcd_perm_list.append(mcd)
-        relative_position = sorted(mcd_perm_list).index(mcd) / iterations
-        if relative_position > 0.5:
-            p_score = 1 - (sorted(mcd_perm_list).index(mcd) / iterations)
-        else:
-            p_score = (sorted(mcd_perm_list).index(mcd) / iterations)
-        print(p_score)
-
-        fig = plt.figure()
-        plt.hist(mcd_perm_list, bins=30, histtype='stepfilled', normed=True, alpha=0.6, color='b')
-        plt.axvline(mcd, color = 'red', lw = 3)
-        plt.xlabel("Mean centroid distance", fontsize = 18)
-        plt.ylabel("Frequency", fontsize = 18)
-        fig.tight_layout()
-        plot_out = pt.get_path() + '/figs/permutation_hist_tenaillon_' + analysis + '.png'
-        fig.savefig(plot_out, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-        plt.close()
-
-    elif dataset == 'good':
-        df_path = pt.get_path() + '/data/Good_et_al/gene_by_pop.txt'
-        df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-        to_exclude = pt.complete_nonmutator_lines()
-        to_exclude.append('p5')
-        df_nonmut = df[df.index.str.contains('|'.join( to_exclude))]
-        # remove columns with all zeros
-        df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
-        df_delta = pt.likelihood_matrix(df_nonmut, 'Good_et_al').get_likelihood_matrix()
-        if analysis == 'PCA':
-            X = pt.hellinger_transform(df_delta)
-            pca = PCA()
-            df_out = pca.fit_transform(X)
-        elif analysis == 'cMDS':
-            df_delta_bc = np.sqrt(pt.get_scipy_bray_curtis(df_delta.as_matrix()))
-            df_out = pt.cmdscale(df_delta_bc)[0]
-
-        time_points = [ int(x.split('_')[1]) for x in df_nonmut.index.values]
-        time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
-
-        df_rndm_delta_out = pd.DataFrame(data=df_out, index=df_delta.index)
-        mcds = []
-        for tp in time_points_set:
-            df_rndm_delta_out_tp = df_rndm_delta_out[df_rndm_delta_out.index.str.contains('_' + str(tp))]
-            mcds.append(pt.get_mean_pairwise_euc_distance(df_rndm_delta_out_tp.as_matrix(), k=3))
-
-        mcd_perm_path = pt.get_path() + '/data/Good_et_al/permute_' + analysis + '.txt'
-        mcd_perm = pd.read_csv(mcd_perm_path, sep = '\t', header = 'infer', index_col = 0)
-        mcd_perm_x = np.sort(list(set(mcd_perm.Generation.tolist())))
-        lower_ci = []
-        upper_ci = []
-        mean_mcds = []
-        std_mcds = []
-        lower_z_ci = []
-        upper_z_ci = []
-        for x in mcd_perm_x:
-            mcd_perm_y = mcd_perm.loc[mcd_perm['Generation'] == x]
-            mcd_perm_y_sort = np.sort(mcd_perm_y.mean_dist.tolist())
-            mean_mcd_perm_y = np.mean(mcd_perm_y_sort)
-            std_mcd_perm_y = np.std(mcd_perm_y_sort)
-            mean_mcds.append(mean_mcd_perm_y)
-            std_mcds.append(std_mcd_perm_y)
-            lower_ci.append(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * alpha)])
-            upper_ci.append(abs(mean_mcd_perm_y - mcd_perm_y_sort[int(len(mcd_perm_y_sort) * (1 - alpha))]))
-            # z-scores
-            mcd_perm_y_sort_z = [ ((i - mean_mcd_perm_y) /  std_mcd_perm_y) for i in mcd_perm_y_sort]
-            lower_z_ci.append(abs(mcd_perm_y_sort_z[int(len(mcd_perm_y_sort_z) * alpha)]))
-            upper_z_ci.append(abs(mcd_perm_y_sort_z[int(len(mcd_perm_y_sort_z) * (1 - alpha))]))
-
-        fig = plt.figure()
-
-        plt.figure(1)
-        plt.subplot(211)
-        plt.errorbar(mcd_perm_x, mean_mcds, yerr = [lower_ci, upper_ci], fmt = 'o', alpha = 0.5, \
-            barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
-        plt.scatter(time_points_set, mcds, c='#175ac6', marker = 'o', s = 70, \
-            edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
-
-        #plt.xlabel("Time (generations)", fontsize = 16)
-        #plt.ylabel("Mean \n Euclidean distance", fontsize = 14)
-        plt.ylabel("Mean pair-wise \n Euclidean \n distance, " + r'$   \left \langle   d \right  \rangle$', fontsize = 14)
-
-
-        plt.figure(1)
-        plt.subplot(212)
-        plt.errorbar(mcd_perm_x, [0] * len(mcd_perm_x), yerr = [lower_z_ci, upper_z_ci], fmt = 'o', alpha = 0.5, \
-            barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
-        # zip mean, std, and measured values to make z-scores
-        zip_list = list(zip(mean_mcds, std_mcds, mcds))
-        z_scores = [((i[2] - i[0]) / i[1]) for i in zip_list ]
-        plt.scatter(time_points_set, z_scores, c='#175ac6', marker = 'o', s = 70, \
-            edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
-        plt.ylim(-2.2, 2.2)
-        #plt.axhline(0, color = 'k', lw = 2, ls = '-')
-        #plt.axhline(-1, color = 'dimgrey', lw = 2, ls = '--')
-        #plt.axhline(-2, color = 'dimgrey', lw = 2, ls = ':')
-        plt.xlabel("Time (generations)", fontsize = 16)
-
-        plt.ylabel("Standardized mean \n pair-wise Euclidean \n distance, " + r'$   z_{\left \langle   d \right  \rangle}$', fontsize = 14)
-        #plt.ylabel("Standardized mean \n Euclidean distance", fontsize = 14)
-
-        fig.tight_layout()
-        fig.savefig(pt.get_path() + '/figs/permutation_scatter_good.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-        plt.close()
-
-    else:
-        print('Dataset argument not accepted')
 
 
 
@@ -930,30 +799,6 @@ def test_pca_regression():
     plt.ylabel("Fitness", fontsize = 18)
     fig.tight_layout()
     plot_path = pt.get_path() + '/figs/tenaillon_pcr.png'
-    fig.savefig(plot_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
-
-
-def regress_muts_fit():
-
-    gene_by_pop_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
-    gene_by_pop = pd.read_csv(gene_by_pop_path, sep = '\t', header = 'infer', index_col = 0)
-    fitness_path = pt.get_path() + '/data/Tenaillon_et_al/fitness.csv'
-    fitness = pd.read_csv(fitness_path, sep = ',', header = 'infer', index_col = 0)
-    # select fitness values from lines that were sequenced
-    # this also orders the observations
-    fitness_subset = fitness.ix[gene_by_pop.index.values]
-    fitness_np = fitness_subset['W (avg)'].values
-    mut_counts = gene_by_pop.sum(axis=1).values
-    #print(len(mut_counts))
-
-    fig = plt.figure()
-    plt.scatter(mut_counts, fitness_np, c='#175ac6', marker = 'o', s = 70, \
-        edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)#, edgecolors='none')
-    plt.xlabel("Mutations", fontsize = 18)
-    plt.ylabel("Fitness", fontsize = 18)
-    fig.tight_layout()
-    plot_path = pt.get_path() + '/figs/regress_muts_fit.png'
     fig.savefig(plot_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
@@ -1100,44 +945,17 @@ def poisson_neutral_fig(alpha = 0.05):
 
 
 
-def get_mean_colors(c1, c2, w1, w2):
-    # c1 and c2 are in hex format
-    # w1 and w2 are the weights
-    c1_list = list(cls.to_rgba('#FF3333'))
-    c2_list = list(cls.to_rgba('#3333FF'))
-    zipped = list(zip(c1_list, c2_list))
-    new_rgba = []
-    for item in zipped:
-        new_rgba.append(math.exp((w1 * math.log(item[0])) + (w2 * math.log(item[1]))))
-    #weight_sum = w1 + w2
-    return cls.rgb2hex(tuple(new_rgba))
 
 
 
-def plot_eigenvalues(explained_variance_ratio_, file_name = 'eigen'):
-    x = range(1, len(explained_variance_ratio_) + 1)
-    if sum(explained_variance_ratio_) != 1:
-        y = explained_variance_ratio_ / sum(explained_variance_ratio_)
-    else:
-        y = explained_variance_ratio_
-    y_bs = get_broken_stick(explained_variance_ratio_)
-
-    fig = plt.figure()
-    plt.plot(x, y_bs, marker='o', linestyle='--', color='r', label='Broken-stick',markeredgewidth=0.0, alpha = 0.6)
-    plt.plot(x, y, marker='o', linestyle=':', color='k', label='Observed', markeredgewidth=0.0, alpha = 0.6)
-    plt.xlabel('PCoA axis', fontsize = 16)
-    plt.ylabel('Percent vaiance explained', fontsize = 16)
-
-    fig.tight_layout()
-    out_path = get_path() + '/figs/' + file_name + '.png'
-    fig.savefig(out_path, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
 
 
 
 #poisson_neutral_fig()
+ltee_convergence()
 
-hist_tenaillon()
+
+#hist_tenaillon()
 #tenaillon_p_N()
 #poisson_power_G()
 #poisson_power_N()

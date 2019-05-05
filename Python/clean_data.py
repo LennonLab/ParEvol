@@ -295,7 +295,6 @@ class wannier_et_al:
                         gene_treat_dict[sample_no_FIR] = {}
                     for j, sample_no_FIR in enumerate(samples_no_FIR):
                         pop_position_dict[j] = sample_no_FIR
-                    print(samples)
 
                 # remove noncoding and mutations in overlaping genes
                 if ('noncoding' in items[4]) or ('pseudogene' in items[4]) \
@@ -339,7 +338,7 @@ class likelihood_matrix_array:
 
     def get_gene_lengths(self, **keyword_parameters):
         if self.dataset == 'Good_et_al':
-            conv_dict = cd.good_et_al().parse_convergence_matrix(mydir + "/data/Good_et_al/gene_convergence_matrix.txt")
+            conv_dict = good_et_al().parse_convergence_matrix(mydir + "/data/Good_et_al/gene_convergence_matrix.txt")
             length_dict = {}
             if ('gene_list' in keyword_parameters):
                 for gene_name in keyword_parameters['gene_list']:
@@ -362,7 +361,6 @@ class likelihood_matrix_array:
         genes_lengths = self.get_gene_lengths(gene_list = self.gene_list)
         #L_mean = np.mean(list(genes_lengths.values()))
         L_i = np.asarray(list(genes_lengths.values()))
-        #N_genes = len(self.gene_list)
         n_genes = np.count_nonzero(self.array, axis=1)
         n_tot = np.sum(self.array, axis=1)
         m_mean = np.true_divide(n_tot, n_genes)
@@ -370,7 +368,8 @@ class likelihood_matrix_array:
         length_matrix = L_i*array_bin
         rel_length_matrix = length_matrix /np.true_divide(length_matrix.sum(1),(length_matrix!=0).sum(1))[:, np.newaxis]
         # length divided by mean length, so take the inverse
-        rel_length_matrix = (1 / rel_length_matrix)
+        with np.errstate(divide='ignore'):
+            rel_length_matrix = (1 / rel_length_matrix)
         rel_length_matrix[rel_length_matrix == np.inf] = 0
 
         m_matrix = self.array * rel_length_matrix
@@ -379,7 +378,7 @@ class likelihood_matrix_array:
         return r_matrix
 
 
-wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).clean_data()
+#wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).clean_data()
 #good_et_al().reformat_convergence_matrix(mut_type = 'P')
 #good_et_al().reformat_convergence_matrix(mut_type = 'F')
 #tenaillon_et_al().pop_by_gene_tenaillon()

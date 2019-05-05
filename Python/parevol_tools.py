@@ -11,11 +11,25 @@ import scipy.stats as stats
 import networkx as nx
 from asa159 import rcont2
 from copy import copy
+import matplotlib.colors as cls
 
 #np.random.seed(123456789)
 
 def get_alpha():
     return 0.05
+
+
+def get_mean_colors(c1, c2, w1, w2):
+    # c1 and c2 are in hex format
+    # w1 and w2 are the weights
+    c1_list = list(cls.to_rgba('#FF3333'))
+    c2_list = list(cls.to_rgba('#3333FF'))
+    zipped = list(zip(c1_list, c2_list))
+    new_rgba = []
+    for item in zipped:
+        new_rgba.append(math.exp((w1 * math.log(item[0])) + (w2 * math.log(item[1]))))
+    #weight_sum = w1 + w2
+    return cls.rgb2hex(tuple(new_rgba))
 
 
 
