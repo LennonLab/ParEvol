@@ -205,6 +205,7 @@ def run_cov_dist_sims_unequal(
 
 
 
+
 def permute_ltee(k = 5):
     df_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Good_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
@@ -279,8 +280,8 @@ def rndm_sample_tenaillon(iter1=1000, iter2=10000):
     n_rows = list(range(df_np.shape[0]))
     df_out=open(os.path.expanduser("~/GitHub/ParEvol") + '/data/Tenaillon_et_al/dist_sample_size.txt', 'w')
     df_out.write('\t'.join(['N', 'G', 'Iteration', 'dist_percent', 'z_score']) + '\n')
-    Ns = list(range(4, 40, 2))
-    #Ns = [50]
+    #Ns = list(range(4, 40 +2, 2))
+    Ns = [40]
     pca = PCA()
     for N in Ns:
         for i in range(iter1):
@@ -425,7 +426,7 @@ def gene_svd_tenaillon_sample_size(iter1 = 1000, iter2=10000, k =3):
     df_out.close()
 
 
-rndm_sample_tenaillon()
+#rndm_sample_tenaillon()
 #rndm_sample_tenaillon()
 #gene_svd_tenaillon()
 #gene_svd_tenaillon_sample_size()

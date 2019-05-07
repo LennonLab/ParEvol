@@ -762,6 +762,7 @@ def tenaillon_fitness_hist():
     plt.close()
 
 
+
 def test_pca_regression():
     gene_by_pop_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
     gene_by_pop = pd.read_csv(gene_by_pop_path, sep = '\t', header = 'infer', index_col = 0)
@@ -947,12 +948,47 @@ def poisson_neutral_fig(alpha = 0.05):
 
 
 
+def wannier_hist(iter=10000):
+    dir = os.path.expanduser("~/GitHub/ParEvol")
+    df1 = pd.read_csv(dir + '/data/Wannier_et_al/C321.deltaA_mutation_table_clean.txt', sep='\t', index_col=0)
+    df2 = pd.read_csv(dir + '/data/Wannier_et_al/C321_mutation_table_clean.txt', sep='\t', index_col=0)
+    df = df1.append(df2, sort=False)
+    df = df.fillna(0)
+    df_np = df.values
+    gene_names = df.columns.values
+    N1 = df1.shape[0]
+    N2 = df2.shape[0]
+    df_np_delta = cd.likelihood_matrix_array(df_np, gene_names, 'Wannier_et_al').get_likelihood_matrix()
+    F2 = pt.get_F_2(df_np_delta, N1, N2)[0]
+    F2_null = []
+    for i in range(iter):
+        if i %1000 ==0:
+            print(i)
+        df_np_i = pt.get_random_matrix(df_np)
+        np.seterr(divide='ignore')
+        df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names, 'Wannier_et_al').get_likelihood_matrix()
+        F2_iter = pt.get_F_2(df_np_i_delta, N1, N2)[0]
+        F2_null.append(F2_iter)
+
+    fig = plt.figure()
+    #plt.hist(F2_null, bins=30, weights=np.zeros_like(F2_null) + 1. / len(F2_null), alpha=0.8, color = '#175ac6')
+    print(max(F2_null))
+    plt.hist(F2_null, bins=30, alpha=0.8, color = '#175ac6')
+    plt.axvline(F2, color = 'red', lw = 3)
+    plt.xlabel(r'$ F_{2}$', fontsize = 20)
+    plt.ylabel("Frequency", fontsize = 12)
+    fig.tight_layout()
+    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/test_hist_F.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
 
 
 
+
+
+wannier_hist()
 
 #poisson_neutral_fig()
-ltee_convergence()
+#ltee_convergence()
 
 
 #hist_tenaillon()
