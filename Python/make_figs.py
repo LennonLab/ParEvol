@@ -12,6 +12,8 @@ from scipy import stats
 
 from sklearn.decomposition import PCA, SparsePCA
 
+mydir = os.path.expanduser("~/GitHub/ParEvol/")
+
 
 def gene_space_fig():
     fig = plt.figure()
@@ -806,12 +808,12 @@ def test_pca_regression():
 
 
 def power_figs(alpha = 0.05):
-    df = pd.read_csv(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
+    df = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
     fig = plt.figure()
     covs = [0.05,0.1,0.15,0.2]
-    measures = ['euc_percent', 'eig_percent', 'mcd_percent_k1', 'mcd_percent_k3']
-    colors = ['powderblue', 'skyblue', 'royalblue', 'blue', 'navy']
-    labels = ['euclidean distance', 'eigenanalysis', 'mcd 1', 'mcd 1-3']
+    measures = ['euc_percent', 'mcd_percent_k3', 'mcd_percent_k1', 'eig_percent']
+    colors = ['midnightblue', 'blue',  'royalblue', 'skyblue']
+    labels = ['Pairwise distance, ' + r'$k=1-3$',  'Centroid distance, ' + r'$k=1-3$', 'Centroid distance' + r'$k=1$', 'Largest eigenvalue']
 
     for i, measure in enumerate(measures):
         #df_i = df[ (df['Cov'] == cov) &  (df['Cov'] == cov)]
@@ -825,13 +827,14 @@ def power_figs(alpha = 0.05):
         print(powers)
         plt.plot(np.asarray(covs), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=labels[i])
     #plt.title('Covariance', fontsize = 18)
-    plt.legend(loc='lower right')
-    plt.xlabel('Covariance', fontsize = 16)
+    plt.legend(loc='upper left')
+    plt.xlabel('Covariance between genes', fontsize = 16)
     plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
     #plt.xlim(-0.02, 1.02)
     #plt.ylim(-0.02, 1.02)
+    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
     plt.tight_layout()
-    fig_name = pt.get_path() + '/figs/power_method.png'
+    fig_name = mydir + '/figs/power_method.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
@@ -839,17 +842,17 @@ def power_figs(alpha = 0.05):
 
 def tenaillon_p_N(alpha = 0.05, bootstraps=10000, bootstrap_sample = 100):
     fig = plt.figure()
-    df = pd.read_csv(pt.get_path() + '/data/Tenaillon_et_al/sample_size_sim.txt', sep='\t')
+    df = pd.read_csv(mydir + 'data/Tenaillon_et_al/dist_sample_size.txt', sep='\t')
     Ns = list(set(df.N.values))
     for N in Ns:
         print(N)
         N_dist = df.loc[df['N'] == N].dist_percent.values
         bootstrap_power = []
         for bootstrap in range(bootstraps):
-            p_sig = [p_i for p_i in np.random.choice(N_dist, size = bootstrap_sample) if p_i >= (1-alpha)]
+            p_sig = [p_i for p_i in np.random.choice(N_dist, size = bootstrap_sample) if p_i < alpha]
             bootstrap_power.append(len(p_sig) / bootstrap_sample)
         bootstrap_power = np.sort(bootstrap_power)
-        N_power = len([p_i for p_i in N_dist if p_i >= (1- alpha)]) / len(N_dist)
+        N_power = len([p_i for p_i in N_dist if p_i <  alpha]) / len(N_dist)
         lower_ci = bootstrap_power[int(len(bootstrap_power) * 0.05)]
         upper_ci = bootstrap_power[  len(bootstrap_power) -  int(len(bootstrap_power) * 0.05)]
         plt.errorbar(N, N_power, yerr = [np.asarray([N_power-upper_ci]), np.asarray([lower_ci - N_power])], fmt = 'o', alpha = 0.5, \
@@ -857,10 +860,10 @@ def tenaillon_p_N(alpha = 0.05, bootstraps=10000, bootstrap_sample = 100):
         plt.scatter(N, N_power, c='#175ac6', marker = 'o', s = 70, \
             edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)
     plt.xlabel('Number of replicate populations', fontsize = 16)
-    plt.ylabel('Empirical power', fontsize = 16)
+    plt.ylabel('Bootstrapped statistical power', fontsize = 16)
     plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
     plt.tight_layout()
-    fig_name = pt.get_path() + '/figs/tenaillon_N.png'
+    fig_name = mydir + 'figs/tenaillon_N.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
@@ -959,20 +962,28 @@ def wannier_hist(iter=10000):
     N1 = df1.shape[0]
     N2 = df2.shape[0]
     df_np_delta = cd.likelihood_matrix_array(df_np, gene_names, 'Wannier_et_al').get_likelihood_matrix()
-    F2 = pt.get_F_2(df_np_delta, N1, N2)[0]
+    F2_all = pt.get_F_2(df_np_delta, N1, N2)
+    print(F2_all)
+    F2 = F2_all[0]
+    V1 = F2_all[1]
+    V2 = F2_all[2]
+
     F2_null = []
+    V1_null = []
+    V2_null = []
     for i in range(iter):
         if i %1000 ==0:
             print(i)
         df_np_i = pt.get_random_matrix(df_np)
         np.seterr(divide='ignore')
         df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names, 'Wannier_et_al').get_likelihood_matrix()
-        F2_iter = pt.get_F_2(df_np_i_delta, N1, N2)[0]
-        F2_null.append(F2_iter)
+        F2_all_iter = pt.get_F_2(df_np_i_delta, N1, N2)
+        F2_null.append(F2_all_iter[0])
+        V1_null.append(F2_all_iter[1])
+        V2_null.append(F2_all_iter[2])
 
     fig = plt.figure()
     #plt.hist(F2_null, bins=30, weights=np.zeros_like(F2_null) + 1. / len(F2_null), alpha=0.8, color = '#175ac6')
-    print(max(F2_null))
     plt.hist(F2_null, bins=30, alpha=0.8, color = '#175ac6')
     plt.axvline(F2, color = 'red', lw = 3)
     plt.xlabel(r'$ F_{2}$', fontsize = 20)
@@ -982,10 +993,31 @@ def wannier_hist(iter=10000):
     plt.close()
 
 
+    fig = plt.figure()
+    plt.hist(V1_null, bins=30, alpha=0.8, color = '#175ac6')
+    plt.axvline(V1, color = 'red', lw = 3)
+    plt.xlabel(r'$ V_{1}$', fontsize = 20)
+    plt.ylabel("Frequency", fontsize = 12)
+    fig.tight_layout()
+    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/test_hist_F_V1.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+    fig = plt.figure()
+    plt.hist(V2_null, bins=30, alpha=0.8, color = '#175ac6')
+    #print(V2_null)
+    plt.axvline(V2, color = 'red', lw = 3)
+    plt.xlabel(r'$ V_{2}$', fontsize = 20)
+    plt.ylabel("Frequency", fontsize = 12)
+    fig.tight_layout()
+    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/test_hist_F_V2.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
 
 
 
-wannier_hist()
+
+
+
+#wannier_hist()
 
 #poisson_neutral_fig()
 #ltee_convergence()
@@ -1003,7 +1035,7 @@ wannier_hist()
 #tenaillon_fitness_hist()
 
 #test_pca_regression()
-
+#power_figs()
 #intro_fig()
 #test_pca_regression()
 #gene_space_fig()

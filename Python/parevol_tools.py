@@ -267,7 +267,10 @@ def get_random_matrix(c):
 
 
 
-
+def get_L_stat(e_max_value, n, p):
+    mu = (np.sqrt(n-1) + np.sqrt(p)) ** 2
+    sigma = (np.sqrt(n-1) + np.sqrt(p)) * (((1/np.sqrt(n-1)) + (1/np.sqrt(p))) ** (1/3))
+    return (e_max_value - mu) / sigma
 
 
 
