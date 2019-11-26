@@ -4,7 +4,7 @@ from itertools import combinations
 import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
-from sklearn.decomposition import PCA, SparsePCA
+from sklearn.decomposition import PCA
 from scipy.linalg import block_diag
 from scipy.special import comb
 import scipy.stats as stats
@@ -12,11 +12,63 @@ import networkx as nx
 from asa159 import rcont2
 from copy import copy
 import matplotlib.colors as cls
+from scipy import linalg as LA
 
 #np.random.seed(123456789)
 
 def get_alpha():
     return 0.05
+
+def get_mean_center(array):
+    return array - np.mean(array, axis=0)
+
+
+def jaccard_similarity(list1, list2):
+    intersection = len(list(set(list1).intersection(list2)))
+    union = (len(list1) + len(list2)) - intersection
+    return float(intersection) / union
+
+
+def get_mean_pairwise_euc_distance(array, k = 3):
+    #X = array[0:k,:]
+    X = array[:,:k]
+    row_sum = np.sum( euclidean_distances(X, X), axis =1)
+    return sum(row_sum) / ( len(row_sum) * (len(row_sum) -1)  )
+
+
+def pca_np(x):
+    # mean center matrix
+    x -= np.mean(x, axis = 0)
+    #print(x)
+    cov = np.cov(x, rowvar = False)
+    evals , evecs = LA.eigh(cov)
+
+    idx = np.argsort(evals)[::-1]
+    evecs = evecs[:,idx]
+    evals = evals[idx]
+
+    a = np.dot(x, evecs)
+
+
+    return evals, a
+
+    #X = obs_matrix
+    #X = X[:, (X != 0).sum(axis=0) > 1]
+    #n = X.shape[0]
+    #p = X.shape[1]
+    # covariance matrix
+    # center observations on the mean
+    #C = np.identity(n) - (1/n) * np.full((n,n), 1)
+    #X_C = np.dot(C, X)
+    #S = np.dot(X_C, X_C.T) / (n-1)
+
+    # Eigen decomposition
+    #e_vals, e_vecs = np.linalg.eigh(S)
+    #idx = np.argsort(e_vals)[::-1]
+    #e_vecs = e_vecs[:,idx]
+    #e_vals = e_vals[idx]
+
+    # each column is an eigenvector
 
 
 
@@ -155,7 +207,9 @@ def comb_n_muts_k_genes(k, gene_sizes):
 
 
 def complete_nonmutator_lines():
-    return ['m5','m6','p1','p2','p4','p5']
+    # don't count p5
+
+    return ['m5','m6','p1','p2','p4', 'p5']
 
 
 def nonmutator_shapes():
@@ -176,32 +230,22 @@ def get_mean_centroid_distance(array, k = 3):
     #return np.mean(centroid_distances)
 
 
-
-def get_mean_pairwise_euc_distance(array, k = 3):
-    X = array[:,0:k]
-    row_sum = np.sum( euclidean_distances(X, X), axis =1)
-    return sum(row_sum) / ( len(row_sum) * (len(row_sum) -1)  )
-
-
-
-
-
-
-
-
 def hellinger_transform(array):
     return np.sqrt((array.T/array.sum(axis=1)).T )
     #df = pd.read_csv(mydir + 'data/Tenaillon_et_al/gene_by_pop_delta.txt', sep = '\t', header = 'infer', index_col = 0)
     #return(df.div(df.sum(axis=1), axis=0).applymap(np.sqrt))
 
 
-
-
-
-def get_random_matrix(c):
+def get_random_matrix(c_in):
     #```GNU Lesser General Public License v3.0 code from https://github.com/maclandrol/FisherExact```
     # f2py -c -m asa159 asa159.f90
     #c = array
+    # remove empty columns
+    empty_cols = (np.where(~c_in.any(axis=0))[0])
+    empty_rows = (np.where(~c_in.any(axis=1))[0])
+    c = np.delete(c_in, empty_cols, axis=1)
+    c = np.delete(c, empty_rows, axis=0)
+
     key = np.array([False], dtype=bool)
     ierror = np.array([0], dtype=np.int32)
     sr, sc = c.sum(axis=1).astype(np.int32), c.sum(axis=0).astype(np.int32)
@@ -261,9 +305,17 @@ def get_random_matrix(c):
         raise ValueError(
             "Error in rcont2 (fortran) : Limit on the table sum (%d) exceded, please increase workspace !" % DFAULT_MAX_TOT)
     else:
-        return np.reshape(tmp_observed, (nr,nc))
 
+        #for empty_column in empty_c:
+        #    np.insert(tmp_observed, empty_column, nr, axis=1)
+        rndm_matrix = np.reshape(tmp_observed, (nr,nc))
+        for empty_column in empty_cols:
+            rndm_matrix = np.insert(rndm_matrix, empty_column, 0, axis=1)
+        for empty_row in empty_rows:
+            rndm_matrix = np.insert(rndm_matrix, empty_row, 0, axis=0)
 
+        return rndm_matrix
+        #return np.reshape(tmp_observed, (nr,nc))
 
 
 
@@ -440,15 +492,12 @@ def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, rho2=None, count_threshold 
 
 
 
-def get_mean_center(array):
-    return array - np.mean(array, axis=0)
 
 
 def matrix_vs_null_one_treat(count_matrix, iter):
     count_matrix_rel = count_matrix/count_matrix.sum(axis=1)[:,None]
     X = get_mean_center(count_matrix_rel)
     pca = PCA()
-    #pca = SparsePCA(normalize_components=True)
     pca_fit = pca.fit_transform(X)
     euc_dist = get_mean_pairwise_euc_distance(pca_fit)
     euc_dists = []

@@ -76,12 +76,15 @@ def number_matrices(matrix_array):
         M_term1_exp4 = ((1- (3*(mu_hat_2**2)) + (2*mu_hat_3) ) * (1- (3*(nu_hat_2**2)) + (2*nu_hat_3)) ) / (12*S)
         M = M_term1 * int(math.exp( M_term1_exp1 - M_term1_exp2 - M_term1_exp3 +M_term1_exp4))
 
-        #print()
+        print(M)
         print(str(M)[0] + '.' + str(M)[1:3] + '*10**' + str(len(str(M))-1) )
 
 
 
-df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
-df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+#df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
+#df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+
 
 number_matrices( df.values)
+
+#number_matrices( np.asarray([[2,0],[1,1],[3,2]] ))
