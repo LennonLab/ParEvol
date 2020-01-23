@@ -271,7 +271,7 @@ class likelihood_matrix_array:
 
 
 
-def rndm_sample_tenaillon(N, k_eval=3, iter1=10000, iter2=10000, sample_bs = 100, iter_bs=10000):
+def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100, iter_bs=10000):
     df_path = mydir + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_np = df.values

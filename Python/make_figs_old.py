@@ -1,4 +1,4 @@
-from __future__ import division
+ffrom __future__ import division
 import math, os, re
 import numpy as np
 import pandas as pd
@@ -300,66 +300,6 @@ def tenaillon_fitness_hist():
 
 
 
-
-def power_figs(alpha = 0.05):
-    df = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_ev.txt', sep='\t')
-    fig = plt.figure()
-    covs = [0.05,0.1,0.15,0.2]
-    measures = ['euc_percent', 'mcd_percent_k3', 'mcd_percent_k1', 'eig_percent']
-    colors = ['midnightblue', 'blue',  'royalblue', 'skyblue']
-    labels = ['Pairwise distance, ' + r'$k=1-3$',  'Centroid distance, ' + r'$k=1-3$', 'Centroid distance' + r'$k=1$', 'Largest eigenvalue']
-
-    for i, measure in enumerate(measures):
-        #df_i = df[ (df['Cov'] == cov) &  (df['Cov'] == cov)]
-        powers = []
-        for j, cov in enumerate(covs):
-            df_cov = df[ df['Cov'] == cov ]
-            p = df_cov[measure].values
-            #p = df_i[ (df_i['N_genes_sample'] == gene_shuffle) ].p.tolist()
-            p_sig = [p_i for p_i in p if p_i >= (1-  alpha)]
-            powers.append(len(p_sig) / len(p))
-        print(powers)
-        plt.plot(np.asarray(covs), np.asarray(powers), linestyle='--', marker='o', color=colors[i], label=labels[i])
-    #plt.title('Covariance', fontsize = 18)
-    plt.legend(loc='upper left')
-    plt.xlabel('Covariance between genes', fontsize = 16)
-    plt.ylabel(r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 16)
-    #plt.xlim(-0.02, 1.02)
-    #plt.ylim(-0.02, 1.02)
-    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
-    plt.tight_layout()
-    fig_name = mydir + '/figs/power_method.png'
-    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
-
-
-
-def tenaillon_p_N(alpha = 0.05, bootstraps=10000, bootstrap_sample = 100):
-    fig = plt.figure()
-    df = pd.read_csv(mydir + 'data/Tenaillon_et_al/dist_sample_size.txt', sep='\t')
-    Ns = list(set(df.N.values))
-    for N in Ns:
-        print(N)
-        N_dist = df.loc[df['N'] == N].dist_percent.values
-        bootstrap_power = []
-        for bootstrap in range(bootstraps):
-            p_sig = [p_i for p_i in np.random.choice(N_dist, size = bootstrap_sample) if p_i < alpha]
-            bootstrap_power.append(len(p_sig) / bootstrap_sample)
-        bootstrap_power = np.sort(bootstrap_power)
-        N_power = len([p_i for p_i in N_dist if p_i <  alpha]) / len(N_dist)
-        lower_ci = bootstrap_power[int(len(bootstrap_power) * 0.05)]
-        upper_ci = bootstrap_power[  len(bootstrap_power) -  int(len(bootstrap_power) * 0.05)]
-        plt.errorbar(N, N_power, yerr = [np.asarray([N_power-upper_ci]), np.asarray([lower_ci - N_power])], fmt = 'o', alpha = 0.5, \
-            barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
-        plt.scatter(N, N_power, c='#175ac6', marker = 'o', s = 70, \
-            edgecolors='#244162', linewidth = 0.6, alpha = 0.5, zorder=2)
-    plt.xlabel('Number of replicate populations', fontsize = 16)
-    plt.ylabel('Bootstrapped statistical power', fontsize = 16)
-    plt.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
-    plt.tight_layout()
-    fig_name = mydir + 'figs/tenaillon_N.png'
-    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
 
 
 def poisson_power_N(alpha = 0.05):

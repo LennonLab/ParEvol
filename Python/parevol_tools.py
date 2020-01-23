@@ -5,19 +5,230 @@ import pandas as pd
 import numpy as np
 from sklearn.metrics.pairwise import euclidean_distances
 from sklearn.decomposition import PCA
+
 from scipy.linalg import block_diag
 from scipy.special import comb
 import scipy.stats as stats
+from scipy.special import gammaln
+from scipy import linalg as LA
+
 import networkx as nx
 from asa159 import rcont2
 from copy import copy
 import matplotlib.colors as cls
-from scipy import linalg as LA
 
 #np.random.seed(123456789)
 
 def get_alpha():
     return 0.05
+
+
+
+# code from https://github.com/lubeme/Scale-Free-Random-Walks-Networks
+def random_walks_powerlaw_cluster_graph(m,n,cc,seed=None):
+    """Return random graph using Herrera-Zufiria random walks model.
+
+    A Scale-free graph of n nodes is grown by attaching new nodes
+    each with m edges that are connected to existing by performing
+    random walks,using only local information of the network.
+    Parameters
+    ----------
+    n : int
+        Number of nodes
+    m : int
+        Number of edges to attach from a new node to existing nodes
+    cc: int
+        clustering control parameter, from 0 to 100. Increasing control
+        parameter implies increasing the clustering of the graph
+    seed : int, optional
+        Seed for random number generator (default=None).
+    Returns
+    -------
+    G : Graph
+
+    Notes
+    -----
+    The initialization is a circular graph with an odd number of nodes.
+    For small values of m initial graph has at least 11 nodes.
+    References
+    ----------
+    .. [1] Herrera, C.; Zufiria, P.J.; , "Generating scale-free networks
+    with adjustable clustering coefficient via random walks,"
+    Network Science Workshop (NSW),
+    2011 IEEE , vol., no., pp.167-172, 22-24 June 2011
+    """
+
+
+    if m < 1 or  m >=n or cc < 0 or cc > 100:
+        raise nx.NetworkXError(\
+            "The network must have m>=1, m<n and "
+            "cc between 0 and 100. m=%d,n=%d cc=%d"%(m,n,cc))
+
+    if seed is not None:
+        random.seed(seed)
+
+    nCero= max(11,m)
+    if nCero%2==0:
+        nCero+=1
+    #initialise graph
+    G= nx.generators.classic.cycle_graph(nCero)
+    G.name="Powerlaw-Cluster Random-Walk Graph"
+
+    #list of probabilities 'pi' associated to each node
+    #representing a genetic factor
+    p=stats.bernoulli.rvs(cc/float(100),size=n)
+
+    #main loop of the algorithm
+    for j in range(nCero,n):
+        #Choose Random node
+        vs =random.randrange(0,G.number_of_nodes())
+        #random walk of length>1 beginning on vs
+        l = 7
+        ve=vs
+        for i in range(l):
+            neighborsVe = G.neighbors(ve)
+            neighborsVe_list = list(neighborsVe)
+            # random.choice(numberList)
+            #ve= list(neighborsVe)[random.randrange(0,len(list(neighborsVe)))]
+            ve = random.choice(neighborsVe_list)
+            #len(list(somegraph.neighbors(somenode)))
+
+
+        markedVertices=[]
+        #mark ve
+        markedVertices.append(ve)
+        vl=ve
+        #Mark m nodes
+        for i in range(m-1):
+            #Random walk of l = [1 , 2] depending on the
+            #genetic factor of the node vl
+            l =2 - p[vl]
+            vll=vl
+            #Random Walk starting on vl, avoiding already marked vertices
+            while ((vll in markedVertices)):
+                print(vll)
+                for k in range(l):
+                    neighborsVl = G.neighbors(vll)
+                    neighborsVl_list = list(neighborsVl)
+                    #vll= neighborsVl[random.randrange(0,len(neighborsVl))]
+                    vll = random.choice(neighborsVl_list)
+            vl=vll
+            #mark vl
+            markedVertices.append(vl)
+        #Add the new node
+        G.add_node(j)
+        #Assign the node a pi
+        #Add the m marked neighbors to vl
+        for i in range(m):
+            G.add_edge(j,markedVertices[i])
+    return G
+
+
+
+# calculate_poisson_log_survival function is modified from GitHub repo
+# benjaminhgood/LTEE-metagenomic under GPL v2
+def calculate_poisson_log_survival(ns, expected_ns):
+    # change threshold from 1e-20 to 1e-60 so that genes w/ most mutations can pass
+
+    survivals = stats.poisson.sf(ns-0.1, expected_ns)
+
+    logsurvivals = np.zeros_like(survivals)
+    logsurvivals[survivals>1e-60] = -np.log(survivals[survivals>1e-60])
+    logsurvivals[survivals<=1e-60] = (-ns*np.log(ns/expected_ns+(ns==0))+ns-expected_ns)[survivals<=1e-60]
+
+    return logsurvivals
+
+
+# calculate_parallelism_logpvalues function is modified from GitHub repo
+# benjaminhgood/LTEE-metagenomic under GPL v2
+def calculate_parallelism_logpvalues(gene_statistics):
+
+    gene_names = []
+    Ls = []
+    ns = []
+    expected_ns = []
+
+    for gene_name in gene_statistics.keys():
+        gene_names.append(gene_name)
+        ns.append(gene_statistics[gene_name]['observed'])
+        expected_ns.append(gene_statistics[gene_name]['expected'])
+
+    ns = np.array(ns)
+    expected_ns = np.array(expected_ns)
+
+
+    logpvalues = calculate_poisson_log_survival(ns, expected_ns)
+
+    return {gene_name: logp for gene_name, logp in zip(gene_names, logpvalues)}
+
+
+# NullGeneLogpSurvivalFunction class is modified from GitHub repo
+# benjaminhgood/LTEE-metagenomic under GPL v2
+class NullGeneLogpSurvivalFunction(object):
+    # Null distribution of -log p for each gene
+
+    def __init__(self, Ls, ntot,nmin=0):
+        self.ntot = ntot
+        self.Ls = np.array(Ls)*1.0
+        self.Lavg = self.Ls.mean()
+        self.ps = self.Ls/self.Ls.sum()
+        self.expected_ns = self.ntot*self.ps
+        self.nmin = nmin
+
+    @classmethod
+    def from_parallelism_statistics(cls, gene_parallelism_statistics,nmin=0):
+
+        # calculate Ls
+        Ls = []
+        ntot = 0
+        for gene_name in gene_parallelism_statistics.keys():
+            Ls.append(gene_parallelism_statistics[gene_name]['length'])
+            ntot += gene_parallelism_statistics[gene_name]['observed']
+
+        return cls(Ls, ntot, nmin)
+
+    def __call__(self, mlogps):
+
+        # Do sum by hand
+        ns = np.arange(0,400)*1.0
+
+        logpvalues = calculate_poisson_log_survival(ns[None,:], self.expected_ns[:,None])
+
+        logprobabilities = ns[None,:]*np.log(self.expected_ns)[:,None]-gammaln(ns+1)[None,:]-self.expected_ns[:,None]
+        probabilities = np.exp(logprobabilities)
+        survivals = np.array([ ((logpvalues>=mlogp)*(ns[None,:]>=self.nmin)*probabilities).sum() for mlogp in mlogps])
+        return survivals
+
+
+
+# calculate_unnormalized_survival_from_vector function is modified from GitHub repo
+# benjaminhgood/LTEE-metagenomic under GPL v2
+def calculate_unnormalized_survival_from_vector(xs, min_x=None, max_x=None, min_p=1e-10):
+    if min_x==None:
+        min_x = xs.min()-1
+
+    if max_x==None:
+        max_x = xs.max()+1
+
+    unique_xs = set(xs)
+    unique_xs.add(min_x)
+    unique_xs.add(max_x)
+
+    xvalues = []
+    num_observations = []
+
+    for x in sorted(unique_xs):
+        xvalues.append(x)
+        num_observations.append( (xs>=x).sum() )
+
+    # So that we can plot CDF, SF on log scale
+    num_observations[0] -= min_p
+    num_observations[1] -= min_p
+    num_observations[-1] += min_p
+
+    return np.array(xvalues), np.array(num_observations)
+
+
 
 def get_mean_center(array):
     return array - np.mean(array, axis=0)
@@ -34,6 +245,7 @@ def get_mean_pairwise_euc_distance(array, k = 3):
     X = array[:,:k]
     row_sum = np.sum( euclidean_distances(X, X), axis =1)
     return sum(row_sum) / ( len(row_sum) * (len(row_sum) -1)  )
+
 
 
 def pca_np(x):
@@ -123,43 +335,54 @@ def get_mean_colors(c1, c2, w1, w2):
 
 
 
-def get_ba_cov_matrix(n_genes, cov, cov2 = None, prop=False, m=2, get_node_edge_sum=False, rho=None, rho2=None):
+def get_ba_cov_matrix(n_genes, cov, p=None, m=2, get_node_edge_sum=False):#,prop=False,, rho=None  cov2 = None,rho2=None):
     '''Based off of Gershgorin circle theorem, we can expect
     that the code will eventually produce mostly matrices
     that aren't positive definite as the covariance value
     increases and/or more edges added to incidence matrix'''
     while True:
-        if rho == None:
+        #if rho == None:
+        if p == None:
             ntwk = nx.barabasi_albert_graph(n_genes, m)
-            ntwk_np = nx.to_numpy_matrix(ntwk)
-        else:
-            ntwk_np, rho_estimate = get_correlated_rndm_ntwrk(n_genes, m=m, rho=rho, count_threshold = 10000)
 
-        if cov2 == None:
-            C = ntwk_np * cov
         else:
-            C = ntwk_np * cov
-            C2 = ntwk_np * cov2
-            np.fill_diagonal(C2, 1)
+            #ntwk = random_walks_powerlaw_cluster_graph(n=n_genes,m=m,cc=cc,seed=None)
+            # p = Probability of adding a triangle after adding a random edge
+            ntwk = nx.powerlaw_cluster_graph(n=n_genes,m=m,p=p)
+
+
+        ntwk_np = nx.to_numpy_matrix(ntwk)
+        #else:
+        #    ntwk_np, rho_estimate = get_correlated_rndm_ntwrk(n_genes, m=m, rho=rho, count_threshold = 10000)
+
+        #if cov2 == None:
+        C = ntwk_np * cov
+        #else:
+        #    C = ntwk_np * cov
+        #    C2 = ntwk_np * cov2
+        #    np.fill_diagonal(C2, 1)
 
         np.fill_diagonal(C, 1)
 
-        if prop == True and cov2 == None:
-            diag_C = np.tril(C, k =-1)
-            i,j = np.nonzero(diag_C)
-            ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
-            C[np.concatenate((i[ix],j[ix]), axis=None), np.concatenate((j[ix],i[ix]), axis=None)] = -1*cov
+        #if prop == True and cov2 == None:
+        #    diag_C = np.tril(C, k =-1)
+        #    i,j = np.nonzero(diag_C)
+        #    ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
+        #    C[np.concatenate((i[ix],j[ix]), axis=None), np.concatenate((j[ix],i[ix]), axis=None)] = -1*cov
 
-        if cov2 == None:
-            if np.all(np.linalg.eigvals(C) > 0) == True:
-                if rho == None:
-                    return C
-                else:
-                    return C, rho_estimate
+        #if cov2 == None:
+        if np.all(np.linalg.eigvals(C) > 0) == True:
+            if p==None:
+                return C
+            else:
+                return C, nx.average_clustering(ntwk)
+            #else:
+            #    return C, rho_estimate
 
-        else:
-            if (np.all(np.linalg.eigvals(C) > 0) == True) and (np.all(np.linalg.eigvals(C2) > 0) == True):
-                return C, C2
+        #else:
+        #    return C
+        #    if (np.all(np.linalg.eigvals(C) > 0) == True) and (np.all(np.linalg.eigvals(C2) > 0) == True):
+        #        return C, C2
 
 
 
@@ -178,8 +401,8 @@ def get_pois_sample(lambda_, u):
     return x
 
 
-def get_count_pop(lambdas, C):
-    mult_norm = np.random.multivariate_normal(np.asarray([0]* len(lambdas)), C)#, tol=1e-6)
+def get_count_pop(lambdas, cov):
+    mult_norm = np.random.multivariate_normal(np.asarray([0]* len(lambdas)), cov)#, tol=1e-6)
     mult_norm_cdf = stats.norm.cdf(mult_norm)
     counts = [ get_pois_sample(lambdas[i], mult_norm_cdf[i]) for i in range(len(lambdas))  ]
 
@@ -326,7 +549,7 @@ def get_L_stat(e_max_value, n, p):
 
 
 
-def get_x_stat(e_values):
+def get_x_stat(e_values, n_features=None):
 
     def get_n_prime(e_values):
         # moments estimator from Patterson et al 2006
@@ -345,7 +568,11 @@ def get_x_stat(e_values):
     def get_l(e_values):
         return (len(e_values) * max(e_values)) / sum(e_values)
 
-    n = get_n_prime(e_values)
+    if n_features == None:
+        n = get_n_prime(e_values)
+    else:
+        n = n_features
+
     m = len(e_values) + 1
 
     return (get_l(e_values) - get_mu(m, n)) / get_sigma(m, n)
