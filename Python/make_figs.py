@@ -1,21 +1,23 @@
 from __future__ import division
-import math, os, re
+import math, os, re, functools
 import numpy as np
 import pandas as pd
 import parevol_tools as pt
 import matplotlib.pyplot as plt
 from matplotlib import cm
+from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
 import clean_data as cd
 from scipy import stats, spatial
 
-from sklearn.cluster import KMeans, DBSCAN, SpectralClustering
+from sklearn.cluster import KMeans, SpectralClustering
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn import metrics
 
+
 mydir = os.path.expanduser("~/GitHub/ParEvol")
 
-k_eval=2
+k_eval=3
 
 
 def tenaillon_sig_multiplicity_fig():
@@ -24,34 +26,50 @@ def tenaillon_sig_multiplicity_fig():
     fig.tight_layout(pad = 2.8)
 
     ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
-    #print(df.N.values)
-    #fig = plt.figure()
-
     ax1.errorbar(df.N.values, df.n_mut_mean.values, yerr = [df.n_mut_mean.values-df.n_mut_ci_975.values, df.n_mut_ci_025.values - df.n_mut_mean.values ], \
         fmt = 'o', alpha = 1, \
-        barsabove = True, marker = '.', mfc = 'k', mec = 'k', c = 'k', zorder=1)
-
-    ax1.scatter(df.N.values, df.n_mut_mean.values, c='#175ac6', marker = 'o', s = 20, \
+        barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=1)
+    ax1.scatter(df.N.values, df.n_mut_mean.values, c='#175ac6', marker = 'o', s = 2, \
         edgecolors='none', linewidth = 0.6, alpha = 1, zorder=2)
-
-    #fmt = 'o', alpha = 0.7, barsabove = True, marker = '.', \
-    #            mfc = 'b', mec = 'none', c = 'k', zorder=3, ms=17)
-
-
-    ax1.set_xlabel('Number of replicate populations', fontsize = 10)
+    #ax1.set_xlabel('Number of replicate populations', fontsize = 10)
     ax1.set_ylabel('Number of mutations', fontsize = 10)
+    ax1.set_ylim(-50,1050)
 
     ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
+    ax2.errorbar(df.N.values, df.genes_mean.values, yerr = [df.genes_mean.values-df.genes_mean_ci_975.values, df.genes_mean_ci_025.values - df.genes_mean.values ], \
+        fmt = 'o', alpha = 1, \
+        barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=2)
+    ax2.scatter(df.N.values, df.genes_mean.values, c='#175ac6', marker = 'o', s = 2, \
+        edgecolors='none', linewidth = 0.6, alpha = 1, zorder=3)
+    ax2.set_ylabel('Number of genes with significant\nFDR-corrected multiplicity', fontsize = 8)
+    ax2.axhline(28, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax2.set_ylim(-2,32)
+
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
+    ax3.errorbar(df.N.values, df.ESCRE1901_mean.values, yerr = [df.ESCRE1901_mean.values-df.ESCRE1901_ci_975.values, df.ESCRE1901_ci_025.values - df.ESCRE1901_mean.values ], \
+        fmt = 'o', alpha = 1, \
+        barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=2)
+    ax3.scatter(df.N.values, df.ESCRE1901_mean.values, c='#175ac6', marker = 'o', s = 2, \
+        edgecolors='none', linewidth = 0.6, alpha = 1, zorder=3)
+    ax3.set_ylabel('Fraction of times ESCRE1901\nhad significant multiplicity', fontsize = 8)
+    ax3.set_ylim(-0.05,1.05)
+
     ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
+    ax4.errorbar(df.N.values, df.ECB_01992_mean.values, yerr = [df.ECB_01992_mean.values-df.ECB_01992_ci_975.values, df.ECB_01992_ci_025.values - df.ECB_01992_mean.values ], \
+        fmt = 'o', alpha = 1, \
+        barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=2)
+    ax4.scatter(df.N.values, df.ECB_01992_mean.values, c='#175ac6', marker = 'o', s = 2.5, \
+        edgecolors='none', linewidth = 0.1, alpha = 1, zorder=3)
+    ax4.set_ylabel('Fraction of times ECB_01992\nhad significant multiplicity', fontsize = 8)
+    ax4.set_ylim(-0.05,1.05)
 
-    #ax1.set_ylabel('Number of genes with significant\nFDR-corrected multiplicity', fontsize = 16)
 
+    fig.text(0.5, -0.04,'Number of replicate populations', fontsize = 16, ha='center')
 
-
-    #ax1.axhline(28, color = 'dimgrey', lw = 2, ls = '--')
-
-
+    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.1, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.1, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
 
 
     plt.tight_layout()
@@ -69,7 +87,6 @@ def power_method_fig(alpha = 0.05):
     # Scatterplot on main ax
     ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=1)
     #fig = plt.figure()
-    covs = [0.05,0.1,0.15,0.2]
     measures = ['Eig', 'MCD_k1', 'MCD_k3', 'MPD_k1', 'MPD_k3']
     colors = ['k', 'firebrick', 'orangered',  'dodgerblue', 'lightskyblue']
     labels = [r'$\tilde{L}_{1}$', r'$\mathrm{MCD}^{\left ( 1 \right )}$', r'$\mathrm{MCD}^{\left ( 3 \right )}$', r'$\mathrm{MPD}^{\left ( 1 \right )}$', r'$\mathrm{MPD}^{\left ( 3 \right )}$' ]
@@ -201,8 +218,7 @@ def tenaillon_PCA_fig(iter=10000):
     ax1.scatter(df_out_labelled_no_clsust.values[:,0], df_out_labelled_no_clsust.values[:,1], marker = "o", edgecolors='#244162',  c = '#175ac6', alpha = 0.4, s = 60, zorder=4)
 
     ax1.text(0.7,0.8,r'$n_{\mathrm{ESCRE1901}}=$' + str(len(df_pops_ESCRE1901)), fontsize=11, color='r', ha='center', va='center', transform=ax1.transAxes  )
-    ax1.text(0.7,0.7,r'$n_{\mathrm{ECB\,01992}}=$' + str(len(df_pops_ECB_01992)), fontsize=11, color='purple', ha='center', va='center', transform=ax1.transAxes)
-
+    ax1.text(0.7,0.7,r'$n_{\mathrm{ECB \_ 01992 }} = $' + str(len(df_pops_ECB_01992)), fontsize=11, color='purple', ha='center', va='center', transform=ax1.transAxes)
 
     ax2 = plt.subplot2grid((3, 2), (0, 1), colspan=1)
     #for variance_ratio_null in variance_ratios_null:
@@ -225,7 +241,7 @@ def tenaillon_PCA_fig(iter=10000):
     ax3 = plt.subplot2grid((3, 2), (1, 0), colspan=1)
     ax3.hist(mpd_null_dists, bins=30, weights=np.zeros_like(mpd_null_dists) + 1. / len(mpd_null_dists), alpha=0.8, color = '#175ac6')
     ax3.axvline(mpd_dist, color = 'red', lw = 3, ls = '--')
-    ax3.set_xlabel("Mean pairwise distance", fontsize = 10)
+    ax3.set_xlabel("Mean pairwise distance " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$' , fontsize = 9)
     ax3.set_ylabel("Frequency", fontsize = 12)
 
     ax3.text(0.18, 0.9, r'$p = $' + str(round(p_value, 4)), fontsize = 8, ha='center', va='center', transform=ax3.transAxes)
@@ -307,7 +323,7 @@ def tenaillon_PCA_fig(iter=10000):
     #fig.subplots_adjust(hspace=0)
 
     plt.tight_layout()
-    fig_name = mydir + '/figs/fig1.png'
+    fig_name = mydir + '/figs/tenaillon_main.png'
     fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
@@ -448,7 +464,6 @@ def plot_ltee_partition(k = 5):
     fig.savefig(mydir + '/figs/ltee_partition.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
-from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
 
 
 def plot_ltee_pca(k=5, iter=10000):
@@ -529,6 +544,8 @@ def plot_ltee_pca(k=5, iter=10000):
     mean_dist = []
     for tp in time_points_set:
         df_pca_tp = df_pca[df_pca.index.str.contains('_' + str(tp))]
+        print(tp , pt.get_mean_pairwise_euc_distance(df_pca_tp.values, k = k))
+
         mean_dist.append(pt.get_mean_pairwise_euc_distance(df_pca_tp.values, k = k))
 
     mpd_null_dict = {}
@@ -620,8 +637,340 @@ def ltee_eigenvalue(k=5):
 
 
 
+def treatment_figs(iter=1000):
+    df_turner_path = mydir + '/data/Turner_et_al/gene_by_pop.txt'
+    df_turner = pd.read_csv(df_turner_path, sep = '\t', header = 'infer', index_col = 0)
+    df_turner = df_turner.loc[:, (df_turner != 0).any(axis=0)]
 
-ltee_eigenvalue()
+    #turner_treats = ['high_carbon_large_bead', 'high_carbon_planktonic', 'low_carbon_large_bead', 'low_carbon_planktonic']
+    df_turner_delta = cd.likelihood_matrix_array(df_turner.values, df_turner.columns.values, 'Turner_et_al').get_likelihood_matrix()
+
+    hclb_idx = df_turner.index.str.startswith('high_carbon_large_bead')
+    df_hclb = df_turner[hclb_idx]
+    df_hclb = df_hclb.loc[:, (df_hclb != 0).any(axis=0)]
+
+    hcpl_idx = df_turner.index.str.startswith('high_carbon_planktonic')
+    df_hcpl = df_turner[hcpl_idx]
+    df_hcpl = df_hcpl.loc[:, (df_hcpl != 0).any(axis=0)]
+
+    lclb_idx = df_turner.index.str.startswith('low_carbon_large_bead')
+    df_lclb = df_turner[lclb_idx]
+    df_lclb = df_lclb.loc[:, (df_lclb != 0).any(axis=0)]
+
+    lcpl_idx = df_turner.index.str.startswith('low_carbon_planktonic')
+    df_lcpl = df_turner[lcpl_idx]
+    df_lcpl = df_lcpl.loc[:, (df_lcpl != 0).any(axis=0)]
+
+
+    N_turner = [df_hclb.shape[0], df_hcpl.shape[0], df_lclb.shape[0], df_lcpl.shape[0]]
+    X = df_turner_delta/df_turner_delta.sum(axis=1)[:,None]
+    X -= np.mean(X, axis = 0)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+    df_out_k = df_out[:,:k_eval]
+
+    hclb_mpd = pt.get_mean_pairwise_euc_distance(df_out_k[0: N_turner[0] ,  :], k=3)
+    hcpl_mpd = pt.get_mean_pairwise_euc_distance(df_out_k[N_turner[0]: sum(N_turner[:2]),  :] , k=3)
+    lclb_mpd = pt.get_mean_pairwise_euc_distance(df_out_k[sum(N_turner[:2]): sum(N_turner[:3]),:]  , k=3)
+    lcpl_mpd = pt.get_mean_pairwise_euc_distance(df_out_k[sum(N_turner[:3]): sum(N_turner[:4]),:] , k=3)
+
+    hclb_mpd_null = []
+    hcpl_mpd_null = []
+    lclb_mpd_null = []
+    lcpl_mpd_null = []
+    # get MPD for each group
+    F_2 = pt.get_F_2(df_out_k, N_turner )
+    F_2_null = []
+    for i in range(iter):
+        if i %100 == 0:
+            print(i)
+        np_hclb_i = pt.get_random_matrix(df_hclb.values)
+        df_hclb_i = pd.DataFrame(data=np_hclb_i, index =df_hclb.index, columns=df_hclb.columns)
+
+        np_hcpl_i = pt.get_random_matrix(df_hcpl.values)
+        df_hcpl_i = pd.DataFrame(data=np_hcpl_i, index =df_hcpl.index, columns=df_hcpl.columns)
+
+        np_lclb_i = pt.get_random_matrix(df_lclb.values)
+        df_lclb_i = pd.DataFrame(data=np_lclb_i, index =df_lclb.index, columns=df_lclb.columns)
+
+        np_lcpl_i = pt.get_random_matrix(df_lcpl.values)
+        df_lcpl_i = pd.DataFrame(data=np_lcpl_i, index=df_lcpl.index, columns=df_lcpl.columns)
+
+        df_list = [df_hclb_i, df_hcpl_i, df_lclb_i,df_lcpl_i]
+        df_merge_i = pd.concat(df_list, axis=0, sort=True).fillna(0)
+        df_merge_delta_i = cd.likelihood_matrix_array(df_merge_i.values, df_merge_i.columns.values, 'Turner_et_al').get_likelihood_matrix()
+        X_i = df_merge_delta_i/df_merge_delta_i.sum(axis=1)[:,None]
+        X_i -= np.mean(X_i, axis = 0)
+        df_out_i = pca.fit_transform(X_i)
+        df_out_k_i = df_out_i[:,:k_eval]
+
+        F_2_null.append(pt.get_F_2(df_out_k_i, N_turner ))
+
+        hclb_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_out_k_i[0: N_turner[0] ,  :], k=3))
+        hcpl_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_out_k_i[N_turner[0]: sum(N_turner[:2]),  :] , k=3))
+        lclb_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_out_k_i[sum(N_turner[:2]): sum(N_turner[:3]),:]  , k=3))
+        lcpl_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_out_k_i[sum(N_turner[:3]): sum(N_turner[:4]),:] , k=3))
+
+
+    # same test for wannier et al
+    df_ECNR2 = pd.read_csv(mydir + '/data/Wannier_et_al/ECNR2.1_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_ECNR2 = df_ECNR2.loc[:, (df_ECNR2 != 0).any(axis=0)]
+    df_C321_deltaA_early = pd.read_csv(mydir + '/data/Wannier_et_al/C321.deltaA.earlyfix_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_C321_deltaA_early = df_C321_deltaA_early.loc[:, (df_C321_deltaA_early != 0).any(axis=0)]
+    df_C321_deltaA = pd.read_csv(mydir + '/data/Wannier_et_al/C321.deltaA_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_C321_deltaA = df_C321_deltaA.loc[:, (df_C321_deltaA != 0).any(axis=0)]
+    df_C321 = pd.read_csv(mydir + '/data/Wannier_et_al/C321_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_C321 = df_C321.loc[:, (df_C321 != 0).any(axis=0)]
+
+    df_w_list = [df_ECNR2, df_C321_deltaA_early, df_C321_deltaA, df_C321]
+    df_w = pd.concat(df_w_list, axis=0, sort=True).fillna(0)
+    df_w_delta = cd.likelihood_matrix_array(df_w.values, df_w.columns.values, 'Wannier_et_al').get_likelihood_matrix()
+
+    N_w = [df_ECNR2.shape[0], df_C321_deltaA_early.shape[0], df_C321_deltaA.shape[0], df_C321.shape[0]]
+    X_w = df_w_delta/df_w_delta.sum(axis=1)[:,None]
+    X_w -= np.mean(X_w, axis = 0)
+    df_out_w = pca.fit_transform(X_w)
+    df_out_w_k = df_out_w[:,:k_eval]
+
+    ECNR2_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[0: N_w[0] ,  :], k=3)
+    C321_deltaA_early_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[N_w[0]: sum(N_w[:2]),  :] , k=3)
+    C321_deltaA_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[sum(N_w[:2]): sum(N_w[:3]),:]  , k=3)
+    C321_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[sum(N_w[:3]): sum(N_w[:4]),:] , k=3)
+
+    ECNR2_mpd_null = []
+    C321_deltaA_early_mpd_null = []
+    C321_deltaA_mpd_null = []
+    C321_mpd_null = []
+
+    F_2_w = pt.get_F_2(df_out_w_k, N_w )
+    F_2_w_null = []
+
+    for i in range(iter):
+        if i %100 == 0:
+            print(i)
+        np_ECNR2_i = pt.get_random_matrix(df_ECNR2.values)
+        df_ECNR2_i = pd.DataFrame(data=np_ECNR2_i, index =df_ECNR2.index, columns=df_ECNR2.columns)
+
+        np_C321_deltaA_early_i = pt.get_random_matrix(df_C321_deltaA_early.values)
+        df_C321_deltaA_early_i = pd.DataFrame(data=np_C321_deltaA_early_i, index =df_C321_deltaA_early.index, columns=df_C321_deltaA_early.columns)
+
+        np_C321_deltaA_i = pt.get_random_matrix(df_C321_deltaA.values)
+        df_C321_deltaA_i = pd.DataFrame(data=np_C321_deltaA_i, index =df_C321_deltaA.index, columns=df_C321_deltaA.columns)
+
+        np_C321_i = pt.get_random_matrix(df_C321.values)
+        df_C321_i = pd.DataFrame(data=np_C321_i, index=df_C321.index, columns=df_C321.columns)
+
+        df_w_merge_i = pd.concat([df_ECNR2_i, df_C321_deltaA_early_i, df_C321_deltaA_i, df_C321_i], axis=0, sort=True).fillna(0)
+        df_w_merge_delta_i = cd.likelihood_matrix_array(df_w_merge_i.values, df_w_merge_i.columns.values, 'Wannier_et_al').get_likelihood_matrix()
+        X_w_i = df_w_merge_delta_i/df_w_merge_delta_i.sum(axis=1)[:,None]
+        X_w_i -= np.mean(X_w_i, axis = 0)
+        df_w_out_i = pca.fit_transform(X_w_i)
+        df_w_out_k_i = df_w_out_i[:,:k_eval]
+
+        F_2_w_null.append(pt.get_F_2(df_w_out_k_i, N_w ))
+
+        ECNR2_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_w_out_k_i[0: N_w[0] ,  :], k=3))
+        C321_deltaA_early_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_w_out_k_i[N_w[0]: sum(N_w[:2]),  :] , k=3))
+        C321_deltaA_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_w_out_k_i[sum(N_w[:2]): sum(N_w[:3]),:]  , k=3))
+        C321_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_w_out_k_i[sum(N_w[:3]): sum(N_w[:4]),:] , k=3))
+
+
+    fig = plt.figure(figsize = (6, 6))
+    fig.tight_layout(pad = 2.8)
+
+    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
+    ax1.hist(hclb_mpd_null, bins=30, weights=np.zeros_like(hclb_mpd_null) + 1. / len(hclb_mpd_null), alpha=0.5, color = 'mediumblue', label = "High-C, biofilm")
+    ax1.hist(hcpl_mpd_null, bins=30, weights=np.zeros_like(hcpl_mpd_null) + 1. / len(hcpl_mpd_null), alpha=0.5, color = 'darkgreen' , label = "High-C, planktonic")
+    ax1.hist(lclb_mpd_null, bins=30, weights=np.zeros_like(lclb_mpd_null) + 1. / len(lclb_mpd_null), alpha=0.5, color = 'dodgerblue',  label = "Low-C, biofilm")
+    ax1.hist(lcpl_mpd_null, bins=30, weights=np.zeros_like(lcpl_mpd_null) + 1. / len(lcpl_mpd_null), alpha=0.5, color = 'lightgreen', label = "Low-C, planktonic")
+    ax1.axvline(hclb_mpd, color = 'mediumblue', lw = 2, ls = '--', alpha=0.9)
+    ax1.axvline(hcpl_mpd, color = 'darkgreen', lw = 2, ls = '--', alpha=0.9)
+    ax1.axvline(lclb_mpd, color = 'dodgerblue', lw = 2, ls = '--', alpha=0.9)
+    ax1.axvline(lcpl_mpd, color = 'lightgreen', lw = 2, ls = '--', alpha=0.9)
+    ax1.legend(loc='upper right',fontsize = 4)
+
+    ax1.set_xlabel("Mean pairwise distance, " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$', fontsize = 8)
+    #ax1.set_ylabel("Frequency", fontsize = 7)
+    #ax1.set_xlim(0.1, 0.4)
+
+    ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
+    ax2.hist(F_2_null, bins=30,  weights=np.zeros_like(F_2_null) + 1. / len(F_2_null), alpha=0.6, color = '#175ac6')
+    ax2.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 8)
+    ax2.axvline(F_2, color = 'red', lw = 2, ls = '--')
+
+
+    ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
+    ax3.hist(ECNR2_mpd_null, bins=30, weights=np.zeros_like(ECNR2_mpd_null) + 1. / len(ECNR2_mpd_null), alpha=0.5, color = 'cornflowerblue', label = r'$\mathrm{ECNR2}$')
+    ax3.hist(C321_deltaA_early_mpd_null, bins=30, weights=np.zeros_like(C321_deltaA_early_mpd_null) + 1. / len(C321_deltaA_early_mpd_null), alpha=0.5, color = 'goldenrod' , label = r'$\mathrm{C321.}\Delta\mathrm{A}$' + '-' + r'$\mathrm{v2}$')
+    ax3.hist(C321_deltaA_mpd_null, bins=30, weights=np.zeros_like(C321_deltaA_mpd_null) + 1. / len(C321_deltaA_mpd_null), alpha=0.5, color = 'firebrick',  label = r'$\mathrm{C321.}\Delta\mathrm{A}$')
+    ax3.hist(C321_mpd_null, bins=30, weights=np.zeros_like(C321_mpd_null) + 1. / len(C321_mpd_null), alpha=0.5, color = 'seagreen', label = r'$\mathrm{C321}$')
+
+    ax3.axvline(ECNR2_mpd, color = 'cornflowerblue', lw = 2, ls = '--', alpha=0.9)
+    ax3.axvline(C321_deltaA_early_mpd, color = 'goldenrod', lw = 2, ls = '--', alpha=0.9)
+    ax3.axvline(C321_deltaA_mpd, color = 'firebrick', lw = 2, ls = '--', alpha=0.9)
+    ax3.axvline(C321_mpd, color = 'seagreen', lw = 2, ls = '--', alpha=0.9)
+
+    ax3.legend(loc='upper right',fontsize = 4)
+    ax3.set_xlabel("Mean pairwise distance, " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$', fontsize = 8)
+
+    ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
+    ax4.hist(F_2_w_null, bins=30,  weights=np.zeros_like(F_2_w_null) + 1. / len(F_2_w_null), alpha=0.6, color = '#175ac6')
+    ax4.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 8)
+    ax4.axvline(F_2_w, color = 'red', lw = 2, ls = '--')
+
+
+    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.1, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.1, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+
+    fig.text(-0.04, 0.5,'Frequency', fontsize = 19, va='center',rotation='vertical')
+    fig.tight_layout()
+    fig.savefig(mydir + '/figs/divergence_figs.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
+def treatment_eigen_figs(iter=1000):
+    df_turner_path = mydir + '/data/Turner_et_al/gene_by_pop.txt'
+    df_turner = pd.read_csv(df_turner_path, sep = '\t', header = 'infer', index_col = 0)
+    df_turner = df_turner.loc[:, (df_turner != 0).any(axis=0)]
+    df_turner_delta = cd.likelihood_matrix_array(df_turner.values, df_turner.columns.values, 'Turner_et_al').get_likelihood_matrix()
+
+    X_turner = df_turner_delta/df_turner_delta.sum(axis=1)[:,None]
+    X_turner -= np.mean(X_turner, axis = 0)
+    pca_turner = PCA()
+    df_out_turner = pca_turner.fit_transform(X_turner)
+
+    df_ECNR2 = pd.read_csv(mydir + '/data/Wannier_et_al/ECNR2.1_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_ECNR2 = df_ECNR2.loc[:, (df_ECNR2 != 0).any(axis=0)]
+    df_C321_deltaA_early = pd.read_csv(mydir + '/data/Wannier_et_al/C321.deltaA.earlyfix_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_C321_deltaA_early = df_C321_deltaA_early.loc[:, (df_C321_deltaA_early != 0).any(axis=0)]
+    df_C321_deltaA = pd.read_csv(mydir + '/data/Wannier_et_al/C321.deltaA_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_C321_deltaA = df_C321_deltaA.loc[:, (df_C321_deltaA != 0).any(axis=0)]
+    df_C321 = pd.read_csv(mydir + '/data/Wannier_et_al/C321_mutation_table_clean.txt', sep = '\t', header = 'infer', index_col = 0)
+    df_C321 = df_C321.loc[:, (df_C321 != 0).any(axis=0)]
+
+    df_w_list = [df_ECNR2, df_C321_deltaA_early, df_C321_deltaA, df_C321]
+    df_w = pd.concat(df_w_list, axis=0, sort=True).fillna(0)
+    df_w_delta = cd.likelihood_matrix_array(df_w.values, df_w.columns.values, 'Wannier_et_al').get_likelihood_matrix()
+
+    X_w = df_w_delta/df_w_delta.sum(axis=1)[:,None]
+    X_w -= np.mean(X_w, axis = 0)
+    pca_w = PCA()
+    df_out_w = pca_w.fit_transform(X_w)
+
+
+    broken_stick_turner = []
+    for i in range(1, len(pca_turner.explained_variance_ratio_) +1):
+        broken_stick_turner.append(   (sum(1 / np.arange(i, len(pca_turner.explained_variance_) +1)) / len(pca_turner.explained_variance_)) * 100   )
+    broken_stick_turner = np.asarray(broken_stick_turner)
+    broken_stick_turner = broken_stick_turner / sum(broken_stick_turner)
+
+    broken_stick_w = []
+    for i in range(1, len(pca_w.explained_variance_ratio_) +1):
+        broken_stick_w.append(   (sum(1 / np.arange(i, len(pca_w.explained_variance_) +1)) / len(pca_w.explained_variance_)) * 100   )
+    broken_stick_w = np.asarray(broken_stick_w)
+    broken_stick_w = broken_stick_w / sum(broken_stick_w)
+
+
+    fig = plt.figure(figsize = (6, 3))
+    fig.tight_layout(pad = 2.8)
+
+
+    ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=1)
+    ax1.plot(list(range(1, len(pca_turner.explained_variance_ratio_)+1)), pca_turner.explained_variance_ratio_, linestyle='--', marker='o', color='red', alpha=0.6, label='Observed')
+    ax1.plot(list(range(1, len(pca_turner.explained_variance_ratio_)+1)), broken_stick_turner, linestyle=':', alpha=0.7, color='#175ac6', label='Broken-stick', lw=2.5)
+    #ax1.legend(loc='upper right', fontsize='large')
+    ax1.set_xlabel('Eigenvalue rank', fontsize = 12)
+    ax1.set_ylabel('Proportion of variance explained', fontsize = 11)
+    ax1.set_title('Turner et al. dataset', fontsize = 13)
+
+    ax2 = plt.subplot2grid((1, 2), (0, 1), colspan=1)
+    ax2.plot(list(range(1, len(pca_w.explained_variance_ratio_)+1)), pca_w.explained_variance_ratio_, linestyle='--', marker='o', color='red', alpha=0.6, label='Observed')
+    ax2.plot(list(range(1, len(pca_w.explained_variance_ratio_)+1)), broken_stick_w, linestyle=':', alpha=0.7, color='#175ac6', label='Broken-stick', lw=2.5)
+    ax2.legend(loc='upper right', fontsize='large')
+    ax2.set_xlabel('Eigenvalue rank', fontsize = 12)
+    ax2.set_ylabel('Proportion of variance explained', fontsize = 11)
+    ax2.set_title('Wannier et al. dataset', fontsize = 13)
+
+    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+
+
+    fig.tight_layout()
+    fig.savefig(mydir + '/figs/pca_divergence_eigen.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
+
+def power_N_G_fig(alpha = 0.05):
+    df_N = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_N.txt', sep='\t')
+    df_G = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_G.txt', sep='\t')
+
+    fig = plt.figure(figsize = (6, 3))
+    fig.tight_layout(pad = 2.8)
+
+    # Scatterplot on main ax
+    ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=1)
+    measures = ['Eig', 'MCD_k1', 'MCD_k3', 'MPD_k1', 'MPD_k3']
+    colors = ['k', 'firebrick', 'orangered',  'dodgerblue', 'lightskyblue']
+    labels = [r'$\tilde{L}_{1}$', r'$\mathrm{MCD}^{\left ( 1 \right )}$', r'$\mathrm{MCD}^{\left ( 3 \right )}$', r'$\mathrm{MPD}^{\left ( 1 \right )}$', r'$\mathrm{MPD}^{\left ( 3 \right )}$' ]
+    for i, measure in enumerate(measures):
+        df_i = df_N[ df_N['Method'] == measure ]
+        color_i = colors[i]
+        _jitter = df_i.N.values + np.random.normal(0, 0.003, len(df_i.N.values))
+        ax1.errorbar(_jitter, df_i.Power.values, yerr = [df_i.Power.values-df_i.Power_975.values, df_i.Power_025.values - df_i.Power.values ], \
+            fmt = 'o', alpha = 1, ms=20,\
+            marker = '.', mfc = color_i,
+            mec = color_i, c = 'k', zorder=2, label=labels[i])
+
+    ax1.legend(loc='upper left')
+    ax1.set_xlabel('Number of replicate populations', fontsize = 10)
+    ax1.set_ylabel("Statistical power\n" +r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 10)
+    ax1.set_xlim(2.5, 170)
+    ax1.set_ylim(-0.02, 0.55)
+    ax1.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax1.set_xscale('log', basex=2)
+
+
+    # figure 2
+    ax2 = plt.subplot2grid((1, 2), (0, 1), colspan=1)
+    for i, measure in enumerate(measures):
+        df_i = df_G[ df_G['Method'] == measure ]
+        color_i = colors[i]
+        x_jitter = df_i.G.values + np.random.normal(0, 0.003, len(df_i.G.values))
+        ax2.errorbar(x_jitter, df_i.Power.values, yerr = [df_i.Power.values-df_i.Power_975.values, df_i.Power_025.values - df_i.Power.values ], \
+            fmt = 'o', alpha = 1, ms=20,\
+            marker = '.', mfc = color_i,
+            mec = color_i, c = 'k', zorder=2, label=labels[i])
+
+
+    ax2.set_xlabel('Number of genes', fontsize = 10)
+    ax2.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax2.set_ylim(-0.02, 0.55)
+    ax2.set_xlim(6.5, 170)
+    ax2.set_xscale('log', basex=2)
+
+    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+
+
+    plt.tight_layout()
+    fig_name = mydir + '/figs/power_N_G.png'
+    fig.savefig(fig_name, bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+power_N_G_fig()
+
+#treatment_eigen_figs()
+#treatment_figs()
+#ltee_eigenvalue()
 
 #plot_ltee_pca()
 #power_method_fig()

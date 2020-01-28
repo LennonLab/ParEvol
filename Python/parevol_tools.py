@@ -740,35 +740,58 @@ def matrix_vs_null_one_treat(count_matrix, iter):
     return euc_percent, z_score
 
 
-def get_F_2(count_matrix, N1, N2):
+def get_F_2(PC_space, N_list):
     '''
     Modified F-statistic from Anderson et al., 2017 doi: 10.1111/anzs.12176
     Function assumes that the rows of the count matrix are sorted by group
-    i.e., group one is first N1 rows, rest of the N2 rows are group two
+    i.e., group one is first N1 rows, group two is N2, etc
     '''
-    N = N1+N2
-    count_matrix_rel = count_matrix/count_matrix.sum(axis=1)[:,None]
-    X = get_mean_center(count_matrix_rel)
-    pca = PCA()
-    pca_fit = pca.fit_transform(X)
-    dist_matrix = euclidean_distances(X, X)
+    #N = N1+N2
+    N = sum(N_list)
+    dist_matrix = euclidean_distances(PC_space, PC_space)
     A = -(1/2) * (dist_matrix ** 2)
     I = np.identity(N)
     J_N = np.full((N, N), 1)
     G = (I - ((1/N) * J_N )) @ A @ (I - ((1/N) * J_N ))
-    n1 = (1/N1) * np.full((N1, N1), 1)
-    n2 = (1/N2) * np.full((N2, N2), 1)
-    H = block_diag(n1, n2) - ((1/N) * J_N )
+    # n matrix list
+    n_list = []
+    for N_i in N_list:
+        n_list.append((1/N_i) * np.full((N_i, N_i), 1))
+    #n1 = (1/N1) * np.full((N1, N1), 1)
+    #n2 = (1/N2) * np.full((N2, N2), 1)
+    #H = block_diag(n1, n2) - ((1/N) * J_N )
+    H = block_diag(*n_list) - ((1/N) * J_N )
     # indicator matrices
-    U_1 = np.diag( (N1*[1]) + (N2*[0]))
-    U_2 = np.diag( (N1*[0]) + (N2*[1]))
+    # get V matrices
+    V_list = []
+    for i in range(len(N_list)):
+        if i == 0:
+            U_i = np.diag( N_list[i]*[1] + sum(N_list[i+1:])*[0])
+        elif i == len(N_list) - 1:
+            U_i = np.diag( sum(N_list[:i])*[0] + N_list[i]*[1] )
+        else:
+            U_i = np.diag( sum(N_list[:i])*[0] + N_list[i]*[1] +  sum(N_list[i+1:])*[0])
 
-    V_1 = np.trace(((I - H) @ U_1 @ (I - H)) @ G ) / (N1-1)
-    V_2 = np.trace(((I - H) @ U_2 @ (I - H)) @ G ) / (N2-1)
+        V_i = np.trace(((I - H) @ U_i @ (I - H)) @ G ) / (N_list[i]-1)
+        V_list.append(V_i)
 
-    F_2 = np.trace(H @ G) / (((1- (N1/N)) * V_1) + ((1- (N2/N)) * V_2))
+    F_2 = np.trace(H @ G) / sum( [ (1 - (N_list[i]/N) ) *  V_list[i] for i in range(len(N_list)) ]  )
 
-    return F_2, V_1, V_2
+
+
+    return F_2
+
+    #U_i = np.diag( (N1*[1]) + (N2*[0]))
+
+    #U_1 = np.diag( (N1*[1]) + (N2*[0]))
+    #U_2 = np.diag( (N1*[0]) + (N2*[1]))
+
+    #V_1 = np.trace(((I - H) @ U_1 @ (I - H)) @ G ) / (N1-1)
+    #V_2 = np.trace(((I - H) @ U_2 @ (I - H)) @ G ) / (N2-1)
+
+    #F_2 = np.trace(H @ G) / (((1- (N1/N)) * V_1) + ((1- (N2/N)) * V_2))
+
+    #return F_2, V_1, V_2
 
 
 def matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=1000):

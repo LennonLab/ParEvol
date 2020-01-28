@@ -185,12 +185,174 @@ def get_bootstrap_power_ci(p_list, power_iter=10000, power_n=50):
     return power_025, power_975
 
 
-def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000):
+
+
+def run_ba_cov_N_sims(iter1=1000, iter2=1000, cov = 0.2, n_genes=50):
+    df_out = open(mydir + '/data/simulations/cov_ba_ntwrk_N.txt', 'w')
+    df_out.write('\t'.join(['N', 'Method', 'Power', 'Power_025', 'Power_975']) + '\n')
+    Ns = [4, 8, 16, 32, 62, 128]
+    for n_pops in Ns:
+        eig_p_list = []
+        mcd_k1_p_list = []
+        mcd_k3_p_list = []
+        mpd_k1_p_list = []
+        mpd_k3_p_list = []
+        for i in range(iter1):
+            if i %100 ==0:
+                print(n_pops, i)
+            lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
+            C = pt.get_ba_cov_matrix(n_genes, cov=cov)
+            test_cov = np.stack( [pt.get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
+            X = test_cov/test_cov.sum(axis=1)[:,None]
+            X -= np.mean(X, axis = 0)
+            pca = PCA()
+            pca_fit = pca.fit_transform(X)
+            mpd_k1 = pt.get_mean_pairwise_euc_distance(pca_fit,k=1)
+            mpd_k3 = pt.get_mean_pairwise_euc_distance(pca_fit,k=3)
+
+            eig = pt.get_x_stat(pca.explained_variance_[:-1], n_features=n_genes)
+            mcd_k1 = pt.get_mean_centroid_distance(pca_fit, k = 1)
+            mcd_k3 = pt.get_mean_centroid_distance(pca_fit, k = 3)
+
+            eig_null_list = []
+            mcd_k1_null_list = []
+            mcd_k3_null_list = []
+            mpd_k1_null_list = []
+            mpd_k3_null_list = []
+            for j in range(iter2):
+                test_cov_rndm = pt.get_random_matrix(test_cov)
+                X_j = test_cov_rndm/test_cov_rndm.sum(axis=1)[:,None]
+                X_j -= np.mean(X_j, axis = 0)
+                pca_j = PCA()
+                pca_fit_j = pca_j.fit_transform(X_j)
+                #pca_fit_j = pca.fit_transform(X_j)
+                mpd_k1_null_list.append( pt.get_mean_pairwise_euc_distance(pca_fit_j, k = 1 ) )
+                mpd_k3_null_list.append( pt.get_mean_pairwise_euc_distance(pca_fit_j, k = 3 ) )
+                mcd_k1_null_list.append(pt.get_mean_centroid_distance(pca_fit_j, k = 1))
+                mcd_k3_null_list.append(pt.get_mean_centroid_distance(pca_fit_j, k = 3))
+                eig_null_list.append( pt.get_x_stat(pca_j.explained_variance_[:-1], n_features=n_genes) )
+
+            eig_p_list.append(len( [k for k in eig_null_list if k > eig] ) / iter2)
+            mcd_k1_p_list.append( len( [k for k in mcd_k1_null_list if k > mcd_k1] ) / iter2 )
+            mcd_k3_p_list.append( len( [k for k in mcd_k3_null_list if k > mcd_k3] ) / iter2 )
+
+            mpd_k1_p_list.append( len( [k for k in mpd_k1_null_list if k > mpd_k1] ) / iter2 )
+            mpd_k3_p_list.append( len( [k for k in mpd_k3_null_list if k > mpd_k3] ) / iter2 )
+
+
+        # calculate power
+        eig_power = len([n for n in eig_p_list if n < 0.05]) / iter1
+        eig_power_025, eig_power_975 = get_bootstrap_power_ci(eig_p_list)
+
+        mcd_k1_power = len([n for n in mcd_k1_p_list if n < 0.05]) / iter1
+        mcd_k1_power_025, mcd_k1_power_975 = get_bootstrap_power_ci(mcd_k1_p_list)
+
+        mcd_k3_power = len([n for n in mcd_k3_p_list if n < 0.05]) / iter1
+        mcd_k3_power_025, mcd_k3_power_975 = get_bootstrap_power_ci(mcd_k3_p_list)
+
+        mpd_k1_power = len([n for n in mpd_k1_p_list if n < 0.05]) / iter1
+        mpd_k1_power_025, mpd_k1_power_975 = get_bootstrap_power_ci(mpd_k1_p_list)
+
+        mpd_k3_power = len([n for n in mpd_k3_p_list if n < 0.05]) / iter1
+        mpd_k3_power_025, mpd_k3_power_975 = get_bootstrap_power_ci(mpd_k3_p_list)
+
+
+        df_out.write('\t'.join([str(n_pops), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975)]) + '\n')
+
+    df_out.close()
+
+
+
+
+def run_ba_cov_G_sims(iter1=1000, iter2=1000, cov = 0.2, n_pops=100):
+    df_out = open(mydir + '/data/simulations/cov_ba_ntwrk_G.txt', 'w')
+    df_out.write('\t'.join(['G', 'Method', 'Power', 'Power_025', 'Power_975']) + '\n')
+    Gs = [8, 16, 32, 62, 128]
+    for n_genes in Gs:
+        eig_p_list = []
+        mcd_k1_p_list = []
+        mcd_k3_p_list = []
+        mpd_k1_p_list = []
+        mpd_k3_p_list = []
+        for i in range(iter1):
+            if i %100 ==0:
+                print(n_genes, i)
+            lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
+            C = pt.get_ba_cov_matrix(n_genes, cov=cov)
+            test_cov = np.stack( [pt.get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
+            X = test_cov/test_cov.sum(axis=1)[:,None]
+            X -= np.mean(X, axis = 0)
+            pca = PCA()
+            pca_fit = pca.fit_transform(X)
+            mpd_k1 = pt.get_mean_pairwise_euc_distance(pca_fit,k=1)
+            mpd_k3 = pt.get_mean_pairwise_euc_distance(pca_fit,k=3)
+
+            eig = pt.get_x_stat(pca.explained_variance_[:-1], n_features=n_genes)
+            mcd_k1 = pt.get_mean_centroid_distance(pca_fit, k = 1)
+            mcd_k3 = pt.get_mean_centroid_distance(pca_fit, k = 3)
+
+            eig_null_list = []
+            mcd_k1_null_list = []
+            mcd_k3_null_list = []
+            mpd_k1_null_list = []
+            mpd_k3_null_list = []
+            for j in range(iter2):
+                test_cov_rndm = pt.get_random_matrix(test_cov)
+                X_j = test_cov_rndm/test_cov_rndm.sum(axis=1)[:,None]
+                X_j -= np.mean(X_j, axis = 0)
+                pca_j = PCA()
+                pca_fit_j = pca_j.fit_transform(X_j)
+                #pca_fit_j = pca.fit_transform(X_j)
+                mpd_k1_null_list.append( pt.get_mean_pairwise_euc_distance(pca_fit_j, k = 1 ) )
+                mpd_k3_null_list.append( pt.get_mean_pairwise_euc_distance(pca_fit_j, k = 3 ) )
+                mcd_k1_null_list.append(pt.get_mean_centroid_distance(pca_fit_j, k = 1))
+                mcd_k3_null_list.append(pt.get_mean_centroid_distance(pca_fit_j, k = 3))
+                eig_null_list.append( pt.get_x_stat(pca_j.explained_variance_[:-1], n_features=n_genes) )
+
+            eig_p_list.append(len( [k for k in eig_null_list if k > eig] ) / iter2)
+            mcd_k1_p_list.append( len( [k for k in mcd_k1_null_list if k > mcd_k1] ) / iter2 )
+            mcd_k3_p_list.append( len( [k for k in mcd_k3_null_list if k > mcd_k3] ) / iter2 )
+
+            mpd_k1_p_list.append( len( [k for k in mpd_k1_null_list if k > mpd_k1] ) / iter2 )
+            mpd_k3_p_list.append( len( [k for k in mpd_k3_null_list if k > mpd_k3] ) / iter2 )
+
+
+        # calculate power
+        eig_power = len([n for n in eig_p_list if n < 0.05]) / iter1
+        eig_power_025, eig_power_975 = get_bootstrap_power_ci(eig_p_list)
+
+        mcd_k1_power = len([n for n in mcd_k1_p_list if n < 0.05]) / iter1
+        mcd_k1_power_025, mcd_k1_power_975 = get_bootstrap_power_ci(mcd_k1_p_list)
+
+        mcd_k3_power = len([n for n in mcd_k3_p_list if n < 0.05]) / iter1
+        mcd_k3_power_025, mcd_k3_power_975 = get_bootstrap_power_ci(mcd_k3_p_list)
+
+        mpd_k1_power = len([n for n in mpd_k1_p_list if n < 0.05]) / iter1
+        mpd_k1_power_025, mpd_k1_power_975 = get_bootstrap_power_ci(mpd_k1_p_list)
+
+        mpd_k3_power = len([n for n in mpd_k3_p_list if n < 0.05]) / iter1
+        mpd_k3_power_025, mpd_k3_power_975 = get_bootstrap_power_ci(mpd_k3_p_list)
+
+
+        df_out.write('\t'.join([str(n_genes), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975)]) + '\n')
+
+    df_out.close()
+
+
+
+
+def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000, n_pops=100, n_genes=50):
     df_out = open(mydir + '/data/simulations/cov_ba_ntwrk_methods.txt', 'w')
     df_out.write('\t'.join(['Cov', 'Method', 'Power', 'Power_025', 'Power_975']) + '\n')
 
-    n_pops=100
-    n_genes=50
     covs = [0.05, 0.1, 0.15, 0.2]
     #covs = [0.2]
     for cov in covs:
@@ -478,112 +640,15 @@ def gene_svd_tenaillon(iter=10000):
 
 
 
-def time_partition_ltee(k=5, iter=1000):
-    df_path = mydir + '/data/Good_et_al/gene_by_pop.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    to_include = pt.complete_nonmutator_lines()
-    df_nonmut = df[df.index.str.contains('|'.join( to_include))]
-    # remove columns with all zeros
-    df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
-    # make sure it's sorted
-    df_nonmut.sort_index(inplace=True)
-
-    time_points = [ int(x.split('_')[1]) for x in df_nonmut.index.values]
-    time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
-    time_points_positions = {}
-    for x in time_points_set:
-        time_points_positions[x] =  [i for i,j in enumerate(time_points) if j == x]
-    t_final_df = df_nonmut.iloc[time_points_positions[max(time_points_set)]]
-    t_final_np = t_final_df.values
-    gene_names = df_nonmut.columns.tolist()
-
-    df_out = open(mydir + '/data/Good_et_al/time_partition_z_scores.txt', 'w')
-    df_out.write('\t'.join(['Time', 'less_mbd', 'greater_mpd', 'delta_mpd', 'less_mbd_025', 'less_mbd_975', 'greater_mpd_025', 'greater_mpd_975', 'delta_mpd_025', 'delta_mpd_975']) + '\n')
-    for time_point in time_points_set:
-        # very few mutations after generation 50000
-        if time_point > 50000:
-            continue
-        print("Time point " + str(time_point))
-        t_i_df = df_nonmut.iloc[time_points_positions[time_point]]
-        t_i_np = t_i_df.values
-        # remove rows with all zeros
-        t_i_np_zeros = np.where(~t_i_np.any(axis=1))[0]
-        n_zeros_t_i_np = len(t_i_np_zeros)
-        if n_zeros_t_i_np > 0:
-            t_i_np = np.delete(t_i_np, t_i_np_zeros, axis=0)
-
-        t_i_to_final_np = t_final_np  - t_i_np
-        # remove rows with all zeros
-        t_i_to_final_np_zeros = np.where(~t_i_to_final_np.any(axis=1))[0]
-        n_zeros_t_i_to_final_np = len(t_i_to_final_np_zeros)
-        if n_zeros_t_i_to_final_np > 0:
-            t_i_to_final_np = np.delete(t_i_to_final_np, t_i_to_final_np_zeros, axis=0)
-
-        t_concat = np.concatenate((t_i_np, t_i_to_final_np), axis=0)
-        t_norm = cd.likelihood_matrix_array(t_concat, gene_names, 'Good_et_al').get_likelihood_matrix()
-        t_norm_rel = t_norm/t_norm.sum(axis=1, keepdims=True)
-        t_norm_rel -= np.mean(t_norm_rel, axis = 0)
-        pca = PCA()
-        t_norm_rel_pca = pca.fit_transform(t_norm_rel)
-        t_norm_rel_pca_k5 = t_norm_rel_pca[:, -1-k:-1]
-        # account for rows with zero mutations
-        dist_t_less = pt.get_mean_pairwise_euc_distance(t_norm_rel_pca_k5[:5-n_zeros_t_i_np,:], k=k)
-        dist_t_greater = pt.get_mean_pairwise_euc_distance(t_norm_rel_pca_k5[5-n_zeros_t_i_to_final_np:,:], k=k)
-        dist_t_change = dist_t_greater - dist_t_less
-        #F_t = pt.get_F_2(t_norm_rel_pca_k5, 5-n_zeros_t_i_np, 5-n_zeros_t_i_to_final_np)[0]
-        dist_t_less_list = []
-        dist_t_greater_list = []
-        dist_t_change_list = []
-        #F_t_list = []
-        for i in range(iter):
-            if i % 1000 ==0:
-                print("Iteration " + str(i))
-            t_i_np_rndm = pt.get_random_matrix(t_i_np)
-            t_i_to_final_np_rndm = pt.get_random_matrix(t_i_to_final_np)
-            t_rndm_concat = np.concatenate((t_i_np_rndm, t_i_to_final_np_rndm), axis=0)
-            t_rndm_norm = cd.likelihood_matrix_array(t_rndm_concat, gene_names, 'Good_et_al').get_likelihood_matrix()
-            t_rndm_norm_rel = t_rndm_norm/t_rndm_norm.sum(axis=1, keepdims=True)
-            t_rndm_norm_rel -= np.mean(t_rndm_norm_rel, axis = 0)
-            t_rndm_norm_rel_pca = pca.fit_transform(t_rndm_norm_rel)
-            # first five axes
-            t_rndm_norm_rel_pca_k5 = t_rndm_norm_rel_pca[:, -1-k:-1]
-            dist_t_less_rndm = pt.get_mean_pairwise_euc_distance(t_rndm_norm_rel_pca_k5[:5-n_zeros_t_i_np,:], k=k)
-            dist_t_greater_rndm = pt.get_mean_pairwise_euc_distance(t_rndm_norm_rel_pca_k5[5-n_zeros_t_i_to_final_np:,:], k=k)
-            dist_t_change_list.append(dist_t_greater_rndm - dist_t_less_rndm)
-            dist_t_less_list.append(dist_t_less_rndm)
-            dist_t_greater_list.append(dist_t_greater_rndm)
-            #F_t_list.append(pt.get_F_2(t_rndm_norm_rel_pca, 5-n_zeros_t_i_np, 5-n_zeros_t_i_to_final_np)[0])
-
-        dist_t_change_list.sort()
-        dist_t_greater_list.sort()
-        dist_t_less_list.sort()
-        #F_t_list.sort()
-        # get 95% CIs
-        dist_t_change_025 = dist_t_change_list[int(iter*0.025)]
-        dist_t_change_975 = dist_t_change_list[int(iter*0.975)]
-        dist_t_greater_025 = dist_t_greater_list[int(iter*0.025)]
-        dist_t_greater_975 = dist_t_greater_list[int(iter*0.975)]
-        dist_t_less_025 = dist_t_less_list[int(iter*0.025)]
-        dist_t_less_975 = dist_t_less_list[int(iter*0.975)]
-        #F_t_025 = F_t_list[int(iter*0.025)]
-        #F_t_975 = F_t_list[int(iter*0.975)]
-        df_out.write('\t'.join([str(time_point), str(dist_t_less), str(dist_t_greater), \
-                                str(dist_t_change), str(dist_t_less_025), str(dist_t_less_975), \
-                                str(dist_t_greater_025), str(dist_t_greater_975), \
-                                str(dist_t_change_025), str(dist_t_change_975)]) + '\n')
-
-    df_out.close()
-
-
 
 
 
 
 #time_partition_ltee()
 #gene_svd_tenaillon()
+#run_ba_cov_N_sims()
 
-
-
+#run_ba_cov_G_sims()
 #cluster_scaling()
 
 

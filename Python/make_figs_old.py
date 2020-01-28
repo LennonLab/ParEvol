@@ -10,7 +10,7 @@ import clean_data as cd
 from scipy.special import comb
 from scipy import stats
 
-from sklearn.decomposition import PCA, SparsePCA
+from sklearn.decomposition import PCA
 
 mydir = os.path.expanduser("~/GitHub/ParEvol/")
 
@@ -449,59 +449,10 @@ def wannier_hist(iter=10000):
 
 
 
-def plot_ltee_partition():
-    df_path = os.path.expanduser("~/GitHub/ParEvol") + '/data/Good_et_al/time_partition_z_scores.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer')
-
-    print(df)
-    time = df.Time.values
-    t_less = df.Time_less_z_score.values
-    t_greater = df.Time_greater_z_score.values
-
-
-    fig = plt.figure()
-
-    plt.plot(time, t_greater, c ='r')
-    plt.plot(time, t_less, c ='b')
-
-    fig.tight_layout()
-    fig.savefig(os.path.expanduser("~/GitHub/ParEvol") + '/figs/ltee_partition.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    #plt.close()
 
 
 
 
-
-
-def hist_tenaillon_multi_pop():
-    df_path = pt.get_path() + '/data/Tenaillon_et_al/gene_by_pop.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    df_delta = pt.likelihood_matrix(df, 'Tenaillon_et_al').get_likelihood_matrix()
-    pca = PCA()
-    df_out = pca.fit_transform(X)
-
-    df_null_path = pt.get_path() + '/data/Tenaillon_et_al/permute_PCA.txt'
-    df_null = pd.read_csv(df_null_path, sep = '\t', header = 'infer', index_col = 0)
-
-    mean_angle = pt.get_mean_angle(df_out, k = k)
-    mcd = pt.get_mean_centroid_distance(df_out, k=k)
-    #mean_length = pt.get_euclidean_distance(df_out, k=k)
-    mean_dist = pt.get_mean_pairwise_euc_distance(df_out, k=k)
-    x_stat = pt.get_x_stat(pca.explained_variance_[:-1])
-
-    fig = plt.figure()
-
-
-    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
-    ax1.axhline(y=0, color='k', linestyle=':', alpha = 0.8, zorder=1)
-    ax1.axvline(x=0, color='k', linestyle=':', alpha = 0.8, zorder=2)
-    ax1.scatter(0, 0, marker = "o", edgecolors='none', c = 'darkgray', s = 120, zorder=3)
-    ax1.scatter(df_out[:,0], df_out[:,1], marker = "o", edgecolors='#244162', c = '#175ac6', alpha = 0.4, s = 60, zorder=4)
-
-    ax1.set_xlim([-0.75,0.75])
-    ax1.set_ylim([-0.75,0.75])
-    ax1.set_xlabel('PCA 1 (' + str(round(pca.explained_variance_ratio_[0],3)*100) + '%)' , fontsize = 14)
-    ax1.set_ylabel('PCA 2 (' + str(round(pca.explained_variance_ratio_[1],3)*100) + '%)' , fontsize = 14)
 
 
 
