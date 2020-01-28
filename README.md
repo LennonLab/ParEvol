@@ -2,6 +2,8 @@
 
 Project repository for data and Python code associated with the preprint
 
+
+
 ## Re-running the analyses and re-generating the figures
 
 The code accepts the following arguments from the user.
@@ -37,7 +39,7 @@ If you only want to generate the figure using the data that has already been gen
 
 ## Publicaly available data
 
-Mutation data from Wannier et al. (2018) was downloaded in a CSV format from the following links on the [Adaptive Laboratory Evolution database](https://aledb.org/) (Phaneuf et. al., 2018). 
+Mutation data from Wannier et al. (2018) was downloaded in a CSV format from the following links on the [Adaptive Laboratory Evolution database](https://aledb.org/) (Phaneuf et. al., 2018).
 
 - [C321](https://aledb.org/stats?ale_experiment_id=76)
 

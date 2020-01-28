@@ -1,11 +1,159 @@
 from __future__ import division
-import os, pickle
+import os, pickle, collections, re
 from itertools import groupby
 from operator import itemgetter
 import numpy as np
 import pandas as pd
+import parevol_tools as pt
+from Bio import SeqIO
 
 mydir = os.path.expanduser("~/GitHub/ParEvol/")
+
+
+
+class wannier_et_al:
+
+
+    def get_gene_lengths2(self):
+        gene_sites = mydir + '/data/Wannier_et_al/gene_sites.txt'
+        with open(gene_sites) as gs:
+             rows = ( line.strip().split('\t') for line in gs )
+             gs_dict = { row[1]:row[0] for row in rows if row[1] != 'Position'}
+
+        genome_path = mydir + '/data/Wannier_et_al/CP025268.1.txt'
+        fasta = pt.classFASTA(genome_path).readFASTA()
+        locus_tags = []
+        protein_ids = []
+        starts = []
+        stops = []
+        lengths = []
+        gene_names = []
+        num_good_list = []
+        for gene in fasta:
+            lengths.append(len(gene[1]))
+            header = gene[0].split(' ')
+            locus_tag = re.findall(r"[\w']+", [s for s in header if 'locus_tag' in s][0])[1]
+            locus_tags.append(locus_tag)
+            location = re.findall(r"[\w']+", [s for s in header if 'location=' in s][0])
+            start = location[-2]
+            starts.append(start)
+            stop = location[-1]
+            stops.append(stop)
+
+            number_good = 0
+            gs_genessss= []
+            for gs_site, gs_gene in gs_dict.items():
+                if (int(start) <= int(gs_site)) and (int(stop) >= int(gs_site)):
+                    number_good += 1
+                    gs_genessss.append(gs_gene)
+            #num_good_list.append(number_good)
+
+            if number_good > 1:
+                print( locus_tag, gs_genessss)
+
+    def get_gene_lengths(self):
+        #genome_path = self.path + '/data/Wannier_et_al/NC_000913.3.txt'
+        #fasta = pt.classFASTA(genome_path).readFASTA()
+        #gene_size_dict = {}
+        #for gene in fasta:
+        #    header = gene[0].split(' ')
+        #    gene_name = [s for s in header if 'gene=' in s][0].split('=')[1].split(']')[0]
+        #    gene_len = len(gene[1])
+        #    gene_size_dict[gene_name] = gene_len
+        #gene_size_dict_out = mydir + 'data/Wannier_et_al/gene_size_dict.txt'
+        #with open(gene_size_dict_out, 'wb') as handle:
+        #    pickle.dump(gene_size_dict, handle)
+        gene_size_dict = {}
+        to_ignore = ['insN', 'crl', 'yaiX', 'yaiT', 'renD', 'nmpC', 'lomR', \
+                    'ydbA', 'ydfJ', 'yoeA', 'wbbL', 'gatR', 'yejO', 'yqiG', \
+                    'yhcE', 'yrhA', 'yhiS', 'insO']
+        with open(mydir + '/data/Wannier_et_al/NC_000913_3.gb', "rU") as input_handle:
+            for record in SeqIO.parse(input_handle, "genbank"):
+                for feature in record.features:
+                    if feature.type == 'gene':
+                        gene_name = feature.qualifiers['gene'][0]
+                        if gene_name in to_ignore:
+                            continue
+                        start_stop = (re.findall(r"[\w']+", str(feature.location)))
+                        gene_len = int(start_stop[1]) - int(start_stop[0])
+                        gene_size_dict[gene_name] = gene_len
+
+        gene_size_dict_out = mydir + 'data/Wannier_et_al/gene_size_dict.txt'
+        with open(gene_size_dict_out, 'wb') as handle:
+            pickle.dump(gene_size_dict, handle)
+
+    def clean_data(self):
+        # ALEdb setup
+        # A = ALE
+        # F = Flask
+        # I = isolate number
+        # R = Technical replicate
+        treats = ['C321', 'C321.deltaA', 'C321.deltaA.earlyfix', 'ECNR2.1']
+        #treats = ['C321.deltaA.earlyfix']
+        table = str.maketrans(dict.fromkeys('""'))
+        #gene_site_dict = {}
+        for treat in treats:
+            gene_treat_dict = {}
+            pop_position_dict = {}
+            lengths = []
+            treat_path = mydir + '/data/Wannier_et_al/' + treat + '_mutation_table.txt'
+            for i, line in enumerate(open(treat_path, 'r')):
+                line = line.strip('\n')
+                items = line.split("\t")
+                items = [item.translate(table) for item in items]
+                if i == 0:
+                    samples = [x.split('>')[1][:-3] for x in items[5:]]
+                    samples = [x.replace(' ', '-') for x in samples]
+                    if (treat == 'C321.deltaA') or (treat == 'C321.deltaA.earlyfix'):
+                        samples_list = [list(x) for x in samples]
+                        for x in samples_list:
+                            x[5] = 'delta'
+                        samples = [''.join(x) for x in samples_list]
+                    samples_no_FIR = [s.rsplit('-', 3)[0] for s in samples]
+                    for sample_no_FIR in list(set(samples_no_FIR)):
+                        gene_treat_dict[sample_no_FIR] = {}
+                    for j, sample_no_FIR in enumerate(samples_no_FIR):
+                        pop_position_dict[j] = sample_no_FIR
+
+                # remove noncoding and mutations in overlaping genes
+                if ('noncoding' in items[4]) or ('pseudogene' in items[4]) \
+                        or ('intergenic' in items[4]) or (';' in items[3]) \
+                        or (len(set(items[5:])) == 1):
+                    continue
+
+                just_muts = items[5:]
+                gene = items[3]
+                if len(gene.split(',')) > 1:
+                    continue
+                #gene_site_dict[gene] = items[0]
+                # merge reps
+                site_dict = {}
+                for m, mut_m in enumerate(just_muts):
+                    if mut_m == '1':
+                        site_dict[pop_position_dict[m]] = 1
+
+                if len(site_dict) > 3:
+                    continue
+                for key, value in site_dict.items():
+                    if gene in gene_treat_dict[key]:
+                        gene_treat_dict[key][gene] += 1
+                    else:
+                        gene_treat_dict[key][gene] = 1
+
+            df = pd.DataFrame.from_dict(gene_treat_dict).T
+            df = df.fillna(0)
+            df_out = mydir + '/data/Wannier_et_al/' + treat + '_mutation_table_clean.txt'
+            df.to_csv(df_out, sep = '\t', index = True)
+
+
+        #gene_site_dict_out = open(self.path + '/data/Wannier_et_al/gene_sites.txt', 'w')
+        #gene_site_dict_out.write('\t'.join(['gene', 'site']) + '\n')
+        #for gene_i, site_i in gene_site_dict.items():
+        #    gene_site_dict_out.write('\t'.join([gene_i, site_i.replace(',', '')]) + '\n')
+        #gene_site_dict_out.close()
+
+
+
 
 class good_et_al:
 
@@ -106,6 +254,8 @@ class good_et_al:
 
 
 
+
+
 class tenaillon_et_al:
 
     def clean_data(self):
@@ -136,6 +286,7 @@ class tenaillon_et_al:
                     line_new = line + head_type['Genic']
                 df_out.write(','.join(line_new) + '\n')
         df_out.close()
+
 
     def pop_by_gene_tenaillon(self):
         pop_by_gene_dict = {}
@@ -178,133 +329,120 @@ class tenaillon_et_al:
             pickle.dump(gene_size_dict, handle)
 
 
-class kryazhimskiy_et_al:
 
-    def clean_table_s5(self):
-        in_path = mydir + 'data/Kryazhimskiy_et_al/NIHMS658386-supplement-Table_S5.txt'
-        df_out = open(mydir + 'data/Kryazhimskiy_et_al/table_S5_clean.txt', 'w')
-        column_headers = ['Founder', 'Pop', 'Clone', 'Notes', 'Chr', 'Pos', \
-                        'Unique_Mutation_ID', 'Ancestral_allele', 'Mutant_allele', \
-                        'Is_convergent', 'Type', 'Gene', 'AA_change', 'AA_position', \
-                        'Distance_to_gene', 'COV_IN_CLONE', 'CNT_IN_CLONE', \
-                        'FREQ_IN_CL', 'FREQ_OUT_CL', 'Posterior_Probability', 'Notes']
-        df_out.write('\t'.join(column_headers) + '\n')
-        for line in open(in_path):
-            line_split = line.split('\t')[:-11]
-            df_out.write('\t'.join(line_split) + '\n')
-        df_out.close()
-
-
-    #def pop_by_gene_kryazhimskiy(self):
-    #    df_path = mydir + 'data/Kryazhimskiy_et_al/NIHMS658386-supplement-Table_S5.txt'
-    #    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    #
-    #    print(df.columns)
-
-    def get_size_dict(self):
-        in_path = mydir + 'data/Kryazhimskiy_et_al/Saccharomyces_cerevisiae_W303_Greg_Lang/w303_ref.gff'
-        df_out = open(mydir + 'data/Kryazhimskiy_et_al/Saccharomyces_cerevisiae_W303_Greg_Lang/w303_ref_clean.gff', 'w')
-        df_out.write('\t'.join(['Gene', 'ID', 'Parents', 'Length']) + '\n')
-        for line in open(in_path):
-            line_split = line.split()
-            if (len(line_split) < 3) or (line_split[2] != 'CDS'):
-                continue
-            genes = [x for x in line_split[-1].split(';') if 'gene=' in x]
-            if len(genes) == 1:
-                gene = str(genes[0].split('=')[1])
-            else:
-                gene = ''
-            ids= [x for x in line_split[-1].split(';') if 'ID=' in x]
-            if len(ids) == 1:
-                id = str(ids[0].split('=')[1])
-            else:
-                id = ''
-            parents = [x for x in line_split[-1].split(';') if 'Parent=' in x]
-            if len(parents) == 1:
-                parent = str(parents[0].split('=')[1])
-            else:
-                parent = ''
-            length = str(int(line_split[4]) - int(line_split[3]))
-            df_out.write('\t'.join([gene, id, parent, length]) + '\n')
-        df_out.close()
-
-
-class mcdonald_et_al:
-
-    def clean_S1(self):
-        in_path = mydir + 'data/McDonald_et_al/NIHMS753653-supplement-supp_data1.txt'
-        df = pd.read_csv(in_path, skiprows=[0], sep = '\t', header = 'infer', index_col = 0)
-        gene_by_pop_dict = {}
-        for index, row in df.iterrows():
-            if row['Effect'] == 'intergenic':
-                continue
-            new_pop_name = index + '_' + row['Reproduction']
-            gene = row['Gene']
-            if new_pop_name not in gene_by_pop_dict:
-                gene_by_pop_dict[new_pop_name] = {}
-            if gene not in gene_by_pop_dict[new_pop_name]:
-                gene_by_pop_dict[new_pop_name][gene] = 1
-            else:
-                gene_by_pop_dict[new_pop_name][gene] += 1
-        df = pd.DataFrame.from_dict(gene_by_pop_dict).T
-        df = df.fillna(0)
-        df_out = mydir + 'data/McDonald_et_al/gene_by_pop.txt'
-        df.to_csv(df_out, sep = '\t', index = True)
-
-
-
-class wannier_et_al:
-
-    def __init__(self, path):
-        self.path = path
+class turner_et_al:
 
     def clean_data(self):
-        #treats = ['C321', 'C321.deltaA', 'C321.deltaA.earlyfix', 'ECNR2.1']
-        treats = ['C321.deltaA']
-        table = str.maketrans(dict.fromkeys('""'))
-        gene_treat_dict = {}
-        #genes_
+        genome_path = mydir + 'data/Turner_et_al/GCF_000203955.1_ASM20395v1_genomic.gbff'
+        gene_to_locus_tag = {}
+        old_locus_tag_to_locus_tag = {}
+        locus_tag_size = {}
+        # get gene name dictionaries
+        for record in SeqIO.parse(genome_path, "genbank"):
+            for feature in record.features:
+                if 'note' in feature.qualifiers:
+                    if 'incomplete' in feature.qualifiers['note'][0]:
+                        continue
+                    if 'frameshifted' in feature.qualifiers['note'][0]:
+                        continue
+                    if 'internal stop' in feature.qualifiers['note'][0]:
+                        continue
+                    if 'riboswitch' in feature.qualifiers['note'][0]:
+                        continue
+                    locus_tag = feature.qualifiers['locus_tag'][0]
+                    nuc_str = str(feature.location.extract(record).seq[:-3])
+                    locus_tag_size[locus_tag] = len(nuc_str)
 
-        for treat in treats:
-            lengths = []
-            treat_path = self.path + '/data/Wannier_et_al/' + treat + '_mutation_table.txt'
-            for i, line in enumerate(open(treat_path, 'r')):
+                    if 'gene' in feature.qualifiers:
+                        gene_name = feature.qualifiers['gene'][0]
+                        gene_to_locus_tag[gene_name] = locus_tag
+                    if 'old_locus_tag' in feature.qualifiers:
+                        old_locus_tag_name = feature.qualifiers['old_locus_tag'][0]
+                        old_locus_tag_to_locus_tag[old_locus_tag_name] = locus_tag
 
-                line = line.strip('\n')
-                items = line.split("\t")
-                items = [item.translate(table) for item in items]
-                if i == 0:
-                    #print(list(map(str.strip, items)))
+        gene_size_dict_out = mydir + 'data/Turner_et_al/gene_size_dict.txt'
+        with open(gene_size_dict_out, 'wb') as handle:
+            pickle.dump(locus_tag_size, handle)
 
-                    samples = [x.split('>')[1][:-3] for x in items[5:]]
-                    samples = [x.replace(' ', '-') for x in samples]
-                    if (treat == 'C321.deltaA') or (treat == 'C321.deltaA.earlyfix'):
-                        samples_list = [list(x) for x in samples]
-                        #samples_list = [x[2] =4 for x in samples]
-                        for x in samples_list:
-                            x[5] = 'delta'
-                        samples = [''.join(x) for x in samples_list]
-                    for sample in samples:
-                        gene_treat_dict[sample] = {}
+        df_in = mydir + 'data/Turner_et_al/Breseq_Output_with_verification.txt'
+        df_out = open(mydir + 'data/Tenaillon_et_al/gene_by_pop.csv', 'w')
+        pop_by_gene_dict = {}
+        for i, line in enumerate(open(df_in, 'rb')):
+            line = line.decode(errors='ignore')
+            line = line.strip().split('\t')
+            treatment = line[0]
+            sample = line[1]
+            keep = line[12]
+            gene = line[9]
+            if keep == 'Y':
+                gene = gene.replace('?', '')
+                gene = gene.replace('[', '')
+                gene = gene.replace(']', '')
+                gene = gene.strip()
 
-                    # track code with header??
+                # these are all "common names" of the genes used in this file
+                # there is no way to map these names to the reference bc the
+                # shortened names are not used in the annotation,
+                # so I had to manually look up each gene and find its respective
+                # old_locus_tag
+                if (gene == 'GlcF'):
+                    gene = 'Bcen2424_0732'
+                if (gene == 'thiG'):
+                    gene = 'Bcen2424_0412'
+                if (gene == 'glcF'):
+                    gene = 'Bcen2424_0732'
+                if (gene == 'hemC'):
+                    gene = 'Bcen2424_2425'
+                if (gene == 'flgI'):
+                    gene = 'Bcen2424_3018'
+                if (gene == 'flgA'):
+                    gene = 'Bcen2424_3026'
 
-
-
-                if ('noncoding' in items[4]) or ('pseudogene' in items[4]) or ('intergenic' in items[4]):
+                # this old_locus_tag is not in the annotated reference assembly
+                # GCF_000203955.1
+                if gene == 'Bcen2424_5223':
                     continue
 
-                #print(items[3])
-                print(items[5:])
-                lengths.append(len(items))
-            print(set(lengths))
+                if gene in gene_to_locus_tag:
+                    locus_tag = gene_to_locus_tag[gene]
+                else:
+                    locus_tag = old_locus_tag_to_locus_tag[gene]
 
-        #print(gene_treat_dict)
+                treatment = treatment.replace(' ', '_')
+                treatment = treatment.replace(',', '')
+                treatment = treatment.replace('"', '')
+                treatment = treatment.lower()
+
+                treatment_strain = treatment + '_' + sample
+
+                if '_small_bead_' in treatment_strain:
+                    continue
+
+                if locus_tag not in pop_by_gene_dict:
+                    pop_by_gene_dict[locus_tag] = {}
+
+                if treatment_strain in pop_by_gene_dict[locus_tag]:
+                    pop_by_gene_dict[locus_tag][treatment_strain] += 1
+                else:
+                    pop_by_gene_dict[locus_tag][treatment_strain] = 1
+
+        df = pd.DataFrame.from_dict(pop_by_gene_dict)
+        df = df.fillna(0)
+        print(df)
+        # original data has "LIne" instead of "Line"
+        df.index = df.index.str.replace('LIne', 'Line', regex=True)
+        # remove rows and columns with all zeros
+        df_out = mydir + 'data/Turner_et_al/gene_by_pop.txt'
+        df.to_csv(df_out, sep = '\t', index = True)
+
+        # clean gene size dict
+        #effective_gene_lengths, effective_gene_lengths_syn, Lsyn, Lnon, substitution_specific_synonymous_fraction = calculate_synonymous_nonsynonymous_target_sizes(genome_path, 3483902)
+
+        #gene_size_dict_out = mydir + 'data/Turner_et_al/gene_size_dict.txt'
+        #with open(gene_size_dict_out, 'wb') as handle:
+        #    pickle.dump(effective_gene_lengths, handle)
 
 
-
-
-    #def get_gene_sizes(self):
 
 
 
@@ -317,7 +455,7 @@ class likelihood_matrix_array:
 
     def get_gene_lengths(self, **keyword_parameters):
         if self.dataset == 'Good_et_al':
-            conv_dict = cd.good_et_al().parse_convergence_matrix(mydir + "/data/Good_et_al/gene_convergence_matrix.txt")
+            conv_dict = good_et_al().parse_convergence_matrix(mydir + "/data/Good_et_al/gene_convergence_matrix.txt")
             length_dict = {}
             if ('gene_list' in keyword_parameters):
                 for gene_name in keyword_parameters['gene_list']:
@@ -336,51 +474,50 @@ class likelihood_matrix_array:
                 else:
                     return(length_dict)
 
+        elif self.dataset == 'Turner_et_al':
+            with open(mydir + '/data/Turner_et_al/gene_size_dict.txt', 'rb') as handle:
+                length_dict = pickle.loads(handle.read())
+                if ('gene_list' in keyword_parameters):
+                    return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }
+                else:
+                    return(length_dict)
+
+        elif self.dataset == 'Wannier_et_al':
+            with open(mydir + '/data/Wannier_et_al/gene_size_dict.txt', 'rb') as handle:
+                length_dict = pickle.loads(handle.read())
+                if ('gene_list' in keyword_parameters):
+                    return { gene_name: length_dict[gene_name] for gene_name in keyword_parameters['gene_list'] }
+                else:
+                    return(length_dict)
+
+
     def get_likelihood_matrix(self):
         genes_lengths = self.get_gene_lengths(gene_list = self.gene_list)
-        L_mean = np.mean(list(genes_lengths.values()))
+        #L_mean = np.mean(list(genes_lengths.values()))
         L_i = np.asarray(list(genes_lengths.values()))
-        N_genes = len(self.gene_list)
-        #rel_gene_size = (L_mean / L_i)
-        #m_mean = self.df.sum(axis=1) / N_genes
+        n_genes = np.count_nonzero(self.array, axis=1)
+        n_tot = np.sum(self.array, axis=1)
+        m_mean = np.true_divide(n_tot, n_genes)
+        array_bin = (self.array > 0).astype(int)
+        length_matrix = L_i*array_bin
+        rel_length_matrix = length_matrix /np.true_divide(length_matrix.sum(1),(length_matrix!=0).sum(1))[:, np.newaxis]
+        # length divided by mean length, so take the inverse
+        with np.errstate(divide='ignore'):
+            rel_length_matrix = (1 / rel_length_matrix)
+        rel_length_matrix[rel_length_matrix == np.inf] = 0
 
-        #m_mean = np.sum(self.array, axis=0) / N_genes#np.count_nonzero(np.asarray([1,0,2]))
+        m_matrix = self.array * rel_length_matrix
+        r_matrix = (m_matrix / m_mean[:,None])
 
-        #for index, row in self.array.iterrows():
-        #    print(row)
-            #m_mean_j = m_mean[index]
-        #    np.seterr(divide='ignore')
-        #    delta_j = row * np.log((row * (L_mean / L_i)) / m_mean_j)
-        #    self.df.loc[index,:] = delta_j
+        return r_matrix
 
-        # just use matrix operations
-        np.seterr(divide='ignore', invalid='ignore')
-        # m_i
-        df_new = self.array * (L_mean / L_i)
-        # r_i
-        df_new = df_new.T / (np.sum(self.array, axis=1) / np.count_nonzero(self.array, axis=1))
-        df_new = df_new.T
-        # relative contribution
-        df_new = df_new/df_new.sum(axis=1)[:,None]
+# run clean_data first
+#wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).clean_data()
+#wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).get_gene_lengths()
 
-        #df_new = (self.array *  (L_mean / L_i)) /  m_mean
-        # likelihood
-        #df_new = self.array * np.log((self.array * (L_mean / L_i)) / m_mean)
-        np.seterr(divide='ignore', invalid='ignore')
-        #df_new = self.df_new.fillna(0)
-        #df_new[np.isnan(df_new)] = 0
-        # remove colums with all zeros
-        #df_new.loc[:, (df_new != 0).any(axis=0)]
-        #df_new = df_new[:,~np.all(df_new == 0, axis=0)]
-
-
-        #df_new[df_new < 0] = 0
-        return df_new
-
-
-wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).clean_data()
 #good_et_al().reformat_convergence_matrix(mut_type = 'P')
 #good_et_al().reformat_convergence_matrix(mut_type = 'F')
 #tenaillon_et_al().pop_by_gene_tenaillon()
 #kryazhimskiy_et_al().get_size_dict()
-#mcdonald_et_al().clean_S1()
+
+#turner_et_al().clean_data()

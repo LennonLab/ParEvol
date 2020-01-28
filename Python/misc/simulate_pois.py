@@ -79,13 +79,7 @@ def get_pois_sample(lambda_, u):
     return x
 
 
-def get_count_pop(lambdas, cov):
-    C =cov
-    mult_norm = np.random.multivariate_normal(np.asarray([0]* len(lambdas)), C)#, tol=1e-6)
-    mult_norm_cdf = stats.norm.cdf(mult_norm)
-    counts = [ get_pois_sample(lambdas[i], mult_norm_cdf[i]) for i in range(len(lambdas))  ]
 
-    return np.asarray(counts)
 
 
 def get_block_cov(n_genes, var=1, pos_cov = 0.9, neg_cov= -0.9):
@@ -158,63 +152,6 @@ def run_ntwrk_cov_sims(var = 1, cov = 0.25):
         z_score = (euc_dist - np.mean(sim_eucs)) / np.std(sim_eucs)
         print(str(cov) , ' ', str(i), ' ', str(z_score))
         df_out.write('\t'.join([str(cov), str(i), str(z_score)]) + '\n')
-
-    df_out.close()
-
-
-def run_ba_ntwk_cov_sims():
-    df_out=open(pt.get_path() + '/data/simulations/cov_ba_ntwrk_ev.txt', 'w')
-    n_pops=100
-    n_genes=50
-    ntwk = nx.barabasi_albert_graph(n_genes, 2)
-    ntwk_np = nx.to_numpy_matrix(ntwk)
-    lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
-    df_out.write('\t'.join(['Cov', 'Iteration', 'euc_z_score', 'euc_percent', 'eig_percent', 'mcd_percent_k1', 'mcd_percent_k3']) + '\n')
-    covs = [0.05, 0.1, 0.15, 0.2]
-    #covs = [0.2, 0.7]
-    for cov in covs:
-        C = ntwk_np * cov
-        np.fill_diagonal(C, 1)
-        #z_scores = []
-        #eig_percents = []
-        #euc_percents = []
-        #centroid_percents_k1 = []
-        #centroid_percents_k3 = []
-        for i in range(1000):
-            test_cov = np.stack( [get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
-            X = pt.hellinger_transform(test_cov)
-            pca = PCA()
-            pca_fit = pca.fit_transform(X)
-            euc_dist = pt.get_mean_pairwise_euc_distance(pca_fit)
-            euc_dists = []
-            eig = pt.get_x_stat(pca.explained_variance_[:-1])
-            mcd_k1 = pt.get_mean_centroid_distance(pca_fit, k = 1)
-            mcd_k3 = pt.get_mean_centroid_distance(pca_fit, k = 3)
-            eigs = []
-            centroid_dists_k1 = []
-            centroid_dists_k3 = []
-            for j in range(1000):
-                X_j = pt.hellinger_transform(pt.random_matrix(test_cov))
-                #pca_j = PCA()
-                #pca_fit_j = pca_j.fit_transform(X_j)
-                pca_fit_j = pca.fit_transform(X_j)
-                euc_dists.append( pt.get_mean_pairwise_euc_distance(pca_fit_j) )
-                centroid_dists_k1.append(pt.get_mean_centroid_distance(pca_fit_j, k = 1))
-                centroid_dists_k3.append(pt.get_mean_centroid_distance(pca_fit_j, k = 3))
-                eigs.append( pt.get_x_stat(pca.explained_variance_[:-1]) )
-                #eigs.append( pt.get_x_stat(pca_j.explained_variance_[:-1]) )
-            z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
-            euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
-            eig_percent = len( [k for k in eigs if k < eig] ) / len(eigs)
-            centroid_percent_k1 = len( [k for k in centroid_dists_k1 if k < mcd_k1] ) / len(centroid_dists_k1)
-            centroid_percent_k3 = len( [k for k in centroid_dists_k3 if k < mcd_k3] ) / len(centroid_dists_k3)
-            #eig_percents.append(eig_percent)
-            #euc_percents.append(euc_percent)
-            #z_scores.append(z_score)
-            print(cov, i, z_score, euc_percent, eig_percent)
-            df_out.write('\t'.join([str(cov), str(i), str(z_score), str(euc_percent), str(eig_percent), str(centroid_percent_k1), str(centroid_percent_k3)]) + '\n')
-
-        #print(cov, np.all(np.linalg.eigvals(C) > 0), np.mean(z_scores))
 
     df_out.close()
 

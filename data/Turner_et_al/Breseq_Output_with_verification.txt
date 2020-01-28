@@ -1,0 +1,798 @@
+Treatment	Sample	Evidence	Seq ID	Position	Mutation	Frequency	Annotation	Gene	Gene.Assigned	Description	Real?	BC Include?	Synoynous	Reason	Notes
+"High carbon, large bead"	CBT718	RA	NC_008542	"6,491"	G?C	6.00%	intergenic (+793/?18)	gyrB ? / ? Bcen2424_0004	 Bcen2424_0004 ?	DNA gyrase subunit B/integrase catalytic subunit	N	N	N	Ends of reads/misaligns	
+"Low carbon, large bead"	CBT733	JC	NC_008542	"24,143"	#NAME?	5.60%	coding (140/234 nt)	Bcen2424_0021 ?	Bcen2424_0021 ?	hypothetical protein	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT727	RA	NC_008542	"80,791"	C?T	5.60%	A100V (GCG?GTG) 	Bcen2424_0079 ?	Bcen2424_0079 ?	AsnC family transcriptional regulator	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"125,864"	?1 bp	5.40%	coding (1284/1653 nt)	Bcen2424_0117 ?	Bcen2424_0117 ?	acyl?CoA dehydrogenase domain?containing protein	Y	Y	N		
+"High carbon, large bead"	CBT722	JC	NC_008542	"142,659"	#NAME?	16.70%	coding (668/885 nt)	Bcen2424_0131 ?	Bcen2424_0131 ?	LysR family transcriptional regulator	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT736	RA	NC_008542	"145,158"	T?C	6.80%	intergenic (+42/+200)	Bcen2424_0132 ? / ? Bcen2424_0133	None	major facilitator transporter/pyridoxamine 5'?phosphate oxidase?like FMN?binding protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, small bead"	CBT729	JC	NC_008542	"145,201"	?49 bp	5.20%	intergenic (+85/+109)	Bcen2424_0132 ? / ? Bcen2424_0133	None	major facilitator transporter/pyridoxamine 5'?phosphate oxidase?like FMN?binding protein	Y	N	N	Intergenic and not upstream	
+"Low carbon, planktonic"	CBT743	JC	NC_008542	"163,756"	#NAME?	51.20%	intergenic (?189/+203)	Bcen2424_0148 ? / ? Bcen2424_0149	None	oxidoreductase domain?containing protein/hypothetical protein	Y	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT725	JC	NC_008542	"205,452"	#NAME?	15.70%	intergenic (+376/?1443)	Bcen2424_0184 ? / ? Bcen2424_0185	None	NmrA family protein/hypothetical protein	N	N	N	Intergenic and not upstream	
+"High carbon, planktonic"	CBT736	JC	NC_008542	"293,633"	#NAME?	6.30%	coding (2/1020 nt)	motB ?	motB ?	flagellar motor protein MotB	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"299,275"	A?T	5.00%	D442V (GAC?GTC) 	Bcen2424_0258 ?	Bcen2424_0258 ?	methyl?accepting chemotaxis sensory transducer	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"319,400"	C?T	6.40%	A42V (GCG?GTG) 	Bcen2424_0277 ?	Bcen2424_0277 ?	2?nitropropane dioxygenase	Y	Y	N		
+"High carbon, small bead"	CBT728	RA	NC_008542	"366,666"	G?T	6.00%	intergenic (+55/+83)	Bcen2424_0320 ? / ? Bcen2424_0321	None	hypothetical protein/4?hydroxyphenylpyruvate dioxygenase	Y	N	N	Intergenic and not upstream	
+"High carbon, planktonic"	CBT739	JC	NC_008542	"382,136"	?3 bp	6.90%	noncoding (75?77/117 nt)	Bcen2424_R0010a ?	Bcen2424_R0010a ?	5S ribosomal RNA	Y	Y	N		
+"High carbon, planktonic"	CBT740	RA	NC_008542	"391,787"	C?T	100%	P663L (CCG?CTG) 	rpoB ?	rpoB ?	DNA?directed RNA polymerase subunit beta	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"397,172"	G?A	100%	R1082H (CGT?CAT) 	Bcen2424_0341 ?	Bcen2424_0341 ?	DNA?directed RNA polymerase subunit beta'	Y	Y	N		
+"High carbon, planktonic"	CBT736	RA	NC_008542	"398,030"	G?T	100%	G1368V (GGT?GTT) 	Bcen2424_0341 ?	Bcen2424_0341 ?	DNA?directed RNA polymerase subunit beta'	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"402,440"	C?G	100%	A258G (GCG?GGG) 	Bcen2424_0345 ?	Bcen2424_0345 ?	elongation factor G	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"403,352"	C?G	100%	A562G (GCT?GGT) 	Bcen2424_0345 ?	Bcen2424_0345 ?	elongation factor G	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"434,437"	C?T	6.30%	A103A (GCC?GCT) 	Bcen2424_0388 ?	Bcen2424_0388 ?	hypothetical protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT740	RA	NC_008542	"445,260"	G?A	6.30%	Q293Q (CAG?CAA) 	ugpC ?	ugpC ?	glycerol?3?phosphate transporter ATP?binding subunit	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT740	RA	NC_008542	"454,130"	T?A	100%	F324I (TTC?ATC) 	gltD ?	gltD ?	glutamate synthase subunit beta	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"465,029"	C?A	5.10%	F208L (TTC?TTA) 	thiG ?	thiG ?	thiazole synthase	Y	Y	N		
+"High carbon, large bead"	CBT721	RA	NC_008542	"568,104"	G?A	5.10%	A101V (GCG?GTG) 	Bcen2424_0509 ?	Bcen2424_0509 ?	HemK family modification methylase	Y	Y	N		
+"High carbon, planktonic"	CBT740	RA	NC_008542	"573,388"	G?C	6.80%	P422P (CCG?CCC) 	Bcen2424_0514 ?	Bcen2424_0514 ?	peptidase M24	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT740	JC	NC_008542	"632,868"	#NAME?	17.90%	coding (50/753 nt)	Bcen2424_0562 ?	Bcen2424_0562 ?	polypeptide?transport?associated domain?containing protein	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT742	JC	NC_008542	"647,891"	#NAME?	6.10%	coding (465/912 nt)	Bcen2424_0576 ?	Bcen2424_0576 ?	prepilin peptidase	Y	Y	N		
+"Low carbon, planktonic"	CBT742	JC	NC_008542	"647,892"	?9 bp	9.20%	coding (456?464/912 nt)	Bcen2424_0576 ?	Bcen2424_0576 ?	prepilin peptidase	Y	Y	N		
+"Low carbon, large bead"	CBT732	RA	NC_008542	"657,193"	C?G	72.10%	T149T (ACG?ACC) 	Bcen2424_0585 ?	Bcen2424_0585 ?	hypothetical protein	Y	N	Y	Synonymous	
+"Low carbon, large bead"	CBT731	RA	NC_008542	"663,565"	?1 bp	5.60%	coding (493/894 nt)	Bcen2424_0591 ?	Bcen2424_0591 ?	cytochrome c assembly protein	Y	Y	N		
+"High carbon, large bead"	CBT721	RA	NC_008542	"670,653"	C?A	6.50%	A98A (GCC?GCA) 	Bcen2424_0598 ?	Bcen2424_0598 ?	hypothetical protein	N	N	Y	"Synonymous, reads poor quality"	
+"High carbon, small bead"	CBT725	RA	NC_008542	"670,653"	C?A	13.20%	A98A (GCC?GCA) 	Bcen2424_0598 ?	Bcen2424_0598 ?	hypothetical protein	N	N	Y	Synonymous	
+"Low carbon, large bead"	CBT733	RA	NC_008542	"670,653"	C?A	10.20%	A98A (GCC?GCA) 	Bcen2424_0598 ?	Bcen2424_0598 ?	hypothetical protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT740	RA	NC_008542	"670,653"	C?A	9.70%	A98A (GCC?GCA) 	Bcen2424_0598 ?	Bcen2424_0598 ?	hypothetical protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT745	RA	NC_008542	"670,653"	C?A	11.10%	A98A (GCC?GCA) 	Bcen2424_0598 ?	Bcen2424_0598 ?	hypothetical protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT746	RA	NC_008542	"670,653"	C?A	12.40%	A98A (GCC?GCA) 	Bcen2424_0598 ?	Bcen2424_0598 ?	hypothetical protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT720	RA	NC_008542	"670,653"	C?A	10.50%	A98A (GCC?GCA) 	Bcen2424_0598 ?	Bcen2424_0598 ?	hypothetical protein	Y	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"688,783"	C?T	17.60%	intergenic (+132/?218)	Bcen2424_0616 ? / ? Bcen2424_0617	None	hypothetical protein/IclR family transcriptional regulator	Y	N	N	Intergenic and not upstream	
+"Low carbon, planktonic"	CBT745	RA	NC_008542	"689,268"	C?G	100%	R90G (CGC?GGC) 	Bcen2424_0617 ?	Bcen2424_0617 ?	IclR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT746	RA	NC_008542	"689,268"	C?T	73.20%	R90C (CGC?TGC) 	Bcen2424_0617 ?	Bcen2424_0617 ?	IclR family transcriptional regulator	Y	Y	N		In different background from P100L
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"689,268"	C?T	87.50%	R90C (CGC?TGC) 	Bcen2424_0617 ?	Bcen2424_0617 ?	IclR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"689,269"	G?A	10.90%	R90H (CGC?CAC) 	Bcen2424_0617 ?	Bcen2424_0617 ?	IclR family transcriptional regulator	Y	Y	N		On different background than P100T
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"689,298"	C?A	30.70%	P100T (CCG?ACG) 	Bcen2424_0617 ?	Bcen2424_0617 ?	IclR family transcriptional regulator	Y	Y	N		On different background than R90H
+"Low carbon, planktonic"	CBT746	RA	NC_008542	"689,299"	C?T	25.00%	P100L (CCG?CTG) 	Bcen2424_0617 ?	Bcen2424_0617 ?	IclR family transcriptional regulator	Y	Y	N		In different background from R90C
+"Low carbon, planktonic"	CBT742	RA	NC_008542	"689,353"	T?A	100%	V118E (GTG?GAG) 	Bcen2424_0617 ?	Bcen2424_0617 ?	IclR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"739,755"	G?A	5.00%	A136A (GCG?GCA) 	Bcen2424_0665 ?	Bcen2424_0665 ?	FAD dependent oxidoreductase	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT725	JC	NC_008542	"763,733"	#NAME?	8.30%	coding (231/459 nt)	Bcen2424_0684 ?	Bcen2424_0684 ?	D?tyrosyl?tRNA(Tyr) deacylase	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT727	RA	NC_008542	"784,937"	A?G	5.80%	M227T (ATG?ACG) 	Bcen2424_0705 ?	Bcen2424_0705 ?	"helix?turn?helix, type 11 domain?containing protein"	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT736	RA	NC_008542	"809,300"	A?T	100%	intergenic (+181/?451)	Bcen2424_0725 ? / ? Bcen2424_0726	None	LysR family transcriptional regulator/catalase/peroxidase HPI	Y	N	N	Intergenic and not upstream	
+"High carbon, planktonic"	CBT738	RA	NC_008542	"809,300"	A?T	100%	intergenic (+181/?451)	Bcen2424_0725 ? / ? Bcen2424_0726	None	LysR family transcriptional regulator/catalase/peroxidase HPI	Y	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT727	RA	NC_008542	"816,545"	C?A	5.60%	V118L (GTG?TTG) 	glcF ?	glcF ?	glycolate oxidase iron?sulfur subunit	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"830,102"	G?T	5.90%	P400T (CCG?ACG) 	Bcen2424_0741 ?	Bcen2424_0741 ?	hypothetical protein	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, large bead"	CBT720	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, large bead"	CBT721	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, large bead"	CBT722	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, large bead"	CBT723	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, small bead"	CBT724	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, small bead"	CBT725	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, small bead"	CBT726	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, small bead"	CBT727	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, small bead"	CBT728	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, small bead"	CBT729	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, large bead"	CBT730	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, large bead"	CBT731	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, large bead"	CBT733	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, large bead"	CBT734	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, large bead"	CBT735	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, planktonic"	CBT736	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, planktonic"	CBT737	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, planktonic"	CBT738	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, planktonic"	CBT740	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"High carbon, planktonic"	CBT741	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, planktonic"	CBT742	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, planktonic"	CBT744	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, planktonic"	CBT745	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, planktonic"	CBT746	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"838,824"	A?G	100%	T154A (ACC?GCC) 	hemH ?	hemH ?	ferrochelatase	N	N	N	Present in ancestor	
+"Low carbon, planktonic"	CBT742	JC	NC_008542	"841,065"	#NAME?	8.60%	coding (103/444 nt)	Bcen2424_0751 ?	Bcen2424_0751 ?	hypothetical protein	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT738	JC	NC_008542	"922,314"	?66 bp	9.80%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"High carbon, large bead"	CBT722	JC	NC_008542	"922,314"	?66 bp	7.60%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"High carbon, small bead"	CBT725	JC	NC_008542	"922,314"	?66 bp	10.80%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"High carbon, small bead"	CBT726	JC	NC_008542	"922,314"	?66 bp	13.00%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"High carbon, planktonic"	CBT740	JC	NC_008542	"922,314"	?66 bp	10.80%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"High carbon, planktonic"	CBT741	JC	NC_008542	"922,314"	?66 bp	8.30%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"Low carbon, planktonic"	CBT742	JC	NC_008542	"922,314"	?66 bp	19.30%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"Low carbon, planktonic"	CBT745	JC	NC_008542	"922,314"	?66 bp	9.00%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"Low carbon, planktonic"	CBT747	JC	NC_008542	"922,314"	?66 bp	7.60%	intergenic (+139/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"High carbon, large bead"	CBT720	JC	NC_008542	"922,320"	?60 bp	20.20%	intergenic (+145/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"High carbon, large bead"	CBT723	JC	NC_008542	"922,320"	?60 bp	21.80%	intergenic (+145/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"Low carbon, large bead"	CBT730	JC	NC_008542	"922,320"	?60 bp	14.40%	intergenic (+145/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"Low carbon, large bead"	CBT735	JC	NC_008542	"922,320"	?60 bp	19.80%	intergenic (+145/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"Low carbon, planktonic"	CBT743	JC	NC_008542	"922,320"	?60 bp	21.60%	intergenic (+145/+6)	Bcen2424_0821 ? / ? Bcen2424_0822	None	fumarylacetoacetase/major facilitator transporter	N	N	N	"Known error, Intergenic and not upstream"	
+"Low carbon, planktonic"	CBT742	RA	NC_008542	"927,484"	A?T	6.00%	L160H (CTC?CAC) 	Bcen2424_0826 ?	Bcen2424_0826 ?	LysR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"927,760"	C?T	44.20%	G68D (GGT?GAT) 	Bcen2424_0826 ?	Bcen2424_0826 ?	LysR family transcriptional regulator	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008542	"934,307"	C?G	16.90%	L234V (CTG?GTG) 	Bcen2424_0832 ?	Bcen2424_0832 ?	"2Fe?2S ferredoxin, iron?sulfur binding site"	Y	Y	N		
+"High carbon, planktonic"	CBT736	RA	NC_008542	"957,719"	A?C	5.20%	G130G (GGA?GGC) 	Bcen2424_0852 ?	Bcen2424_0852 ?	hypothetical protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT724	RA	NC_008542	"958,142"	A?G	7.50%	A271A (GCA?GCG) 	Bcen2424_0852 ?	Bcen2424_0852 ?	hypothetical protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT741	RA	NC_008542	"958,160"	A?G	5.30%	V277V (GTA?GTG) 	Bcen2424_0852 ?	Bcen2424_0852 ?	hypothetical protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT741	RA	NC_008542	"958,162"	A?G	5.40%	N278S (AAT?AGT) 	Bcen2424_0852 ?	Bcen2424_0852 ?	hypothetical protein	N	N	N	Low quality/misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"959,484"	?1 bp	5.30%	coding (2155/2487 nt)	Bcen2424_0852 ?	Bcen2424_0852 ?	hypothetical protein	Y	Y	N		Should be 5bp deletion
+"Low carbon, large bead"	CBT732	RA	NC_008542	"959,485"	?1 bp	5.30%	coding (2156/2487 nt)	Bcen2424_0852 ?	Bcen2424_0852 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 5bp deletion
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"967,572"	C?T	19.20%	A70A (GCC?GCT) 	Bcen2424_0863 ?	Bcen2424_0863 ?	hypothetical protein	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT729	RA	NC_008542	"984,919"	C?G	30.70%	H209D (CAC?GAC) 	Bcen2424_0880 ?	Bcen2424_0880 ?	"GDP?mannose 4,6?dehydratase"	Y	Y	N		
+"High carbon, small bead"	CBT725	JC	NC_008542	"994,612"	?63 bp	33.30%	coding (505?567/1017 nt)	Bcen2424_0886 ?	Bcen2424_0886 ?	glycosyl transferase family protein	Y	Y	N		
+"High carbon, small bead"	CBT727	JC	NC_008542	"994,612"	?63 bp	20.80%	coding (505?567/1017 nt)	Bcen2424_0886 ?	Bcen2424_0886 ?	glycosyl transferase family protein	Y	Y	N		
+"Low carbon, large bead"	CBT731	JC	NC_008542	"995,461"	#NAME?	9.80%	coding (325/1884 nt)	Bcen2424_0887 ?	Bcen2424_0887 ?	polysaccharide biosynthesis protein CapD	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT742	RA	NC_008542	"1,080,279"	T?G	5.20%	intergenic (+57/+41)	Bcen2424_0971 ? / ? Bcen2424_0972	None	ABC transporter?like protein/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,085,147"	G?A	7.80%	V651V (GTG?GTA) 	Bcen2424_0975 ?	Bcen2424_0975 ?	cell division protein FtsK/SpoIIIE	Y	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"1,104,964"	?1 bp	5.50%	coding (214/984 nt)	Bcen2424_0998 ?	Bcen2424_0998 ?	hypothetical protein	Y	Y	N		Should be 2 bp deletion
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"1,104,965"	?1 bp	5.40%	coding (215/984 nt)	Bcen2424_0998 ?	Bcen2424_0998 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"1,105,621"	C?T	5.80%	R291C (CGC?TGC) 	Bcen2424_0998 ?	Bcen2424_0998 ?	hypothetical protein	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"1,105,714"	C?G	5.90%	Q322E (CAA?GAA) 	Bcen2424_0998 ?	Bcen2424_0998 ?	hypothetical protein	Y	Y	N		Should be a 2 bp deletion
+"High carbon, large bead"	CBT723	RA	NC_008542	"1,210,512"	T?C	5.20%	intergenic (?2/+71)	Bcen2424_R0031 ? / ? Bcen2424_R0032	Bcen2424_R0031 ?	tRNA?Asn/tRNA?Asn	N	N	N	Reads appear to be misaligned	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,210,512"	T?C	6.10%	intergenic (?2/+71)	Bcen2424_R0031 ? / ? Bcen2424_R0032	Bcen2424_R0031 ?	tRNA?Asn/tRNA?Asn	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT737	JC	NC_008542	"1,212,888"	?3 bp	6.00%	coding (227?229/663 nt)	Bcen2424_1101 ?	Bcen2424_1101 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008542	"1,221,663"	G?A	6.00%	T1015M (ACG?ATG) 	Bcen2424_1110 ?	Bcen2424_1110 ?	ribonuclease	Y	Y	N		
+"High carbon, planktonic"	CBT740	RA	NC_008542	"1,233,916"	A?G	5.30%	K176R (AAG?AGG) 	Bcen2424_1122 ?	Bcen2424_1122 ?	malonyl CoA?acyl carrier protein transacylase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,245,450"	?1 bp	8.90%	coding (822/1230 nt)	Bcen2424_1134 ?	Bcen2424_1134 ?	ribonuclease III	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,293,929"	T?C	5.10%	intergenic (+99/+638)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,294,084"	C?G	7.40%	intergenic (+254/+483)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, misaligned reads"	
+"High carbon, large bead"	CBT721	RA	NC_008542	"1,294,084"	C?G	5.60%	intergenic (+254/+483)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,294,084"	C?G	5.80%	intergenic (+254/+483)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT728	RA	NC_008542	"1,294,084"	C?G	5.40%	intergenic (+254/+483)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,084"	C?G	6.40%	intergenic (+254/+483)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"1,294,084"	C?G	5.60%	intergenic (+254/+483)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"Low carbon, planktonic"	CBT745	RA	NC_008542	"1,294,084"	C?G	5.60%	intergenic (+254/+483)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,294,434"	G?C	6.60%	intergenic (+604/+133)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, misaligned reads"	
+"High carbon, large bead"	CBT721	RA	NC_008542	"1,294,434"	G?C	6.80%	intergenic (+604/+133)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,294,434"	G?C	7.90%	intergenic (+604/+133)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,434"	G?C	6.60%	intergenic (+604/+133)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"1,294,434"	G?C	5.40%	intergenic (+604/+133)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,294,435"	C?G	6.60%	intergenic (+605/+132)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, misaligned reads"	
+"High carbon, large bead"	CBT721	RA	NC_008542	"1,294,435"	C?G	6.80%	intergenic (+605/+132)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,294,435"	C?G	7.90%	intergenic (+605/+132)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,435"	C?G	6.80%	intergenic (+605/+132)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"1,294,435"	C?G	5.50%	intergenic (+605/+132)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,507"	T?C	5.20%	intergenic (+677/+60)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,508"	T?G	5.20%	intergenic (+678/+59)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,510"	T?G	5.30%	intergenic (+680/+57)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,511"	T?G	5.20%	intergenic (+681/+56)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,512"	G?C	5.20%	intergenic (+682/+55)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,294,515"	G?C	5.00%	intergenic (+685/+52)	Bcen2424_1178 ? / ? Bcen2424_1179	None	"AraC family transcriptional regulator/transposase, mutator type"	N	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,295,942"	G?A	6.60%	intergenic (?125/?250)	Bcen2424_1179 ? / ? argD	None	"transposase, mutator type/bifunctional N?succinyldiaminopimelate?aminotransferase/acetylornithine transaminase protein"	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,295,942"	G?A	8.10%	intergenic (?125/?250)	Bcen2424_1179 ? / ? argD	Bcen2424_1179 ?	"transposase, mutator type/bifunctional N?succinyldiaminopimelate?aminotransferase/acetylornithine transaminase protein"	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,316,547"	A?G	14.90%	V445A (GTG?GCG) 	Bcen2424_1196 ?	Bcen2424_1196 ?	acriflavin resistance protein	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"1,322,994"	A?C	23.60%	Y160D (TAC?GAC) 	Bcen2424_1199 ?	Bcen2424_1199 ?	IclR family transcriptional regulator	y	Y	N		
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,324,211"	C?A	66.30%	P638P (CCG?CCT) 	Bcen2424_1201 ?	Bcen2424_1201 ?	phosphatase?like protein	Y	N	Y	Synonymous	
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,346,933"	?1 bp	5.80%	coding (1000/2319 nt)	Bcen2424_1216 ?	Bcen2424_1216 ?	exodeoxyribonuclease V subunit alpha	Y	Y	N		Should be 2 bp deletion
+"Low carbon, large bead"	CBT732	RA	NC_008542	"1,346,934"	?1 bp	5.80%	coding (1001/2319 nt)	Bcen2424_1216 ?	Bcen2424_1216 ?	exodeoxyribonuclease V subunit alpha	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, small bead"	CBT724	RA	NC_008542	"1,353,434"	G?A	13.50%	G335G (GGC?GGT) 	Bcen2424_1223 ?	Bcen2424_1223 ?	thiamine biosynthesis protein ThiC	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT721	RA	NC_008542	"1,353,533"	C?G	5.00%	T302T (ACG?ACC) 	Bcen2424_1223 ?	Bcen2424_1223 ?	thiamine biosynthesis protein ThiC	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,373,059"	C?T	7.10%	intergenic (+179/?236)	Bcen2424_1242 ? / ? Bcen2424_1243	None	hypothetical protein/3?methyl?2?oxobutanoate dehydrogenase	Y	N	N	Intergenic and not upstream	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,378,326"	G?A	6.00%	intergenic (+48/?227)	Bcen2424_1246 ? / ? Bcen2424_1247	None	dihydrolipoamide dehydrogenase/hypothetical protein	N	N	N	"Intergenic and not upstream, Only at ends of reads"	
+"High carbon, large bead"	CBT722	RA	NC_008542	"1,391,814"	?1 bp	11.10%	coding (814/1152 nt)	Bcen2424_1258 ?	Bcen2424_1258 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT731	JC	NC_008542	"1,406,289"	#NAME?	7.60%	coding (28/522 nt)	Bcen2424_1276 ?	Bcen2424_1276 ?	hypothetical protein	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT723	JC	NC_008542	"1,420,725"	#NAME?	8.80%	coding (51/3255 nt)	carB ?	carB ?	carbamoyl phosphate synthase large subunit	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,448,461"	C?G	7.00%	V27L (GTG?CTG) 	Bcen2424_1316 ?	Bcen2424_1316 ?	AMP?dependent synthetase and ligase	N	N	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,487,681"	?1 bp	5.60%	coding (654/786 nt)	Bcen2424_1348 ?	Bcen2424_1348 ?	ABC transporter?like protein	Y	Y	N		Should be 3 bp deletion
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,487,682"	?1 bp	5.60%	coding (655/786 nt)	Bcen2424_1348 ?	Bcen2424_1348 ?	ABC transporter?like protein	N	N	N	Part of another mutation	Should be 3 bp deletion
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,487,683"	?1 bp	5.60%	coding (656/786 nt)	Bcen2424_1348 ?	Bcen2424_1348 ?	ABC transporter?like protein	N	N	N	Part of another mutation	Should be 3 bp deletion
+"High carbon, small bead"	CBT724	RA	NC_008542	"1,511,811"	G?A	5.20%	intergenic (?127/?342)	Bcen2424_1373 ? / ? Bcen2424_1374	Bcen2424_1373 ?	phospholipid/glycerol acyltransferase/CDP?alcohol phosphatidyltransferase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,514,201"	C?T	6.20%	P462S (CCG?TCG) 	Bcen2424_1375 ?	Bcen2424_1375 ?	alpha/beta hydrolase fold protein	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008542	"1,557,830"	C?T	9.80%	L70L (CTG?TTG) 	Bcen2424_1411 ?	Bcen2424_1411 ?	hypothetical protein	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT720	JC	NC_008542	"1,585,907"	?9 bp	7.50%	coding (793?801/1362 nt)	Bcen2424_1437 ?	Bcen2424_1437 ?	peptidoglycan?binding LysM	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,586,062"	C?G	6.30%	F316L (TTC?TTG) 	Bcen2424_1437 ?	Bcen2424_1437 ?	peptidoglycan?binding LysM	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,588,216"	C?T	80.90%	S577L (TCG?TTG) 	Bcen2424_1438 ?	Bcen2424_1438 ?	rowS	Y	Y	N		
+"High carbon, small bead"	CBT728	RA	NC_008542	"1,588,216"	C?T	100%	S577L (TCG?TTG) 	Bcen2424_1438 ?	Bcen2424_1438 ?	rowS	Y	Y	N		
+"Low carbon, planktonic"	CBT747	JC	NC_008542	"1,605,045"	#NAME?	8.50%	coding (3/1518 nt)	Bcen2424_1449 ?	Bcen2424_1449 ?	RND efflux system outer membrane lipoprotein	N	N	N	Only at ends of reads	
+"Low carbon, large bead"	CBT731	RA	NC_008542	"1,617,348"	?1 bp	5.10%	coding (158/1674 nt)	Bcen2424_1461 ?	Bcen2424_1461 ?	electron?transferring?flavoprotein dehydrogenase	Y	Y	N		
+"Low carbon, planktonic"	CBT742	JC	NC_008542	"1,681,057"	#NAME?	19.70%	coding (38/906 nt)	Bcen2424_1520 ?	Bcen2424_1520 ?	Flp pilus assembly CpaB	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"1,682,096"	C?T	59.60%	A50V (GCG?GTG) 	Bcen2424_1521 ?	Bcen2424_1521 ?	type II and III secretion system protein	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"1,685,680"	C?T	12.00%	Q362* (CAG?TAG) 	Bcen2424_1523 ?	Bcen2424_1523 ?	type II secretion system protein E	Y	Y	N		
+"Low carbon, planktonic"	CBT744	RA	NC_008542	"1,687,645"	T?G	67.30%	L240R (CTG?CGG) 	Bcen2424_1525 ?	Bcen2424_1525 ?	type II secretion system protein	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"1,687,843"	C?G	15.00%	T306R (ACG?AGG) 	Bcen2424_1525 ?	Bcen2424_1525 ?	type II secretion system protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,739,962"	C?T	5.40%	S80S (AGC?AGT) 	Bcen2424_1576 ?	Bcen2424_1576 ?	GCN5?like N?acetyltransferase	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT723	RA	NC_008542	"1,741,238"	C?T	6.00%	F47F (TTC?TTT) 	Bcen2424_1578 ?	Bcen2424_1578 ?	hypothetical protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,742,820"	?1 bp	5.20%	coding (186/744 nt)	Bcen2424_1579 ?	Bcen2424_1579 ?	hypothetical protein	Y	Y	N		Should be 2 bp deletion
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,742,821"	?1 bp	5.20%	coding (185/744 nt)	Bcen2424_1579 ?	Bcen2424_1579 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"Low carbon, large bead"	CBT735	JC	NC_008542	"1,789,041"	#NAME?	7.00%	coding (1065/3141 nt)	Bcen2424_1623 ?	Bcen2424_1623 ?	multidrug efflux protein	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT746	JC	NC_008542	"1,789,201"	#NAME?	12.70%	coding (1225/3141 nt)	Bcen2424_1623 ?	Bcen2424_1623 ?	multidrug efflux protein	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,793,600"	C?G	26.40%	N56K (AAC?AAG) 	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008542	"1,793,600"	C?G	6.50%	N56K (AAC?AAG) 	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008542	"1,793,600"	C?G	15.00%	N56K (AAC?AAG) 	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,793,610"	C?A	32.70%	Q60K (CAA?AAA) 	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008542	"1,793,665"	A?T	21.10%	D78V (GAC?GTC) 	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008542	"1,793,725"	C?G	21.10%	P98R (CCG?CGG) 	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,793,799"	G?A	9.00%	D123N (GAC?AAC) ‡	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		Occur on different backgrounds
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,793,800"	A?G	22.50%	D123G (GAC?GGC) ‡	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		"Occur on different backgrounds, for some reason breseq isn't calling a C to A mutation a 1793801 that always co-occurs with this one. Makes the amino acid glycine"
+"High carbon, large bead"	CBT722	RA	NC_008542	"1,793,942"	G?T	6.20%	Q170H (CAG?CAT) 	Bcen2424_1626 ?	Bcen2424_1626 ?	fimbrial protein	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"1,801,296"	A?G	13.10%	T5A (ACC?GCC) 	Bcen2424_1635 ?	Bcen2424_1635 ?	ABC transporter?like protein	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"1,803,278"	G?T	14.50%	V384L (GTG?TTG) 	Bcen2424_1636 ?	Bcen2424_1636 ?	iron?hydroxamate transporter permease subunit	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"1,804,603"	G?A	6.60%	A130T (GCG?ACG) 	Bcen2424_1637 ?	Bcen2424_1637 ?	ferric iron reductase	Y	Y	N		
+"High carbon, large bead"	CBT721	RA	NC_008542	"1,809,016"	G?A	6.00%	V272I (GTC?ATC) 	Bcen2424_1640 ?	Bcen2424_1640 ?	amino acid adenylation domain?containing protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,821,375"	G?A	7.50%	V1156V (GTG?GTA) 	Bcen2424_1641 ?	Bcen2424_1641 ?	amino acid adenylation domain?containing protein	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,824,131"	C?G	67.20%	S61W (TCG?TGG) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008542	"1,824,176"	A?C	12.40%	Y76S (TAC?TCC) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008542	"1,824,179"	C?T	8.00%	T77M (ACG?ATG) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		"Not on same background as R101S, though not much evidence"
+"High carbon, small bead"	CBT726	RA	NC_008542	"1,824,250"	C?T	20.00%	R101C (CGC?TGC) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008542	"1,824,250"	C?A	9.40%	R101S (CGC?AGC) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		"Not on same background as T77M, though not much evidence"
+"High carbon, planktonic"	CBT737	RA	NC_008542	"1,824,419"	C?T	14.30%	T157M (ACG?ATG) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,824,419"	C?A	35.30%	T157K (ACG?AAG) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"1,824,419"	?1 bp	69.50%	coding (470/1377 nt)	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		Should be 2 bp deletion
+"High carbon, planktonic"	CBT741	RA	NC_008542	"1,824,420"	?1 bp	69.50%	coding (471/1377 nt)	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, planktonic"	CBT738	RA	NC_008542	"1,824,508"	T?C	43.40%	S187P (TCG?CCG) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008542	"1,824,593"	C?A	14.70%	A215E (GCG?GAG) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		"Not on same background as D245Y, though not much evidence"
+"High carbon, planktonic"	CBT741	RA	NC_008542	"1,824,647"	T?G	8.30%	L233R (CTC?CGC) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008542	"1,824,682"	G?T	9.80%	D245Y (GAC?TAC) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		"Not on same background as A215E, though not much evidence"
+"High carbon, small bead"	CBT726	JC	NC_008542	"1,824,749"	#NAME?	17.00%	coding (800/1377 nt)	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT739	JC	NC_008542	"1,824,756"	#NAME?	22.70%	coding (807/1377 nt)	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,824,764"	T?C	5.10%	L272P (CTG?CCG) 	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT741	JC	NC_008542	"1,825,126"	?74 bp	13.20%	coding (1177?1250/1377 nt)	Bcen2424_1643 ?	Bcen2424_1643 ?	lysine/ornithine N?monooxygenase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,846,036"	G?T	6.70%	intergenic (+18/?51)	Bcen2424_1658 ? / ? Bcen2424_1659	Bcen2424_1659 ?	magnesium chelatase/Mg?chelatase subunit ChlD?like protein	Y	Y	N		
+"Low carbon, large bead"	CBT734	JC	NC_008542	"1,889,554"	#NAME?	8.10%	coding (35/285 nt)	Bcen2424_1703 ?	Bcen2424_1703 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,897,479"	C?G	5.30%	G219A (GGT?GCT) 	Bcen2424_1706 ?	Bcen2424_1706 ?	hydrophobe/amphiphile efflux?1 (HAE1) family protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"1,936,664"	G?A	8.50%	L318L (CTG?CTA) 	Bcen2424_1741 ?	Bcen2424_1741 ?	RND efflux system outer membrane lipoprotein	Y	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT746	RA	NC_008542	"2,008,668"	A?C	6.10%	L8V (TTA?GTA) 	hfq ?	hfq ?	RNA?binding protein Hfq	Y	Y	N		
+"Low carbon, large bead"	CBT732	RA	NC_008542	"2,029,039"	?1 bp	5.50%	coding (1707/2364 nt)	Bcen2424_1827 ?	Bcen2424_1827 ?	DNA polymerase III subunits gamma and tau	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008542	"2,035,755"	G?T	9.60%	E130D (GAG?GAT) 	Bcen2424_1832 ?	Bcen2424_1832 ?	hypothetical protein	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008542	"2,037,301"	G?A	13.40%	V178V (GTG?GTA) 	Bcen2424_1834 ?	Bcen2424_1834 ?	glycosyltransferase	Y	N	Y	Synonymous	
+"Low carbon, large bead"	CBT730	RA	NC_008542	"2,037,710"	G?A	5.20%	A315T (GCG?ACG) 	Bcen2424_1834 ?	Bcen2424_1834 ?	glycosyltransferase	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT740	RA	NC_008542	"2,067,313"	C?G	28.00%	Q218E (CAG?GAG) 	Bcen2424_1861 ?	Bcen2424_1861 ?	putative formyltransferase	Y	Y	N		
+"High carbon, planktonic"	CBT736	RA	NC_008542	"2,118,868"	T?A	100%	L34Q (CTG?CAG) 	Bcen2424_1910 ?	Bcen2424_1910 ?	intracellular septation protein A	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008542	"2,118,868"	T?A	100%	L34Q (CTG?CAG) 	Bcen2424_1910 ?	Bcen2424_1910 ?	intracellular septation protein A	Y	Y	N		
+"Low carbon, large bead"	CBT730	RA	NC_008542	"2,127,388"	G?C	5.10%	G170R (GGG?CGG) 	Bcen2424_1916 ?	Bcen2424_1916 ?	carbohydrate kinase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"2,194,120"	G?A	5.70%	A27T (GCC?ACC) 	Bcen2424_1975 ?	Bcen2424_1975 ?	binding?protein?dependent transport systems inner membrane component	Y	Y	N		
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"2,210,308"	G?A	5.60%	R126W (CGG?TGG) 	Bcen2424_1993 ?	Bcen2424_1993 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008542	"2,215,316"	C?T	5.70%	intergenic (+138/+14)	smpB ? / ? Bcen2424_2000	None	SsrA?binding protein/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, small bead"	CBT728	RA	NC_008542	"2,215,316"	C?T	5.30%	intergenic (+138/+14)	smpB ? / ? Bcen2424_2000	None	SsrA?binding protein/hypothetical protein	N	N	N	"Intergenic and not upstream,  only at ends of reads"	
+"Low carbon, planktonic"	CBT744	RA	NC_008542	"2,215,316"	C?T	5.80%	intergenic (+138/+14)	smpB ? / ? Bcen2424_2000	None	SsrA?binding protein/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, planktonic"	CBT740	RA	NC_008542	"2,240,573"	A?G	5.70%	A125A (GCA?GCG) 	Bcen2424_2022 ?	Bcen2424_2022 ?	pseudouridine synthase Rsu	Y	Y	N		
+"Low carbon, large bead"	CBT734	JC	NC_008542	"2,297,292"	#NAME?	13.00%	coding (1006/2007 nt)	Bcen2424_2070 ?	Bcen2424_2070 ?	cytochrome?c oxidase	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT746	RA	NC_008542	"2,322,343"	?1 bp	5.30%	coding (1162/1248 nt)	Bcen2424_2089 ?	Bcen2424_2089 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,348,871"	G?A	6.50%	G144S (GGC?AGC) 	Bcen2424_2116 ?	Bcen2424_2116 ?	single?stranded?DNA?specific exonuclease RecJ	Y	Y	N		
+"Low carbon, large bead"	CBT735	JC	NC_008542	"2,371,958"	#NAME?	9.70%	coding (1553/2697 nt)	aceE ?	aceE ?	pyruvate dehydrogenase subunit E1	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"2,418,897"	G?A	8.10%	A106V (GCC?GTC) 	Bcen2424_2171 ?	Bcen2424_2171 ?	histidine utilization repressor	Y	Y	N		
+"High carbon, large bead"	CBT721	JC	NC_008542	"2,422,528"	?41 bp	6.60%	coding (84?124/756 nt)	Bcen2424_2174 ?	Bcen2424_2174 ?	4'?phosphopantetheinyl transferase	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,427,606"	C?T	9.70%	G161D (GGC?GAC) 	Bcen2424_2178 ?	Bcen2424_2178 ?	deoxyribodipyrimidine photo?lyase	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, large bead"	CBT721	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008542	"2,447,720"	G?A	86.30%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008542	"2,447,720"	G?A	73.20%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		All 3 always occur on different backgrounds
+"High carbon, small bead"	CBT726	RA	NC_008542	"2,447,720"	G?A	23.80%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		Occur on different backgrounds
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,447,720"	G?A	16.20%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		There's also a nearby mutation that breseq doesn't seem to be calling for some reason
+"High carbon, small bead"	CBT728	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, planktonic"	CBT736	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, planktonic"	CBT740	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"Low carbon, planktonic"	CBT742	RA	NC_008542	"2,447,720"	G?A	100%	intergenic (+133/?61)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008542	"2,447,743"	C?A	21.00%	intergenic (+156/?38)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		All 3 always occur on different backgrounds
+"High carbon, small bead"	CBT724	RA	NC_008542	"2,447,744"	G?A	7.00%	intergenic (+157/?37)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		All 3 always occur on different backgrounds
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,447,744"	G?A	49.30%	intergenic (+157/?37)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y			
+"High carbon, small bead"	CBT726	RA	NC_008542	"2,447,762"	C?A	11.30%	intergenic (+175/?19)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		Occur on different backgrounds
+"High carbon, large bead"	CBT723	RA	NC_008542	"2,447,778"	G?A	7.60%	intergenic (+191/?3)	Bcen2424_2194 ? / ? Bcen2424_2195	Bcen2424_2195 ?	tartrate/fumarate subfamily Fe?S type hydro?lyase alpha subunit/bacterioferritin	Y	Y	N		Appears on backrgound w other bacterioferritin mutation
+"High carbon, planktonic"	CBT738	RA	NC_008542	"2,450,582"	G?A	5.00%	A21T (GCG?ACG) 	Bcen2424_2199 ?	Bcen2424_2199 ?	MotA/TolQ/ExbB proton channel	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008542	"2,506,672"	C?A	6.90%	G67C (GGC?TGC) 	Bcen2424_2252 ?	Bcen2424_2252 ?	alcohol dehydrogenase	Y	Y	N		
+"High carbon, large bead"	CBT720	RA	NC_008542	"2,526,299"	A?G	5.20%	Q323R (CAG?CGG) 	Bcen2424_2271 ?	Bcen2424_2271 ?	group 1 glycosyl transferase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"2,540,409"	T?C	6.10%	Q300R (CAG?CGG) 	Bcen2424_2285 ?	Bcen2424_2285 ?	osmosensitive K+ channel signal transduction histidine kinase	Y	Y	N		
+"High carbon, planktonic"	CBT740	MC JC	NC_008542	"2,563,382"	?12 bp	100%	coding (293?304/753 nt)	Bcen2424_2308 ?	Bcen2424_2308 ?	glycosyl transferase family protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,582,657"	C?T	6.00%	P991S (CCG?TCG) 	Bcen2424_2321 ?	Bcen2424_2321 ?	cell division protein FtsK/SpoIIIE	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008542	"2,599,929"	?1 bp	5.00%	coding (1550/1551 nt)	Bcen2424_2337 ?	Bcen2424_2337 ?	Na+/solute symporter	Y	Y	N		Should be 3 bp deletion
+"High carbon, planktonic"	CBT741	RA	NC_008542	"2,599,930"	?1 bp	5.00%	coding (1549/1551 nt)	Bcen2424_2337 ?	Bcen2424_2337 ?	Na+/solute symporter	N	N	N	Part of another mutation	Should be 3 bp deletion
+"High carbon, planktonic"	CBT741	RA	NC_008542	"2,599,931"	?1 bp	5.00%	coding (1548/1551 nt)	Bcen2424_2337 ?	Bcen2424_2337 ?	Na+/solute symporter	N	N	N	Part of another mutation	Should be 3 bp deletion
+"High carbon, planktonic"	CBT738	RA	NC_008542	"2,649,143"	C?T	5.90%	intergenic (+26/+35)	Bcen2424_2384 ? / ? Bcen2424_2385	None	hypothetical protein/short?chain dehydrogenase/reductase SDR	Y	N	N	Intergenic and not upstream	
+"High carbon, planktonic"	CBT740	RA	NC_008542	"2,690,719"	G?A	8.00%	P300S (CCG?TCG) 	hemC ?	hemC ?	porphobilinogen deaminase	Y	Y	N		
+"Low carbon, large bead"	CBT730	JC	NC_008542	"2,704,360"	?45 bp	5.60%	coding (173?217/1092 nt)	Bcen2424_2435 ?	Bcen2424_2435 ?	"cobyrinic acid a,c?diamide synthase"	Y	Y	N		
+"High carbon, planktonic"	CBT738	JC	NC_008542	"2,704,360"	?45 bp	8.70%	coding (173?217/1092 nt)	Bcen2424_2435 ?	Bcen2424_2435 ?	"cobyrinic acid a,c?diamide synthase"	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,726,200"	C?T	6.00%	intergenic (?31/+31)	cobT ? / ? Bcen2424_2454	cobT ?	nicotinate?nucleotide??dimethylbenzimidazole phosphoribosyltransferase/ABC transporter?like protein	Y	Y	N		
+"High carbon, planktonic"	CBT740	RA	NC_008542	"2,732,753"	?1 bp	5.10%	coding (348/987 nt)	Bcen2424_2461 ?	Bcen2424_2461 ?	LysR family transcriptional regulator	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,757,299"	?1 bp	5.30%	coding (138/501 nt)	Bcen2424_2485 ?	Bcen2424_2485 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT725	JC	NC_008542	"2,762,657"	#NAME?	5.20%	coding (6/456 nt)	Bcen2424_2492 ?	Bcen2424_2492 ?	putative acetyltransferase	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"2,818,230"	C?A	5.80%	F104L (TTC?TTA) 	Bcen2424_2542 ?	Bcen2424_2542 ?	chromate transporter	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008542	"2,822,105"	C?G	5.20%	T77T (ACC?ACG) 	Bcen2424_2545 ?	Bcen2424_2545 ?	tetraacyldisaccharide 4'?kinase	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT724	RA	NC_008542	"2,830,038"	A?T	5.00%	V304E (GTG?GAG) 	murB ?	murB ?	UDP?N?acetylenolpyruvoylglucosamine reductase	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT729	RA	NC_008542	"2,830,038"	A?T	7.00%	V304E (GTG?GAG) 	murB ?	murB ?	UDP?N?acetylenolpyruvoylglucosamine reductase	N	N	N	Only at ends of reads	
+"Low carbon, large bead"	CBT734	RA	NC_008542	"2,830,038"	A?T	5.30%	V304E (GTG?GAG) 	murB ?	murB ?	UDP?N?acetylenolpyruvoylglucosamine reductase	N	N	N	Only at ends of reads	
+"Low carbon, large bead"	CBT735	RA	NC_008542	"2,830,038"	A?T	5.00%	V304E (GTG?GAG) 	murB ?	murB ?	UDP?N?acetylenolpyruvoylglucosamine reductase	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT728	RA	NC_008542	"2,843,803"	A?C	11.60%	D55A (GAC?GCC) 	Bcen2424_2568 ?	Bcen2424_2568 ?	pyridoxamine 5'?phosphate oxidase	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008542	"2,855,596"	C?T	7.10%	L125L (CTG?CTA) 	Bcen2424_2580 ?	Bcen2424_2580 ?	major facilitator transporter	Y	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"2,870,694"	G?A	5.70%	P54S (CCG?TCG) 	Bcen2424_2592 ?	Bcen2424_2592 ?	HAD family hydrolase	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008542	"2,884,248"	G?A	5.60%	P92S (CCC?TCC) 	Bcen2424_2605 ?	Bcen2424_2605 ?	"carbohydrate kinase, FGGY"	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,921,216"	G?T	6.90%	T67T (ACC?ACA) 	Bcen2424_2637 ?	Bcen2424_2637 ?	"peptidase M48, Ste24p"	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT727	RA	NC_008542	"2,969,725"	G?A	6.30%	intergenic (+33/+10)	Bcen2424_2679 ? / ? Bcen2424_2680	None	MIP family channel protein/FAD?dependent pyridine nucleotide?disulfide oxidoreductase	Y	N	N	Intergenic and not upstream	
+"High carbon, large bead"	CBT723	RA	NC_008542	"3,022,692"	G?C	5.90%	D23E (GAC?GAG) 	Bcen2424_2727 ?	Bcen2424_2727 ?	FmdB family regulatory protein	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008542	"3,025,294"	?1 bp	8.10%	coding (423/627 nt)	Bcen2424_2730 ?	Bcen2424_2730 ?	hypothetical protein	Y	Y	N		
+"Low carbon, large bead"	CBT735	RA	NC_008542	"3,025,294"	?1 bp	5.50%	coding (423/627 nt)	Bcen2424_2730 ?	Bcen2424_2730 ?	hypothetical protein	Y	Y	N		Should be 2 bp deletion
+"High carbon, planktonic"	CBT738	RA	NC_008542	"3,025,294"	?1 bp	6.40%	coding (423/627 nt)	Bcen2424_2730 ?	Bcen2424_2730 ?	hypothetical protein	Y	Y	N		Should be 2 bp deletion
+"High carbon, large bead"	CBT722	RA	NC_008542	"3,025,295"	?1 bp	8.10%	coding (422/627 nt)	Bcen2424_2730 ?	Bcen2424_2730 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"Low carbon, large bead"	CBT735	RA	NC_008542	"3,025,295"	?1 bp	5.50%	coding (422/627 nt)	Bcen2424_2730 ?	Bcen2424_2730 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, planktonic"	CBT738	RA	NC_008542	"3,025,295"	?1 bp	6.40%	coding (422/627 nt)	Bcen2424_2730 ?	Bcen2424_2730 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, large bead"	CBT718	JC	NC_008542	"3,062,125"	?3 bp	9.70%	coding (2435?2437/2490 nt)	Bcen2424_2764 ?	Bcen2424_2764 ?	exporter?like protein	Y	Y	N		
+"High carbon, large bead"	CBT720	JC	NC_008542	"3,062,125"	?3 bp	9.90%	coding (2435?2437/2490 nt)	Bcen2424_2764 ?	Bcen2424_2764 ?	exporter?like protein	Y	Y	N		
+"High carbon, small bead"	CBT726	JC	NC_008542	"3,062,125"	?3 bp	5.50%	coding (2435?2437/2490 nt)	Bcen2424_2764 ?	Bcen2424_2764 ?	exporter?like protein	Y	Y	N		
+"Low carbon, large bead"	CBT732	JC	NC_008542	"3,062,125"	?3 bp	5.20%	coding (2435?2437/2490 nt)	Bcen2424_2764 ?	Bcen2424_2764 ?	exporter?like protein	Y	Y	N		
+"High carbon, planktonic"	CBT737	JC	NC_008542	"3,062,125"	?3 bp	7.00%	coding (2435?2437/2490 nt)	Bcen2424_2764 ?	Bcen2424_2764 ?	exporter?like protein	Y	Y	N		
+"Low carbon, planktonic"	CBT744	JC	NC_008542	"3,062,125"	?3 bp	9.40%	coding (2435?2437/2490 nt)	Bcen2424_2764 ?	Bcen2424_2764 ?	exporter?like protein	Y	Y	N		
+"Low carbon, planktonic"	CBT745	JC	NC_008542	"3,062,125"	?3 bp	5.00%	coding (2435?2437/2490 nt)	Bcen2424_2764 ?	Bcen2424_2764 ?	exporter?like protein	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"3,068,423"	C?T	16.50%	E46E (GAG?GAA) 	Bcen2424_2772 ?	Bcen2424_2772 ?	acetyl?CoA acetyltransferase	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT726	RA	NC_008542	"3,090,712"	T?G	67.50%	L89R (CTC?CGC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"3,090,981"	C?T	8.90%	H179Y (CAC?TAC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008542	"3,091,084"	G?C	7.70%	G213A (GGC?GCC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008542	"3,091,095"	C?T	11.90%	L217F (CTC?TTC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008542	"3,091,095"	C?T	6.00%	L217F (CTC?TTC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008542	"3,091,261"	T?A	94.50%	V272D (GTC?GAC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008542	"3,091,263"	G?A	100%	A273T (GCG?ACG) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, small bead"	CBT728	RA	NC_008542	"3,091,264"	C?T	100%	A273V (GCG?GTG) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008542	"3,091,270"	G?C	23.60%	G275A (GGC?GCC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008542	"3,091,287"	C?T	17.60%	L281F (CTC?TTC) 	Bcen2424_2794 ?	Bcen2424_2794 ?	HPr kinase/phosphorylase	Y	Y	N		
+"Low carbon, large bead"	CBT730	RA	NC_008542	"3,105,179"	?1 bp	6.90%	coding (792/1167 nt)	Bcen2424_2809 ?	Bcen2424_2809 ?	signal recognition particle?docking protein FtsY	Y	Y	N		Should be 2 bp deletion
+"Low carbon, large bead"	CBT730	RA	NC_008542	"3,105,180"	?1 bp	6.90%	coding (793/1167 nt)	Bcen2424_2809 ?	Bcen2424_2809 ?	signal recognition particle?docking protein FtsY	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008542	"3,118,941"	G?A	6.50%	A524V (GCG?GTG) 	Bcen2424_2821 ?	Bcen2424_2821 ?	"PTS system, N?acetylglucosamine?specific IIBC subunit"	Y	Y	N		
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"3,121,256"	?1 bp	5.60%	coding (1939/2583 nt)	Bcen2424_2822 ?	Bcen2424_2822 ?	phosphoenolpyruvate?protein phosphotransferase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"3,130,480"	T?A	5.80%	E249V (GAA?GTA) 	Bcen2424_2827 ?	Bcen2424_2827 ?	hypothetical protein	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008542	"3,160,611"	A?T	9.60%	I63N (ATC?AAC) 	Bcen2424_2861 ?	Bcen2424_2861 ?	HPr family phosphocarrier protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008542	"3,168,020"	G?A	7.10%	A399T (GCC?ACC) 	Bcen2424_2868 ?	Bcen2424_2868 ?	Mg chelatase subunit ChlI	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008542	"3,182,139"	G?T	5.40%	intergenic (?1200/?1144)	Bcen2424_2878 ? / ? Bcen2424_2881	None	acyl?CoA dehydrogenase domain?containing protein/LysR family transcriptional regulator	Y	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT733	RA	NC_008542	"3,200,910"	?1 bp	6.10%	coding (751/1152 nt)	Bcen2424_2897 ?	Bcen2424_2897 ?	VanZ like protein	Y	Y	N		Should be 2 bp deletion
+"Low carbon, large bead"	CBT733	RA	NC_008542	"3,200,911"	?1 bp	6.10%	coding (750/1152 nt)	Bcen2424_2897 ?	Bcen2424_2897 ?	VanZ like protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, planktonic"	CBT740	RA	NC_008542	"3,247,235"	C?T	6.30%	E158E (GAG?GAA) 	Bcen2424_2938 ?	Bcen2424_2938 ?	diguanylate phosphodiesterase	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT741	RA	NC_008542	"3,247,235"	C?T	6.10%	E158E (GAG?GAA) 	Bcen2424_2938 ?	Bcen2424_2938 ?	diguanylate phosphodiesterase	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT742	RA	NC_008542	"3,247,235"	C?T	7.80%	E158E (GAG?GAA) 	Bcen2424_2938 ?	Bcen2424_2938 ?	diguanylate phosphodiesterase	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"3,247,235"	C?T	7.00%	E158E (GAG?GAA) 	Bcen2424_2938 ?	Bcen2424_2938 ?	diguanylate phosphodiesterase	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT722	RA	NC_008542	"3,283,113"	C?T	6.90%	C107C (TGC?TGT) 	Bcen2424_2970 ?	Bcen2424_2970 ?	bile acid:sodium symporter	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT739	RA	NC_008542	"3,294,354"	G?A	7.00%	R233H (CGC?CAC) 	Bcen2424_2981 ?	Bcen2424_2981 ?	UDP?N?acetylglucosamine pyrophosphorylase	Y	Y	N		
+"Low carbon, planktonic"	CBT744	JC	NC_008542	"3,332,639"	#NAME?	44.70%	coding (547/1176 nt)	flgI ?	flgI ?	flagellar basal body P?ring protein	Y	Y	N		
+"Low carbon, planktonic"	CBT744	JC	NC_008542	"3,339,134"	?65 bp	11.30%	coding (113?177/933 nt)	flgA ?	flgA ?	flagellar basal body P?ring biosynthesis protein FlgA	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008542	"3,369,373"	G?A	38.40%	G224D (GGC?GAC) 	Bcen2424_3054 ?	Bcen2424_3054 ?	putative signal transduction histidine kinase	Y	Y	N		
+"Low carbon, planktonic"	CBT743	RA	NC_008542	"3,370,100"	T?C	5.50%	M192T (ATG?ACG) 	Bcen2424_3055 ?	Bcen2424_3055 ?	two component LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008542	"3,371,885"	T?G	22.30%	intergenic (+63/?189)	Bcen2424_3056 ? / ? Bcen2424_3057	None	amino acid permease?associated protein/hypothetical protein	N	N	N	Associated with reads w/ poor quality	
+"Low carbon, large bead"	CBT733	RA	NC_008542	"3,371,885"	T?G	16.10%	intergenic (+63/?189)	Bcen2424_3056 ? / ? Bcen2424_3057	None	amino acid permease?associated protein/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"Low carbon, large bead"	CBT735	RA	NC_008542	"3,371,885"	T?G	25.40%	intergenic (+63/?189)	Bcen2424_3056 ? / ? Bcen2424_3057	None	amino acid permease?associated protein/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, planktonic"	CBT737	RA	NC_008542	"3,371,885"	T?G	17.90%	intergenic (+63/?189)	Bcen2424_3056 ? / ? Bcen2424_3057	None	amino acid permease?associated protein/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, large bead"	CBT722	RA	NC_008542	"3,383,631"	C?T	7.10%	A201V (GCA?GTA) 	Bcen2424_3069 ?	Bcen2424_3069 ?	flagellar hook?length control protein	Y	Y	N		
+"Low carbon, planktonic"	CBT746	RA	NC_008542	"3,404,637"	G?A	6.70%	intergenic (+73/?165)	Bcen2424_3090 ? / ? Bcen2424_3091	None	TraR/DksA family transcriptional regulator/ATP?dependent protease peptidase subunit	Y	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT727	RA	NC_008542	"3,420,445"	G?A	28.10%	G467G (GGC?GGT) 	gatB ?	gatB ?	aspartyl/glutamyl?tRNA amidotransferase subunit B	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,279,195:1"	+C	5.60%	coding (1588/2145 nt)	Bcen2424_1166 ?	Bcen2424_1166 ?	phospholipase C	Y	Y	N	Part of another mutation	Should be 2 bp insertion
+"High carbon, small bead"	CBT727	RA	NC_008542	"1,279,195:2"	#NAME?	5.60%	coding (1588/2145 nt)	Bcen2424_1166 ?	Bcen2424_1166 ?	phospholipase C	N	N	N	Part of another mutation	Should be 2 bp insertion
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,806,372:1"	+C	64.10%	coding (1679/1824 nt)	Bcen2424_1639 ?	Bcen2424_1639 ?	cyclic peptide transporter	Y	Y	N		Should be 2 bp deletion
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,806,372:2"	#NAME?	64.00%	coding (1679/1824 nt)	Bcen2424_1639 ?	Bcen2424_1639 ?	cyclic peptide transporter	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, large bead"	CBT720	RA	NC_008542	"1,807,687:1"	+C	5.60%	coding (364/1824 nt)	Bcen2424_1639 ?	Bcen2424_1639 ?	cyclic peptide transporter	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008542	"2,536,186:1"	#NAME?	5.10%	coding (462/618 nt)	Bcen2424_2281 ?	Bcen2424_2281 ?	hypothetical protein	Y	Y	N		Should be 2 bp deletion
+"High carbon, planktonic"	CBT738	RA	NC_008542	"2,536,186:2"	#NAME?	5.10%	coding (462/618 nt)	Bcen2424_2281 ?	Bcen2424_2281 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"Low carbon, planktonic"	CBT744	RA	NC_008542	"2,910,492:2"	#NAME?	5.70%	intergenic (?235/+81)	Bcen2424_2626 ? / ? Bcen2424_2627	None	"fructose?1,6?bisphosphate aldolase/pyruvate kinase"	Y	N	N	Intergenic and not upstream	Actually looks like 2 bp insertion
+"High carbon, planktonic"	CBT739	RA	NC_008543	"17,260"	T?A	5.50%	A159A (GCA?GCT) 	Bcen2424_3180 ?	Bcen2424_3180 ?	LuxR family transcriptional regulator	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT726	JC	NC_008543	"18,731"	?40 bp	79.90%		[Bcen2424_3181]	[Bcen2424_3181]	[Bcen2424_3181]	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"19,467"	C?T	5.20%	V218M (GTG?ATG) 	Bcen2424_3182 ?	Bcen2424_3182 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"31,358"	A?T	6.70%	T397S (ACG?TCG) 	Bcen2424_3191 ?	Bcen2424_3191 ?	RND efflux system outer membrane lipoprotein	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008543	"43,742"	G?C	10.40%	intergenic (+267/?18)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT723	RA	NC_008543	"43,742"	G?C	6.80%	intergenic (+267/?18)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008543	"43,742"	G?C	7.70%	intergenic (+267/?18)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Only at ends of reads	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"43,742"	G?C	5.30%	intergenic (+267/?18)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT736	RA	NC_008543	"43,742"	G?C	5.80%	intergenic (+267/?18)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT722	RA	NC_008543	"43,745"	A?T	9.80%	intergenic (+270/?15)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008543	"43,745"	A?T	5.60%	intergenic (+270/?15)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Only at ends of reads	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"43,745"	A?T	5.40%	intergenic (+270/?15)	Bcen2424_3203 ? / ? Bcen2424_3204	Bcen2424_3204 ?	multiple antibiotic resistance (MarC)?like proteins/integrase catalytic subunit	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT725	RA	NC_008543	"56,474"	C?G	13.00%	T149S (ACC?AGC) 	Bcen2424_3215 ?	Bcen2424_3215 ?	major facilitator transporter	Y	Y	N		
+"High carbon, planktonic"	CBT741	JC	NC_008543	"73,381"	#NAME?	35.90%	coding (328/375 nt)	Bcen2424_3233 ?	Bcen2424_3233 ?	transposase	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT718	RA	NC_008543	"86,753"	C?T	12.10%	G120G (GGC?GGT) 	Bcen2424_3247 ?	Bcen2424_3247 ?	dihydrolipoamide dehydrogenase	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT722	RA	NC_008543	"106,789"	G?A	5.40%	R93C (CGC?TGC) 	Bcen2424_3265 ?	Bcen2424_3265 ?	DSBA oxidoreductase	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"112,480"	G?A	9.40%	V162V (GTC?GTT) 	Bcen2424_3272 ?	Bcen2424_3272 ?	amidase	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT722	JC	NC_008543	"115,685"	?50 bp	19.10%	coding (545?594/1008 nt)	Bcen2424_3275 ?	Bcen2424_3275 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, large bead"	CBT723	JC	NC_008543	"115,685"	?50 bp	19.90%	coding (545?594/1008 nt)	Bcen2424_3275 ?	Bcen2424_3275 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, small bead"	CBT724	JC	NC_008543	"115,685"	?50 bp	18.80%	coding (545?594/1008 nt)	Bcen2424_3275 ?	Bcen2424_3275 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, small bead"	CBT726	JC	NC_008543	"115,685"	?50 bp	9.80%	coding (545?594/1008 nt)	Bcen2424_3275 ?	Bcen2424_3275 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, large bead"	CBT730	JC	NC_008543	"115,685"	?50 bp	30.60%	coding (545?594/1008 nt)	Bcen2424_3275 ?	Bcen2424_3275 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, large bead"	CBT733	JC	NC_008543	"115,685"	?50 bp	24.00%	coding (545?594/1008 nt)	Bcen2424_3275 ?	Bcen2424_3275 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, planktonic"	CBT736	JC	NC_008543	"115,685"	?50 bp	24.60%	coding (545?594/1008 nt)	Bcen2424_3275 ?	Bcen2424_3275 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"140,601"	T?A	5.70%	intergenic (?15/?287)	Bcen2424_3299 ? / ? Bcen2424_3300	Bcen2424_3299 ?	integrase catalytic subunit/transposase IS3/IS911 family protein	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT742	RA	NC_008543	"140,601"	T?A	8.90%	intergenic (?15/?287)	Bcen2424_3299 ? / ? Bcen2424_3300	Bcen2424_3299 ?	integrase catalytic subunit/transposase IS3/IS911 family protein	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT742	RA	NC_008543	"140,604"	C?G	8.60%	intergenic (?18/?284)	Bcen2424_3299 ? / ? Bcen2424_3300	Bcen2424_3299 ?	integrase catalytic subunit/transposase IS3/IS911 family protein	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT718	JC	NC_008543	"222,317"	?46 bp	11.20%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, large bead"	CBT720	JC	NC_008543	"222,317"	?46 bp	25.90%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, large bead"	CBT721	JC	NC_008543	"222,317"	?46 bp	24.20%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, large bead"	CBT722	JC	NC_008543	"222,317"	?46 bp	28.70%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, large bead"	CBT723	JC	NC_008543	"222,317"	?46 bp	30.90%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, small bead"	CBT724	JC	NC_008543	"222,317"	?46 bp	42.00%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, small bead"	CBT725	JC	NC_008543	"222,317"	?46 bp	24.20%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, small bead"	CBT726	JC	NC_008543	"222,317"	?46 bp	28.30%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, small bead"	CBT727	JC	NC_008543	"222,317"	?46 bp	37.10%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, small bead"	CBT728	JC	NC_008543	"222,317"	?46 bp	33.80%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, small bead"	CBT729	JC	NC_008543	"222,317"	?46 bp	35.50%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, large bead"	CBT730	JC	NC_008543	"222,317"	?46 bp	32.70%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, large bead"	CBT731	JC	NC_008543	"222,317"	?46 bp	25.10%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, large bead"	CBT732	JC	NC_008543	"222,317"	?46 bp	14.00%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, large bead"	CBT733	JC	NC_008543	"222,317"	?46 bp	22.40%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, large bead"	CBT734	JC	NC_008543	"222,317"	?46 bp	23.50%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, large bead"	CBT735	JC	NC_008543	"222,317"	?46 bp	33.50%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, planktonic"	CBT736	JC	NC_008543	"222,317"	?46 bp	25.00%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, planktonic"	CBT737	JC	NC_008543	"222,317"	?46 bp	31.50%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, planktonic"	CBT738	JC	NC_008543	"222,317"	?46 bp	30.20%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, planktonic"	CBT739	JC	NC_008543	"222,317"	?46 bp	30.40%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, planktonic"	CBT740	JC	NC_008543	"222,317"	?46 bp	25.20%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"High carbon, planktonic"	CBT741	JC	NC_008543	"222,317"	?46 bp	31.50%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, planktonic"	CBT742	JC	NC_008543	"222,317"	?46 bp	35.60%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, planktonic"	CBT743	JC	NC_008543	"222,317"	?46 bp	31.60%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, planktonic"	CBT744	JC	NC_008543	"222,317"	?46 bp	34.30%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, planktonic"	CBT745	JC	NC_008543	"222,317"	?46 bp	39.60%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, planktonic"	CBT746	JC	NC_008543	"222,317"	?46 bp	35.00%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, planktonic"	CBT747	JC	NC_008543	"222,317"	?46 bp	28.40%		[Bcen2424_3392]	[Bcen2424_3392]	[Bcen2424_3392]	N	N	N	Known error	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"225,382"	T?C	100%	H200R (CAC?CGC) 	Bcen2424_3395 ?	Bcen2424_3395 ?	major facilitator transporter	Y	Y	N		
+"Low carbon, large bead"	CBT733	RA	NC_008543	"225,382"	T?C	100%	H200R (CAC?CGC) 	Bcen2424_3395 ?	Bcen2424_3395 ?	major facilitator transporter	Y	Y	N		
+"Low carbon, large bead"	CBT731	RA	NC_008543	"225,508"	G?A	100%	A158V (GCG?GTG) 	Bcen2424_3395 ?	Bcen2424_3395 ?	major facilitator transporter	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008543	"225,508"	G?A	100%	A158V (GCG?GTG) 	Bcen2424_3395 ?	Bcen2424_3395 ?	major facilitator transporter	Y	Y	N		
+"Low carbon, large bead"	CBT735	RA	NC_008543	"225,508"	G?A	100%	A158V (GCG?GTG) 	Bcen2424_3395 ?	Bcen2424_3395 ?	major facilitator transporter	Y	Y	N		
+"Low carbon, large bead"	CBT732	RA	NC_008543	"225,574"	C?T	100%	G136E (GGA?GAA) 	Bcen2424_3395 ?	Bcen2424_3395 ?	major facilitator transporter	Y	Y	N		
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"225,574"	C?T	28.90%	G136E (GGA?GAA) 	Bcen2424_3395 ?	Bcen2424_3395 ?	major facilitator transporter	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008543	"341,834"	G?A	6.10%	L364L (TTG?TTA) 	Bcen2424_3503 ?	Bcen2424_3503 ?	epocide hydrolase domain?containing protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT739	RA	NC_008543	"355,029"	G?A	10.20%	S68S (TCG?TCA) 	Bcen2424_3517 ?	Bcen2424_3517 ?	SufS subfamily cysteine desulfurase	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT740	RA	NC_008543	"379,394"	G?A	8.90%	A116V (GCC?GTC) 	Bcen2424_3539 ?	Bcen2424_3539 ?	alcohol dehydrogenase	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"382,924"	C?T	5.30%	A169V (GCG?GTG) 	Bcen2424_3542 ?	Bcen2424_3542 ?	short chain dehydrogenase	Y	Y	N		
+"High carbon, small bead"	CBT727	JC	NC_008543	"388,929"	?6 bp	5.80%	coding (493?498/921 nt)	Bcen2424_3548 ?	Bcen2424_3548 ?	hypothetical protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	JC	NC_008543	"388,929"	?6 bp	5.20%	coding (493?498/921 nt)	Bcen2424_3548 ?	Bcen2424_3548 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT726	JC	NC_008543	"397,372"	?10 bp	8.90%	coding (157?166/2004 nt)	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"Low carbon, large bead"	CBT730	RA	NC_008543	"397,531"	G?C	100%	A106P (GCG?CCG) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"397,730"	T?G	100%	I172S (ATC?AGC) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"Low carbon, large bead"	CBT731	RA	NC_008543	"397,814"	G?A	64.30%	R200H (CGC?CAC) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"398,055"	G?T	9.80%	K280N (AAG?AAT) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008543	"398,278"	T?G	100%	Y355D (TAC?GAC) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"398,278"	T?G	69.00%	Y355D (TAC?GAC) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, small bead"	CBT725	RA	NC_008543	"398,278"	T?G	100%	Y355D (TAC?GAC) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"Low carbon, large bead"	CBT733	RA	NC_008543	"398,479"	G?T	64.90%	E422* (GAG?TAG) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"398,606"	T?G	44.20%	F464C (TTC?TGC) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, planktonic"	CBT741	JC	NC_008543	"398,668"	?12 bp	63.70%	coding (1453?1464/2004 nt)	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008543	"398,906"	A?T	67.10%	D564V (GAT?GTT) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008543	"398,924"	C?T	24.30%	S570L (TCG?TTG) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, large bead"	CBT720	RA	NC_008543	"398,932"	T?C	100%	S573P (TCG?CCG) 	Bcen2424_3554 ?	Bcen2424_3554 ?	yciR	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"400,092"	C?T	8.10%	E14K (GAA?AAA) 	Bcen2424_3555 ?	Bcen2424_3555 ?	enoyl?CoA hydratase	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"417,953"	A?G	5.10%	Y460C (TAC?TGC) 	Bcen2424_3574 ?	Bcen2424_3574 ?	molecular chaperone?like protein	Y	Y	N		
+"Low carbon, large bead"	CBT730	RA	NC_008543	"421,247"	C?T	5.20%	intergenic (+69/+23)	Bcen2424_3575 ? / ? Bcen2424_3576	None	molecular chaperone?like protein/amidinotransferase	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, small bead"	CBT724	RA	NC_008543	"445,244"	C?T	10.00%	intergenic (?320/+71)	Bcen2424_3599 ? / ? Bcen2424_3600	None	hypothetical protein/alpha/beta hydrolase domain?containing protein	Y	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT727	RA	NC_008543	"447,592"	?1 bp	6.90%	coding (174/2451 nt)	Bcen2424_3600 ?	Bcen2424_3600 ?	alpha/beta hydrolase domain?containing protein	Y	Y	N		Should be 3bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008543	"447,593"	?1 bp	7.40%	coding (173/2451 nt)	Bcen2424_3600 ?	Bcen2424_3600 ?	alpha/beta hydrolase domain?containing protein	N	N	N	Part of another mutation	Should be 3bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008543	"447,594"	?1 bp	7.40%	coding (172/2451 nt)	Bcen2424_3600 ?	Bcen2424_3600 ?	alpha/beta hydrolase domain?containing protein	N	N	N	Part of another mutation	Should be 3bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008543	"448,455"	?1 bp	5.30%	coding (1016/1719 nt)	Bcen2424_3601 ?	Bcen2424_3601 ?	glucose?methanol?choline oxidoreductase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"457,843"	G?A	5.80%	A46V (GCG?GTG) 	Bcen2424_3611 ?	Bcen2424_3611 ?	short?chain dehydrogenase/reductase SDR	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"463,685"	G?A	9.10%	H136H (CAC?CAT) 	Bcen2424_3618 ?	Bcen2424_3618 ?	aromatic?ring?hydroxylating dioxygenase subunit beta	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT724	RA	NC_008543	"469,313"	A?T	8.90%	intergenic (?140/?271)	Bcen2424_3622 ? / ? Bcen2424_3623	Bcen2424_3622 ?	major facilitator transporter/porin	Y	Y	N		
+"Low carbon, large bead"	CBT733	RA	NC_008543	"493,887"	C?A	14.80%	G391C (GGC?TGC) 	Bcen2424_3648 ?	Bcen2424_3648 ?	mercuric reductase	Y	Y	N		
+"High carbon, small bead"	CBT725	RA	NC_008543	"504,616"	C?T	100%	V219V (GTG?GTA) 	Bcen2424_3658 ?	Bcen2424_3658 ?	hypothetical protein	Y	N	Y	Synonymous	"It's synonymous, but its also fixed"
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"510,390"	G?A	6.80%	intergenic (?472/?807)	Bcen2424_3661 ? / ? Bcen2424_3662	None	triple helix repeat?containing collagen/carboxymuconolactone decarboxylase	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"Low carbon, planktonic"	CBT746	RA	NC_008543	"510,390"	G?T	13.90%	intergenic (?472/?807)	Bcen2424_3661 ? / ? Bcen2424_3662	None	triple helix repeat?containing collagen/carboxymuconolactone decarboxylase	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, planktonic"	CBT737	RA	NC_008543	"510,390"	G?A	8.20%	intergenic (?472/?807)	Bcen2424_3661 ? / ? Bcen2424_3662	None	triple helix repeat?containing collagen/carboxymuconolactone decarboxylase	Y	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT733	RA	NC_008543	"510,612"	G?T	8.20%	intergenic (?694/?585)	Bcen2424_3661 ? / ? Bcen2424_3662	None	triple helix repeat?containing collagen/carboxymuconolactone decarboxylase	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, small bead"	CBT725	RA	NC_008543	"518,153"	C?T	13.70%	V218V (GTG?GTA) 	Bcen2424_3669 ?	Bcen2424_3669 ?	LysR family transcriptional regulator	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT725	JC	NC_008543	"547,972"	#NAME?	13.30%	coding (830/1617 nt)	Bcen2424_3694 ?	Bcen2424_3694 ?	regulator of RNA terminal phosphate cyclase	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT741	RA	NC_008543	"582,778"	T?A	21.20%	T427S (ACG?TCG) 	Bcen2424_3731 ?	Bcen2424_3731 ?	polyhydroxyalkanoate depolymerase	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"645,149"	A?C	11.80%	K120Q (AAG?CAG) 	Bcen2424_3785 ?	Bcen2424_3785 ?	wspR?like HRR	Y	Y	N		Can see that K120Q and L135F occur on different backgrounds
+"High carbon, large bead"	CBT718	RA	NC_008543	"645,194"	C?T	64.80%	L135F (CTT?TTT) 	Bcen2424_3785 ?	Bcen2424_3785 ?	wspR?like HRR	Y	Y	N		Can see that K120Q and L135F occur on different backgrounds
+"Low carbon, large bead"	CBT730	RA	NC_008543	"645,194"	C?T	100%	L135F (CTT?TTT) 	Bcen2424_3785 ?	Bcen2424_3785 ?	wspR?like HRR	Y	Y	N		
+"Low carbon, large bead"	CBT732	RA	NC_008543	"645,194"	C?T	100%	L135F (CTT?TTT) 	Bcen2424_3785 ?	Bcen2424_3785 ?	wspR?like HRR	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008543	"645,194"	C?T	100%	L135F (CTT?TTT) 	Bcen2424_3785 ?	Bcen2424_3785 ?	wspR?like HRR	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"645,305"	C?G	10.10%	P172A (CCG?GCG) 	Bcen2424_3785 ?	Bcen2424_3785 ?	wspR?like HRR	Y	Y	N		"Also appears to be on a different background, though evidence less clear"
+"Low carbon, large bead"	CBT730	RA	NC_008543	"645,931"	C?A	5.50%	intergenic (+6/?119)	Bcen2424_3785 ? / ? Bcen2424_3786	Bcen2424_3786 ?	wspR?like HRR/wspA	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"647,404"	C?T	14.50%	A452V (GCC?GTC) 	Bcen2424_3786 ?	Bcen2424_3786 ?	wspA	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008543	"647,580"	C?G	18.40%	Q511E (CAG?GAG) ‡	Bcen2424_3786 ?	Bcen2424_3786 ?	wspA	Y	Y	N		"2 adjacent mutations, resulting amino acid should be arginine"
+"High carbon, large bead"	CBT723	RA	NC_008543	"647,581"	A?C	18.30%	Q511P (CAG?CCG) ‡	Bcen2424_3786 ?	Bcen2424_3786 ?	wspA	N	N	N	Part of another mutation	"2 adjacent mutations, resulting amino acid should be arginine"
+"High carbon, planktonic"	CBT740	RA	NC_008543	"651,719"	A?G	61.30%	M301V (ATG?GTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008543	"651,963"	C?T	100%	A382V (GCG?GTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"Low carbon, large bead"	CBT731	RA	NC_008543	"651,963"	C?T	100%	A382V (GCG?GTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, small bead"	CBT725	RA	NC_008543	"651,969"	A?T	100%	H384L (CAC?CTC) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, large bead"	CBT721	RA	NC_008543	"652,215"	C?T	48.30%	A466V (GCG?GTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"652,215"	C?T	100%	A466V (GCG?GTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"652,418"	C?G	76.00%	R534G (CGG?GGG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008543	"652,559"	A?G	38.40%	M581V (ATG?GTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"Low carbon, large bead"	CBT733	RA	NC_008543	"652,559"	A?C	100%	M581L (ATG?CTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"Low carbon, large bead"	CBT735	RA	NC_008543	"652,773"	A?T	100%	D652V (GAC?GTC) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008543	"652,779"	C?T	30.40%	S654L (TCG?TTG) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008543	"653,055"	T?A	76.00%	L746H (CTC?CAC) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"653,055"	T?A	6.40%	L746H (CTC?CAC) 	Bcen2424_3791 ?	Bcen2424_3791 ?	wspE	Y	Y	N		
+"Low carbon, planktonic"	CBT745	RA	NC_008543	"662,991"	A?T	16.30%	intergenic (?388/?54)	Bcen2424_3800 ? / ? Bcen2424_3801	Bcen2424_3801 ?	LysR family transcriptional regulator/AraC family transcriptional regulator	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"689,104"	?1 bp	7.80%	coding (1549/2226 nt)	Bcen2424_3824 ?	Bcen2424_3824 ?	hypothetical protein	Y	Y	N		Some reads have a 3bp deletion that overlaps this
+"High carbon, small bead"	CBT727	RA	NC_008543	"747,998"	G?T	18.50%	T22T (ACG?ACT) 	rpsU ?	rpsU ?	30S ribosomal protein S21	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT739	RA	NC_008543	"752,708"	G?A	100%	A629T (GCC?ACC) 	Bcen2424_3886 ?	Bcen2424_3886 ?	RNA polymerase sigma factor RpoD	Y	Y	N		
+"Low carbon, large bead"	CBT735	RA	NC_008543	"766,479"	A?T	18.50%	S604T (TCG?ACG) 	Bcen2424_3895 ?	Bcen2424_3895 ?	hydrophobe/amphiphile efflux?1 (HAE1) family protein	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008543	"773,409"	C?T	100%	G139S (GGC?AGC) 	Bcen2424_3899 ?	Bcen2424_3899 ?	RND efflux system outer membrane lipoprotein	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"818,108"	A?T	32.60%	K44M (AAG?ATG) 	gltA ?	gltA ?	type II citrate synthase	Y	Y	N		
+"Low carbon, large bead"	CBT733	RA	NC_008543	"835,945"	?1 bp	5.20%	coding (456/2127 nt)	Bcen2424_3955 ?	Bcen2424_3955 ?	hypothetical protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"872,925"	?1 bp	6.30%	coding (1692/2469 nt)	Bcen2424_3984 ?	Bcen2424_3984 ?	formate dehydrogenase subunit alpha	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"904,838"	G?C	5.20%	A116G (GCC?GGC) 	Bcen2424_4014 ?	Bcen2424_4014 ?	aliphatic sulfonate ABC transporter periplasmic ligand?binding protein	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"913,757"	G?T	6.40%	Q116K (CAG?AAG) 	Bcen2424_4022 ?	Bcen2424_4022 ?	nitrate/sulfonate/bicarbonate ABC transporter periplasmic ligand?binding protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"916,197"	C?T	5.10%	D102N (GAC?AAC) 	Bcen2424_4024 ?	Bcen2424_4024 ?	glycosyl transferase family protein	Y	Y	N		
+"High carbon, planktonic"	CBT740	JC	NC_008543	"960,782"	#NAME?	5.40%	coding (1210/1506 nt)	Bcen2424_4065 ?	Bcen2424_4065 ?	amino acid permease	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT739	RA	NC_008543	"1,004,659"	C?T	6.60%	G264S (GGC?AGC) 	Bcen2424_4104 ?	Bcen2424_4104 ?	hypothetical protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"1,005,048"	G?A	9.50%	A134V (GCC?GTC) 	Bcen2424_4104 ?	Bcen2424_4104 ?	hypothetical protein	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008543	"1,047,512"	C?A	5.10%	V166V (GTG?GTT) 	Bcen2424_4137 ?	Bcen2424_4137 ?	aldehyde dehydrogenase	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT740	RA	NC_008543	"1,081,616"	?1 bp	5.10%	coding (222/1083 nt)	Bcen2424_4166 ?	Bcen2424_4166 ?	"peptidase S58, DmpA"	Y	Y	N		
+"High carbon, small bead"	CBT725	RA	NC_008543	"1,121,748"	G?A	6.10%	G396R (GGA?AGA) 	Bcen2424_4198 ?	Bcen2424_4198 ?	hypothetical protein	Y	Y	N		
+"Low carbon, large bead"	CBT733	RA	NC_008543	"1,137,268"	C?A	69.30%	P214T (CCG?ACG) 	Bcen2424_4209 ?	Bcen2424_4209 ?	sigma?54 dependent trancsriptional regulator	Y	Y	N		
+"High carbon, small bead"	CBT725	RA	NC_008543	"1,141,377"	A?G	14.20%	F75S (TTC?TCC) 	Bcen2424_4211 ?	Bcen2424_4211 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT725	RA	NC_008543	"1,143,020"	C?G	30.70%	A249P (GCC?CCC) 	Bcen2424_4213 ?	Bcen2424_4213 ?	acyl?CoA dehydrogenase	Y	Y	N		
+"Low carbon, large bead"	CBT732	RA	NC_008543	"1,145,181"	T?G	100%	intergenic (?207/?715)	Bcen2424_4215 ? / ? Bcen2424_4216	None	cyclic nucleotide?binding protein/CRP/FNR family transcriptional regulator	Y	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT727	RA	NC_008543	"1,172,466"	C?T	6.40%	P268S (CCG?TCG) 	Bcen2424_4240 ?	Bcen2424_4240 ?	alcohol dehydrogenase	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008543	"1,176,951"	C?A	5.60%	intergenic (?102/+7)	Bcen2424_4243 ? / ? Bcen2424_4244	Bcen2424_4243 ?	binding?protein?dependent transport system inner membrane protein/extracellular solute?binding protein	Y	Y	N		
+"High carbon, large bead"	CBT721	RA	NC_008543	"1,187,191"	?1 bp	5.20%	coding (154/822 nt)	Bcen2424_4252 ?	Bcen2424_4252 ?	ABC transporter	Y	Y	N		
+"Low carbon, planktonic"	CBT742	RA	NC_008543	"1,190,593"	G?T	5.40%	A291E (GCG?GAG) 	Bcen2424_4256 ?	Bcen2424_4256 ?	alkanesulfonate monooxygenase	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"1,231,121"	?1 bp	6.60%	coding (1066/1179 nt)	Bcen2424_4292 ?	Bcen2424_4292 ?	RND family efflux transporter MFP subunit	Y	Y	N		Should be 2 bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008543	"1,231,122"	?1 bp	6.40%	coding (1065/1179 nt)	Bcen2424_4292 ?	Bcen2424_4292 ?	RND family efflux transporter MFP subunit	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, large bead"	CBT718	RA	NC_008543	"1,240,563"	A?G	5.70%	F74F (TTT?TTC) 	Bcen2424_4297 ?	Bcen2424_4297 ?	membrane protein?like protein	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT724	RA	NC_008543	"1,240,877"	T?C	15.80%	H382R (CAC?CGC) 	Bcen2424_4298 ?	Bcen2424_4298 ?	voltage?gated potassium channel	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"1,252,261"	C?A	5.10%	P62P (CCG?CCT) 	Bcen2424_4308 ?	Bcen2424_4308 ?	cupin	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT737	JC	NC_008543	"1,269,979"	#NAME?	5.80%	coding (267/948 nt)	Bcen2424_4325 ?	Bcen2424_4325 ?	LysR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"1,270,762"	C?T	5.10%	intergenic (+102/+9)	Bcen2424_4325 ? / ? Bcen2424_4326	None	LysR family transcriptional regulator/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"1,270,766"	C?T	5.10%	intergenic (+106/+5)	Bcen2424_4325 ? / ? Bcen2424_4326	None	LysR family transcriptional regulator/hypothetical protein	N	N	N	"Intergenic and not upstream, reads appear misaligned"	
+"High carbon, small bead"	CBT728	RA	NC_008543	"1,298,965"	T?G	84.60%	D62A (GAC?GCC) 	Bcen2424_4356 ?	Bcen2424_4356 ?	response regulator receiver protein	Y	Y	N		
+"High carbon, small bead"	CBT729	RA	NC_008543	"1,299,968"	?1 bp	5.60%	coding (333/978 nt)	Bcen2424_4357 ?	Bcen2424_4357 ?	ornithine cyclodeaminase	Y	Y	N		Should be 3bp deletion
+"High carbon, small bead"	CBT729	RA	NC_008543	"1,299,969"	?1 bp	5.60%	coding (332/978 nt)	Bcen2424_4357 ?	Bcen2424_4357 ?	ornithine cyclodeaminase	N	N	N	Part of another mutation	Should be 3bp deletion
+"High carbon, small bead"	CBT729	RA	NC_008543	"1,299,970"	?1 bp	5.60%	coding (331/978 nt)	Bcen2424_4357 ?	Bcen2424_4357 ?	ornithine cyclodeaminase	N	N	N	Part of another mutation	Should be 3bp deletion
+"Low carbon, large bead"	CBT730	RA	NC_008543	"1,306,330"	G?A	5.50%	A848T (GCC?ACC) 	Bcen2424_4361 ?	Bcen2424_4361 ?	peptidoglycan glycosyltransferase	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"1,308,703"	?1 bp	7.10%	intergenic (+69/+44)	Bcen2424_4364 ? / ? Bcen2424_4365	None	hypothetical protein/two component LuxR family transcriptional regulator	Y	N	N	Intergenic and not upstream	
+"High carbon, large bead"	CBT718	RA	NC_008543	"1,308,704"	?1 bp	7.10%	intergenic (+70/+43)	Bcen2424_4364 ? / ? Bcen2424_4365	None	hypothetical protein/two component LuxR family transcriptional regulator	N	N	N	"Part of another mutation, Intergenic and not upstream"	
+"High carbon, small bead"	CBT724	RA	NC_008543	"1,319,860"	?1 bp	6.20%	coding (625/1800 nt)	Bcen2424_4375 ?	Bcen2424_4375 ?	methyl?accepting chemotaxis sensory transducer	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"1,350,700"	C?T	5.40%	P184S (CCG?TCG) 	Bcen2424_4407 ?	Bcen2424_4407 ?	isoquinoline 1?oxidoreductase	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"1,376,284"	T?C	6.20%	F25S (TTC?TCC) 	Bcen2424_4429 ?	Bcen2424_4429 ?	luciferase family protein	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"1,411,150"	G?T	16.20%	G162G (GGC?GGA) 	Bcen2424_4455 ?	Bcen2424_4455 ?	triple helix repeat?containing collagen	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT734	RA	NC_008543	"1,411,168"	G?T	6.70%	G156G (GGC?GGA) 	Bcen2424_4455 ?	Bcen2424_4455 ?	triple helix repeat?containing collagen	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT724	RA	NC_008543	"1,456,998"	C?T	5.20%	R829H (CGC?CAC) 	Bcen2424_4504 ?	Bcen2424_4504 ?	molybdopterin oxidoreductase	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"1,482,933"	?1 bp	7.00%	coding (668/981 nt)	Bcen2424_4526 ?	Bcen2424_4526 ?	aldo/keto reductase	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"1,487,518"	G?C	29.50%	S274W (TCG?TGG) 	Bcen2424_4530 ?	Bcen2424_4530 ?	3?hydroxy?acyl?CoA dehydrogenase	Y	Y	N		
+"High carbon, large bead"	CBT721	RA	NC_008543	"1,524,140"	?1 bp	6.20%	coding (1952/2244 nt)	Bcen2424_4556 ?	Bcen2424_4556 ?	penicillin?binding protein 1C	Y	Y	N		Should be 2 bp deletion
+"High carbon, large bead"	CBT721	RA	NC_008543	"1,524,141"	?1 bp	6.10%	coding (1953/2244 nt)	Bcen2424_4556 ?	Bcen2424_4556 ?	penicillin?binding protein 1C	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, large bead"	CBT718	RA	NC_008543	"1,548,389"	C?T	6.90%	D324D (GAC?GAT) 	Bcen2424_4579 ?	Bcen2424_4579 ?	oxidoreductase alpha (molybdopterin) subunit	Y	N	Y	Synonymous	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"1,578,616"	C?T	5.40%	G82S (GGC?AGC) 	Bcen2424_4604 ?	Bcen2424_4604 ?	hypothetical protein	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT742	RA	NC_008543	"1,618,585"	C?T	5.30%	intergenic (+574/?83)	Bcen2424_4638 ? / ? Bcen2424_4639	Bcen2424_4639 ?	two component LuxR family transcriptional regulator/sugar transporter	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT725	RA	NC_008543	"1,622,558"	A?C	6.30%	L625R (CTC?CGC) 	Bcen2424_4642 ?	Bcen2424_4642 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT725	JC	NC_008543	"1,633,680"	#NAME?	6.00%	coding (380/732 nt)	Bcen2424_4651 ?	Bcen2424_4651 ?	extracellular solute?binding protein	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT739	RA	NC_008543	"1,646,214"	T?C	5.90%	L208P (CTG?CCG) 	Bcen2424_4663 ?	Bcen2424_4663 ?	response regulator receiver protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"1,657,155"	?1 bp	5.10%	coding (171/969 nt)	Bcen2424_4672 ?	Bcen2424_4672 ?	agmatinase	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008543	"1,695,171"	C?T	5.80%	A51A (GCG?GCA) 	Bcen2424_4708 ?	Bcen2424_4708 ?	short chain dehydrogenase	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT720	RA	NC_008543	"1,710,578"	C?T	64.70%	G234G (GGG?GGA) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT738	RA	NC_008543	"1,710,667"	G?A	35.40%	R205C (CGC?TGC) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT736	RA	NC_008543	"1,710,744"	C?T	58.10%	R179H (CGC?CAC) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008543	"1,710,751"	T?G	42.10%	T177P (ACC?CCC) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008543	"1,710,850"	?1 bp	6.30%	coding (430/720 nt)	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		"Not on same background as E141K, also not on background ofT177P, though not much evidence"
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"1,710,858"	T?A	25.00%	E141V (GAG?GTG) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008543	"1,710,859"	C?T	24.60%	E141K (GAG?AAG) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		Not on same background as 1bp deletion or T177P
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"1,710,900"	A?T	100%	L127Q (CTG?CAG) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT746	RA	NC_008543	"1,710,900"	A?T	90.00%	L127Q (CTG?CAG) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT736	JC	NC_008543	"1,710,933"	#NAME?	6.70%	coding (347/720 nt)	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT745	RA	NC_008543	"1,711,047"	A?G	100%	V78A (GTT?GCT) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"Low carbon, planktonic"	CBT743	RA	NC_008543	"1,711,068"	T?C	85.60%	Y71C (TAC?TGC) 	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT737	JC	NC_008543	"1,711,234"	#NAME?	7.70%	coding (46/720 nt)	Bcen2424_4724 ?	Bcen2424_4724 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"1,766,088"	G?T	5.80%	intergenic (?197/+43)	Bcen2424_4779 ? / ? Bcen2424_4780	None	amino acid permease/hypothetical protein	Y	N	N	Intergenic and not upstream	
+"High carbon, large bead"	CBT718	RA	NC_008543	"1,773,120"	G?A	5.90%	R225H (CGC?CAC) 	Bcen2424_4785 ?	Bcen2424_4785 ?	LysR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008543	"1,789,361"	G?A	42.20%	L197L (CTG?TTG) 	Bcen2424_4802 ?	Bcen2424_4802 ?	hypothetical protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT740	RA	NC_008543	"1,817,372"	G?A	10.70%	A310A (GCC?GCT) 	Bcen2424_4829 ?	Bcen2424_4829 ?	hypothetical protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT741	RA	NC_008543	"1,833,000"	G?A	7.40%	R1032Q (CGG?CAG) 	Bcen2424_4842 ?	Bcen2424_4842 ?	hypothetical protein	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008543	"1,834,348"	C?T	8.00%	D1481D (GAC?GAT) 	Bcen2424_4842 ?	Bcen2424_4842 ?	hypothetical protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT739	RA	NC_008543	"1,846,669"	C?A	100%	A32A (GCG?GCT) 	Bcen2424_4844 ?	Bcen2424_4844 ?	type III secretion exporter	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT726	RA	NC_008543	"1,848,061"	G?A	6.30%	D68D (GAC?GAT) 	Bcen2424_4846 ?	Bcen2424_4846 ?	mucin?associated surface protein	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT720	RA	NC_008543	"1,904,674"	G?T	5.20%	A52E (GCG?GAG) 	Bcen2424_4903 ?	Bcen2424_4903 ?	FAD dependent oxidoreductase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"1,923,603"	G?A	9.50%	R132H (CGC?CAC) 	Bcen2424_4925 ?	Bcen2424_4925 ?	periplasmic sensor signal transduction histidine kinase	Y	Y	N		
+"Low carbon, large bead"	CBT733	RA	NC_008543	"1,931,067"	G?T	5.30%	R322S (CGC?AGC) 	Bcen2424_4932 ?	Bcen2424_4932 ?	"amylo?alpha?1,6?glucosidase"	N	N	N	Only at ends of reads	
+"Low carbon, planktonic"	CBT742	JC	NC_008543	"1,932,530"	?8 bp	16.40%	coding (6690?6697/7041 nt)	Bcen2424_4933 ?	Bcen2424_4933 ?	outer membrane autotransporter	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008543	"1,967,172"	C?T	5.90%	V180V (GTG?GTA) 	Bcen2424_4959 ?	Bcen2424_4959 ?	enoyl?CoA hydratase	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT727	RA	NC_008543	"1,968,354"	?1 bp	5.50%	coding (257/900 nt)	Bcen2424_4960 ?	Bcen2424_4960 ?	3?hydroxyisobutyrate dehydrogenase	Y	Y	N		Looks like a 2 bp deletion to me
+"High carbon, small bead"	CBT727	RA	NC_008543	"1,990,558"	A?T	5.90%	Q431L (CAG?CTG) 	Bcen2424_4979 ?	Bcen2424_4979 ?	Fis family GAF modulated sigma54 specific transcriptional regulator	Y	Y	N		
+"High carbon, small bead"	CBT729	JC	NC_008543	"2,121,829"	#NAME?	16.30%	coding (717/1191 nt)	Bcen2424_5091 ?	Bcen2424_5091 ?	secretion protein HlyD family protein	N	N	N	Only at ends of reads	
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,148,869"	?1 bp	5.60%	coding (58/741 nt)	Bcen2424_5114 ?	Bcen2424_5114 ?	alpha/beta hydrolase	Y	Y	N		Should be 3 bp deletion
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,148,870"	?1 bp	5.60%	coding (59/741 nt)	Bcen2424_5114 ?	Bcen2424_5114 ?	alpha/beta hydrolase	N	N	N	Part of another mutation	Should be 3 bp deletion
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,148,871"	?1 bp	5.60%	coding (60/741 nt)	Bcen2424_5114 ?	Bcen2424_5114 ?	alpha/beta hydrolase	N	N	N	Part of another mutation	Should be 3 bp deletion
+"High carbon, planktonic"	CBT741	RA	NC_008543	"2,157,330"	C?T	5.50%	A317T (GCC?ACC) 	Bcen2424_5123 ?	Bcen2424_5123 ?	Fis family GAF modulated sigma54 specific transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,204,789"	G?A	7.80%	V40V (GTG?GTA) 	Bcen2424_5156 ?	Bcen2424_5156 ?	Hrp?dependent type III effector protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT737	RA	NC_008543	"2,248,401"	G?A	6.00%	R339Q (CGG?CAG) 	Bcen2424_5196 ?	Bcen2424_5196 ?	FAD?dependent pyridine nucleotide?disulfide oxidoreductase	Y	Y	N		
+"Low carbon, planktonic"	CBT744	JC	NC_008543	"2,275,882"	#NAME?	10.90%	intergenic (?291/?748)	Bcen2424_5219 ? / ? Bcen2424_5220	None	hypothetical protein/ATPase central domain?containing protein	N	N	N	"Intergenic and not upstream, Only at ends of reads"	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"2,281,427"	C?G	100%	N79K (AAC?AAG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	Y	Y	N		
+"Low carbon, planktonic"	CBT743	RA	NC_008543	"2,282,837"	G?C	5.00%	S549S (TCG?TCC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	Y	N	Y	Synonymous	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"2,282,948"	C?T	22.00%	I586I (ATC?ATT) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, only at ends of reads"	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"2,282,949"	A?T	26.00%	T587S (ACG?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	N	"Synonymous, only at ends of reads"	
+"Low carbon, large bead"	CBT735	RA	NC_008543	"2,283,365"	G?T	7.00%	A725A (GCG?GCT) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT740	RA	NC_008543	"2,283,365"	G?T	5.50%	A725A (GCG?GCT) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT722	RA	NC_008543	"2,283,473"	C?G	5.20%	L761L (CTC?CTG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"2,283,524"	G?A	5.30%	G778G (GGG?GGA) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT723	RA	NC_008543	"2,283,596"	T?C	5.80%	S802S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,283,596"	T?C	5.50%	S802S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT745	RA	NC_008543	"2,283,596"	T?C	5.10%	S802S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT721	RA	NC_008543	"2,283,707"	C?G	5.60%	L839L (CTC?CTG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, ends of reads only"	
+"Low carbon, large bead"	CBT732	RA	NC_008543	"2,283,773"	G?C	6.30%	L861L (CTG?CTC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT718	RA	NC_008543	"2,283,776"	T?C	14.40%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, misaligned"	
+"High carbon, large bead"	CBT721	RA	NC_008543	"2,283,776"	T?C	7.30%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, ends of reads only"	
+"High carbon, large bead"	CBT723	RA	NC_008543	"2,283,776"	T?C	9.20%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT724	RA	NC_008543	"2,283,776"	T?C	13.40%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"High carbon, small bead"	CBT726	RA	NC_008543	"2,283,776"	T?C	7.30%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"Low carbon, large bead"	CBT731	RA	NC_008543	"2,283,776"	T?C	6.60%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008543	"2,283,776"	T?C	9.80%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT733	RA	NC_008543	"2,283,776"	T?C	6.50%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,283,776"	T?C	7.90%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT735	RA	NC_008543	"2,283,776"	T?C	6.70%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT736	RA	NC_008543	"2,283,776"	T?C	7.20%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT737	RA	NC_008543	"2,283,776"	T?C	6.40%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT740	RA	NC_008543	"2,283,776"	T?C	6.60%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT741	RA	NC_008543	"2,283,776"	T?C	13.30%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT745	RA	NC_008543	"2,283,776"	T?C	6.50%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"2,283,776"	T?C	7.10%	S862S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"2,283,797"	G?C	5.50%	T869T (ACG?ACC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008543	"2,285,063"	C?G	11.20%	L1291L (CTC?CTG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT721	RA	NC_008543	"2,285,780"	C?G	7.70%	S1530S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads misaligned"	
+"Low carbon, large bead"	CBT730	RA	NC_008543	"2,285,780"	C?G	14.80%	S1530S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008543	"2,285,780"	C?G	10.50%	S1530S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT737	RA	NC_008543	"2,285,780"	C?G	5.80%	S1530S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT744	RA	NC_008543	"2,285,780"	C?G	5.50%	S1530S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"2,285,780"	C?G	10.90%	S1530S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT728	RA	NC_008543	"2,285,885"	G?T	10.80%	T1565T (ACG?ACT) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT726	RA	NC_008543	"2,285,915"	C?G	5.80%	L1575L (CTC?CTG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"High carbon, small bead"	CBT728	RA	NC_008543	"2,286,086"	C?T	5.10%	A1632A (GCC?GCT) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT728	RA	NC_008543	"2,286,092"	T?C	5.80%	S1634S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT735	RA	NC_008543	"2,286,695"	G?T	6.10%	T1835T (ACG?ACT) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT733	RA	NC_008543	"2,286,801"	G?T	11.90%	D1871Y (GAT?TAT) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	N	Associated with reads w/ poor quality	
+"High carbon, large bead"	CBT721	RA	NC_008543	"2,286,857"	C?G	6.60%	T1889T (ACC?ACG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	"Synonymous, reads misaligned"	
+"High carbon, small bead"	CBT724	RA	NC_008543	"2,286,923"	C?A	9.00%	T1911T (ACC?ACA) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"High carbon, small bead"	CBT724	RA	NC_008543	"2,286,956"	T?C	8.80%	S1922S (AGT?AGC) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"High carbon, large bead"	CBT720	RA	NC_008543	"2,287,373"	C?G	5.80%	L2061L (CTC?CTG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	N	Associated with reads w/ poor quality	
+"High carbon, small bead"	CBT724	RA	NC_008543	"2,287,373"	C?G	8.10%	L2061L (CTC?CTG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"High carbon, small bead"	CBT724	RA	NC_008543	"2,287,430"	C?G	8.20%	S2080S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"High carbon, small bead"	CBT725	RA	NC_008543	"2,287,430"	C?G	5.40%	S2080S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	N	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT746	RA	NC_008543	"2,287,430"	C?G	6.50%	S2080S (TCC?TCG) 	Bcen2424_5223 ?	Bcen2424_5223 ?	hemagluttinin domain?containing protein	Y	N	Y	Synonymous	
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,294,843"	C?T	9.50%	L43F (CTC?TTC) 	Bcen2424_5229 ?	Bcen2424_5229 ?	FkbM family methyltransferase	Y	Y	N		Never on same background as A64T
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,294,906"	G?A	26.50%	A64T (GCG?ACG) 	Bcen2424_5229 ?	Bcen2424_5229 ?	FkbM family methyltransferase	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,295,222"	A?T	8.40%	K169I (AAA?ATA) 	Bcen2424_5229 ?	Bcen2424_5229 ?	FkbM family methyltransferase	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,295,766"	?1 bp	19.70%	coding (1050/1974 nt)	Bcen2424_5229 ?	Bcen2424_5229 ?	FkbM family methyltransferase	Y	Y	N		
+"Low carbon, large bead"	CBT734	JC	NC_008543	"2,295,777"	?26 bp	13.10%	coding (1061?1086/1974 nt)	Bcen2424_5229 ?	Bcen2424_5229 ?	FkbM family methyltransferase	Y	Y	N		
+"High carbon, planktonic"	CBT741	RA	NC_008543	"2,304,979"	T?C	5.10%	T501A (ACG?GCG) 	Bcen2424_5237 ?	Bcen2424_5237 ?	carbamoyl?phosphate synthase subunit L	Y	Y	N		All reads with this mutation also contain a second mutation nearby
+"High carbon, large bead"	CBT722	RA	NC_008543	"2,312,869"	G?A	28.70%	K356K (AAG?AAA) 	Bcen2424_5243 ?	Bcen2424_5243 ?	Rieske (2Fe?2S) domain?containing protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,320,483"	C?T	7.80%	R128R (CGG?CGA) 	Bcen2424_5248 ?	Bcen2424_5248 ?	porin	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT725	RA	NC_008543	"2,322,007"	?1 bp	5.00%	intergenic (+71/?250)	Bcen2424_5249 ? / ? Bcen2424_5250	None	IS605 family transposase OrfB/lysine exporter protein LysE/YggA	Y	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT725	RA	NC_008543	"2,322,008"	?1 bp	5.00%	intergenic (+72/?249)	Bcen2424_5249 ? / ? Bcen2424_5250	None	IS605 family transposase OrfB/lysine exporter protein LysE/YggA	N	N	N	"Intergenic and not upstream, should be 2bp deletion"	
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,386,846"	C?T	26.20%	G170D (GGC?GAC) 	Bcen2424_5298 ?	Bcen2424_5298 ?	binding?protein?dependent transport systems inner membrane component	Y	Y	N		
+"Low carbon, large bead"	CBT734	RA	NC_008543	"2,411,234"	G?A	6.80%	L124L (CTC?CTT) 	Bcen2424_5321 ?	Bcen2424_5321 ?	aldehyde dehydrogenase	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT722	RA	NC_008543	"2,567,818"	G?T	5.60%	E209D (GAG?GAT) 	Bcen2424_5469 ?	Bcen2424_5469 ?	major facilitator transporter	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,580,587"	C?T	6.30%	G134G (GGG?GGA) 	Bcen2424_5484 ?	Bcen2424_5484 ?	hypothetical protein	Y	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT746	RA	NC_008543	"2,585,034"	C?T	5.20%	S17F (TCC?TTC) 	Bcen2424_5489 ?	Bcen2424_5489 ?	LysR family transcriptional regulator	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT718	JC	NC_008543	"2,597,210"	?56 bp	13.80%	intergenic (+59/+90)	Bcen2424_5494 ? / ? Bcen2424_5495	None	heavy metal translocating P?type ATPase/N?acetyltransferase GCN5	Y	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT733	JC	NC_008543	"2,597,217"	?49 bp	17.30%	intergenic (+66/+90)	Bcen2424_5494 ? / ? Bcen2424_5495	None	heavy metal translocating P?type ATPase/N?acetyltransferase GCN5	Y	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT735	JC	NC_008543	"2,597,217"	?49 bp	34.80%	intergenic (+66/+90)	Bcen2424_5494 ? / ? Bcen2424_5495	None	heavy metal translocating P?type ATPase/N?acetyltransferase GCN5	Y	N	N	Intergenic and not upstream	
+"High carbon, planktonic"	CBT737	JC	NC_008543	"2,597,217"	?49 bp	18.20%	intergenic (+66/+90)	Bcen2424_5494 ? / ? Bcen2424_5495	None	heavy metal translocating P?type ATPase/N?acetyltransferase GCN5	Y	N	N	Intergenic and not upstream	
+"Low carbon, planktonic"	CBT743	JC	NC_008543	"2,597,217"	?49 bp	45.80%	intergenic (+66/+90)	Bcen2424_5494 ? / ? Bcen2424_5495	None	heavy metal translocating P?type ATPase/N?acetyltransferase GCN5	Y	N	N	Intergenic and not upstream	
+"High carbon, small bead"	CBT727	RA	NC_008543	"2,600,369"	C?A	5.30%	S44S (TCG?TCT) 	Bcen2424_5498 ?	Bcen2424_5498 ?	MgtC/SapB transporter	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT727	RA	NC_008543	"2,643,009"	A?T	6.30%	N78Y (AAC?TAC) 	Bcen2424_5535 ?	Bcen2424_5535 ?	hypothetical protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,647,378"	C?A	6.60%	E174* (GAA?TAA) 	Bcen2424_5539 ?	Bcen2424_5539 ?	oligopeptide/dipeptide ABC transporter ATPase	Y	Y	N		
+"High carbon, planktonic"	CBT737	RA	NC_008543	"2,676,815"	G?A	12.30%	A304V (GCT?GTT) 	Bcen2424_5567 ?	Bcen2424_5567 ?	phage integrase family protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"2,715,698"	T?C	5.40%	C47R (TGC?CGC) 	Bcen2424_5603 ?	Bcen2424_5603 ?	LysR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008543	"2,728,336"	T?C	5.30%	L168P (CTG?CCG) 	Bcen2424_5616 ?	Bcen2424_5616 ?	histidine utilization repressor	Y	Y	N		
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"2,771,875"	?1 bp	5.10%	coding (588/1056 nt)	Bcen2424_5655 ?	Bcen2424_5655 ?	LacI family transcriptional regulator	Y	Y	N		Should be 3 bp deletion
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"2,771,876"	?1 bp	5.10%	coding (587/1056 nt)	Bcen2424_5655 ?	Bcen2424_5655 ?	LacI family transcriptional regulator	N	N	N	Part of another mutation	Should be 3 bp deletion
+"Low carbon, planktonic"	CBT747	RA	NC_008543	"2,771,877"	?1 bp	5.10%	coding (586/1056 nt)	Bcen2424_5655 ?	Bcen2424_5655 ?	LacI family transcriptional regulator	N	N	N	Part of another mutation	Should be 3 bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008543	"2,775,235"	C?T	7.90%	P473S (CCG?TCG) 	Bcen2424_5657 ?	Bcen2424_5657 ?	beta?galactosidase	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008543	"2,834,009"	G?T	8.20%	A61E (GCG?GAG) 	Bcen2424_5713 ?	Bcen2424_5713 ?	3?hydroxybutyrate dehydrogenase	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT726	RA	NC_008543	"2,957,269"	C?T	71.20%	A261V (GCG?GTG) 	Bcen2424_5828 ?	Bcen2424_5828 ?	FAD dependent oxidoreductase	Y	Y	N		
+"High carbon, large bead"	CBT720	RA	NC_008543	"1,039,619:1"	#NAME?	6.00%	intergenic (?137/+46)	Bcen2424_4131 ? / ? Bcen2424_4132	Bcen2424_4131 ?	"helix?hairpin?helix DNA?binding protein/RNA polymerase, sigma 38 subunit, RpoS"	Y	Y	N		
+"High carbon, large bead"	CBT722	RA	NC_008543	"1,687,245:1"	+C	5.00%	coding (101/963 nt)	Bcen2424_4700 ?	Bcen2424_4700 ?	glyoxalase/bleomycin resistance protein/dioxygenase	Y	Y	N		Should be 2 bp deletion
+"High carbon, large bead"	CBT722	RA	NC_008543	"1,687,245:2"	#NAME?	5.00%	coding (101/963 nt)	Bcen2424_4700 ?	Bcen2424_4700 ?	glyoxalase/bleomycin resistance protein/dioxygenase	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, large bead"	CBT720	RA	NC_008543	"341,826:1"	#NAME?	5.90%	coding (1084/1278 nt)	Bcen2424_3503 ?	Bcen2424_3503 ?	epocide hydrolase domain?containing protein	Y	Y	N		Should be 2 bp deletion
+"High carbon, large bead"	CBT720	RA	NC_008543	"341,826:2"	+C	5.90%	coding (1084/1278 nt)	Bcen2424_3503 ?	Bcen2424_3503 ?	epocide hydrolase domain?containing protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, planktonic"	CBT740	JC	NC_008544	"3,347"	#NAME?	10.30%	coding (492/1380 nt)	Bcen2424_5871 ?	Bcen2424_5871 ?	hypothetical protein	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT727	RA	NC_008544	"12,059"	G?A	5.90%	G279D (GGC?GAC) 	Bcen2424_5879 ?	Bcen2424_5879 ?	phosphoribosylglycinamide synthetase	Y	Y	N		
+"High carbon, small bead"	CBT724	RA	NC_008544	"27,640"	?1 bp	5.50%	coding (550/837 nt)	Bcen2424_5896 ?	Bcen2424_5896 ?	shikimate 5?dehydrogenase	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008544	"58,773"	G?A	5.70%	A99V (GCG?GTG) 	Bcen2424_5923 ?	Bcen2424_5923 ?	biotin carboxylase	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008544	"90,369"	G?A	35.80%	intergenic (+19/?240)	Bcen2424_5956 ? / ? Bcen2424_5957	None	hypothetical protein/hypothetical protein	Y	N	N	Intergenic and not upstream	
+"Low carbon, large bead"	CBT732	RA	NC_008544	"111,660"	?1 bp	5.90%	coding (3033/5895 nt)	Bcen2424_5972 ?	Bcen2424_5972 ?	excinuclease ABC subunit A	Y	Y	N		Should be 2 bp deletion
+"Low carbon, large bead"	CBT732	RA	NC_008544	"111,661"	?1 bp	5.90%	coding (3032/5895 nt)	Bcen2424_5972 ?	Bcen2424_5972 ?	excinuclease ABC subunit A	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008544	"112,030"	G?A	5.80%	T888I (ACC?ATC) 	Bcen2424_5972 ?	Bcen2424_5972 ?	excinuclease ABC subunit A	Y	Y	N		
+"Low carbon, planktonic"	CBT742	RA	NC_008544	"126,623"	G?C	6.50%	T680T (ACC?ACG) 	Bcen2424_5983 ?	Bcen2424_5983 ?	YadA domain?containing protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT741	RA	NC_008544	"128,052"	T?C	5.20%	Y204C (TAC?TGC) 	Bcen2424_5983 ?	Bcen2424_5983 ?	YadA domain?containing protein	Y	Y	N		
+"Low carbon, large bead"	CBT731	RA	NC_008544	"142,951"	G?A	5.70%	P96P (CCG?CCA) 	Bcen2424_5997 ?	Bcen2424_5997 ?	general substrate transporter	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT739	RA	NC_008544	"167,028"	?1 bp	5.10%	coding (378/663 nt)	Bcen2424_6018 ?	Bcen2424_6018 ?	methyltransferase type 11	Y	Y	N		
+"Low carbon, planktonic"	CBT742	RA	NC_008544	"172,057"	?1 bp	5.30%	coding (989/1419 nt)	Bcen2424_6023 ?	Bcen2424_6023 ?	FAD linked oxidase domain?containing protein	N	N	N	Reads appear to be misaligned	
+"High carbon, planktonic"	CBT739	RA	NC_008544	"198,003"	C?T	6.50%	R416H (CGC?CAC) 	Bcen2424_6050 ?	Bcen2424_6050 ?	methyl?accepting chemotaxis sensory transducer	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"215,191"	A?G	5.80%	T244A (ACG?GCG) 	Bcen2424_6068 ?	Bcen2424_6068 ?	LysR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT736	RA	NC_008544	"219,285"	G?A	6.30%	G25S (GGC?AGC) 	Bcen2424_6073 ?	Bcen2424_6073 ?	hydrophobe/amphiphile efflux?1 (HAE1) family protein	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT718	RA	NC_008544	"338,397"	C?G	5.10%	G68A (GGC?GCC) 	Bcen2424_6175 ?	Bcen2424_6175 ?	hypothetical protein	Y	Y	N		
+"High carbon, planktonic"	CBT740	RA	NC_008544	"392,577"	C?G	6.20%	L827V (CTG?GTG) 	Bcen2424_6222 ?	Bcen2424_6222 ?	hypothetical protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008544	"423,608"	T?C	6.90%	D113G (GAC?GGC) 	Bcen2424_6244 ?	Bcen2424_6244 ?	"cytochrome c biogenesis protein, transmembrane region"	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"503,142"	G?A	6.90%	C116Y (TGC?TAC) 	Bcen2424_6316 ?	Bcen2424_6316 ?	glycoside hydrolase family protein	Y	Y	N		
+"Low carbon, large bead"	CBT732	RA	NC_008544	"540,453"	?1 bp	6.60%	coding (77/2922 nt)	Bcen2424_6350 ?	Bcen2424_6350 ?	transcriptional regulator	Y	Y	N		Should be 2 bp deletion
+"Low carbon, large bead"	CBT732	RA	NC_008544	"540,454"	?1 bp	6.60%	coding (78/2922 nt)	Bcen2424_6350 ?	Bcen2424_6350 ?	transcriptional regulator	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, small bead"	CBT727	RA	NC_008544	"557,506"	?1 bp	7.50%	coding (960/1068 nt)	Bcen2424_6361 ?	Bcen2424_6361 ?	secretion protein HlyD family protein	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008544	"560,016"	?1 bp	5.10%	coding (1507/1581 nt)	Bcen2424_6362 ?	Bcen2424_6362 ?	major facilitator transporter	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"591,964"	G?A	5.90%	intergenic (+13/+19)	Bcen2424_6392 ? / ? Bcen2424_6393	None	hypothetical protein/extracellular ligand?binding receptor	Y	N	N	Intergenic and not upstream	
+"High carbon, planktonic"	CBT739	RA	NC_008544	"603,274"	A?T	5.50%	E446V (GAG?GTG) 	Bcen2424_6401 ?	Bcen2424_6401 ?	AMP?dependent synthetase/ligase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"613,124"	C?T	100%	R56W (CGG?TGG) 	Bcen2424_6411 ?	Bcen2424_6411 ?	ATPase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"643,589"	T?A	8.00%	L94H (CTC?CAC) 	Bcen2424_6428 ?	Bcen2424_6428 ?	membrane protein	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"647,871"	G?A	6.30%	C201Y (TGC?TAC) 	Bcen2424_6432 ?	Bcen2424_6432 ?	FAD?dependent pyridine nucleotide?disulfide oxidoreductase	Y	Y	N		
+"High carbon, planktonic"	CBT736	RA	NC_008544	"651,950"	G?T	100%	P354P (CCG?CCT) 	Bcen2424_6437 ?	Bcen2424_6437 ?	alcohol dehydrogenase	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT726	RA	NC_008544	"661,238"	G?A	6.00%	A216A (GCG?GCA) 	Bcen2424_6445 ?	Bcen2424_6445 ?	glycosyl transferase family protein	Y	N	Y	Synonymous	
+"High carbon, large bead"	CBT723	RA	NC_008544	"671,658"	C?T	5.10%	A194V (GCG?GTG) 	Bcen2424_6454 ?	Bcen2424_6454 ?	multi?sensor hybrid histidine kinase	Y	Y	N		
+"High carbon, large bead"	CBT718	RA	NC_008544	"684,219"	G?A	9.60%	A184A (GCC?GCT) 	Bcen2424_6467 ?	Bcen2424_6467 ?	major facilitator transporter	N	N	Y	"Synonymous, only at ends of reads"	
+"High carbon, planktonic"	CBT739	RA	NC_008544	"690,305"	C?A	5.10%	R187R (CGG?AGG) 	Bcen2424_6477 ?	Bcen2424_6477 ?	RNA polymerase factor sigma?54	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT740	RA	NC_008544	"696,494"	T?A	5.10%	V346E (GTG?GAG) 	Bcen2424_6483 ?	Bcen2424_6483 ?	ATP dependent DNA ligase	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT723	RA	NC_008544	"781,604"	T?G	8.90%	M5R (ATG?AGG) 	Bcen2424_6556 ?	Bcen2424_6556 ?	alkylphosphonate utilization protein PhnA	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008544	"793,224"	C?A	5.10%	P308Q (CCG?CAG) 	Bcen2424_6569 ?	Bcen2424_6569 ?	monooxygenase	N	N	N	Reads appear to be misaligned	
+"Low carbon, planktonic"	CBT743	RA	NC_008544	"875,989"	T?A	5.60%	L150Q (CTG?CAG) 	Bcen2424_6647 ?	Bcen2424_6647 ?	ABC transporter	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008544	"900,614"	C?T	5.40%	A124T (GCA?ACA) 	Bcen2424_6671 ?	Bcen2424_6671 ?	aldehyde dehydrogenase	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"923,389"	C?T	6.30%	G424D (GGC?GAC) 	Bcen2424_6692 ?	Bcen2424_6692 ?	LuxR family transcriptional regulator	Y	Y	N		
+"High carbon, planktonic"	CBT740	RA	NC_008544	"932,382"	?1 bp	5.10%	coding (901/1818 nt)	Bcen2424_6698 ?	Bcen2424_6698 ?	methyl?accepting chemotaxis sensory transducer	Y	Y	N		
+"High carbon, planktonic"	CBT739	RA	NC_008544	"960,427"	C?A	21.00%	V324F (GTC?TTC) 	Bcen2424_6720 ?	Bcen2424_6720 ?	aldehyde dehydrogenase	Y	Y	N		
+"High carbon, small bead"	CBT726	RA	NC_008544	"968,340"	?1 bp	5.70%	coding (664/1581 nt)	Bcen2424_6728 ?	Bcen2424_6728 ?	hypothetical protein	Y	Y	N		Should be 2 bp deletion
+"Low carbon, large bead"	CBT730	RA	NC_008544	"968,340"	?1 bp	6.10%	coding (664/1581 nt)	Bcen2424_6728 ?	Bcen2424_6728 ?	hypothetical protein	Y	Y	N		Should be 2 bp deletion
+"High carbon, small bead"	CBT726	RA	NC_008544	"968,341"	?1 bp	5.70%	coding (663/1581 nt)	Bcen2424_6728 ?	Bcen2424_6728 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"Low carbon, large bead"	CBT730	RA	NC_008544	"968,341"	?1 bp	6.10%	coding (663/1581 nt)	Bcen2424_6728 ?	Bcen2424_6728 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 2 bp deletion
+"High carbon, small bead"	CBT726	RA	NC_008544	"1,016,462"	T?C	8.30%	T1059T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT730	RA	NC_008544	"1,016,462"	T?C	10.20%	T1059T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008544	"1,016,462"	T?C	8.20%	T1059T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT737	RA	NC_008544	"1,016,513"	A?G	8.90%	G1042G (GGT?GGC) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT745	RA	NC_008544	"1,016,756"	C?T	5.40%	V961V (GTG?GTA) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT724	RA	NC_008544	"1,016,800"	T?C	7.50%	I947V (ATC?GTC) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT722	RA	NC_008544	"1,016,822"	T?C	10.30%	T939T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, "	reads appear misaligned
+"High carbon, planktonic"	CBT740	RA	NC_008544	"1,016,822"	T?C	9.90%	T939T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT741	RA	NC_008544	"1,016,822"	T?C	11.50%	T939T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT742	RA	NC_008544	"1,016,822"	T?C	13.60%	T939T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	Synonymous/Reads look misaligned	
+"Low carbon, large bead"	CBT734	RA	NC_008544	"1,016,822"	T?C	8.00%	T939T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	Y	N	Y	Synonymous	
+"High carbon, planktonic"	CBT737	RA	NC_008544	"1,016,822"	T?C	7.40%	T939T (ACA?ACG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT728	RA	NC_008544	"1,017,725"	T?C	9.50%	V638V (GTA?GTG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT736	RA	NC_008544	"1,017,814"	G?A	7.00%	L609L (CTG?TTG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, planktonic"	CBT736	RA	NC_008544	"1,017,818"	C?A	6.80%	G607G (GGG?GGT) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT745	RA	NC_008544	"1,018,766"	C?T	5.60%	A291A (GCG?GCA) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT721	RA	NC_008544	"1,019,030"	T?C	7.10%	A203A (GCA?GCG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads misaligned"	
+"High carbon, small bead"	CBT726	RA	NC_008544	"1,019,030"	T?C	5.60%	A203A (GCA?GCG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, small bead"	CBT728	RA	NC_008544	"1,019,030"	T?C	6.30%	A203A (GCA?GCG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008544	"1,019,030"	T?C	5.70%	A203A (GCA?GCG) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT721	RA	NC_008544	"1,019,045"	C?T	10.10%	G198G (GGG?GGA) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads misaligned"	
+"Low carbon, large bead"	CBT732	RA	NC_008544	"1,019,090"	C?A	12.60%	G183G (GGG?GGT) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	"Synonymous, reads appear misaligned"	
+"Low carbon, planktonic"	CBT747	RA	NC_008544	"1,019,090"	C?A	13.70%	G183G (GGG?GGT) 	Bcen2424_6766 ?	Bcen2424_6766 ?	PE?PGRS family protein	N	N	Y	Synonymous	
+"High carbon, small bead"	CBT729	RA	NC_008544	"1,023,602"	T?C	5.10%	E3016E (GAA?GAG) 	Bcen2424_6767 ?	Bcen2424_6767 ?	outer membrane autotransporter	Y	N	Y	Synonymous	
+"Low carbon, large bead"	CBT732	RA	NC_008544	"1,024,778"	G?C	5.20%	T2624T (ACC?ACG) 	Bcen2424_6767 ?	Bcen2424_6767 ?	outer membrane autotransporter	N	N	Y	"Synonymous, reads appear misaligned"	
+"High carbon, large bead"	CBT718	RA	NC_008544	"1,029,055"	C?T	7.10%	G1199S (GGC?AGC) 	Bcen2424_6767 ?	Bcen2424_6767 ?	outer membrane autotransporter	Y	Y	N		
+"High carbon, large bead"	CBT723	RA	NC_008544	"1,030,160"	G?A	6.60%	S830S (AGC?AGT) 	Bcen2424_6767 ?	Bcen2424_6767 ?	outer membrane autotransporter	Y	N	Y	Synonymous	
+"High carbon, small bead"	CBT725	RA	NC_008544	"1,030,981"	G?A	16.10%	Q557* (CAA?TAA) 	Bcen2424_6767 ?	Bcen2424_6767 ?	outer membrane autotransporter	Y	Y	N		
+"High carbon, small bead"	CBT727	RA	NC_008544	"1,036,075"	C?T	6.40%	T737I (ACC?ATC) 	Bcen2424_6769 ?	Bcen2424_6769 ?	aerobic carbon monoxide dehydrogenase	Y	Y	N		
+"High carbon, planktonic"	CBT738	RA	NC_008544	"563,714:1"	#NAME?	5.10%	coding (421/1806 nt)	Bcen2424_6366 ?	Bcen2424_6366 ?	transcriptional regulator	Y	Y	N		Should be 2bp insertion
+"High carbon, planktonic"	CBT738	RA	NC_008544	"563,714:2"	+C	5.10%	coding (421/1806 nt)	Bcen2424_6366 ?	Bcen2424_6366 ?	transcriptional regulator	N	N	N	Part of another mutation	Should be 2bp insertion
+"High carbon, small bead"	CBT727	RA	NC_008545	"79,200"	T?A	5.10%	V448D (GTC?GAC) 	Bcen2424_6865 ?	Bcen2424_6865 ?	YadA domain?containing protein	N	N	N	Only at ends of reads	
+"High carbon, small bead"	CBT727	RA	NC_008545	"85,660"	G?A	6.40%	A144A (GCG?GCA) 	Bcen2424_6870 ?	Bcen2424_6870 ?	hypothetical protein	Y	N	Y	Synonymous	
+"Low carbon, planktonic"	CBT747	JC	NC_008545	"100,409"	#NAME?	16.50%	coding (942/1086 nt)	Bcen2424_6885 ?	Bcen2424_6885 ?	hypothetical protein	N	N	N	Only at ends of reads	
+"High carbon, large bead"	CBT721	JC	NC_008545	"135,221"	?50 bp	31.50%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, small bead"	CBT725	JC	NC_008545	"135,221"	?50 bp	25.70%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, small bead"	CBT727	JC	NC_008545	"135,221"	?50 bp	22.60%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, large bead"	CBT731	JC	NC_008545	"135,221"	?50 bp	11.10%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, large bead"	CBT732	JC	NC_008545	"135,221"	?50 bp	15.60%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, planktonic"	CBT743	JC	NC_008545	"135,221"	?50 bp	18.40%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, planktonic"	CBT744	JC	NC_008545	"135,221"	?50 bp	17.30%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, planktonic"	CBT745	JC	NC_008545	"135,221"	?50 bp	14.30%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"Low carbon, planktonic"	CBT747	JC	NC_008545	"135,221"	?50 bp	46.80%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	???	N		
+"High carbon, large bead"	CBT718	JC	NC_008545	"135,221"	?50 bp	24.00%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	N	N		
+"High carbon, large bead"	CBT720	JC	NC_008545	"135,221"	?50 bp	23.70%	coding (545?594/1008 nt)	Bcen2424_6918 ?	Bcen2424_6918 ?	AraC family transcriptional regulator	???	N	N		
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,354"	C?T	7.90%	intergenic (+527/?106)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,354"	C?T	5.70%	intergenic (+527/?106)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,354"	C?T	5.40%	intergenic (+527/?106)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,356"	T?G	7.80%	intergenic (+529/?104)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,356"	T?G	5.70%	intergenic (+529/?104)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,356"	T?G	5.50%	intergenic (+529/?104)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,357"	T?A	7.80%	intergenic (+530/?103)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,357"	T?A	5.50%	intergenic (+530/?103)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,357"	T?A	5.30%	intergenic (+530/?103)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,358"	T?C	7.80%	intergenic (+531/?102)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,358"	T?C	5.80%	intergenic (+531/?102)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,358"	T?C	5.50%	intergenic (+531/?102)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,359"	T?G	7.70%	intergenic (+532/?101)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,359"	T?G	5.70%	intergenic (+532/?101)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,359"	T?G	5.50%	intergenic (+532/?101)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,362"	?1 bp	7.60%	intergenic (+535/?98)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,362"	?1 bp	5.60%	intergenic (+535/?98)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,362"	?1 bp	5.40%	intergenic (+535/?98)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,363"	C?G	7.60%	intergenic (+536/?97)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,363"	C?G	5.70%	intergenic (+536/?97)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,363"	C?G	5.60%	intergenic (+536/?97)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,365"	C?T	7.70%	intergenic (+538/?95)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,365"	C?T	5.60%	intergenic (+538/?95)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,365"	C?T	5.30%	intergenic (+538/?95)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, large bead"	CBT720	RA	NC_008545	"152,366"	A?T	7.70%	intergenic (+539/?94)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	All these mutations are linked
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,366"	A?T	6.00%	intergenic (+539/?94)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"Low carbon, large bead"	CBT732	RA	NC_008545	"152,366"	A?T	5.30%	intergenic (+539/?94)	Bcen2424_6935 ? / ? Bcen2424_6936	Bcen2424_6936 ?	nuclease/hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT726	RA	NC_008545	"152,485"	A?G	7.10%	H9R (CAC?CGC) 	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,505"	A?T	10.20%	N16Y (AAC?TAC) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,505"	A?T	5.30%	N16Y (AAC?TAC) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,506"	A?G	10.20%	N16S (AAC?AGC) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,506"	A?G	5.30%	N16S (AAC?AGC) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,508"	C?T	10.70%	P17S (CCG?TCG) 	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,508"	C?T	5.10%	P17S (CCG?TCG) 	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,511"	C?A	10.60%	R18S (CGT?AGT) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,511"	C?A	5.20%	R18S (CGT?AGT) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,512"	G?A	10.60%	R18H (CGT?CAT) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,512"	G?A	5.20%	R18H (CGT?CAT) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,513"	T?A	10.90%	R18R (CGT?CGA) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,513"	T?A	5.20%	R18R (CGT?CGA) ‡	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,514"	C?A	10.90%	R19R (CGA?AGA) 	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,514"	C?A	5.30%	R19R (CGA?AGA) 	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT727	RA	NC_008545	"152,507:1"	#NAME?	10.80%	coding (48/396 nt)	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT728	RA	NC_008545	"152,507:1"	#NAME?	5.10%	coding (48/396 nt)	Bcen2424_6936 ?	Bcen2424_6936 ?	hypothetical protein	N	N	N	Reads appear to be misaligned	
+"High carbon, small bead"	CBT724	RA	NC_008545	"98,110:1"	+C	6.70%	coding (38/207 nt)	Bcen2424_6882 ?	Bcen2424_6882 ?	hypothetical protein	Y	Y	N		Should be 3 bp insertion
+"High carbon, small bead"	CBT724	RA	NC_008545	"98,110:2"	#NAME?	6.70%	coding (38/207 nt)	Bcen2424_6882 ?	Bcen2424_6882 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 3 bp insertion
+"High carbon, small bead"	CBT724	RA	NC_008545	"98,110:3"	+C	6.70%	coding (38/207 nt)	Bcen2424_6882 ?	Bcen2424_6882 ?	hypothetical protein	N	N	N	Part of another mutation	Should be 3 bp insertion

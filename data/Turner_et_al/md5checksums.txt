@@ -1,0 +1,1 @@
+c52bab207c0b02cf93176ab9601f3b0f  GCF_000203955.1_ASM20395v1_genomic.gbff.gz
