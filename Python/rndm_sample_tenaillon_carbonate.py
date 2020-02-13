@@ -278,12 +278,12 @@ def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100,
     gene_names = df.columns.values
     n_rows = df_np.shape[0]
     df_out = open(mydir + '/data/Tenaillon_et_al/power_sample_size_' + str(N) + '.txt', 'w')
-    df_out.write('\t'.join(['N', 'G', 'Power', 'Power_025', 'Power_975']) + '\n')
+    df_out.write('\t'.join(['N', 'G', 'Power', 'Power_025', 'Power_975', 'z_score_mean', 'z_score_025', 'z_score_975']) + '\n')
     #Ns = [20]
     #Ns = list(range(20, n_rows, 5))
     #for N in Ns:
     p_values = []
-    #z_scores = []
+    z_scores = []
     G_list = []
     for i in range(iter1):
         df_np_i = df_np[np.random.choice(n_rows, size=N, replace=False, p=None), :]
@@ -309,7 +309,8 @@ def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100,
             pca_X_j = pca.fit_transform(X_j)
             mpd_null.append(get_mean_pairwise_euc_distance(pca_X_j, k=k_eval))
         p_values.append(len( [m for m in mpd_null if m > mpd] ) / len(mpd_null))
-        #z_scores.append( (euc_dist - np.mean(euc_dists)) / np.std(euc_dists) )s
+        z_scores.append( (mpd - np.mean(mpd_null)) / np.std(mpd_null) )
+
     power = len([n for n in p_values if n < 0.05]) / len(p_values)
     #print(p_values)
     power_bootstrap = []
@@ -318,9 +319,16 @@ def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100,
         power_sample = len([n for n in p_values_sample if n < 0.05]) / len(p_values_sample)
         power_bootstrap.append(power_sample)
     power_bootstrap.sort()
+
+    z_scores_bootstrap = []
+    for p in range(iter_bs):
+        z_scores_bootstrap.append(np.mean( random.sample(z_scores, sample_bs)  ))
+    z_scores_bootstrap.sort()
+
+
     # return number of genes, power, power lower, power upper
     #return  power, power_bootstrap[int(10000*0.025)], power_bootstrap[int(10000*0.975)]
-    df_out.write('\t'.join([str(N), str(np.mean(G_list)), str(power), str(power_bootstrap[int(iter_bs*0.025)]), str(power_bootstrap[int(iter_bs*0.975)])]) + '\n')
+    df_out.write('\t'.join([str(N), str(np.mean(G_list)), str(power), str(power_bootstrap[int(iter_bs*0.025)]), str(power_bootstrap[int(iter_bs*0.975)]), str(np.mean(z_scores)), str(z_scores_bootstrap[int(iter_bs*0.025)]), str(z_scores_bootstrap[int(iter_bs*0.975)])   ]) + '\n')
     df_out.close()
 
 

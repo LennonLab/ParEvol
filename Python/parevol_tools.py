@@ -17,10 +17,50 @@ from asa159 import rcont2
 from copy import copy
 import matplotlib.colors as cls
 
-#np.random.seed(123456789)
+np.random.seed(123456789)
 
 def get_alpha():
     return 0.05
+
+
+# calculate_total_parallelism function is modified from GitHub repo
+# benjaminhgood/LTEE-metagenomic under GPL v2
+def calculate_total_parallelism(gene_statistics, allowed_genes=None, num_bootstraps=10000):
+
+    if allowed_genes==None:
+        allowed_genes = gene_statistics.keys()
+
+    Ls = []
+    ns = []
+
+    for gene_name in allowed_genes:
+
+        Ls.append( gene_statistics[gene_name]['length'] )
+        ns.append( gene_statistics[gene_name]['observed'] )
+
+
+    Ls = np.array(Ls)
+    ns = np.array(ns)
+
+    Ltot = Ls.sum()
+    ntot = ns.sum()
+    ps = Ls*1.0/Ltot
+
+    gs = ns*np.log(ns/(ntot*ps)+(ns==0))
+
+    observed_G = gs.sum()/ns.sum()
+    #bootstrapped_Gs = []
+    #for bootstrap_idx in range(0,num_bootstraps):
+    #    bootstrapped_ns = np.random.multinomial(ntot,ps)
+    #    bootstrapped_gs = bootstrapped_ns*np.log(bootstrapped_ns/(ntot*ps)+(bootstrapped_ns==0))
+    #    bootstrapped_G = bootstrapped_gs.sum()/bootstrapped_ns.sum()
+
+    #    bootstrapped_Gs.append(bootstrapped_G)
+
+    #bootstrapped_Gs = np.array(bootstrapped_Gs)
+
+    #pvalue = ((bootstrapped_Gs>=observed_G).sum()+1.0)/(len(bootstrapped_Gs)+1.0)
+    return observed_G#, pvalue
 
 
 

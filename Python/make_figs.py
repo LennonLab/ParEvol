@@ -25,15 +25,20 @@ def tenaillon_sig_multiplicity_fig():
     fig = plt.figure(figsize = (5, 4))
     fig.tight_layout(pad = 2.8)
 
+    # G score fig
+    # G-score for 115 pops = 1.0974618847690791
     ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
     ax1.errorbar(df.N.values, df.n_mut_mean.values, yerr = [df.n_mut_mean.values-df.n_mut_ci_975.values, df.n_mut_ci_025.values - df.n_mut_mean.values ], \
         fmt = 'o', alpha = 1, \
-        barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=1)
+        barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=2)
     ax1.scatter(df.N.values, df.n_mut_mean.values, c='#175ac6', marker = 'o', s = 2, \
-        edgecolors='none', linewidth = 0.6, alpha = 1, zorder=2)
+        edgecolors='none', linewidth = 0.6, alpha = 1, zorder=3)
     #ax1.set_xlabel('Number of replicate populations', fontsize = 10)
-    ax1.set_ylabel('Number of mutations', fontsize = 10)
-    ax1.set_ylim(-50,1050)
+    ax1.set_ylabel('G-score', fontsize = 10)
+    ax1.axhline(1.0974618847690791, color = 'red', lw = 2, ls = '--', zorder=1)
+    ax1.axhline(0, color = 'dimgrey', lw = 2, ls = ':', zorder=1)
+
+    ax1.set_ylim(-0.2,3)
 
     ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
     ax2.errorbar(df.N.values, df.genes_mean.values, yerr = [df.genes_mean.values-df.genes_mean_ci_975.values, df.genes_mean_ci_025.values - df.genes_mean.values ], \
@@ -42,7 +47,7 @@ def tenaillon_sig_multiplicity_fig():
     ax2.scatter(df.N.values, df.genes_mean.values, c='#175ac6', marker = 'o', s = 2, \
         edgecolors='none', linewidth = 0.6, alpha = 1, zorder=3)
     ax2.set_ylabel('Number of genes with significant\nFDR-corrected multiplicity', fontsize = 8)
-    ax2.axhline(28, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax2.axhline(28, color = 'red', lw = 2, ls = '--', zorder=1)
     ax2.set_ylim(-2,32)
 
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
@@ -81,11 +86,11 @@ def tenaillon_sig_multiplicity_fig():
 
 def power_method_fig(alpha = 0.05):
     df = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_methods.txt', sep='\t')
-    fig = plt.figure(figsize = (6, 3))
+    fig = plt.figure(figsize = (6, 6))
     fig.tight_layout(pad = 2.8)
 
     # Scatterplot on main ax
-    ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=1)
+    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
     #fig = plt.figure()
     measures = ['Eig', 'MCD_k1', 'MCD_k3', 'MPD_k1', 'MPD_k3']
     colors = ['k', 'firebrick', 'orangered',  'dodgerblue', 'lightskyblue']
@@ -103,12 +108,12 @@ def power_method_fig(alpha = 0.05):
     ax1.set_xlabel('Covariance', fontsize = 10)
     ax1.set_ylabel("Statistical power\n" +r'$ \mathrm{P}\left ( \mathrm{reject} \; H_{0}   \mid H_{1} \;   \mathrm{is}\, \mathrm{true}, \, \alpha=0.05 \right ) $', fontsize = 10)
     ax1.set_xlim(0.02, 0.22)
-    ax1.set_ylim(-0.02, 0.42)
+    ax1.set_ylim(-0.02, 0.48)
     ax1.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
 
     # figure 2
     df_cluster = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_cluster_methods.txt', sep='\t')
-    ax2 = plt.subplot2grid((1, 2), (0, 1), colspan=1)
+    ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
     for i, measure in enumerate(measures):
         df_cluster_i = df_cluster[ df_cluster['Method'] == measure ]
         color_i = colors[i]
@@ -124,8 +129,50 @@ def power_method_fig(alpha = 0.05):
     ax2.set_ylim(-0.02, 0.48)
     ax2.set_xlim(0.12, 0.82)
 
-    ax1.text(-0.1, 1.05, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.05, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+
+    ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
+    for i, measure in enumerate(measures):
+        df_i = df[ df['Method'] == measure ]
+        color_i = colors[i]
+        cov_jitter = df_i.Cov.values + np.random.normal(0, 0.003, len(df_i.Cov.values))
+        ax3.errorbar(cov_jitter, df_i.Z_mean.values, yerr = [df_i.Z_mean.values-df_i.Z_975.values, df_i.Z_025.values - df_i.Z_mean.values ], \
+            fmt = 'o', alpha = 1, ms=20,\
+            marker = '.', mfc = color_i,
+            mec = color_i, c = 'k', zorder=2, label=labels[i])
+
+    ax3.axhline(0, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax3.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
+    ax3.set_xlim(0.02, 0.22)
+    ax3.set_ylim(-0.38, 1.38)
+    ax3.set_xlabel('Covariance', fontsize = 10)
+    ax3.set_ylabel("Standard score", fontsize = 10)
+
+
+
+    ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
+
+    for i, measure in enumerate(measures):
+        df_cluster_i = df_cluster[ df_cluster['Method'] == measure ]
+        color_i = colors[i]
+        x_jitter = df_cluster_i.CC_mean.values + np.random.normal(0, 0.003, len(df_cluster_i.CC_mean.values))
+        ax4.errorbar(x_jitter, df_cluster_i.Z_mean.values, yerr = [df_cluster_i.Z_mean.values-df_cluster_i.Z_975.values, df_cluster_i.Z_025.values - df_cluster_i.Z_mean.values ], \
+            fmt = 'o', alpha = 1, ms=20,\
+            marker = '.', mfc = color_i,
+            mec = color_i, c = 'k', zorder=2, label=labels[i])
+
+    ax4.axhline(0, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax4.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
+    ax4.set_xlim(0.12, 0.82)
+    ax4.set_ylim(0.25,1.5)
+    ax4.set_xlabel('Covariance', fontsize = 10)
+    #ax4.set_ylabel("Standard score", fontsize = 10)
+
+
+
+    ax1.text(-0.1, 1.07, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.07, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.07, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.07, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
 
 
     plt.tight_layout()
@@ -779,52 +826,154 @@ def treatment_figs(iter=1000):
     fig.tight_layout(pad = 2.8)
 
     ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
-    ax1.hist(hclb_mpd_null, bins=30, weights=np.zeros_like(hclb_mpd_null) + 1. / len(hclb_mpd_null), alpha=0.5, color = 'mediumblue', label = "High-C, biofilm")
-    ax1.hist(hcpl_mpd_null, bins=30, weights=np.zeros_like(hcpl_mpd_null) + 1. / len(hcpl_mpd_null), alpha=0.5, color = 'darkgreen' , label = "High-C, planktonic")
-    ax1.hist(lclb_mpd_null, bins=30, weights=np.zeros_like(lclb_mpd_null) + 1. / len(lclb_mpd_null), alpha=0.5, color = 'dodgerblue',  label = "Low-C, biofilm")
-    ax1.hist(lcpl_mpd_null, bins=30, weights=np.zeros_like(lcpl_mpd_null) + 1. / len(lcpl_mpd_null), alpha=0.5, color = 'lightgreen', label = "Low-C, planktonic")
-    ax1.axvline(hclb_mpd, color = 'mediumblue', lw = 2, ls = '--', alpha=0.9)
-    ax1.axvline(hcpl_mpd, color = 'darkgreen', lw = 2, ls = '--', alpha=0.9)
-    ax1.axvline(lclb_mpd, color = 'dodgerblue', lw = 2, ls = '--', alpha=0.9)
-    ax1.axvline(lcpl_mpd, color = 'lightgreen', lw = 2, ls = '--', alpha=0.9)
-    ax1.legend(loc='upper right',fontsize = 4)
+    z_lclb_mpd = (lclb_mpd - np.mean(lclb_mpd_null)) / np.std(lclb_mpd_null)
+    z_lcpl_mpd = (lcpl_mpd - np.mean(lcpl_mpd_null)) / np.std(lcpl_mpd_null)
+    z_hclb_mpd = (hclb_mpd - np.mean(hclb_mpd_null)) / np.std(hclb_mpd_null)
+    z_hcpl_mpd = (hcpl_mpd - np.mean(hcpl_mpd_null)) / np.std(hcpl_mpd_null)
 
-    ax1.set_xlabel("Mean pairwise distance, " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$', fontsize = 8)
+    z_lclb_mpd_null = (lclb_mpd_null - np.mean(lclb_mpd_null)) / np.std(lclb_mpd_null)
+    z_lcpl_mpd_null = (lcpl_mpd_null - np.mean(lcpl_mpd_null)) / np.std(lcpl_mpd_null)
+    z_hclb_mpd_null = (hclb_mpd_null - np.mean(hclb_mpd_null)) / np.std(hclb_mpd_null)
+    z_hcpl_mpd_null = (hcpl_mpd_null - np.mean(hcpl_mpd_null)) / np.std(hcpl_mpd_null)
+
+    z_lclb_mpd_null.sort()
+    z_lcpl_mpd_null.sort()
+    z_hclb_mpd_null.sort()
+    z_hcpl_mpd_null.sort()
+
+    lclb_mpd_025 = z_lclb_mpd_null[int(iter * 0.025) ]
+    lcpl_mpd_025 = z_lcpl_mpd_null[int(iter * 0.025) ]
+    hclb_mpd_025 = z_hclb_mpd_null[int(iter * 0.025) ]
+    hcpl_mpd_025 = z_hcpl_mpd_null[int(iter * 0.025) ]
+
+    lclb_mpd_975 = z_lclb_mpd_null[int(iter * 0.975) ]
+    lcpl_mpd_975 = z_lcpl_mpd_null[int(iter * 0.975) ]
+    hclb_mpd_975 = z_hclb_mpd_null[int(iter * 0.975) ]
+    hcpl_mpd_975 = z_hcpl_mpd_null[int(iter * 0.975) ]
+
+    z_lclb_mpd_null_mean = np.mean(z_lclb_mpd_null)
+    z_lcpl_mpd_null_mean = np.mean(z_lcpl_mpd_null)
+    z_hclb_mpd_null_mean = np.mean(z_hclb_mpd_null)
+    z_hcpl_mpd_null_mean = np.mean(z_hcpl_mpd_null)
+
+    x1 = [z_lclb_mpd_null_mean,z_lcpl_mpd_null_mean,z_hclb_mpd_null_mean,z_hcpl_mpd_null_mean]
+    y1 = [1,2,3,4]
+    xerr1 = [ [z_lclb_mpd_null_mean - lclb_mpd_025, z_lcpl_mpd_null_mean - lcpl_mpd_025, z_hclb_mpd_null_mean - hclb_mpd_025, z_hcpl_mpd_null_mean - hcpl_mpd_025 ] ,
+            [lclb_mpd_975 - z_lclb_mpd_null_mean, lcpl_mpd_975 - z_lcpl_mpd_null_mean, hclb_mpd_975 - z_hclb_mpd_null_mean, hcpl_mpd_975 -z_hcpl_mpd_null_mean ]]
+
+    ax1.errorbar(x1, y1, xerr = xerr1, \
+            fmt = 'o', alpha = 0.9, barsabove = True, marker = '.', \
+            mfc = 'k', mec = 'k', c = 'k', zorder=1, ms=17)
+
+    ax1.scatter(z_lclb_mpd, 1, c='dodgerblue', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+    ax1.scatter(z_lcpl_mpd, 2, c='lightgreen', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+    ax1.scatter(z_hclb_mpd, 3, c='mediumblue', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+    ax1.scatter(z_hcpl_mpd, 4, c='darkgreen', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+
+    latex_labels = ["", "Low-C, biofilm", "", "Low-C, planktonic", "", "High-C, biofilm", "", "High-C, planktonic"]
+
+    #ax1.set_yticks(list(range(len(latex_labels))), latex_labels)
+    ax1.set_yticklabels(latex_labels, fontsize=9, rotation=45)
+
+    #ax1.set_yticks([1,2,3,4])
+    ax1.set_xlabel("Standardized mean pairwise\ndistance, " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$', fontsize = 10)
     #ax1.set_ylabel("Frequency", fontsize = 7)
-    #ax1.set_xlim(0.1, 0.4)
+    ax1.set_xlim(-2.5, 2.5)
+
 
     ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
     ax2.hist(F_2_null, bins=30,  weights=np.zeros_like(F_2_null) + 1. / len(F_2_null), alpha=0.6, color = '#175ac6')
-    ax2.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 8)
+    ax2.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 10)
     ax2.axvline(F_2, color = 'red', lw = 2, ls = '--')
+    ax2.set_ylabel("Frequency", fontsize = 10)
 
 
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
-    ax3.hist(ECNR2_mpd_null, bins=30, weights=np.zeros_like(ECNR2_mpd_null) + 1. / len(ECNR2_mpd_null), alpha=0.5, color = 'cornflowerblue', label = r'$\mathrm{ECNR2}$')
-    ax3.hist(C321_deltaA_early_mpd_null, bins=30, weights=np.zeros_like(C321_deltaA_early_mpd_null) + 1. / len(C321_deltaA_early_mpd_null), alpha=0.5, color = 'goldenrod' , label = r'$\mathrm{C321.}\Delta\mathrm{A}$' + '-' + r'$\mathrm{v2}$')
-    ax3.hist(C321_deltaA_mpd_null, bins=30, weights=np.zeros_like(C321_deltaA_mpd_null) + 1. / len(C321_deltaA_mpd_null), alpha=0.5, color = 'firebrick',  label = r'$\mathrm{C321.}\Delta\mathrm{A}$')
-    ax3.hist(C321_mpd_null, bins=30, weights=np.zeros_like(C321_mpd_null) + 1. / len(C321_mpd_null), alpha=0.5, color = 'seagreen', label = r'$\mathrm{C321}$')
 
-    ax3.axvline(ECNR2_mpd, color = 'cornflowerblue', lw = 2, ls = '--', alpha=0.9)
-    ax3.axvline(C321_deltaA_early_mpd, color = 'goldenrod', lw = 2, ls = '--', alpha=0.9)
-    ax3.axvline(C321_deltaA_mpd, color = 'firebrick', lw = 2, ls = '--', alpha=0.9)
-    ax3.axvline(C321_mpd, color = 'seagreen', lw = 2, ls = '--', alpha=0.9)
+    z_ECNR2_mpd = (ECNR2_mpd - np.mean(ECNR2_mpd_null)) / np.std(ECNR2_mpd_null)
+    z_C321_deltaA_early_mpd = (C321_deltaA_early_mpd - np.mean(C321_deltaA_early_mpd_null)) / np.std(C321_deltaA_early_mpd_null)
+    z_C321_deltaA_mpd = (C321_deltaA_mpd - np.mean(C321_deltaA_mpd_null)) / np.std(C321_deltaA_mpd_null)
+    z_C321_mpd = (C321_mpd - np.mean(C321_mpd_null)) / np.std(C321_mpd_null)
 
-    ax3.legend(loc='upper right',fontsize = 4)
-    ax3.set_xlabel("Mean pairwise distance, " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$', fontsize = 8)
+    z_ECNR2_mpd_null = (ECNR2_mpd_null - np.mean(ECNR2_mpd_null)) / np.std(ECNR2_mpd_null)
+    z_C321_deltaA_early_mpd_null = (C321_deltaA_early_mpd_null - np.mean(C321_deltaA_early_mpd_null)) / np.std(C321_deltaA_early_mpd_null)
+    z_C321_deltaA_mpd_null = (C321_deltaA_mpd_null - np.mean(C321_deltaA_mpd_null)) / np.std(C321_deltaA_mpd_null)
+    z_C321_mpd_null = (C321_mpd_null - np.mean(C321_mpd_null)) / np.std(C321_mpd_null)
+
+    z_ECNR2_mpd_null.sort()
+    z_C321_deltaA_early_mpd_null.sort()
+    z_C321_deltaA_mpd_null.sort()
+    z_C321_mpd_null.sort()
+
+    z_ECNR2_mpd_025 = z_ECNR2_mpd_null[int(iter * 0.025) ]
+    z_C321_deltaA_early_mpd_025 = z_C321_deltaA_early_mpd_null[int(iter * 0.025) ]
+    z_C321_deltaA_mpd_025 = z_C321_deltaA_mpd_null[int(iter * 0.025) ]
+    z_C321_mpd_025 = z_C321_mpd_null[int(iter * 0.025) ]
+
+    z_ECNR2_mpd_975 = z_ECNR2_mpd_null[int(iter * 0.975) ]
+    z_C321_deltaA_early_mpd_975 = z_C321_deltaA_early_mpd_null[int(iter * 0.975) ]
+    z_C321_deltaA_mpd_975 = z_C321_deltaA_mpd_null[int(iter * 0.975) ]
+    z_C321_mpd_975 = z_C321_mpd_null[int(iter * 0.975) ]
+
+    z_ECNR2_mpd_null_mean = np.mean(z_ECNR2_mpd_null)
+    z_C321_deltaA_early_mpd_null_mean = np.mean(z_C321_deltaA_early_mpd_null)
+    z_C321_deltaA_mpd_null_mean = np.mean(z_C321_deltaA_mpd_null)
+    z_C321_mpd_null_mean = np.mean(z_C321_mpd_null)
+
+    x3 = [z_ECNR2_mpd_null_mean,z_C321_deltaA_early_mpd_null_mean,z_C321_deltaA_mpd_null_mean,z_C321_mpd_null_mean]
+    y3 = [1,2,3,4]
+    xerr3 = [ [z_ECNR2_mpd_null_mean - z_ECNR2_mpd_025,
+                z_C321_deltaA_early_mpd_null_mean - z_C321_deltaA_early_mpd_025,
+                z_C321_deltaA_mpd_null_mean - z_C321_deltaA_mpd_025,
+                z_C321_mpd_null_mean - z_C321_mpd_025 ] ,
+            [z_ECNR2_mpd_975 - z_ECNR2_mpd_null_mean,
+            z_C321_deltaA_early_mpd_975 - z_C321_deltaA_early_mpd_null_mean,
+            z_C321_deltaA_mpd_975 - z_C321_deltaA_mpd_null_mean,
+            z_C321_mpd_975 -z_C321_mpd_null_mean ]]
+
+    ax3.errorbar(x3, y3, xerr = xerr3, \
+            fmt = 'o', alpha = 0.9, barsabove = True, marker = '.', \
+            mfc = 'k', mec = 'k', c = 'k', zorder=1, ms=17)
+
+    ax3.scatter(z_ECNR2_mpd, 1, c='cornflowerblue', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+    ax3.scatter(z_C321_deltaA_early_mpd, 2, c='goldenrod', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+    ax3.scatter(z_C321_deltaA_mpd, 3, c='firebrick', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+    ax3.scatter(z_C321_mpd, 4, c='seagreen', marker = 'o', s = 80, \
+        edgecolors='#244162', linewidth = 0, alpha = 1, zorder=2)
+
+
+    latex_labels = ["",  r'$\mathrm{ECNR2}$', "", r'$\mathrm{C321.}\Delta\mathrm{A}$' + '-' + r'$\mathrm{v2}$', "", r'$\mathrm{C321.}\Delta\mathrm{A}$', "", r'$\mathrm{C321}$']
+    ax3.set_yticklabels(latex_labels, fontsize=9, rotation=45)
+    ax3.set_xlabel("Standardized mean pairwise\ndistance, " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$', fontsize = 10)
+    #ax1.set_ylabel("Frequency", fontsize = 7)
+    ax3.set_xlim(-1.5, 3.5)
 
     ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
     ax4.hist(F_2_w_null, bins=30,  weights=np.zeros_like(F_2_w_null) + 1. / len(F_2_w_null), alpha=0.6, color = '#175ac6')
-    ax4.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 8)
+    ax4.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 10)
     ax4.axvline(F_2_w, color = 'red', lw = 2, ls = '--')
+    ax4.set_ylabel("Frequency", fontsize = 10)
 
+
+    p_F_ax2 = len([ x for x in F_2_null if x > F_2]) / len(F_2_null)
+    p_F_ax4 = len([ x for x in F_2_w_null if x > F_2_w]) / len(F_2_w_null)
+
+    ax2.text(0.8, 0.9, r'$p=$' + str(round(p_F_ax2 ,3) ), fontsize=9, ha='center', va='center', transform=ax2.transAxes)
+    ax4.text(0.8, 0.9, r'$p=$' + str(round(p_F_ax4 ,3) ), fontsize=9, ha='center', va='center', transform=ax4.transAxes)
 
     ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
     ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
     ax3.text(-0.1, 1.1, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
     ax4.text(-0.1, 1.1, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
 
-    fig.text(-0.04, 0.5,'Frequency', fontsize = 19, va='center',rotation='vertical')
+    #fig.text(-0.04, 0.5,'Frequency', fontsize = 19, va='center',rotation='vertical')
     fig.tight_layout()
     fig.savefig(mydir + '/figs/divergence_figs.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
@@ -911,11 +1060,11 @@ def power_N_G_fig(alpha = 0.05):
     df_N = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_N.txt', sep='\t')
     df_G = pd.read_csv(mydir + '/data/simulations/cov_ba_ntwrk_G.txt', sep='\t')
 
-    fig = plt.figure(figsize = (6, 3))
+    fig = plt.figure(figsize = (6, 6))
     fig.tight_layout(pad = 2.8)
 
     # Scatterplot on main ax
-    ax1 = plt.subplot2grid((1, 2), (0, 0), colspan=1)
+    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
     measures = ['Eig', 'MCD_k1', 'MCD_k3', 'MPD_k1', 'MPD_k3']
     colors = ['k', 'firebrick', 'orangered',  'dodgerblue', 'lightskyblue']
     labels = [r'$\tilde{L}_{1}$', r'$\mathrm{MCD}^{\left ( 1 \right )}$', r'$\mathrm{MCD}^{\left ( 3 \right )}$', r'$\mathrm{MPD}^{\left ( 1 \right )}$', r'$\mathrm{MPD}^{\left ( 3 \right )}$' ]
@@ -938,7 +1087,7 @@ def power_N_G_fig(alpha = 0.05):
 
 
     # figure 2
-    ax2 = plt.subplot2grid((1, 2), (0, 1), colspan=1)
+    ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
     for i, measure in enumerate(measures):
         df_i = df_G[ df_G['Method'] == measure ]
         color_i = colors[i]
@@ -955,8 +1104,52 @@ def power_N_G_fig(alpha = 0.05):
     ax2.set_xlim(6.5, 170)
     ax2.set_xscale('log', basex=2)
 
-    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+
+
+    ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
+    for i, measure in enumerate(measures):
+        df_i = df_N[ df_N['Method'] == measure ]
+        color_i = colors[i]
+        _jitter = df_i.N.values + np.random.normal(0, 0.003, len(df_i.N.values))
+        ax3.errorbar(_jitter, df_i.Z_mean.values, yerr = [df_i.Z_mean.values-df_i.Z_975.values, df_i.Z_025.values - df_i.Z_mean.values ], \
+            fmt = 'o', alpha = 1, ms=20,\
+            marker = '.', mfc = color_i,
+            mec = color_i, c = 'k', zorder=2, label=labels[i])
+
+    ax3.set_xlabel('Number of replicate populations', fontsize = 10)
+    ax3.set_ylabel("Standard score", fontsize = 10)
+    ax3.set_xlim(2.5, 170)
+    ax3.set_ylim(-0.43, 1.6)
+    ax3.set_xscale('log', basex=2)
+    ax3.axhline(0, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax3.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
+
+
+
+    ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
+    for i, measure in enumerate(measures):
+        df_i = df_G[ df_G['Method'] == measure ]
+        color_i = colors[i]
+        x_jitter = df_i.G.values + np.random.normal(0, 0.003, len(df_i.G.values))
+        ax4.errorbar(x_jitter, df_i.Z_mean.values, yerr = [df_i.Z_mean.values-df_i.Z_975.values, df_i.Z_025.values - df_i.Z_mean.values ], \
+            fmt = 'o', alpha = 1, ms=20,\
+            marker = '.', mfc = color_i,
+            mec = color_i, c = 'k', zorder=2, label=labels[i])
+
+    ax4.set_xlabel('Number of genes', fontsize = 10)
+    ax4.set_ylabel("Standard score", fontsize = 10)
+    ax4.set_xlim(6.5, 170)
+    ax4.set_ylim(-0.8, 1.8)
+    ax4.set_xscale('log', basex=2)
+    ax4.axhline(0, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax4.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
+
+
+    ax1.text(-0.1, 1.05, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.05, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.05, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.05, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+
 
 
     plt.tight_layout()
