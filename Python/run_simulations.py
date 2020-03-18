@@ -59,7 +59,7 @@ def get_sig_mult_genes(gene_parallelism_statistics, nmin=2):
 
 
 # REL606 GenBank accession no. CP000819
-def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=100):
+def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=50):
     df_path = mydir + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_np = df.values
@@ -92,7 +92,11 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=100):
 
     sig_genes_all = get_sig_mult_genes(gene_parallelism_statistics_all)
     num_sig_genes_all = len(sig_genes_all)
+    observed_G = pt.calculate_total_parallelism(gene_parallelism_statistics_all)
+
     print(str(num_sig_genes_all) + ' significant genes w/ all populations')
+    print( 'G-score = ' + str(observed_G))
+    #print( 'p-value = ' + str(pvalue))
 
     df_out=open(mydir + '/data/Tenaillon_et_al/sig_genes_sim.txt', 'w')
     df_out.write('\t'.join(['N', 'genes_mean', 'genes_mean_ci_025', 'genes_mean_ci_975', \
@@ -100,7 +104,7 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=100):
                             'ESCRE1901_mean', 'ESCRE1901_ci_025', 'ESCRE1901_ci_975',
                             'ECB_01992_mean', 'ECB_01992_ci_025', 'ECB_01992_ci_975']) + '\n')
 
-    Ns = list(range(4, n_rows, 2))
+    Ns = list(range(4, n_rows, 4))
     #Ns = [20]
     for N in Ns:
         print(N)
@@ -109,7 +113,10 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=100):
         ESCRE1901_list = []
         ECB_01992_list = []
         n_tot_i_list = []
+        G_scores_list = []
         for i in range(iter1):
+            #if i % 1000 == 0:
+            #    print(str(N) + ':' + str(i) )
             df_i = df.sample(n = N, replace=False)
             df_i = df_i.loc[:, (df_i != 0).any(axis=0)]
             gene_num_list.append(len(df_i.columns.values))
@@ -129,6 +136,8 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=100):
             genes_i = get_sig_mult_genes(gene_parallelism_statistics_i)
             num_sig_genes_list.append(len(genes_i))
 
+            observed_G_i = pt.calculate_total_parallelism(gene_parallelism_statistics_i)
+            G_scores_list.append(observed_G_i)
             # ESCRE1901
             if 'ESCRE1901' in genes_i:
                 ESCRE1901_list.append(True)
@@ -148,10 +157,17 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=100):
         num_sig_genes_ci_975 = num_sig_genes_bs_list[int(0.975*iter2)]
         num_sig_genes_mean = np.mean(num_sig_genes_list)
 
-        n_i_bs_list = np.sort([np.mean(np.random.choice(n_tot_i_list, size=bs_size, replace=True)) for x in range(iter2)])
-        n_i_ci_025 = n_i_bs_list[int(0.025*iter2)]
-        n_i_ci_975 = n_i_bs_list[int(0.975*iter2)]
-        n_i_mean = np.mean(n_tot_i_list)
+        #n_i_bs_list = np.sort([np.mean(np.random.choice(n_tot_i_list, size=bs_size, replace=True)) for x in range(iter2)])
+        #n_i_ci_025 = n_i_bs_list[int(0.025*iter2)]
+        #n_i_ci_975 = n_i_bs_list[int(0.975*iter2)]
+        #n_i_mean = np.mean(n_tot_i_list)
+
+        G_bs_list = np.sort([np.mean(np.random.choice(G_scores_list, size=bs_size, replace=True)) for x in range(iter2)])
+        G_ci_025 = G_bs_list[int(0.025*iter2)]
+        G_ci_975 = G_bs_list[int(0.975*iter2)]
+        G_mean = np.mean(G_scores_list)
+
+        #print(G_mean)
 
         ESCRE1901_bs_list = np.sort([sum(np.random.choice(ESCRE1901_list, size=bs_size, replace=True))  / bs_size for x in range(iter2)])
         ESCRE1901_ci_025 = ESCRE1901_bs_list[int(0.025*iter2)]
@@ -166,7 +182,7 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=100):
         # get mean proportion
 
         df_out.write('\t'.join([str(N), str(num_sig_genes_mean), str(num_sig_genes_ci_025), str(num_sig_genes_ci_975), \
-                                str(n_i_mean), str(n_i_ci_025), str(n_i_ci_975), \
+                                str(G_mean), str(G_ci_025), str(G_ci_975), \
                                 str(ESCRE1901_mean), str(ESCRE1901_ci_025), str(ESCRE1901_ci_975), \
                                 str(ECB_01992_mean), str(ECB_01992_ci_025), str(ECB_01992_ci_975)
                                 ]) + '\n')
@@ -186,10 +202,20 @@ def get_bootstrap_power_ci(p_list, power_iter=10000, power_n=50):
 
 
 
+def get_bootstrap_ci(_list, _iter=10000, _n=50):
+    _sample = []
+    for _iter_i in range(_iter):
+        _sample.append( np.mean( np.random.choice(_list, size=_n, replace=True)) )
+    _sample.sort()
+    _975 = _sample[ int(0.975 * _iter) ]
+    _025 = _sample[ int(0.025 * _iter) ]
+    return _025, _975
+
+
 
 def run_ba_cov_N_sims(iter1=1000, iter2=1000, cov = 0.2, n_genes=50):
     df_out = open(mydir + '/data/simulations/cov_ba_ntwrk_N.txt', 'w')
-    df_out.write('\t'.join(['N', 'Method', 'Power', 'Power_025', 'Power_975']) + '\n')
+    df_out.write('\t'.join(['N', 'Method', 'Power', 'Power_025', 'Power_975', 'Z_mean', 'Z_025', 'Z_975']) + '\n')
     Ns = [4, 8, 16, 32, 62, 128]
     for n_pops in Ns:
         eig_p_list = []
@@ -197,6 +223,12 @@ def run_ba_cov_N_sims(iter1=1000, iter2=1000, cov = 0.2, n_genes=50):
         mcd_k3_p_list = []
         mpd_k1_p_list = []
         mpd_k3_p_list = []
+
+        eig_z_list = []
+        mcd_k1_z_list = []
+        mcd_k3_z_list = []
+        mpd_k1_z_list = []
+        mpd_k3_z_list = []
         for i in range(iter1):
             if i %100 ==0:
                 print(n_pops, i)
@@ -240,6 +272,14 @@ def run_ba_cov_N_sims(iter1=1000, iter2=1000, cov = 0.2, n_genes=50):
             mpd_k3_p_list.append( len( [k for k in mpd_k3_null_list if k > mpd_k3] ) / iter2 )
 
 
+            eig_z_list.append( (eig - np.mean(eig_null_list)) / np.std(eig_null_list)  )
+            mcd_k1_z_list.append( (mcd_k1 - np.mean(mcd_k1_null_list)) / np.std(mcd_k1_null_list)  )
+            mcd_k3_z_list.append( (mcd_k3 - np.mean(mcd_k3_null_list)) / np.std(mcd_k3_null_list)  )
+            mpd_k1_z_list.append( (mpd_k1 - np.mean(mpd_k1_null_list)) / np.std(mpd_k1_null_list)  )
+            mpd_k3_z_list.append( (mpd_k3 - np.mean(mpd_k3_null_list)) / np.std(mpd_k3_null_list)  )
+
+
+
         # calculate power
         eig_power = len([n for n in eig_p_list if n < 0.05]) / iter1
         eig_power_025, eig_power_975 = get_bootstrap_power_ci(eig_p_list)
@@ -256,12 +296,19 @@ def run_ba_cov_N_sims(iter1=1000, iter2=1000, cov = 0.2, n_genes=50):
         mpd_k3_power = len([n for n in mpd_k3_p_list if n < 0.05]) / iter1
         mpd_k3_power_025, mpd_k3_power_975 = get_bootstrap_power_ci(mpd_k3_p_list)
 
+        eig_z_025, eig_z_975 = get_bootstrap_ci(eig_z_list)
+        mcd_k1_z_025, mcd_k1_z_975 = get_bootstrap_ci(mcd_k1_z_list)
+        mcd_k3_z_025, mcd_k3_z_975 = get_bootstrap_ci(mcd_k3_z_list)
+        mpd_k1_z_025, mpd_k1_z_975 = get_bootstrap_ci(mpd_k1_z_list)
+        mpd_k3_z_025, mpd_k3_z_975 = get_bootstrap_ci(mpd_k3_z_list)
 
-        df_out.write('\t'.join([str(n_pops), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_pops), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_pops), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_pops), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_pops), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975), str(np.mean(eig_z_list)), str(eig_z_025), str(eig_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975), str(np.mean(mcd_k1_z_list)), str(mcd_k1_z_025), str(mcd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975), str(np.mean(mcd_k3_z_list)), str(mcd_k3_z_025), str(mcd_k3_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975), str(np.mean(mpd_k1_z_list)), str(mpd_k1_z_025), str(mpd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_pops), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975), str(np.mean(mpd_k3_z_list)), str(mpd_k3_z_025), str(mpd_k3_z_975)]) + '\n')
+
+
 
     df_out.close()
 
@@ -270,7 +317,7 @@ def run_ba_cov_N_sims(iter1=1000, iter2=1000, cov = 0.2, n_genes=50):
 
 def run_ba_cov_G_sims(iter1=1000, iter2=1000, cov = 0.2, n_pops=100):
     df_out = open(mydir + '/data/simulations/cov_ba_ntwrk_G.txt', 'w')
-    df_out.write('\t'.join(['G', 'Method', 'Power', 'Power_025', 'Power_975']) + '\n')
+    df_out.write('\t'.join(['G', 'Method', 'Power', 'Power_025', 'Power_975',  'Z_mean', 'Z_025', 'Z_975']) + '\n')
     Gs = [8, 16, 32, 62, 128]
     for n_genes in Gs:
         eig_p_list = []
@@ -278,6 +325,12 @@ def run_ba_cov_G_sims(iter1=1000, iter2=1000, cov = 0.2, n_pops=100):
         mcd_k3_p_list = []
         mpd_k1_p_list = []
         mpd_k3_p_list = []
+
+        eig_z_list = []
+        mcd_k1_z_list = []
+        mcd_k3_z_list = []
+        mpd_k1_z_list = []
+        mpd_k3_z_list = []
         for i in range(iter1):
             if i %100 ==0:
                 print(n_genes, i)
@@ -321,6 +374,14 @@ def run_ba_cov_G_sims(iter1=1000, iter2=1000, cov = 0.2, n_pops=100):
             mpd_k3_p_list.append( len( [k for k in mpd_k3_null_list if k > mpd_k3] ) / iter2 )
 
 
+            eig_z_list.append( (eig - np.mean(eig_null_list)) / np.std(eig_null_list)  )
+            mcd_k1_z_list.append( (mcd_k1 - np.mean(mcd_k1_null_list)) / np.std(mcd_k1_null_list)  )
+            mcd_k3_z_list.append( (mcd_k3 - np.mean(mcd_k3_null_list)) / np.std(mcd_k3_null_list)  )
+            mpd_k1_z_list.append( (mpd_k1 - np.mean(mpd_k1_null_list)) / np.std(mpd_k1_null_list)  )
+            mpd_k3_z_list.append( (mpd_k3 - np.mean(mpd_k3_null_list)) / np.std(mpd_k3_null_list)  )
+
+
+
         # calculate power
         eig_power = len([n for n in eig_p_list if n < 0.05]) / iter1
         eig_power_025, eig_power_975 = get_bootstrap_power_ci(eig_p_list)
@@ -337,12 +398,18 @@ def run_ba_cov_G_sims(iter1=1000, iter2=1000, cov = 0.2, n_pops=100):
         mpd_k3_power = len([n for n in mpd_k3_p_list if n < 0.05]) / iter1
         mpd_k3_power_025, mpd_k3_power_975 = get_bootstrap_power_ci(mpd_k3_p_list)
 
+        eig_z_025, eig_z_975 = get_bootstrap_ci(eig_z_list)
+        mcd_k1_z_025, mcd_k1_z_975 = get_bootstrap_ci(mcd_k1_z_list)
+        mcd_k3_z_025, mcd_k3_z_975 = get_bootstrap_ci(mcd_k3_z_list)
+        mpd_k1_z_025, mpd_k1_z_975 = get_bootstrap_ci(mpd_k1_z_list)
+        mpd_k3_z_025, mpd_k3_z_975 = get_bootstrap_ci(mpd_k3_z_list)
 
-        df_out.write('\t'.join([str(n_genes), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_genes), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_genes), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_genes), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(n_genes), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975)]) + '\n')
+
+        df_out.write('\t'.join([str(n_genes), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975), str(np.mean(eig_z_list)), str(eig_z_025), str(eig_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975), str(np.mean(mcd_k1_z_list)), str(mcd_k1_z_025), str(mcd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975), str(np.mean(mcd_k3_z_list)), str(mcd_k3_z_025), str(mcd_k3_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975), str(np.mean(mpd_k1_z_list)), str(mpd_k1_z_025), str(mpd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(n_genes), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975), str(np.mean(mpd_k3_z_list)), str(mpd_k3_z_025), str(mpd_k3_z_975)]) + '\n')
 
     df_out.close()
 
@@ -351,7 +418,7 @@ def run_ba_cov_G_sims(iter1=1000, iter2=1000, cov = 0.2, n_pops=100):
 
 def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000, n_pops=100, n_genes=50):
     df_out = open(mydir + '/data/simulations/cov_ba_ntwrk_methods.txt', 'w')
-    df_out.write('\t'.join(['Cov', 'Method', 'Power', 'Power_025', 'Power_975']) + '\n')
+    df_out.write('\t'.join(['Cov', 'Method', 'Power', 'Power_025', 'Power_975', 'Z_mean', 'Z_025', 'Z_975']) + '\n')
 
     covs = [0.05, 0.1, 0.15, 0.2]
     #covs = [0.2]
@@ -361,6 +428,12 @@ def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000, n_pops=100, n_genes=50):
         mcd_k3_p_list = []
         mpd_k1_p_list = []
         mpd_k3_p_list = []
+
+        eig_z_list = []
+        mcd_k1_z_list = []
+        mcd_k3_z_list = []
+        mpd_k1_z_list = []
+        mpd_k3_z_list = []
         for i in range(iter1):
             if i %100 ==0:
                 print(cov, i)
@@ -406,6 +479,14 @@ def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000, n_pops=100, n_genes=50):
             mpd_k3_p_list.append( len( [k for k in mpd_k3_null_list if k > mpd_k3] ) / iter1 )
 
 
+            eig_z_list.append( (eig - np.mean(eig_null_list)) / np.std(eig_null_list)  )
+            mcd_k1_z_list.append( (mcd_k1 - np.mean(mcd_k1_null_list)) / np.std(mcd_k1_null_list)  )
+            mcd_k3_z_list.append( (mcd_k3 - np.mean(mcd_k3_null_list)) / np.std(mcd_k3_null_list)  )
+            mpd_k1_z_list.append( (mpd_k1 - np.mean(mpd_k1_null_list)) / np.std(mpd_k1_null_list)  )
+            mpd_k3_z_list.append( (mpd_k3 - np.mean(mpd_k3_null_list)) / np.std(mpd_k3_null_list)  )
+
+
+
         # calculate power
         eig_power = len([n for n in eig_p_list if n < 0.05]) / iter1
         eig_power_025, eig_power_975 = get_bootstrap_power_ci(eig_p_list)
@@ -422,12 +503,17 @@ def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000, n_pops=100, n_genes=50):
         mpd_k3_power = len([n for n in mpd_k3_p_list if n < 0.05]) / iter1
         mpd_k3_power_025, mpd_k3_power_975 = get_bootstrap_power_ci(mpd_k3_p_list)
 
+        eig_z_025, eig_z_975 = get_bootstrap_ci(eig_z_list)
+        mcd_k1_z_025, mcd_k1_z_975 = get_bootstrap_ci(mcd_k1_z_list)
+        mcd_k3_z_025, mcd_k3_z_975 = get_bootstrap_ci(mcd_k3_z_list)
+        mpd_k1_z_025, mpd_k1_z_975 = get_bootstrap_ci(mpd_k1_z_list)
+        mpd_k3_z_025, mpd_k3_z_975 = get_bootstrap_ci(mpd_k3_z_list)
 
-        df_out.write('\t'.join([str(cov), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975)]) + '\n')
-        df_out.write('\t'.join([str(cov), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(cov), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975)]) + '\n')
-        df_out.write('\t'.join([str(cov), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(cov), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975)]) + '\n')
+        df_out.write('\t'.join([str(cov), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975), str(np.mean(eig_z_list)), str(eig_z_025), str(eig_z_975)]) + '\n')
+        df_out.write('\t'.join([str(cov), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975), str(np.mean(mcd_k1_z_list)), str(mcd_k1_z_025), str(mcd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(cov), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975), str(np.mean(mcd_k3_z_list)), str(mcd_k3_z_025), str(mcd_k3_z_975)]) + '\n')
+        df_out.write('\t'.join([str(cov), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975), str(np.mean(mpd_k1_z_list)), str(mpd_k1_z_025), str(mpd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(cov), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975), str(np.mean(mpd_k3_z_list)), str(mpd_k3_z_025), str(mpd_k3_z_975)]) + '\n')
 
     df_out.close()
 
@@ -436,7 +522,7 @@ def run_ba_ntwk_cov_sims(iter1=1000, iter2=1000, n_pops=100, n_genes=50):
 
 def run_ba_ntwk_cluster_sims(iter1=1000, iter2=1000, cov=0.2):
     df_out = open(mydir + '/data/simulations/cov_ba_ntwrk_cluster_methods.txt', 'w')
-    df_out.write('\t'.join(['Prob', 'CC_mean', 'CC_025', 'CC_975', 'Method', 'Power', 'Power_025', 'Power_975']) + '\n')
+    df_out.write('\t'.join(['Prob', 'CC_mean', 'CC_025', 'CC_975', 'Method', 'Power', 'Power_025', 'Power_975', 'Z_mean', 'Z_025', 'Z_975']) + '\n')
 
     n_pops=100
     n_genes=50
@@ -448,10 +534,17 @@ def run_ba_ntwk_cluster_sims(iter1=1000, iter2=1000, cov=0.2):
         mcd_k3_p_list = []
         mpd_k1_p_list = []
         mpd_k3_p_list = []
+
+        eig_z_list = []
+        mcd_k1_z_list = []
+        mcd_k3_z_list = []
+        mpd_k1_z_list = []
+        mpd_k3_z_list = []
+
         cc_list = []
         for i in range(iter1):
             if i %100 ==0:
-                print(cov, i)
+                print(ps, i)
             lambda_genes = np.random.gamma(shape=3, scale=1, size=n_genes)
             C, cc = pt.get_ba_cov_matrix(n_genes, cov=cov,  p=p)
             test_cov = np.stack( [pt.get_count_pop(lambda_genes, cov= C) for x in range(n_pops)] , axis=0 )
@@ -494,6 +587,12 @@ def run_ba_ntwk_cluster_sims(iter1=1000, iter2=1000, cov=0.2):
 
             cc_list.append(cc)
 
+            eig_z_list.append( (eig - np.mean(eig_null_list)) / np.std(eig_null_list)  )
+            mcd_k1_z_list.append( (mcd_k1 - np.mean(mcd_k1_null_list)) / np.std(mcd_k1_null_list)  )
+            mcd_k3_z_list.append( (mcd_k3 - np.mean(mcd_k3_null_list)) / np.std(mcd_k3_null_list)  )
+            mpd_k1_z_list.append( (mpd_k1 - np.mean(mpd_k1_null_list)) / np.std(mpd_k1_null_list)  )
+            mpd_k3_z_list.append( (mpd_k3 - np.mean(mpd_k3_null_list)) / np.std(mpd_k3_null_list)  )
+
 
         # calculate
         cc_mean = np.mean(cc_list)
@@ -521,11 +620,17 @@ def run_ba_ntwk_cluster_sims(iter1=1000, iter2=1000, cov=0.2):
         mpd_k3_power_025, mpd_k3_power_975 = get_bootstrap_power_ci(mpd_k3_p_list)
 
 
-        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975)]) + '\n')
-        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975)]) + '\n')
-        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975)]) + '\n')
-        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975)]) + '\n')
+        eig_z_025, eig_z_975 = get_bootstrap_ci(eig_z_list)
+        mcd_k1_z_025, mcd_k1_z_975 = get_bootstrap_ci(mcd_k1_z_list)
+        mcd_k3_z_025, mcd_k3_z_975 = get_bootstrap_ci(mcd_k3_z_list)
+        mpd_k1_z_025, mpd_k1_z_975 = get_bootstrap_ci(mpd_k1_z_list)
+        mpd_k3_z_025, mpd_k3_z_975 = get_bootstrap_ci(mpd_k3_z_list)
+
+        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'Eig', str(eig_power), str(eig_power_025), str(eig_power_975), str(np.mean(eig_z_list)), str(eig_z_025), str(eig_z_975)]) + '\n')
+        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MCD_k1', str(mcd_k1_power), str(mcd_k1_power_025), str(mcd_k1_power_975), str(np.mean(mcd_k1_z_list)), str(mcd_k1_z_025), str(mcd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MCD_k3', str(mcd_k3_power), str(mcd_k3_power_025), str(mcd_k3_power_975), str(np.mean(mcd_k3_z_list)), str(mcd_k3_z_025), str(mcd_k3_z_975)]) + '\n')
+        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MPD_k1', str(mpd_k1_power), str(mpd_k1_power_025), str(mpd_k1_power_975), str(np.mean(mpd_k1_z_list)), str(mpd_k1_z_025), str(mpd_k1_z_975)]) + '\n')
+        df_out.write('\t'.join([str(p), str(cc_mean), str(cc_025), str(cc_975), 'MPD_k3', str(mpd_k3_power), str(mpd_k3_power_025), str(mpd_k3_power_975), str(np.mean(mpd_k3_z_list)), str(mpd_k3_z_025), str(mpd_k3_z_975)]) + '\n')
 
     df_out.close()
 
@@ -646,12 +751,11 @@ def gene_svd_tenaillon(iter=10000):
 
 #time_partition_ltee()
 #gene_svd_tenaillon()
-#run_ba_cov_N_sims()
 
+#run_ba_cov_N_sims()
 #run_ba_cov_G_sims()
-#cluster_scaling()
 
 
 #run_ba_ntwk_cov_sims()
 #run_ba_ntwk_cluster_sims()
-#sample_multiplicity_tenaillon()
+sample_multiplicity_tenaillon()

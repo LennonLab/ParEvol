@@ -290,6 +290,8 @@ class tenaillon_et_al:
 
     def pop_by_gene_tenaillon(self):
         pop_by_gene_dict = {}
+        pop_by_gene_dict_nonsyn = {}
+        pop_by_gene_dict_syn = {}
         gene_size_dict = {}
         df_in = mydir + 'data/Tenaillon_et_al/1212986tableS2_clean.csv'
         for i, line in enumerate(open(df_in, 'r')):
@@ -316,6 +318,29 @@ class tenaillon_et_al:
             else:
                 pop_by_gene_dict[gene_name][pop_name] += 1
 
+
+            # add code for nonsyn vs syn
+
+            if line_split[4] == 'Genic':
+                if ('Synonymous' in line_split[7]) and ('NonSynonymous' not in line_split[7]):
+                    if gene_name not in pop_by_gene_dict_syn:
+                        pop_by_gene_dict_syn[gene_name] = {}
+
+                    if pop_name not in pop_by_gene_dict_syn[gene_name]:
+                        pop_by_gene_dict_syn[gene_name][pop_name] = 1
+                    else:
+                        pop_by_gene_dict_syn[gene_name][pop_name] += 1
+
+                else:
+                    if gene_name not in pop_by_gene_dict_nonsyn:
+                        pop_by_gene_dict_nonsyn[gene_name] = {}
+
+                    if pop_name not in pop_by_gene_dict_nonsyn[gene_name]:
+                        pop_by_gene_dict_nonsyn[gene_name][pop_name] = 1
+                    else:
+                        pop_by_gene_dict_nonsyn[gene_name][pop_name] += 1
+
+
         df = pd.DataFrame.from_dict(pop_by_gene_dict)
         df = df.fillna(0)
         # original data has "LIne" instead of "Line"
@@ -324,6 +349,20 @@ class tenaillon_et_al:
         #df = df.loc[(df.sum(axis=1) != 0), (df.sum(axis=0) != 0)]
         df_out = mydir + 'data/Tenaillon_et_al/gene_by_pop.txt'
         df.to_csv(df_out, sep = '\t', index = True)
+
+        df_nonsyn = pd.DataFrame.from_dict(pop_by_gene_dict_nonsyn)
+        df_nonsyn = df_nonsyn.fillna(0)
+        df_nonsyn.index = df_nonsyn.index.str.replace('LIne', 'Line', regex=True)
+        df_nonsyn_out = mydir + 'data/Tenaillon_et_al/gene_by_pop_nonsyn.txt'
+        df_nonsyn.to_csv(df_nonsyn_out, sep = '\t', index = True)
+
+        df_syn = pd.DataFrame.from_dict(pop_by_gene_dict_syn)
+        df_syn = df_syn.fillna(0)
+        df_syn.index = df_syn.index.str.replace('LIne', 'Line', regex=True)
+        df_syn_out = mydir + 'data/Tenaillon_et_al/gene_by_pop_syn.txt'
+        df_syn.to_csv(df_syn_out, sep = '\t', index = True)
+
+
         gene_size_dict_out = mydir + 'data/Tenaillon_et_al/gene_size_dict.txt'
         with open(gene_size_dict_out, 'wb') as handle:
             pickle.dump(gene_size_dict, handle)
@@ -517,7 +556,7 @@ class likelihood_matrix_array:
 
 #good_et_al().reformat_convergence_matrix(mut_type = 'P')
 #good_et_al().reformat_convergence_matrix(mut_type = 'F')
-#tenaillon_et_al().pop_by_gene_tenaillon()
+tenaillon_et_al().pop_by_gene_tenaillon()
 #kryazhimskiy_et_al().get_size_dict()
 
 #turner_et_al().clean_data()
