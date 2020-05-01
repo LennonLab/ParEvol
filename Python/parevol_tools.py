@@ -376,7 +376,7 @@ def get_mean_colors(c1, c2, w1, w2):
 
 
 def get_ba_cov_matrix(n_genes, cov, p=None, m=2, get_node_edge_sum=False):#,prop=False,, rho=None  cov2 = None,rho2=None):
-    '''Based off of Gershgorin circle theorem, we can expect
+    '''Based off of the Gershgorin circle theorem, we can expect
     that the code will eventually produce mostly matrices
     that aren't positive definite as the covariance value
     increases and/or more edges added to incidence matrix'''
@@ -759,27 +759,6 @@ def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, rho2=None, count_threshold 
 
 
 
-
-
-def matrix_vs_null_one_treat(count_matrix, iter):
-    count_matrix_rel = count_matrix/count_matrix.sum(axis=1)[:,None]
-    X = get_mean_center(count_matrix_rel)
-    pca = PCA()
-    pca_fit = pca.fit_transform(X)
-    euc_dist = get_mean_pairwise_euc_distance(pca_fit)
-    euc_dists = []
-    for j in range(iter):
-        #X_j = pt.hellinger_transform(pt.get_random_matrix(test_cov))
-        count_matrix_j = get_random_matrix(count_matrix)
-        count_matrix_rel_j = count_matrix_j/count_matrix_j.sum(axis=1)[:,None]
-        X_j = get_mean_center(count_matrix_rel_j)
-        pca_fit_j = pca.fit_transform(X_j)
-        euc_dists.append( get_mean_pairwise_euc_distance(pca_fit_j) )
-    euc_percent = len( [k for k in euc_dists if k < euc_dist] ) / len(euc_dists)
-    z_score = (euc_dist - np.mean(euc_dists)) / np.std(euc_dists)
-    return euc_percent, z_score
-
-
 def get_F_2(PC_space, N_list):
     '''
     Modified F-statistic from Anderson et al., 2017 doi: 10.1111/anzs.12176
@@ -832,6 +811,29 @@ def get_F_2(PC_space, N_list):
     #F_2 = np.trace(H @ G) / (((1- (N1/N)) * V_1) + ((1- (N2/N)) * V_2))
 
     #return F_2, V_1, V_2
+
+
+
+def get_F_1(PC_space, N_list):
+    g = len(N_list) - 1
+    N = sum(N_list)
+    dist_matrix = euclidean_distances(PC_space, PC_space)
+    A = -(1/2) * (dist_matrix ** 2)
+    I = np.identity(N)
+    J_N = np.full((N, N), 1)
+    G = (I - ((1/N) * J_N )) @ A @ (I - ((1/N) * J_N ))
+    # n matrix list
+    n_list = []
+    for N_i in N_list:
+        n_list.append((1/N_i) * np.full((N_i, N_i), 1))
+    #n1 = (1/N1) * np.full((N1, N1), 1)
+    #n2 = (1/N2) * np.full((N2, N2), 1)
+    #H = block_diag(n1, n2) - ((1/N) * J_N )
+    H = block_diag(*n_list) - ((1/N) * J_N )
+
+    F = (np.trace(H @ G) / (g-1)) / (np.trace((I - H)@G) / (N-g))
+
+    return F
 
 
 def matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=1000):

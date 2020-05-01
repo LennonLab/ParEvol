@@ -10,7 +10,6 @@ import networkx as nx
 
 #import multiprocessing as mp
 #from functools import partial
-from scipy.sparse.linalg import svds
 from sklearn.decomposition import PCA
 
 
@@ -148,9 +147,6 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=50):
                 ECB_01992_list.append(True)
             else:
                 ECB_01992_list.append(False)
-
-
-
 
         num_sig_genes_bs_list = np.sort([np.mean(np.random.choice(num_sig_genes_list, size=bs_size)) for x in range(iter2)])
         num_sig_genes_ci_025 = num_sig_genes_bs_list[int(0.025*iter2)]
@@ -696,61 +692,11 @@ def rndm_sample_tenaillon(k_eval=3, iter1=20, iter2=1000, sample_bs = 10, iter_b
 
 
 
-def gene_svd_tenaillon(iter=10000):
-    df_path = mydir + '/data/Tenaillon_et_al/gene_by_pop.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    df_np = df.values
-    gene_names = df.columns.values
-    df_np_delta = cd.likelihood_matrix_array(df_np, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
-    X = df_np_delta/df_np_delta.sum(axis=1)[:,None]
-    X -= np.mean(X, axis = 0)
-    # scipy's svd returns the V matrix in transposed form
-    U, s, V_T = svds(X, k=3)
-    # apply another transposition to calculate basis matrix
-    F = (V_T.T @ np.diag(s)) / np.sqrt(  X.shape[0] - 1 )
-    vars = np.linalg.norm(F, axis=1) ** 2
-    vars_null_list = []
-    for i in range(iter):
-        if i % 1000 ==0:
-            print("Iteration " + str(i))
-        df_np_i = pt.get_random_matrix(df_np)
-        np.seterr(divide='ignore')
-        df_np_i_delta = cd.likelihood_matrix_array(df_np_i, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
-        X_i = df_np_delta/df_np_delta.sum(axis=1)[:,None]
-        X_i -= np.mean(X_i, axis = 0)
-        U_i, s_i, V_i_T = svds(X_i, k=3)
-        F_i = (V_i_T.T @ np.diag(s_i)) / np.sqrt(  X_i.shape[0] - 1 )
-        vars_null_list.append(np.linalg.norm(F_i, axis=1) ** 2)
-
-    vars_null = np.stack(vars_null_list)
-    vars_null_mean = np.mean(vars_null, axis=0)
-    vars_null_std = np.std(vars_null, axis=0)
-    z_scores = (vars - vars_null_mean) / vars_null_std
-    p_values = []
-    # calculate p values
-    for k, column in enumerate(vars_null.T):
-        column_greater = [x for x in column if x < vars[k]]
-        p_values.append(len(column_greater) / iter)
-
-    label_z_scores = list(zip(gene_names, z_scores, p_values))
-    label_sig_z_scores = [x for x in label_z_scores if x[2] < 0.05]
-
-    print(label_sig_z_scores)
-
-    df_out = open(mydir + '/data/Tenaillon_et_al/gene_z_scores.txt', 'w')
-    df_out.write('\t'.join(['Gene', 'z_score', 'p_score']) + '\n')
-    for label_z_score in label_z_scores:
-        df_out.write('\t'.join([str(label_z_score[0]), str(label_z_score[1]), str(label_z_score[2])]) + '\n')
-    df_out.close()
 
 
 
 
 
-
-
-#time_partition_ltee()
-#gene_svd_tenaillon()
 
 #run_ba_cov_N_sims()
 #run_ba_cov_G_sims()
@@ -758,4 +704,4 @@ def gene_svd_tenaillon(iter=10000):
 
 #run_ba_ntwk_cov_sims()
 #run_ba_ntwk_cluster_sims()
-sample_multiplicity_tenaillon()
+#sample_multiplicity_tenaillon()

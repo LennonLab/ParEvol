@@ -14,56 +14,9 @@ mydir = os.path.expanduser("~/GitHub/ParEvol/")
 class wannier_et_al:
 
 
-    def get_gene_lengths2(self):
-        gene_sites = mydir + '/data/Wannier_et_al/gene_sites.txt'
-        with open(gene_sites) as gs:
-             rows = ( line.strip().split('\t') for line in gs )
-             gs_dict = { row[1]:row[0] for row in rows if row[1] != 'Position'}
-
-        genome_path = mydir + '/data/Wannier_et_al/CP025268.1.txt'
-        fasta = pt.classFASTA(genome_path).readFASTA()
-        locus_tags = []
-        protein_ids = []
-        starts = []
-        stops = []
-        lengths = []
-        gene_names = []
-        num_good_list = []
-        for gene in fasta:
-            lengths.append(len(gene[1]))
-            header = gene[0].split(' ')
-            locus_tag = re.findall(r"[\w']+", [s for s in header if 'locus_tag' in s][0])[1]
-            locus_tags.append(locus_tag)
-            location = re.findall(r"[\w']+", [s for s in header if 'location=' in s][0])
-            start = location[-2]
-            starts.append(start)
-            stop = location[-1]
-            stops.append(stop)
-
-            number_good = 0
-            gs_genessss= []
-            for gs_site, gs_gene in gs_dict.items():
-                if (int(start) <= int(gs_site)) and (int(stop) >= int(gs_site)):
-                    number_good += 1
-                    gs_genessss.append(gs_gene)
-            #num_good_list.append(number_good)
-
-            if number_good > 1:
-                print( locus_tag, gs_genessss)
-
     def get_gene_lengths(self):
-        #genome_path = self.path + '/data/Wannier_et_al/NC_000913.3.txt'
-        #fasta = pt.classFASTA(genome_path).readFASTA()
-        #gene_size_dict = {}
-        #for gene in fasta:
-        #    header = gene[0].split(' ')
-        #    gene_name = [s for s in header if 'gene=' in s][0].split('=')[1].split(']')[0]
-        #    gene_len = len(gene[1])
-        #    gene_size_dict[gene_name] = gene_len
-        #gene_size_dict_out = mydir + 'data/Wannier_et_al/gene_size_dict.txt'
-        #with open(gene_size_dict_out, 'wb') as handle:
-        #    pickle.dump(gene_size_dict, handle)
         gene_size_dict = {}
+        # these are pseudogenes
         to_ignore = ['insN', 'crl', 'yaiX', 'yaiT', 'renD', 'nmpC', 'lomR', \
                     'ydbA', 'ydfJ', 'yoeA', 'wbbL', 'gatR', 'yejO', 'yqiG', \
                     'yhcE', 'yrhA', 'yhiS', 'insO']
@@ -144,13 +97,6 @@ class wannier_et_al:
             df = df.fillna(0)
             df_out = mydir + '/data/Wannier_et_al/' + treat + '_mutation_table_clean.txt'
             df.to_csv(df_out, sep = '\t', index = True)
-
-
-        #gene_site_dict_out = open(self.path + '/data/Wannier_et_al/gene_sites.txt', 'w')
-        #gene_site_dict_out.write('\t'.join(['gene', 'site']) + '\n')
-        #for gene_i, site_i in gene_site_dict.items():
-        #    gene_site_dict_out.write('\t'.join([gene_i, site_i.replace(',', '')]) + '\n')
-        #gene_site_dict_out.close()
 
 
 
@@ -345,8 +291,6 @@ class tenaillon_et_al:
         df = df.fillna(0)
         # original data has "LIne" instead of "Line"
         df.index = df.index.str.replace('LIne', 'Line', regex=True)
-        # remove rows and columns with all zeros
-        #df = df.loc[(df.sum(axis=1) != 0), (df.sum(axis=0) != 0)]
         df_out = mydir + 'data/Tenaillon_et_al/gene_by_pop.txt'
         df.to_csv(df_out, sep = '\t', index = True)
 
@@ -467,19 +411,11 @@ class turner_et_al:
 
         df = pd.DataFrame.from_dict(pop_by_gene_dict)
         df = df.fillna(0)
-        print(df)
         # original data has "LIne" instead of "Line"
         df.index = df.index.str.replace('LIne', 'Line', regex=True)
         # remove rows and columns with all zeros
         df_out = mydir + 'data/Turner_et_al/gene_by_pop.txt'
         df.to_csv(df_out, sep = '\t', index = True)
-
-        # clean gene size dict
-        #effective_gene_lengths, effective_gene_lengths_syn, Lsyn, Lnon, substitution_specific_synonymous_fraction = calculate_synonymous_nonsynonymous_target_sizes(genome_path, 3483902)
-
-        #gene_size_dict_out = mydir + 'data/Turner_et_al/gene_size_dict.txt'
-        #with open(gene_size_dict_out, 'wb') as handle:
-        #    pickle.dump(effective_gene_lengths, handle)
 
 
 
@@ -550,13 +486,17 @@ class likelihood_matrix_array:
 
         return r_matrix
 
+
+
 # run clean_data first
-#wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).clean_data()
-#wannier_et_al(os.path.expanduser("~/GitHub/ParEvol")).get_gene_lengths()
+wannier_et_al().get_gene_lengths()
+wannier_et_al().clean_data()
 
-#good_et_al().reformat_convergence_matrix(mut_type = 'P')
-#good_et_al().reformat_convergence_matrix(mut_type = 'F')
+good_et_al().reformat_convergence_matrix(mut_type = 'P')
+good_et_al().reformat_convergence_matrix(mut_type = 'F')
+
+tenaillon_et_al().clean_data()
 tenaillon_et_al().pop_by_gene_tenaillon()
-#kryazhimskiy_et_al().get_size_dict()
 
-#turner_et_al().clean_data()
+
+turner_et_al().clean_data()
