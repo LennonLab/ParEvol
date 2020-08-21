@@ -163,8 +163,6 @@ def sample_multiplicity_tenaillon(iter1=10000, iter2=10000, bs_size=50):
         G_ci_975 = G_bs_list[int(0.975*iter2)]
         G_mean = np.mean(G_scores_list)
 
-        #print(G_mean)
-
         ESCRE1901_bs_list = np.sort([sum(np.random.choice(ESCRE1901_list, size=bs_size, replace=True))  / bs_size for x in range(iter2)])
         ESCRE1901_ci_025 = ESCRE1901_bs_list[int(0.025*iter2)]
         ESCRE1901_ci_975 = ESCRE1901_bs_list[int(0.975*iter2)]

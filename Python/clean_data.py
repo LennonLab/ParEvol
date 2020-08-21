@@ -489,14 +489,14 @@ class likelihood_matrix_array:
 
 
 # run clean_data first
-wannier_et_al().get_gene_lengths()
-wannier_et_al().clean_data()
+#wannier_et_al().get_gene_lengths()
+#wannier_et_al().clean_data()
 
-good_et_al().reformat_convergence_matrix(mut_type = 'P')
-good_et_al().reformat_convergence_matrix(mut_type = 'F')
+#good_et_al().reformat_convergence_matrix(mut_type = 'P')
+#good_et_al().reformat_convergence_matrix(mut_type = 'F')
 
-tenaillon_et_al().clean_data()
-tenaillon_et_al().pop_by_gene_tenaillon()
+#tenaillon_et_al().clean_data()
+#tenaillon_et_al().pop_by_gene_tenaillon()
 
 
-turner_et_al().clean_data()
+#turner_et_al().clean_data()
