@@ -5,9 +5,9 @@ import pandas as pd
 import parevol_tools as pt
 import matplotlib.pyplot as plt
 from matplotlib import cm
-from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
+#from mpl_toolkits.axes_grid1.axes_divider import make_axes_locatable
 import clean_data as cd
-from scipy import stats, spatial
+from scipy import stats
 
 from sklearn.cluster import KMeans, SpectralClustering
 from sklearn.preprocessing import StandardScaler
@@ -35,9 +35,12 @@ def tenaillon_sig_multiplicity_fig():
     ax1.scatter(df.N.values, df.n_mut_mean.values, c='#175ac6', marker = 'o', s = 2, \
         edgecolors='none', linewidth = 0.6, alpha = 1, zorder=3)
     #ax1.set_xlabel('Number of replicate populations', fontsize = 10)
-    ax1.set_ylabel('G-score', fontsize = 10)
-    ax1.axhline(1.0974618847690791, color = 'red', lw = 2, ls = '--', zorder=1)
-    ax1.axhline(0, color = 'dimgrey', lw = 2, ls = ':', zorder=1)
+    ax1.set_ylabel('Net increase in\nlog-likelihood, ' + r'$\Delta \ell$', fontsize = 10)
+    ax1.axhline(1.0974618847690791, color = 'red', lw = 2, ls = '--', zorder=1, label = 'All populations')
+    ax1.axhline(0, color = 'dimgrey', lw = 2, ls = ':', zorder=1, label = 'Null')
+
+    ax1.legend(loc='upper right', fontsize=7)
+
 
     ax1.set_ylim(-0.2,3)
 
@@ -47,8 +50,9 @@ def tenaillon_sig_multiplicity_fig():
         barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=2)
     ax2.scatter(df.N.values, df.genes_mean.values, c='#175ac6', marker = 'o', s = 2, \
         edgecolors='none', linewidth = 0.6, alpha = 1, zorder=3)
-    ax2.set_ylabel('Number of genes with significant\nFDR-corrected multiplicity', fontsize = 8)
-    ax2.axhline(28, color = 'red', lw = 2, ls = '--', zorder=1)
+    ax2.set_ylabel('Number of genes with\nsignificant multiplicity', fontsize = 8)
+    ax2.axhline(28, color = 'red', lw = 2, ls = '--', zorder=1, label = 'All populations')
+    ax2.legend(loc='lower right', fontsize=7)
     ax2.set_ylim(-2,32)
 
     ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
@@ -57,7 +61,7 @@ def tenaillon_sig_multiplicity_fig():
         barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=2)
     ax3.scatter(df.N.values, df.ESCRE1901_mean.values, c='#175ac6', marker = 'o', s = 2, \
         edgecolors='none', linewidth = 0.6, alpha = 1, zorder=3)
-    ax3.set_ylabel('Fraction of times ESCRE1901\nhad significant multiplicity', fontsize = 8)
+    ax3.set_ylabel('Proportion of times ESCRE1901\nhad significant multiplicity', fontsize = 8)
     ax3.set_ylim(-0.05,1.05)
 
     ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
@@ -66,16 +70,16 @@ def tenaillon_sig_multiplicity_fig():
         barsabove = True, marker = '.',  ls = "None", mfc = 'k', mec = 'k', c = 'k', zorder=2)
     ax4.scatter(df.N.values, df.ECB_01992_mean.values, c='#175ac6', marker = 'o', s = 2.5, \
         edgecolors='none', linewidth = 0.1, alpha = 1, zorder=3)
-    ax4.set_ylabel('Fraction of times ECB_01992\nhad significant multiplicity', fontsize = 8)
+    ax4.set_ylabel('Proportion of times ECB_01992\nhad significant multiplicity', fontsize = 8)
     ax4.set_ylim(-0.05,1.05)
 
 
     fig.text(0.5, -0.04,'Number of replicate populations', fontsize = 16, ha='center')
 
-    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
-    ax3.text(-0.1, 1.1, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
-    ax4.text(-0.1, 1.1, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+    ax1.text(-0.1, 1.1, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.1, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.1, "c", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.1, "d", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
 
 
     plt.tight_layout()
@@ -164,15 +168,14 @@ def power_method_fig(alpha = 0.05):
     ax4.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
     ax4.set_xlim(0.12, 0.82)
     ax4.set_ylim(0.25,1.5)
-    ax4.set_xlabel('Covariance', fontsize = 10)
+    ax4.set_xlabel('Mean clustering coefficient', fontsize = 10)
+
     #ax4.set_ylabel("Standard score", fontsize = 10)
 
-
-
-    ax1.text(-0.1, 1.07, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.07, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
-    ax3.text(-0.1, 1.07, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
-    ax4.text(-0.1, 1.07, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+    ax1.text(-0.1, 1.07, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.07, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.07, "c", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.07, "d", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
 
 
     plt.tight_layout()
@@ -180,8 +183,163 @@ def power_method_fig(alpha = 0.05):
     plt.close()
 
 
+def tenaillon_corr_PCA_fig(iter=10000):
+    df_path = mydir + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    df_np = df.values
+    gene_names = df.columns.values
+    df_np_delta = cd.likelihood_matrix_array(df_np, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
 
-def tenaillon_PCA_fig(iter=1000):
+    X = df_np_delta/df_np_delta.sum(axis=1)[:,None]
+    X = (X - np.mean(X, axis = 0)) / np.std(X, axis = 0)
+    pca = PCA()
+    df_out = pca.fit_transform(X)
+    df_out_k = df_out[:,:k_eval]
+
+    eigen = pt.get_x_stat(pca.explained_variance_[:-1], n_features=len(gene_names))
+
+    # get null data
+    mpd_dist = pt.get_mean_pairwise_euc_distance(df_out)
+    mpd_null_dists = []
+    #ks = range(2, 11)
+    #ch_scores = []
+    #ch_null_scores = []
+    #variance_ratios_null = []
+    eigen_null = []
+    #for k in ks:
+    #    kmeans_model = KMeans(n_clusters=k).fit(df_out_k)
+    #    ch_scores.append(metrics.calinski_harabasz_score(X, kmeans_model.labels_))
+    for i in range(iter):
+        if i%100 == 0:
+            print(i)
+        df_np_i = pt.get_random_matrix(df_np)
+        df_np_delta_i = cd.likelihood_matrix_array(df_np_i, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+        X_i = df_np_delta_i/df_np_delta_i.sum(axis=1)[:,None]
+        X_i = (X_i - np.mean(X_i, axis = 0)) / np.std(X_i, axis = 0)
+        pca_i = PCA()
+        df_out_i = pca_i.fit_transform(X_i)
+        np.seterr(divide='ignore')
+        mpd_null_dists.append( pt.get_mean_pairwise_euc_distance(df_out_i) )
+
+        eigen_null.append(pt.get_x_stat(pca_i.explained_variance_[:-1], n_features=len(gene_names)))
+
+        #df_out_i_k = df_out_i[:,:k_eval]
+        #ch_scores_null_i = []
+        #for k in ks:
+        #    # Create and fit a KMeans instance with k clusters: model
+        #    kmeans_model_null = KMeans(n_clusters=k).fit(df_out_i_k)
+        #    # get Calinski-Harabasz Index
+        #    ch_scores_null_i.append(metrics.calinski_harabasz_score(X, kmeans_model_null.labels_))
+        #ch_null_scores.append(ch_scores_null_i)
+
+
+    mpd_greater = [j for j in mpd_null_dists if j > mpd_dist]
+    p_value = (len(mpd_greater) +1) / (iter+1)
+    z_score = (mpd_dist - np.mean(mpd_null_dists)) / np.std(mpd_null_dists)
+    print("p-value = " +  str(p_value))
+    print("z-value = " +  str(z_score))
+
+    eigen_greater = [j for j in eigen_null if j > eigen]
+    p_value_eigen = (len(eigen_greater) +1) / (iter+1)
+    z_score_eigen = (eigen - np.mean(eigen_null)) / np.std(eigen_null)
+
+
+    fig = plt.figure(figsize = (6, 6))
+    fig.tight_layout(pad = 2.8)
+    # Scatterplot on main ax
+    ax1 = plt.subplot2grid((2, 2), (0, 0), colspan=1)
+    ax1.axhline(y=0, color='k', linestyle=':', alpha = 0.8, zorder=1)
+    ax1.axvline(x=0, color='k', linestyle=':', alpha = 0.8, zorder=2)
+
+    df_pops_ESCRE1901 = df.loc[df['ESCRE1901'] > 0].index.tolist()
+    df_pops_ECB_01992 = df.loc[df['ECB_01992'] > 0].index.tolist()
+
+    df_out_labelled = pd.DataFrame(data=df_out, index=df.index.values)
+    df_pops_ESCRE1901_pc = df_out_labelled.loc[ df_pops_ESCRE1901 , : ]
+    df_pops_ECB_01992_pc = df_out_labelled.loc[ df_pops_ECB_01992 , : ]
+
+    df_out_labelled_no_clsust = df_out_labelled.drop(df_pops_ESCRE1901+df_pops_ECB_01992)
+
+
+    ax1.scatter(0, 0, marker = "o", edgecolors='none', c = 'darkgray', s = 120, zorder=3)
+    ax1.set_xlim([-20, 80 ])
+    ax1.set_ylim([-20, 50 ])
+
+    ax1.set_xlabel('PC 1 (' + str(round(pca.explained_variance_ratio_[0]*100,2)) + '%)' , fontsize = 12)
+    ax1.set_ylabel('PC 2 (' + str(round(pca.explained_variance_ratio_[1]*100,2)) + '%)' , fontsize = 12)
+
+    ax1.scatter(df_out_labelled_no_clsust.values[:,0], df_out_labelled_no_clsust.values[:,1], marker = "o", edgecolors='#244162',  c = '#175ac6', alpha = 0.3, s = 60, zorder=4)
+
+    ax1.scatter(df_pops_ESCRE1901_pc.values[:,0], df_pops_ESCRE1901_pc.values[:,1], marker = "o", edgecolors='#244162',  c = 'r', alpha = 0.6, s = 60, zorder=5)
+    ax1.scatter(df_pops_ECB_01992_pc.values[:,0], df_pops_ECB_01992_pc.values[:,1], marker = "o", edgecolors='#244162',  c = 'purple', alpha = 0.6, s = 60, zorder=5)
+
+
+    ax1.text(0.7,0.8,r'$n_{\mathrm{ESCRE1901}}=$' + str(len(df_pops_ESCRE1901)), fontsize=11, color='r', ha='center', va='center', transform=ax1.transAxes  )
+    ax1.text(0.7,0.7,r'$n_{\mathrm{ECB \_ 01992 }} = $' + str(len(df_pops_ECB_01992)), fontsize=11, color='purple', ha='center', va='center', transform=ax1.transAxes)
+
+    ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
+    ax2.hist(mpd_null_dists, bins=30, weights=np.zeros_like(mpd_null_dists) + 1. / len(mpd_null_dists), alpha=0.8, color = '#175ac6')
+    ax2.axvline(mpd_dist, color = 'red', lw = 3, ls = '--')
+    ax2.set_xlabel("Mean pairwise distance " + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$' , fontsize = 9)
+    ax2.set_ylabel("Frequency", fontsize = 12)
+
+    ax2.text(0.78, 0.94, r'$p_{\mathrm{MPD^{ \left ( 3 \right ) }}} = $' + str(round(p_value, 4)), fontsize = 8, ha='center', va='center', transform=ax2.transAxes)
+    ax2.text(0.78, 0.87, r'$z_{\mathrm{MPD^{ \left ( 3 \right ) }}} = $' + str(round(z_score, 2)), fontsize = 8, ha='center', va='center', transform=ax2.transAxes)
+
+    ax2.text(0.78, 0.76, r'$p_{ \tilde{L}_{1} } \ll 10^{-4}$', fontsize = 8, ha='center', va='center', transform=ax2.transAxes)
+    ax2.text(0.78, 0.69, r'$z_{ \tilde{L}_{1} } = $' + str(round(z_score_eigen, 2)), fontsize = 8, ha='center', va='center', transform=ax2.transAxes)
+
+
+
+    # plot hist and get p value
+    ax3 = plt.subplot2grid((2, 2), (1, 0), colspan=1)
+    df_N = pd.read_csv(mydir + '/data/Tenaillon_et_al/power_corr_sample_size.txt', sep='\t')
+    ax3.errorbar(df_N.N.values, df_N.Power.values, yerr = [df_N.Power.values-df_N.Power_975.values, df_N.Power_025.values - df_N.Power.values ], \
+        fmt = 'o', alpha = 1, \
+        barsabove = True, marker = '.', mfc = '#175ac6', mec = 'k', c = 'k', zorder=1)
+    ax3.set_xlabel('Number of replicate populations', fontsize = 10)
+    ax3.set_ylabel('Statistical power', fontsize = 12)
+    ax3.axhline(0.05, color = 'dimgrey', lw = 2, ls = '--')
+    ax3.set_xlim([-5,115])
+    ax3.set_ylim([-0.1,1.1])
+
+
+    ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
+    ax4.errorbar(df_N.N.values, df_N.z_score_mean.values, yerr = [df_N.z_score_mean.values-df_N.z_score_975.values, df_N.z_score_025.values - df_N.z_score_mean.values ], \
+        fmt = 'o', alpha = 1, \
+        barsabove = True, marker = '.', mfc = '#175ac6', mec = 'k', c = 'k', zorder=1)
+    ax4.set_xlabel('Number of replicate populations', fontsize = 10)
+    ax4.set_ylabel('Standardized ' + r'$\mathrm{MPD^{ \left ( 3 \right ) }}$', fontsize = 12)
+    ax4.set_xlim([-5, 115])
+    ax4.set_ylim([-0.7, 3.3])
+
+    ax4.axhline(0, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    ax4.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
+    ax4.axhline(2, color = 'black', lw = 2, ls = ':', zorder=1)
+    ax4.axhline(3, color = 'black', lw = 2, ls = ':', zorder=1)
+
+
+    ax1.text(-0.1, 1.05, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.05, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.05, "c", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.05, "d", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+
+    #fig.subplots_adjust(hspace=0)
+
+    plt.tight_layout()
+    fig.savefig(mydir + '/figs/tenaillon_corr.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+
+
+
+
+
+
+
+
+def tenaillon_cov_PCA_fig(iter=10000):
     df_path = mydir + '/data/Tenaillon_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     df_np = df.values
@@ -211,8 +369,8 @@ def tenaillon_PCA_fig(iter=1000):
         df_np_delta_i = cd.likelihood_matrix_array(df_np_i, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
         X_i = df_np_delta_i/df_np_delta_i.sum(axis=1)[:,None]
         X_i -= np.mean(X_i, axis = 0)
-        #pca_i = PCA()
-        df_out_i = pca.fit_transform(X_i)
+        pca_i = PCA()
+        df_out_i = pca_i.fit_transform(X_i)
         np.seterr(divide='ignore')
         mpd_null_dists.append( pt.get_mean_pairwise_euc_distance(df_out_i) )
         df_out_i_k = df_out_i[:,:k_eval]
@@ -226,7 +384,7 @@ def tenaillon_PCA_fig(iter=1000):
 
 
     mpd_greater = [j for j in mpd_null_dists if j > mpd_dist]
-    p_value = len(mpd_greater) / iter
+    p_value = (len(mpd_greater) +1) / (iter+1)
     z_score = (mpd_dist - np.mean(mpd_null_dists)) / np.std(mpd_null_dists)
     print("p-value = " +  str(p_value))
     print("z-value = " +  str(z_score))
@@ -258,6 +416,7 @@ def tenaillon_PCA_fig(iter=1000):
 
     ax1.set_xlim([-0.4,0.7])
     ax1.set_ylim([-0.4,0.7])
+    print(pca.explained_variance_ratio_[0])
     ax1.set_xlabel('PC 1 (' + str(round(pca.explained_variance_ratio_[0]*100,2)) + '%)' , fontsize = 12)
     ax1.set_ylabel('PC 2 (' + str(round(pca.explained_variance_ratio_[1]*100,2)) + '%)' , fontsize = 12)
 
@@ -276,12 +435,12 @@ def tenaillon_PCA_fig(iter=1000):
     ax2.set_ylabel("Frequency", fontsize = 12)
 
     ax2.text(0.16, 0.9, r'$p = $' + str(round(p_value, 4)), fontsize = 8, ha='center', va='center', transform=ax2.transAxes)
-    ax2.text(0.16, 0.83, r'$z_{\mathrm{MPD^{ \left ( 3 \right ) }}} = $' + str(round(z_score, 2)), fontsize = 8, ha='center', va='center', transform=ax2.transAxes)
+    ax2.text(0.18, 0.83, r'$z_{\mathrm{MPD^{ \left ( 3 \right ) }}} = $' + str(round(z_score, 2)), fontsize = 8, ha='center', va='center', transform=ax2.transAxes)
 
 
     # plot hist and get p value
     ax3 = plt.subplot2grid((3, 2), (1, 0), colspan=1)
-    df_N = pd.read_csv(mydir + '/data/Tenaillon_et_al/power_sample_size.txt', sep='\t')
+    df_N = pd.read_csv(mydir + '/data/Tenaillon_et_al/power_cov_sample_size.txt', sep='\t')
     ax3.errorbar(df_N.N.values, df_N.Power.values, yerr = [df_N.Power.values-df_N.Power_975.values, df_N.Power_025.values - df_N.Power.values ], \
         fmt = 'o', alpha = 1, \
         barsabove = True, marker = '.', mfc = '#175ac6', mec = 'k', c = 'k', zorder=1)
@@ -362,18 +521,20 @@ def tenaillon_PCA_fig(iter=1000):
     ax6.set_xticklabels(['', 'Cluster 1', 'Cluster 2', 'Cluster 3'])
     ax6.set_ylim([-0.08,0.84])
 
-    ax1.text(-0.1, 1.05, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.05, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
-    ax3.text(-0.1, 1.05, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
-    ax4.text(-0.1, 1.05, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
-    ax5.text(-0.1, 1.05, "e)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax5.transAxes)
-    ax6.text(-0.1, 1.05, "f)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax6.transAxes)
+    ax1.text(-0.1, 1.05, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.05, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.05, "c", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.05, "d", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+    ax5.text(-0.1, 1.05, "e", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax5.transAxes)
+    ax6.text(-0.1, 1.05, "f", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax6.transAxes)
 
     #fig.subplots_adjust(hspace=0)
 
     plt.tight_layout()
-    fig.savefig(mydir + '/figs/tenaillon_main.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    fig.savefig(mydir + '/figs/tenaillon_cov.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
+
+
 
 
 def tenaillon_fitnes_fig():
@@ -446,8 +607,8 @@ def tenaillon_fitnes_fig():
     axes[1].text(0.37, 1.75, r'$p \nless 0.05$', fontsize = 10)
     axes[1].set(adjustable='box-forced', aspect='equal')
 
-    axes[0].text(-0.1, 1.15, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=axes[0].transAxes)
-    axes[1].text(-0.1, 1.15, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=axes[1].transAxes)
+    axes[0].text(-0.1, 1.15, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=axes[0].transAxes)
+    axes[1].text(-0.1, 1.15, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=axes[1].transAxes)
 
 
     fig.tight_layout()
@@ -458,58 +619,6 @@ def tenaillon_fitnes_fig():
 
 
 
-def plot_ltee_partition(k = 5):
-    # mpd
-    df_path = mydir + '/data/Good_et_al/gene_by_pop.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    to_keep = pt.complete_nonmutator_lines()
-    #if 'p5' in to_keep:
-    #    to_keep.remove('p5')
-    df_nonmut = df[df.index.str.contains('|'.join( to_keep))]
-    # remove columns with all zeros
-    df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
-    gene_names = df_nonmut.columns.tolist()
-    sample_names = df_nonmut.index.tolist()
-    df_delta = cd.likelihood_matrix_array(df_nonmut, gene_names, 'Good_et_al').get_likelihood_matrix()
-    X = df_delta/df_delta.sum(axis=1)[:,None]
-    X -= np.mean(X, axis = 0)
-    pca = PCA()
-    df_out = pca.fit_transform(X)
-    time_points = [ int(x.split('_')[1]) for x in df_nonmut.index.values]
-    time_points_set = sorted(list(set([ int(x.split('_')[1]) for x in df_nonmut.index.values])))
-    colors = np.linspace(min(time_points_set),max(time_points_set),len(time_points_set))
-    color_dict = dict(zip(time_points_set, colors))
-    df_pca = pd.DataFrame(data=df_out, index=sample_names)
-    mean_dist = []
-    for tp in time_points_set:
-        df_pca_tp = df_pca[df_pca.index.str.contains('_' + str(tp))]
-        mean_dist.append(pt.get_mean_pairwise_euc_distance(df_pca_tp.values, k = k))
-
-    df_path = mydir + '/data/Good_et_al/time_partition_z_scores.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer')
-
-    time = df.Time.values
-    t_mpd = df.delta_mpd.values
-    t_less_025 = df.delta_mpd_025.values
-    t_less_975 = df.delta_mpd_975.values
-    t_greater = df.greater_mpd.values
-
-    fig, axes = plt.subplots(2, sharex=True)
-    axes[0].scatter(time_points_set, mean_dist, marker = "o", edgecolors='#244162', c = '#175ac6', alpha = 0.4, s = 60, zorder=4)
-    axes[0].set_ylabel("Mean pairwise\ndistance, " + r'$d$', fontsize = 14)
-    axes[0].axvline(x=10000, c='dimgrey', ls='--')
-
-    axes[1].plot(time, t_mpd, c ='k')
-    axes[1].fill_between(time, t_less_025, t_less_975, facecolor='blue', alpha=0.5)
-    axes[1].axvline(x=10000, c='dimgrey', ls='--')
-    axes[1].set_xlabel("Time (generations)", fontsize = 18)
-    axes[1].set_ylabel(r'$\Delta d$', fontsize = 18)
-    axes[1].set_xlim( right=51000)
-
-
-    fig.tight_layout()
-    fig.savefig(mydir + '/figs/ltee_partition.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
 
 
 
@@ -517,8 +626,6 @@ def plot_ltee_pca(k=5, iter=100):
     df_path = mydir + '/data/Good_et_al/gene_by_pop.txt'
     df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
     to_keep = pt.complete_nonmutator_lines()
-    #if 'p5' in to_keep:
-    #    to_keep.remove('p5')
     df_nonmut = df[df.index.str.contains('|'.join( to_keep))]
     # remove columns with all zeros
     df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
@@ -587,6 +694,8 @@ def plot_ltee_pca(k=5, iter=100):
     ax1.set_xlabel('PC 1 (' + str(round(pca.explained_variance_ratio_[0]*100,2)) + '%)' , fontsize = 13)
     ax1.set_ylabel('PC 2 (' + str(round(pca.explained_variance_ratio_[1]*100,2)) + '%)' , fontsize = 13)
 
+    # analyze full LTEE in PCA
+
     # mean pairsise distance
     mean_dist = []
     for tp in time_points_set:
@@ -637,8 +746,8 @@ def plot_ltee_pca(k=5, iter=100):
 
     #ax2.fill_between(time_points_set, mpd_975, mpd_025, facecolor='lightskyblue', alpha=0.6, zorder=1)
 
-    ax1.text(0, 1.15, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(0, 1.15, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax1.text(0, 1.15, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(0, 1.15, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
 
 
     fig.tight_layout()
@@ -682,7 +791,8 @@ def ltee_eigen(k=5):
 
 
 
-def treatment_figs(iter=1000):
+def treatment_fig(iter=1000, control_BF=False):
+
     df_turner_path = mydir + '/data/Turner_et_al/gene_by_pop.txt'
     df_turner = pd.read_csv(df_turner_path, sep = '\t', header = 'infer', index_col = 0)
     df_turner = df_turner.loc[:, (df_turner != 0).any(axis=0)]
@@ -724,10 +834,14 @@ def treatment_figs(iter=1000):
     lclb_mpd_null = []
     lcpl_mpd_null = []
     # get MPD for each group
-    F_2 = pt.get_F_2(df_out_k, N_turner )
-    F_2_null = []
+    if control_BF == True:
+        F = pt.get_F_2(df_out_k, N_turner )
+    else:
+        F = pt.get_F_1(df_out_k, N_turner )
+
+    F_null = []
     for i in range(iter):
-        if i %100 == 0:
+        if i %1000 == 0:
             print(i)
         np_hclb_i = pt.get_random_matrix(df_hclb.values)
         df_hclb_i = pd.DataFrame(data=np_hclb_i, index =df_hclb.index, columns=df_hclb.columns)
@@ -749,7 +863,12 @@ def treatment_figs(iter=1000):
         df_out_i = pca.fit_transform(X_i)
         df_out_k_i = df_out_i[:,:k_eval]
 
-        F_2_null.append(pt.get_F_2(df_out_k_i, N_turner ))
+        if control_BF == True:
+            F_i = pt.get_F_2(df_out_k_i, N_turner )
+        else:
+            F_i = pt.get_F_1(df_out_k_i, N_turner )
+
+        F_null.append(F_i)
 
         hclb_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_out_k_i[0: N_turner[0] ,  :], k=3))
         hcpl_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_out_k_i[N_turner[0]: sum(N_turner[:2]),  :] , k=3))
@@ -778,7 +897,7 @@ def treatment_figs(iter=1000):
     df_out_w_k = df_out_w[:,:k_eval]
 
     ECNR2_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[0: N_w[0] ,  :], k=3)
-    C321_deltaA_early_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[N_w[0]: sum(N_w[:2]),  :] , k=3)
+    C321_deltaA_early_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[sum(N_w[:1]): sum(N_w[:2]),  :] , k=3)
     C321_deltaA_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[sum(N_w[:2]): sum(N_w[:3]),:]  , k=3)
     C321_mpd = pt.get_mean_pairwise_euc_distance(df_out_w_k[sum(N_w[:3]): sum(N_w[:4]),:] , k=3)
 
@@ -787,11 +906,14 @@ def treatment_figs(iter=1000):
     C321_deltaA_mpd_null = []
     C321_mpd_null = []
 
-    F_2_w = pt.get_F_2(df_out_w_k, N_w )
-    F_2_w_null = []
+    if control_BF == True:
+        F_w = pt.get_F_2(df_out_w_k, N_w )
+    else:
+        F_w = pt.get_F_1(df_out_w_k, N_w)
+    F_w_null = []
 
     for i in range(iter):
-        if i %100 == 0:
+        if i %1000 == 0:
             print(i)
         np_ECNR2_i = pt.get_random_matrix(df_ECNR2.values)
         df_ECNR2_i = pd.DataFrame(data=np_ECNR2_i, index =df_ECNR2.index, columns=df_ECNR2.columns)
@@ -812,7 +934,12 @@ def treatment_figs(iter=1000):
         df_w_out_i = pca.fit_transform(X_w_i)
         df_w_out_k_i = df_w_out_i[:,:k_eval]
 
-        F_2_w_null.append(pt.get_F_2(df_w_out_k_i, N_w ))
+        if control_BF == True:
+            F_i = pt.get_F_2(df_w_out_k_i, N_w )
+        else:
+            F_i = pt.get_F_1(df_w_out_k_i, N_w )
+
+        F_w_null.append(F_i)
 
         ECNR2_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_w_out_k_i[0: N_w[0] ,  :], k=3))
         C321_deltaA_early_mpd_null.append(pt.get_mean_pairwise_euc_distance(df_w_out_k_i[N_w[0]: sum(N_w[:2]),  :] , k=3))
@@ -882,11 +1009,17 @@ def treatment_figs(iter=1000):
     #ax1.set_ylabel("Frequency", fontsize = 7)
     ax1.set_xlim(-2.5, 2.5)
 
+    if control_BF == True:
+        xlabel_F = "Between vs. within-treatment\nvariation, " + r'$F_{2}$'
+    else:
+        xlabel_F = "Between vs. within-treatment\nvariation, " + r'$F_{1}$'
+
+
 
     ax2 = plt.subplot2grid((2, 2), (0, 1), colspan=1)
-    ax2.hist(F_2_null, bins=30,  weights=np.zeros_like(F_2_null) + 1. / len(F_2_null), alpha=0.6, color = '#175ac6')
-    ax2.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 10)
-    ax2.axvline(F_2, color = 'red', lw = 2, ls = '--')
+    ax2.hist(F_null, bins=30,  weights=np.zeros_like(F_null) + 1. / len(F_null), alpha=0.6, color = '#175ac6')
+    ax2.set_xlabel(xlabel_F, fontsize = 10)
+    ax2.axvline(F, color = 'red', lw = 2, ls = '--')
     ax2.set_ylabel("Frequency", fontsize = 10)
 
 
@@ -954,26 +1087,26 @@ def treatment_figs(iter=1000):
     ax3.set_xlim(-1.5, 3.5)
 
     ax4 = plt.subplot2grid((2, 2), (1, 1), colspan=1)
-    ax4.hist(F_2_w_null, bins=30,  weights=np.zeros_like(F_2_w_null) + 1. / len(F_2_w_null), alpha=0.6, color = '#175ac6')
-    ax4.set_xlabel("Between vs. within-treatment\nvariation, " + r'$F$', fontsize = 10)
-    ax4.axvline(F_2_w, color = 'red', lw = 2, ls = '--')
+    ax4.hist(F_w_null, bins=30,  weights=np.zeros_like(F_w_null) + 1. / len(F_w_null), alpha=0.6, color = '#175ac6')
+    ax4.set_xlabel(xlabel_F, fontsize = 10)
+    ax4.axvline(F_w, color = 'red', lw = 2, ls = '--')
     ax4.set_ylabel("Frequency", fontsize = 10)
 
 
-    p_F_ax2 = len([ x for x in F_2_null if x > F_2]) / len(F_2_null)
-    p_F_ax4 = len([ x for x in F_2_w_null if x > F_2_w]) / len(F_2_w_null)
+    p_F_ax2 = len([ x for x in F_null if x > F]) / len(F_null)
+    p_F_ax4 = len([ x for x in F_w_null if x > F_w]) / len(F_w_null)
 
     ax2.text(0.8, 0.9, r'$p=$' + str(round(p_F_ax2 ,3) ), fontsize=9, ha='center', va='center', transform=ax2.transAxes)
     ax4.text(0.8, 0.9, r'$p=$' + str(round(p_F_ax4 ,3) ), fontsize=9, ha='center', va='center', transform=ax4.transAxes)
 
-    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
-    ax3.text(-0.1, 1.1, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
-    ax4.text(-0.1, 1.1, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+    ax1.text(-0.1, 1.1, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.1, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.1, "c", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.1, "d", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
 
     #fig.text(-0.04, 0.5,'Frequency', fontsize = 19, va='center',rotation='vertical')
     fig.tight_layout()
-    fig.savefig(mydir + '/figs/divergence_figs.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    fig.savefig(mydir + '/figs/divergence_figs_F' + str(int(control_BF)+1) + '.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
     plt.close()
 
 
@@ -1042,8 +1175,8 @@ def treatment_eigen_figs(iter=1000):
     ax2.set_ylabel('Proportion of variance explained', fontsize = 11)
     ax2.set_title('Wannier et al. dataset', fontsize = 13)
 
-    ax1.text(-0.1, 1.1, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.1, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax1.text(-0.1, 1.1, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.1, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
 
 
     fig.tight_layout()
@@ -1143,10 +1276,10 @@ def power_N_G_fig(alpha = 0.05):
     ax4.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
 
 
-    ax1.text(-0.1, 1.05, "a)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
-    ax2.text(-0.1, 1.05, "b)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
-    ax3.text(-0.1, 1.05, "c)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
-    ax4.text(-0.1, 1.05, "d)", fontsize=11, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
+    ax1.text(-0.1, 1.05, "a", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax1.transAxes)
+    ax2.text(-0.1, 1.05, "b", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax2.transAxes)
+    ax3.text(-0.1, 1.05, "c", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax3.transAxes)
+    ax4.text(-0.1, 1.05, "d", fontsize=12, fontweight='bold', ha='center', va='center', transform=ax4.transAxes)
 
 
 
@@ -1171,6 +1304,8 @@ def tenaillon_eigen_fig(k=5):
 
     fig = plt.figure()
 
+    print(pca.explained_variance_ratio_[0])
+
     broken_stick = []
     for i in range(1, len(pca.explained_variance_ratio_) +1):
         broken_stick.append(   (sum(1 / np.arange(i, len(pca.explained_variance_) +1)) / len(pca.explained_variance_)) * 100   )
@@ -1189,77 +1324,6 @@ def tenaillon_eigen_fig(k=5):
 
 
 
-def mean_vs_var_tenaillon():
-    df_path = mydir + '/data/Tenaillon_et_al/gene_by_pop.txt'
-    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
-    # remove columns with all zeros
-    gene_names = df.columns.tolist()
-    df_delta = cd.likelihood_matrix_array(df, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
-
-    df_nonsyn = pd.read_csv(mydir + '/data/Tenaillon_et_al/gene_by_pop_nonsyn.txt', sep = '\t', header = 'infer', index_col = 0)
-    # remove columns with all zeros
-    gene_names_nonsyn = df_nonsyn.columns.tolist()
-    df_delta_nonsyn = cd.likelihood_matrix_array(df_nonsyn, gene_names_nonsyn, 'Tenaillon_et_al').get_likelihood_matrix()
-
-
-    df_syn = pd.read_csv(mydir + '/data/Tenaillon_et_al/gene_by_pop_syn.txt', sep = '\t', header = 'infer', index_col = 0)
-    # remove columns with all zeros
-    gene_names_syn = df_syn.columns.tolist()
-    df_delta_syn = cd.likelihood_matrix_array(df_syn, gene_names_syn, 'Tenaillon_et_al').get_likelihood_matrix()
-
-
-    mean_mult_no0 = []
-    var_mult_no0 = []
-
-    for column in df_delta.T:
-        column_no0 = column[column!=0]
-        if len(column_no0) > 3:
-            mean_mult_no0.append( np.mean(column_no0))
-            var_mult_no0.append( np.var(column_no0))
-
-
-    fig = plt.figure()
-
-    plt.scatter(mean_mult_no0, var_mult_no0, c='#175ac6', marker = 'o', s = 22, \
-        edgecolors='none', linewidth = 0.6, alpha = 0.8)
-
-    plt.xlim(0.1, 50)
-    plt.ylim(0.001, 8)
-
-    #x_pred = np.linspace(0.001, 10, num=100)
-    #y_pred = x_pred
-
-    slope, intercept, r_value, p_value, std_err = stats.linregress(np.log10(mean_mult_no0), np.log10(var_mult_no0))
-    print(intercept, slope)
-    x_log10_fit_range =  np.linspace(np.log10(0.3), np.log10(10), 10000)
-    y_fit_range = 10 ** (slope*x_log10_fit_range + intercept)
-    plt.plot(10**x_log10_fit_range, y_fit_range, c='k',linestyle='--', lw=3)
-
-
-    y_fit_null_range = 10 ** (x_log10_fit_range*1 + intercept)
-    plt.plot(10**x_log10_fit_range, y_fit_null_range, c='darkgrey',linestyle='--', lw=3)
-
-    #plt.plot(x_pred, y_pred)
-    fig.text(0.2, 1, r'$y\sim x^{1.53}$', fontsize = 16, ha='center')
-
-
-    # null slope of -1
-    ratio = (slope - 1) / std_err
-    pval = stats.t.sf(np.abs(ratio), len(mean_mult_no0)-2)*2
-    # two sided or one sided?
-    print(slope, ratio, pval, std_err)
-
-
-    plt.xscale('log', basex=10)
-    plt.yscale('log', basey=10)
-
-    plt.xlabel('Mean multiplicity', fontsize = 14)
-    plt.ylabel('Variance of multiplicity', fontsize = 14)
-
-
-    fig.tight_layout()
-    fig.savefig(mydir + '/figs/tenaillon_mean_var.png', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
-    plt.close()
 
 
 
@@ -1298,26 +1362,164 @@ def get_rescaled_loadings():
 
 
 
+def ltee_time_block_mcd(k=2, iterations=10000):
+
+    df_path = mydir + '/data/Good_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    to_keep = pt.complete_nonmutator_lines()
+    df_nonmut = df[df.index.str.contains('|'.join( to_keep))]
+    # remove columns with all zeros
+    df_nonmut = df_nonmut.loc[:, (df_nonmut != 0).any(axis=0)]
+    # get null for time steps
+    time_steps = [10250, 20250, 30250, 40250, 50250, 60250]
+    #time_steps = ['10250','60250']
+    fig, ax = plt.subplots(figsize=(4,4))
+
+    z_mcd_null_mean_list = []
+    z_mcd_null_975_list = []
+    z_mcd_null_025_list = []
+
+    z_mcd_timestep_list = []
+
+    for time_step in time_steps:
+        df_nonmut_timestep = df_nonmut[df_nonmut.index.str.contains('_'+str(time_step))]
+        # remove columns with all zeros
+        df_nonmut_timestep = df_nonmut_timestep.loc[:, (df_nonmut_timestep != 0).any(axis=0)]
+        df_nonmut_timestep_np = df_nonmut_timestep.values
+        df_nonmut_timestep_sample_names = df_nonmut_timestep.index.tolist()
+        df_nonmut_timestep_gene_names = df_nonmut_timestep.columns.tolist()
+
+        df_timestep_delta = cd.likelihood_matrix_array(df_nonmut_timestep_np, df_nonmut_timestep_gene_names, 'Good_et_al').get_likelihood_matrix()
+        X_timestep = df_timestep_delta/df_timestep_delta.sum(axis=1)[:,None]
+        X_timestep -= np.mean(X_timestep, axis = 0)
+
+        pca_timestep = PCA()
+        df_timestep_out = pca_timestep.fit_transform(X_timestep)
+        mcd_timestep = pt.get_mean_pairwise_euc_distance(df_timestep_out, k = k)
+
+        mcd_null = []
+        for i in range(iterations):
+            df_nonmut_timestep_np_i = pt.get_random_matrix(df_nonmut_timestep_np)
+            df_timestep_delta_i = cd.likelihood_matrix_array(df_nonmut_timestep_np_i, df_nonmut_timestep_gene_names, 'Good_et_al').get_likelihood_matrix()
+
+            X_timestep_i = df_timestep_delta_i/df_timestep_delta_i.sum(axis=1)[:,None]
+            X_timestep_i -= np.mean(X_timestep_i, axis = 0)
+
+            pca_timestep_i = PCA()
+            df_timestep_out_i = pca_timestep_i.fit_transform(X_timestep_i)
+            mcd_timestep_i = pt.get_mean_pairwise_euc_distance(df_timestep_out_i, k = k)
+
+            mcd_null.append(mcd_timestep_i)
+
+        mcd_null = np.asarray(mcd_null)
+        z_mcd_null = (mcd_null - np.mean(mcd_null)) / np.std(mcd_null)
+        z_mcd_timestep = (mcd_timestep - np.mean(mcd_null)) / np.std(mcd_null)
+
+        z_mcd_null = np.sort(z_mcd_null)
+        z_mcd_null_mean = np.mean(mcd_null)
+        z_mcd_null_975 = z_mcd_null[int(0.975*iterations)]
+        z_mcd_null_025 = z_mcd_null[int(0.025*iterations)]
+
+        z_mcd_null_975_list.append(z_mcd_null_975)
+        z_mcd_null_mean_list.append(z_mcd_null_mean)
+        z_mcd_null_025_list.append(z_mcd_null_025)
+
+        z_mcd_timestep_list.append(mcd_timestep)
+
+
+    ax.errorbar(np.asarray(time_steps), np.asarray(z_mcd_null_mean_list), yerr = [np.asarray(z_mcd_null_mean_list)-np.asarray(z_mcd_null_025_list), np.asarray(z_mcd_null_975_list)-np.asarray(z_mcd_null_mean_list) ], \
+        fmt = 'o', alpha = 1, lw=2,\
+        barsabove = True, marker = 'o', ms =10,  mfc = 'k', mec = 'k', c = 'k', zorder=2)
+
+    ax.scatter(time_steps, z_mcd_timestep_list, c='#175ac6', marker = 'o', s = 110, \
+        edgecolors='none', linewidth = 0.6, alpha = 0.9, zorder=3)
+
+    ax.set_xlabel('Generations, '+r'$t$', fontsize = 10)
+    ax.set_ylabel('Standardized '+  r'$\mathrm{MPD}^{\left ( 3 \right )}$' + '\nfor substitutions up to ' + r'$t$', fontsize = 10)
+    #ax4.set_xlim(6.5, 170)
+    ax.set_ylim(-2.7, 2.7)
+    ax.xaxis.set_tick_params(labelsize=8)
+
+    #ax4.axhline(0, color = 'dimgrey', lw = 2, ls = '--', zorder=1)
+    #ax4.axhline(1, color = 'black', lw = 2, ls = ':', zorder=1)
+
+    fig.tight_layout()
+    fig.savefig(mydir + '/figs/ltee_time_block_mcd.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
+
+
+def plot_mean_vs_var():
+    df_path = mydir + '/data/Tenaillon_et_al/gene_by_pop.txt'
+    df = pd.read_csv(df_path, sep = '\t', header = 'infer', index_col = 0)
+    # remove columns with all zeros
+    gene_names = df.columns.tolist()
+    df_delta = cd.likelihood_matrix_array(df, gene_names, 'Tenaillon_et_al').get_likelihood_matrix()
+    means = []
+    variances = []
+    for gene_counts in df_delta.T:
+        gene_counts = gene_counts[gene_counts>0]
+
+        if len(gene_counts)>=3:
+            means.append(np.mean(gene_counts))
+            variances.append(np.var(gene_counts))
+
+    slope, intercept, r_value, p_value, std_err = stats.linregress(np.log10(means), np.log10(variances))
+    x_log10 = np.log10(np.logspace(-0.5, 1.15, num=1000, endpoint=True, base=10))
+
+    # hypothetical slope of 2
+    ratio = (slope - 2) / std_err
+    pval = stats.t.sf(np.abs(ratio), len(means)-2)*2
+
+    fig, ax = plt.subplots(figsize=(4,4))
+
+    ax.scatter(means, variances, c='#175ac6', marker = 'o', s = 110, \
+        edgecolors='none', linewidth = 0.6, alpha = 0.9, zorder=3)
+
+    ax.plot(10**x_log10, 10**(intercept + (x_log10 * slope)), ls='--', c='k', lw=2, label = r'$b = $' + str(round(slope/2, 3))  + ' OLS regression' )
+    ax.plot(10**x_log10, 10**(intercept + (x_log10 * 2)), ls='--', c='grey', lw=2, label = r'$b = 1$' + ", Poisson")
+
+    ax.set_xlabel('Mean multiplicity ' + r'$\overline{m}_{i}$', fontsize = 12)
+    ax.set_ylabel('Variance of multiplicity ' + r'$\sigma^{2}_{m_{i}}$', fontsize = 12)
+
+    ax.set_xscale('log', basex=10)
+    ax.set_yscale('log', basey=10)
+
+    ax.set_xlim([0.2,20])
+    ax.set_ylim([0.001,10])
+
+    ax.legend(loc="upper left", fontsize=8)
+
+    ax.text(0.15,0.75,r'$r^{2}=$' + str(round(r_value**2, 3 )), fontsize=9, color='k', ha='center', va='center', transform=ax.transAxes  )
+    ax.text(0.15,0.7,r'$P=$' + str(round(pval, 4)), fontsize=9, color='k', ha='center', va='center', transform=ax.transAxes  )
+
+
+    fig.tight_layout()
+    fig.savefig(mydir + '/figs/plot_mean_vs_var.pdf', format='pdf', bbox_inches = "tight", pad_inches = 0.4, dpi = 600)
+    plt.close()
 
 
 
 
-
-
+#ltee_time_block_mcd()
 
 #get_rescaled_loadings()
-#mean_vs_var_tenaillon()
-#plot_ltee_partition()
-
 
 #tenaillon_sig_multiplicity_fig()
-#power_method_fig()
-#tenaillon_PCA_fig()
 #tenaillon_fitnes_fig()
+
+#tenaillon_PCA_fig()
 #plot_ltee_pca()
 
-ltee_eigen()
-treatment_figs()
-treatment_eigen_figs()
-power_N_G_fig()
-tenaillon_eigen_fig()
+#power_N_G_fig()
+#power_method_fig()
+
+#treatment_fig(iter=10000, control_BF=False)
+#treatment_fig(iter=10000, control_BF=True)
+
+#treatment_eigen_figs()
+#tenaillon_eigen_fig()
+#ltee_eigen()
+
+
+tenaillon_corr_PCA_fig()
+#plot_mean_vs_var()

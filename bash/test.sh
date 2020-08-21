@@ -17,5 +17,10 @@ source activate ParEvol
 # create asa159 Pyhon file to import
 # f2py -c -m asa159 asa159.f90
 
+
+# 5 - 100
 # call that code from this file
 python /N/dc2/projects/Lennon_Sequences/ParEvol/Python/rndm_sample_tenaillon_carbonate.py 25
+
+
+python /N/dc2/projects/Lennon_Sequences/ParEvol/Python/rndm_sample_tenaillon_carbonate.py 5

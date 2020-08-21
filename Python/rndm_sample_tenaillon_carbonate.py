@@ -14,9 +14,25 @@ from sklearn.decomposition import PCA
 import sys
 
 N=int(sys.argv[1])
-
+corr=True
 #import time
 #start_time = time.time()
+
+
+
+#Running Python on Carbonate
+
+#module avail python
+#module unload python/2.7.13
+
+#module unload python/3.6.1
+#module switch python/2.7.13 python/3.6.1
+
+#module load anaconda/python3.6/4.3.1
+
+#conda create -n ParEvol python=3.6
+
+
 
 mydir = '/N/dc2/projects/Lennon_Sequences/ParEvol'
 #mydir = '/Users/WRShoemaker/GitHub/ParEvol'
@@ -277,8 +293,7 @@ def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100,
     df_np = df.values
     gene_names = df.columns.values
     n_rows = df_np.shape[0]
-    df_out = open(mydir + '/data/Tenaillon_et_al/power_sample_size_' + str(N) + '.txt', 'w')
-    df_out.write('\t'.join(['N', 'G', 'Power', 'Power_025', 'Power_975', 'z_score_mean', 'z_score_025', 'z_score_975']) + '\n')
+
     #Ns = [20]
     #Ns = list(range(20, n_rows, 5))
     #for N in Ns:
@@ -295,7 +310,11 @@ def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100,
         np.seterr(divide='ignore')
         df_np_i_delta = likelihood_matrix_array(df_np_i, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
         X = df_np_i_delta/df_np_i_delta.sum(axis=1)[:,None]
-        X -= np.mean(X, axis = 0)
+        if corr == True:
+            X = (X - np.mean(X, axis = 0)) / np.std(X, axis = 0)
+        else:
+            X = X - np.mean(X, axis = 0)
+
         pca = PCA()
         pca_X = pca.fit_transform(X)
         mpd = get_mean_pairwise_euc_distance(pca_X, k=k_eval)
@@ -305,7 +324,11 @@ def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100,
             np.seterr(divide='ignore')
             df_np_i_j_delta = likelihood_matrix_array(df_np_i_j, gene_names_i, 'Tenaillon_et_al').get_likelihood_matrix()
             X_j = df_np_i_j_delta/df_np_i_j_delta.sum(axis=1)[:,None]
-            X_j -= np.mean(X_j, axis = 0)
+            if corr == True:
+                X_j = (X_j - np.mean(X_j, axis = 0)) / np.std(X_j, axis = 0)
+            else:
+                X_j = X_j - np.mean(X_j, axis = 0)
+            #X_j -= np.mean(X_j, axis = 0)
             pca_X_j = pca.fit_transform(X_j)
             mpd_null.append(get_mean_pairwise_euc_distance(pca_X_j, k=k_eval))
         p_values.append(len( [m for m in mpd_null if m > mpd] ) / len(mpd_null))
@@ -325,7 +348,13 @@ def rndm_sample_tenaillon(N, k_eval=3, iter1=1000, iter2=10000, sample_bs = 100,
         z_scores_bootstrap.append(np.mean( random.sample(z_scores, sample_bs)  ))
     z_scores_bootstrap.sort()
 
+    if corr == True:
+        method_label = 'corr'
+    else:
+        method_label = 'cov'
 
+    df_out = open(mydir + '/data/Tenaillon_et_al/power_%s_sample_size_%s.txt' % (method_label, str(N)), 'w')
+    df_out.write('\t'.join(['N', 'G', 'Power', 'Power_025', 'Power_975', 'z_score_mean', 'z_score_025', 'z_score_975']) + '\n')
     # return number of genes, power, power lower, power upper
     #return  power, power_bootstrap[int(10000*0.025)], power_bootstrap[int(10000*0.975)]
     df_out.write('\t'.join([str(N), str(np.mean(G_list)), str(power), str(power_bootstrap[int(iter_bs*0.025)]), str(power_bootstrap[int(iter_bs*0.975)]), str(np.mean(z_scores)), str(z_scores_bootstrap[int(iter_bs*0.025)]), str(z_scores_bootstrap[int(iter_bs*0.975)])   ]) + '\n')
