@@ -1,5 +1,5 @@
 from __future__ import division
-import os, pickle, math, random, itertools
+import os, pickle, math, random, itertools, re
 from itertools import combinations
 import pandas as pd
 import numpy as np
@@ -12,15 +12,123 @@ import scipy.stats as stats
 from scipy.special import gammaln
 from scipy import linalg as LA
 
-import networkx as nx
+#import networkx as nx
 from asa159 import rcont2
 from copy import copy
 import matplotlib.colors as cls
 
+from Bio import SeqIO
+
+
 np.random.seed(123456789)
+random.seed(123456789)
+
+
+
+bases_to_skip = ['K', 'S', 'R', 'N', 'Y', 'M', 'W']
+base_table = {'A':'T','T':'A','G':'C','C':'G',
+            'Y':'R', 'R':'Y', 'S':'W', 'W':'S', 'K':'M', 'M':'K', 'N':'N'}
+
+codon_table = { 'GCT': 'A', 'GCC': 'A', 'GCA': 'A', 'GCG': 'A', 'CGT': 'R', 'CGC': 'R', 'CGA':'R',
+'CGG':'R', 'AGA':'R', 'AGG':'R', 'AAT':'N', 'AAC':'N', 'GAT':'D', 'GAC':'D', 'TGT':'C', 'TGC':'D',
+'CAA':'Q', 'CAG':'Q', 'GAA':'E', 'GAG':'E', 'GGT':'G', 'GGC':'G', 'GGA':'G', 'GGG':'G', 'CAT':'H',
+'CAC':'H', 'ATT':'I', 'ATC':'I', 'ATA':'I', 'TTA':'L', 'TTG':'L', 'CTT':'L', 'CTC':'L', 'CTA':'L',
+'CTG':'L', 'AAA':'K', 'AAG':'K', 'ATG':'M', 'TTT':'F', 'TTC':'F', 'CCT':'P', 'CCC':'P', 'CCA':'P',
+'CCG':'P', 'TCT':'S', 'TCC':'S', 'TCA':'S', 'TCG':'S', 'AGT':'S', 'AGC':'S', 'ACT':'T', 'ACC':'T',
+'ACA':'T', 'ACG':'T', 'TGG':'W', 'TAT':'Y', 'TAC':'Y', 'GTT':'V', 'GTC':'V', 'GTA':'V', 'GTG':'V',
+'TAA':'!', 'TGA':'!', 'TAG':'!'}#, 'KTC':'F', 'KAC':'Y', 'KCC':'A', 'KGC':'D'}
+
+
+
+# calculate number of synonymous opportunities for each codon
+codon_synonymous_opportunity_table = {}
+for codon in codon_table.keys():
+    codon_synonymous_opportunity_table[codon] = {}
+    for i in range(0,3):
+        codon_synonymous_opportunity_table[codon][i] = -1 # since G->G is by definition synonymous, but we don't want to count it
+        codon_list = list(codon)
+        for base in ['A','C','T','G']:
+            codon_list[i]=base
+            new_codon = "".join(codon_list)
+            if 'K' in new_codon:
+                continue
+            if codon_table[codon]==codon_table[new_codon]:
+                # synonymous!
+                codon_synonymous_opportunity_table[codon][i]+=1
+
+bases = set(['A','C','T','G'])
+substitutions = []
+for b1 in bases:
+    for b2 in bases:
+        if b2==b1:
+            continue
+
+        substitutions.append( '%s->%s' % (b1,b2) )
+
+codon_synonymous_substitution_table = {}
+codon_nonsynonymous_substitution_table = {}
+for codon in codon_table.keys():
+    codon_synonymous_substitution_table[codon] = [[],[],[]]
+    codon_nonsynonymous_substitution_table[codon] = [[],[],[]]
+
+    for i in range(0,3):
+        reference_base = codon[i]
+
+        codon_list = list(codon)
+        for derived_base in ['A','C','T','G']:
+            if derived_base==reference_base:
+                continue
+            substitution = '%s->%s' % (reference_base, derived_base)
+            codon_list[i]=derived_base
+            new_codon = "".join(codon_list)
+            if codon_table[codon]==codon_table[new_codon]:
+                # synonymous!
+                codon_synonymous_substitution_table[codon][i].append(substitution)
+            else:
+                codon_nonsynonymous_substitution_table[codon][i].append(substitution)
+
+
+
+
+
+
+def calculate_synonymous_nonsynonymous_target_sizes(taxon):
+    position_gene_map, effective_gene_lengths, substitution_specific_synonymous_fraction  = create_annotation_map(taxon=taxon)
+    return effective_gene_lengths['synonymous'], effective_gene_lengths['nonsynonymous'], substitution_specific_synonymous_fraction
+
+
+def calculate_reverse_complement_sequence(dna_sequence):
+    return "".join(base_table[base] for base in dna_sequence[::-1])
+
+
+def calculate_codon_sequence(dna_sequence):
+    return "".join(codon_table[dna_sequence[3*i:3*i+3]] for i in range(0,len(dna_sequence)/3))
+
+
+
 
 def get_alpha():
     return 0.05
+
+
+def get_ref_gbff_dict(experiment):
+
+    ref_dict = {"tenaillon": "data/Tenaillon_et_al/sequence.gb"}
+
+    return ref_dict[experiment]
+
+
+def get_path():
+    return os.path.expanduser("~/GitHub/ParEvol")
+
+
+def get_genome_size(taxon):
+    genome_size_dict = {"tenaillon": 4629812}
+
+    return genome_size_dict[taxon]
+
+
+
 
 
 # calculate_total_parallelism function is modified from GitHub repo
@@ -61,107 +169,6 @@ def calculate_total_parallelism(gene_statistics, allowed_genes=None, num_bootstr
 
     #pvalue = ((bootstrapped_Gs>=observed_G).sum()+1.0)/(len(bootstrapped_Gs)+1.0)
     return observed_G#, pvalue
-
-
-
-# code from https://github.com/lubeme/Scale-Free-Random-Walks-Networks
-def random_walks_powerlaw_cluster_graph(m,n,cc,seed=None):
-    """Return random graph using Herrera-Zufiria random walks model.
-
-    A Scale-free graph of n nodes is grown by attaching new nodes
-    each with m edges that are connected to existing by performing
-    random walks,using only local information of the network.
-    Parameters
-    ----------
-    n : int
-        Number of nodes
-    m : int
-        Number of edges to attach from a new node to existing nodes
-    cc: int
-        clustering control parameter, from 0 to 100. Increasing control
-        parameter implies increasing the clustering of the graph
-    seed : int, optional
-        Seed for random number generator (default=None).
-    Returns
-    -------
-    G : Graph
-
-    Notes
-    -----
-    The initialization is a circular graph with an odd number of nodes.
-    For small values of m initial graph has at least 11 nodes.
-    References
-    ----------
-    .. [1] Herrera, C.; Zufiria, P.J.; , "Generating scale-free networks
-    with adjustable clustering coefficient via random walks,"
-    Network Science Workshop (NSW),
-    2011 IEEE , vol., no., pp.167-172, 22-24 June 2011
-    """
-
-
-    if m < 1 or  m >=n or cc < 0 or cc > 100:
-        raise nx.NetworkXError(\
-            "The network must have m>=1, m<n and "
-            "cc between 0 and 100. m=%d,n=%d cc=%d"%(m,n,cc))
-
-    if seed is not None:
-        random.seed(seed)
-
-    nCero= max(11,m)
-    if nCero%2==0:
-        nCero+=1
-    #initialise graph
-    G= nx.generators.classic.cycle_graph(nCero)
-    G.name="Powerlaw-Cluster Random-Walk Graph"
-
-    #list of probabilities 'pi' associated to each node
-    #representing a genetic factor
-    p=stats.bernoulli.rvs(cc/float(100),size=n)
-
-    #main loop of the algorithm
-    for j in range(nCero,n):
-        #Choose Random node
-        vs =random.randrange(0,G.number_of_nodes())
-        #random walk of length>1 beginning on vs
-        l = 7
-        ve=vs
-        for i in range(l):
-            neighborsVe = G.neighbors(ve)
-            neighborsVe_list = list(neighborsVe)
-            # random.choice(numberList)
-            #ve= list(neighborsVe)[random.randrange(0,len(list(neighborsVe)))]
-            ve = random.choice(neighborsVe_list)
-            #len(list(somegraph.neighbors(somenode)))
-
-
-        markedVertices=[]
-        #mark ve
-        markedVertices.append(ve)
-        vl=ve
-        #Mark m nodes
-        for i in range(m-1):
-            #Random walk of l = [1 , 2] depending on the
-            #genetic factor of the node vl
-            l =2 - p[vl]
-            vll=vl
-            #Random Walk starting on vl, avoiding already marked vertices
-            while ((vll in markedVertices)):
-                print(vll)
-                for k in range(l):
-                    neighborsVl = G.neighbors(vll)
-                    neighborsVl_list = list(neighborsVl)
-                    #vll= neighborsVl[random.randrange(0,len(neighborsVl))]
-                    vll = random.choice(neighborsVl_list)
-            vl=vll
-            #mark vl
-            markedVertices.append(vl)
-        #Add the new node
-        G.add_node(j)
-        #Assign the node a pi
-        #Add the m marked neighbors to vl
-        for i in range(m):
-            G.add_edge(j,markedVertices[i])
-    return G
 
 
 
@@ -291,7 +298,6 @@ def get_mean_pairwise_euc_distance(array, k = 3):
 def pca_np(x):
     # mean center matrix
     x -= np.mean(x, axis = 0)
-    #print(x)
     cov = np.cov(x, rowvar = False)
     evals , evecs = LA.eigh(cov)
 
@@ -372,59 +378,6 @@ def get_mean_colors(c1, c2, w1, w2):
         new_rgba.append(math.exp((w1 * math.log(item[0])) + (w2 * math.log(item[1]))))
     #weight_sum = w1 + w2
     return cls.rgb2hex(tuple(new_rgba))
-
-
-
-def get_ba_cov_matrix(n_genes, cov, p=None, m=2, get_node_edge_sum=False):#,prop=False,, rho=None  cov2 = None,rho2=None):
-    '''Based off of the Gershgorin circle theorem, we can expect
-    that the code will eventually produce mostly matrices
-    that aren't positive definite as the covariance value
-    increases and/or more edges added to incidence matrix'''
-    while True:
-        #if rho == None:
-        if p == None:
-            ntwk = nx.barabasi_albert_graph(n_genes, m)
-
-        else:
-            #ntwk = random_walks_powerlaw_cluster_graph(n=n_genes,m=m,cc=cc,seed=None)
-            # p = Probability of adding a triangle after adding a random edge
-            ntwk = nx.powerlaw_cluster_graph(n=n_genes,m=m,p=p)
-
-
-        ntwk_np = nx.to_numpy_matrix(ntwk)
-        #else:
-        #    ntwk_np, rho_estimate = get_correlated_rndm_ntwrk(n_genes, m=m, rho=rho, count_threshold = 10000)
-
-        #if cov2 == None:
-        C = ntwk_np * cov
-        #else:
-        #    C = ntwk_np * cov
-        #    C2 = ntwk_np * cov2
-        #    np.fill_diagonal(C2, 1)
-
-        np.fill_diagonal(C, 1)
-
-        #if prop == True and cov2 == None:
-        #    diag_C = np.tril(C, k =-1)
-        #    i,j = np.nonzero(diag_C)
-        #    ix = np.random.choice(len(i), int(np.floor((1-prop) * len(i))), replace=False)
-        #    C[np.concatenate((i[ix],j[ix]), axis=None), np.concatenate((j[ix],i[ix]), axis=None)] = -1*cov
-
-        #if cov2 == None:
-        if np.all(np.linalg.eigvals(C) > 0) == True:
-            if p==None:
-                return C
-            else:
-                return C, nx.average_clustering(ntwk)
-            #else:
-            #    return C, rho_estimate
-
-        #else:
-        #    return C
-        #    if (np.all(np.linalg.eigvals(C) > 0) == True) and (np.all(np.linalg.eigvals(C2) > 0) == True):
-        #        return C, C2
-
-
 
 
 
@@ -619,146 +572,6 @@ def get_x_stat(e_values, n_features=None):
 
 
 
-def get_correlated_rndm_ntwrk(n_genes, m=2, rho=0.3, rho2=None, count_threshold = 10000, rho_error = 0.01):
-    #  Xalvi-Brunet and Sokolov
-    # generate maximally correlated networks with a predefined degree sequence
-    # assumes that abs(rho) > abs(rho2)
-    if rho > 0:
-        assortative = True
-    elif rho <= 0:
-        assortative = False
-
-    if rho2 != None:
-        if rho2 > rho:
-            assortative2 = True
-        elif rho2 <= rho:
-            assortative2 = False
-
-    def get_two_edges(graph_array):
-        d = nx.to_dict_of_dicts(nx.from_numpy_matrix(graph_array), edge_data=1)
-        l0_n0 = random.sample(list(d), 1)[0]
-        l0_list = list(d[l0_n0])
-        l0_n1 = random.sample(l0_list, 1)[0]
-
-        def get_second_edge(d, l0_n0, l0_n1):
-            l1_list = [i for i in list(d) if i not in [l0_n0, l0_n1] ]
-            l1 = []
-            while len(l1) != 2:
-                l1_n0 = random.sample(list(l1_list), 1)[0]
-                l1_n1_list = d[l1_n0]
-                l1_n1_list = [i for i in l1_n1_list if i not in [l0_n0, l0_n1] ]
-                if len(l1_n1_list) > 0:
-                    l1_n1 = random.sample(list(l1_n1_list), 1)[0]
-                    l1.extend([l1_n0, l1_n1])
-            return l1
-
-        # get two links, make sure all four nodes are unique
-        link1 = get_second_edge(d, l0_n0, l0_n1 )
-        # for some reason sometimes np.sum() returns a nested list?
-        # check for that
-        #row_sums = np.asarray(np.sum(graph_array, axis =0))[0]
-        row_sums = np.asarray(np.sum(graph_array, axis =0)).tolist()
-        if any(isinstance(i, list) for i in row_sums) == True:
-            row_sums = [item for sublist in row_sums for item in sublist]
-        else:
-            row_sums = row_sums
-        node_edge_counts = [(l0_n0, row_sums[l0_n0]), (l0_n1, row_sums[l0_n1]),
-                            (link1[0], row_sums[link1[0]]), (link1[1], row_sums[link1[1]])]
-        return node_edge_counts
-
-    if rho == 0:
-        iter_rho = 2*rho_error
-    else:
-        iter_rho = 0
-    iter_graph = None
-
-    #while (assortative == True and iter_rho < rho) or (assortative == False and iter_rho > rho):
-    while (iter_rho > rho + rho_error) or (iter_rho < rho - rho_error):
-        count = 0
-        current_rho = 0
-        accepted_counts = 0
-        graph = nx.barabasi_albert_graph(n_genes, m)
-        graph_np = nx.to_numpy_matrix(graph)
-        while ((assortative == True and current_rho < rho) or (assortative == False and current_rho > rho)) and ((count-accepted_counts) < count_threshold):
-        #while (abs(current_rho) < abs(rho)) and ((count-accepted_counts) < count_threshold) : #<r (rejected_counts < count_threshold):
-            count += 1
-            edges = get_two_edges(graph_np)
-            graph_np_sums = np.sum(graph_np, axis=1)
-            # check whether new edges already exist
-            if graph_np[edges[0][0],edges[3][0]] == 1 or \
-                graph_np[edges[3][0],edges[0][0]] == 1 or \
-                graph_np[edges[2][0],edges[1][0]] == 1 or \
-                graph_np[edges[1][0],edges[2][0]] == 1:
-                continue
-
-            disc = (edges[0][1] - edges[2][1]) * \
-                    (edges[3][1] - edges[1][1])
-            #if (rho > 0 and disc > 0) or (rho < 0 and disc < 0):
-            if (assortative == True and disc > 0) or (assortative == False and disc < 0):
-                graph_np[edges[0][0],edges[1][0]] = 0
-                graph_np[edges[1][0],edges[0][0]] = 0
-                graph_np[edges[2][0],edges[3][0]] = 0
-                graph_np[edges[3][0],edges[2][0]] = 0
-
-                graph_np[edges[0][0],edges[3][0]] = 1
-                graph_np[edges[3][0],edges[0][0]] = 1
-                graph_np[edges[2][0],edges[1][0]] = 1
-                graph_np[edges[1][0],edges[2][0]] = 1
-
-                accepted_counts += 1
-                current_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
-                #print(current_rho, count, accepted_counts)
-
-        iter_rho = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np))
-        iter_graph = graph_np
-
-
-    if rho2 == None:
-        return iter_graph, iter_rho
-
-    else:
-        iter_rho2 = copy(iter_rho)
-        graph_np_2 = np.copy(graph_np)
-        current_rho2 = copy(iter_rho)
-        accepted_counts2 = 0
-        count2 = 0
-
-        # iter_rho > rho + rho_error) or (iter_rho < rho - rho_error
-        #while ((assortative2 == True and current_rho2 < rho2) or (assortative2 == False and current_rho2 > rho2)) and ((count2-accepted_counts2) < count_threshold):
-        while ((assortative2 == True and current_rho2 < rho2 - rho_error) or (assortative2 == False and current_rho2 > rho2 + rho_error)) and ((count2-accepted_counts2) < count_threshold):
-            count2 += 1
-            edges = get_two_edges(graph_np_2)
-            graph_np_sums2 = np.sum(graph_np_2, axis=1)
-            # check whether new edges already exist
-            if graph_np_2[edges[0][0],edges[3][0]] == 1 or \
-                graph_np_2[edges[3][0],edges[0][0]] == 1 or \
-                graph_np_2[edges[2][0],edges[1][0]] == 1 or \
-                graph_np_2[edges[1][0],edges[2][0]] == 1:
-                continue
-
-            disc = (edges[0][1] - edges[2][1]) * \
-                    (edges[3][1] - edges[1][1])
-            if (assortative2 == True and disc > 0) or (assortative2 == False and disc < 0):
-                graph_np_2[edges[0][0],edges[1][0]] = 0
-                graph_np_2[edges[1][0],edges[0][0]] = 0
-                graph_np_2[edges[2][0],edges[3][0]] = 0
-                graph_np_2[edges[3][0],edges[2][0]] = 0
-
-                graph_np_2[edges[0][0],edges[3][0]] = 1
-                graph_np_2[edges[3][0],edges[0][0]] = 1
-                graph_np_2[edges[2][0],edges[1][0]] = 1
-                graph_np_2[edges[1][0],edges[2][0]] = 1
-
-                accepted_counts2 += 1
-                current_rho2 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np_2))
-
-        iter_rho2 = nx.degree_assortativity_coefficient(nx.from_numpy_matrix(graph_np_2))
-        iter_graph2 = graph_np_2
-
-        return iter_graph, iter_rho, iter_graph2, iter_rho2
-
-
-
 def get_F_2(PC_space, N_list):
     '''
     Modified F-statistic from Anderson et al., 2017 doi: 10.1111/anzs.12176
@@ -854,3 +667,325 @@ def matrix_vs_null_two_treats(count_matrix,  N1, N2, iter=1000):
     V_2_z_score = (V_2 - np.mean(V_2_list)) / np.std(V_2_list)
 
     return F_2_percent, F_2_z_score, V_1_percent, V_1_z_score, V_2_percent, V_2_z_score
+
+
+
+
+
+
+def parse_reference_genome(taxon):
+    filename= get_path() + '/' + get_ref_gbff_dict(taxon)
+
+    reference_sequences = []
+
+    # GBK file
+    if filename[-3:] == 'gbk':
+        file = open(filename,"r")
+        origin_reached = False
+        for line in file:
+            if line.startswith("ORIGIN"):
+                origin_reached=True
+            if origin_reached:
+                items = line.split()
+                if items[0].isdigit():
+                    reference_sequences.extend(items[1:])
+        file.close()
+
+    # FASTA file
+    else:
+        file = open(filename,"r")
+        file.readline() # header
+        for line in file:
+            reference_sequences.append(line.strip())
+        file.close()
+
+    reference_sequence = "".join(reference_sequences).upper()
+    return reference_sequence
+
+
+
+
+#####################################################################
+#
+# Reads through the Genbank file for the reference and
+# compiles a list of genes, tRNAs, etc.
+#
+#####################################################################
+def parse_gene_list(taxon, reference_sequence=None):
+    gene_names = []
+    start_positions = []
+    end_positions = []
+    promoter_start_positions = []
+    promoter_end_positions = []
+    gene_sequences = []
+    strands = []
+    genes = []
+    features = []
+    protein_ids = []
+
+    filename= get_path() + '/' + get_ref_gbff_dict(taxon)
+    gene_features = ['CDS', 'tRNA', 'rRNA', 'ncRNA', 'tmRNA']
+    recs = [rec for rec in SeqIO.parse(filename, "genbank")]
+    count_riboswitch = 0
+    for rec in recs:
+        reference_sequence = rec.seq
+        contig = rec.annotations['accessions'][0]
+        for feat in rec.features:
+            if 'pseudo' in list((feat.qualifiers.keys())):
+                continue
+            if (feat.type == "source") or (feat.type == "gene"):
+                continue
+
+            locations = re.findall(r"[\w']+", str(feat.location))
+            if feat.type in gene_features:
+                locus_tag = feat.qualifiers['locus_tag'][0]
+            elif (feat.type=="regulatory"):
+                locus_tag = feat.qualifiers["regulatory_class"][0] + '_' + str(count_riboswitch)
+                count_riboswitch += 1
+            else:
+                continue
+            # for frameshifts, split each CDS seperately and merge later
+            # Fix this for Deinococcus, it has a frameshift in three pieces
+            split_list = []
+            if 'join' in locations:
+                location_str = str(feat.location)
+                minus_position = []
+                if '-' in location_str:
+                    minus_position = [r.start() for r in re.finditer('-', location_str)]
+                pos_position = []
+
+                if '+' in location_str:
+                    if taxon == 'D':
+                        pos_position = [pos for pos, char in enumerate(location_str) if char == '+']
+                    elif taxon == 'J':
+                        pos_position = [pos for pos, char in enumerate(location_str) if char == '+']
+                    else:
+                        pos_position = [r.start() for r in re.finditer('+', location_str)]
+
+
+                if len(minus_position) + len(pos_position) == 2:
+                    if len(minus_position) == 2:
+                        strand_symbol_one = '-'
+                        strand_symbol_two = '-'
+                    elif len(pos_position) == 2:
+                        strand_symbol_one = '+'
+                        strand_symbol_two = '+'
+                    else:
+                        # I don't think this is possible, but might as well code it up
+                        if minus_position[0] < pos_position[0]:
+                            strand_symbol_one = '-'
+                            strand_symbol_two = '+'
+                        else:
+                            strand_symbol_one = '+'
+                            strand_symbol_two = '-'
+
+                    start_one = int(locations[1])
+                    stop_one = int(locations[2])
+                    start_two = int(locations[3])
+                    stop_two = int(locations[4])
+
+                    locus_tag1 = locus_tag + '_1'
+                    locus_tag2 = locus_tag + '_2'
+
+                    split_list.append([locus_tag1, start_one, stop_one, strand_symbol_one])
+                    split_list.append([locus_tag2, start_two, stop_two, strand_symbol_two])
+
+                else:
+                    if len(pos_position) == 3:
+                        strand_symbol_one = '+'
+                        strand_symbol_two = '+'
+                        strand_symbol_three = '+'
+                    start_one = int(locations[1])
+                    stop_one = int(locations[2])
+                    start_two = int(locations[3])
+                    stop_two = int(locations[4])
+                    start_three = int(locations[5])
+                    stop_three = int(locations[6])
+
+                    locus_tag1 = locus_tag + '_1'
+                    locus_tag2 = locus_tag + '_2'
+                    locus_tag3 = locus_tag + '_3'
+
+                    split_list.append([locus_tag1, start_one, stop_one, strand_symbol_one])
+                    split_list.append([locus_tag2, start_two, stop_two, strand_symbol_two])
+                    split_list.append([locus_tag3, start_three, stop_three, strand_symbol_three])
+
+
+            else:
+                strand_symbol = str(feat.location)[-2]
+                start = int(locations[0])
+                stop = int(locations[1])
+                split_list.append([locus_tag, start, stop, strand_symbol])
+
+            for split_item in split_list:
+                locus_tag = split_item[0]
+                start = split_item[1]
+                stop = split_item[2]
+                strand_symbol = split_item[3]
+
+
+                if feat.type == 'CDS':
+                    #  why was a -1 there originally?
+                    #gene_sequence = reference_sequence[start-1:stop]
+                    gene_sequence = str(reference_sequence[start:stop])
+                else:
+                    gene_sequence = ""
+
+
+                if 'gene' in list((feat.qualifiers.keys())):
+                    gene = feat.qualifiers['gene'][0]
+                else:
+                    gene = ""
+
+                if 'protein_id' in list((feat.qualifiers.keys())):
+                    protein_id = feat.qualifiers['protein_id'][0]
+                else:
+                    protein_id = ""
+
+
+                if strand_symbol == '+':
+                    promoter_start = start - 100 # by arbitrary definition, we treat the 100bp upstream as promoters
+                    promoter_end = start - 1
+                    strand = 'forward'
+                else:
+                    promoter_start = stop+1
+                    promoter_end = stop+100
+                    strand = 'reverse'
+
+
+                if gene_sequence!="" and (not len(gene_sequence)%3==0):
+                    print(locus_tag, start, "Not a multiple of 3")
+                    continue
+
+                # dont need to check if gene names are unique because we're using
+                # locus tags
+
+                start_positions.append(start)
+                end_positions.append(stop)
+                promoter_start_positions.append(promoter_start)
+                promoter_end_positions.append(promoter_end)
+                gene_names.append(locus_tag)
+                gene_sequences.append(gene_sequence)
+                strands.append(strand)
+                genes.append(gene)
+                features.append(feat.type)
+                protein_ids.append(protein_id)
+
+    gene_names, start_positions, end_positions, promoter_start_positions, promoter_end_positions, gene_sequences, strands, genes, features, protein_ids = (list(x) for x in zip(*sorted(zip(gene_names, start_positions, end_positions, promoter_start_positions, promoter_end_positions, gene_sequences, strands, genes, features, protein_ids), key=lambda pair: pair[1])))
+
+    return gene_names, np.array(start_positions), np.array(end_positions), np.array(promoter_start_positions), np.array(promoter_end_positions), gene_sequences, strands, genes, features, protein_ids
+
+
+
+
+
+
+
+def create_annotation_map(taxon, gene_data=None):
+
+    if gene_data==None:
+        gene_data = parse_gene_list(taxon)
+
+    gene_names, gene_start_positions, gene_end_positions, promoter_start_positions, promoter_end_positions, gene_sequences, strands, genes, features, protein_ids = gene_data
+    position_gene_map = {}
+    gene_position_map = {}
+    # new
+    gene_feature_map = {}
+
+    # then greedily annotate genes at remaining sites
+    for gene_name, feature, start, end in zip(gene_names, features, gene_start_positions, gene_end_positions):
+        gene_feature_map[gene_name] = feature
+        for position in range(start,end+1):
+            if position not in position_gene_map:
+                position_gene_map[position] = gene_name
+                if gene_name not in gene_position_map:
+                    gene_position_map[gene_name]=[]
+                gene_position_map[gene_name].append(position)
+
+
+    # remove 'partial' genes that have < 10bp unmasked sites
+    for gene_name in list(sorted(gene_position_map.keys())):
+        if len(gene_position_map[gene_name]) < 10:
+            for position in gene_position_map[gene_name]:
+                position_gene_map[position] = 'repeat'
+            del gene_position_map[gene_name]
+
+    # count up number of synonymous opportunities
+    effective_gene_synonymous_sites = {}
+    effective_gene_nonsynonymous_sites = {}
+
+    substitution_specific_synonymous_sites = {substitution: 0 for substitution in substitutions}
+    substitution_specific_nonsynonymous_sites = {substitution: 0 for substitution in substitutions}
+
+    for gene_name, start, end, gene_sequence, strand in zip(gene_names, gene_start_positions, gene_end_positions, gene_sequences, strands):
+
+        if gene_name not in gene_position_map:
+            continue
+
+        if strand=='forward':
+            oriented_gene_sequence = gene_sequence
+        else:
+            oriented_gene_sequence = calculate_reverse_complement_sequence(gene_sequence)
+
+        for position in gene_position_map[gene_name]:
+
+            if gene_name not in effective_gene_synonymous_sites:
+                effective_gene_synonymous_sites[gene_name]=0
+                effective_gene_nonsynonymous_sites[gene_name]=0
+
+            if 'CDS' not in gene_feature_map[gene_name]:
+                continue
+
+            else:
+                # calculate position in gene
+                if strand=='forward':
+                    position_in_gene = position-start
+                else:
+                    position_in_gene = end-position
+
+                # calculate codon start
+                codon_start = int(position_in_gene/3)*3
+                if codon_start+3 > len(gene_sequence):
+                    continue
+
+                #codon = gene_sequence[codon_start:codon_start+3]
+                codon = oriented_gene_sequence[codon_start:codon_start+3]
+                if any(codon_i in codon for codon_i in bases_to_skip):
+                    continue
+                position_in_codon = position_in_gene%3
+
+
+                effective_gene_synonymous_sites[gene_name] += codon_synonymous_opportunity_table[codon][position_in_codon]/3.0
+                effective_gene_nonsynonymous_sites[gene_name] += 1-codon_synonymous_opportunity_table[codon][position_in_codon]/3.0
+
+                for substitution in codon_synonymous_substitution_table[codon][position_in_codon]:
+                    substitution_specific_synonymous_sites[substitution] += 1
+
+                for substitution in codon_nonsynonymous_substitution_table[codon][position_in_codon]:
+                    substitution_specific_nonsynonymous_sites[substitution] += 1
+
+
+
+    substitution_specific_synonymous_fraction = {substitution: substitution_specific_synonymous_sites[substitution]*1.0/(substitution_specific_synonymous_sites[substitution]+substitution_specific_nonsynonymous_sites[substitution]) for substitution in substitution_specific_synonymous_sites.keys()}
+    # then annotate promoter regions at remaining sites
+    for gene_name,start,end in zip(gene_names,promoter_start_positions,promoter_end_positions):
+        for position in range(start,end+1):
+            if position not in position_gene_map:
+                # position hasn't been annotated yet
+
+                if gene_name not in gene_position_map:
+                    # the gene itself has not been annotated
+                    # so don't annotate the promoter
+                    continue
+                else:
+                    position_gene_map[position] = gene_name
+                    gene_position_map[gene_name].append(position)
+
+    # calculate effective gene lengths
+    effective_gene_lengths = {gene_name: len(gene_position_map[gene_name])-effective_gene_synonymous_sites[gene_name] for gene_name in gene_position_map.keys()}
+    effective_gene_lengths['synonymous'] = sum([effective_gene_synonymous_sites[gene_name] for gene_name in gene_position_map.keys()])
+    effective_gene_lengths['nonsynonymous'] = sum([effective_gene_nonsynonymous_sites[gene_name] for gene_name in gene_position_map.keys()])
+    effective_gene_lengths['noncoding'] = get_genome_size(taxon=taxon)-effective_gene_lengths['synonymous']-effective_gene_lengths['nonsynonymous']
+
+
+    return position_gene_map, effective_gene_lengths, effective_gene_synonymous_sites, substitution_specific_synonymous_fraction
